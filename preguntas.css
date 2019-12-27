@@ -1,5 +1,6 @@
 .topMargin{
     margin:2vw 0px 0px 0px;
+    border: ;
 }
 .progressMargin{
     margin:1vw 0px 0px 0px;
@@ -12,4 +13,9 @@
     .cruz{
         width: 30px;
     }
+}
+
+.formatoPreguntas{
+    color:rgb(50,50,50);
+    font-size: 4vw;
 }
