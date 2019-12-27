@@ -1,6 +1,6 @@
 .topMargin{
     margin:2vw 0px 0px 0px;
-    border: ;
+    border-bottom: 1px solid rgb(240,240,240);
 }
 .progressMargin{
     margin:1vw 0px 0px 0px;
@@ -18,4 +18,10 @@
 .formatoPreguntas{
     color:rgb(50,50,50);
     font-size: 4vw;
+}
+
+.imagenPregunta{
+    display: block;
+    margin: auto 0px auto 0px;
+    width: 100%;
 }

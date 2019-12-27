@@ -1,173 +1,382 @@
 <!DOCTYPE html>
 <html>
-<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <!--Important links-->
+    <link rel="stylesheet" href="CSSsJSs/bootstrap.css" />
+    <link rel="stylesheet" href="CSSsJSs/styleIndex.css" />
 
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" type="image/x-icon" href="icon1.png" />
-</head>
+    <!--Temporal ONLINE fonts and styles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- NOW LIKE BOOTSTRAP.CSS link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"-->
+  </head>
+  <body>
+    <!----------------------------------------------TITULO--------------------------------------------->
+    <div class="top">
+      <div class="container">
+        <div class="row titulo">
+          <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+            <img class="iconoPrincipal" src="icons/physics.svg" />
+          </div>
+          <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <p class="Ciencia fuenteTitulo">Física</p>
+          </div>
+          <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td width="60%">
+                    <img class="iconoDiamantes imgRight" src="icons/diamante.svg" />
+                  </td>
+                  <td width="40%">
+                    <p class="diamantes textLeft">112</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <p class="Materia fuenteTitulo">Energía y movimiento</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------------------------------------------------FIN TITULO----------------------------------------------->
 
-<body>
-
-    <div class="flyout-debug" id="flyout-debug"></div>
+    <!----------------------------------------------CITA--------------------------------------------->
     <div class="container">
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                <button class="botonesActivos" id="botonCodigo">Tengo un código</button>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-            </div>
+      <div class="row">
+        <div
+          class="textCenter col-xs-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"
+        ></div>
+        <div class="textCenter col-xs-10 col-sm-8 col-md-6 col-lg-4 col-xl-4">
+          <p class="cita">
+            "What one man calls God, another calls the laws of physics." -
+            Nikola Tesla
+          </p>
         </div>
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                <button class="botonesActivos" id="botonSesion">Iniciar sesión</button>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-            </div>
-        </div>
+        <div
+          class="textCenter col-xs-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"
+        ></div>
+      </div>
+    </div>
+    <!------------------------------------------------FIN CITA----------------------------------------------->
+
+    <!----------------------------------------------TEMAS PRINCIPALES--------------------------------------------->
+    <div class="container">
+      <div class="row">
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+        <a href="subtemas.html">
+          <div
+            class="temaPrincipal1 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6"
+          >
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td width="20%">
+                    <img class="icons" src="icons/mechanical.svg" />
+                  </td>
+                  <td width="10%" class="separadorTemasPrincipales">|</td>
+                  <td width="70%" class="tituloTemasPrincipales">
+                    Herramientas previas
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </a>
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+      </div>
     </div>
 
-    <div class="container" id="seccionCodigo">
-        <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-            <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 col-xl-2">
-                <p class="textRight">Ingresa tu código</p>
-            </div>
-            <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 col-xl-2">
-                <input type="text" name="fname" class="inputs">
-            </div>
-            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
-                <p class="textRight">Ingresa tu correo</p>
-            </div>
-            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
-                <input type="text" name="fname" class="inputs">
-            </div>
-            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
-                <button class="continue">Continuar ></button>
-            </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-            <div class="col-xs-5 col-sm-5 hidden-md hidden-lg hidden-xl">
-                <p class="textRight">Ingresa tu correo</p>
-            </div>
-            <div class="col-xs-5 col-sm-5 hidden-md hidden-lg hidden-xl">
-                <input type="email" placeholder="A01169493@itesm.mx" pattern=".+@itesm.mx" name="fname" class="inputs">
-            </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-            <div class="col-xs-10 col-sm-10 hidden-md hidden-lg hidden-xl">
-                <button class="continue">Continuar ></button>
-            </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-        </div>
+    <div class="container">
+      <div class="row">
+        <p></p>
+      </div>
+    </div>
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p class="textCenter emergency">¡Verifica tus datos antes de continuar!</p>
-            </div>
-        </div>
+    <div class="container">
+      <div class="row">
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+        <a href="subtemas.html">
+          <div
+            class="temaPrincipal2 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6"
+          >
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td width="20%">
+                    <img class="icons" src="icons/fluid.svg" />
+                  </td>
+                  <td width="10%" class="separadorTemasPrincipales">|</td>
+                  <td width="70%" class="tituloTemasPrincipales">Vectores</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </a>
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+      </div>
     </div>
-    <div class="container" id="seccionSesion">
-        <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-            <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 col-xl-2">
-                <p class="textRight">Usuario</p>
-            </div>
-            <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 col-xl-2">
-                <input type="text" name="fname" class="inputs">
-            </div>
-            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
-                <p class="textRight">Contraseña</p>
-            </div>
-            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
-                <input type="password" name="contrasenia" class="inputs">
-            </div>
-            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
-                <button class="continue">Continuar ></button>
-            </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-            <div class="col-xs-5 col-sm-5 hidden-md hidden-lg hidden-xl">
-                <p class="textRight">Contraseña</p>
-            </div>
-            <div class="col-xs-5 col-sm-5 hidden-md hidden-lg hidden-xl">
-                <input type="password" name="contrasenia" class="inputs">
-            </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-            <div class="col-xs-10 col-sm-10 hidden-md hidden-lg hidden-xl">
-                <button class="continue">Continuar ></button>
-            </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <a>
-                    <p class="textCenter forgotPass" id="contraOlvidada">¿Olvidaste tu contraseña?</p>
-                </a>
-            </div>
-        </div>
+
+    <div class="container">
+      <div class="row">
+        <p></p>
+      </div>
     </div>
-    <div class="container" id="emailSent">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p class="textCenter">Te hemos enviado un correo a tu email para continuar</p>
-            </div>
-        </div>
+
+    <div class="container">
+      <div class="row">
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+        <a href="subtemas.html">
+          <div
+            class="temaPrincipal3 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6"
+          >
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td width="20%">
+                    <img class="icons" src="icons/termo.svg" />
+                  </td>
+                  <td width="10%" class="separadorTemasPrincipales">|</td>
+                  <td width="70%" class="tituloTemasPrincipales">
+                    Cinemática 1D
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </a>
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <p></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+        <a href="subtemas.html">
+          <div
+            class="temaPrincipal4 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6"
+          >
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td width="20%">
+                    <img class="icons" src="icons/electro.svg" />
+                  </td>
+                  <td width="10%" class="separadorTemasPrincipales">|</td>
+                  <td width="70%" class="tituloTemasPrincipales">
+                    Movimiento en 2D
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </a>
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <p></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+        <a href="subtemas.html">
+          <div
+            class="temaPrincipal1 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6"
+          >
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td width="20%">
+                    <img class="icons" src="icons/magnet.svg" />
+                  </td>
+                  <td width="10%" class="separadorTemasPrincipales">|</td>
+                  <td width="70%" class="tituloTemasPrincipales">
+                    Dinámica y equilibrio traslacional
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </a>
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <p></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+        <a href="subtemas.html">
+          <div
+            class="temaPrincipal2 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6"
+          >
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td width="20%">
+                    <img class="icons" src="icons/optica.svg" />
+                  </td>
+                  <td width="10%" class="separadorTemasPrincipales">|</td>
+                  <td width="70%" class="tituloTemasPrincipales">
+                    Trabajo, energía y potencia
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </a>
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <p></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+        <a href="subtemas.html">
+          <div
+            class="temaPrincipal5 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6"
+          >
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td width="20%">
+                    <img class="icons" src="icons/nuclear.svg" />
+                  </td>
+                  <td width="10%" class="separadorTemasPrincipales">|</td>
+                  <td width="70%" class="tituloTemasPrincipales">
+                    Nuclear
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </a>
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"
+        ></div>
+      </div>
     </div>
 
     <form>
         <div class="emailBox">
             <label for="emailAddress">Your e-mail address</label><br>
             <input id="emailAddress" type="email" size="20" minlength="18" maxLength="18" required
-                placeholder="A01169493@itesm.mx" pattern=".+@beststartupever.com"
-                title="Please provide only a Best Startup Ever corporate e-mail address">
+                placeholder="A01169493@itesm.mx" pattern=".+@itesm.mx"
+                title="Please provide only a valid university e-mail address">
         </div>
         <input type="submit" value="Send Request">
     </form>
-    <!--form action="/action_page.php" method="get" id="nameform">
-        First name: <input type="text" name="fname"><br>
-        Last name: <input type="text" name="lname"><br>
-    </!--form-->
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p></p>
-            </div>
-        </div>
+
+    <div class="container ">
+      <div class="row">
+        <p class="relleno">.</p>
+      </div>
+      <div class="row">
+        <p class="relleno">.</p>
+      </div>
+      <div class="row">
+        <p class="relleno">.</p>
+      </div>
+      <div class="row">
+        <p class="relleno">.</p>
+      </div>
+      <div class="row">
+        <p class="relleno">.</p>
+      </div>
+      <div class="row">
+        <p class="relleno">.</p>
+      </div>
     </div>
 
-</body>
-<script src="script.js"></script>
+    <!----------------------------------------------FIN TEMAS PRINCIPALES--------------------------------------------->
 
+    <!---->
+    <!--
+    <div class="container">
+      <div class="row">
+        <div class="textCenter hidden-xs col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <h3>Column 1</h3>
+          <p>Lorem ipsum dolor..</p>
+        </div>
+        <div class="textCenter col-xs-10 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <h3>Column 2</h3>
+          <p>Lorem ipsum dolor..</p>
+        </div>
+        <div class="textCenter hidden-xs col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <h3>Column 3</h3>
+          <p>Lorem ipsum dolor..</p>
+        </div>
+      </div>
+    </div>
+    -->
+    <!---->
+  </body>
+  <footer class="foot">
+    <div class=" container ">
+      <div class=" row text-center ">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+          <img class="footIcon" src="icons/lecciones.svg" />
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+          <img class="footIcon" src="icons/usuario.svg" />
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <img class="footIcon" src="icons/ayuda.svg" />
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <img class="footIcon" src="icons/info.svg" />
+        </div>
+      </div>
+    </div>
+  </footer>
 </html>

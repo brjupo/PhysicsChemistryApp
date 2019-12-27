@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<html lang="es">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="icon1.png" />
+</head>
+
+<body>
+
+    <div class="flyout-debug" id="flyout-debug"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                <button class="botonesActivos" id="botonCodigo">Tengo un código</button>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                <button class="botonesActivos" id="botonSesion">Iniciar sesión</button>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="seccionCodigo">
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 col-xl-2">
+                <p class="textRight">Ingresa tu código</p>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 col-xl-2">
+                <input type="text" name="fname" class="inputs">
+            </div>
+            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
+                <p class="textRight">Ingresa tu correo</p>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
+                <input type="text" name="fname" class="inputs">
+            </div>
+            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
+                <button class="continue">Continuar ></button>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+            <div class="col-xs-5 col-sm-5 hidden-md hidden-lg hidden-xl">
+                <p class="textRight">Ingresa tu correo</p>
+            </div>
+            <div class="col-xs-5 col-sm-5 hidden-md hidden-lg hidden-xl">
+                <input type="email" placeholder="A01169493@itesm.mx" pattern=".+@itesm.mx" name="fname" class="inputs">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+            <div class="col-xs-10 col-sm-10 hidden-md hidden-lg hidden-xl">
+                <button class="continue">Continuar ></button>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p class="textCenter emergency">¡Verifica tus datos antes de continuar!</p>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="seccionSesion">
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 col-xl-2">
+                <p class="textRight">Usuario</p>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 col-xl-2">
+                <input type="text" name="fname" class="inputs">
+            </div>
+            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
+                <p class="textRight">Contraseña</p>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
+                <input type="password" name="contrasenia" class="inputs">
+            </div>
+            <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-2">
+                <button class="continue">Continuar ></button>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+            <div class="col-xs-5 col-sm-5 hidden-md hidden-lg hidden-xl">
+                <p class="textRight">Contraseña</p>
+            </div>
+            <div class="col-xs-5 col-sm-5 hidden-md hidden-lg hidden-xl">
+                <input type="password" name="contrasenia" class="inputs">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+            <div class="col-xs-10 col-sm-10 hidden-md hidden-lg hidden-xl">
+                <button class="continue">Continuar ></button>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <a>
+                    <p class="textCenter forgotPass" id="contraOlvidada">¿Olvidaste tu contraseña?</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="emailSent">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p class="textCenter">Te hemos enviado un correo a tu email para continuar</p>
+            </div>
+        </div>
+    </div>
+
+    <form>
+        <div class="emailBox">
+            <label for="emailAddress">Your e-mail address</label><br>
+            <input id="emailAddress" type="email" size="20" minlength="18" maxLength="18" required
+                placeholder="A01169493@itesm.mx" pattern=".+@beststartupever.com"
+                title="Please provide only a Best Startup Ever corporate e-mail address">
+        </div>
+        <input type="submit" value="Send Request">
+    </form>
+    <!--form action="/action_page.php" method="get" id="nameform">
+        First name: <input type="text" name="fname"><br>
+        Last name: <input type="text" name="lname"><br>
+    </!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="script.js"></script>
+
+</html>
