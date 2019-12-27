@@ -3,10 +3,12 @@
 <html lang="es">
 
 <head>
-    <title>Title</title>
+    <title>EducApp</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="icon1.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="icons/EducAppIcon.png" />
+
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -18,49 +20,26 @@
         <form class="needs-validation" novalidate>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustom012">First name</label>
-                    <input type="text" class="form-control" id="validationCustom012" placeholder="First name"
-                        value="Mark" required>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <label for="validarNombre">Nombre</label>
+                    <input type="text" class="form-control" id="validarNombre" placeholder="Primer Nombre" required>
+                    <div class="invalid-feedback">
+                        Por favor llena bien este campo.
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustom022">Last name</label>
-                    <input type="text" class="form-control" id="validationCustom022" value="Otto" required>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <label for="validarUsuario">Usuario</label>
+                    <input type="email" class="form-control" id="validarUsuario" placeholder="A01169493@itesm.mx" 
+                    pattern=".+@itesm.mx" minlength="18" maxLength="18" required>
+                    <div class="invalid-feedback">
+                        Por favor llena bien este campo.
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustomUsername2">Username</label>
-                    <input type="text" class="form-control" id="validationCustomUsername2"
+                    <label for="validarPassword">Contraseña</label>
+                    <input type="password" class="form-control" id="validarPassword"
                         aria-describedby="inputGroupPrepend2" required>
                     <div class="invalid-feedback">
-                        Please choose a username.
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="validationCustom032">City</label>
-                    <input type="text" class="form-control" id="validationCustom032" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid city.
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationCustom042">State</label>
-                    <input type="text" class="form-control" id="validationCustom042" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid state.
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationCustom052">Zip</label>
-                    <input type="text" class="form-control" id="validationCustom052" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid zip.
+                        Por favor llena bien este campo.
                     </div>
                 </div>
             </div>
@@ -68,10 +47,10 @@
                 <div class="form-check pl-0">
                     <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
                     <label class="form-check-label" for="invalidCheck2">
-                        Agree to terms and conditions
+                        Acepto los <a href="http://www.google.com">términos y condiciones</a>
                     </label>
                     <div class="invalid-feedback">
-                        You must agree before submitting.
+                        Debes leer y aceptar los terminos condiciones.
                     </div>
                 </div>
             </div>
@@ -85,6 +64,7 @@
             window.addEventListener('load', function () {
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
                 var forms = document.getElementsByClassName('needs-validation');
+                //var forms = document.getElementById('validacion');
                 // Loop over them and prevent submission
                 var validation = Array.prototype.filter.call(forms, function (form) {
                     form.addEventListener('submit', function (event) {
