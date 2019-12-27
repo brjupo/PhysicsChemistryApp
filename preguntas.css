@@ -1,0 +1,15 @@
+.topMargin{
+    margin:2vw 0px 0px 0px;
+}
+.progressMargin{
+    margin:1vw 0px 0px 0px;
+}
+.cruz{
+    filter: brightness(200%) grayscale(100%) blur(1px);
+    width: 3vw;
+}
+@media screen and (max-width: 992px) {
+    .cruz{
+        width: 30px;
+    }
+}
