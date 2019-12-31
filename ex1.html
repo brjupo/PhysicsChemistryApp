@@ -28,6 +28,75 @@
       <div class="container">
         <form class="needs-validation" novalidate>
           <div class="form-row">
+            
+            <div class="col-md-3 mb-3">
+              <label class="fuenteForma" for="validarCodigo"
+                >Código</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="validarCodigo"
+                minlength="10"
+                aria-describedby="inputGroupPrepend2"
+                required
+              />
+              <div class="invalid-feedback">
+                Por favor llena bien este campo.
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label class="fuenteForma" for="validarCorreo">Correo</label>
+              <input
+                type="email"
+                class="form-control"
+                id="validarCorreo"
+                placeholder="A01169493@itesm.mx"
+                pattern=".+@itesm.mx"
+                minlength="18"
+                maxlength="18"
+                required
+              />
+              <div class="invalid-feedback fuenteFormaError">
+                Por favor llena bien este campo.
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <!--div class="form-check pl-0 terminosCondiciones"-->
+              <label class="" for="invalidCheck2">
+                <a class="fuenteForma" href="http://www.google.com"
+                  >Acepto los términos</a
+                >
+              </label>
+              <input
+                class="cajaChequeo"
+                type="checkbox"
+                value=""
+                id="invalidCheck2"
+                required
+              />
+              <div class="invalid-feedback">
+                Debes leer y aceptar.
+              </div>
+              <!--/div-->
+            </div>
+            <div class="col-md-3 mb-3">
+              <label class="fuenteForma ocultoColor" >||</label>
+              <button
+                class="btn btn-primary btn-sm btn-rounded siguiente"
+                type="submit"
+              >
+                >
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+      <div class="container">
+        <form class="needs-validation" novalidate>
+          <div class="form-row">
             <div class="col-md-4 mb-3">
               <label class="fuenteForma" for="validarUsuario">Usuario</label>
               <input
@@ -45,7 +114,9 @@
               </div>
             </div>
             <div class="col-md-4 mb-3">
-              <label class="fuenteForma" for="validarPassword">Contraseña</label>
+              <label class="fuenteForma" for="validarPassword"
+                >Contraseña</label
+              >
               <input
                 type="password"
                 class="form-control"
@@ -58,29 +129,20 @@
               </div>
             </div>
             <div class="col-md-4 mb-3">
-              <div class="form-check pl-0 terminosCondiciones">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="invalidCheck2"
-                  required
-                />
-                <label class="form-check-label fuenteForma" for="invalidCheck2">
-                  Acepto los
-                  <a class="fuenteForma" href="http://www.google.com">términos</a>
-                </label>
-                <div class="invalid-feedback">
-                  Debes leer y aceptar.
-                </div>
-              </div>
-              <button class="btn btn-primary btn-sm btn-rounded siguiente" type="submit">
+              <label class="fuenteForma ocultoColor" >||</label>
+              <button
+                class="btn btn-primary btn-sm btn-rounded siguiente"
+                type="submit"
+              >
                 >
               </button>
             </div>
           </div>
         </form>
       </div>
+
+
+
       <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
