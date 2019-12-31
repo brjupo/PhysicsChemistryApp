@@ -48,15 +48,6 @@ document.addEventListener("click", function(evt) {
       showContraOlvidada();
       return;
     }
-    if (targetElement.className === "continue") {
-      //ENVIAR AL WEBSERVICE
-      var els = document.getElementsByTagName("input");
-      var i;
-      for (i = 0; i < els.length; i++) {
-        els[i].value = "";
-      }
-      return;
-    }
     // Go up the DOM
     targetElement = targetElement.parentNode;
   } while (targetElement);

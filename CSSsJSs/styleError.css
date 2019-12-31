@@ -1,87 +1,111 @@
-
 /*--------------------------------------------------FUENTES-----------------------------------------------------------*/
 @font-face {
-    font-family: "ubuntu";
-    src: url("../Fonts/ubuntu/ubuntu.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "georgia";
-    src: url("../Fonts/georgia/georgiaz.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "Monse";
-    src: url("../Fonts/montserrat/Montserrat-Regular.otf") format("opentype");
-  }
-  @font-face {
-    font-family: "SSF";
-    src: url("../Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
-  }
-  /*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
-  
+  font-family: "ubuntu";
+  src: url("../Fonts/ubuntu/ubuntu.ttf") format("truetype");
+}
+@font-face {
+  font-family: "georgia";
+  src: url("../Fonts/georgia/georgiaz.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Monse";
+  src: url("../Fonts/montserrat/Montserrat-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "SSF";
+  src: url("../Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
+}
+/*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
+
+body {
+  background-color: white;
+}
 .titulo {
-    color: rgb(35, 85, 145);
-    font-size: 6vw;
-    line-height: 30px;
-    font-family: "ubuntu";
+  color: rgb(35, 85, 145);
+  font-size: 6vw;
+  line-height: 30px;
+  font-family: "ubuntu";
+}
+@media screen and (min-width: 611px) {
+  .titulo {
+    font-size: 45px;
+    line-height: 50px;
   }
-  @media screen and (min-width: 611px) {
-    .titulo {
-      font-size: 45px;
-      line-height: 50px;
-    }
+}
+
+
+.numError {
+  color: rgb(35, 85, 145);
+  font-size: 12vw;
+  line-height: 60px;
+  font-family: "ubuntu";
+  text-align: center;
+}
+@media screen and (min-width: 611px) {
+  .numError {
+    font-size: 90px;
+    line-height: 100px;
   }
+}
 
-  body {
-    background-color: white;
+.descError {
+  color: rgb(35, 85, 145);
+  font-size: 4vw;
+  line-height: 20px;
+  font-family: "ubuntu";
+  text-align: center;
+}
+@media screen and (min-width: 611px) {
+  .descError {
+    font-size: 30px;
+    line-height: 35px;
   }
+}
 
-  /*rgb(35, 85, 145);*/
-
-
+/*rgb(35, 85, 145);*/
 
 /*-------------------------------INICIA FOOTER---------------------*/
 .foot {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 6vw;
-    background-color: rgb(35, 85, 145);
-    text-align: center;
-    margin: 2rem 0px 0px 0px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 6vw;
+  background-color: rgb(35, 85, 145);
+  text-align: center;
+  margin: 2rem 0px 0px 0px;
+}
+@media screen and (min-width: 768px) {
+  .foot {
+    height: 40px;
   }
-  @media screen and (min-width: 768px) {
-    .foot {
-      height: 40px;
-    }
-  }
-  
+}
+
+.footSubject {
+  font-size: 2vw;
+  font-weight: 600;
+  color: white;
+  font-family: "Monse";
+  margin: 1vw 0px 0px 0px;
+  text-align: center;
+}
+.footSubject:hover,
+.footSubject:active {
+  font-size: 2.2vw;
+  color: rgb(240, 240, 240);
+}
+@media screen and (min-width: 768px) {
   .footSubject {
-    font-size: 2vw;
+    font-size: 20px;
     font-weight: 600;
     color: white;
     font-family: "Monse";
-    margin: 1vw 0px 0px 0px;
+    margin: 5px 0px 0px 0px;
     text-align: center;
   }
   .footSubject:hover,
   .footSubject:active {
-    font-size: 2.2vw;
+    font-size: 22px;
     color: rgb(240, 240, 240);
   }
-  @media screen and (min-width: 768px) {
-    .footSubject {
-      font-size: 20px;
-      font-weight: 600;
-      color: white;
-      font-family: "Monse";
-      margin: 5px 0px 0px 0px;
-      text-align: center;
-    }
-    .footSubject:hover,
-    .footSubject:active {
-      font-size: 22px;
-      color: rgb(240, 240, 240);
-    }
-  }
-  
+}

@@ -82,7 +82,7 @@
     </div>
     <!--++++++++++++++++++++++++++++++++++ FORMAS +++++++++++++++++++++++++++++++++++++-->
     <div class="container" id="seccionCodigo" style="display:none;">
-      <form class="needs-validation" novalidate>
+      <form class="needs-validation" action="errorInfoPages/infoCodePage.html" novalidate>
         <div class="form-row">
           <div class="col-md-3 mb-3">
             <label class="fuenteForma" for="validarCodigo">Código</label>
@@ -135,9 +135,8 @@
           </div>
           <div class="col-md-3 mb-3">
             <label class="fuenteForma ocultoColor">||</label>
-            <button
+            <button type="submit"
               class="btn btn-primary btn-sm btn-rounded siguiente"
-              type="submit"
             >
               >
             </button>
@@ -147,7 +146,7 @@
     </div>
 
     <div class="container" id="seccionSesion"  style="display:none;">
-      <form class="needs-validation" novalidate>
+      <form class="needs-validation" action="temas.html" novalidate>
         <div class="form-row">
           <div class="col-md-4 mb-3">
             <label class="fuenteForma" for="validarUsuario">Usuario</label>
@@ -167,7 +166,7 @@
           </div>
           <div class="col-md-4 mb-3">
             <label class="fuenteForma" for="validarPassword">Contraseña</label>
-            <label class="fuenteForma" id="contraOlvidada" for="validarPassword">¿Olvidaste tu contraseña?</label>
+            <label class="fuenteForma olvidada" id="contraOlvidada" for="validarPassword">¿Olvidaste tu contraseña?</label>
             <input
               type="password"
               class="form-control"
@@ -181,9 +180,9 @@
           </div>
           <div class="col-md-4 mb-3">
             <label class="fuenteForma ocultoColor">||</label>
-            <button
+            <button 
               class="btn btn-primary btn-sm btn-rounded siguiente"
-              type="submit"
+              type="submit" 
             >
               >
             </button>
