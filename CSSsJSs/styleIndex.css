@@ -163,16 +163,15 @@ body {
   margin-left: 2rem;
 }
 
-
-
-.fuenteForma{
+.fuenteForma, .olvidada{
   font-family: "Monse";
   color: white;
   font-weight: 600;
 }
 
-a.fuenteForma:hover{
-  color:rgb(220,220,220)
+/*-----------------------------------CONTRASENA OLVIDADA-----------*/
+.olvidada:hover{
+  color:rgb(200,200,200)
 }
 
 /*-----------------------------------CAJA CHEQUEO------------------*/
