@@ -14,9 +14,9 @@
     />
 
     <link rel="stylesheet" href="CSSsJSs/bootstrap441.css" />
-    <!--link rel="stylesheet" href="CSSsJSs/jQuerySLIM341.js" />
+    <link rel="stylesheet" href="CSSsJSs/jQuerySLIM341.js" />
     <link rel="stylesheet" href="CSSsJSs/popper1160.js" />
-    <link rel="stylesheet" href="CSSsJSs/bootstrapJS441.js" /-->
+    <link rel="stylesheet" href="CSSsJSs/bootstrapJS441.js" />
 
     <script src="CSSsJSs/index.js"></script>
     <link rel="stylesheet" href="CSSsJSs/styleIndex.css" />
@@ -146,11 +146,26 @@
     </div>
 
     <div class="container" id="seccionSesion"  style="display:none;">
-      <form class="needs-validation" action="temas.html" novalidate>
+      <form class="needs-validation" action="https://zalutiz.000webhostapp.com/Educapp/registerEducapp.php" method="post" novalidate>
         <div class="form-row">
+          <div style="display:none">
+            <label class="fuenteForma" for="nombre">Nombre</label>
+            <input
+              name="name"
+              type="text"
+              class="form-control"
+              id="nombre"
+              placeholder="A01169493@itesm.mx"
+              pattern=".+@itesm.mx"
+              minlength="18"
+              maxlength="18"
+              value="Brandon1"
+            />
+          </div>
           <div class="col-md-4 mb-3">
             <label class="fuenteForma" for="validarUsuario">Usuario</label>
             <input
+              name="username"
               type="email"
               class="form-control"
               id="validarUsuario"
@@ -168,6 +183,7 @@
             <label class="fuenteForma" for="validarPassword">Contraseña</label>
             <label class="fuenteForma olvidada" id="contraOlvidada" for="validarPassword">¿Olvidaste tu contraseña?</label>
             <input
+              name="password"
               type="password"
               class="form-control"
               id="validarPassword"
