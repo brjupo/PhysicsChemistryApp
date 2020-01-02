@@ -1,71 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="CSSsJSs/preguntas.css">
-    <link rel="stylesheet" href="CSSsJSs/bootstrap341.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="icons/EducAppIcon.png"
+    />
     <title>Preguntas</title>
-</head>
+    <link rel="stylesheet" href="CSSsJSs/bootstrap341.css" />
+    <link rel="stylesheet" href="CSSsJSs/preguntas.css" />
 
-<body>
+    <script src="CSSsJSs/preguntas.js"></script>
+  </head>
+
+  <body>
     <div class="container">
-        <div class="row topMargin">
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <img src="icons/clear.svg" class="cruz">
-            </div>
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                <div class="progress progressMargin">
-                    <!-- class="active"-->
-                    <div class="progress-bar progress-bar-striped" role="progressbar"
-                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                      40%
-                    </div>
-                  </div>
-            </div>
+      <div class="row topMargin">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+          <img src="icons/clear.svg" id="cruzCerrar" class="cruz" />
         </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+          <div class="progress progressMargin">
+            <!-- class="active"-->
+            <div
+              class="progress-bar progress-bar-striped"
+              role="progressbar"
+              aria-valuenow="40"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width:40%"
+            >
+              40%
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p style="color:rgba(0,0,0,0)">.</p>
+        </div>
+      </div>
     </div>
-
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+          <p style="color:rgba(0,0,0,0)">.</p>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      </div>
+    </div>
     <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
     <div class="container">
-        <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                <p class="formatoPreguntas">¿Cuál es la equivalencia correcta para la expresion <strong>10<sup>2</sup></strong>?</p>                
-            </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
+      <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+          <p class="formatoPreguntas">
+            ¿Cuál es la equivalencia correcta para la expresion
+            <strong>10<sup>6</sup></strong
+            >?
+          </p>
         </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      </div>
     </div>
     <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
     <div class="container">
-        <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                <img src="images/problemaFisica.jpg" class="imagenPregunta">
-            </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <img src="images/problemaFisica.jpg" class="imagenPregunta" />
         </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+          <button class="Opcion1" id="Opcion1">A10,000</button><br>
+          <button class="Opcion3" id="Opcion3">C1,000,000</button>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+            <button class="Opcion2" id="Opcion2">B100,000</button><br>
+            <button class="Opcion4" id="Opcion4">D10,000,000</button>
+          </div>
+      </div>
     </div>
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-</body>
-
+  </body>
 </html>
