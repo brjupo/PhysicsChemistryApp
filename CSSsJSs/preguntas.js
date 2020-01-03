@@ -14,7 +14,7 @@ document.addEventListener("click", function(evt) {
   });
 
   function seguroRegresar() {
-    if (confirm("Press a button!")) {
+    if (confirm("¿Estás seguro de regresar?\n Si regresas perderás todo tu avance de este tema")) {
       window.location.href = 'subtemas.html';
     } 
   }
