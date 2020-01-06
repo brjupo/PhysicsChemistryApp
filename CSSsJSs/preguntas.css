@@ -3,15 +3,17 @@
 .dialogoDuo {
   color: rgb(150, 150, 150);
   font-size: 3vw;
-  margin:2vw 0px 0px 10vw;
+  margin:0px 0px 0px 22vw;
   font-weight: 600;
+  line-height: 2.5vw;
 }
 
 @media screen and (min-width: 768px) {
   .dialogoDuo {
     font-size: 18px;
-    margin:0px 0px 0px 120px;
+    margin:0px 0px 0px 130px;
     font-weight: 600;
+    line-height: 15px;
   }
 }
 
@@ -67,6 +69,7 @@ a, a:hover, a:active{
   background-image: url('../images/Duo.png');
   background-size: 60%;
   background-repeat: no-repeat;
+  line-height: 15px;
 }
 
 /*--------------------------------------BOTONES--------------------------------------*/
