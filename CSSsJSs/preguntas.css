@@ -1,3 +1,29 @@
+/*--------------------------------DIALOGOS DUO-----------------------------------*/
+
+.dialogoDuo {
+  color: rgb(150, 150, 150);
+  font-size: 3vw;
+  margin:2vw 0px 0px 10vw;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+  .dialogoDuo {
+    font-size: 18px;
+    margin:0px 0px 0px 120px;
+    font-weight: 600;
+  }
+}
+
+.noPaddingMargin{
+  padding-left: 0px !important;
+  margin-left: 0px !important;
+}
+
+/*---------------------------------PREGUNTAS-------------------------------------*/
+a, a:hover, a:active{
+  text-decoration: none;
+}
 .topMargin {
   margin: 2vw 0px 0px 0px;
   border-bottom: 1px solid rgb(240, 240, 240);
@@ -33,6 +59,14 @@
   display: block;
   margin: 0px auto 0px auto;
   width: 60%;
+}
+.imagenEdu {
+  display: block;
+  margin: 0px auto 0px 0px;
+  /*width: 60%;*/
+  background-image: url('../images/Duo.png');
+  background-size: 60%;
+  background-repeat: no-repeat;
 }
 
 /*--------------------------------------BOTONES--------------------------------------*/
@@ -138,11 +172,21 @@ button:active {
   height: 20vw;
   margin: 2rem 0px 0px 0px;
 }
+.NoPopUp {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 10vw;
+  margin: 2rem 0px 0px 0px;
+}
 @media screen and (min-width: 768px) {
-  .popUp {
+  .popUp, .NoPopUp {
     height: 60px;
   }
 }
+
+
 
 #correcto {
   background-color: rgba(120, 210, 80, 0.9);
