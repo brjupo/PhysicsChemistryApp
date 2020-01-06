@@ -1,3 +1,7 @@
+window.onload = function() {
+    this.entrada();
+}
+
 
 function opacity(shID) {
     document.getElementById(shID).style.opacity = 1.0;
