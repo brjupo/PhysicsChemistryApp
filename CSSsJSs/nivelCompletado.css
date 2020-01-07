@@ -1,3 +1,20 @@
+#numeroDiamantes{
+  color:rgba(120,120,200,1);
+  font-weight: 600;
+  text-align: center;
+}
+
+.diamanteIcon{
+  display: block;
+  width: 10%;
+  margin:0px auto 0px auto;
+}
+.star{
+  display: block;
+  width: 50%;
+  margin:0px auto 0px auto;
+}
+/*---------------------------------------twisterIndoWn----------------------------*/
 .twisterInDown {
   -webkit-animation-name: twisterInDown;
   animation-name: twisterInDown;
@@ -51,6 +68,21 @@
   }
 }
 
+
+/*--------------------------------------------------SPIN--------------------------------*/
+.spin {
+  -webkit-animation-name: spin;
+  animation-name: spin;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotateY(1080deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotateY(1080deg); } }
+@keyframes spin { 100% { -webkit-transform: rotateY(1080deg); transform:rotateY(1080deg); } }
+
+
+
+
+
+/*-------------------------------------------ANIMATED--------------------------------------------*/
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
