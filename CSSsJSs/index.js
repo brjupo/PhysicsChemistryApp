@@ -27,9 +27,10 @@
     hideAll();
 });*/
 
-document.addEventListener("click", function(evt) {
+document.addEventListener("click", function (evt) {
   var botonCodigo = document.getElementById("botonCodigo");
   var botonSesion = document.getElementById("botonSesion");
+  var mandarInfoAlServicio = document.getElementById("mandarInfoAlServicio");
   var botonContrasenaOlvidada = document.getElementById("contraOlvidada");
   targetElement = evt.target; // clicked element
 
@@ -46,6 +47,10 @@ document.addEventListener("click", function(evt) {
     }
     if (targetElement == botonContrasenaOlvidada) {
       showContraOlvidada();
+      return;
+    }
+    if (targetElement == mandarInfoAlServicio) {
+      servicio();
       return;
     }
     // Go up the DOM
@@ -74,16 +79,38 @@ function showContraOlvidada() {
   document.getElementById("emailSent").style.display = "block";
 }
 
-window.onload = function() {
+function servicio() {
+  // Definimos la URL que vamos a solicitar via Ajax
+  var ajax_url = "https://zalutiz.000webhostapp.com/Educapp/registerEducapp.php";
+
+
+  // El JSON a enviar
+  var myjson = '{ "name" : "value", "username" : "value", "pasword" : "value2" }';
+  var ajax_request = new XMLHttpRequest();
+  ajax_request.open("POST", ajax_url, true);
+
+  // Establecer la cabecera Content-Type apropiada
+  ajax_request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+
+  // Enviar la solicitud
+  ajax_request.send(myjson);
+
+  /// Obtenemos el json enviado
+  //$data = file_get_contents('php://input');
+  // Los convertimos en un array
+  //$data = json_decode($data, true);
+}
+
+window.onload = function () {
   //this.hideAll();
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   var forms = document.getElementsByClassName("needs-validation");
   //var forms = document.getElementById('validacion');
   // Loop over them and prevent submission
-  var validation = Array.prototype.filter.call(forms, function(form) {
+  var validation = Array.prototype.filter.call(forms, function (form) {
     form.addEventListener(
       "submit",
-      function(event) {
+      function (event) {
         if (form.checkValidity() === false) {
           event.preventDefault();
           event.stopPropagation();
