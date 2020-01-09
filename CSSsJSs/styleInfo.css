@@ -63,6 +63,85 @@ a:hover {
   }
 }
 
+
+
+/*--------------------------------IMAGENES Y CONTENIDO--------------------*/
+.imagesInfo{
+  display: block;
+  width: 90%;
+  margin: 1vw auto 1vw auto;
+}
+/*-------------cuando la pantalla es menor a 768px-----*/
+@media screen and (max-width: 768px) {
+  .imagesInfo{
+    display: block;
+    width: 40%;
+    margin:10px auto 10px auto;
+  }
+}
+
+.autoresInfo{
+  display: block;
+  width: 30%;
+  margin: 1vw auto 1vw auto;
+}
+
+.titulosInfo{
+  color: rgb(80, 80, 80);
+  font-weight: 600;
+  font-size: 2.5vw;
+  line-height: 20px;
+  text-align: left;
+  font-family: "Varela Round";
+  margin: 1vw 0vw 1vw 0vw;
+}
+/*-------------cuando la pantalla es mayor a 768px-----*/
+@media screen and (min-width: 768px) {
+  .titulosInfo{
+    font-size: 20px;
+    line-height: 25px;
+    margin: 20px 0px 20px 0px;
+  }
+}
+
+.subtitulosInfo{
+  color: rgb(80, 80, 80);
+  font-weight: 600;
+  font-size: 2vw;
+  line-height: 20px;
+  text-align: left;
+  font-family: "Varela Round";
+  margin: 1vw 0vw 1vw 0vw;
+}
+/*-------------cuando la pantalla es mayor a 768px-----*/
+@media screen and (min-width: 768px) {
+  .subtitulosInfo{
+    font-size: 18px;
+    line-height: 22px;
+    margin: 20px 0px 20px 0px;
+  }
+}
+
+.textoInfo{
+  color: rgb(120, 120, 120);
+  font-weight: 600;
+  font-size: 2vw;
+  line-height: 15px;
+  text-align: left;
+  font-family: "Varela Round";
+  margin: 1vw 0vw 1vw 0vw;
+}
+/*-------------cuando la pantalla es mayor a 768px-----*/
+@media screen and (min-width: 768px) {
+  .textoInfo{
+    font-size: 15px;
+    line-height: 20px;
+    margin: 10px 0px 10px 0px;
+  }
+}
+
+
+
 /*-------------------------------INICIA FOOTER---------------------*/
 .foot {
   position: fixed;

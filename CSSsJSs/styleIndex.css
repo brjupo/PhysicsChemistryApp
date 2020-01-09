@@ -19,6 +19,12 @@
 body {
   background-color: rgb(35, 85, 145);
 }
+
+a{
+  text-decoration: none !important;
+  color:white !important;
+}
+
 .titulo {
   color: white;
   font-size: 6vw;
