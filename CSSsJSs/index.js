@@ -81,11 +81,10 @@ function showContraOlvidada() {
 
 function servicio() {
   // Definimos la URL que vamos a solicitar via Ajax
-  var ajax_url = "https://zalutiz.000webhostapp.com/Educapp/registerEducapp.php";
-
+  var ajax_url = "https://educapp-frontend.000webhostapp.com/registerEducapp.php";
 
   // El JSON a enviar
-  var myjson = '{ "name" : "value", "username" : "value", "pasword" : "value2" }';
+  var myjson = JSON.stringify({ name: "value", username: "value", pasword: "value2" });
   var ajax_request = new XMLHttpRequest();
   ajax_request.open("POST", ajax_url, true);
 
@@ -94,6 +93,10 @@ function servicio() {
 
   // Enviar la solicitud
   ajax_request.send(myjson);
+  setTimeout(function () {
+    //do what you need here
+    console.log("enviado");
+  }, 2000);
 
   /// Obtenemos el json enviado
   //$data = file_get_contents('php://input');
