@@ -1,31 +1,27 @@
-/*document.addEventListener("click", function (evt) {
-    var flyoutElement = document.getElementById('botonCodigo');
-    var flyoutElement2 = document.getElementById('botonSesion');
-    targetElement = evt.target;  // clicked element
+//<script type="text/javascript">
+  $(document).ready(function() {   
+      $('#mandarInfoAlServicio').click(function(e){
+        e.preventDefault();
+        var nombre = "yoMero";
+        var correo = $("#validarUsuario").val();
+        var contrasena = $("#validarPassword").val();
 
-    do {
-        if(targetElement.className==="continue") {
-            document.getElementById("flyout-debug").textContent = "Clicked dentro de continue";
-            return;
-        }
-        if (targetElement == flyoutElement) {
-            // This is a click inside. Do nothing, just return.
-            document.getElementById("flyout-debug").textContent = "Clicked inside!";
-            return;
-        }
-        if (targetElement == flyoutElement2) {
-            // This is a click inside. Do nothing, just return.
-            document.getElementById("flyout-debug").textContent = "Clicked inside!";
-            return;
-        }
-        // Go up the DOM
-        targetElement = targetElement.parentNode;
-    } while (targetElement);
-
-    // This is a click outside.
-    document.getElementById("flyout-debug").textContent = "Clicked outside!";
-    hideAll();
-});*/
+        $.ajax({
+            type: "POST",
+            url: "https://educapp-frontend.000webhostapp.com/registerEducapp.php",
+            dataType: "json",
+            data: { name:nombre , username:correo, password:contrasena },
+            success : function(data){
+                if (data.code == "200"){
+                    alert("Success: " +data.msg);
+                } else {
+                    alert(data.msg);
+                }
+            }
+        });
+      });
+  });
+//</script>
 
 document.addEventListener("click", function (evt) {
   var botonCodigo = document.getElementById("botonCodigo");
@@ -77,31 +73,6 @@ function hideAll() {
 function showContraOlvidada() {
   hideAll();
   document.getElementById("emailSent").style.display = "block";
-}
-
-function servicio() {
-  // Definimos la URL que vamos a solicitar via Ajax
-  var ajax_url = "https://educapp-frontend.000webhostapp.com/registerEducapp.php";
-
-  // El JSON a enviar
-  var myjson = JSON.stringify({ name: "value", username: "value", pasword: "value2" });
-  var ajax_request = new XMLHttpRequest();
-  ajax_request.open("POST", ajax_url, true);
-
-  // Establecer la cabecera Content-Type apropiada
-  ajax_request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-
-  // Enviar la solicitud
-  ajax_request.send(myjson);
-  setTimeout(function () {
-    //do what you need here
-    console.log("enviado");
-  }, 2000);
-
-  /// Obtenemos el json enviado
-  //$data = file_get_contents('php://input');
-  // Los convertimos en un array
-  //$data = json_decode($data, true);
 }
 
 window.onload = function () {

@@ -2,10 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <!--Important links-->
-    <!--link rel="stylesheet" href="CSSsJSs/bootstrap341.css" /-->
-
-    <!--Temporal ONLINE fonts and styles-->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="shortcut icon"
@@ -14,14 +10,10 @@
     />
 
     <link rel="stylesheet" href="CSSsJSs/bootstrap441.css" />
-    <!--link rel="stylesheet" href="CSSsJSs/jQuerySLIM341.js" />
-    <link rel="stylesheet" href="CSSsJSs/popper1160.js" />
-    <link rel="stylesheet" href="CSSsJSs/bootstrapJS441.js" /-->
-
-    <script src="CSSsJSs/index.js"></script>
     <link rel="stylesheet" href="CSSsJSs/styleIndex.css" />
-    
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="CSSsJSs/minAJAX.js"></script>
+    <script src="CSSsJSs/index.js"></script>
+	  <!--script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script-->
   </head>
   <body>
     <!----------------------------------------------TITULO--------------------------------------------->
@@ -266,28 +258,5 @@
       </div>
     </div>
   </footer>
-  <script type="text/javascript">
-  $(document).ready(function() {   
-      $('#mandarInfoAlServicio').click(function(e){
-        e.preventDefault();
-        var nombre = "yoMero";
-        var correo = $("#validarUsuario").val();
-        var contrasena = $("#validarPassword").val();
-
-        $.ajax({
-            type: "POST",
-            url: "https://educapp-frontend.000webhostapp.com/registerEducapp.php",
-            dataType: "json",
-            data: { name:nombre , username:correo, password:contrasena },
-            success : function(data){
-                if (data.code == "200"){
-                    alert("Success: " +data.msg);
-                } else {
-                    alert(data.msg);
-                }
-            }
-        });
-      });
-  });
-</script>
+  
 </html>
