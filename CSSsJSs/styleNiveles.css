@@ -178,6 +178,17 @@ p {
   /*El tamaño de la sombra debe conincidir con el padding*/
 }
 
+.temaBloqueado {
+  color: #333333;
+  background-color: #cccccc;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  border-left: 6px solid rgb(50, 50, 100);
+  padding: 0px 0px 0px 6px;
+  box-shadow: 0px 5px 10px #d6d6d6;
+  /*El tamaño de la sombra debe conincidir con el padding*/
+}
+
 .separadorTemasPrincipales {
   font-size: 2em;
 }
