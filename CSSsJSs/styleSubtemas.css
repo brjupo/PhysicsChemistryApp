@@ -205,16 +205,30 @@ p {
 .nivelLeccionTop{
   background-color: orange;
   margin: 0px 0px !important;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  font-size: 20px;
+  border-top-left-radius: 1vh;
+  border-top-right-radius: 1vh;
+  font-size: 3vh;
+  color:white;
 }
 .nivelLeccionBottom{
   background-color: orange;
   margin: 0px 0px !important;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  font-size: 15px;
+  border-bottom-left-radius: 1vh;
+  border-bottom-right-radius: 1vh;
+  font-size: 2.5vh;
+  color:white;
+}
+@media screen and (min-width: 768px) {
+  .nivelLeccionTop{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 20px;
+  }
+  .nivelLeccionBottom{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 15px;
+  }
 }
 
 /*--------------------------------------------------------- FIN TEMAS PRINCIPALES---------------------------------------*/
