@@ -9,9 +9,9 @@ function opacity(shID) {
 
 function entrada(){
     //transition: opacity 2s ease-in-out;
-    setTimeout(function(){opacity("seccion0");},100);
-    setTimeout(function(){opacity("seccion1");},800);
-    setTimeout(function(){opacity("seccion2");},1500);
-    setTimeout(function(){opacity("seccion3");},2200);
-    setTimeout(function(){opacity("seccion4");},2900);
+    setTimeout(function(){opacity("seccion0");},0);
+    setTimeout(function(){opacity("seccion1");},100);
+    setTimeout(function(){opacity("seccion2");},800);
+    setTimeout(function(){opacity("seccion3");},1500);
+    setTimeout(function(){opacity("seccion4");},2200);
 }
