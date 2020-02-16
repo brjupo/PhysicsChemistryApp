@@ -172,7 +172,8 @@ p {
   /*El tamaño de la sombra debe conincidir con el padding*/
 }
 
-.temaPrincipal1:hover, .temaPrincipal1:active {
+.temaPrincipal1:hover,
+.temaPrincipal1:active {
   color: #000000;
   background-color: #f5f5f5;
   border: 1px solid #a1a1a1;
@@ -196,7 +197,8 @@ p {
   box-shadow: 0px 3px 0px #d6d6d6;
 }
 
-.temaPrincipal2:hover, .temaPrincipal2:active {
+.temaPrincipal2:hover,
+.temaPrincipal2:active {
   color: #000000;
   background-color: #f5f5f5;
   border: 1px solid #a1a1a1;
@@ -218,7 +220,8 @@ p {
   box-shadow: 0px 3px 0px #d6d6d6;
 }
 
-.temaPrincipal3:hover, .temaPrincipal3:active {
+.temaPrincipal3:hover,
+.temaPrincipal3:active {
   color: #000000;
   background-color: #f5f5f5;
   border: 1px solid #a1a1a1;
@@ -240,7 +243,8 @@ p {
   box-shadow: 0px 3px 0px #d6d6d6;
 }
 
-.temaPrincipal4:hover, .temaPrincipal4:active {
+.temaPrincipal4:hover,
+.temaPrincipal4:active {
   color: #000000;
   background-color: #f5f5f5;
   border: 1px solid #a1a1a1;
@@ -262,7 +266,8 @@ p {
   box-shadow: 0px 3px 0px #d6d6d6;
 }
 
-.temaPrincipal5:hover, .temaPrincipal5:active {
+.temaPrincipal5:hover,
+.temaPrincipal5:active {
   color: #000000;
   background-color: #f5f5f5;
   border: 1px solid #a1a1a1;
@@ -317,14 +322,16 @@ p {
   }
 }
 
-.footIcon:hover, .footIcon:active {
+.footIcon:hover,
+.footIcon:active {
   filter: opacity(70%) brightness(80%);
   padding: 0px 0px 0px 0px;
   width: 5vw;
 }
 
 @media screen and (max-width: 768px) {
-  .footIcon:hover, .footIcon:active {
+  .footIcon:hover,
+  .footIcon:active {
     width: 50px;
   }
 }
@@ -335,22 +342,62 @@ p {
   color: white;
 }
 
-
 /*--------------------------------------------------------- PERFIL --------------------------------------------*/
 
-.avatarImg{
+.avatarImg {
   display: block;
   border-radius: 50%;
-  margin:0px auto;
+  margin: 0px auto;
   height: 25vh;
 }
 
-
 @media screen and (min-width: 768px) {
-  .avatarImg{
+  .avatarImg {
     display: block;
     border-radius: 50%;
-    margin:0px auto;
+    margin: 0px auto;
     height: 250px;
+  }
+}
+
+.mostrarOpciones {
+  display: block;
+}
+.ocultarOpciones {
+  display: none;
+}
+
+.avatarOpciones {
+  display: block;
+  border-radius: 50%;
+  margin: 0px auto;
+  height: 10vh;
+}
+
+@media screen and (min-width: 768px) {
+  .avatarOpciones {
+    display: block;
+    border-radius: 50%;
+    margin: 0px auto;
+    height: 100px;
+  }
+}
+
+#avatarElegir {
+  background-color: rgb(240, 240, 240);
+  border-radius: 20px;
+}
+
+#guardarAvatar {
+  display: block;
+  margin: 3vh auto;
+  height: 6vh;
+}
+
+@media screen and (min-width: 768px) {
+  #guardarAvatar {
+    display: block;
+    margin: 30px auto 15px auto;
+    height: 50px;
   }
 }

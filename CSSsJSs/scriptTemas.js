@@ -1,4 +1,7 @@
 
+var nodoPadre = null;
+var nombreImagen;
+
 window.onload = function () {
     lectionsv();
 }
@@ -6,9 +9,10 @@ window.onload = function () {
 document.addEventListener("click", function (evt) {
     var profile = document.getElementById("botonPerfil");
     var lections = document.getElementById("botonLecciones");
-    var autores = document.getElementById("autores");
-    var agradecimientos = document.getElementById("agradecimientos");
+    var editarAvatar = document.getElementById("editarAvatar");
+    var botonGuardar = document.getElementById("guardarAvatar");
     targetElement = evt.target; // clicked element
+    elID= targetElement.id;
 
     do {
         if (targetElement == profile) {
@@ -17,6 +21,27 @@ document.addEventListener("click", function (evt) {
         }
         if (targetElement == lections) {
             lectionsv();
+            return;
+        }
+        if (targetElement == editarAvatar) {
+            toggleAvatar();
+            return;
+        }
+        if(elID.startsWith("avatar")){
+            if(nodoPadre==null){
+                targetElement.parentNode.style.backgroundColor = "rgb(200,200,255)";
+            }
+            else{
+                nodoPadre.style.backgroundColor = "transparent";
+                targetElement.parentNode.style.backgroundColor = "rgb(200,200,255)";
+            }
+            nombreImagen = targetElement.src;
+            nodoPadre = targetElement.parentNode;
+            return;
+        }
+        if (targetElement == botonGuardar) {
+            console.log("save");
+            document.getElementById("editarAvatar").src=nombreImagen;
             return;
         }
         // Go up the DOM
@@ -36,4 +61,8 @@ function profilev() {
 function lectionsv() {
     hideAll();
     document.getElementById("lections").style.display = "block";
+}
+function toggleAvatar(){
+    document.getElementById("avatarElegir").classList.toggle("mostrarOpciones");
+    document.getElementById("avatarElegir").classList.toggle("ocultarOpciones");
 }
