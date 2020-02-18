@@ -18,24 +18,28 @@ document.addEventListener("click", function(evt) {
       return;
     }
     if (targetElement == Opcion1 && popUpLevantado == false) {
+      whiteButtons();
       sprintNext();
       popUpLevantado = true;
       console.log(popUpLevantado); 
       return;
     }
     if (targetElement == Opcion2 && popUpLevantado == false) {
+      whiteButtons();
       sprintNext();
       popUpLevantado = true;
       console.log(popUpLevantado); 
       return;
     }
     if (targetElement == Opcion3 && popUpLevantado == false) {
+      whiteButtons();
       sprintNext();
       popUpLevantado = true;
       console.log(popUpLevantado); 
       return;
     }
     if (targetElement == Opcion4 && popUpLevantado == false) {
+      whiteButtons();
       sprintNext();
       popUpLevantado = true;
       console.log(popUpLevantado); 
@@ -54,6 +58,13 @@ function seguroRegresar() {
   ) {
     window.location.href = "../entExamen.html";
   }
+}
+
+function whiteButtons(){
+  document.getElementById("Opcion1").className = "OpcionBlanco";
+  document.getElementById("Opcion2").className = "OpcionBlanco";
+  document.getElementById("Opcion3").className = "OpcionCorrecta";
+  document.getElementById("Opcion4").className = "OpcionIncorrecta";
 }
 
 function sprintNext() {

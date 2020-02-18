@@ -118,6 +118,17 @@ button:active {
   }
 }
 
+.OpcionBlanco{
+  color:black;
+  background-color: white;
+  border: 1px solid gray;
+  box-shadow: 0px -0.5vw 0px gray inset;
+}
+.OpcionBlanco:hover,
+.OpcionBlanco:active {
+  box-shadow: none;
+}
+
 .Opcion1 {
   color: white;
   background-color: rgba(190, 145, 255, 1);
@@ -178,7 +189,26 @@ button:active {
     box-shadow: 0px -5px 0px rgba(225, 170, 0, 1) inset;
   }
 }
-
+.OpcionCorrecta{
+  color:black;
+  background-color: rgba(120, 210, 80, 0.9);;
+  border: 1px solid rgba(30, 120, 0, 1);;
+  box-shadow: 0px -0.5vw 0px rgba(30, 120, 0, 1) inset;
+}
+.OpcionCorrecta:hover,
+.OpcionCorrecta:active {
+  box-shadow: none;
+}
+.OpcionIncorrecta{
+  color:black;
+  background-color: rgba(255, 50, 90, 0.9);
+  border: 1px solid rgba(165, 0, 0, 1);
+  box-shadow: 0px -0.5vw 0px rgba(165, 0, 0, 1) inset;
+}
+.OpcionIncorrecta:hover,
+.OpcionIncorrecta:active {
+  box-shadow: none;
+}
 /*-------------------------------INICIA POP UP---------------------*/
 .popUp {
   position: fixed;
