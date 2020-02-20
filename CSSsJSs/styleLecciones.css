@@ -112,13 +112,43 @@ p {
   float: right;
 }
 
+.iconsNumber {
+  width: 4vh;
+  padding: 0px 0px !important;
+}
 .icons {
-  width: 5.5vh;
+  width: 7vh;
+  /*background-color: rgba(255, 255, 255, 1);
+  border-radius: 0.5vh;
+  border: 0.5px solid rgb(220, 220, 220);*/
+  padding: 1vh 1vh;
+}
+.iconsActive {
+  width: 7vh;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 0.5vh;
+  border: 0.5px solid rgb(220, 220, 220);
+  padding: 1vh 1vh;
 }
 
 @media screen and (min-width: 768px) {
+  .iconsNumber {
+    width: 3vw;
+    padding: 0px 0px !important;
+  }
   .icons {
-    width: 4vw;
+    width: 6vw;
+    /*background-color: rgba(255, 255, 255, 1);
+    border-radius: 0.5vw;
+    border: 0.5px solid rgb(220, 220, 220);*/
+    padding: 1vw 1vw;
+  }
+  .iconsActive {
+    width: 6vw;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 0.5vw;
+    border: 0.5px solid rgb(220, 220, 220);
+    padding: 1vw 1vw;
   }
 }
 
@@ -194,7 +224,7 @@ p {
 }
 
 .tituloTemasPrincipales {
-  font-size: 2.8vh;
+  font-size: 2vh;
   font-weight: 600;
   text-align: right;
 }
