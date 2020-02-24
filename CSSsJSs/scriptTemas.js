@@ -9,6 +9,7 @@ window.onload = function () {
 document.addEventListener("click", function (evt) {
     var profile = document.getElementById("botonPerfil");
     var lections = document.getElementById("botonLecciones");
+    var logout = document.getElementById("botonLogout");
     var editarAvatar = document.getElementById("editarAvatar");
     var botonGuardar = document.getElementById("guardarAvatar");
     targetElement = evt.target; // clicked element
@@ -21,6 +22,10 @@ document.addEventListener("click", function (evt) {
         }
         if (targetElement == lections) {
             lectionsv();
+            return;
+        }
+        if (targetElement == logout) {
+            do_logout();
             return;
         }
         if (targetElement == editarAvatar) {
@@ -65,4 +70,7 @@ function lectionsv() {
 function toggleAvatar(){
     document.getElementById("avatarElegir").classList.toggle("mostrarOpciones");
     document.getElementById("avatarElegir").classList.toggle("ocultarOpciones");
+}
+function do_logout(){
+    location.replace("index.html");
 }

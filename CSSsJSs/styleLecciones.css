@@ -127,6 +127,7 @@ td{
   border-radius: 0.5vh;
   border: 0.5px solid rgb(220, 220, 220);*/
   padding: 1vh 1vh;
+  margin: 0.5vh 1vw;
 }
 .iconsActive {
   width: 7vh;
@@ -134,6 +135,7 @@ td{
   border-radius: 0.5vh;
   border: 0.5px solid rgb(220, 220, 220);
   padding: 1vh 1vh;
+  margin: 0.5vh 1vw;
 }
 
 @media screen and (min-width: 768px) {
@@ -215,7 +217,7 @@ td{
 
 .temaBloqueado {
   color: #333333;
-  background-color: #cccccc;
+  background-color: #eeeeee;
   border: 1px solid #d6d6d6;
   border-radius: 10px;
   border-left: 6px solid rgb(50, 50, 100);
@@ -238,7 +240,7 @@ td{
   .tituloTemasPrincipales {
     font-size: 25px;
     font-weight: 800;
-    text-align: right;
+    text-align: left;
   }
 }
 

@@ -287,6 +287,8 @@ p {
 
 .tituloTemasPrincipales {
   font-size: 4.5vw;
+  font-weight: 600;
+  text-align: left;
 }
 
 @media screen and (min-width: 768px) {

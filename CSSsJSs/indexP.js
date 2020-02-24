@@ -17,6 +17,11 @@ window.onload = function () {
                     event.stopPropagation();
                 }
                 else{
+                    event.preventDefault();
+                    event.stopPropagation();
+                    location.replace("temas.html");
+                }
+                /*else{
                     var nombre = "yoMero";
                     var correo = $("#validarUsuario").val();
                     var contrasena = $("#validarPassword").val();
@@ -32,7 +37,7 @@ window.onload = function () {
                       });                    
                     event.preventDefault();
                     event.stopPropagation();
-                }
+                }*/
                 form.classList.add("was-validated");
             },
             false

@@ -56,7 +56,7 @@ function seguroRegresar() {
       "¿Estás seguro de regresar?\n Si regresas perderás todo tu avance de este tema"
     )
   ) {
-    window.location.href = "../entExamen.html";
+    window.location.href = "../lecciones.html";
   }
 }
 
