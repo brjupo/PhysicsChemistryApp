@@ -38,6 +38,18 @@
 
     <div class="container">
       <div class="row">
+        <h2>Descargar Calificaciones</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <p class="relleno">.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
         <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
           <label for="desde">Desde [Inclusivo]</label>
           <input type="date" id="desde" name="desde" class="form-control" />
@@ -47,7 +59,7 @@
         ></div>
         <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
           <label for="hasta">Hasta [Inclusivo]</label>
-          <input type="date" id="hasta" name="hasta" class="form-control" />
+          <input type="time" value="07:00" id="hasta" name="hasta" class="form-control" />
         </div>
         <div
           class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
@@ -116,83 +128,7 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="row">
-        <div
-          class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
-        ></div>
-        <div
-          class="textCenter col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"
-        >
-          <form
-            action="../temas.html"
-            oninput='psw2.setCustomValidity(psw2.value != psw.value ? "Passwords do not match." : "")'
-          >
-            <label for="usrname">Correo</label>
-            <input
-              type="text"
-              id="usrname"
-              name="usrname"
-              value="A01169493@itesm.mx"
-              disabled
-            />
-
-            <label for="psw">Contraseña</label>
-            <input
-              type="password"
-              id="psw"
-              name="psw"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}"
-              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-              required
-            />
-
-            <label for="password2">Confirma contraseña</label>
-            <input
-              type="password"
-              id="psw2"
-              name="psw2"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}"
-              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-              required
-            />
-
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
-        <div
-          class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
-        ></div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div
-          class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
-        ></div>
-        <div
-          class="textCenter col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"
-        >
-          <div id="message">
-            <h3>Recuerda, tu contraseña debe contener:</h3>
-            <p id="letter" class="invalid">Al menos 1 letra <b>minúscula</b></p>
-            <p id="capital" class="invalid">
-              Al menos 1 letra <b>mayúscula</b>
-            </p>
-            <p id="number" class="invalid">Al menos 1 <b>número</b></p>
-            <p id="symbol" class="invalid">
-              Al menos 1 <b>símbolo</b> @#$%^&+=
-            </p>
-            <p id="length" class="invalid">
-              En total, mínimo <b>8 caracteres</b>
-            </p>
-          </div>
-        </div>
-        <div
-          class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
-        ></div>
-      </div>
-    </div>
+    
 
     <div class="container">
       <div class="row">
