@@ -42,6 +42,38 @@
 
   <div class="container">
     <div class="row">
+      <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <label for="campusS">Elegir Campus</label>
+        <select multiple class="form-control" id="campusS" name="sellist2">
+          <option>CCM</option>
+          <option>CEM</option>
+          <option>CSF</option>
+          <option>ESM</option>
+          <option>MTY</option>
+        </select>
+      </div>
+      <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <label for="materiaS">Elegir Materia</label>
+        <select multiple class="form-control" id="materiaS" name="sellist2">
+          <option>FISICA</option>
+          <option>QUIMICA</option>
+          <option>BIOLOGIA</option>
+        </select>
+      </div>
+      <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <button class="botonCargar">Cargar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <p class="relleno">.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
       <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
         <label for="desde">Desde [Inclusivo]</label>
         <input type="date" id="desde" name="desde" class="form-control" />
@@ -75,9 +107,9 @@
         <label for="grupo">Grupo</label>
         <select id="grupo" class="form-control">
           <option disabled selected>Elegir grupo</option>
-          <option>FISICA - L 10:00</option>
-          <option>BIOLOGIA - M 12:00</option>
-          <option>QUIMICA - L 12:00</option>
+          <option>L 10:00</option>
+          <option>M 12:00</option>
+          <option>L 12:00</option>
         </select>
       </div>
       <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
@@ -130,29 +162,24 @@
   </div>
 
 
+
   <div class="container">
     <div class="row">
       <div class="textCenter col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"></div>
       <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-        <button class="boton2">Aceptar</button>
+        <button class="botonAceptar">Aceptar</button>
       </div>
-
     </div>
   </div>
+
 
   <div class="container">
     <div class="row">
       <p class="relleno">.</p>
-      <label for="sel2">Mutiple select list (hold shift to select more than one):</label>
-      <select multiple class="form-control" id="sel2" name="sellist2">
-        <option>CCM</option>
-        <option>CEM</option>
-        <option>MTY</option>
-        <option>CSF</option>
-        <option>ESM</option>
-      </select>
     </div>
   </div>
+
+
 
   <div class="container">
     <div class="row">
@@ -168,22 +195,5 @@
   </div>
 
 </body>
-<footer class="foot">
-  <div class=" container ">
-    <div class=" row text-center ">
-      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 "></div>
-      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 ">
-        <p class="footSubject">Nosotros</p>
-      </div>
-      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 ">
-        <p class="footSubject">Ayuda</p>
-      </div>
-      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 ">
-        <p class="footSubject">Términos</p>
-      </div>
-      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 "></div>
-    </div>
-  </div>
-</footer>
 
 </html>

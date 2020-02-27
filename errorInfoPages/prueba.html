@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="try.js"></script>
+</head>
+
+<body>
+    <form>
+        <select id="ddl1"
+            onchange="configureDDL2(this, document.getElementById('ddl2'), document.getElementById('ddl3'))">
+            <option value="">Pick First Option</option>
+            <option value="Herramientas">Herramientas</option>
+            <option value="Vectores">Vectores</option>
+            <option value="MRU">MRU</option>
+        </select>
+        <select id="ddl2"
+            onchange="configureDDL3(document.getElementById('ddl1'), this, document.getElementById('ddl3'))">
+        </select>
+        <select id="ddl3">
+        </select>
+    </form>
+</body>

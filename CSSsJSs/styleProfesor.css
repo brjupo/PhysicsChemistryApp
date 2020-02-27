@@ -71,8 +71,8 @@ input[type="submit"] {
 
 /*-------------------------------BOTONES------------------------------------------*/
 
-.boton2 {
-  margin: 20px 0px 5px 0px;
+button {
+  margin: 40px 0px 5px 0px;
   font-size: 15px;
   width: 150px;
   height: 40px;  
@@ -83,8 +83,8 @@ input[type="submit"] {
   box-shadow: 0px -5px 0px #d6d6d6 inset;
 }
 
-.boton2:hover, .boton2:active {
-  margin: 25px 0px 5px 0px;
+button:hover, button:active {
+  margin: 45px 0px 5px 0px;
   font-size: 15px;
   width: 150px;
   height: 35px;  
