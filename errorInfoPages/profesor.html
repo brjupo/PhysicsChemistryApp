@@ -38,6 +38,23 @@
 
     <div class="container">
       <div class="row">
+        <div class="textLeft col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+          <h1 class="subtitulos">Habilitar Examen</h1>
+        </div>
+        <div
+          class="textRight col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <p class="relleno">.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
         <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
           <label for="desde">Desde [Inclusivo]</label>
           <input type="date" id="desde" name="desde" class="form-control" />
@@ -118,81 +135,125 @@
 
     <div class="container">
       <div class="row">
-        <div
-          class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
-        ></div>
-        <div
-          class="textCenter col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"
-        >
-          <form
-            action="../temas.html"
-            oninput='psw2.setCustomValidity(psw2.value != psw.value ? "Passwords do not match." : "")'
-          >
-            <label for="usrname">Correo</label>
-            <input
-              type="text"
-              id="usrname"
-              name="usrname"
-              value="A01169493@itesm.mx"
-              disabled
-            />
-
-            <label for="psw">Contraseña</label>
-            <input
-              type="password"
-              id="psw"
-              name="psw"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}"
-              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-              required
-            />
-
-            <label for="password2">Confirma contraseña</label>
-            <input
-              type="password"
-              id="psw2"
-              name="psw2"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}"
-              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-              required
-            />
-
-            <input type="submit" value="Submit" />
-          </form>
+        <div class="textLeft col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+          <h1 class="subtitulos">Descargar calificaciones</h1>
         </div>
         <div
-          class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
+          class="textRight col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7"
         ></div>
       </div>
     </div>
+
     <div class="container">
       <div class="row">
+        <p class="relleno">.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <label for="desde">Desde [Inclusivo]</label>
+          <input type="date" id="desde" name="desde" class="form-control" />
+        </div>
         <div
           class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
         ></div>
+        <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <label for="hasta">Hasta [Inclusivo]</label>
+          <input type="date" id="hasta" name="hasta" class="form-control" />
+        </div>
         <div
-          class="textCenter col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"
-        >
-          <div id="message">
-            <h3>Recuerda, tu contraseña debe contener:</h3>
-            <p id="letter" class="invalid">Al menos 1 letra <b>minúscula</b></p>
-            <p id="capital" class="invalid">
-              Al menos 1 letra <b>mayúscula</b>
-            </p>
-            <p id="number" class="invalid">Al menos 1 <b>número</b></p>
-            <p id="symbol" class="invalid">
-              Al menos 1 <b>símbolo</b> @#$%^&+=
-            </p>
-            <p id="length" class="invalid">
-              En total, mínimo <b>8 caracteres</b>
-            </p>
-          </div>
+          class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
+        ></div>
+        <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <label for="grupo">Grupo</label>
+          <select id="grupo" class="form-control">
+            <option disabled selected>Elegir grupo</option>
+            <option>L 10:00</option>
+            <option>M 12:00</option>
+          </select>
         </div>
         <div
           class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
         ></div>
       </div>
     </div>
+
+    <div class="container">
+      <div class="row">
+        <p class="relleno">.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <label for="tema">Tema</label>
+          <select id="tema" class="form-control">
+            <option disabled selected>Elegir tema</option>
+            <option>Tema 1</option>
+            <option>Tema 2</option>
+          </select>
+        </div>
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
+        ></div>
+        <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <label for="subtema">Subtema</label>
+          <select id="subtema" class="form-control">
+            <option disabled selected>Elegir subtema</option>
+            <option>subtema 1</option>
+            <option>subtema 2</option>
+          </select>
+        </div>
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
+        ></div>
+        <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <label for="leccion">Lección</label>
+          <select id="leccion" class="form-control">
+            <option disabled selected>Elegir lección</option>
+            <option>Triangulos rectángulos</option>
+            <option>Hypotenusa</option>
+          </select>
+        </div>
+        <div
+          class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <p class="relleno">.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <label for="modo">Modo</label>
+          <select id="modo" class="form-control">
+            <option disabled selected>Todos</option>
+            <option>Leccion</option>
+            <option>Sprint</option>
+            <option>Exmaen</option>
+          </select>
+        </div>
+        <div
+          class="textCenter col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"
+        ></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <p class="relleno">.</p>
+      </div>
+    </div>
+
+    
 
     <div class="container">
       <div class="row">
