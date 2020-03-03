@@ -1,30 +1,38 @@
 /*--------------------------------------------------FUENTES-----------------------------------------------------------*/
+
 @font-face {
   font-family: "ubuntu";
   src: url("../Fonts/ubuntu/ubuntu.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "georgia";
   src: url("../Fonts/georgia/georgiaz.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "Monse";
   src: url("../Fonts/montserrat/Montserrat-Regular.otf") format("opentype");
 }
+
 @font-face {
   font-family: "SSF";
   src: url("../Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
 }
+
 /*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
+
 body {
   background-color: white;
 }
+
 .titulo {
   color: rgb(35, 85, 145);
   font-size: 6vw;
   line-height: 30px;
   font-family: "ubuntu";
 }
+
 @media screen and (min-width: 611px) {
   .titulo {
     font-size: 45px;
@@ -35,20 +43,9 @@ body {
 .relleno {
   color: white;
 }
-.subtitulos {
-  color: rgb(0, 34, 77);
-  font-size: 5vw;
-  line-height: 30px;
-  font-family: "ubuntu";
-}
-@media screen and (min-width: 611px) {
-  .subtitulos {
-    font-size: 35px;
-    line-height: 40px;
-  }
-}
 
 /* Style all input fields */
+
 input {
   width: 100%;
   padding: 4px;
@@ -66,99 +63,36 @@ label {
 }
 
 /* Style the submit button */
+
 input[type="submit"] {
   background-color: rgb(35, 85, 145);
   color: white;
 }
 
-/* The message box is shown when the user clicks on the password field */
-#message {
-  display: none;
-  color: rgb(35, 85, 145);
-  position: relative;
-  padding: 10px;
-  margin-top: 5px;
-  font-family: "Monse";
-}
-#message h3 {
-  padding: 5px 18px;
-  font-size: calc(0.5em + 0.3rem + 2px);
+/*-------------------------------BOTONES------------------------------------------*/
+
+button {
+  margin: 40px 0px 5px 0px;
+  font-size: 15px;
+  width: 150px;
+  height: 40px;  
+  color: white;
+  background-color: rgba(35, 120, 250, 1);
+  border: 0.4px solid rgba(0, 70, 200, 1);
+  border-radius: 5px;
+  box-shadow: 0px -5px 0px #d6d6d6 inset;
 }
 
-#message p {
-  padding: 5px 18px;
-  font-size: calc(0.5em + 0.3rem + 1px);
+button:hover, button:active {
+  margin: 45px 0px 5px 0px;
+  font-size: 15px;
+  width: 150px;
+  height: 35px;  
+  box-shadow: 0px 0px 0px #d6d6d6 inset;
 }
-
-/* Add a green text color and a checkmark when the requirements are right */
-.valid {
-  color: green;
-}
-
-.valid:before {
-  position: relative;
-  left: -35px;
-  content: "✔";
-}
-
-/* Add a red text color and an "x" when the requirements are wrong */
-.invalid {
-  color: red;
-}
-
-.invalid:before {
-  position: relative;
-  left: -35px;
-  content: "✖";
-}
-
-body {
-  background-color: white;
-}
-.titulo {
-  color: rgb(35, 85, 145);
-  font-size: 6vw;
-  line-height: 30px;
-  font-family: "ubuntu";
-}
-@media screen and (min-width: 611px) {
-  .titulo {
-    font-size: 45px;
-    line-height: 50px;
-  }
-}
-
-.numError {
-  color: rgb(35, 85, 145);
-  font-size: 12vw;
-  line-height: 60px;
-  font-family: "ubuntu";
-  text-align: center;
-}
-@media screen and (min-width: 611px) {
-  .numError {
-    font-size: 90px;
-    line-height: 100px;
-  }
-}
-
-.descError {
-  color: rgb(35, 85, 145);
-  font-size: 4vw;
-  line-height: 20px;
-  font-family: "ubuntu";
-  text-align: center;
-}
-@media screen and (min-width: 611px) {
-  .descError {
-    font-size: 30px;
-    line-height: 35px;
-  }
-}
-
-/*rgb(35, 85, 145);*/
 
 /*-------------------------------INICIA FOOTER---------------------*/
+
 .foot {
   position: fixed;
   left: 0;
@@ -169,6 +103,7 @@ body {
   text-align: center;
   margin: 2rem 0px 0px 0px;
 }
+
 @media screen and (min-width: 768px) {
   .foot {
     height: 40px;
@@ -183,11 +118,12 @@ body {
   margin: 1vw 0px 0px 0px;
   text-align: center;
 }
-.footSubject:hover,
-.footSubject:active {
+
+.footSubject:hover, .footSubject:active {
   font-size: 2.2vw;
   color: rgb(240, 240, 240);
 }
+
 @media screen and (min-width: 768px) {
   .footSubject {
     font-size: 20px;
@@ -197,8 +133,7 @@ body {
     margin: 5px 0px 0px 0px;
     text-align: center;
   }
-  .footSubject:hover,
-  .footSubject:active {
+  .footSubject:hover, .footSubject:active {
     font-size: 22px;
     color: rgb(240, 240, 240);
   }
