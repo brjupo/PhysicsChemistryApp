@@ -403,3 +403,68 @@ p {
     height: 50px;
   }
 }
+
+.topNumber{
+  font-family: "Monse";
+  text-align: right;
+  font-weight: 700;
+  font-size: 5vh;
+  margin: 1vh 0px;
+}
+.avatarTop{
+  margin: 1vh 0px;
+  height: 6vh;
+  width: auto;
+  border-radius: 50%;
+}
+.ID3st{  
+  font-family: "Monse";
+  text-align: center;
+  margin: 2.5vh 0px;
+  font-size: 3vh;
+}
+.IDiamonds{
+  font-family: "Monse";
+  text-align: right;
+  margin: 3vh 0px;
+  font-size: 2vh;
+}
+.diamantesTop{  
+  margin: 3vh 0px;
+  height: 2vh;
+  width: auto;
+}
+
+
+@media screen and (min-width: 768px) {
+  .topNumber{
+    font-family: "Monse";
+    text-align: right;
+    font-weight: 700;
+    font-size: 10vh;
+    margin: 2vh 0px;
+  }
+  .avatarTop{
+    margin: 2vh 0px;
+    height: 10vh;
+    width: auto;
+    border-radius: 50%;
+  }
+  .ID3st{  
+    font-family: "Monse";
+    text-align: center;
+    margin: 3vh 0px;
+    font-size: 8vh;
+  }
+  .IDiamonds{
+    font-family: "Monse";
+    text-align: right;
+    margin: 4.5vh 0px;
+    font-size: 5vh;
+  }
+  .diamantesTop{  
+    margin: 4.5vh 0px;
+    height: 5vh;
+    width: auto;
+  }
+}
