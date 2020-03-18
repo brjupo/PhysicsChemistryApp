@@ -50,23 +50,11 @@ window.onload = function () {
 //---------------------------ON CLIC----------------------------
 //--------------------------------------------------------------
 document.addEventListener("click", function (evt) {
-    var botonCodigo = document.getElementById("botonCodigo");
-    var botonSesion = document.getElementById("botonSesion");
     var mandarInfoAlServicio = document.getElementById("mandarInfoAlServicio");
     var botonContrasenaOlvidada = document.getElementById("contraOlvidada");
     targetElement = evt.target; // clicked element
 
     do {
-        if (targetElement == botonCodigo) {
-            console.log("Codigo");
-            showCode();
-            return;
-        }
-        if (targetElement == botonSesion) {
-            console.log("Sesion");
-            showSession();
-            return;
-        }
         if (targetElement == botonContrasenaOlvidada) {
             showContraOlvidada();
             return;
@@ -80,24 +68,12 @@ document.addEventListener("click", function (evt) {
     } while (targetElement);
 });
 
-function showCode() {
-    hideAll();
-    document.getElementById("seccionCodigo").style.display = "block";
-}
-function showSession() {
-    hideAll();
-    document.getElementById("seccionSesion").style.display = "block";
-}
 
 function hideAll() {
-    document.getElementById("seccionCodigo").style.display = "none";
-    document.getElementById("seccionSesion").style.display = "none";
-    document.getElementById("emailSent").style.display = "none";
-    document.getElementById("relleno").style.display = "none";
 }
 
 function showContraOlvidada() {
-    hideAll();
+    document.getElementById("forma").style.display = "none";
     document.getElementById("emailSent").style.display = "block";
 }
 
