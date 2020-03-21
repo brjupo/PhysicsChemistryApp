@@ -1,0 +1,32 @@
+.textRight{
+    text-align: right;
+}
+.textCenter{
+    text-align: center;
+}
+
+.inputs{
+    float:left;
+    width:150px;
+}
+
+.continue{
+    margin: 0px auto 0px auto;
+    display: block;
+}
+
+.botonesActivos{
+    margin: 0px auto 0px auto;
+    display: block;
+}
+.emergency{
+    color: red;
+    font-size: 12px;    
+    display: block;
+}
+
+.forgotPass{
+    color:darkblue;
+    font-size: 12px;
+    display: block;
+}
