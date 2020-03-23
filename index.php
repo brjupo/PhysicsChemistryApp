@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="Front/CSSsJSs/Front/CSSsJSs/icons/pyramid.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="Front/CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="Front/CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="Front/CSSsJSs/styleIndex.css" />
     <script src="Front/CSSsJSs/minAJAX.js"></script>
-    <script src="Front/CSSsJSs/indexP.js"></script>
-    <!--script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script-->
+    <script src="Front/CSSsJSs/index.js"></script>
   </head>
   <body>
     <!----------------------------------------------TITULO--------------------------------------------->
