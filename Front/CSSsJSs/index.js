@@ -19,7 +19,7 @@ window.onload = function () {
                 else{
                     event.preventDefault();
                     event.stopPropagation();
-                    location.replace("temas.html");
+                    location.replace("Front/Inicio/temas.php");
                 }
                 /*else{
                     var nombre = "yoMero";
