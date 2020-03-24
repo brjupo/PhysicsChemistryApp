@@ -17,11 +17,11 @@ document.addEventListener("click", function (evt) {
 
     do {
         if (targetElement == profile) {
-            profilev();
+            //profilev();
             return;
         }
         if (targetElement == lections) {
-            lectionsv();
+            //lectionsv();
             return;
         }
         if (targetElement == logout) {
