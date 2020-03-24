@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="shortcut icon" type="image/x-icon" href="icons/EducAppIcon.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Perfil</title>
-  <link rel="stylesheet" href="CSSsJSs/bootstrap341.css" />
-  <link rel="stylesheet" href="CSSsJSs/styleTemas.css" />
-  <script src="CSSsJSs/scriptTemas.js"></script>
+  <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
+  <link rel="stylesheet" href="../CSSsJSs/styleTemas.css" />
+  <script src="../CSSsJSs/scriptTemas.js"></script>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row titulo">
         <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
-          <img class="iconoPrincipal" src="icons/physics.svg" />
+          <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
         </div>
         <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
           <p class="Ciencia fuenteTitulo">Energía y transformación</p>
@@ -27,7 +27,7 @@
             <tbody>
               <tr>
                 <td width="60%">
-                  <img class="iconoDiamantes imgRight" src="icons/diamante.svg" />
+                  <img class="iconoDiamantes imgRight" src="../CSSsJSs/icons/diamante.svg" />
                 </td>
                 <td width="40%">
                   <p class="diamantes textLeft">112</p>
@@ -60,7 +60,7 @@
 
   
   <!----------------------------------------------INICIA PERFIL--------------------------------------------->
-  <div id="profile" style="display: none;">
+  <div id="profile">
     <div class="container">
       <div class="row">
         <p class="relleno">.</p>
@@ -169,7 +169,7 @@
             <tbody>
               <tr>
                 <td width="50%">
-                  <img class="icons imgRight" src="icons/diamante.svg" />
+                  <img class="icons imgRight" src="../CSSsJSs/icons/diamante.svg" />
                 </td>
                 <td width="50%" class="tituloTemasPrincipales textLeft">
                   12,250
@@ -227,16 +227,16 @@
   <div class=" container ">
     <div class=" row text-center ">
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
-        <img class="footIcon" id="botonLecciones" src="icons/lecciones.svg" />
+        <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/lecciones.svg" />
       </div>
       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-        <img class="footIcon" id="botonPerfil" src="icons/usuario.svg" />
+        <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/usuario.svg" />
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
-        <img class="footIcon" id="botonAyuda" src="icons/ayuda.svg" />
+        <img class="footIcon" id="botonAyuda" src="../CSSsJSs/icons/ayuda.svg" />
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
-        <img class="footIcon" id="botonLogout" src="icons/logout.svg" />
+        <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
       </div>
     </div>
   </div>
