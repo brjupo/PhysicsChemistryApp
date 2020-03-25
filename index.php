@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="icons/pyramid.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="Front/CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="CSSsJSs/styleIndex.css" />
-    <script src="CSSsJSs/minAJAX.js"></script>
-    <script src="CSSsJSs/indexP.js"></script>
-    <!--script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script-->
+    <link rel="stylesheet" href="Front/CSSsJSs/bootstrap441.css" />
+    <link rel="stylesheet" href="Front/CSSsJSs/styleIndex.css" />
+    <script src="Front/CSSsJSs/minAJAX.js"></script>
+    <script src="Front/CSSsJSs/index.js"></script>
   </head>
   <body>
     <!----------------------------------------------TITULO--------------------------------------------->
@@ -52,7 +51,7 @@
           class="textCenter col-2 col-md-2 col-md-1 col-lg-1 col-xl-1"
         ></div>
         <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4">
-          <img class="iconoPrincipal" src="icons/quetzalcoatl.svg" />
+          <img class="iconoPrincipal" src="Front/CSSsJSs/icons/quetzalcoatl.svg" />
         </div>
         <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
         <div class="textCenter col-2 col-sm-2 d-md-none"></div>
@@ -119,12 +118,12 @@
     <div class="container">
       <div class="row">
         <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p>.</p>
+          <p style="color:rgba(0,0,0,0)">.</p>
         </div>
       </div>
       <div class="row">
         <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p>.</p>
+          <p style="color:rgba(0,0,0,0)">.</p>
         </div>
       </div>
     </div>
@@ -132,12 +131,12 @@
     <div class="container" id="relleno">
       <div class="row">
         <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p>.</p>
+          <p style="color:rgba(0,0,0,0)">.</p>
         </div>
       </div>
       <div class="row">
         <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p>.</p>
+          <p style="color:rgba(0,0,0,0)">.</p>
         </div>
       </div>
     </div>
@@ -148,7 +147,7 @@
         <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3 "></div>
         <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
           <p class="footSubject">
-            <a href="errorInfoPages/nosotros.html">Nosotros</a>
+            <a href="Front/CSSsJSs/errorInfoPages/nosotros.html">Nosotros</a>
           </p>
         </div>
         <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
@@ -156,7 +155,7 @@
         </div>
         <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
           <p class="footSubject">
-            <a href="errorInfoPages/terminos.html">Términos</a>
+            <a href="Front/CSSsJSs/errorInfoPages/terminos.html">Términos</a>
           </p>
         </div>
         <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div>
