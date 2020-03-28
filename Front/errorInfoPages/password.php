@@ -77,13 +77,13 @@
 
   <div class="container">
     <div class="row">
-      <div class="textCenter col-4 col-sm-4 col-md-5 col-lg-5 col-xl-5"></div>
-      <div class="textCenter col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+      <div class="textCenter col-2 col-sm-2 col-md-5 col-lg-5 col-xl-5"></div>
+      <div class="textCenter col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
         <button class="boton2" id="submit" >
           Submit
         </button>
       </div>
-      <div class="textCenter col-4 col-sm-4 col-md-5 col-lg-5 col-xl-5"></div>
+      <div class="textCenter col-2 col-sm-2 col-md-5 col-lg-5 col-xl-5"></div>
     </div>
   </div>
 
