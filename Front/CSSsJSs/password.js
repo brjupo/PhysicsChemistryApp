@@ -87,27 +87,27 @@ window.onload = function() {
     form.addEventListener(
         "submit",
         function (event) {
-            if (form.checkValidity() === false) {
-                console.log("no entras prro");
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            else{
                 var correo_e = $("#correo_e").val();
                 var contrasenia = $("#psw").val();
                 console.log("entre");
                 $.ajax({
                     type: "POST",
                     url: "https://kaanbal.net/Servicios/register.php",
+                    dataType: "json",
                     data:  {correo: correo_e, password: contrasenia },
-                    success: function (data) {
-                        console.log("etcito  " + data.msg);
-                    },
-                    dataType: "json"
+                    success:function(data){
+                      if(data.success == 'true'){
+                        alert("User not exist...");
+                        console.log("Registro exitoso");
+                        location.replace("temas.html");                 
+                      }else{                     
+                        alert("User exist...");                     
+                        console.log("Registro no exitoso");                 
+                      }              
+                    }
                   });                    
                 event.preventDefault();
                 event.stopPropagation();
-            }
         },
         false
     );
