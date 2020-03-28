@@ -64,12 +64,11 @@
           ?>
           " />
 
-          <label for="psw">Contraseña</label>
+          <label for="psw">Password</label>
           <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
 
-          <label for="password2">Confirma contraseña</label>
+          <label for="password2">Confirm Your Password</label>
           <input type="password" id="psw2" name="psw2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
-          <p style="color:rgba(0,0,0,0)">.</p>
         </form>
       </div>
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>

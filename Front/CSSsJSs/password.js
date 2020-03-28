@@ -50,8 +50,7 @@ window.onload = function() {
     }
     // Validate symbols
     //var specialChars = "!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?`~";
-    //var specialChars = "@#$%^&+=";
-    var specialChars = "!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?`~";
+    var specialChars = "@#$%^&+=";
     var password = myInput.value;
     var seEncuentra = false;
     var i;
