@@ -93,14 +93,13 @@ window.onload = function() {
                 event.stopPropagation();
             }
             else{
-                var nombre = "yoMero";
-                var correo = $("#validarUsuario").val();
-                var contrasena = $("#validarPassword").val();
+                var correo_e = $("#correo_e").val();
+                var contrasenia = $("#psw").val();
                 console.log("entre");
                 $.ajax({
                     type: "POST",
-                    url: "https://educapp-frontend.000webhostapp.com/registerEducapp.php",
-                    data:  { name: nombre, username: correo, password: contrasena },
+                    url: "https://kaanbal.net/Servicios/register.php",
+                    data:  {correo: correo_e, password: contrasenia },
                     success: function (data) {
                         console.log("etcito  " + data.msg);
                     },
@@ -109,7 +108,6 @@ window.onload = function() {
                 event.preventDefault();
                 event.stopPropagation();
             }
-            form.classList.add("was-validated");
         },
         false
     );
