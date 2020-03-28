@@ -41,7 +41,7 @@
       <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         <form oninput='psw2.setCustomValidity(psw2.value != psw.value ? "\n Passwords do not match." : "")'>
           <?php
-          $tokenLink = $_GET['token'];
+          $tokenLink = htmlspecialchars($_GET['token']);
           //echo "<p>" . $tokenLink . "  ";
           $createdQuery = "SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE tokenA = '" . $tokenLink . "' LIMIT 1;";
           //echo $createdQuery . "</p>";
@@ -58,7 +58,8 @@
               echo $row[1];
             }
           } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            //echo "Error: " . $e->getMessage();
+            echo "Error";
           }
           $conn = null;
           ?>
