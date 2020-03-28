@@ -109,7 +109,7 @@ function sentInfoToService() {
     dataType: "json",
     data: { correo: correo_e, password: contrasenia },
     success: function(data) {
-      if (data.success == "true") {
+      if (data.response == "true") {
         alert("Contraseña registrada");
         console.log("Registro exitoso");
       } else {
