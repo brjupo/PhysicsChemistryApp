@@ -102,7 +102,7 @@ document.addEventListener("click", function(evt) {
 function sentInfoToService() {
   var correo_e = $("#correo_e").val();
   var contrasenia = $("#psw").val();
-  console.log("entre");
+  console.log("Correo: ", correo_e, "   Contras: ", contrasenia);
   $.ajax({
     type: "POST",
     url: "https://kaanbal.net/Servicios/register.php",
