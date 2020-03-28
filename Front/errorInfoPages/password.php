@@ -43,7 +43,7 @@
           $tokenLink = $_GET['token'];
           echo "<p>" . $tokenLink . "  ";
           $createdQuery = "SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE tokenA = '" . $tokenLink . "' LIMIT 1;";
-          echo $createdQuery . "</p>"; 
+          echo $createdQuery . "</p>";
           ?>
 
           <label for="correo_e">Correo</label>
@@ -52,7 +52,6 @@
           try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Conexion lograda";
             $stmt = $conn->query($createdQuery);
             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
               echo $row[1];
@@ -70,14 +69,23 @@
           <label for="password2">Confirma contraseña</label>
           <input type="password" id="psw2" name="psw2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
           <p style="color:rgba(0,0,0,0)">.</p>
-
-          <input value="Submit" id="submit" />
         </form>
       </div>
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
 
+  <div class="container">
+    <div class="row">
+      <div class="textCenter col-4 col-sm-4 col-md-5 col-lg-5 col-xl-5"></div>
+      <div class="textCenter col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+        <div class="button" id="submit" >
+          Submit
+        </div>
+      </div>
+      <div class="textCenter col-4 col-sm-4 col-md-5 col-lg-5 col-xl-5"></div>
+    </div>
+  </div>
 
 
 
