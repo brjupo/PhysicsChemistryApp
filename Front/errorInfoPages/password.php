@@ -79,7 +79,7 @@
     <div class="row">
       <div class="textCenter col-4 col-sm-4 col-md-5 col-lg-5 col-xl-5"></div>
       <div class="textCenter col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
-        <button class="button" id="submit" >
+        <button class="boton2" id="submit" >
           Submit
         </button>
       </div>
