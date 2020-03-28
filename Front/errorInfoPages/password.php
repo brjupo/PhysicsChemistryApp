@@ -42,7 +42,7 @@
           <?php
           $tokenLink = $_GET['token'];
           echo "<p>" . $tokenLink . "  ";
-          $createdQuery = "SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE tokenA = '!!!!!' " . $tokenLink . " LIMIT 1;";
+          $createdQuery = "SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE tokenA = '" . $tokenLink . "' LIMIT 1;";
           echo $createdQuery . "</p>"; 
           ?>
 
