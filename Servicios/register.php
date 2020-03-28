@@ -7,7 +7,7 @@
     $password = $_POST["password"];
     
     //Corroborar que no existe el correo en base de datos
-    $sql = "SELECT mail FROM user WHERE mail = '$correo'";
+    $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$correo'";
     $resultp = mysqli_query($con,$sql);
     $rowp = mysqli_fetch_array($resultp);
     
