@@ -105,7 +105,7 @@ function sentInfoToService() {
   console.log("Correo: ", correo_e, "   Contras: ", contrasenia);
   $.ajax({
     type: "POST",
-    url: "https://kaanbal.net/Servicios/register.php",
+    url: "../../Servicios/register.php",
     dataType: "json",
     data: { correo: correo_e, password: contrasenia },
     success: function(data) {
