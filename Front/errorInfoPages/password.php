@@ -39,19 +39,23 @@
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         <form oninput='psw2.setCustomValidity(psw2.value != psw.value ? "\n Passwords do not match." : "")'>
+          <?php
+          $tokenLink = $_GET['token'];
+          echo "<p>" . $tokenLink . "  ";
+          $createdQuery = "SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE tokenA = '!!!!!' " . $tokenLink . " LIMIT 1;";
+          echo $createdQuery . "</p>"; 
+          ?>
+
           <label for="correo_e">Correo</label>
           <input type="email" id="correo_e" name="correo_e" value="          
           <?php
-          $tokenLink = $_GET['token'];
-          echo $tokenLink . "  ";
           try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Conexion lograda";
-            $createdQuery = "SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE tokenA = '!!!!!' " . $tokenLink . " LIMIT 1;";
             $stmt = $conn->query($createdQuery);
             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-              echo $row[0];
+              echo $row[1];
             }
           } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
