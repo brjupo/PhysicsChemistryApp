@@ -118,6 +118,4 @@ function sentInfoToService() {
       }
     }
   });
-  event.preventDefault();
-  event.stopPropagation();
 }
