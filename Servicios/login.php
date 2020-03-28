@@ -1,5 +1,5 @@
 <?php
-    $con = mysqli_connect("localhost", "id7212857_alarmasyscamv", "eiriagu1324", "id7212857_alarmasys");	
+    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
     
     $correo = $_POST["correo"];
     $password = $_POST["password"];
