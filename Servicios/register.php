@@ -7,28 +7,27 @@
     $password = $_POST["password"];
     
     //Corroborar que no existe el correo en base de datos
-    $sql = "SELECT mail FROM user WHERE mail = '$correo'";
+    $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$correo'";
     $resultp = mysqli_query($con,$sql);
     $rowp = mysqli_fetch_array($resultp);
     
     if($rowp){
         
 
-    //Si existe registrar contraseña en base de datos y responder true
-          $sql = "INSERT INTO user (name, mail, password) VALUES ('$name', '$correo', '$password')";
-          mysqli_query($con,$sql);
+        //Si existe registrar contraseña en base de datos y responder true
+        $sql = "UPDATE usuario_prueba SET password='$pswd' WHERE mail = '$correo'";
+        mysqli_query($con,$sql);
 
         //Enviar mail
         $cuerpo = "Password: " . $password;
         mail($correo,"Confirmacion de Registro",$cuerpo);
 
-
+        
           if($name == ""){
          $response = array();
          $response['response'] = 'Sin nombre'; 
          
-         echo json_encode($response); 
-           
+         echo json_encode($response);   
         }else{
           $response = array();
             $response['response'] = 'true';  
