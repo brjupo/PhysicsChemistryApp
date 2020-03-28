@@ -97,11 +97,10 @@ window.onload = function() {
                     data:  {correo: correo_e, password: contrasenia },
                     success:function(data){
                       if(data.success == 'true'){
-                        alert("User not exist...");
-                        console.log("Registro exitoso");
-                        location.replace("temas.html");                 
+                        alert("Contraseña registrada");
+                        console.log("Registro exitoso");        
                       }else{                     
-                        alert("User exist...");                     
+                        alert("Algo fallo :/ ");                     
                         console.log("Registro no exitoso");                 
                       }              
                     }
