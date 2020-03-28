@@ -15,7 +15,7 @@
         
 
         //Si existe registrar contraseña en base de datos y responder true
-        $sql = "UPDATE usuario_prueba SET password='$pswd' WHERE mail = '$correo'";
+        $sql = "UPDATE usuario_prueba SET pswd='$password' WHERE mail = '$correo'";
         mysqli_query($con,$sql);
 
         //Enviar mail
@@ -23,18 +23,20 @@
         mail($correo,"Confirmacion de Registro",$cuerpo);
 
         
-          if($name == ""){
+        /*if($name == ""){
          $response = array();
          $response['response'] = 'Sin nombre'; 
          
          echo json_encode($response);   
         }else{
-          $response = array();
+          
+         }*/
+
+         $response = array();
             $response['response'] = 'true';  
     
             echo json_encode($response);
 
-         }
     
     }else{    
         
