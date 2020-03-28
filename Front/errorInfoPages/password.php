@@ -43,12 +43,13 @@
           <input type="email" id="correo_e" name="correo_e" value="          
           <?php
           $tokenLink = $_GET['token'];
-          echo $tokenLink. "  ";
+          echo $tokenLink . "  ";
           try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Conexion lograda";
-            $stmt = $conn->query("SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE tokenA = '!!!!!' LIMIT 1;");
+            $createdQuery = "SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE tokenA = '!!!!!' " . $tokenLink . " LIMIT 1;";
+            $stmt = $conn->query($createdQuery);
             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
               echo $row[0];
             }
