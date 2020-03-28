@@ -15,12 +15,12 @@
         
 
         //Si existe registrar contraseña en base de datos y responder true
-        //$sql = "UPDATE usuario_prueba SET pswd='$password' WHERE mail = '$correo'";
-        //mysqli_query($con,$sql);
+        $sql = "UPDATE usuario_prueba SET pswd='$password' WHERE mail = '$correo'";
+        mysqli_query($con,$sql);
 
         //Enviar mail
-        $cuerpo = "Password: " . $password;
-        mail($correo,"Confirmacion de Registro",$cuerpo);
+        //$cuerpo = "Password: " . $password;
+        //mail($correo,"Confirmacion de Registro",$cuerpo);
 
         
         /*if($name == ""){
