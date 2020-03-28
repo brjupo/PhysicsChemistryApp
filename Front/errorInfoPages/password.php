@@ -43,6 +43,7 @@
           <input type="email" id="correo_e" name="correo_e" value="          
           <?php
           $tokenLink = $_GET['token'];
+          echo $tokenLink. "  ";
           try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
