@@ -83,4 +83,38 @@ window.onload = function() {
       length.classList.add("invalid");
     }
   };
+  var validation = Array.prototype.filter.call(forms, function (form) {
+    form.addEventListener(
+        "submit",
+        function (event) {
+            if (form.checkValidity() === false) {
+                console.log("no entras prro");
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            else{
+                var nombre = "yoMero";
+                var correo = $("#validarUsuario").val();
+                var contrasena = $("#validarPassword").val();
+                console.log("entre");
+                $.ajax({
+                    type: "POST",
+                    url: "https://educapp-frontend.000webhostapp.com/registerEducapp.php",
+                    data:  { name: nombre, username: correo, password: contrasena },
+                    success: function (data) {
+                        console.log("etcito  " + data.msg);
+                    },
+                    dataType: "json"
+                  });                    
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+        },
+        false
+    );
+});
 };
+
+
+
