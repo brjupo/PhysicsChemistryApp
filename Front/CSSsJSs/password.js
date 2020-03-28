@@ -87,6 +87,7 @@ window.onload = function() {
 
 document.addEventListener("click", function(evt) {
   var mandarInfoAlServicio = document.getElementById("submit");
+  var titulo = document.getElementById("titulo");
   targetElement = evt.target; // clicked element
 
   do {
@@ -94,10 +95,18 @@ document.addEventListener("click", function(evt) {
       sentInfoToService();
       return;
     }
+    if (targetElement == titulo) {
+      index();
+      return;
+    }
     // Go up the DOM
     targetElement = targetElement.parentNode;
   } while (targetElement);
 });
+
+function index() {
+  window.location.href = "https://kaanbal.net";
+}
 
 function sentInfoToService() {
   var correo_e = $("#correo_e").val();

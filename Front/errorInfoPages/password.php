@@ -25,7 +25,7 @@
     <div class="row">
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-        <p class="titulo"><a href="../../index.php">Kaanbal</a></p>
+        <p class="titulo" id="titulo">Kaanbal</p>
       </div>
       <div class="textRight col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
@@ -41,9 +41,9 @@
         <form oninput='psw2.setCustomValidity(psw2.value != psw.value ? "\n Passwords do not match." : "")'>
           <?php
           $tokenLink = $_GET['token'];
-          echo "<p>" . $tokenLink . "  ";
+          //echo "<p>" . $tokenLink . "  ";
           $createdQuery = "SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE tokenA = '" . $tokenLink . "' LIMIT 1;";
-          echo $createdQuery . "</p>";
+          //echo $createdQuery . "</p>";
           ?>
 
           <label for="correo_e">Correo</label>
