@@ -47,7 +47,7 @@
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Conexion lograda";
-            $stmt = $conn->query("SELECT id_usuario, mail, psw, tokenA FROM usuario_prueba WHERE tokenA = $tokenLink");
+            $stmt = $conn->query("SELECT id_usuario, mail, psw, tokenA FROM usuario_prueba WHERE tokenA = '!!!!!' LIMIT 1;");
             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
               echo $row[0];
             }
