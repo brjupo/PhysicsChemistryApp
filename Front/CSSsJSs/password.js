@@ -58,7 +58,7 @@ window.onload = function() {
     var j;
 
     for (j = 0; j < password.length; j++) {
-      letra=password.charAt(j);
+      letra = password.charAt(j);
       for (i = 0; i < specialChars.length; i++) {
         if (specialChars.charAt(i) === letra) {
           seEncuentra = true;
@@ -83,35 +83,39 @@ window.onload = function() {
       length.classList.add("invalid");
     }
   };
-  var validation = Array.prototype.filter.call(forms, function (form) {
-    form.addEventListener(
-        "submit",
-        function (event) {
-                var correo_e = $("#correo_e").val();
-                var contrasenia = $("#psw").val();
-                console.log("entre");
-                $.ajax({
-                    type: "POST",
-                    url: "https://kaanbal.net/Servicios/register.php",
-                    dataType: "json",
-                    data:  {correo: correo_e, password: contrasenia },
-                    success:function(data){
-                      if(data.success == 'true'){
-                        alert("Contraseña registrada");
-                        console.log("Registro exitoso");        
-                      }else{                     
-                        alert("Algo fallo :/ ");                     
-                        console.log("Registro no exitoso");                 
-                      }              
-                    }
-                  });                    
-                event.preventDefault();
-                event.stopPropagation();
-        },
-        false
-    );
-});
 };
 
+document.addEventListener("click", function(evt) {
+  var mandarInfoAlServicio = document.getElementById("submit");
+  targetElement = evt.target; // clicked element
 
+  do {
+    if (targetElement == mandarInfoAlServicio) {
+      sentInfoToService();
+      return;
+    }
+    // Go up the DOM
+    targetElement = targetElement.parentNode;
+  } while (targetElement);
+});
 
+function sentInfoToService() {
+  var correo_e = $("#correo_e").val();
+  var contrasenia = $("#psw").val();
+  console.log("entre");
+  $.ajax({
+    type: "POST",
+    url: "https://kaanbal.net/Servicios/register.php",
+    dataType: "json",
+    data: { correo: correo_e, password: contrasenia },
+    success: function(data) {
+      if (data.success == "true") {
+        alert("Contraseña registrada");
+        console.log("Registro exitoso");
+      } else {
+        alert("Algo fallo :/ ");
+        console.log("Registro no exitoso");
+      }
+    }
+  });
+}
