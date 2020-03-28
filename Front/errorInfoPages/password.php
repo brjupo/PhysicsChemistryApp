@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="shortcut icon" type="image/x-icon" href="../icons/EducAppIcon.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
+  <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
   <link rel="stylesheet" href="../CSSsJSs/stylePassword.css" />
   <script src="../CSSsJSs/password.js"></script>
@@ -79,7 +80,7 @@
     <div class="row">
       <div class="textCenter col-2 col-sm-2 col-md-5 col-lg-5 col-xl-5"></div>
       <div class="textCenter col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
-        <button class="boton2" id="submit" >
+        <button class="boton2" id="submit">
           Submit
         </button>
       </div>
