@@ -8,7 +8,7 @@
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePassword.css" />
-    <!--script src="../CSSsJSs/password.js"></script-->
+    <script src="../CSSsJSs/uploadOne.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
@@ -30,8 +30,8 @@
         <div class="row">
             <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
             <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                <label for="correoNuevo">Matrícula a dar de alta</label>
-                <input type="email" id="correo_e" name="correo_e" value="A01169493" maxlength="9" pattern="(A)(0)(?=.*\d).{7}" required/>
+                <label for="correoNuevo">Matrícula a dar de alta. Ejemplo.- A01169493</label>
+                <input type="text" id="matricula" name="matricula" maxlength="9" pattern="(A)(0)(?=.*\d).{7}" required/>
                 
                 <label for="psw">Por favor, confirme contraseña de super usuario de hoy <?php echo date("Y-m-d") ?></label>
                 <input type="password" id="psw" name="psw" required />
