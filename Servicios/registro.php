@@ -1,0 +1,43 @@
+<?php
+$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+
+
+$token = $_POST["tokenA"];
+$correo = $_POST["correo"];
+$password = $_POST["password"];
+
+//Corroborar que no existe el correo en base de datos
+$sql = "SELECT mail FROM usuario_prueba WHERE mail = '$correo'";
+$resultp = mysqli_query($con, $sql);
+$rowp = mysqli_fetch_array($resultp);
+
+if ($rowp) {
+    //Si existe [mail y token] registrar contraseña en base de datos y responder true
+    $sql = "UPDATE usuario_prueba SET pswd='$password' WHERE tokenA = '$token' AND mail = '$correo'";
+    mysqli_query($con, $sql);
+
+    //Enviar mail
+    //$cuerpo = "Password: " . $password;
+    //mail($correo,"Confirmacion de Registro",$cuerpo);
+
+    /*if($name == ""){
+         $response = array();
+         $response['response'] = 'Sin nombre'; 
+         
+         echo json_encode($response);   
+        }else{
+          
+         }*/
+
+    $response = array();
+    $response['response'] = 'true';
+
+    echo json_encode($response);
+} else {
+
+    //Si no existe regresar false
+    $response = array();
+    $response['response'] = 'El usuario no existe';
+
+    echo json_encode($response);
+}

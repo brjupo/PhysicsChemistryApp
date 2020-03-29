@@ -108,14 +108,15 @@ function index() {
 }
 
 function sentInfoToService() {
+  var token = $("#token").val();
   var correo_e = $("#correo_e").val();
   var contrasenia = $("#psw").val();
-  console.log("Correo: ", correo_e, "   Contras: ", contrasenia);
+  console.log("Correo: ", correo_e, " Contras: ", contrasenia, " token: ", token);
   $.ajax({
     type: "POST",
-    url: "../../Servicios/register.php",
+    url: "../../Servicios/registro.php",
     dataType: "json",
-    data: { correo: correo_e, password: contrasenia },
+    data: { correo: correo_e, password: contrasenia, tokenA: token},
     success: function(data) {
       console.log(data.response);
       if (data.response == "true") {
