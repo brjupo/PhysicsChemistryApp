@@ -42,28 +42,13 @@
         <form oninput='psw2.setCustomValidity(psw2.value != psw.value ? "\n Passwords do not match." : "")'>
           <?php
           $tokenLink = htmlspecialchars($_GET['token']);
-          //echo "<p>" . $tokenLink . "  ";
-          $createdQuery = "SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE tokenA = '" . $tokenLink . "' LIMIT 1;";
-          //echo $createdQuery . "</p>";
+          $correo_e  = htmlspecialchars($_GET['correo']);
+          echo "<p>" . $tokenLink . "  " . $correo_e . "   ";
           ?>
-
+          <input type="text" id="token" value="<?php $tokenLink ?>" style="display:none;">
+          
           <label for="correo_e">Correo</label>
-          <input type="email" id="correo_e" name="correo_e" value="          
-          <?php
-          try {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->query($createdQuery);
-            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-              echo $row[1];
-            }
-          } catch (PDOException $e) {
-            //echo "Error: " . $e->getMessage();
-            echo "Error";
-          }
-          $conn = null;
-          ?>
-          " disabled />
+          <input type="email" id="correo_e" name="correo_e" value="<?php $correo_e ?>" disabled />
 
           <label for="psw">Password</label>
           <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
