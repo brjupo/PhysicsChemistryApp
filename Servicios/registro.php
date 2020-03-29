@@ -7,7 +7,7 @@ $correo = $_POST["correo"];
 $password = $_POST["password"];
 
 //Corroborar que no existe el correo en base de datos
-$sql = "SELECT mail FROM usuario_prueba WHERE mail = '$correo'";
+$sql = "SELECT mail FROM usuario_prueba WHERE tokenA = '$token' AND mail = '$correo'";
 $resultp = mysqli_query($con, $sql);
 $rowp = mysqli_fetch_array($resultp);
 
@@ -16,18 +16,11 @@ if ($rowp) {
     $sql = "UPDATE usuario_prueba SET pswd='$password' WHERE tokenA = '$token' AND mail = '$correo'";
     mysqli_query($con, $sql);
 
-    //Enviar mail
-    //$cuerpo = "Password: " . $password;
-    //mail($correo,"Confirmacion de Registro",$cuerpo);
-
-    /*if($name == ""){
-         $response = array();
-         $response['response'] = 'Sin nombre'; 
-         
-         echo json_encode($response);   
-        }else{
-          
-         }*/
+    //Es hora de cambiar el token   |  Creamos un token random
+    $rand = bin2hex(random_bytes(5));
+    //Cambiamos el token
+    $sql = "UPDATE usuario_prueba SET tokenA='$rand' WHERE mail = '$correo'";
+    mysqli_query($con, $sql);
 
     $response = array();
     $response['response'] = 'true';
