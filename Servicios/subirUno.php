@@ -14,10 +14,10 @@ $rowp = mysqli_fetch_array($resultp);
 
 $sql = "SELECT pswd FROM usuario_prueba WHERE mail = 'superUsuario'";
 $resultadoSuper = mysqli_query($con, $sql);
-$arraySuper = mysqli_fetch_array($resultp);
+$arraySuper = mysqli_fetch_array($resultadoSuper);
 if ($arraySuper[0] != $password) {
     $response = array();
-    $response['response'] = 'Error en la contraseña';
+    $response['response'] = $arraySuper[0];
     echo json_encode($response);
 } else {
     if ($rowp) {
