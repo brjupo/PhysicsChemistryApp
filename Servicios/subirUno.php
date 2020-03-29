@@ -29,7 +29,7 @@ if ($arraySuper[0] != $password) {
         //Es hora de cambiar el token   |  Creamos un token random
         $rand = bin2hex(random_bytes(5));
         //Agregar a la base de datos
-        $sql = "INSERT INTO usuario_prueba(mail, pswd, tokenA) VALUES ('$correo_e', NULL, '$rand')";
+        $sql = "INSERT INTO usuario_prueba(mail, pswd, tokenA) VALUES ('$correo_e', '1234', '$rand')";
         mysqli_query($con, $sql);
 
         //Si no existe, regresar true
