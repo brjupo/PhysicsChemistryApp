@@ -45,10 +45,10 @@
           $correo_e  = htmlspecialchars($_GET['correo']);
           echo "<p>" . $tokenLink . "  " . $correo_e . "   ";
           ?>
-          <input type="text" id="token" value="<?php $tokenLink ?>" style="display:none;">
-          
+          <input type="text" id="token" value="<?php echo $tokenLink ?>" style="display:none;">
+
           <label for="correo_e">Correo</label>
-          <input type="email" id="correo_e" name="correo_e" value="<?php $correo_e ?>" disabled />
+          <input type="email" id="correo_e" name="correo_e" value="<?php echo $correo_e ?>" disabled />
 
           <label for="psw">Password</label>
           <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
