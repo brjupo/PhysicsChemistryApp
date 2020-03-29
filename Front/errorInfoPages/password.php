@@ -13,15 +13,6 @@
 </head>
 
 <body>
-  <?php
-  $servername = "localhost";
-  $username = "u526597556_dev";
-  $password = "1BLeeAgwq1*isgm&jBJe";
-  $dbname = "u526597556_kaanbal";
-  ?>
-  <!--$con = mysqli_connect("localhost", 
-  "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  -->
   <div class="container">
     <div class="row">
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
@@ -43,7 +34,7 @@
           <?php
           $tokenLink = htmlspecialchars($_GET['token']);
           $correo_e  = htmlspecialchars($_GET['correo']);
-          echo "<p>" . $tokenLink . "  " . $correo_e . "   ";
+          //echo "<p>" . $tokenLink . "  " . $correo_e . "   ";
           ?>
           <input type="text" id="token" value="<?php echo $tokenLink ?>" style="display:none;">
 
