@@ -26,8 +26,10 @@ if ($arraySuper[0] != $password) {
         $response['response'] = 'Error! Este correo ya existe';
         echo json_encode($response);
     } else {
+        //Es hora de cambiar el token   |  Creamos un token random
+        $rand = bin2hex(random_bytes(5));
         //Agregar a la base de datos
-        $sql = "INSERT INTO usuario_prueba(mail) VALUES ('$correo_e')";
+        $sql = "INSERT INTO usuario_prueba(mail, pswd, tokenA) VALUES ('$correo_e', NULL, '$rand')";
         mysqli_query($con, $sql);
 
         //Si no existe, regresar true

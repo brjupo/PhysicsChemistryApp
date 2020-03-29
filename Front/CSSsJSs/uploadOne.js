@@ -34,7 +34,7 @@ document.addEventListener("click", function(evt) {
       success: function(data) {
         console.log(data.response);
         if (data.response == "true") {
-          alert("Contraseña registrada");
+          alert("Usuario registrado");
           console.log("Registro exitoso");
         } else {
           alert(data.response);
