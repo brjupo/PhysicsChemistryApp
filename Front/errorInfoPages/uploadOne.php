@@ -31,7 +31,7 @@
             <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
             <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                 <label for="correoNuevo">Matrícula a dar de alta. Ejemplo.- A01169493</label>
-                <input type="text" id="matricula" name="matricula" maxlength="9" pattern="(A)(0)(?=.*\d).{7}" required/>
+                <input type="text" id="matricula" name="matricula" maxlength="9" pattern="(A)(0)(?=.*\d).{7}" placeholder="A01169493" required/>
                 
                 <label for="psw">Por favor, confirme contraseña de super usuario de hoy <?php echo date("Y-m-d") ?></label>
                 <input type="password" id="psw" name="psw" required />
