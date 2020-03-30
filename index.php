@@ -56,18 +56,16 @@
         <p style="color:rgba(0,0,0,0);">.</p>
 
         <label class="fuenteForma" for="validarUsuario">Usuario</label>
-        <input type="email" id="validarUsuario" placeholder="A01169493@itesm.mx" required />
+        <input type="email" name="validarUsuario" id="validarUsuario" placeholder="A01169493@itesm.mx" required />
 
         <label class="fuenteForma" for="validarPassword" id="contrasena">Contraseña</label>
-        <input type="password" id="validarPassword" required />
+        <input type="password" name="validarPassword" id="validarPassword" required />
 
         <label class="olvidada" id="contraOlvidada" for="validarPassword">¿Olvidaste tu contraseña?</label>
         <button class="boton2" id="botonSesion">Log In</button>
       </div>
       <div id="emailSent" class="textCenter col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4" style="display:none;">
         <p class="fuenteForma" id="emailMessage">
-          Te hemos enviado un mensaje a tu correo para recuperar tu
-          contraseña.
         </p>
       </div>
       <div class="textCenter col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"></div>
