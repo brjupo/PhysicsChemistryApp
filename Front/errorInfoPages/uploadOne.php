@@ -7,8 +7,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../CSSsJSs/stylePassword.css" />
-    <script src="../CSSsJSs/uploadOne.js"></script>
+    <link rel="stylesheet" href="../CSSsJSs/styleUploadOne.css" />
+    <script src="../CSSsJSs/scriptUploadOne.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
