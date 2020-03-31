@@ -23,7 +23,8 @@ function index() {
 
 function sentInfoToService() {
   var matricula = $("#matricula").val();
-  if (matricula.lenght < 9) {
+  console.log(matricula.length);
+  if (matricula.length < 9) {
     alert("Error en el usuario");
   } else {
     var contrasenia = $("#psw").val();
