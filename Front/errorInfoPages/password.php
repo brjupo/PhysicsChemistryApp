@@ -8,7 +8,7 @@
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
   <link rel="stylesheet" href="../CSSsJSs/stylePassword.css" />
-  <script src="../CSSsJSs/password.js"></script>
+  <script src="../CSSsJSs/scriptPassword.js"></script>
   <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
