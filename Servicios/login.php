@@ -6,15 +6,15 @@
     
     //declarar respuesta
     $response = array();
-    $response["success"] = false;//Si no existe el usuario 
+    $response['response'] = 'El usuario no existe';//Si no existe el usuario 
     
-    //consultar si existe usuario en tabla de pacientes
-    $statement = mysqli_prepare($con, "SELECT * FROM user WHERE mail = ? AND password = ?");
+    //consultar si existe usuario en tabla alumnos
+    $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
     mysqli_stmt_bind_param($statement, "ss", $correo, $password);
     mysqli_stmt_execute($statement);
     
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $userID, $name, $correo, $password, $alarma, $token, $token_a, $tokenp, $tokenpp, $flag);
+    mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA);
     
     
     while(mysqli_stmt_fetch($statement)){//si si existe el usuario
@@ -22,18 +22,19 @@
      //$im = file_get_contents("$foto",true);      
      //$imdata = base64_encode($im);
     
-        $response["success"] = true;  
-        $response["iduser"] = $userID;
-        $response["name"] = $name;
-        $response["mail"] = $correo;
-        $response["password"] = $password;
-        $response["alarma"] = $alarma;
-        $response["token"] = $token;
-        $response["token_a"] = $token_a;
-        $response["tokenp"] = $tokenp;
-        $response["tokenpp"] = $tokenpp;
-        $response["flag"] = $flag;
+        $response['response'] = 'Sesion iniciada correctamente';  
+        $response["id_usuario"] = $id_usuario;
+        $response["mail"] = $mail;
+        $response["pswd"] = $pswd;
+        $response["tokenA"] = $tokenA;
+        //$response["token"] = $token;
+        //$response["token_a"] = $token_a;
+        //$response["tokenp"] = $tokenp;
+        //$response["tokenpp"] = $tokenpp;
+        //$response["flag"] = $flag;
     }   
     
     
     echo json_encode($response);
+
+?>
