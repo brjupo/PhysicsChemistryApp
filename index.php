@@ -54,14 +54,13 @@
       <div id="forma" class="textCenter col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4">
         <p class="slogan">¡Divertete aprendiendo!</p>
         <p style="color:rgba(0,0,0,0);">.</p>
-        <form>
-          <label class="fuenteForma" for="validarUsuario">Usuario</label>
-          <input type="email" name="validarUsuario" id="validarUsuario" placeholder="A01169493@itesm.mx" required />
+        <label class="fuenteForma" for="validarUsuario">Usuario</label><br>
+        <input type="email" name="validarUsuario" id="validarUsuario" placeholder="A01169493@itesm.mx" required /><br>
 
-          <label class="fuenteForma" for="validarPassword" id="contrasena">Contraseña</label>
-          <input type="password" name="validarPassword" id="validarPassword" required />
-        </form>
-        <label class="olvidada" id="contraOlvidada" for="validarPassword">¿Olvidaste tu contraseña?</label>
+        <label class="fuenteForma" for="validarPassword" id="contrasena">Contraseña</label><br>
+        <input type="password" name="validarPassword" id="validarPassword" required /><br>
+
+        <label class="olvidada" id="contraOlvidada" for="validarPassword">¿Olvidaste tu contraseña?</label><br>
 
         <button class="boton2" id="botonSesion">Log In</button>
       </div>
