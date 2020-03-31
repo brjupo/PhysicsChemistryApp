@@ -26,11 +26,7 @@ if ($correo_e == "" or $correo_e == NULL) {
         $from = "no-reply@kaanbal.net";
         $to = $correo_e;
         $subject = "Kaanbal - Password";
-        $cuerpo = "Hola! En la siguiente liga podrás cambiar tu contraseña.\n
-        https://kaanbal.net/Front/errorInfoPages/password.php?token=" .
-         $rand . "&correo=" . $correo_e . " \n" .
-         "Recuerda esta liga es de un solo uso e instransferible. \n
-         Si vuelves a olvidarla. Ingresa a https://kaanbal.net y elige la opción olvidé mi contraseña.";
+        $cuerpo = "Hola! En la siguiente liga podrás cambiar tu contraseña. https://kaanbal.net/Front/errorInfoPages/password.php?token=" . $rand . "&correo=" . $correo_e . " \n Recuerda esta liga es de un solo uso e instransferible. Si vuelves a olvidarla. Ingresa a https://kaanbal.net y elige la opción olvidé mi contraseña.";
         $headers = "From:" . $from;
         mail($to,$subject,$cuerpo,$headers);
         //Si no existe, regresar true
