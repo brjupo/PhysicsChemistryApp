@@ -18,19 +18,19 @@ if ($correo_e == "" or $correo_e == NULL) {
         //Es hora de cambiar el token   |  Creamos un token random
         $rand = bin2hex(random_bytes(5));
         //Agregar a la base de datos
-        $sql = "INSERT INTO usuario_prueba(mail, tokenA) VALUES ('$correo_e', '$rand')";
+        //UPDATE table_name SET column1 = value1, column2 = value2 WHERE id=100;
+        $sql = "UPDATE usuario_prueba SET  tokenA = '$rand' WHERE mail = '$correo_e'";
         mysqli_query($con, $sql);
         //Enviar correo a usuario para que genere su contrasenia
         //mail(correo,asunto,cuerpo);
         $from = "no-reply@kaanbal.net";
         $to = $correo_e;
         $subject = "Kaanbal - Password";
-        $cuerpo = "Hola! En la siguiente liga podrás cambiar tu contraseña.\n 
-                    https://kaanbal.net/Front/errorInfoPages/password.php?token=" .
-            $rand . "&correo=" . $correo_e . " \n" .
-            "Recuerda esta liga es de un solo uso e instransferible. \n
-                    Si vuelves a olvidarla. Ingresa a https://kaanbal.net y 
-                    elige la opción olvidé mi contraseña.";
+        $cuerpo = "Hola! En la siguiente liga podrás cambiar tu contraseña.\n
+        https://kaanbal.net/Front/errorInfoPages/password.php?token=" .
+         $rand . "&correo=" . $correo_e . " \n" .
+         "Recuerda esta liga es de un solo uso e instransferible. \n
+         Si vuelves a olvidarla. Ingresa a https://kaanbal.net y elige la opción olvidé mi contraseña.";
         $headers = "From:" . $from;
         mail($to,$subject,$cuerpo,$headers);
         //Si no existe, regresar true
