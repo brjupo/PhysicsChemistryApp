@@ -4,6 +4,12 @@
     $correo = $_POST["correo"];
     $password = $_POST["password"];
     
+    if($correo == "" OR $password == ""){
+        $response = array();
+        $response['response'] = 'Inserte datos'; 
+        
+    echo json_encode($response);} 
+
     //declarar respuesta
     $response = array();
     $response['response'] = 'El usuario no existe';//Si no existe el usuario 
