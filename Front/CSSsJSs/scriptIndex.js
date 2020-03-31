@@ -1,6 +1,7 @@
 //--------------------------------------------------------------
 //---------------------------ON CLIC----------------------------
 //--------------------------------------------------------------
+//Kmara prrrooooooooo
 document.addEventListener("click", function(evt) {
   var mandarInfoAlServicio = document.getElementById("mandarInfoAlServicio");
   var botonContrasenaOlvidada = document.getElementById("contraOlvidada");
@@ -98,5 +99,5 @@ function showIniciarSesion(){
       }
     }
   });
-  
+
 }
