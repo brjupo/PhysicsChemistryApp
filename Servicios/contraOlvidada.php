@@ -22,13 +22,17 @@ if ($correo_e == "" or $correo_e == NULL) {
         mysqli_query($con, $sql);
         //Enviar correo a usuario para que genere su contrasenia
         //mail(correo,asunto,cuerpo);
+        $from = "no-reply@kaanbal.net";
+        $to = $correo_e;
+        $subject = "Kaanbal - Password";
         $cuerpo = "Hola! En la siguiente liga podrás cambiar tu contraseña.\n 
                     https://kaanbal.net/Front/errorInfoPages/password.php?token=" .
             $rand . "&correo=" . $correo_e . " \n" .
-            "Recuerda, esta liga es de un solo uso e instransferible. \n
+            "Recuerda esta liga es de un solo uso e instransferible. \n
                     Si vuelves a olvidarla. Ingresa a https://kaanbal.net y 
                     elige la opción olvidé mi contraseña.";
-        mail($correo_e, "Kaanbal - Password", $cuerpo);
+        $headers = "From:" . $from;
+        mail($to,$subject,$cuerpo,$headers);
         //Si no existe, regresar true
         $response = array();
         $response['response'] = 'true';

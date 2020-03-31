@@ -55,16 +55,16 @@ function showContraOlvidada() {
     success: function(data) {
       console.log(data.response);
       if (data.response == "true") {
-        alert("Etcito");
+        //alert("Etcito");
         document.getElementById("emailMessage").innerHTML = 
         "Te hemos enviado un mensaje a tu correo para recuperar tu contraseña.";
         console.log("Correo enviado");
       } else {
-        alert(data.response);
+        //alert(data.response);
         document.getElementById("emailMessage").innerHTML = data.response;
       }
     }
   });
-  document.getElementById("forma").style.display = "none";
+  //document.getElementById("forma").style.display = "none";
   document.getElementById("emailSent").style.display = "block";
 }
