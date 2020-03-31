@@ -12,7 +12,7 @@
     else{
     //declarar respuesta
     $response = array();
-    $response['response'] = 'El usuario no existe';//Si no existe el usuario 
+    $response['response'] = 'Usuario o contraseña inválida';//Si no existe el usuario 
     
     //consultar si existe usuario en tabla alumnos
     $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");

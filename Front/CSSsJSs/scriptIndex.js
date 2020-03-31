@@ -4,6 +4,7 @@
 document.addEventListener("click", function(evt) {
   var mandarInfoAlServicio = document.getElementById("mandarInfoAlServicio");
   var botonContrasenaOlvidada = document.getElementById("contraOlvidada");
+  var botonLogin = document.getElementById("botonSesion");
   targetElement = evt.target; // clicked element
 
   do {
@@ -13,6 +14,10 @@ document.addEventListener("click", function(evt) {
     }
     if (targetElement == mandarInfoAlServicio) {
       //servicio();
+      return;
+    }
+    if (targetElement == botonLogin) {
+      showIniciarSesion();
       return;
     }
     // Go up the DOM
@@ -67,4 +72,31 @@ function showContraOlvidada() {
   });
   //document.getElementById("forma").style.display = "none";
   document.getElementById("emailSent").style.display = "block";
+}
+
+function showIniciarSesion(){
+  var matricula = $("#validarUsuario").val();
+  var pswd = $("#validarPassword").val();
+
+  console.log("Matricula: ", matricula);
+  console.log("Password: ", pswd);
+
+  $.ajax({
+    type: "POST",
+    url: "../../Servicios/login.php",
+    dataType: "json",
+    data: { correo: matricula, password: pswd},
+    success: function(data) {
+      console.log(data.response);
+      if (data.response == "Sesion iniciada correctamente") {
+        //alert("Etcito");
+        console.log("Sesion iniciada correctamente");
+        location.replace("https://www.w3schools.com");
+      } else {
+        //alert(data.response);
+        console.log("Algo salio mal");
+      }
+    }
+  });
+  
 }
