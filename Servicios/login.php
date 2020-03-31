@@ -9,7 +9,7 @@
         $response['response'] = 'Inserte datos'; 
         
     echo json_encode($response);} 
-
+    else{
     //declarar respuesta
     $response = array();
     $response['response'] = 'El usuario no existe';//Si no existe el usuario 
@@ -42,5 +42,5 @@
     
     
     echo json_encode($response);
-
+    }
 ?>
