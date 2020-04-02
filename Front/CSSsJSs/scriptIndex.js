@@ -92,7 +92,8 @@ function showIniciarSesion(){
       if (data.response == "Sesion iniciada correctamente") {
         //alert("Etcito");
         console.log("Sesion iniciada correctamente");
-        location.replace("https://www.w3schools.com");
+        //location.replace("https://www.w3schools.com");
+        console.log(data.tokenA);
       } else {
         //alert(data.response);
         console.log("Algo salio mal");
