@@ -106,9 +106,9 @@ function showIniciarSesion() {
 function goToTemas(token) {
   $.ajax({
     type: "POST",
-    url: "../../Inicio/temas.php",
+    url: "../../Front/Inicio/temas.php",
     dataType: "json",
     data: {tokenA:token}
   });
-  location.replace("../../Inicio/temas.php");
+  location.replace("../../Front/Inicio/temas.php");
 }
