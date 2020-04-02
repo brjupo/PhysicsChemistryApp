@@ -12,6 +12,22 @@
 </head>
 
 <body>
+
+  <?php
+
+  $correo = $_POST["validarUsuario"];
+  $password = $_POST["validarPassword"];
+
+  if ($correo == "" or $password == "") {
+    echo "<p>ERROR</p>";
+  } else {
+    echo "<p>MOSTRARE LA PANTALLA</p>";
+  }
+  ?>
+
+
+
+
   <!----------------------------------------------TITULO--------------------------------------------->
   <div class="top">
     <div class="container">
@@ -54,7 +70,7 @@
           </p>
           <?php
           $valor = $_POST["tokenA"];
-          echo $valor; 
+          echo $valor;
           ?>
         </div>
         <div class="textCenter col-xs-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
