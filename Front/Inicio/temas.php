@@ -18,13 +18,10 @@
   $correo = $_POST["validarUsuario"];
   $password = $_POST["validarPassword"];
 
-  if ($correo == "" or $password == "") {
+  if ($correo == "a@a.com" or $password == "12345") {
     echo "<p>ERROR</p>";
   } else {
-    echo "<p>MOSTRARE LA PANTALLA</p>";
-  }
-  ?>
-
+    echo '
 
 
 
@@ -316,6 +313,10 @@
       <p class="relleno">.</p>
     </div>
   </div>
+
+';
+?>
+
 </body>
 <footer class="foot">
   <div class=" container ">
