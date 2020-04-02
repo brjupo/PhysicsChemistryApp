@@ -13,8 +13,8 @@
 
 <body>
   <?php
-  $correo = $_POST["correo"];
-  $password = $_POST["password"];
+  $correo = $_POST["validarUsuario"];
+  $password = $_POST["validarPassword"];
   if($correo == "a@a.com" OR $password == "12345"){
     echo "<p>NO HAY NADA AQUI</p>";
   }
