@@ -52,6 +52,10 @@
         <div class="textCenter col-xs-10 col-sm-8 col-md-6 col-lg-4 col-xl-4">
           <p class="cita">
           </p>
+          <?php
+          $valor = $_POST["tokenA"];
+          echo $valor; 
+          ?>
         </div>
         <div class="textCenter col-xs-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
       </div>
