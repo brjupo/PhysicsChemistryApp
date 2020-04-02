@@ -57,13 +57,13 @@ function showContraOlvidada() {
     type: "POST",
     url: "../../Servicios/contraOlvidada.php",
     dataType: "json",
-    data: { correo_e: matricula},
+    data: { correo_e: matricula },
     success: function(data) {
       console.log(data.response);
       if (data.response == "true") {
         //alert("Etcito");
-        document.getElementById("emailMessage").innerHTML = 
-        "Te hemos enviado un mensaje a tu correo para recuperar tu contraseña.";
+        document.getElementById("emailMessage").innerHTML =
+          "Te hemos enviado un mensaje a tu correo para recuperar tu contraseña.";
         console.log("Correo enviado");
       } else {
         //alert(data.response);
@@ -75,7 +75,7 @@ function showContraOlvidada() {
   document.getElementById("emailSent").style.display = "block";
 }
 
-function showIniciarSesion(){
+function showIniciarSesion() {
   var matricula = $("#validarUsuario").val();
   var pswd = $("#validarPassword").val();
 
@@ -86,19 +86,29 @@ function showIniciarSesion(){
     type: "POST",
     url: "../../Servicios/login.php",
     dataType: "json",
-    data: { correo: matricula, password: pswd},
+    data: { correo: matricula, password: pswd },
     success: function(data) {
       console.log(data.response);
       if (data.response == "Sesion iniciada correctamente") {
         //alert("Etcito");
         console.log("Sesion iniciada correctamente");
-        //location.replace("https://www.w3schools.com");
-        console.log(data.tokenA);
+        goToTemas(data.tokenA);
+        //****no location.replace("Front/Inicio/temas.php");
+        //console.log(data.tokenA);
       } else {
         //alert(data.response);
         console.log("Algo salio mal");
       }
     }
   });
+}
 
+function goToTemas(token) {
+  $.ajax({
+    type: "POST",
+    url: "../../Inicio/temas.php",
+    dataType: "json",
+    data: {tokenA:token}
+  });
+  location.replace("../../Inicio/temas.php");
 }
