@@ -12,19 +12,14 @@
 </head>
 
 <body>
-
   <?php
-
-  $correo = $_POST["validarUsuario"];
-  $password = $_POST["validarPassword"];
-
-  if ($correo == "a@a.com" or $password == "12345") {
-    echo "<p>ERROR</p>";
-  } else {
+  $correo = $_POST["correo"];
+  $password = $_POST["password"];
+  if($correo == "a@a.com" OR $password == "12345"){
+    echo "<p>NO HAY NADA AQUI</p>";
+  }
+  else{
     echo '
-
-
-
   <!----------------------------------------------TITULO--------------------------------------------->
   <div class="top">
     <div class="container">
@@ -57,6 +52,7 @@
   </div>
   <!------------------------------------------------FIN TITULO----------------------------------------------->
 
+
   <div id="lections">
     <!----------------------------------------------CITA--------------------------------------------->
     <div class="container">
@@ -65,10 +61,6 @@
         <div class="textCenter col-xs-10 col-sm-8 col-md-6 col-lg-4 col-xl-4">
           <p class="cita">
           </p>
-          <?php
-          $valor = $_POST["tokenA"];
-          echo $valor;
-          ?>
         </div>
         <div class="textCenter col-xs-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
       </div>
@@ -313,10 +305,8 @@
       <p class="relleno">.</p>
     </div>
   </div>
-
-';
+  ';}
 ?>
-
 </body>
 <footer class="foot">
   <div class=" container ">
