@@ -38,21 +38,22 @@
     
         //Se inicia sesión del usuario 
         session_start();
-        //Leemos datos del usuario
-        while(mysqli_stmt_fetch($statement)){//si si existe el usuario
       
-            $_SESSION["id_usuario"] = $id_usuario;
-            $_SESSION["mail"] = $mail;
-            $_SESSION["pswd"] = $pswd;
-            $_SESSION["tokenA"] = $tokenA;
-            $_SESSION["tokenSesion"] = $tokenSesion;
-            $_SESSION["idioma"] = $idioma;
-            //$response["token"] = $token;
-            //$response["token_a"] = $token_a;
-            //$response["tokenp"] = $tokenp;
-            //$response["tokenpp"] = $tokenpp;
-            //$response["flag"] = $flag;
-        }
+        //Leemos datos del usuario
+        // while(mysqli_stmt_fetch($statement)){//si si existe el usuario
+      
+        //     $_SESSION["id_usuario"] = $id_usuario;
+        //     $_SESSION["mail"] = $mail;
+        //     $_SESSION["pswd"] = $pswd;
+        //     $_SESSION["tokenA"] = $tokenA;
+        //     $_SESSION["tokenSesion"] = $tokenSesion;
+        //     $_SESSION["idioma"] = $idioma;
+        //     //$response["token"] = $token;
+        //     //$response["token_a"] = $token_a;
+        //     //$response["tokenp"] = $tokenp;
+        //     //$response["tokenpp"] = $tokenpp;
+        //     //$response["flag"] = $flag;
+        // }
 
         echo'<script type="text/javascript">
         alert("'.$id_usuario.$mail.$pswd.$tokenA.$tokenSesion.$idioma.'");
@@ -60,7 +61,15 @@
     
         //Si el usuario EXISTE despliega el menú de los temas
         if($id_usuario){
-        imprimirTemas();
+            //Creamos token de sesión
+            $rand = bin2hex(random_bytes(5));
+            //Registrar token de sesion en BD
+            $sql = "UPDATE usuario_prueba SET tokenSesion='$rand' WHERE mail = '$correo'";
+            mysqli_query($con,$sql);
+            //Aactualizamos variable de sesión
+            $_SESSION["tokenSesion"] = $rand;
+            //Imprimimos pantalla de temas
+            imprimirTemas();
         }
 
         //Si el usuario NO EXISTE mensaje de error y retorna a inicio
