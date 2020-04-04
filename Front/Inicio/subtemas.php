@@ -16,9 +16,10 @@
 $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 $stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
 $result = mysqli_query($con,$stringQuery);
-print_r($result);
+$rowp = mysqli_fetch_array($result);
 
-if($result){
+
+if($rowp){
   echo'<script type="text/javascript">
   alert("TEST");
   </script>';
