@@ -12,6 +12,23 @@
 </head>
 
 <body>
+<?php
+$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+$stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "'";
+$result = mysqli_query($con,$stringQuery);
+
+if($result){
+  echo'<script type="text/javascript">
+  alert("Jalo");
+  </script>';
+}
+else{
+  echo'<script type="text/javascript">
+  alert("Nel");
+  </script>';
+}
+
+?>
   <!----------------------------------------------TITULO--------------------------------------------->
   <div class="top">
     <div class="container">
@@ -191,6 +208,7 @@
     -->
   <!---->
   <!--+++++++++++++++++++++++++++++++++++++++  SCRIPTS   ++++++++++++++++++++++++++++++++++-->
+  ?>
 </body>
 
 </html>
