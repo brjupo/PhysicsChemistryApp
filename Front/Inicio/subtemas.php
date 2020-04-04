@@ -16,7 +16,7 @@
     <div class="container">
       <div class="row titulo">
         <div class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-          <a href="subtemas.html"><img class="iconoBack" src="icons/FlechaIzq.svg" /></a>
+          <a href="temas.php"><img class="iconoBack" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
         </div>
         <div class="textCenter col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
           <p class="Materia fuenteTitulo">Notación científica</p>
@@ -44,7 +44,7 @@
           <tbody>
             <tr>
               <td width="6%">
-                <img class="iconsNumber" src="icons/one.svg" />
+                <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/one.svg" />
               </td>
               <td width="58%" class="tituloTemasPrincipales">
                 Identificar triángulos rectángulos
@@ -52,13 +52,13 @@
               <!--td width="5%" rowspan="2" class="separadorTemasPrincipales">|</td-->
 
               <td width="12%">
-                <a href="preguntas/preguntaSprint.html"><img class="iconsActive" src="icons/lecciones.svg" /></a>
+                <a href="preguntas/preguntaSprint.html"><img class="../CSSsJSs/iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
               </td>
               <td width="12%">
-                <img class="icons" src="icons/run.svg" />
+                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/run.svg" />
               </td>
               <td width="12%">
-                <img class="icons" src="icons/FlechaIzq.svg" />
+                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/FlechaIzq.svg" />
               </td>
             </tr>
           </tbody>
@@ -84,7 +84,7 @@
           <tbody>
             <tr>
               <td width="6%">
-                <img class="iconsNumber" src="icons/one.svg" />
+                <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/one.svg" />
               </td>
               <td width="58%" class="tituloTemasPrincipales">
                 Identificar triángulos rectángulos
@@ -92,13 +92,13 @@
               <!--td width="5%" rowspan="2" class="separadorTemasPrincipales">|</td-->
 
               <td width="12%">
-                <a href="preguntas/preguntaSprint.html"><img class="iconsActive" src="icons/lecciones.svg" /></a>
+                <a href="preguntas/preguntaSprint.html"><img class="../CSSsJSs/iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
               </td>
               <td width="12%">
-                <a href="preguntas/preguntaSprint.html"><img class="iconsActive" src="icons/run.svg" /></a>
+                <a href="preguntas/preguntaSprint.html"><img class="../CSSsJSs/iconsActive" src="../CSSsJSs/icons/run.svg" /></a>
               </td>
               <td width="12%">
-                <img class="icons" src="icons/FlechaIzq.svg" />
+                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/FlechaIzq.svg" />
               </td>
             </tr>
           </tbody>
@@ -124,7 +124,7 @@
           <tbody>
             <tr>
               <td width="6%">
-                <img class="iconsNumber" src="icons/one.svg" />
+                <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/one.svg" />
               </td>
               <td width="58%" class="tituloTemasPrincipales">
                 Identificar triángulos rectángulos
@@ -132,13 +132,13 @@
               <!--td width="5%" rowspan="2" class="separadorTemasPrincipales">|</td-->
 
               <td width="12%">
-                <img class="icons" src="icons/lecciones.svg" />
+                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/lecciones.svg" />
               </td>
               <td width="12%">
-                <img class="icons" src="icons/run.svg" />
+                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/run.svg" />
               </td>
               <td width="12%">
-                <img class="icons" src="icons/FlechaIzq.svg" />
+                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/FlechaIzq.svg" />
               </td>
             </tr>
           </tbody>
