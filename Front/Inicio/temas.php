@@ -13,12 +13,66 @@
 
 <body>
   <?php
-  $correo = $_POST["validarUsuario"];
-  $password = $_POST["validarPassword"];
-  if($correo == "a@a.com" OR $password == "12345"){
-    echo "<p>NO HAY NADA AQUI</p>";
-  }
-  else{
+  //////////////////////////////////////////////////////
+  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
+    
+    $correo = $_POST["correo"];
+    $password = $_POST["password"];
+    
+    if($correo == "" OR $password == ""){
+      echo'<script type="text/javascript">
+    alert("Ingresa usuario y/o contraseña");
+    window.location.href="https://kaanbal.net";
+    </script>';
+    }
+    else{
+    //declarar respuesta
+    //$response = array();
+    //$response['response'] = 'Usuario o contraseña inválida';//Si no existe el usuario 
+    
+    //consultar si existe usuario en tabla alumnos
+    $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
+    mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+    mysqli_stmt_execute($statement);
+    
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA,$tokenSesion,$idioma);
+    
+    
+    while(mysqli_stmt_fetch($statement)){//si si existe el usuario
+    
+      session_start();
+     //$im = file_get_contents("$foto",true);      
+     //$imdata = base64_encode($im);
+    
+        $_SESSION["response"] = 'Sesion iniciada correctamente';  
+        $_SESSION["id_usuario"] = $id_usuario;
+        $_SESSION["mail"] = $mail;
+        $_SESSION["pswd"] = $pswd;
+        $_SESSION["tokenA"] = $tokenA;
+        $_SESSION["tokenSesion"] = $tokenSesion;
+        $_SESSION["idioma"] = $idioma;
+        //$response["token"] = $token;
+        //$response["token_a"] = $token_a;
+        //$response["tokenp"] = $tokenp;
+        //$response["tokenpp"] = $tokenpp;
+        //$response["flag"] = $flag;
+    }
+    
+    if($id_usuario){
+      imprimirTemas();
+    }
+    else{
+      echo'<script type="text/javascript">
+    alert("Usuario y/o contraseña incorrectos");
+    window.location.href="https://kaanbal.net";
+    </script>';
+    }
+    }
+
+    /////////////////////////////////////////
+  
+  function imprimirTemas(){
     echo '
   <!----------------------------------------------TITULO--------------------------------------------->
   <div class="top">
