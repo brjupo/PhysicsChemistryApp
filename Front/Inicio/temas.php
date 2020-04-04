@@ -127,7 +127,7 @@
     <div class="container">
       <div class="row">
         <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-        <a href="subtemas.html">
+        <a href="subtemas.php">
           <div class="temaPrincipal1 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
             <table class="table">
               <tbody>
@@ -157,7 +157,7 @@
     <div class="container">
       <div class="row">
         <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-        <a href="subtemas.html">
+        <a href="subtemas.php">
           <div class="temaPrincipal2 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
             <table class="table">
               <tbody>
@@ -185,7 +185,7 @@
     <div class="container">
       <div class="row">
         <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-        <a href="subtemas.html">
+        <a href="subtemas.php">
           <div class="temaPrincipal3 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
             <table class="table">
               <tbody>
@@ -215,7 +215,7 @@
     <div class="container">
       <div class="row">
         <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-        <a href="subtemas.html">
+        <a href="subtemas.php">
           <div class="temaPrincipal4 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
             <table class="table">
               <tbody>
@@ -245,7 +245,7 @@
     <div class="container">
       <div class="row">
         <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-        <a href="subtemas.html">
+        <a href="subtemas.php">
           <div class="temaPrincipal1 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
             <table class="table">
               <tbody>
@@ -275,7 +275,7 @@
     <div class="container">
       <div class="row">
         <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-        <a href="subtemas.html">
+        <a href="subtemas.php">
           <div class="temaPrincipal2 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
             <table class="table">
               <tbody>
@@ -305,7 +305,7 @@
     <div class="container">
       <div class="row">
         <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-        <a href="subtemas.html">
+        <a href="subtemas.php">
           <div class="temaPrincipal5 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
             <table class="table">
               <tbody>
