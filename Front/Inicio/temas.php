@@ -16,8 +16,8 @@
   //////////////////////////////////////////////////////
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
     
-    $correo = $_POST["correo"];
-    $password = $_POST["password"];
+    $correo = $_POST["validarUsuario"];
+    $password = $_POST["validarPassword"];
     
     if($correo == "" OR $password == ""){
       echo'<script type="text/javascript">
