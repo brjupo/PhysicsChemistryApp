@@ -14,45 +14,47 @@
 <body>
 
 <?php
-    $servername = "localhost";
-    $username = "u526597556_dev";
-    $password = "1BLeeAgwq1*isgm&jBJe";
-    $dbname = "u526597556_kaanbal";
+    // $servername = "localhost";
+    // $username = "u526597556_dev";
+    // $password = "1BLeeAgwq1*isgm&jBJe";
+    // $dbname = "u526597556_kaanbal";
 ?>
 
 <?php
 session_start();
+
 echo'<script type="text/javascript">
 alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
 </script>';
-//$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+
+$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 $stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
-//$result = mysqli_query($con,$stringQuery);
-//$rowp = mysqli_fetch_array($result);
+$result = mysqli_query($con,$stringQuery);
+$rowp = mysqli_fetch_array($result);
   
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->query($stringQuery);
-    while ($row = $stmt->fetch(PDO::FETCH_NUM)){
-      print "<p>$row[0]</p>\n";
-    }
-}
-catch(PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
-$conn = null;
+// try {
+//     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+//     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     $stmt = $conn->query($stringQuery);
+//     while ($row = $stmt->fetch(PDO::FETCH_NUM)){
+//       print "<p>$row[0]</p>\n";
+//     }
+// }
+// catch(PDOException $e) {
+//     echo "Error: " . $e->getMessage();
+// }
+// $conn = null;
                 
-if(is_null($row[0])){
+if($rowp){
   echo'<script type="text/javascript">
-  alert("Nel");  
+  alert("Ok");  
   </script>';
+  imprimirSubtemas();
 }
 else{
   echo'<script type="text/javascript">
   alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
-  </script>';
-  imprimirSubtemas();  
+  </script>';  
 }
 //window.location.href="https://kaanbal.net";
 ?>
