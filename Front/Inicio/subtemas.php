@@ -54,9 +54,9 @@ if($rowp){
 else{
   echo'<script type="text/javascript">
   alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
+  window.location.href="https://kaanbal.net";
   </script>';  
 }
-//window.location.href="https://kaanbal.net";
 ?>
 
 <?php
