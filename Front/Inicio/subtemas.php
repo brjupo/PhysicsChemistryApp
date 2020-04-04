@@ -19,7 +19,7 @@ $result = mysqli_query($con,$stringQuery);
 
 if($result){
   echo'<script type="text/javascript">
-  alert("Jalo");
+  alert("'.$result.'");
   </script>';
   imprimirSubtemas();
 
@@ -27,6 +27,7 @@ if($result){
 else{
   echo'<script type="text/javascript">
   alert("Nel");
+  window.location.href="https://kaanbal.net";
   </script>';
 }
 
