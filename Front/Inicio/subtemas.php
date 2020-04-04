@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -52,13 +53,13 @@
               <!--td width="5%" rowspan="2" class="separadorTemasPrincipales">|</td-->
 
               <td width="12%">
-                <a href="preguntas/preguntaSprint.html"><img class="../CSSsJSs/iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
+                <a href="preguntas/preguntaSprint.html"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
               </td>
               <td width="12%">
-                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/run.svg" />
+                <img class="icons" src="../CSSsJSs/icons/run.svg" />
               </td>
               <td width="12%">
-                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/FlechaIzq.svg" />
+                <img class="icons" src="../CSSsJSs/icons/FlechaIzq.svg" />
               </td>
             </tr>
           </tbody>
@@ -92,13 +93,13 @@
               <!--td width="5%" rowspan="2" class="separadorTemasPrincipales">|</td-->
 
               <td width="12%">
-                <a href="preguntas/preguntaSprint.html"><img class="../CSSsJSs/iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
+                <a href="preguntas/preguntaSprint.html"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
               </td>
               <td width="12%">
-                <a href="preguntas/preguntaSprint.html"><img class="../CSSsJSs/iconsActive" src="../CSSsJSs/icons/run.svg" /></a>
+                <a href="preguntas/preguntaSprint.html"><img class="iconsActive" src="../CSSsJSs/icons/run.svg" /></a>
               </td>
               <td width="12%">
-                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/FlechaIzq.svg" />
+                <img class="icons" src="../CSSsJSs/icons/FlechaIzq.svg" />
               </td>
             </tr>
           </tbody>
@@ -132,13 +133,13 @@
               <!--td width="5%" rowspan="2" class="separadorTemasPrincipales">|</td-->
 
               <td width="12%">
-                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/lecciones.svg" />
+                <img class="icons" src="../CSSsJSs/icons/lecciones.svg" />
               </td>
               <td width="12%">
-                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/run.svg" />
+                <img class="icons" src="../CSSsJSs/icons/run.svg" />
               </td>
               <td width="12%">
-                <img class="../CSSsJSs/icons" src="../CSSsJSs/icons/FlechaIzq.svg" />
+                <img class="icons" src="../CSSsJSs/icons/FlechaIzq.svg" />
               </td>
             </tr>
           </tbody>
