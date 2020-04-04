@@ -43,7 +43,7 @@ catch(PDOException $e) {
 }
 $conn = null;
                 
-if($rowp){
+if($row[0]){
   echo'<script type="text/javascript">
   alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
   </script>';
