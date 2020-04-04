@@ -36,7 +36,7 @@
     mysqli_stmt_execute($statement);
     
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA,$tokenSesion,$idioma);
+    mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA, $tokenSesion, $idioma);
     
     session_start();
     while(mysqli_stmt_fetch($statement)){//si si existe el usuario
@@ -45,7 +45,7 @@
      //$im = file_get_contents("$foto",true);      
      //$imdata = base64_encode($im);
     
-        $_SESSION["response"] = 'Sesion iniciada correctamente';  
+        //$_SESSION["response"] = 'Sesion iniciada correctamente';  
         $_SESSION["id_usuario"] = $id_usuario;
         $_SESSION["mail"] = $mail;
         $_SESSION["pswd"] = $pswd;
