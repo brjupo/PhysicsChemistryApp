@@ -21,6 +21,7 @@
 ?>
 
 <?php
+session_start();
 echo'<script type="text/javascript">
 alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
 </script>';
