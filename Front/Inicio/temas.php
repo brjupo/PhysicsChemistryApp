@@ -58,6 +58,10 @@
         //$response["tokenpp"] = $tokenpp;
         //$response["flag"] = $flag;
     }
+    $prueba="sonsos";
+    echo'<script type="text/javascript">
+    alert("'.$id_usuario.$prueba.'");
+    </script>';
     
     if($id_usuario){
       imprimirTemas();
