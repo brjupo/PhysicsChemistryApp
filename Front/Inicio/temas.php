@@ -36,17 +36,16 @@
         mysqli_stmt_store_result($statement);
         mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA, $tokenSesion, $idioma);
     
-        //Se inicia sesión del usuario 
-        session_start();
+        
+      
         //Leemos datos del usuario
         while(mysqli_stmt_fetch($statement)){//si si existe el usuario
-      
-            $_SESSION["id_usuario"] = $id_usuario;
-            $_SESSION["mail"] = $mail;
-            $_SESSION["pswd"] = $pswd;
-            $_SESSION["tokenA"] = $tokenA;
-            $_SESSION["tokenSesion"] = $tokenSesion;
-            $_SESSION["idioma"] = $idioma;
+            $temp_id_usuario =   $id_usuario;
+            $temp_mail=$mail;            
+            $temp_pswd = $pswd;
+            $temp_tokenA = $tokenA;
+            $temp_tokenSesion = $tokenSesion;
+            $temp_idioma= $idioma;            
             //$response["token"] = $token;
             //$response["token_a"] = $token_a;
             //$response["tokenp"] = $tokenp;
@@ -59,8 +58,23 @@
         </script>';
     
         //Si el usuario EXISTE despliega el menú de los temas
-        if($id_usuario){
-        imprimirTemas();
+        if($temp_id_usuario){
+            //Se inicia sesión del usuario 
+            session_start();
+            //Creamos token de sesión
+            $rand = bin2hex(random_bytes(5));
+            //Registrar token de sesion en BD
+            $sql = "UPDATE usuario_prueba SET tokenSesion='$rand' WHERE mail = '$correo'";
+            mysqli_query($con,$sql);
+            //Aactualizamos variables de sesión
+            $_SESSION["id_usuario"] = $temp_id_usuario;
+            $_SESSION["mail"] = $temp_mail;
+            $_SESSION["pswd"] = $temp_pswd;
+            $_SESSION["tokenA"] = $temp_tokenA;
+            $_SESSION["tokenSesion"] = $rand;
+            $_SESSION["idioma"] = $temp_idioma;
+            //Imprimimos pantalla de temas
+            imprimirTemas();
         }
 
         //Si el usuario NO EXISTE mensaje de error y retorna a inicio
