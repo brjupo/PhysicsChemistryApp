@@ -53,10 +53,10 @@ if($rowp){
 else{
   echo'<script type="text/javascript">
   alert("Nel");
-  window.location.href="https://kaanbal.net";
+  
   </script>';
 }
-
+//window.location.href="https://kaanbal.net";
 ?>
 
 <?php
