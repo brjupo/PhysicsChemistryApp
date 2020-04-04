@@ -43,18 +43,16 @@ catch(PDOException $e) {
 }
 $conn = null;
                 
-if($row[0]){
+if(is_null($row[0])){
   echo'<script type="text/javascript">
-  alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
+  alert("Nel");  
   </script>';
-  imprimirSubtemas();
-
 }
 else{
   echo'<script type="text/javascript">
-  alert("Nel");
-  
+  alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
   </script>';
+  imprimirSubtemas();  
 }
 //window.location.href="https://kaanbal.net";
 ?>
