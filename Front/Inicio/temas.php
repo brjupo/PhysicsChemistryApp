@@ -38,10 +38,10 @@
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA,$tokenSesion,$idioma);
     
-    
+    session_start();
     while(mysqli_stmt_fetch($statement)){//si si existe el usuario
     
-      session_start();
+      
      //$im = file_get_contents("$foto",true);      
      //$imdata = base64_encode($im);
     
