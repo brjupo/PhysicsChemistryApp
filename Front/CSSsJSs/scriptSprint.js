@@ -8,6 +8,7 @@ window.onload = function () {
 
 var popUpLevantado = false;
 var cantidadIDs = 0;
+var puntos = 0;
 
 document.addEventListener("click", function (evt) {
   var cruzCerrar = document.getElementById("cruzCerrar");
@@ -68,6 +69,10 @@ function whiteButtons(seleccionada) {
   document.getElementById(seleccionada).className = "OpcionIncorrecta";  
   //Buscar la respuesta correcta
   document.getElementById(IDrespuestaCorrecta).className = "OpcionCorrecta";
+  if(IDrespuestaCorrecta==seleccionada){
+    puntos=puntos+1;
+    document.getElementById("puntosBuenos").innerHTML = puntos; 
+  }
 }
 
 function sprintNext() {
