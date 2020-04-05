@@ -21,11 +21,11 @@ document.addEventListener("click", function (evt) {
     if (parseInt(targetElement.id) >= 4*preguntaActual-3 &&
         parseInt(targetElement.id) <= 4*preguntaActual &&
         popUpLevantado == false) {
-      console.log(parseInt(targetElement.id));
+      //console.log(parseInt(targetElement.id));
       whiteButtons(targetElement.id);
       sprintNext();
       popUpLevantado = true;
-      console.log(popUpLevantado);
+      //console.log(popUpLevantado);
       return;
     }
     // Go up the DOM
@@ -53,10 +53,10 @@ function whiteButtons(seleccionada) {
     //Convertir todos a blanco de la pregunta en curso
     document.getElementById(i).className = "OpcionBlanco";
     //Buscar el id que contiene lo mismo que la respuesta correcta
-    console.log(document.getElementById(i).innerHTML);
+    //console.log(document.getElementById(i).innerHTML);
     if(document.getElementById(i).innerHTML == respuestaCorrecta){
       IDrespuestaCorrecta=i;
-      console.log(i);
+      //console.log(i);
     }
   }
   //Marcar en rojo la respuesta seleccionada
@@ -121,7 +121,7 @@ function startClock() {
       if (popUpLevantado == false) {
         sprintNext();
         popUpLevantado = true;
-        console.log(popUpLevantado);
+        //console.log(popUpLevantado);
       }
     }
     sumaSegundos = sumaSegundos + unSegundo;
