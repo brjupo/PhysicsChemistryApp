@@ -16,6 +16,7 @@ document.addEventListener("click", function(evt) {
       return;
     }
     if (parseInt(targetElement.id)>=1 && popUpLevantado == false) {
+      console.log(parseInt(targetElement.id));
       whiteButtons();
       sprintNext();
       popUpLevantado = true;
@@ -66,10 +67,13 @@ function seguroRegresar() {
 }
 
 function whiteButtons(){
-  document.getElementById("Opcion1").className = "OpcionBlanco";
-  document.getElementById("Opcion2").className = "OpcionBlanco";
-  document.getElementById("Opcion3").className = "OpcionCorrecta";
-  document.getElementById("Opcion4").className = "OpcionIncorrecta";
+  var numero = parseInt(document.getElementById("preguntaNumero").innerHTML);
+  for(var i=4*numero-3; i<=4*numero;i++){
+    document.getElementById(i).className = "OpcionBlanco";
+  }
+  //document.getElementById("Opcion2").className = "OpcionBlanco";
+  //document.getElementById("Opcion3").className = "OpcionCorrecta";
+  //document.getElementById("Opcion4").className = "OpcionIncorrecta";
 }
 
 function sprintNext() {
@@ -78,10 +82,10 @@ function sprintNext() {
 }
 
 function disableAllButtons() {
-  document.getElementById("Opcion1").disabled = true;
-  document.getElementById("Opcion2").disabled = true;
-  document.getElementById("Opcion3").disabled = true;
-  document.getElementById("Opcion4").disabled = true;
+  var numero = parseInt(document.getElementById("preguntaNumero").innerHTML);
+  for(var i=4*numero-3; i<=4*numero;i++){
+    document.getElementById(i).disabled = true;
+  }
 }
 
 function startClock() {

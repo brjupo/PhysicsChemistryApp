@@ -100,9 +100,10 @@
         <div class="row">
           <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
           <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+            <p id="preguntaNumero">'.$preguntaNumero.'</p>
             <p class="formatoPreguntas">'
-      . $preguntaTexto .
-      '  
+            . $preguntaTexto .
+            '  
             </p>
           </div>
           <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
