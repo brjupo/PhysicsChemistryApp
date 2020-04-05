@@ -33,7 +33,7 @@
     $p1 = "¿Cuál es la equivalencia correcta para la expresion
     10^6?";
     $r1 = "100,000";
-    $r2 = "10,00,000";
+    $r2 = "10,000,000";
     $r3 = "1,000,000";
     $r4 = "10,000";
     $rc = "10,000,000";
