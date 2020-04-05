@@ -15,7 +15,9 @@ document.addEventListener("click", function (evt) {
       seguroRegresar();
       return;
     }
-    if (parseInt(targetElement.id) >= 1 && popUpLevantado == false) {
+    if (parseInt(targetElement.id) >= 4*preguntaActual-3 &&
+        parseInt(targetElement.id) <= 4*preguntaActual &&
+        popUpLevantado == false) {
       console.log(parseInt(targetElement.id));
       whiteButtons(targetElement.id);
       sprintNext();
@@ -39,21 +41,29 @@ function seguroRegresar() {
 }
 
 function whiteButtons(seleccionada) {
-  //Convertir todos a blanco de la pregunta en curso
   var numero = preguntaActual;
+  var numeroCorrecta=300+numero;
+  respuestaCorrecta = document.getElementById(numero).innerHTML;
+  console.log(respuestaCorrecta);
+  var IDrespuestaCorrecta;
   for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
+    //Convertir todos a blanco de la pregunta en curso
     document.getElementById(i).className = "OpcionBlanco";
+    //Buscar el id que contiene lo mismo que la respuesta correcta
+    if(document.getElementById(i).innerHTML == respuestaCorrecta){
+      IDrespuestaCorrecta=i;
+    }
   }
   //Marcar en rojo la respuesta seleccionada
   document.getElementById(seleccionada).className = "OpcionIncorrecta";
   
   //Buscar la respuesta correcta
-  numero=300+numero;
-  console.log(numero);
-  correcta = document.getElementById(numero).innerHTML;
-  console.log(correcta);
+  
+  
   //Marcar en Verde la respuest correcta
-  document.getElementById(correcta).className = "OpcionCorrecta";
+  //WE DEBES BUSCAR CUAL DE LAS 4 OPCIONES EMPATA CON LA CORRECTA,
+  // YA TIENES LA RESPUESTA CORRECTA[TEXTO], AHORA VE ¿CUÁL DE LAS 4 ES!
+  document.getElementById(IDrespuestaCorrecta).className = "OpcionCorrecta";
 }
 
 function sprintNext() {
