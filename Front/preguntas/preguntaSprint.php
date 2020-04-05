@@ -77,6 +77,7 @@
             <p class="slide-bottom" id="previous">0m 10s</p>
             <p class="slide-bottom" id="actual">0m 10s</p>
             <p class="slide-bottom" id="later">0m 10s</p>
+            <p id="puntosBuenos"></p>
           </div>
           <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
         </div>
@@ -98,7 +99,6 @@
             . $preguntaTexto .
             '  
             </p>
-            <p id="puntosBuenos"></p>
           </div>
           <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
         </div>
