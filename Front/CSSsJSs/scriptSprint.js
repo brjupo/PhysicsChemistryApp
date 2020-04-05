@@ -72,7 +72,7 @@ function sprintNext() {
 }
 
 function disableAllButtons() {
-  var numero = parseInt(document.getElementById("preguntaNumero").innerHTML);
+  var numero = preguntaActual;
   for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
     document.getElementById(i).disabled = true;
   }
