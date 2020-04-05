@@ -13,7 +13,7 @@
 
 <body>
   <?php
-
+  imprimirPreguntas();
 
   ?>
 
@@ -22,12 +22,21 @@
   {
     imprimirBarraProgresoCruz();
     imprimirContador();
-    imprimirPregunta();
-    imprimirImagenRespuestas();
+    imprimirPreguntasRespuestas();
     imprimirFooter();
   }
   ?>
-
+  
+  <?php
+  function imprimirPreguntasRespuestas(){
+    imprimirPregunta(1,1);
+    imprimirImagenRespuestas(1,1);
+    for ($x = 2; $x <= 10; $x++) {
+      imprimirPregunta($x,0);
+      imprimirImagenRespuestas($x,0);
+    }
+  }
+  ?>
 
 
 
@@ -51,7 +60,8 @@
       </div>
     ';
   }
-  function imprimirContador(){
+  function imprimirContador()
+  {
     echo '
       <div class="container">
         <div class="row">
@@ -67,10 +77,17 @@
     ';
   }
 
-  function imprimirPregunta(){
-    echo'
+  function imprimirPregunta(int $pregunta, int $mostrar)
+  {
+    if($mostrar==0){
+      $display = "none";
+    }
+    else{
+      $display = "block";
+    }
+    echo '
       <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-      <div class="container">
+      <div class="container" style="display:'.$display.'">
         <div class="row">
           <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
           <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
@@ -84,10 +101,17 @@
       </div>
     ';
   }
-  function imprimirImagenRespuestas(){
-    echo'
+  function imprimirImagenRespuestas(int $respuestas, int $mostrar)
+  {
+    if($mostrar==0){
+      $display = "none";
+    }
+    else{
+      $display = "block";
+    }
+    echo '
       <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-      <div class="container">
+      <div class="container" style="display:'.$display.'">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <img src="../CSSsJSs/images/problemaFisica.jpg" class="imagenPregunta" />
@@ -128,8 +152,9 @@
       </div>
     ';
   }
-  function imprimirFooter(){
-    echo'
+  function imprimirFooter()
+  {
+    echo '
       <footer class="popUp animated bounceInUp" id="sprintNext" style="display: none;">
         <div class="container">
           <div class="row text-center">
@@ -146,7 +171,8 @@
 
 
   ?>
-  
-  
+
+
 </body>
+
 </html>
