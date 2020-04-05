@@ -24,6 +24,7 @@
     imprimirContador();
     imprimirPregunta();
     imprimirImagenRespuestas();
+    imprimirFooter();
   }
   ?>
 
