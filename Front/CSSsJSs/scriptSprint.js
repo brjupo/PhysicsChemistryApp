@@ -3,7 +3,7 @@ var preguntaActual = 1;
 window.onload = function () {
   //startClock();
   contarIDs();
-  showFirstQuestion();
+  showQuestion(1);
 };
 
 var popUpLevantado = false;
@@ -11,6 +11,7 @@ var cantidadIDs = 0;
 
 document.addEventListener("click", function (evt) {
   var cruzCerrar = document.getElementById("cruzCerrar");
+  var botonSiguientePregunta = document.getElementById("sprintNext");
   targetElement = evt.target; // clicked element
 
   do {
@@ -18,9 +19,13 @@ document.addEventListener("click", function (evt) {
       seguroRegresar();
       return;
     }
+    if (targetElement == botonSiguientePregunta) {
+      siguientePregunta();
+      return;
+    }
     if (parseInt(targetElement.id) >= 4*preguntaActual-3 &&
         parseInt(targetElement.id) <= 4*preguntaActual &&
-        popUpLevantado == false) {
+        popUpLevantado === false) {
       //console.log(parseInt(targetElement.id));
       whiteButtons(targetElement.id);
       sprintNext();
@@ -47,7 +52,7 @@ function whiteButtons(seleccionada) {
   var numero = preguntaActual;
   var numeroCorrecta=300+numero;
   respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML;
-  console.log(respuestaCorrecta);
+  //console.log(respuestaCorrecta);
   var IDrespuestaCorrecta;
   for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
     //Convertir todos a blanco de la pregunta en curso
@@ -60,8 +65,7 @@ function whiteButtons(seleccionada) {
     }
   }
   //Marcar en rojo la respuesta seleccionada
-  document.getElementById(seleccionada).className = "OpcionIncorrecta";
-  
+  document.getElementById(seleccionada).className = "OpcionIncorrecta";  
   //Buscar la respuesta correcta
   document.getElementById(IDrespuestaCorrecta).className = "OpcionCorrecta";
 }
@@ -75,6 +79,21 @@ function disableAllButtons() {
   var numero = preguntaActual;
   for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
     document.getElementById(i).disabled = true;
+  }
+}
+
+function siguientePregunta(){
+  popUpLevantado = false;
+  preguntaActual = preguntaActual+1;
+  enableAllButtons();
+  document.getElementById("sprintNext").style.display = "none";
+  showQuestion(preguntaActual);
+}
+
+function enableAllButtons() {
+  var numero = preguntaActual;
+  for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
+    document.getElementById(i).disabled = false;
   }
 }
 
@@ -137,7 +156,19 @@ function contarIDs() {
   }
 }
 
-function showFirstQuestion(){
-  document.getElementById(101).style.display = "block";
-  document.getElementById(201).style.display = "block";
+function showQuestion(pregunta){
+  preguntaTexto = 100+pregunta;
+  respuestaTexto = 200+pregunta;
+  if(pregunta=1){
+    document.getElementById(101).style.display = "block";
+    document.getElementById(201).style.display = "block";
+  }
+  else{
+    document.getElementById(preguntaTexto).style.display = "block";
+    document.getElementById(respuestaTexto).style.display = "block";
+    preguntaTexto = preguntaTexto-1;
+    respuestaTexto = respuestaTexto-1;
+    document.getElementById(preguntaTexto).style.display = "none";
+    document.getElementById(respuestaTexto).style.display = "none";
+  }
 }
