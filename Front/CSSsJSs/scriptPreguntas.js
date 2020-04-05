@@ -1,5 +1,5 @@
 window.onload = function() {
-  startClock();
+  //startClock();
 };
 
 var popUpLevantado = false;
