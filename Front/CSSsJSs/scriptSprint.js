@@ -50,6 +50,7 @@ function whiteButtons(seleccionada) {
     //Convertir todos a blanco de la pregunta en curso
     document.getElementById(i).className = "OpcionBlanco";
     //Buscar el id que contiene lo mismo que la respuesta correcta
+    console.log(document.getElementById(i).innerHTML);
     if(document.getElementById(i).innerHTML == respuestaCorrecta){
       IDrespuestaCorrecta=i;
       console.log(i);
