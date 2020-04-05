@@ -114,7 +114,7 @@
     $IDvalorCorrecto=300+$respuestas;
     echo '
       <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-      <div class="container" style="display:none" id ='.$respuestaNumero.'">
+      <div class="container" style="display:none" id ="'.$respuestaNumero.'">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <img src="../CSSsJSs/images/problemaFisica.jpg" class="imagenPregunta" />

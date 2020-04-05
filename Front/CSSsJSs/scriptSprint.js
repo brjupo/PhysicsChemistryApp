@@ -159,7 +159,7 @@ function contarIDs() {
 function showQuestion(pregunta){
   preguntaTexto = 100+pregunta;
   respuestaTexto = 200+pregunta;
-  if(pregunta=1){
+  if(pregunta==1){
     document.getElementById(101).style.display = "block";
     document.getElementById(201).style.display = "block";
   }
