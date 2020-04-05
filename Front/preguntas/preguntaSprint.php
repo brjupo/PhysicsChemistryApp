@@ -29,7 +29,6 @@
   }
   $respuestas = array('respuesta_correcta', 'respuesta2', 'respuesta3', 'respuesta4');
   $respuestasr = array('respuesta_correcta', 'respuesta2', 'respuesta3', 'respuesta4');
-  $s=0;
   for ($j = 0; $j < $total; $j++) {
     $i = 0;
     shuffle($respuestas);
