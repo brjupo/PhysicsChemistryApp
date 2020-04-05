@@ -124,13 +124,14 @@
     $tres = 4 * $respuestas - 1;
     $cuatro = 4 * $respuestas;
     $respuestaNumero=200+$respuestas;
+    $IDvalorCorrecto=300+$respuestas;
     echo '
       <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
       <div class="container" style="display:' . $display . '" id ='.$respuestaNumero.'">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <img src="../CSSsJSs/images/problemaFisica.jpg" class="imagenPregunta" />
-            <p id="respuestaCorrecta">
+            <p id="'.$IDvalorCorrecto.'">
               '.$respCorrecta.'
             </p>
           </div>

@@ -17,10 +17,7 @@ document.addEventListener("click", function (evt) {
     }
     if (parseInt(targetElement.id) >= 1 && popUpLevantado == false) {
       console.log(parseInt(targetElement.id));
-      whiteButtons(
-        document.getElementById("respuestaCorrecta").innerHTML,
-        targetElement.id
-      );
+      whiteButtons(targetElement.id);
       sprintNext();
       popUpLevantado = true;
       console.log(popUpLevantado);
@@ -41,7 +38,7 @@ function seguroRegresar() {
   }
 }
 
-function whiteButtons(correcta, seleccionada) {
+function whiteButtons(seleccionada) {
   //Convertir todos a blanco de la pregunta en curso
   var numero = preguntaActual;
   for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
@@ -51,9 +48,9 @@ function whiteButtons(correcta, seleccionada) {
   document.getElementById(seleccionada).className = "OpcionIncorrecta";
   
   //Buscar la respuesta correcta
-  numero=100+numero;
+  numero=300+numero;
   console.log(numero);
-  correcta = document.getElementById(numero).getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('p')[0].innerHTML;
+  correcta = document.getElementById(numero).innerHTML;
   console.log(correcta);
   //Marcar en Verde la respuest correcta
   document.getElementById(correcta).className = "OpcionCorrecta";
