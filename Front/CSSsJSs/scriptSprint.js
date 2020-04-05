@@ -52,6 +52,7 @@ function whiteButtons(seleccionada) {
     //Buscar el id que contiene lo mismo que la respuesta correcta
     if(document.getElementById(i).innerHTML == respuestaCorrecta){
       IDrespuestaCorrecta=i;
+      console.log(i);
     }
   }
   //Marcar en rojo la respuesta seleccionada
