@@ -17,35 +17,7 @@ document.addEventListener("click", function(evt) {
     }
     if (parseInt(targetElement.id)>=1 && popUpLevantado == false) {
       console.log(parseInt(targetElement.id));
-      whiteButtons();
-      sprintNext();
-      popUpLevantado = true;
-      console.log(popUpLevantado); 
-      return;
-    }
-    if (targetElement == Opcion1 && popUpLevantado == false) {
-      whiteButtons();
-      sprintNext();
-      popUpLevantado = true;
-      console.log(popUpLevantado); 
-      return;
-    }
-    if (targetElement == Opcion2 && popUpLevantado == false) {
-      whiteButtons();
-      sprintNext();
-      popUpLevantado = true;
-      console.log(popUpLevantado); 
-      return;
-    }
-    if (targetElement == Opcion3 && popUpLevantado == false) {
-      whiteButtons();
-      sprintNext();
-      popUpLevantado = true;
-      console.log(popUpLevantado); 
-      return;
-    }
-    if (targetElement == Opcion4 && popUpLevantado == false) {
-      whiteButtons();
+      whiteButtons(document.getElementById("respuestaCorrecta").innerHTML,targetElement.id);
       sprintNext();
       popUpLevantado = true;
       console.log(popUpLevantado); 
@@ -66,14 +38,13 @@ function seguroRegresar() {
   }
 }
 
-function whiteButtons(){
+function whiteButtons(corrrecta,seleccionada ){
   var numero = parseInt(document.getElementById("preguntaNumero").innerHTML);
   for(var i=4*numero-3; i<=4*numero;i++){
     document.getElementById(i).className = "OpcionBlanco";
   }
-  //document.getElementById("Opcion2").className = "OpcionBlanco";
-  //document.getElementById("Opcion3").className = "OpcionCorrecta";
-  //document.getElementById("Opcion4").className = "OpcionIncorrecta";
+  document.getElementById(corrrecta).className = "OpcionCorrecta";
+  document.getElementById(seleccionada).className = "OpcionIncorrecta";
 }
 
 function sprintNext() {
