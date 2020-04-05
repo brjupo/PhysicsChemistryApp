@@ -26,14 +26,24 @@
     imprimirFooter();
   }
   ?>
-  
+
   <?php
-  function imprimirPreguntasRespuestas(){
-    imprimirPregunta(1,1);
-    imprimirImagenRespuestas(1,1);
+  function imprimirPreguntasRespuestas()
+  {
+    $p1 = "¿Cuál es la equivalencia correcta para la expresion
+    10^6?";
+    $r1 = "100,000";
+    $r2 = "10,00,000";
+    $r3 = "1,000,000";
+    $r4 = "10,000";
+    $rc = "10,000,000";
+    //Se imprime la primer pregunta VISIBLE
+    imprimirPregunta(1, 1, $p1);
+    imprimirImagenRespuestas(1, 1, $r1, $r2, $r3, $r4, $rc);
+    //Se imprime las siguientes preguntas INVISIBLES
     for ($x = 2; $x <= 10; $x++) {
-      imprimirPregunta($x,0);
-      imprimirImagenRespuestas($x,0);
+      imprimirPregunta($x, 0, $p1);
+      imprimirImagenRespuestas($x, 0, $r1, $r2, $r3, $r4, $rc);
     }
   }
   ?>
@@ -77,23 +87,22 @@
     ';
   }
 
-  function imprimirPregunta(int $pregunta, int $mostrar)
+  function imprimirPregunta(int $preguntaNumero, int $mostrar, $preguntaTexto)
   {
-    if($mostrar==0){
+    if ($mostrar == 0) {
       $display = "none";
-    }
-    else{
+    } else {
       $display = "block";
     }
     echo '
       <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-      <div class="container" style="display:'.$display.'">
+      <div class="container" style="display:' . $display . '">
         <div class="row">
           <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
           <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-            <p class="formatoPreguntas">
-              ¿Cuál es la equivalencia correcta para la expresion
-              10^6?
+            <p class="formatoPreguntas">'
+      . $preguntaTexto .
+      '  
             </p>
           </div>
           <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
@@ -101,51 +110,41 @@
       </div>
     ';
   }
-  function imprimirImagenRespuestas(int $respuestas, int $mostrar)
+  function imprimirImagenRespuestas(int $respuestas, int $mostrar, $r1, $r2, $r3, $r4, $respCorrecta)
   {
-    if($mostrar==0){
+    if ($mostrar == 0) {
       $display = "none";
-    }
-    else{
+    } else {
       $display = "block";
     }
+    $uno = 4 * $respuestas - 3;
+    $dos = 4 * $respuestas - 2;
+    $tres = 4 * $respuestas - 1;
+    $cuatro = 4 * $respuestas;
     echo '
       <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-      <div class="container" style="display:'.$display.'">
+      <div class="container" style="display:' . $display . '">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <img src="../CSSsJSs/images/problemaFisica.jpg" class="imagenPregunta" />
+            <p id="respuestaCorrecta">
+              '.$respCorrecta.'
+            </p>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-            <button class="Opcion1" id="Opcion1">
-              <table style="width: 100%;">
-                <tr>
-                  <td>10,000</td>
-                </tr>
-              </table>
-            </button><br />
-            <button class="Opcion3" id="Opcion3">
-              <table style="width: 100%;">
-                <tr>
-                  <td>1,000,000</td>
-                </tr>
-              </table>
+            <button class="Opcion1" id="' . $uno . '">
+              ' . $r1 . '
+            </button><br>
+            <button class="Opcion3" id="' . $dos . '">
+              ' . $r2 . '
             </button>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-            <button class="Opcion2" id="Opcion2">
-              <table style="width: 100%;">
-                <tr>
-                  <td>100,000</td>
-                </tr>
-              </table>
-            </button><br />
-            <button class="Opcion4" id="Opcion4">
-              <table style="width: 100%;">
-                <tr>
-                  <td>10,000,000</td>
-                </tr>
-              </table>
+            <button class="Opcion2" id="' . $tres . '">
+              ' . $r3 . '
+            </button><br>
+            <button class="Opcion4" id="' . $cuatro . '">
+              ' . $r4 . '
             </button>
           </div>
         </div>

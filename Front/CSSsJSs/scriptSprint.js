@@ -1,20 +1,25 @@
 window.onload = function() {
   //startClock();
+  contarIDs();
 };
 
 var popUpLevantado = false;
+var cantidadIDs = 0;
 
 document.addEventListener("click", function(evt) {
   var cruzCerrar = document.getElementById("cruzCerrar");
-  var Opcion1 = document.getElementById("Opcion1");
-  var Opcion2 = document.getElementById("Opcion2");
-  var Opcion3 = document.getElementById("Opcion3");
-  var Opcion4 = document.getElementById("Opcion4");
   targetElement = evt.target; // clicked element
 
   do {
     if (targetElement == cruzCerrar) {
       seguroRegresar();
+      return;
+    }
+    if (int(targetElement.id)>=1 && popUpLevantado == false) {
+      whiteButtons();
+      sprintNext();
+      popUpLevantado = true;
+      console.log(popUpLevantado); 
       return;
     }
     if (targetElement == Opcion1 && popUpLevantado == false) {
@@ -56,7 +61,7 @@ function seguroRegresar() {
       "¿Estás seguro de regresar?\n Si regresas perderás todo tu avance de este tema"
     )
   ) {
-    window.location.href = "../lecciones.html";
+    window.location.href = "https://kaanbal.net";
   }
 }
 
@@ -127,4 +132,13 @@ function startClock() {
     }
     sumaSegundos = sumaSegundos + unSegundo;
   }, 1000);
+}
+
+function contarIDs(){
+  for(var i=1; i<=100;i++){
+    if(document.getElementById(i)){
+      console.log(document.getElementById(i));
+      cantidadIDs = i;
+    }
+  }
 }
