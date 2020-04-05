@@ -43,7 +43,7 @@ function seguroRegresar() {
 function whiteButtons(seleccionada) {
   var numero = preguntaActual;
   var numeroCorrecta=300+numero;
-  respuestaCorrecta = document.getElementById(numero).innerHTML;
+  respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML;
   console.log(respuestaCorrecta);
   var IDrespuestaCorrecta;
   for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
