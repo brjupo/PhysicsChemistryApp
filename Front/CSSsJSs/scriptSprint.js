@@ -1,8 +1,11 @@
+var preguntaActual = 1;
+
 window.onload = function () {
   //startClock();
   contarIDs();
+  showFirstQuestion();
 };
-var preguntaActual = 1;
+
 var popUpLevantado = false;
 var cantidadIDs = 0;
 
@@ -60,11 +63,6 @@ function whiteButtons(seleccionada) {
   document.getElementById(seleccionada).className = "OpcionIncorrecta";
   
   //Buscar la respuesta correcta
-  
-  
-  //Marcar en Verde la respuest correcta
-  //WE DEBES BUSCAR CUAL DE LAS 4 OPCIONES EMPATA CON LA CORRECTA,
-  // YA TIENES LA RESPUESTA CORRECTA[TEXTO], AHORA VE ¿CUÁL DE LAS 4 ES!
   document.getElementById(IDrespuestaCorrecta).className = "OpcionCorrecta";
 }
 
@@ -133,8 +131,13 @@ function startClock() {
 function contarIDs() {
   for (var i = 1; i <= 100; i++) {
     if (document.getElementById(i)) {
-      console.log(document.getElementById(i));
+      //console.log(document.getElementById(i));
       cantidadIDs = i;
     }
   }
+}
+
+function showFirstQuestion(){
+  document.getElementById(101).style.display = "block";
+  document.getElementById(201).style.display = "block";
 }
