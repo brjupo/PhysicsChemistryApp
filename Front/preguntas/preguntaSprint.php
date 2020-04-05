@@ -94,9 +94,10 @@
     } else {
       $display = "block";
     }
+    $preguntaNumero=100+$preguntaNumero;
     echo '
       <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-      <div class="container" style="display:' . $display . '">
+      <div class="container" style="display:' . $display . '" id="'.$preguntaNumero.'">
         <div class="row">
           <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
           <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
@@ -122,9 +123,10 @@
     $dos = 4 * $respuestas - 2;
     $tres = 4 * $respuestas - 1;
     $cuatro = 4 * $respuestas;
+    $respuestaNumero=200+$respuestas;
     echo '
       <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-      <div class="container" style="display:' . $display . '">
+      <div class="container" style="display:' . $display . '" id ='.$respuestaNumero.'">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <img src="../CSSsJSs/images/problemaFisica.jpg" class="imagenPregunta" />

@@ -1,12 +1,12 @@
-window.onload = function() {
+window.onload = function () {
   //startClock();
   contarIDs();
 };
-
+var preguntaActual = 1;
 var popUpLevantado = false;
 var cantidadIDs = 0;
 
-document.addEventListener("click", function(evt) {
+document.addEventListener("click", function (evt) {
   var cruzCerrar = document.getElementById("cruzCerrar");
   targetElement = evt.target; // clicked element
 
@@ -15,12 +15,15 @@ document.addEventListener("click", function(evt) {
       seguroRegresar();
       return;
     }
-    if (parseInt(targetElement.id)>=1 && popUpLevantado == false) {
+    if (parseInt(targetElement.id) >= 1 && popUpLevantado == false) {
       console.log(parseInt(targetElement.id));
-      whiteButtons(document.getElementById("respuestaCorrecta").innerHTML,targetElement.id);
+      whiteButtons(
+        document.getElementById("respuestaCorrecta").innerHTML,
+        targetElement.id
+      );
       sprintNext();
       popUpLevantado = true;
-      console.log(popUpLevantado); 
+      console.log(popUpLevantado);
       return;
     }
     // Go up the DOM
@@ -38,13 +41,22 @@ function seguroRegresar() {
   }
 }
 
-function whiteButtons(corrrecta,seleccionada ){
-  var numero = parseInt(document.getElementById("preguntaNumero").innerHTML);
-  for(var i=4*numero-3; i<=4*numero;i++){
+function whiteButtons(correcta, seleccionada) {
+  //Convertir todos a blanco de la pregunta en curso
+  var numero = preguntaActual;
+  for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
     document.getElementById(i).className = "OpcionBlanco";
   }
-  document.getElementById(corrrecta).className = "OpcionCorrecta";
+  //Marcar en rojo la respuesta seleccionada
   document.getElementById(seleccionada).className = "OpcionIncorrecta";
+  
+  //Buscar la respuesta correcta
+  numero=100+numero;
+  console.log(numero);
+  correcta = document.getElementById(numero).getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('p')[0].innerHTML;
+  console.log(correcta);
+  //Marcar en Verde la respuest correcta
+  document.getElementById(correcta).className = "OpcionCorrecta";
 }
 
 function sprintNext() {
@@ -54,7 +66,7 @@ function sprintNext() {
 
 function disableAllButtons() {
   var numero = parseInt(document.getElementById("preguntaNumero").innerHTML);
-  for(var i=4*numero-3; i<=4*numero;i++){
+  for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
     document.getElementById(i).disabled = true;
   }
 }
@@ -69,7 +81,7 @@ function startClock() {
   var sumaSegundos = new Date(1000).getTime();
 
   // Update the count down every 1 second
-  var x = setInterval(function() {
+  var x = setInterval(function () {
     var previous = countDownDate - sumaSegundos - unSegundo;
     var actual = countDownDate - sumaSegundos;
     var later = countDownDate - sumaSegundos + unSegundo;
@@ -102,16 +114,16 @@ function startClock() {
       if (popUpLevantado == false) {
         sprintNext();
         popUpLevantado = true;
-        console.log(popUpLevantado); 
+        console.log(popUpLevantado);
       }
     }
     sumaSegundos = sumaSegundos + unSegundo;
   }, 1000);
 }
 
-function contarIDs(){
-  for(var i=1; i<=100;i++){
-    if(document.getElementById(i)){
+function contarIDs() {
+  for (var i = 1; i <= 100; i++) {
+    if (document.getElementById(i)) {
       console.log(document.getElementById(i));
       cantidadIDs = i;
     }
