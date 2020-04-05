@@ -15,7 +15,7 @@ document.addEventListener("click", function(evt) {
       seguroRegresar();
       return;
     }
-    if (int(targetElement.id)>=1 && popUpLevantado == false) {
+    if (parseInt(targetElement.id)>=1 && popUpLevantado == false) {
       whiteButtons();
       sprintNext();
       popUpLevantado = true;
