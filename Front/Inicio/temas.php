@@ -40,8 +40,8 @@
       
         //Leemos datos del usuario
         while(mysqli_stmt_fetch($statement)){//si si existe el usuario
-            $temp_id_usuario =   $id_usuario;
-            $temp_mail=$mail;            
+            $temp_id_usuario = $id_usuario;
+            $temp_mail= $mail;            
             $temp_pswd = $pswd;
             $temp_tokenA = $tokenA;
             $temp_tokenSesion = $tokenSesion;
