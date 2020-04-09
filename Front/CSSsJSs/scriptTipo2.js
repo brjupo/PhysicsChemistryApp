@@ -12,6 +12,7 @@ var puntos = 0;
 
 document.addEventListener("click", function (evt) {
   var cruzCerrar = document.getElementById("cruzCerrar");
+  var miniBoton = document.getElementById("miniBoton");
   var botonSiguientePregunta = document.getElementById("sprintNext");
   targetElement = evt.target; // clicked element
 
@@ -33,6 +34,11 @@ document.addEventListener("click", function (evt) {
       popUpLevantado = true;
       //console.log(popUpLevantado);
       return;
+    }
+    if(targetElement == miniBoton){
+      whiteMiniButton();
+      sprintNext();
+      popUpLevantado = true;
     }
     // Go up the DOM
     targetElement = targetElement.parentNode;
@@ -75,6 +81,27 @@ function whiteButtons(seleccionada) {
   }
 }
 
+function whiteMiniButton(){
+  var numero = preguntaActual;
+  var numeroCorrecta=300+numero;
+  respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML;
+  //Convertir a blanco el miniboton
+  document.getElementById("miniBoton").className = "OpcionBlanco";
+  //document.getElementById("myText").value = "Johnny Bravo"; 
+  var respuestaEscrita= document.getElementById("respuestaEscrita").value;
+  if(respuestaEscrita==respuestaCorrecta){
+    document.getElementById("respuestaEscrita").style.color = "green";
+  }
+  else{
+    document.getElementById("respuestaEscrita").style.color = "red";
+  }
+
+}
+
+function restoreInputColors(){
+  document.getElementById("respuestaEscrita").style.color = "black";
+}
+
 function sprintNext() {
   disableAllButtons();
   document.getElementById("sprintNext").style.display = "block";
@@ -85,13 +112,15 @@ function disableAllButtons() {
   for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
     document.getElementById(i).disabled = true;
   }
+  document.getElementById("miniBoton").disabled = true;
 }
 
 function siguientePregunta(){
   popUpLevantado = false;
-  preguntaActual = preguntaActual+1;
   enableAllButtons();
   document.getElementById("sprintNext").style.display = "none";
+  restoreInputColors();
+  preguntaActual = preguntaActual+1;
   showQuestion(preguntaActual);
 }
 
@@ -100,6 +129,7 @@ function enableAllButtons() {
   for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
     document.getElementById(i).disabled = false;
   }
+  document.getElementById("miniBoton").disabled = false;
 }
 
 function startClock() {
