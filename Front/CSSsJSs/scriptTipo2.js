@@ -129,6 +129,7 @@ function disableAllButtons() {
   }
 }
 function disableMiniButton() {
+  var numero = preguntaActual;
   var j = 10 * numero - 4;
   document.getElementById(j).disabled = true;
 }
