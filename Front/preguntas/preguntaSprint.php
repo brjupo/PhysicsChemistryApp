@@ -43,21 +43,21 @@
   ?>
   
   <?php
-  imprimirPreguntas($arrayr, $array);
+  imprimirPreguntas($arrayr, $array, $total);
   ?>
 
   <?php
-  function imprimirPreguntas($arrayr, $array)
+  function imprimirPreguntas($arrayr, $array, $total)
   {
     imprimirBarraProgresoCruz();
     imprimirContador();
-    imprimirPreguntasRespuestas($arrayr, $array);
+    imprimirPreguntasRespuestas($arrayr, $array, $total);
     imprimirFooter();
   }
   ?>
 
   <?php
-  function imprimirPreguntasRespuestas($arrayr, $array)
+  function imprimirPreguntasRespuestas($arrayr, $array, $total)
   {
     $p1 = "¿Cuál es la equivalencia correcta para la expresion
   10^6?";
@@ -67,7 +67,7 @@
     $r4 = "10,000";
     $rc = "10,000,000";
     //Se imprime las siguientes preguntas INVISIBLES
-    for ($x = 0; $x <= 9; $x++) {
+    for ($x = 0; $x < $total[0]; $x++) {
       imprimirPregunta($x + 1, $arrayr[$x]["pregunta"]);
       imprimirImagenRespuestas($x + 1, $arrayr[$x]["respuesta_correcta"],
        $arrayr[$x]["respuesta2"], $arrayr[$x]["respuesta3"],
