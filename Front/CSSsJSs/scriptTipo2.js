@@ -38,6 +38,7 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == miniBoton) {
+      console.log("aceptar");
       whiteMiniButton();
       sprintNextType2();
       popUpLevantado = true;
@@ -133,12 +134,14 @@ function siguientePregunta() {
 function enableAllButtons() {
   if (document.getElementById("miniBoton")) {
     document.getElementById("miniBoton").disabled = false;
+    console.log("mini Habilitado");
   }
   var numero = preguntaActual;
   if (document.getElementById(4 * numero - 3)) {
     for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
       document.getElementById(i).disabled = false;
     }
+    console.log("todos Habilitados");
   }
 }
 
