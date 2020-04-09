@@ -15,6 +15,7 @@
   <?php
   //////////////////////////////////////////////////////
   session_start();
+  session_create_id($id_session);
   echo'<script type="text/javascript">
         alert("'.$_SESSION["mail"].'");
         </script>';
