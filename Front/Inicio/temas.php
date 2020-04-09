@@ -14,12 +14,15 @@
 <body>
   <?php
   //////////////////////////////////////////////////////
-  session_start();
-  session_create_id($id_session);
-  echo'<script type="text/javascript">
-        alert("'.$_SESSION["mail"].'");
-        </script>';
-  if($_SESSION["mail"] =! "1")
+  //Consultar si existe token de usuario
+  $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
+  mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
+  mysqli_stmt_execute($statement);
+
+  mysqli_stmt_store_result($statement);
+  mysqli_stmt_bind_result($statement, $tokenSesionp);
+
+  if($_SESSION["tokenSesion"] == $tokenSesionp)
   {imprimirTemas();
   }
   else{
@@ -70,7 +73,7 @@
         //Si el usuario EXISTE despliega el menú de los temas
         if($temp_id_usuario){
             //Se inicia sesión del usuario 
-            //session_start();
+            session_start();
             //Creamos token de sesión
             $rand = bin2hex(random_bytes(5));
             //Registrar token de sesion en BD
