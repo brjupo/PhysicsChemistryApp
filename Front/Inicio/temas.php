@@ -18,7 +18,7 @@
   echo'<script type="text/javascript">
         alert("'.$_SESSION["mail"].'");
         </script>';
-  if($_SESSION["mail"] =! "")
+  if($_SESSION["mail"] =! "1")
   {imprimirTemas();
   }
   else{
