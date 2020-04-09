@@ -96,7 +96,7 @@ function whiteButtonsType2() {
   var numeroCorrecta = 3000 + numero;
   respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML.trim();
   //Convertir a blanco el miniboton
-  document.getElementById("miniBoton").className = "OpcionBlanco";
+  document.getElementById(10 * numero - 4).className = "OpcionBlanco";
   //document.getElementById("myText").value = "Johnny Bravo";
   var inputEscrito = 10 * numero - 5;
   var respuestaEscrita = document.getElementById(inputEscrito).value;
