@@ -14,6 +14,11 @@
 <body>
   <?php
   //////////////////////////////////////////////////////
+  session_start();
+  if($_SESSION["id_usuario"] =! "")
+  {imprimirTemas();}
+  else{
+  ////////////////////
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
     
     $correo = $_POST["validarUsuario"];
@@ -60,7 +65,7 @@
         //Si el usuario EXISTE despliega el menú de los temas
         if($temp_id_usuario){
             //Se inicia sesión del usuario 
-            session_start();
+            //session_start();
             //Creamos token de sesión
             $rand = bin2hex(random_bytes(5));
             //Registrar token de sesion en BD
@@ -85,6 +90,7 @@
             </script>';
         }
     }
+  }
 
   function imprimirTemas()
   {
