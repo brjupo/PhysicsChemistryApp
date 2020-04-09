@@ -15,8 +15,12 @@
   <?php
   //////////////////////////////////////////////////////
   session_start();
+  echo'<script type="text/javascript">
+        alert("'.$_SESSION["id_usuario"].'");
+        </script>';
   if($_SESSION["id_usuario"] =! "")
-  {imprimirTemas();}
+  {imprimirTemas();
+  }
   else{
   ////////////////////
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
