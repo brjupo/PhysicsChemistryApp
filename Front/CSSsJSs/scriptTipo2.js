@@ -101,8 +101,8 @@ function whiteButtonsType2() {
   var respuestaCorrectaUpper = respuestaCorrectaNormalizada.toUpperCase();
 
   //Convertir a blanco el miniboton
-  document.getElementById(10 * numero - 4).className = "OpcionBlanco";
-  
+  document.getElementById(10 * numero - 4).className = "OpcionMiniBlanco";
+
   var inputEscrito=10 * numero - 5;
   //NORMALIZAR la respuesta ESCRITA
   var respuestaEscritaTrim = document.getElementById(inputEscrito).value.trim();

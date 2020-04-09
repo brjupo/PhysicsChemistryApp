@@ -64,14 +64,16 @@ a:active {
 .imagenPregunta {
   display: block;
   margin: 2.5vh auto 2.5vh auto;
-  height: 20vh;
+  width: 100%;
+  height: auto;
 }
 
 @media screen and (min-width: 768px) {
   .imagenPregunta {
     display: block;
     margin: 0px auto 0px auto;
-    height: 35vh;
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -269,6 +271,18 @@ input:active {
     font-size: 20px;
     height: 55px;
   }
+}
+
+.OpcionMiniBlanco {
+  color: black;
+  background-color: white;
+  border: 1px solid gray;
+  box-shadow: 0px -0.5vw 0px gray inset;
+  width: 40%;
+}
+.OpcionMiniBlanco:hover,
+.OpcionMiniBlanco:active {
+  box-shadow: none;
 }
 
 /*-------------------------------INICIA POP UP---------------------*/
