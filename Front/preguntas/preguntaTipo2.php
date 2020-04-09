@@ -144,7 +144,7 @@
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <input type="text" id="lname"><br>
+                            <input type="text" id="respuestaEscrita"><br>
                             <button id="miniBoton" class="miniBoton">Accept</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
