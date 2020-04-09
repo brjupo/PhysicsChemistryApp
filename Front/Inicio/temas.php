@@ -16,7 +16,7 @@
   //////////////////////////////////////////////////////
   session_start();
   echo'<script type="text/javascript">
-        alert("'.$_SESSION["id_usuario"].$_SESSION["mail"].'");
+        alert("'.$_SESSION["mail"].'");
         </script>';
   if($_SESSION["id_usuario"] =! "")
   {imprimirTemas();
