@@ -112,14 +112,12 @@ button:active {
   button:hover,
   button:active {
     margin: 25px 0px 10px 0px;
-    font-size: 20px;
-    width: 100%;
     height: 95px;
   }
 }
 
-.OpcionBlanco{
-  color:black;
+.OpcionBlanco {
+  color: black;
   background-color: white;
   border: 1px solid gray;
   box-shadow: 0px -0.5vw 0px gray inset;
@@ -189,18 +187,18 @@ button:active {
     box-shadow: 0px -5px 0px rgba(225, 170, 0, 1) inset;
   }
 }
-.OpcionCorrecta{
-  color:black;
-  background-color: rgba(120, 210, 80, 0.9);;
-  border: 1px solid rgba(30, 120, 0, 1);;
+.OpcionCorrecta {
+  color: black;
+  background-color: rgba(120, 210, 80, 0.9);
+  border: 1px solid rgba(30, 120, 0, 1);
   box-shadow: 0px -0.5vw 0px rgba(30, 120, 0, 1) inset;
 }
 .OpcionCorrecta:hover,
 .OpcionCorrecta:active {
   box-shadow: none;
 }
-.OpcionIncorrecta{
-  color:black;
+.OpcionIncorrecta {
+  color: black;
   background-color: rgba(255, 50, 90, 0.9);
   border: 1px solid rgba(165, 0, 0, 1);
   box-shadow: 0px -0.5vw 0px rgba(165, 0, 0, 1) inset;
@@ -209,6 +207,70 @@ button:active {
 .OpcionIncorrecta:active {
   box-shadow: none;
 }
+
+/*-------------------------------INPUTS---------------------*/
+input {
+  display: block;
+  margin: 0px 0px 0px auto;
+  background-color: white;
+  border: 0.15vh solid rgb(250, 250, 250);
+  /*border-bottom: 1vh solid rgb(38, 222, 255);*/
+  border-radius: 0.5vh;
+  box-shadow: 0vh 0.5vh rgb(38, 222, 255);
+  width: 80%;
+  height: 4vh;
+}
+@media screen and (min-width: 768px) {
+}
+input:hover,
+input:active {
+  background-color: rgb(245, 245, 245);
+}
+
+.miniBoton {
+  display: block;
+  margin: 5vw auto 2vw auto;
+  font-size: 4vw;
+  font-weight: 600;
+  text-align: center;
+  line-height: 4vh;
+  width: 40%;
+  height: 9vw;
+  color: white;
+  background-color: rgba(35, 120, 250, 1);
+  border: 1px solid rgba(0, 70, 200, 1);
+  border-radius: 10px;
+  box-shadow: 0px -0.5vw 0px #d6d6d6 inset;
+}
+
+.miniBoton:hover,
+.miniBoton:active {
+  display: block;
+  margin: 5.5vw auto 2vw auto;
+  height: 8.5vw;
+  background-color: rgba(15, 100, 230, 1);
+  border: 1px solid rgba(0, 70, 200, 1);
+  box-shadow: none;
+}
+@media screen and (min-width: 768px) {
+  .miniBoton {
+    display: block;
+    margin: 40px auto 15px auto;
+    font-size: 20px;
+    width: 40%;
+    height: 60px;
+    line-height: 50px;
+    box-shadow: 0px -5px 0px #d6d6d6 inset;
+  }
+  .miniBoton:hover,
+  .miniBoton:active {
+    display: block;
+    margin: 45px auto 15px auto;
+    font-size: 20px;
+    height: 55px;
+  }
+}
+
 /*-------------------------------INICIA POP UP---------------------*/
 .popUp {
   position: fixed;
@@ -217,7 +279,7 @@ button:active {
   width: 100%;
   height: 10vh;
   margin: 2rem 0px 0px 0px;
-  background-color:white;
+  background-color: white;
   border-top: 1px solid gray;
 }
 .NoPopUp {
@@ -343,7 +405,7 @@ button:active {
   .incorrectoRojo {
     box-shadow: 0px -3px 0px rgba(205, 0, 20, 1) inset;
   }
-  .fondoNeutro{
+  .fondoNeutro {
     box-shadow: 0px -3px 0px gray inset;
   }
 }
