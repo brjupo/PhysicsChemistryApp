@@ -219,8 +219,8 @@ function showQuestion(pregunta) {
   preguntaTexto = 1000 + pregunta;
   respuestaTexto = 2000 + pregunta;
   if (pregunta == 1) {
-    document.getElementById(101).style.display = "block";
-    document.getElementById(201).style.display = "block";
+    document.getElementById(1001).style.display = "block";
+    document.getElementById(2001).style.display = "block";
   } else {
     document.getElementById(preguntaTexto).style.display = "block";
     document.getElementById(respuestaTexto).style.display = "block";
