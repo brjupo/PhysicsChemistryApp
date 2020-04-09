@@ -25,9 +25,11 @@ document.addEventListener("click", function (evt) {
       siguientePregunta();
       return;
     }
-    if (parseInt(targetElement.id) >= 4*preguntaActual-3 &&
-        parseInt(targetElement.id) <= 4*preguntaActual &&
-        popUpLevantado === false) {
+    if (
+      parseInt(targetElement.id) >= 4 * preguntaActual - 3 &&
+      parseInt(targetElement.id) <= 4 * preguntaActual &&
+      popUpLevantado === false
+    ) {
       //console.log(parseInt(targetElement.id));
       whiteButtons(targetElement.id);
       sprintNext();
@@ -35,7 +37,7 @@ document.addEventListener("click", function (evt) {
       //console.log(popUpLevantado);
       return;
     }
-    if(targetElement == miniBoton){
+    if (targetElement == miniBoton) {
       whiteMiniButton();
       sprintNextType2();
       popUpLevantado = true;
@@ -57,7 +59,7 @@ function seguroRegresar() {
 
 function whiteButtons(seleccionada) {
   var numero = preguntaActual;
-  var numeroCorrecta=300+numero;
+  var numeroCorrecta = 300 + numero;
   respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML;
   //console.log(respuestaCorrecta);
   var IDrespuestaCorrecta;
@@ -66,39 +68,37 @@ function whiteButtons(seleccionada) {
     document.getElementById(i).className = "OpcionBlanco";
     //Buscar el id que contiene lo mismo que la respuesta correcta
     //console.log(document.getElementById(i).innerHTML);
-    if(document.getElementById(i).innerHTML == respuestaCorrecta){
-      IDrespuestaCorrecta=i;
+    if (document.getElementById(i).innerHTML == respuestaCorrecta) {
+      IDrespuestaCorrecta = i;
       //console.log(i);
     }
   }
   //Marcar en rojo la respuesta seleccionada
-  document.getElementById(seleccionada).className = "OpcionIncorrecta";  
+  document.getElementById(seleccionada).className = "OpcionIncorrecta";
   //Buscar la respuesta correcta
   document.getElementById(IDrespuestaCorrecta).className = "OpcionCorrecta";
-  if(IDrespuestaCorrecta==seleccionada){
-    puntos=puntos+1;
-    document.getElementById("puntosBuenos").innerHTML = puntos; 
+  if (IDrespuestaCorrecta == seleccionada) {
+    puntos = puntos + 1;
+    document.getElementById("puntosBuenos").innerHTML = puntos;
   }
 }
 
-function whiteMiniButton(){
+function whiteMiniButton() {
   var numero = preguntaActual;
-  var numeroCorrecta=300+numero;
+  var numeroCorrecta = 300 + numero;
   respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML.trim();
   //Convertir a blanco el miniboton
   document.getElementById("miniBoton").className = "OpcionBlanco";
-  //document.getElementById("myText").value = "Johnny Bravo"; 
-  var respuestaEscrita= document.getElementById("respuestaEscrita").value;
-  if(respuestaEscrita==respuestaCorrecta){
+  //document.getElementById("myText").value = "Johnny Bravo";
+  var respuestaEscrita = document.getElementById("respuestaEscrita").value;
+  if (respuestaEscrita == respuestaCorrecta) {
     document.getElementById("respuestaEscrita").style.color = "green";
-  }
-  else{
+  } else {
     document.getElementById("respuestaEscrita").style.color = "red";
   }
-
 }
 
-function restoreInputColors(){
+function restoreInputColors() {
   document.getElementById("respuestaEscrita").style.color = "black";
 }
 
@@ -121,21 +121,25 @@ function disableMiniButton() {
   document.getElementById("miniBoton").disabled = true;
 }
 
-function siguientePregunta(){
+function siguientePregunta() {
   popUpLevantado = false;
   enableAllButtons();
   document.getElementById("sprintNext").style.display = "none";
   restoreInputColors();
-  preguntaActual = preguntaActual+1;
+  preguntaActual = preguntaActual + 1;
   showQuestion(preguntaActual);
 }
 
 function enableAllButtons() {
-  var numero = preguntaActual;
-  for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
-    document.getElementById(i).disabled = false;
+  if (document.getElementById("miniBoton")) {
+    document.getElementById("miniBoton").disabled = false;
   }
-  document.getElementById("miniBoton").disabled = false;
+  var numero = preguntaActual;
+  if (document.getElementById(4 * numero - 3)) {
+    for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
+      document.getElementById(i).disabled = false;
+    }
+  }
 }
 
 function startClock() {
@@ -197,18 +201,17 @@ function contarIDs() {
   }
 }
 
-function showQuestion(pregunta){
-  preguntaTexto = 100+pregunta;
-  respuestaTexto = 200+pregunta;
-  if(pregunta==1){
+function showQuestion(pregunta) {
+  preguntaTexto = 100 + pregunta;
+  respuestaTexto = 200 + pregunta;
+  if (pregunta == 1) {
     document.getElementById(101).style.display = "block";
     document.getElementById(201).style.display = "block";
-  }
-  else{
+  } else {
     document.getElementById(preguntaTexto).style.display = "block";
     document.getElementById(respuestaTexto).style.display = "block";
-    preguntaTexto = preguntaTexto-1;
-    respuestaTexto = respuestaTexto-1;
+    preguntaTexto = preguntaTexto - 1;
+    respuestaTexto = respuestaTexto - 1;
     document.getElementById(preguntaTexto).style.display = "none";
     document.getElementById(respuestaTexto).style.display = "none";
   }
