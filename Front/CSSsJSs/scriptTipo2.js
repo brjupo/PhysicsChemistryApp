@@ -37,7 +37,7 @@ document.addEventListener("click", function (evt) {
     }
     if(targetElement == miniBoton){
       whiteMiniButton();
-      sprintNext();
+      sprintNextType2();
       popUpLevantado = true;
     }
     // Go up the DOM
@@ -106,12 +106,18 @@ function sprintNext() {
   disableAllButtons();
   document.getElementById("sprintNext").style.display = "block";
 }
+function sprintNextType2() {
+  disableMiniButton();
+  document.getElementById("sprintNext").style.display = "block";
+}
 
 function disableAllButtons() {
   var numero = preguntaActual;
   for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
     document.getElementById(i).disabled = true;
   }
+}
+function disableMiniButton() {
   document.getElementById("miniBoton").disabled = true;
 }
 
