@@ -21,13 +21,8 @@
 
   mysqli_stmt_store_result($statement);
   mysqli_stmt_bind_result($statement, $tokenSesionp);
-  
-  echo'<script type="text/javascript">
-            alert("'.$tokenSesionp.$_SESSION["tokenSesion"].'");
-            window.location.href="https://kaanbal.net";
-            </script>';
 
-  if($_SESSION["tokenSesion"] == $tokenSesionp)
+  if($_SESSION["tokenSesion"] == $tokenSesionp AND $tokenSesionp =! "" )
   {imprimirTemas();
   }
   else{
