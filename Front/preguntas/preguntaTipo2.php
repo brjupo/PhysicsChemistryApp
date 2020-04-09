@@ -69,7 +69,7 @@
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
             imprimirPregunta($x + 1, $arrayr[$x]["pregunta"]);
-            imprimirImagenRespuestasTipo2($x + 1, $rc);
+            imprimirImagenRespuestasTipo2($x + 1, $arrayr[$x]["respuesta_correcta"]);
         }
     }
     ?>
