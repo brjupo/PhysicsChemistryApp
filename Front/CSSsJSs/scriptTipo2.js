@@ -84,7 +84,7 @@ function whiteButtons(seleccionada) {
 function whiteMiniButton(){
   var numero = preguntaActual;
   var numeroCorrecta=300+numero;
-  respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML;
+  respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML.trim();
   //Convertir a blanco el miniboton
   document.getElementById("miniBoton").className = "OpcionBlanco";
   //document.getElementById("myText").value = "Johnny Bravo"; 
