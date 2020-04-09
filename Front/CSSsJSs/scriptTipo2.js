@@ -1,4 +1,7 @@
 var preguntaActual = 1;
+var popUpLevantado = false;
+var cantidadIDs = 0;
+var puntos = 0;
 
 window.onload = function () {
   //startClock();
@@ -6,13 +9,10 @@ window.onload = function () {
   showQuestion(1);
 };
 
-var popUpLevantado = false;
-var cantidadIDs = 0;
-var puntos = 0;
+
 
 document.addEventListener("click", function (evt) {
   var cruzCerrar = document.getElementById("cruzCerrar");
-  var miniBoton = document.getElementById("miniBoton");
   var botonSiguientePregunta = document.getElementById("sprintNext");
   targetElement = evt.target; // clicked element
 
@@ -26,8 +26,8 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (
-      parseInt(targetElement.id) >= 4 * preguntaActual - 3 &&
-      parseInt(targetElement.id) <= 4 * preguntaActual &&
+      parseInt(targetElement.id) >= 10 * preguntaActual - 3 &&
+      parseInt(targetElement.id) <= 10 * preguntaActual &&
       popUpLevantado === false
     ) {
       //console.log(parseInt(targetElement.id));
@@ -37,11 +37,16 @@ document.addEventListener("click", function (evt) {
       //console.log(popUpLevantado);
       return;
     }
-    if (targetElement == miniBoton) {
-      console.log("aceptar");
-      whiteMiniButton();
+    if (
+      parseInt(targetElement.id) == 10 * preguntaActual - 4 &&
+      popUpLevantado === false
+    ) {
+      //console.log(parseInt(targetElement.id));
+      whiteButtonsType2(targetElement.id);
       sprintNextType2();
       popUpLevantado = true;
+      //console.log(popUpLevantado);
+      return;
     }
     // Go up the DOM
     targetElement = targetElement.parentNode;
@@ -60,7 +65,7 @@ function seguroRegresar() {
 
 function whiteButtons(seleccionada) {
   var numero = preguntaActual;
-  var numeroCorrecta = 300 + numero;
+  var numeroCorrecta = 3000 + numero;
   respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML;
   //console.log(respuestaCorrecta);
   var IDrespuestaCorrecta;
@@ -84,18 +89,23 @@ function whiteButtons(seleccionada) {
   }
 }
 
-function whiteMiniButton() {
+//$IDTextoEscrito = 10 * $respuestas - 5; == inputEscrito
+//$IDBotonAceptar = 10 * $respuestas - 4; == miniBoton
+function whiteButtonsType2() {
   var numero = preguntaActual;
-  var numeroCorrecta = 300 + numero;
+  var numeroCorrecta = 3000 + numero;
   respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML.trim();
   //Convertir a blanco el miniboton
   document.getElementById("miniBoton").className = "OpcionBlanco";
   //document.getElementById("myText").value = "Johnny Bravo";
-  var respuestaEscrita = document.getElementById("respuestaEscrita").value;
+  var inputEscrito = 10 * numero - 5;
+  var respuestaEscrita = document.getElementById(inputEscrito).value;
   if (respuestaEscrita == respuestaCorrecta) {
-    document.getElementById("respuestaEscrita").style.color = "green";
+    document.getElementById(inputEscrito).style.color = "green";
+    puntos = puntos + 1;
+    document.getElementById("puntosBuenos").innerHTML = puntos;
   } else {
-    document.getElementById("respuestaEscrita").style.color = "red";
+    document.getElementById(inputEscrito).style.color = "red";
   }
 }
 
@@ -119,7 +129,8 @@ function disableAllButtons() {
   }
 }
 function disableMiniButton() {
-  document.getElementById("miniBoton").disabled = true;
+  var j = 10 * numero - 4;
+  document.getElementById(j).disabled = true;
 }
 
 function siguientePregunta() {
@@ -132,8 +143,8 @@ function siguientePregunta() {
 }
 
 function enableAllButtons() {
-  if (document.getElementById("miniBoton")) {
-    document.getElementById("miniBoton").disabled = false;
+  if (document.getElementById(10 * numero - 4)) {
+    document.getElementById(10 * numero - 4).disabled = false;
     console.log("mini Habilitado");
   }
   var numero = preguntaActual;
@@ -205,8 +216,8 @@ function contarIDs() {
 }
 
 function showQuestion(pregunta) {
-  preguntaTexto = 100 + pregunta;
-  respuestaTexto = 200 + pregunta;
+  preguntaTexto = 1000 + pregunta;
+  respuestaTexto = 2000 + pregunta;
   if (pregunta == 1) {
     document.getElementById(101).style.display = "block";
     document.getElementById(201).style.display = "block";

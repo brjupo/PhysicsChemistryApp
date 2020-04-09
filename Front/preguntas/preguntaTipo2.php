@@ -115,7 +115,7 @@
 
     function imprimirPregunta(int $preguntaNumero, $preguntaTexto)
     {
-        $preguntaNumero = 100 + $preguntaNumero;
+        $preguntaNumero = 1000 + $preguntaNumero;
         echo '
             <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
             <div class="container" style="display:none" id="' . $preguntaNumero . '">
@@ -134,9 +134,11 @@
             ';
     }
     function imprimirImagenRespuestasTipo2(int $respuestas, $respCorrecta)
-    {
-        $respuestaNumero = 200 + $respuestas;
-        $IDvalorCorrecto = 300 + $respuestas;
+    {      
+        $IDTextoEscrito = 10 * $respuestas - 5;
+        $IDBotonAceptar = 10 * $respuestas - 4;
+        $respuestaNumero = 2000 + $respuestas;
+        $IDvalorCorrecto = 3000 + $respuestas;
         
         echo '
                 <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
@@ -144,8 +146,8 @@
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <input type="text" id="respuestaEscrita"><br>
-                            <button id="miniBoton" class="miniBoton">Accept</button>
+                            <input type="text" id="' . $IDTextoEscrito . '"><br>
+                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                             <img src="../CSSsJSs/images/problemaFisica.jpg" class="imagenPregunta" />
