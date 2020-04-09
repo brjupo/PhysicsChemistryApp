@@ -9,8 +9,6 @@ window.onload = function () {
   showQuestion(1);
 };
 
-
-
 document.addEventListener("click", function (evt) {
   var cruzCerrar = document.getElementById("cruzCerrar");
   var botonSiguientePregunta = document.getElementById("sprintNext");
@@ -110,7 +108,7 @@ function whiteButtonsType2() {
 }
 
 function restoreInputColors() {
-  document.getElementById("respuestaEscrita").style.color = "black";
+  document.getElementById(10 * preguntaActual - 5).style.color = "black";
 }
 
 function sprintNext() {
