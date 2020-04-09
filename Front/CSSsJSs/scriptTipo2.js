@@ -9,8 +9,6 @@ window.onload = function () {
   showQuestion(1);
 };
 
-
-
 document.addEventListener("click", function (evt) {
   var cruzCerrar = document.getElementById("cruzCerrar");
   var botonSiguientePregunta = document.getElementById("sprintNext");
@@ -96,7 +94,7 @@ function whiteButtonsType2() {
   var numeroCorrecta = 3000 + numero;
   respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML.trim();
   //Convertir a blanco el miniboton
-  document.getElementById("miniBoton").className = "OpcionBlanco";
+  document.getElementById(10 * numero - 4).className = "OpcionBlanco";
   //document.getElementById("myText").value = "Johnny Bravo";
   var inputEscrito = 10 * numero - 5;
   var respuestaEscrita = document.getElementById(inputEscrito).value;
@@ -110,7 +108,7 @@ function whiteButtonsType2() {
 }
 
 function restoreInputColors() {
-  document.getElementById("respuestaEscrita").style.color = "black";
+  document.getElementById(10 * preguntaActual - 5).style.color = "black";
 }
 
 function sprintNext() {
@@ -129,6 +127,7 @@ function disableAllButtons() {
   }
 }
 function disableMiniButton() {
+  var numero = preguntaActual;
   var j = 10 * numero - 4;
   document.getElementById(j).disabled = true;
 }
@@ -219,8 +218,8 @@ function showQuestion(pregunta) {
   preguntaTexto = 1000 + pregunta;
   respuestaTexto = 2000 + pregunta;
   if (pregunta == 1) {
-    document.getElementById(101).style.display = "block";
-    document.getElementById(201).style.display = "block";
+    document.getElementById(1001).style.display = "block";
+    document.getElementById(2001).style.display = "block";
   } else {
     document.getElementById(preguntaTexto).style.display = "block";
     document.getElementById(respuestaTexto).style.display = "block";
