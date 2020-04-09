@@ -67,7 +67,7 @@ function whiteButtons(seleccionada) {
   respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML;
   //console.log(respuestaCorrecta);
   var IDrespuestaCorrecta;
-  for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
+  for (var i = 10 * numero - 3; i <= 10 * numero; i++) {
     //Convertir todos a blanco de la pregunta en curso
     document.getElementById(i).className = "OpcionBlanco";
     //Buscar el id que contiene lo mismo que la respuesta correcta
@@ -122,7 +122,7 @@ function sprintNextType2() {
 
 function disableAllButtons() {
   var numero = preguntaActual;
-  for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
+  for (var i = 10 * numero - 3; i <= 10 * numero; i++) {
     document.getElementById(i).disabled = true;
   }
 }
@@ -147,8 +147,8 @@ function enableAllButtons() {
     console.log("mini Habilitado");
   }
   var numero = preguntaActual;
-  if (document.getElementById(4 * numero - 3)) {
-    for (var i = 4 * numero - 3; i <= 4 * numero; i++) {
+  if (document.getElementById(10 * numero - 3)) {
+    for (var i = 10 * numero - 3; i <= 10 * numero; i++) {
       document.getElementById(i).disabled = false;
     }
     console.log("todos Habilitados");
