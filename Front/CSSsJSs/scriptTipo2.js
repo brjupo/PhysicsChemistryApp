@@ -92,13 +92,21 @@ function whiteButtons(seleccionada) {
 function whiteButtonsType2() {
   var numero = preguntaActual;
   var numeroCorrecta = 3000 + numero;
-  respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML.trim();
+  var respuestaCorrectaTrim = document.getElementById(numeroCorrecta).innerHTML.trim();
+  var respuestaCorrectaNormalizada = respuestaCorrectaTrim.normalize('NFD')
+  .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
+  .normalize();
+  var respuestaCorrectaUpper = respuestaCorrectaNormalizada.toUpperCase();
   //Convertir a blanco el miniboton
   document.getElementById(10 * numero - 4).className = "OpcionBlanco";
   //document.getElementById("myText").value = "Johnny Bravo";
   var inputEscrito = 10 * numero - 5;
-  var respuestaEscrita = document.getElementById(inputEscrito).value;
-  if (respuestaEscrita == respuestaCorrecta) {
+  var respuestaEscritaTrim = document.getElementById(inputEscrito).value.trim();
+  var respuestaEscritaNormalizada = respuestaEscritaTrim.normalize('NFD')
+  .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
+  .normalize();
+  var respuestaEscritaUpper = respuestaEscritaNormalizada.toUpperCase();
+  if (respuestaEscritaUpper == respuestaCorrectaUpper) {
     document.getElementById(inputEscrito).style.color = "green";
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
