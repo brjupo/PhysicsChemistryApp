@@ -92,7 +92,7 @@ function whiteButtons(seleccionada) {
 function whiteButtonsType2() {
   var numero = preguntaActual;
   var numeroCorrecta = 3000 + numero;
-  
+
   //NORMALIZAR la respuesta CORRECTA
   var respuestaCorrectaTrim = document.getElementById(numeroCorrecta).innerHTML.trim();
   var respuestaCorrectaNormalizada = respuestaCorrectaTrim.normalize('NFD')
@@ -102,9 +102,10 @@ function whiteButtonsType2() {
 
   //Convertir a blanco el miniboton
   document.getElementById(10 * numero - 4).className = "OpcionBlanco";
-
+  
+  var inputEscrito=10 * numero - 5;
   //NORMALIZAR la respuesta ESCRITA
-  var respuestaEscritaTrim = document.getElementById(10 * numero - 5).value.trim();
+  var respuestaEscritaTrim = document.getElementById(inputEscrito).value.trim();
   var respuestaEscritaNormalizada = respuestaEscritaTrim.normalize('NFD')
   .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
   .normalize();
