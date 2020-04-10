@@ -95,7 +95,7 @@ else{
         $rc = "10,000,000";
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
-            imprimirPregunta($x + 1, $arrayr[$x]["pregunta"]);
+            imprimirPregunta($x + 1, $arrayr[$x]["pregunta"], "");
             imprimirImagenRespuestasTipo2($x + 1, $array[$x]["respuesta_correcta"],$array[$x]["id_pregunta"]);
         }
     }
@@ -140,7 +140,7 @@ else{
             ';
     }
 
-    function imprimirPregunta(int $preguntaNumero, $preguntaTexto)
+    function imprimirPregunta(int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
     {
         $preguntaNumero = 1000 + $preguntaNumero;
         echo '

@@ -95,23 +95,32 @@ function whiteButtonsType2() {
   var numeroCorrecta = 3000 + numero;
 
   //NORMALIZAR la respuesta CORRECTA
-  var respuestaCorrectaTrim = document.getElementById(numeroCorrecta).innerHTML.trim();
-  var respuestaCorrectaNormalizada = respuestaCorrectaTrim.normalize('NFD')
-  .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
-  .normalize();
+  var respuestaCorrectaTrim = document
+    .getElementById(numeroCorrecta)
+    .innerHTML.trim();
+  var respuestaCorrectaNormalizada = respuestaCorrectaTrim
+    .normalize("NFD")
+    .replace(
+      /([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,
+      "$1"
+    )
+    .normalize();
   var respuestaCorrectaUpper = respuestaCorrectaNormalizada.toUpperCase();
 
   //Convertir a blanco el miniboton
   document.getElementById(10 * numero - 4).className = "OpcionMiniBlanco";
 
-  var inputEscrito=10 * numero - 5;
+  var inputEscrito = 10 * numero - 5;
   //NORMALIZAR la respuesta ESCRITA
   var respuestaEscritaTrim = document.getElementById(inputEscrito).value.trim();
-  var respuestaEscritaNormalizada = respuestaEscritaTrim.normalize('NFD')
-  .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
-  .normalize();
+  var respuestaEscritaNormalizada = respuestaEscritaTrim
+    .normalize("NFD")
+    .replace(
+      /([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,
+      "$1"
+    )
+    .normalize();
   var respuestaEscritaUpper = respuestaEscritaNormalizada.toUpperCase();
-
 
   if (respuestaEscritaUpper == respuestaCorrectaUpper) {
     document.getElementById(inputEscrito).style.color = "green";
@@ -149,19 +158,20 @@ function disableMiniButton() {
 
 function siguientePregunta() {
   popUpLevantado = false;
-  enableAllButtons();
+  //enableAllButtons();
   document.getElementById("sprintNext").style.display = "none";
   restoreInputColors();
   preguntaActual = preguntaActual + 1;
   showQuestion(preguntaActual);
 }
 
+
 function enableAllButtons() {
+  var numero = preguntaActual;
   if (document.getElementById(10 * numero - 4)) {
     document.getElementById(10 * numero - 4).disabled = false;
     console.log("mini Habilitado");
   }
-  var numero = preguntaActual;
   if (document.getElementById(10 * numero - 3)) {
     for (var i = 10 * numero - 3; i <= 10 * numero; i++) {
       document.getElementById(i).disabled = false;
@@ -233,12 +243,12 @@ function contarIDs() {
 //Firefox y o Google guardar la variable
 //Para evitar que ya se tengan las respuestas, se limpiaran
 //los campos input cada vez que se inicie [5,15,20,25]
-function limpiarInputs(cantidadIDs){
-  console.log(cantidadIDs-1000);
-  for (var i = 1; i <= cantidadIDs-1000; i++) {
+function limpiarInputs(cantidadIDs) {
+  console.log(cantidadIDs - 1000);
+  for (var i = 1; i <= cantidadIDs - 1000; i++) {
     //borrar a los i*10-5
-    document.getElementById(i*10-5).value = "";
-    console.log(i*10-5);
+    document.getElementById(i * 10 - 5).value = "";
+    console.log(i * 10 - 5);
   }
 }
 
