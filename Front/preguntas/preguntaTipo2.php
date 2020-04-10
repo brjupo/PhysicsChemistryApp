@@ -27,6 +27,33 @@
     $array[] = $row;
     $arrayr[] = $row;
   }
+///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
+///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
+for ($j = 0; $j < $total[0]; $j++) {
+// CONVERTIR LA CADENA DE TEXTO EN UN ARRAY
+$arreglo = str_split($arrayr[$x]["pregunta"]);
+// LEER CON BUCLE FOR EL ARREGLO HASTA ENCONTRAR GUION BAJO Y GUARDAR LA POSICION DONDE SE ENCUENTRE
+$posicion = 0;
+for ($i = 0; $i < strlen($arreglo); $i++){
+    if ($arreglo[$i] == '_'){
+    	$posicion = $i;
+    	break;
+    }
+}
+// PARTIR LA PREGUNTA EN 2 CADENAS, SI POSICION = 0, SIGNIFICA QUE LA PREGUNTA NO DEBE SER PARTIDA
+if($posicion != 0){
+	$preguntaParte1 = substr($arrayr[$x]["pregunta"], 0, $posicion - 1);
+	$preguntaParte2 = substr($arrayr[$x]["pregunta"], $posicion + 1, strlen($arrayr[$x]["pregunta"]));
+}
+else{
+	$preguntaParte1 = $arrayr[$x]["pregunta"];
+    $preguntaParte2 = "";
+	}
+    $arrayr[$x]["preguntaParte1"] = $preguntaParte1; 
+    $arrayr[$x]["preguntaParte2"] = $preguntaParte2;
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+
   $respuestas = array('respuesta_correcta', 'respuesta2', 'respuesta3', 'respuesta4');
   $respuestasr = array('respuesta_correcta', 'respuesta2', 'respuesta3', 'respuesta4');
   for ($j = 0; $j < $total[0]; $j++) {
