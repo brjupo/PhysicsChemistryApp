@@ -150,7 +150,7 @@
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../imagenes(' . $imagen . '".jpg class="imagenPregunta" />
+                            <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '">
                             ' . $respCorrecta . '
                             </p>
