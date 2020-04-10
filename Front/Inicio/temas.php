@@ -22,6 +22,11 @@
   mysqli_stmt_store_result($statement);
   mysqli_stmt_bind_result($statement, $tokenSesionp);
 
+  echo'<script type="text/javascript">
+            alert("'.$_SESSION["tokenSesion"].$tokenSesionp.'");
+            </script>';
+  
+
   if($_SESSION["tokenSesion"] == $tokenSesionp AND $tokenSesionp =! "" )
   {imprimirTemas();
   }
