@@ -27,7 +27,7 @@
             </script>';
   
 
-  if($_SESSION["tokenSesion"] == $tokenSesionp AND $tokenSesionp =! "" )
+  if($_SESSION["tokenSesion"] == $tokenSesionp AND $tokenSesionp != "" )
   {imprimirTemas();
   }
   else{
