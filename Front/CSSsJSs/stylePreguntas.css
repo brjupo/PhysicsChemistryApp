@@ -298,6 +298,24 @@ input:active {
   margin: 3.5vh auto 2vh auto;
   height: 6.5vh;
 }
+@media screen and (min-width: 768px) {
+  .OpcionMiniBlanco {
+    display: block;
+    margin: 40px auto 15px auto;
+    font-size: 20px;
+    width: 40%;
+    height: 60px;
+    line-height: 50px;
+    box-shadow: 0px -5px 0px #d6d6d6 inset;
+  }
+  .OpcionMiniBlanco:hover,
+  .OpcionMiniBlanco:active {
+    display: block;
+    margin: 45px auto 15px auto;
+    font-size: 20px;
+    height: 55px;
+  }
+}
 
 /*-------------------------------INICIA POP UP---------------------*/
 .popUp {
