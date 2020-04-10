@@ -163,14 +163,8 @@ function siguientePregunta() {
   restoreInputColors();
   preguntaActual = preguntaActual + 1;
   showQuestion(preguntaActual);
-  autofocusMiniButton();
 }
 
-function autofocusMiniButton() {
-  if (document.getElementById(10 * preguntaActual - 4)) {
-    document.getElementById(10 * preguntaActual - 4).autofocus = true;
-  }
-}
 
 function enableAllButtons() {
   var numero = preguntaActual;
