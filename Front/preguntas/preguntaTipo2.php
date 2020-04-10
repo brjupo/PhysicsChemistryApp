@@ -69,7 +69,7 @@
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
             imprimirPregunta($x + 1, $arrayr[$x]["pregunta"]);
-            imprimirImagenRespuestasTipo2($x + 1, $array[$x]["respuesta_correcta"]);
+            imprimirImagenRespuestasTipo2($x + 1, $array[$x]["respuesta_correcta"],$array[$x]["id_pregunta"]);
         }
     }
     ?>
@@ -133,7 +133,7 @@
             </div>
             ';
     }
-    function imprimirImagenRespuestasTipo2(int $respuestas, $respCorrecta)
+    function imprimirImagenRespuestasTipo2(int $respuestas, $respCorrecta, $imagen)
     {      
         $IDTextoEscrito = 10 * $respuestas - 5;
         $IDBotonAceptar = 10 * $respuestas - 4;
@@ -150,7 +150,7 @@
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../CSSsJSs/images/problemaFisica.jpg" class="imagenPregunta" />
+                            <img src="../imagenes(' . $imagen . '".jpg class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '">
                             ' . $respCorrecta . '
                             </p>
