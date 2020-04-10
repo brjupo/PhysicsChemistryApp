@@ -259,7 +259,7 @@
             src="../CSSsJSs/icons/lecciones.svg"
           />
         </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
           <img
             class="footIcon"
             id="botonPerfil"
