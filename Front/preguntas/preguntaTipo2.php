@@ -139,8 +139,9 @@
         $IDBotonAceptar = 10 * $respuestas - 4;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
-        
-        echo '
+        $path="../imagenes/' . $imagen . '.jpg";
+        if(file_exists($path)){
+            echo '
                 <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
                 <div class="container" style="display:none" id ="' . $respuestaNumero . '">
                     <div class="row">
@@ -158,6 +159,25 @@
                     </div>
                 </div>
                 ';
+        }
+        else{
+            echo '
+                <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+                <div class="container" style="display:none" id ="' . $respuestaNumero . '">
+                    <div class="row">
+                        <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <input type="text" id="' . $IDTextoEscrito . '"><br>
+                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
+                            <p id="' . $IDvalorCorrecto . '">
+                            ' . $respCorrecta . '
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                ';
+        }
+        
     }
     function imprimirFooter()
     {

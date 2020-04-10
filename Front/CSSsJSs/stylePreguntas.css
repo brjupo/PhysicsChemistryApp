@@ -64,7 +64,7 @@ a:active {
 .imagenPregunta {
   display: block;
   margin: 2.5vh auto 2.5vh auto;
-  width: 100%;
+  width: 80%;
   height: auto;
 }
 
@@ -72,7 +72,7 @@ a:active {
   .imagenPregunta {
     display: block;
     margin: 0px auto 0px auto;
-    width: 100%;
+    width: 80%;
     height: auto;
   }
 }
