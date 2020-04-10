@@ -231,13 +231,15 @@ input:active {
 
 .miniBoton {
   display: block;
-  margin: 5vw auto 2vw auto;
+  margin: 3vh auto 2vh auto;
+  /*5vw 2vw*/
   font-size: 4vw;
   font-weight: 600;
   text-align: center;
   line-height: 4vh;
   width: 40%;
-  height: 9vw;
+  height: 7vh;
+  /*9vw*/
   color: white;
   background-color: rgba(35, 120, 250, 1);
   border: 1px solid rgba(0, 70, 200, 1);
@@ -248,8 +250,10 @@ input:active {
 .miniBoton:hover,
 .miniBoton:active {
   display: block;
-  margin: 5.5vw auto 2vw auto;
-  height: 8.5vw;
+  margin: 3.5vh auto 2vh auto;
+  /*5vw 2vw*/
+  height: 6.5vh;
+  /*8.5vw*/
   background-color: rgba(15, 100, 230, 1);
   border: 1px solid rgba(0, 70, 200, 1);
   box-shadow: none;
