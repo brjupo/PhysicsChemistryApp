@@ -278,15 +278,25 @@ input:active {
 }
 
 .OpcionMiniBlanco {
+  display: block;
+  margin: 3vh auto 2vh auto;
+  font-size: 4vw;
+  font-weight: 600;
+  text-align: center;
+  line-height: 4vh;
+  width: 40%;
+  height: 7vh;
   color: black;
   background-color: white;
   border: 1px solid gray;
   box-shadow: 0px -0.5vw 0px gray inset;
-  width: 40%;
 }
 .OpcionMiniBlanco:hover,
 .OpcionMiniBlanco:active {
   box-shadow: none;
+  display: block;
+  margin: 3.5vh auto 2vh auto;
+  height: 6.5vh;
 }
 
 /*-------------------------------INICIA POP UP---------------------*/
