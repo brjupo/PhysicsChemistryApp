@@ -140,6 +140,7 @@
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
         $path="../imagenes/' . $imagen . '.jpg";
+        echo '<p>'.$path.'</p>';
         if(file_exists($path)){
             echo '
                 <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
