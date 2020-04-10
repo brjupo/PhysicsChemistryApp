@@ -54,7 +54,7 @@ else{
     $arrayr[$j]["preguntaParte1"] = $preguntaParte1; 
     $arrayr[$j]["preguntaParte2"] = $preguntaParte2;
 }
-print_r ($arrayr);
+//print_r ($arrayr);
 ////////////////////////////////////////////////////////////////////////////////////////////
 
   $respuestas = array('respuesta_correcta', 'respuesta2', 'respuesta3', 'respuesta4');
