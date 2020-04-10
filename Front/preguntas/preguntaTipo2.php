@@ -157,7 +157,7 @@ else{
                     <p class="formatoPreguntas">'
                     . $preguntaTexto .
                     ' 
-                    <input type="text" id="' . $IDTextoEscrito . '"><br>
+                    <input type="text" id="' . $IDTextoEscrito . '">
                     '
                     . $preguntaTexto2 .
                     '  
