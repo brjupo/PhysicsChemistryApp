@@ -6,6 +6,7 @@ var puntos = 0;
 window.onload = function () {
   //startClock();
   contarIDs();
+  limpiarInputs(cantidadIDs);
   showQuestion(1);
 };
 
@@ -220,11 +221,22 @@ function startClock() {
 }
 
 function contarIDs() {
-  for (var i = 1; i <= 100; i++) {
+  for (var i = 1001; i <= 1100; i++) {
     if (document.getElementById(i)) {
       //console.log(document.getElementById(i));
       cantidadIDs = i;
     }
+  }
+}
+
+//Cada vez que se escribe sobre un input
+//Firefox y o Google guardar la variable
+//Para evitar que ya se tengan las respuestas, se limpiaran
+//los campos input cada vez que se inicie [5,15,20,25]
+function limpiarInputs(cantidadIDs){
+  for (var i = 1; i <= cantidadIDs; i++) {
+    //borrar a los i*10-5
+    document.getElementById(i*10-5).value = "";
   }
 }
 
