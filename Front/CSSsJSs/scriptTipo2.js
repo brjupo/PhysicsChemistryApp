@@ -124,12 +124,16 @@ function whiteButtonsType2() {
 
   if (respuestaEscritaUpper == respuestaCorrectaUpper) {
     document.getElementById(inputEscrito).style.color = "green";
-    document.getElementById(inputEscrito).value.toLowerCase();
+    document.getElementById(inputEscrito).value = document
+      .getElementById(inputEscrito)
+      .value.toLowerCase();
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
   } else {
     document.getElementById(inputEscrito).style.color = "red";
-    document.getElementById(inputEscrito).value.toLowerCase();
+    document.getElementById(inputEscrito).value = document
+      .getElementById(inputEscrito)
+      .value.toLowerCase();
   }
 }
 
@@ -166,7 +170,6 @@ function siguientePregunta() {
   preguntaActual = preguntaActual + 1;
   showQuestion(preguntaActual);
 }
-
 
 function enableAllButtons() {
   var numero = preguntaActual;
