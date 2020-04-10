@@ -234,8 +234,8 @@ function contarIDs() {
 //Para evitar que ya se tengan las respuestas, se limpiaran
 //los campos input cada vez que se inicie [5,15,20,25]
 function limpiarInputs(cantidadIDs){
-  console.log(cantidadIDs);
-  for (var i = 1; i <= cantidadIDs; i++) {
+  console.log(cantidadIDs-1000);
+  for (var i = 1; i <= cantidadIDs-1000; i++) {
     //borrar a los i*10-5
     document.getElementById(i*10-5).value = "";
     console.log(i*10-5);
