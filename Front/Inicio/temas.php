@@ -14,17 +14,17 @@
 <body>
   <?php
   //////////////////////////////////////////////////////
+  session_start();
+  echo'<script type="text/javascript">
+            alert("'.$_SESSION["tokenSesion"].$tokenSesionp.'");
+            </script>';
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
-  mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
+  mysqli_stmt_bind_param($statement,"s", $_SESSION["mail"]);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
   mysqli_stmt_bind_result($statement, $tokenSesionp);
-
-  echo'<script type="text/javascript">
-            alert("'.$_SESSION["tokenSesion"].$tokenSesionp.'");
-            </script>';
   
 
   if($_SESSION["tokenSesion"] == $tokenSesionp AND $tokenSesionp != "" )
@@ -78,7 +78,7 @@
         //Si el usuario EXISTE despliega el menú de los temas
         if($temp_id_usuario){
             //Se inicia sesión del usuario 
-            session_start();
+            //session_start();
             //Creamos token de sesión
             $rand = bin2hex(random_bytes(5));
             //Registrar token de sesion en BD
