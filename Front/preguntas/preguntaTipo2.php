@@ -98,7 +98,7 @@ else{
         $rc = "10,000,000";
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
-            imprimirPregunta($x + 1, $arrayr[$x]["pregunta"], "");
+            imprimirPreguntaTipo2($x + 1, $arrayr[$x]["preguntaParte1"], $arrayr[$x]["preguntaParte2"]);
             imprimirImagenRespuestasTipo2($x + 1, $array[$x]["respuesta_correcta"],$array[$x]["id_pregunta"]);
         }
     }
@@ -143,8 +143,9 @@ else{
             ';
     }
 
-    function imprimirPregunta(int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
+    function imprimirPreguntaTipo2(int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
     {
+        $IDTextoEscrito = 10 * $preguntaNumero - 5;
         $preguntaNumero = 1000 + $preguntaNumero;
         echo '
             <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
@@ -155,6 +156,10 @@ else{
                     <p id="preguntaNumero">' . $preguntaNumero . '</p>
                     <p class="formatoPreguntas">'
                     . $preguntaTexto .
+                    ' 
+                    <input type="text" id="' . $IDTextoEscrito . '"><br>
+                    '
+                    . $preguntaTexto2 .
                     '  
                     </p>
                 </div>
@@ -165,7 +170,7 @@ else{
     }
     function imprimirImagenRespuestasTipo2(int $respuestas, $respCorrecta, $imagen)
     {      
-        $IDTextoEscrito = 10 * $respuestas - 5;
+        
         $IDBotonAceptar = 10 * $respuestas - 4;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
@@ -178,7 +183,6 @@ else{
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <input type="text" id="' . $IDTextoEscrito . '"><br>
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -198,7 +202,6 @@ else{
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <input type="text" id="' . $IDTextoEscrito . '"><br>
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
                             <p id="' . $IDvalorCorrecto . '">
                             ' . $respCorrecta . '
