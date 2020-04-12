@@ -182,7 +182,7 @@
         <div class="row text-center">
           <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-            <button class="botonContinuar fondoNeutro">Continuar</button>
+            <button class="botonContinuar">Continuar</button>
           </div>
           <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
         </div>
