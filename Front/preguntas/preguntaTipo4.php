@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <html>
 
 <head>
@@ -40,8 +40,8 @@
         // LEER CON BUCLE FOR EL ARREGLO HASTA ENCONTRAR GUION BAJO Y GUARDAR LA POSICION DONDE SE ENCUENTRE
         $posicion = 0;
         $tamanho = count($arreglo);
-        for ($i = 0; $i < $tamanho; $i++) {
-            if ($arreglo[$i] == '_') {
+        for ($i = 0; $i < $tamanho-1; $i++) {
+            if ($arreglo[$i] == '_' && $arreglo[$i+1] == '_') {
                 $posicion = $i;
                 break;
             }
