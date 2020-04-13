@@ -14,28 +14,65 @@
 <body>
 
 <?php
-session_start();
-
-echo'<script type="text/javascript">
-alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
-</script>';
-
+///////////////////////////////////////////
 $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-$stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
-$result = mysqli_query($con,$stringQuery);
-$rowp = mysqli_fetch_array($result);
-            
-if($rowp){
+  //////////////////////////////////////////////////////
+  session_start();
+  $tokenValidar = array();
   echo'<script type="text/javascript">
-  alert("Ok");  
-  </script>';
-  imprimirSubtemas();
-}
-else{
+            alert("$_SESSION["mail"]");
+            </script>';
+  
+  //Consultar si existe token de usuario
+  $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
+  mysqli_stmt_bind_param($statement,"s", $_SESSION["mail"]);
+  mysqli_stmt_execute($statement);
+
+  mysqli_stmt_store_result($statement);
+  mysqli_stmt_bind_result($statement, $tokenSesionp);
+
+  while(mysqli_stmt_fetch($statement)){
+    $tokenValidar["tokenSesionp"] = $tokenSesionp;  
+}   
+
   echo'<script type="text/javascript">
-  alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
-  window.location.href="https://kaanbal.net";
-  </script>';  
+            alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
+            </script>';
+  
+
+  if($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] AND $tokenValidar["tokenSesionp"] != "" )
+  {imprimirSubtemas();
+  }
+  else{
+
+      echo'<script type="text/javascript">
+              alert("segundo caminio");
+              </script>';
+
+////////////////////////////////////
+
+      echo'<script type="text/javascript">
+      alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
+      </script>';
+
+      //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+      $stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
+      $result = mysqli_query($con,$stringQuery);
+      $rowp = mysqli_fetch_array($result);
+                  
+      if($rowp){
+        echo'<script type="text/javascript">
+        alert("Ok");  
+        </script>';
+        imprimirSubtemas();
+      }
+      else{
+        echo'<script type="text/javascript">
+        alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
+        window.location.href="https://kaanbal.net";
+        </script>';  
+      }
+
 }
 ?>
 
