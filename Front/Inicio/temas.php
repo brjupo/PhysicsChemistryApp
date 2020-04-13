@@ -29,7 +29,7 @@
   mysqli_stmt_bind_result($statement, $tokenSesionp);
 
   echo'<script type="text/javascript">
-            alert("'.$_SESSION["tokenSesion"]."____".$tokenSesionp.'");
+            alert("'.$_SESSION["tokenSesion"]."____".$tokenSesionp[0].'");
             </script>';
   
 
