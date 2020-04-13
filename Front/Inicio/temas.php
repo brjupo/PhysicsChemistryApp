@@ -19,7 +19,7 @@
             alert("primer camino");
             </script>';
   echo'<script type="text/javascript">
-            alert("'.$_SESSION["tokenSesion"]."____".$tokenSesionp.'");
+            alert("'.$_SESSION["tokenSesion"]."_____".$tokenSesionp.'");
             </script>';
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
