@@ -38,7 +38,7 @@
             </script>';
   
 
-  if($_SESSION["tokenSesion"] == $tokenSesionp AND $tokenSesionp != "" )
+  if($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] AND $tokenValidar["tokenSesionp"] != "" )
   {imprimirTemas();
   }
   else{
