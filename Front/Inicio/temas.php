@@ -13,6 +13,7 @@
 
 <body>
   <?php
+  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
   echo'<script type="text/javascript">
@@ -28,7 +29,7 @@
   mysqli_stmt_bind_result($statement, $tokenSesionp);
 
   echo'<script type="text/javascript">
-            alert("'.$_SESSION["tokenSesion"]."____".$tokenSesionp[0].'");
+            alert("'.$_SESSION["tokenSesion"]."____".$tokenSesionp.'");
             </script>';
   
 
@@ -41,7 +42,7 @@
             alert("segundo caminio");
             </script>';
   ////////////////////////////////////////
-  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
+  //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
     
     $correo = $_POST["validarUsuario"];
     $password = $_POST["validarPassword"];
