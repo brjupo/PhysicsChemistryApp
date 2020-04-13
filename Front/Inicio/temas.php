@@ -18,9 +18,7 @@
   echo'<script type="text/javascript">
             alert("primer camino");
             </script>';
-  echo'<script type="text/javascript">
-            alert("'.$_SESSION["tokenSesion"]."_____".$tokenSesionp.'");
-            </script>';
+  
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
   mysqli_stmt_bind_param($statement,"s", $_SESSION["mail"]);
@@ -28,6 +26,10 @@
 
   mysqli_stmt_store_result($statement);
   mysqli_stmt_bind_result($statement, $tokenSesionp);
+
+  echo'<script type="text/javascript">
+            alert("'.$_SESSION["tokenSesion"]."_____".$tokenSesionp[0].'");
+            </script>';
   
 
   if($_SESSION["tokenSesion"] == $tokenSesionp AND $tokenSesionp != "" )
