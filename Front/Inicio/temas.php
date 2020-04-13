@@ -16,8 +16,9 @@
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
+  $tokenValidar = array();
   echo'<script type="text/javascript">
-            alert("primer camino");
+            alert("$_SESSION["mail"]");
             </script>';
   
   //Consultar si existe token de usuario
@@ -28,8 +29,12 @@
   mysqli_stmt_store_result($statement);
   mysqli_stmt_bind_result($statement, $tokenSesionp);
 
+  while(mysqli_stmt_fetch($statement)){
+    $tokenValidar["tokenSesionp"] = $tokenSesionp;  
+}   
+
   echo'<script type="text/javascript">
-            alert("'.$_SESSION["tokenSesion"]."____".$tokenSesionp[0].'");
+            alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
             </script>';
   
 
