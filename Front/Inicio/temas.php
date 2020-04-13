@@ -16,7 +16,10 @@
   //////////////////////////////////////////////////////
   session_start();
   echo'<script type="text/javascript">
-            alert("'.$_SESSION["tokenSesion"].$tokenSesionp.'");
+            alert("primer camino");
+            </script>';
+  echo'<script type="text/javascript">
+            alert("'.$_SESSION["tokenSesion"]."____".$tokenSesionp.'");
             </script>';
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
@@ -31,7 +34,11 @@
   {imprimirTemas();
   }
   else{
-  ////////////////////
+
+    echo'<script type="text/javascript">
+            alert("segundo caminio");
+            </script>';
+  ////////////////////////////////////////
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
     
     $correo = $_POST["validarUsuario"];
