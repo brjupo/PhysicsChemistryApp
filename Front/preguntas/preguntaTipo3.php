@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -8,11 +8,14 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas.css" />
-    <script src="../CSSsJSs/scriptTipo2.js"></script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-    </script>
-    <script type="text/javascript" src="../CSSsJSs/LTX/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../CSSsJSs/scriptTipo2.js"></script><meta charset="UTF-8">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
 </head>
 
 <body>
@@ -233,9 +236,9 @@
 
 
     ?>
-    <p>
-        $90\frac{km}{h}\left(\frac{1000m}{1km}\right)\left(\frac{1h}{3600\
-        s}\right)$
+    <p class="formatoPreguntas">
+        Supongamos que existiera la siguiente fracción \(90\frac{km}{h}\left(\frac{1000m}{1km}\right)\left(\frac{1h}{3600\
+        s}\right)\) si la condición fuera \({_2^1}H_4^3$\) ¿Cuánto duraría en el vacío?
     </p>
 
 
