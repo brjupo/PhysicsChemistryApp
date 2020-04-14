@@ -238,7 +238,7 @@
     ?>
     <p class="formatoPreguntas">
         Supongamos que existiera la siguiente fracción \(90\frac{km}{h}\left(\frac{1000m}{1km}\right)\left(\frac{1h}{3600\
-        s}\right)\) si la condición fuera \({_2^1}H_4^3$\) ¿Cuánto duraría en el vacío?
+        s}\right)\) si la condición fuera \({_2^1}H_4^3$\) ¿Cuánto duraría en el vacío? R:
     </p>
 
 
