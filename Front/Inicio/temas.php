@@ -13,11 +13,14 @@
 
 <body>
   <?php
+  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
+  $tokenValidar = array();
   echo'<script type="text/javascript">
-            alert("'.$_SESSION["tokenSesion"].$tokenSesionp.'");
+            alert("$_SESSION["mail"]");
             </script>';
+  
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
   mysqli_stmt_bind_param($statement,"s", $_SESSION["mail"]);
@@ -25,14 +28,26 @@
 
   mysqli_stmt_store_result($statement);
   mysqli_stmt_bind_result($statement, $tokenSesionp);
+
+  while(mysqli_stmt_fetch($statement)){
+    $tokenValidar["tokenSesionp"] = $tokenSesionp;  
+}   
+
+  echo'<script type="text/javascript">
+            alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
+            </script>';
   
 
-  if($_SESSION["tokenSesion"] == $tokenSesionp AND $tokenSesionp != "" )
+  if($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] AND $tokenValidar["tokenSesionp"] != "" )
   {imprimirTemas();
   }
   else{
-  ////////////////////
-  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
+
+    echo'<script type="text/javascript">
+            alert("segundo caminio");
+            </script>';
+  ////////////////////////////////////////
+  //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
     
     $correo = $_POST["validarUsuario"];
     $password = $_POST["validarPassword"];
