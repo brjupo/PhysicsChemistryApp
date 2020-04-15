@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="../CSSsJSs/styleLecciones.css" />
   <script src="../CSSsJSs/scriptLecciones.js"></script>
 </head>
-
 <body>
 
 <?php
