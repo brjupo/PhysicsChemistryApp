@@ -17,9 +17,9 @@
   //////////////////////////////////////////////////////
   session_start();
   $tokenValidar = array();
-  echo'<script type="text/javascript">
+  /* echo'<script type="text/javascript">
             alert("$_SESSION["mail"]");
-            </script>';
+            </script>'; */
   
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
@@ -33,9 +33,9 @@
     $tokenValidar["tokenSesionp"] = $tokenSesionp;  
 }   
 
-  echo'<script type="text/javascript">
+  /* echo'<script type="text/javascript">
             alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
-            </script>';
+            </script>'; */
   
 
   if($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] AND $tokenValidar["tokenSesionp"] != "" )
@@ -43,9 +43,9 @@
   }
   else{
 
-    echo'<script type="text/javascript">
+    /* echo'<script type="text/javascript">
             alert("segundo caminio");
-            </script>';
+            </script>'; */
   ////////////////////////////////////////
   //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
     
@@ -86,9 +86,9 @@
             //$response["flag"] = $flag;
         }
 
-        echo'<script type="text/javascript">
+        /* echo'<script type="text/javascript">
         alert("'.$id_usuario.$mail.$pswd.$tokenA.$tokenSesion.$idioma.'");
-        </script>';
+        </script>'; */
     
         //Si el usuario EXISTE despliega el menú de los temas
         if($temp_id_usuario){
