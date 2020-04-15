@@ -21,7 +21,12 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == botonSiguientePregunta) {
-      siguientePregunta();
+      if(cantidadIDs-1000 == preguntaActual){
+        window.location.replace("https://kaanbal.net");
+      }
+      else{
+        siguientePregunta();
+      }     
       return;
     }
     if (
