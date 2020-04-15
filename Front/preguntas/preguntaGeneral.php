@@ -48,7 +48,7 @@
         // PARTIR LA PREGUNTA EN 2 CADENAS, SI POSICION = 0, SIGNIFICA QUE LA PREGUNTA NO DEBE SER PARTIDA
         if ($posicion != 0) {
             $preguntaParte1 = substr($arrayr[$j]["pregunta"], 0, $posicion - 1);
-            $preguntaParte2 = substr($arrayr[$j]["pregunta"], $posicion + 1, strlen($arrayr[$j]["pregunta"]));
+            $preguntaParte2 = substr($arrayr[$j]["pregunta"], $posicion + 4, strlen($arrayr[$j]["pregunta"]));
         } else {
             $preguntaParte1 = $arrayr[$j]["pregunta"];
             $preguntaParte2 = "";
