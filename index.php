@@ -13,6 +13,10 @@
 </head>
 
 <body>
+<?php
+session_destroy();
+
+echo '
   <!----------------------------------------------TITULO--------------------------------------------->
   <div class="top">
     <div class="container">
@@ -104,8 +108,10 @@
         <p style="color:rgba(0,0,0,0)">.</p>
       </div>
     </div>
-  </div>
+  </div>';
+  ?>
 </body>
+
 <footer class="foot">
   <div class=" container ">
     <div class=" row text-center">

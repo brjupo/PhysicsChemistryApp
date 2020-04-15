@@ -72,5 +72,5 @@ function toggleAvatar(){
     document.getElementById("avatarElegir").classList.toggle("ocultarOpciones");
 }
 function do_logout(){
-    location.replace("index.html");
+    location.replace("index.php");
 }
