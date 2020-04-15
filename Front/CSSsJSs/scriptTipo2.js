@@ -138,7 +138,9 @@ function whiteButtonsType2() {
 }
 
 function restoreInputColors() {
-  document.getElementById(10 * preguntaActual - 5).style.color = "black";
+  if(document.getElementById(10 * preguntaActual - 5)){
+    document.getElementById(10 * preguntaActual - 5).style.color = "black";
+  }
 }
 
 function sprintNext() {
