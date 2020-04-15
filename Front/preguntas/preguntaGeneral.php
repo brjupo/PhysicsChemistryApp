@@ -8,14 +8,12 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas.css" />
-    <script src="../CSSsJSs/scriptTipo2.js"></script><meta charset="UTF-8">
+    <script src="../CSSsJSs/scriptTipo2.js"></script>
+    <meta charset="UTF-8">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-    ></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 
 <body>
     <?php
@@ -42,8 +40,8 @@
         // LEER CON BUCLE FOR EL ARREGLO HASTA ENCONTRAR GUION BAJO Y GUARDAR LA POSICION DONDE SE ENCUENTRE
         $posicion = 0;
         $tamanho = count($arreglo);
-        for ($i = 0; $i < $tamanho; $i++) {
-            if ($arreglo[$i] == '_') {
+        for ($i = 0; $i < $tamanho - 2; $i++) {
+            if ($arreglo[$i] == '_' && $arreglo[$i + 1] == '_' && $arreglo[$i + 2] == '_') {
                 $posicion = $i;
                 break;
             }
@@ -101,10 +99,33 @@
         $r3 = "1,000,000";
         $r4 = "10,000";
         $rc = "10,000,000";
+        $imagen=1;
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
-            imprimirPreguntaTipo2($x + 1, $arrayr[$x]["preguntaParte1"], $arrayr[$x]["preguntaParte2"]);
-            imprimirImagenRespuestasTipo2($x + 1, $array[$x]["respuesta_correcta"], $array[$x]["id_pregunta"]);
+            if ($x) {
+                imprimirPreguntaTipo1($x + 1, $arrayr[$x]["pregunta"]);
+                imprimirImagenRespuestasTipo1(
+                    $x + 1,
+                    $arrayr[$x]["respuesta_correcta"],
+                    $arrayr[$x]["respuesta2"],
+                    $arrayr[$x]["respuesta3"],
+                    $arrayr[$x]["respuesta4"],
+                    $array[$x]["respuesta_correcta"],
+                    $imagen
+                );
+            } else {
+                imprimirPreguntaTipo2(
+                    $x + 1,
+                    $arrayr[$x]["preguntaParte1"],
+                    $arrayr[$x]["preguntaParte2"]
+                );
+                imprimirImagenRespuestasTipo2(
+                    $x + 1,
+                    $array[$x]["respuesta_correcta"],
+                    $array[$x]["id_pregunta"],
+                    $imagen
+                );
+            }
         }
     }
     ?>
@@ -148,6 +169,131 @@
             ';
     }
 
+    /*
+    Mis nacadas
+    ID Pregunta = 1000 + Número de pregunta
+    ID Respuesta = 2000 + Número de pregunta
+    ID Respuesta correcta = 3000 + Número de pregunta
+
+    Opción 4 = 10 * Número de pregunta
+    Opción 3 = 10 * Número de pregunta - 1
+    Opción 2 = 10 * Número de pregunta - 2
+    Opción 1 = 10 * Número de pregunta - 3
+    ID Boton aceptar = 10 * Número de pregunta - 4
+    Texto Escrito = 10 * Número de pregunta - 5
+
+    */
+    function imprimirPreguntaTipo1(int $preguntaNumero, $preguntaTexto)
+    {
+        $preguntaNumero = 1000 + $preguntaNumero;
+        echo '
+            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+            <div class="container" style="display:none" id="' . $preguntaNumero . '">
+            <div class="row">
+                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                <p id="preguntaNumero">' . $preguntaNumero . '</p>
+                <p class="formatoPreguntas">'
+                    . $preguntaTexto .
+                    '  
+                </p>
+                </div>
+                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+            </div>
+            </div>
+        ';
+    }
+    function imprimirImagenRespuestasTipo1(int $respuestas, $r1, $r2, $r3, $r4, $respCorrecta, $imagen)
+    {
+        $uno = 10 * $respuestas - 3;
+        $dos = 10 * $respuestas - 2;
+        $tres = 10 * $respuestas - 1;
+        $cuatro = 10 * $respuestas;
+        $respuestaNumero = 2000 + $respuestas;
+        $IDvalorCorrecto = 3000 + $respuestas;
+        $path = "../imagenes/" . $imagen . ".jpg";
+        //echo '<p>'.$path.'</p>';
+        if (file_exists($path)) {
+            echo '
+            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+            <div class="container" style="display:none" id ="' . $respuestaNumero . '">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
+                <p id="' . $IDvalorCorrecto . '">
+                    ' . $respCorrecta . '
+                </p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <button class="Opcion1" id="' . $uno . '">
+                    ' . $r1 . '
+                </button><br>
+                <button class="Opcion3" id="' . $dos . '">
+                    ' . $r2 . '
+                </button>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <button class="Opcion2" id="' . $tres . '">
+                    ' . $r3 . '
+                </button><br>
+                <button class="Opcion4" id="' . $cuatro . '">
+                    ' . $r4 . '
+                </button>
+                </div>
+            </div>
+            </div>
+        ';
+        }
+        else{
+            echo '
+            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+            <div class="container" style="display:none" id ="' . $respuestaNumero . '">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p id="' . $IDvalorCorrecto . '">
+                    ' . $respCorrecta . '
+                </p>
+                </div>
+                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <button class="Opcion1" id="' . $uno . '">
+                        ' . $r1 . '
+                    </button><br>
+                    <button class="Opcion3" id="' . $dos . '">
+                        ' . $r2 . '
+                    </button>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <button class="Opcion2" id="' . $tres . '">
+                        ' . $r3 . '
+                    </button><br>
+                    <button class="Opcion4" id="' . $cuatro . '">
+                        ' . $r4 . '
+                    </button>
+                </div>
+                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+                </div>
+            </div>
+            </div>
+        ';
+        }
+        
+    }
+    /*
+    Mis nacadas
+    ID Pregunta = 1000 + Número de pregunta
+    ID Respuesta = 2000 + Número de pregunta
+    ID Respuesta correcta = 3000 + Número de pregunta
+
+    Opción 4 = 10 * Número de pregunta
+    Opción 3 = 10 * Número de pregunta - 1
+    Opción 2 = 10 * Número de pregunta - 2
+    Opción 1 = 10 * Número de pregunta - 3
+    ID Boton aceptar = 10 * Número de pregunta - 4
+    Texto Escrito = 10 * Número de pregunta - 5
+
+    */
     function imprimirPreguntaTipo2(int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
     {
         $IDTextoEscrito = 10 * $preguntaNumero - 5;
@@ -160,12 +306,12 @@
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
                     <p id="preguntaNumero">' . $preguntaNumero . '</p>
                     <p class="formatoPreguntas">'
-            . $preguntaTexto .
-            ' 
+                    . $preguntaTexto .
+                    ' 
                     <input type="text" id="' . $IDTextoEscrito . '">
                     '
-            . $preguntaTexto2 .
-            '  
+                    . $preguntaTexto2 .
+                    '  
                     </p>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
@@ -235,12 +381,6 @@
 
 
     ?>
-    <p class="formatoPreguntas">
-        Supongamos que existiera la siguiente fracción \(90\frac{km}{h}\left(\frac{1000m}{1km}\right)\left(\frac{1h}{3600\
-        s}\right)\) si la condición fuera \({_2^1}H_4^3$\) ¿Cuánto duraría en el vacío? R:
-    </p>
-
-
 
 
 </body>
