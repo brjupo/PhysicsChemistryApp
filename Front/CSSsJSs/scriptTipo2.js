@@ -65,7 +65,7 @@ function seguroRegresar() {
 function whiteButtons(seleccionada) {
   var numero = preguntaActual;
   var numeroCorrecta = 3000 + numero;
-  respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML;
+  respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML.trim();
   //console.log(respuestaCorrecta);
   var IDrespuestaCorrecta;
   for (var i = 10 * numero - 3; i <= 10 * numero; i++) {
@@ -73,7 +73,7 @@ function whiteButtons(seleccionada) {
     document.getElementById(i).className = "OpcionBlanco";
     //Buscar el id que contiene lo mismo que la respuesta correcta
     //console.log(document.getElementById(i).innerHTML);
-    if (document.getElementById(i).innerHTML == respuestaCorrecta) {
+    if (document.getElementById(i).innerHTML.trim() == respuestaCorrecta) {
       IDrespuestaCorrecta = i;
       //console.log(i);
     }
