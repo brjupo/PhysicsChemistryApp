@@ -19,9 +19,9 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
   //////////////////////////////////////////////////////
   session_start();
   $tokenValidar = array();
-  echo'<script type="text/javascript">
+  /* echo'<script type="text/javascript">
             alert("$_SESSION["mail"]");
-            </script>';
+            </script>'; */
   
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
@@ -35,9 +35,9 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
     $tokenValidar["tokenSesionp"] = $tokenSesionp;  
 }   
 
-  echo'<script type="text/javascript">
+ /*  echo'<script type="text/javascript">
             alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
-            </script>';
+            </script>'; */
   
 
   if($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] AND $tokenValidar["tokenSesionp"] != "" )
@@ -45,15 +45,15 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
   }
   else{
 
-      echo'<script type="text/javascript">
+      /* echo'<script type="text/javascript">
               alert("segundo caminio");
-              </script>';
+              </script>'; */
 
 ////////////////////////////////////
 
-      echo'<script type="text/javascript">
+      /* echo'<script type="text/javascript">
       alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
-      </script>';
+      </script>'; */
 
       //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
       $stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
@@ -61,14 +61,10 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
       $rowp = mysqli_fetch_array($result);
                   
       if($rowp){
-        echo'<script type="text/javascript">
-        alert("Ok");  
-        </script>';
         imprimirSubtemas();
       }
       else{
         echo'<script type="text/javascript">
-        alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
         window.location.href="https://kaanbal.net";
         </script>';  
       }
