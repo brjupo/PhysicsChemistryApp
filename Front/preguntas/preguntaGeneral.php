@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas.css" />
     <script src="../CSSsJSs/scriptTipo2.js"></script>
-    <meta charset="UTF-8">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -102,7 +101,7 @@
         $imagen=1;
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
-            if ($x) {
+            if ($arrayr[$x]["tipo"]=="1") {
                 imprimirPreguntaTipo1($x + 1, $arrayr[$x]["pregunta"]);
                 imprimirImagenRespuestasTipo1(
                     $x + 1,
@@ -111,7 +110,7 @@
                     $arrayr[$x]["respuesta3"],
                     $arrayr[$x]["respuesta4"],
                     $array[$x]["respuesta_correcta"],
-                    $imagen
+                    $array[$x]["id_pregunta"]
                 );
             } else {
                 imprimirPreguntaTipo2(
@@ -122,8 +121,7 @@
                 imprimirImagenRespuestasTipo2(
                     $x + 1,
                     $array[$x]["respuesta_correcta"],
-                    $array[$x]["id_pregunta"],
-                    $imagen
+                    $array[$x]["id_pregunta"]
                 );
             }
         }
