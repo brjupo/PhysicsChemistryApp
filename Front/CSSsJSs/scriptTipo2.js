@@ -252,8 +252,10 @@ function limpiarInputs(cantidadIDs) {
   console.log(cantidadIDs - 1000);
   for (var i = 1; i <= cantidadIDs - 1000; i++) {
     //borrar a los i*10-5
-    document.getElementById(i * 10 - 5).value = "";
-    console.log(i * 10 - 5);
+    if (document.getElementById(i * 10 - 5)) {
+      document.getElementById(i * 10 - 5).value = "";
+      console.log(i * 10 - 5);
+    }
   }
 }
 
