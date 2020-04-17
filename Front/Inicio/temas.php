@@ -241,7 +241,7 @@
 
   function imprimirTema($numeroTema,$nombreTema){
     $numeroCSSTema = 1+$numeroTema%4;
-    //Como decidiras que color elegir "temaPrincipal(1,2,3,4)"
+    //Como decidiras que color elegir "temaPrincipal(1,2,3,4) "
     echo '
       <div class="container">
         <div class="row">
