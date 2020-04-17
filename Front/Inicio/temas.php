@@ -40,7 +40,9 @@
 
   if($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] AND $tokenValidar["tokenSesionp"] != "" )
   {
-    //imprimirPagina();
+    $arregloTemas = array();
+    $arregloTemas = traerTemas();
+    imprimirPagina($arregloTemas);
   }
   else{
 
@@ -108,7 +110,9 @@
             $_SESSION["tokenSesion"] = $rand;
             $_SESSION["idioma"] = $temp_idioma;
             //Imprimimos pantalla de temas
-            //imprimirPagina();
+            $arregloTemas = array();
+            $arregloTemas = traerTemas();
+            imprimirPagina($arregloTemas);
         }
 
         //Si el usuario NO EXISTE mensaje de error y retorna a inicio
@@ -121,14 +125,40 @@
     }
   }
 
+  function traerTemas(){
+    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+    $statement = mysqli_prepare($con, "SELECT * FROM tema");//WHERE mail = ? AND pswd = ?
+    //mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+    mysqli_stmt_execute($statement);
 
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $id_tema, $id_asignatura, $nombre);
 
+    $arregloTemas = array();
+    $i=0;
+    //Leemos datos del usuario
+    while(mysqli_stmt_fetch($statement)){//si si existe el usuario
+        $arregloTemas[$i]["id_tema"] = $id_tema;
+        $arregloTemas[$i]["id_asignatura"]= $id_asignatura;            
+        $arregloTemas[$i]["nombre"] = $nombre;  
+        $i=$i+1;   
+    }
 
-  function imprimirPagina(){
+    return($arregloTemas);
+} 
+
+$total = mysqli_fetch_row($result2);
+//$total = 10;
+//Recorrer el arreglo
+while ($row = mysqli_fetch_assoc($result)) {
+  $array[] = $row;
+  $arrayr[] = $row;
+}
+//////////////////////
+  function imprimirPagina($arregloTemas){
     imprimirTitulo();
     imprimirCita();
     imprimirSiempreAparece();
-    $arregloTemas=1;
     /* RECORDATORIO */
     imprimirTemas($arregloTemas);
     imprimirRelleno();
@@ -136,14 +166,13 @@
   }
 
   function imprimirTemas($arregloTemas){
-    if($arregloTemas==1){
-      echo"";
-    }
-    //for
-    $numeroTema=1;
-    $nombreTema=1;
-    imprimirTema($numeroTema,$nombreTema);
+    $tamanho = count($arregloTemas);
+    for ($i = 0; $i < $tamanho; $i++) { 
+        imprimirTema($i+1,$arregloTemas[$i]["nombre"]);  
+      }
   }
+    
+  
 
   /* Recordatorio
   Recuerda que tienes 4 colores para cambiarlos
