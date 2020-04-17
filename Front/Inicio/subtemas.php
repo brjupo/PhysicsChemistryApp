@@ -169,12 +169,6 @@
 
   function imprimirSubtema($numeroSubtema, $nombreSubtema)
   {
-    if ($numeroSubtema) {
-      //as
-    }
-    if ($nombreSubtema) {
-      //asd
-    }
     echo '
       <div class="container">
         <div id="seccion'.$numeroSubtema.'" class="row">
@@ -184,10 +178,10 @@
               <tbody>
                 <tr>
                   <td width="6%">
-                    <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/one.svg" />
+                    <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/'.$numeroSubtema.'.svg" />
                   </td>
                   <td width="58%" class="tituloTemasPrincipales">
-                    Identificar triángulos rectángulos
+                  '.$nombreSubtema.'
                   </td>
                   <!--td width="5%" rowspan="2" class="separadorTemasPrincipales">|</td-->
 
