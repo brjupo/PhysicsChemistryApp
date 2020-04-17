@@ -41,7 +41,9 @@
 
 
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
-    //imprimirSubtemas();
+    $arregloSubtemas = array();
+    $arregloSubtemas = traerSubtemas();
+    imprimirPaginaSubtemas($arregloSubtemas);
   } else {
 
     /* echo'<script type="text/javascript">
@@ -60,7 +62,10 @@
     $rowp = mysqli_fetch_array($result);
 
     if ($rowp) {
-      //imprimirSubtemas();
+      $arregloSubtemas = array();
+      $arregloSubtemas = traerSubtemas();
+      imprimirPaginaSubtemas($arregloSubtemas);
+
     } else {
       echo '<script type="text/javascript">
         window.location.href="https://kaanbal.net";
@@ -71,25 +76,44 @@
 
   <?php
 
-  function imprimirPaginaSubtemas()
+function traerSubtemas(){
+  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+  $statement = mysqli_prepare($con, "SELECT * FROM subtema");//WHERE mail = ? AND pswd = ?
+  //mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+  mysqli_stmt_execute($statement);
+
+  mysqli_stmt_store_result($statement);
+  mysqli_stmt_bind_result($statement, $id_subtema, $id_tema, $nombre);
+
+  $arregloSubtemas = array();
+  $i=0;
+  //Leemos datos del usuario
+  while(mysqli_stmt_fetch($statement)){//si si existe el usuario
+      $arregloTemas[$i]["id_subtema"] = $id_subtema;
+      $arregloTemas[$i]["id_tema"]= $id_tema;            
+      $arregloTemas[$i]["nombre"] = $nombre;  
+      $i=$i+1;   
+  }
+
+  return($arregloSubtemas);
+}
+
+  function imprimirPaginaSubtemas($arregloSubtemas)
   {
     imprimirTitulo();
     imprimirSiempreAparece();
-    $arraySubtemas = 1;
-    imprimirSubtemas($arraySubtemas);
+    imprimirSubtemas($arregloSubtemas);
 
     imprimirRelleno();
     imprimirFooter();
   }
 
-  function imprimirSubtemas($arraySubtemas)
+  function imprimirSubtemas($arregloSubtemas)
   {
-    if ($arraySubtemas) {
-    }
-    $numeroSubtema = 1;
-    $nombreSubtema = 1;
-    //for(){}
-    imprimirSubtema($numeroSubtema, $nombreSubtema);
+    $tamanho = count($arregloSubtemas);
+    for ($i = 0; $i < $tamanho; $i++) { 
+        imprimirSubtema($i+1,$arregloSubtemas[$i]["nombre"]);  
+      }
   }
 
 
