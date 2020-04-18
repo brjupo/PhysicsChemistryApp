@@ -209,15 +209,49 @@
         $cuatro = 10 * $respuestas;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
-        $path = "../imagenes/" . $imagen . ".jpg";
+        $imgjpg = $imagen . ".jpg";
+        $imgJPG = $imagen . ".JPG";
+        $pathjpg = "../imagenes/" . $imgjpg;
+        $pathJPG = "../imagenes/" . $imgJPG;
         //echo '<p>'.$path.'</p>';
-        if (file_exists($path)) {
+        if (file_exists($pathjpg)) {
             echo '
             <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
+                <p id="' . $IDvalorCorrecto . '">
+                    ' . $respCorrecta . '
+                </p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <button class="Opcion1" id="' . $uno . '">
+                    ' . $r1 . '
+                </button><br>
+                <button class="Opcion3" id="' . $dos . '">
+                    ' . $r2 . '
+                </button>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <button class="Opcion2" id="' . $tres . '">
+                    ' . $r3 . '
+                </button><br>
+                <button class="Opcion4" id="' . $cuatro . '">
+                    ' . $r4 . '
+                </button>
+                </div>
+            </div>
+            </div>
+        ';
+        }
+        elseif (file_exists($pathJPG)) {
+            echo '
+            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+            <div class="container" style="display:none" id ="' . $respuestaNumero . '">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <img src="../imagenes/' . $imagen . '.JPG" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '">
                     ' . $respCorrecta . '
                 </p>
