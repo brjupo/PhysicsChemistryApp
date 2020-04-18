@@ -203,7 +203,6 @@
     }
     function imprimirImagenRespuestasTipo1(int $respuestas, $r1, $r2, $r3, $r4, $respCorrecta, $imagen)
     {
-        echo($imagen);
         $uno = 10 * $respuestas - 3;
         $dos = 10 * $respuestas - 2;
         $tres = 10 * $respuestas - 1;
