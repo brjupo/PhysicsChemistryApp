@@ -23,10 +23,10 @@ function entrada(){
     function doSetTimeout(i) {
       var sesion = "seccion";
       sesion = sesion.concat(i);
-      console.log("CAmbiando opacidad a ", sesion);
+      console.log("Cambiando opacidad a ", sesion);
       setTimeout(function() { opacity(sesion); }, i*200);
     }
-    for (var i = 1; i <= 4; ++i){
+    for (var i = 1; i <= cantidadIDs; ++i){
       doSetTimeout(i);
     }
 }
