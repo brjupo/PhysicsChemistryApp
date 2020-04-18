@@ -42,9 +42,6 @@
   {
     $arregloTemas = array();
     $arregloTemas = traerTemas();
-    echo'<script type="text/javascript">
-            alert("se validaron variables de sesión");
-            </script>'; 
     imprimirPagina($arregloTemas);
   }
   else{
