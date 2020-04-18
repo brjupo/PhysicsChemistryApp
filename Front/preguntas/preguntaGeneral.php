@@ -18,10 +18,10 @@
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //Traer todas las preguntas
-    $query = "SELECT * FROM pregunta WHERE id_pregunta IN (102,116,186)"; //WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
+    $query = "SELECT * FROM pregunta WHERE id_pregunta"; //WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
     $result = mysqli_query($con, $query);
     //contar Numero de elementos
-    $query2 = "SELECT count(*) FROM pregunta WHERE id_pregunta IN (102,116,186)"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+    $query2 = "SELECT count(*) FROM pregunta WHERE id_pregunta"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
     $result2 = mysqli_query($con, $query2);
     $total = mysqli_fetch_row($result2);
     //$total = 10;
