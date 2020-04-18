@@ -23,12 +23,14 @@
 
 @font-face {
   font-family: "Roboto";
-  src: url("../CSSsJSs/Fonts/roboto/RobotoCondensed-Light.ttf") format("truetype");
+  src: url("../CSSsJSs/Fonts/roboto/RobotoCondensed-Light.ttf")
+    format("truetype");
 }
 
 @font-face {
   font-family: "Monse";
-  src: url("../CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf") format("opentype");
+  src: url("../CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf")
+    format("opentype");
 }
 
 @font-face {
@@ -112,8 +114,8 @@ p {
   float: right;
 }
 
-td{
-  padding:0px !important;
+td {
+  padding: 0px !important;
 }
 
 .iconsNumber {
@@ -195,7 +197,11 @@ td{
   width: 100%;
 }
 
-.nulo, .principiante, .intermedio, .avanzado, .experto {
+.nulo,
+.principiante,
+.intermedio,
+.avanzado,
+.experto {
   background-color: rgb(70, 160, 230);
   font-size: 13px;
   color: white;
@@ -244,11 +250,26 @@ td{
   }
 }
 
-#seccion0, #seccion1, #seccion2, #seccion3, #seccion4, #seccion5, #seccion6, #seccion7, #seccion8 {
+/*
+.fadeIn {
+  animation: fadein 2s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}*/
+
+#seccion1, #seccion2, #seccion3, #seccion4{
   /*display: none;*/
   opacity: 0.0;
   transition: opacity 2s ease-in-out;
 }
+
 
 /*--------------------------------------------------------- FIN TEMAS PRINCIPALES---------------------------------------*/
 
@@ -277,14 +298,16 @@ td{
   }
 }
 
-.footIcon:hover, .footIcon:active {
+.footIcon:hover,
+.footIcon:active {
   filter: opacity(70%) brightness(80%);
   padding: 0px 0px 0px 0px;
   width: 5vw;
 }
 
 @media screen and (max-width: 768px) {
-  .footIcon:hover, .footIcon:active {
+  .footIcon:hover,
+  .footIcon:active {
     width: 50px;
   }
 }
@@ -298,19 +321,23 @@ td{
 /*------------------------------------------------ANIMACIONES--------------------------*/
 
 @keyframes rebote {
-  0%, 20% {
+  0%,
+  20% {
     -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     -webkit-transform: translate3d(200px, 0, 0);
     transform: translate3d(200px, 0, 0);
   }
-  53%, 80%, to {
+  53%,
+  80%,
+  to {
     -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
-  40%, 43% {
+  40%,
+  43% {
     -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
     animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
     -webkit-transform: translate3d(100px, 0, 0);
@@ -333,8 +360,28 @@ td{
 }
 
 /*--------------------TABLE FIXED---------------------*/
-table.fixed {table-layout:fixed; width:90px;}
-table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
-table.fixed td:nth-of-type(1) {width:20px;}/*Setting the width of column 1.*/
-table.fixed td:nth-of-type(2) {width:30px;}/*Setting the width of column 2.*/
-table.fixed td:nth-of-type(3) {width:40px;}/*Setting the width of column 3.*/
+table.fixed {
+  table-layout: fixed;
+  width: 90px;
+}
+table.fixed td {
+  overflow: hidden;
+} /*Hide text outside the cell.*/
+table.fixed td:nth-of-type(1) {
+  width: 20px;
+} /*Setting the width of column 1.*/
+table.fixed td:nth-of-type(2) {
+  width: 30px;
+} /*Setting the width of column 2.*/
+table.fixed td:nth-of-type(3) {
+  width: 40px;
+} /*Setting the width of column 3.*/
+
+/*------------------OPACIDAD--------*/
+.zeroOpacity {
+  opacity: 0;
+}
+
+.fullOpacity {
+  opacity: 1;
+}
