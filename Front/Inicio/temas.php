@@ -55,8 +55,14 @@
   ////////////////////////////////////////
   //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
     
-    $correo = $_POST["validarUsuario"];
-    $password = $_POST["validarPassword"];
+    $correotemp = $_POST["validarUsuario"];
+    $passwordtemp = $_POST["validarPassword"];
+
+    $correo = $correotemp;
+    $password = $passwordtemp;
+
+    unset($correotemp);
+    unset($passwordtemp);
     
     //Validamos que los campos correo y password no lleguen vacios
     if($correo == "" OR $password == ""){
