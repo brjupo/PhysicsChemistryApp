@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="icons/EducAppIcon.png"
-    />
-    <title>Lecciones</title>
-    <link rel="stylesheet" href="CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="CSSsJSs/styleLecciones.css" />
-    <script src="CSSsJSs/scriptLecciones.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
+  <title>Lecciones</title>
+  <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
+  <link rel="stylesheet" href="../CSSsJSs/styleLecciones.css" />
+  <script src="../CSSsJSs/scriptLecciones.js"></script>
+</head>
 
   <body>
     <!----------------------------------------------TITULO--------------------------------------------->
