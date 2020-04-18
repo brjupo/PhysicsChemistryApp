@@ -46,9 +46,9 @@
   }
   else{
 
-    echo'<script type="text/javascript">
+    /* echo'<script type="text/javascript">
             alert("segundo caminio");
-            </script>'; 
+            </script>'; */
   ////////////////////////////////////////
   //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
     
