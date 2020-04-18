@@ -29,8 +29,8 @@ function contarIDs() {
     for (var i = 0; i <= 100; i++) {
         var sesion = "seccion";
         sesion = sesion.concat(i);
-        console.log(sesion);
       if (document.getElementById(sesion)) {
+        console.log(sesion);
         //console.log(document.getElementById(i));
         cantidadIDs = i;
       }
