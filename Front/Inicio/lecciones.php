@@ -112,7 +112,7 @@ else{
           //Imprimimos pantalla de temas
           $arregloLecciones = array();
           $arregloLecciones = traerLecciones();
-          imprimirPagina($arregloLecciones);
+          imprimirPaginaLecciones($arregloLecciones);
       }
 
       //Si el usuario NO EXISTE mensaje de error y retorna a inicio
