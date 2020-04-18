@@ -105,6 +105,7 @@ a {
 .boton1:hover,
 .boton1:active {
   margin: 5.5vw 0vw 2vw 0vw;
+  width: 40vw;
   height: 6.5vw;
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid #a1a1a1;
@@ -114,7 +115,7 @@ a {
   .boton1 {
     margin: 40px 0px 15px 0px;
     font-size: 20px;
-    width: 300px;
+    width: 70%;
     height: 60px;
     box-shadow: 0px -5px 0px #d6d6d6 inset;
   }
@@ -122,7 +123,7 @@ a {
   .boton1:active {
     margin: 45px 0px 15px 0px;
     font-size: 20px;
-    width: 300px;
+    width: 70%;
     height: 55px;
   }
 }
