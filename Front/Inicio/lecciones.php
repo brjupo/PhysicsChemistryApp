@@ -13,13 +13,140 @@
 
 <body>
   <?php
+$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+//////////////////////////////////////////////////////
+session_start();
+$tokenValidar = array();
+/* echo'<script type="text/javascript">
+          alert("$_SESSION["mail"]");
+          </script>'; */
+
+//Consultar si existe token de usuario
+$statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
+mysqli_stmt_bind_param($statement,"s", $_SESSION["mail"]);
+mysqli_stmt_execute($statement);
+
+mysqli_stmt_store_result($statement);
+mysqli_stmt_bind_result($statement, $tokenSesionp);
+
+while(mysqli_stmt_fetch($statement)){
+  $tokenValidar["tokenSesionp"] = $tokenSesionp;  
+}   
+
+/* echo'<script type="text/javascript">
+          alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
+          </script>'; */
 
 
+if($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] AND $tokenValidar["tokenSesionp"] != "" )
+{
+  $arregloLecciones = array();
+  $arregloLecciones = traerLecciones();
+  imprimirPaginaLecciones($arregloLecciones);
+}
+else{
+
+  /* echo'<script type="text/javascript">
+          alert("segundo caminio");
+          </script>'; */
+////////////////////////////////////////
+//$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
+  
+  $correo = $_POST["validarUsuario"];
+  $password = $_POST["validarPassword"];
+  
+  //Validamos que los campos correo y password no lleguen vacios
+  if($correo == "" OR $password == ""){
+      echo'<script type="text/javascript">
+          alert("Ingresa usuario y/o contraseña");
+          window.location.href="https://kaanbal.net";
+          </script>';
+  }
+  else{
+  
+      //Consultar si existe usuario en tabla alumnos
+      $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
+      mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+      mysqli_stmt_execute($statement);
+  
+      mysqli_stmt_store_result($statement);
+      mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA, $tokenSesion, $idioma);
+  
+      
+    
+      //Leemos datos del usuario
+      while(mysqli_stmt_fetch($statement)){//si si existe el usuario
+          $temp_id_usuario = $id_usuario;
+          $temp_mail= $mail;            
+          $temp_pswd = $pswd;
+          $temp_tokenA = $tokenA;
+          $temp_tokenSesion = $tokenSesion;
+          $temp_idioma= $idioma;            
+          //$response["token"] = $token;
+          //$response["token_a"] = $token_a;
+          //$response["tokenp"] = $tokenp;
+          //$response["tokenpp"] = $tokenpp;
+          //$response["flag"] = $flag;
+      }
+
+      /* echo'<script type="text/javascript">
+      alert("'.$id_usuario.$mail.$pswd.$tokenA.$tokenSesion.$idioma.'");
+      </script>'; */
+  
+      //Si el usuario EXISTE despliega el menú de los temas
+      if($temp_id_usuario){
+          //Se inicia sesión del usuario 
+          //session_start();
+          //Creamos token de sesión
+          $rand = bin2hex(random_bytes(5));
+          //Registrar token de sesion en BD
+          $sql = "UPDATE usuario_prueba SET tokenSesion='$rand' WHERE mail = '$correo'";
+          mysqli_query($con,$sql);
+          //Aactualizamos variables de sesión
+          $_SESSION["id_usuario"] = $temp_id_usuario;
+          $_SESSION["mail"] = $temp_mail;
+          $_SESSION["pswd"] = $temp_pswd;
+          $_SESSION["tokenA"] = $temp_tokenA;
+          $_SESSION["tokenSesion"] = $rand;
+          $_SESSION["idioma"] = $temp_idioma;
+          //Imprimimos pantalla de temas
+          $arregloLecciones = array();
+          $arregloLecciones = traerLecciones();
+          imprimirPagina($arregloLecciones);
+      }
+
+      //Si el usuario NO EXISTE mensaje de error y retorna a inicio
+      else{
+      echo'<script type="text/javascript">
+          alert("Usuario y/o contraseña incorrectos");
+          window.location.href="https://kaanbal.net";
+          </script>';
+      }
+  }
+}
 
 
+function traerLecciones(){
+  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+  $statement = mysqli_prepare($con, "SELECT * FROM lecciones");//WHERE mail = ? AND pswd = ?
+  //mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+  mysqli_stmt_execute($statement);
 
+  mysqli_stmt_store_result($statement);
+  mysqli_stmt_bind_result($statement, $id_leccion, $id_subtema, $nombre);
 
+  $arregloLecciones = array();
+  $i=0;
+  //Leemos datos del la leccion
+  while(mysqli_stmt_fetch($statement)){//si si existe la leccion
+      $arregloLecciones[$i]["id_leccion"] = $id_leccion;
+      $arregloLecciones[$i]["id_subtema"]= $id_subtema;            
+      $arregloLecciones[$i]["nombre"] = $nombre;  
+      $i=$i+1;   
+  }
 
+  return($arregloLecciones);
+} 
 
   function imprimirPaginaLecciones($arregloLecciones)
   {
