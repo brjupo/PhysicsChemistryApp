@@ -258,7 +258,7 @@
                   <!--td width="5%" rowspan="2" class="separadorTemasPrincipales">|</td-->
 
                   <td width="12%">
-                    <a href="preguntas/preguntaSprint.html"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
+                    <a href="../preguntas/preguntaGeneral.php"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
                   </td>
                   <td width="12%">
                     <img class="icons" src="../CSSsJSs/icons/run.svg" />
