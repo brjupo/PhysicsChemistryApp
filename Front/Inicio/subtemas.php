@@ -89,9 +89,9 @@ function traerSubtemas(){
   $i=0;
   //Leemos datos del usuario
   while(mysqli_stmt_fetch($statement)){//si si existe el usuario
-      $arregloTemas[$i]["id_subtema"] = $id_subtema;
-      $arregloTemas[$i]["id_tema"]= $id_tema;            
-      $arregloTemas[$i]["nombre"] = $nombre;  
+      $arregloSubtemas[$i]["id_subtema"] = $id_subtema;
+      $arregloSubtemas[$i]["id_tema"]= $id_tema;            
+      $arregloSubtemas[$i]["nombre"] = $nombre;  
       $i=$i+1;   
   }
 
