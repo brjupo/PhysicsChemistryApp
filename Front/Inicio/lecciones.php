@@ -243,7 +243,7 @@
   {
     echo '
       <div class="container">
-        <div id="seccion' . $numeroLeccion . '" class="row">
+        <div id="seccion' . $numeroLeccion . '" class="row" style="opacity:0.0">
           <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
           <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
             <table class="table">
