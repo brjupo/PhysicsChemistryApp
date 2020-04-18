@@ -357,9 +357,12 @@
         $IDBotonAceptar = 10 * $respuestas - 4;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
-        $path = "../imagenes/" . $imagen . ".jpg";
+        $imgjpg = $imagen . ".jpg";
+        $imgJPG = $imagen . ".JPG";
+        $pathjpg = "../imagenes/" . $imgjpg;
+        $pathJPG = "../imagenes/" . $imgJPG;
         //echo '<p>'.$path.'</p>';
-        if (file_exists($path)) {
+        if (file_exists($pathjpg)) {
             echo '
                 <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
                 <div class="container" style="display:none" id ="' . $respuestaNumero . '">
@@ -377,7 +380,27 @@
                     </div>
                 </div>
                 ';
-        } else {
+        }
+        elseif (file_exists($pathJPG)) {
+            echo '
+                <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+                <div class="container" style="display:none" id ="' . $respuestaNumero . '">
+                    <div class="row">
+                        <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            <img src="../imagenes/' . $imagen . '.JPG" class="imagenPregunta" />
+                            <p id="' . $IDvalorCorrecto . '">
+                            ' . $respCorrecta . '
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                ';
+        } 
+        else {
             echo '
                 <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
                 <div class="container" style="display:none" id ="' . $respuestaNumero . '">
