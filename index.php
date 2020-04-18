@@ -67,9 +67,8 @@ echo '
           <input type="text" name="validarPassword" id="validarPassword" required /><br>
 
           <label class="olvidada" id="contraOlvidada">¿Olvidaste tu contraseña?</label><br>
-          <input type="submit" value="Guardar" class="boton2">
+          <input type="submit" value="Log In" class="boton2">
         </form>
-        <!--button class="boton2" id="botonSesion">Log In</button-->
       </div>
       <div id="emailSent" class="textCenter col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4" style="display:none;">
         <p class="fuenteForma" id="emailMessage">
