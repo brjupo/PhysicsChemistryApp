@@ -18,22 +18,22 @@
 
 @font-face {
   font-family: "Open Sans";
-  src: url("../Fonts/CSSsJS/open-sans/OpenSans-Regular.ttf") format("truetype");
+  src: url("../CSSsJS/Fonts/open-sans/OpenSans-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Roboto";
-  src: url("../Fonts/CSSsJS/roboto/RobotoCondensed-Light.ttf") format("truetype");
+  src: url("../CSSsJS/Fonts/roboto/RobotoCondensed-Light.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Monse";
-  src: url("../Fonts/CSSsJS/montserrat/Montserrat-Regular.otf") format("opentype");
+  src: url("../CSSsJS/Fonts/montserrat/Montserrat-Regular.otf") format("opentype");
 }
 
 @font-face {
   font-family: "SSP";
-  src: url("../Fonts/CSSsJS/ssp/SourceSansPro-Light.otf") format("opentype");
+  src: url("../CSSsJS/Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
 }
 
 /*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
