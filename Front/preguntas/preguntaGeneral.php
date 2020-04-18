@@ -81,7 +81,7 @@
     <?php
     function imprimirPreguntas($arrayr, $array, $total)
     {
-        imprimirBarraProgresoCruz();
+        imprimirBarraProgresoCruz($total[0]);
         imprimirContador();
         imprimirPreguntasRespuestas($arrayr, $array, $total);
         imprimirFooter();
@@ -131,7 +131,7 @@
 
     <?php
 
-    function imprimirBarraProgresoCruz()
+    function imprimirBarraProgresoCruz($totalPreguntas)
     {
         echo '
             <div class="container">
@@ -140,9 +140,16 @@
                     <img src="../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                    <p id="totalPreguntas">'.$totalPreguntas.'</p>
                     <div class="progress progressMargin">
                     <!-- class="active"-->
-                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                    <div    id="barraAvance"
+                            class="progress-bar progress-bar-striped" 
+                            role="progressbar" 
+                            aria-valuenow="40" 
+                            aria-valuemin="0" 
+                            aria-valuemax="100" 
+                            style="width: 0%;"></div>
                     </div>
                 </div>
                 </div>

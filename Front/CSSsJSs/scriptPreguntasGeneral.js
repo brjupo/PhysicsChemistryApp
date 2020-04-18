@@ -90,7 +90,17 @@ function whiteButtons(seleccionada) {
   if (IDrespuestaCorrecta == seleccionada) {
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
+    barWidth(puntos);
   }
+}
+
+function barWidth(puntos){
+  anchoBarra = 100*puntos;
+  anchoBarra = anchoBarra / parseInt(document.getElementById("totalPreguntas").innerHTML.trim());
+  anchoBarra = parseInt(anchoBarra);
+  //barraAvance
+  stringPorcentaje = anchoBarra.concat("%");
+  document.getElementById("totalPreguntas").style.width = stringPorcentaje;
 }
 
 //$IDTextoEscrito = 10 * $respuestas - 5; == inputEscrito
@@ -134,6 +144,7 @@ function whiteButtonsType2() {
       .value.toLowerCase();
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
+    barWidth(puntos);
   } else {
     document.getElementById(inputEscrito).style.color = "red";
     document.getElementById(inputEscrito).value = document
