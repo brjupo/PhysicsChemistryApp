@@ -126,7 +126,7 @@
   function traerLecciones()
   {
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    $statement = mysqli_prepare($con, "SELECT * FROM lecciones"); //WHERE mail = ? AND pswd = ?
+    $statement = mysqli_prepare($con, "SELECT * FROM leccion"); //WHERE mail = ? AND pswd = ?
     //mysqli_stmt_bind_param($statement, "ss", $correo, $password);
     mysqli_stmt_execute($statement);
 
