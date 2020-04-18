@@ -21,7 +21,7 @@ function entrada(){
     for (var i = 0; i <= cantidadIDs; i++) {
         var sesion = "seccion";
         sesion = sesion.concat(i);
-        setTimeout(function(){opacity(sesion);},desfase);
+        setTimeout(function(){opacity(sesion);},desfase*i);
     }
 }
 
