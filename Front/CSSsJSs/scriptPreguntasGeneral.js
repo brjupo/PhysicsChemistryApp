@@ -97,7 +97,7 @@ function whiteButtons(seleccionada) {
 function barWidth(puntos){
   anchoBarra = 100*puntos;
   anchoBarra = anchoBarra / parseInt(document.getElementById("totalPreguntas").innerHTML.trim());
-  anchoBarra = parseInt(anchoBarra);
+  anchoBarra = parseInt(anchoBarra).toString(10);
   //barraAvance
   stringPorcentaje = anchoBarra.concat("%");
   document.getElementById("totalPreguntas").style.width = stringPorcentaje;
