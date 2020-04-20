@@ -244,7 +244,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <tbody>
                   <tr>
                     <td width="20%">
-                      <img class="icons" src="../CSSsJSs/icons/one.svg" />
+                      <img class="icons" src="../CSSsJSs/icons/1.svg" />
                     </td>
                     <td width="10%" class="separadorTemasPrincipales">|</td>
                     <td width="70%" class="tituloTemasPrincipales">
