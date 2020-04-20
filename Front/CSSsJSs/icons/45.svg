@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1417.32px" height="1417.32px" viewBox="0 0 1417.32 1417.32" enable-background="new 0 0 1417.32 1417.32"
+	 xml:space="preserve">
+<g>
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="225.0703" y1="224.979" x2="1172.6787" y2="1172.5874">
+			<stop  offset="0" style="stop-color:#1BA9C9"/>
+			<stop  offset="0.3053" style="stop-color:#1BA7C8"/>
+			<stop  offset="0.5042" style="stop-color:#1BA2C6"/>
+			<stop  offset="0.6726" style="stop-color:#1C98C1"/>
+			<stop  offset="0.824" style="stop-color:#1C8ABB"/>
+			<stop  offset="0.9628" style="stop-color:#1D78B4"/>
+			<stop  offset="1" style="stop-color:#1D72B1"/>
+		</linearGradient>
+		<path fill="url(#SVGID_1_)" d="M1417.32,1388.974c0,15.591-12.756,28.347-28.347,28.347H28.53
+			c-15.591,0-28.347-12.756-28.347-28.347V28.347C0.183,12.756,12.939,0,28.53,0h1360.444c15.591,0,28.347,12.756,28.347,28.347
+			V1388.974z"/>
+	</g>
+	<g>
+		<path fill="#FFFFFF" stroke="#FFFFFF" d="M730.806,969.636H627.471V1146.9H460.475V969.636H5.62V842.902L428.185,259.03h199.286
+			v567.551h103.335V969.636z M460.475,826.581V426.965L188.298,826.581H460.475z"/>
+		<g>
+			<path fill="#FFFFFF" stroke="#FFFFFF" d="M945.989,594.122c49.2-8.285,95.493-12.441,138.849-12.441
+				c43.365,0,86.411,7.13,129.168,21.38c42.748,14.26,78.272,33.57,106.563,57.923c56.581,48.723,84.885,111.702,84.885,188.93
+				c0,95.895-37.224,171.041-111.637,225.46c-74.427,53.913-180.528,80.855-318.31,80.855c-59.051,0-130.406-9.851-214.053-29.546
+				V977.416c81.199,19.704,153.156,29.546,215.902,29.546c171.605,0,257.408-50.797,257.408-152.384
+				c0-91.745-74.126-137.611-222.354-137.611c-63.976,0-123.026,9.596-177.141,28.757l-61.815-78.522l66.432-417.497h503.749
+				v140.718H981.043L945.989,594.122z"/>
+		</g>
+	</g>
+</g>
+</svg>
