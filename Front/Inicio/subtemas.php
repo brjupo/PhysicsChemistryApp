@@ -159,7 +159,7 @@ function traerSubtemas(){
               <tbody>
                 <tr>
                   <td width="6%">
-                    <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/one.svg" />
+                    <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/1.svg" />
                   </td>
                   <td width="58%" class="tituloTemasPrincipales">
                     Identificar triángulos rectángulos
@@ -214,7 +214,7 @@ function traerSubtemas(){
                     <img class="icons" src="../CSSsJSs/icons/run.svg" />
                   </td>
                   <td>
-                    <a href="lecciones.php"><img class="iconsActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
+                    <a href="lecciones.php"><img class="iconContinue" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
                   </td>
                 </tr>
               </tbody>
