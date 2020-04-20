@@ -203,25 +203,23 @@
         <div id="seccion0" class="row">
           <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
           <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
-            <table class="table">
+            <table class="table fixed">
               <tbody>
                 <tr>
-                  <td width="6%">
-                    <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/one.svg" />
+                  <td>
+                    <img class="iconsNumber" src="../CSSsJSs/icons/one.svg" />
                   </td>
-                  <td width="58%" class="tituloTemasPrincipales">
+                  <td class="tituloTemasPrincipales">
                     Identificar triángulos rectángulos
                   </td>
-                  <!--td width="5%" rowspan="2" class="separadorTemasPrincipales">|</td-->
-
-                  <td width="12%">
-                    <a href="preguntas/preguntaSprint.html"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
+                  <td>
+                    <a href="preguntas/preguntaGeneral.php"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
                   </td>
-                  <td width="12%">
+                  <td>
                     <img class="icons" src="../CSSsJSs/icons/run.svg" />
                   </td>
-                  <td width="12%">
-                    <img class="icons" src="../CSSsJSs/icons/FlechaIzq.svg" />
+                  <td>
+                    <img class="icons" src="../CSSsJSs/icons/examen.svg" />
                   </td>
                 </tr>
               </tbody>

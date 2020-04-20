@@ -56,6 +56,7 @@ body {
 .iconoBack {
   padding: 10px 0px 10px 0px;
   width: 5vw;
+  /*transform: rotate(20deg);*/
   filter: invert(1);
 }
 
@@ -115,11 +116,11 @@ p {
 }
 
 td {
-  padding: 0px !important;
+  padding: 0px 0px 0px 0px !important;
 }
 
 .iconsNumber {
-  width: 4vh;
+  width: 100%;
   padding: 0px 0px !important;
   margin: 0px 2vw 0px 0px;
 }
@@ -139,10 +140,16 @@ td {
   padding: 1vh 1vh;
   margin: 0.5vh 1vw;
 }
+.iconContinue {
+  width: 4.5vh;
+  padding: 1vh 1vh;
+  margin: 0.5vh 1vw;
+  transform: rotate(180deg);
+}
 
 @media screen and (min-width: 768px) {
   .iconsNumber {
-    width: 3vw;
+    width: 100%;
     padding: 0px 0px !important;
   }
   .icons {
@@ -158,6 +165,11 @@ td {
     border-radius: 0.5vw;
     border: 0.5px solid rgb(220, 220, 220);
     padding: 1vw 1vw;
+  }
+  .iconContinue {
+    width: 5vw;
+    padding: 1vw 1vw;
+    transform: rotate(180deg);
   }
 }
 
@@ -237,16 +249,18 @@ td {
 }
 
 .tituloTemasPrincipales {
-  font-size: 2vh;
+  font-size: 1.5vh;
   font-weight: 600;
   text-align: left;
+  padding: 0px 0px 0px 2.5vw !important;
 }
 
 @media screen and (min-width: 768px) {
   .tituloTemasPrincipales {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 800;
     text-align: left;
+    padding: 0px 0px 0px 10px !important;
   }
 }
 
@@ -362,19 +376,25 @@ td {
 /*--------------------TABLE FIXED---------------------*/
 table.fixed {
   table-layout: fixed;
-  width: 90px;
+  width: 100%;
 }
 table.fixed td {
   overflow: hidden;
 } /*Hide text outside the cell.*/
 table.fixed td:nth-of-type(1) {
-  width: 20px;
+  width: 6%;
 } /*Setting the width of column 1.*/
 table.fixed td:nth-of-type(2) {
-  width: 30px;
+  width: 40%;
 } /*Setting the width of column 2.*/
 table.fixed td:nth-of-type(3) {
-  width: 40px;
+  width: 18%;
+} /*Setting the width of column 3.*/
+table.fixed td:nth-of-type(4) {
+  width: 18%;
+} /*Setting the width of column 3.*/
+table.fixed td:nth-of-type(5) {
+  width: 18%;
 } /*Setting the width of column 3.*/
 
 /*------------------OPACIDAD--------*/

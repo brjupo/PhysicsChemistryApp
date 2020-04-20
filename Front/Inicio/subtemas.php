@@ -7,8 +7,8 @@
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Subtemas</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-  <link rel="stylesheet" href="../CSSsJSs/styleLecciones.css" />
-  <script src="../CSSsJSs/scriptLecciones.js"></script>
+    <link rel="stylesheet" href="../CSSsJSs/styleSubtemas.css" />
+    <script src="../CSSsJSs/scriptSubtemas.js"></script>
 </head>
 
 <body>
@@ -198,22 +198,22 @@ function traerSubtemas(){
         <div id="seccion'.$numeroSubtema.'" class="row fade">
           <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
           <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
-            <table class="table">
+            <table class="table fixed">
               <tbody>
                 <tr>
-                  <td width="6%">
+                  <td>
                     <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/'.$numeroSubtema.'.svg" />
                   </td>
-                  <td width="58%" class="tituloTemasPrincipales">
+                  <td class="tituloTemasPrincipales">
                   '.$nombreSubtema.'
                   </td>
-                  <td width="12%">
+                  <td>
                     <a href="../preguntas/preguntaGeneral.php"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg"/></a>
                   </td>
-                  <td width="12%">
+                  <td>
                     <img class="icons" src="../CSSsJSs/icons/run.svg" />
                   </td>
-                  <td width="12%">
+                  <td>
                     <a href="lecciones.php"><img class="iconsActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
                   </td>
                 </tr>
