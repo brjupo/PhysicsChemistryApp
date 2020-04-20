@@ -159,7 +159,7 @@ function traerSubtemas(){
               <tbody>
                 <tr>
                   <td>
-                    <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/1.svg" />
+                    <img class="iconsNumber" src="../CSSsJSs/icons/1.svg" />
                   </td>
                   <td class="tituloTemasPrincipales">
                     Identificar triángulos rectángulos
