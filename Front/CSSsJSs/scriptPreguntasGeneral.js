@@ -63,7 +63,7 @@ function seguroRegresar() {
       "¿Estás seguro de regresar?\n Si regresas perderás todo tu avance de este tema"
     )
   ) {
-    window.location.href = "https://kaanbal.net";
+    window.location.href = "https://kaanbal.net/Front/Inicio/lecciones.php";
   }
 }
 
