@@ -248,7 +248,7 @@
               <tbody>
                 <tr>
                   <td>
-                    <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/' . $numeroLeccion . '.svg" />
+                    <img class="iconsNumber" src="../CSSsJSs/icons/' . $numeroLeccion . '.svg" />
                   </td>
                   <td class="tituloTemasPrincipales">
                   ' . $nombreLeccion . '

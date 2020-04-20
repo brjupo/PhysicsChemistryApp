@@ -202,7 +202,7 @@ function traerSubtemas(){
               <tbody>
                 <tr>
                   <td>
-                    <img class="../CSSsJSs/iconsNumber" src="../CSSsJSs/icons/'.$numeroSubtema.'.svg" />
+                    <img class="iconsNumber" src="../CSSsJSs/icons/'.$numeroSubtema.'.svg" />
                   </td>
                   <td class="tituloTemasPrincipales">
                   '.$nombreSubtema.'
