@@ -59,7 +59,7 @@ echo '
       <div id="forma" class="textCenter col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4">
         <p class="slogan">¡Divertete aprendiendo!</p>
         <p style="color:rgba(0,0,0,0);">.</p>
-        <form action="Front/Inicio/temas.php" method="POST">
+        <form action="Front/Inicio/temas.php?asignatura=Materia y el entorno" method="POST">
           <label class="fuenteForma" for="validarUsuario">Usuario</label><br>
           <input type="email" name="validarUsuario" id="validarUsuario" placeholder="A01169493@itesm.mx" required /><br>
 

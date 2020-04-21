@@ -20,142 +20,156 @@
   /* echo'<script type="text/javascript">
             alert("$_SESSION["mail"]");
             </script>'; */
-  
+
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
-  mysqli_stmt_bind_param($statement,"s", $_SESSION["mail"]);
+  mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
   mysqli_stmt_bind_result($statement, $tokenSesionp);
 
-  while(mysqli_stmt_fetch($statement)){
-    $tokenValidar["tokenSesionp"] = $tokenSesionp;  
-}   
+  while (mysqli_stmt_fetch($statement)) {
+    $tokenValidar["tokenSesionp"] = $tokenSesionp;
+  }
 
   /* echo'<script type="text/javascript">
             alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
             </script>'; */
-  
 
-  if($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] AND $tokenValidar["tokenSesionp"] != "" )
-  {
+
+  if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloTemas = array();
     $arregloTemas = traerTemas();
     imprimirPagina($arregloTemas);
-  }
-  else{
+  } else {
 
     /* echo'<script type="text/javascript">
             alert("segundo caminio");
             </script>'; */
-  ////////////////////////////////////////
-  //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
-    
+    ////////////////////////////////////////
+    //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
+
     $correo = $_POST["validarUsuario"];
     $password = $_POST["validarPassword"];
-    
+
     //Validamos que los campos correo y password no lleguen vacios
-    if($correo == "" OR $password == ""){
-        echo'<script type="text/javascript">
+    if ($correo == "" or $password == "") {
+      echo '<script type="text/javascript">
             alert("Ingresa usuario y/o contraseña");
             window.location.href="https://kaanbal.net";
             </script>';
-    }
-    else{
-    
-        //Consultar si existe usuario en tabla alumnos
-        $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
-        mysqli_stmt_bind_param($statement, "ss", $correo, $password);
-        mysqli_stmt_execute($statement);
-    
-        mysqli_stmt_store_result($statement);
-        mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA, $tokenSesion, $idioma);
-    
-        
-      
-        //Leemos datos del usuario
-        while(mysqli_stmt_fetch($statement)){//si si existe el usuario
-            $temp_id_usuario = $id_usuario;
-            $temp_mail= $mail;            
-            $temp_pswd = $pswd;
-            $temp_tokenA = $tokenA;
-            $temp_tokenSesion = $tokenSesion;
-            $temp_idioma= $idioma;            
-            //$response["token"] = $token;
-            //$response["token_a"] = $token_a;
-            //$response["tokenp"] = $tokenp;
-            //$response["tokenpp"] = $tokenpp;
-            //$response["flag"] = $flag;
-        }
+    } else {
 
-        /* echo'<script type="text/javascript">
+      //Consultar si existe usuario en tabla alumnos
+      $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
+      mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+      mysqli_stmt_execute($statement);
+
+      mysqli_stmt_store_result($statement);
+      mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA, $tokenSesion, $idioma);
+
+
+
+      //Leemos datos del usuario
+      while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
+        $temp_id_usuario = $id_usuario;
+        $temp_mail = $mail;
+        $temp_pswd = $pswd;
+        $temp_tokenA = $tokenA;
+        $temp_tokenSesion = $tokenSesion;
+        $temp_idioma = $idioma;
+        //$response["token"] = $token;
+        //$response["token_a"] = $token_a;
+        //$response["tokenp"] = $tokenp;
+        //$response["tokenpp"] = $tokenpp;
+        //$response["flag"] = $flag;
+      }
+
+      /* echo'<script type="text/javascript">
         alert("'.$id_usuario.$mail.$pswd.$tokenA.$tokenSesion.$idioma.'");
         </script>'; */
-    
-        //Si el usuario EXISTE despliega el menú de los temas
-        if($temp_id_usuario){
-            //Se inicia sesión del usuario 
-            //session_start();
-            //Creamos token de sesión
-            $rand = bin2hex(random_bytes(5));
-            //Registrar token de sesion en BD
-            $sql = "UPDATE usuario_prueba SET tokenSesion='$rand' WHERE mail = '$correo'";
-            mysqli_query($con,$sql);
-            //Aactualizamos variables de sesión
-            $_SESSION["id_usuario"] = $temp_id_usuario;
-            $_SESSION["mail"] = $temp_mail;
-            $_SESSION["pswd"] = $temp_pswd;
-            $_SESSION["tokenA"] = $temp_tokenA;
-            $_SESSION["tokenSesion"] = $rand;
-            $_SESSION["idioma"] = $temp_idioma;
-            //Imprimimos pantalla de temas
-            $arregloTemas = array();
-            $arregloTemas = traerTemas();
-            imprimirPagina($arregloTemas);
-        }
 
-        //Si el usuario NO EXISTE mensaje de error y retorna a inicio
-        else{
-        echo'<script type="text/javascript">
+      //Si el usuario EXISTE despliega el menú de los temas
+      if ($temp_id_usuario) {
+        //Se inicia sesión del usuario 
+        //session_start();
+        //Creamos token de sesión
+        $rand = bin2hex(random_bytes(5));
+        //Registrar token de sesion en BD
+        $sql = "UPDATE usuario_prueba SET tokenSesion='$rand' WHERE mail = '$correo'";
+        mysqli_query($con, $sql);
+        //Aactualizamos variables de sesión
+        $_SESSION["id_usuario"] = $temp_id_usuario;
+        $_SESSION["mail"] = $temp_mail;
+        $_SESSION["pswd"] = $temp_pswd;
+        $_SESSION["tokenA"] = $temp_tokenA;
+        $_SESSION["tokenSesion"] = $rand;
+        $_SESSION["idioma"] = $temp_idioma;
+        //Imprimimos pantalla de temas
+        $arregloTemas = array();
+        $arregloTemas = traerTemas();
+        imprimirPagina($arregloTemas);
+      }
+
+      //Si el usuario NO EXISTE mensaje de error y retorna a inicio
+      else {
+        echo '<script type="text/javascript">
             alert("Usuario y/o contraseña incorrectos");
             window.location.href="https://kaanbal.net";
             </script>';
-        }
+      }
     }
   }
 
-  function traerTemas(){
+  function traerTemas()
+  {
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    $asignatura = $_GET['asignatura'];
+    echo '<script type="text/javascript">
+            alert("'.$asignatura.'");
+            </script>';
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    $statement = mysqli_prepare($con, "SELECT * FROM tema");//WHERE mail = ? AND pswd = ?
-    //mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+    /*----Paso 1 Obtener el ID de la asignatura----*/
+    $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE nombre = $asignatura");
     mysqli_stmt_execute($statement);
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $id_tema, $id_asignatura, $nombre);
 
+
+
+    $ID_asignatura=0;
+    /*----Paso 2 Llamar a los temas de la asignatura-------*/
+    $statement = mysqli_prepare($con, "SELECT * FROM tema WHERE id_asignatura = $ID_asignatura"); //WHERE mail = ? AND pswd = ?
+    mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+    mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $id_tema, $id_asignatura, $nombre);
 
     $arregloTemas = array();
-    $i=0;
+    $i = 0;
     //Leemos datos del usuario
-    while(mysqli_stmt_fetch($statement)){//si si existe el usuario
-        $arregloTemas[$i]["id_tema"] = $id_tema;
-        $arregloTemas[$i]["id_asignatura"]= $id_asignatura;            
-        $arregloTemas[$i]["nombre"] = $nombre;  
-        $i=$i+1;   
+    while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
+      $arregloTemas[$i]["id_tema"] = $id_tema;
+      $arregloTemas[$i]["id_asignatura"] = $id_asignatura;
+      $arregloTemas[$i]["nombre"] = $nombre;
+      $i = $i + 1;
     }
 
-    return($arregloTemas);
-} 
+    return ($arregloTemas);
+  }
 
-$total = mysqli_fetch_row($result2);
-//$total = 10;
-//Recorrer el arreglo
-while ($row = mysqli_fetch_assoc($result)) {
-  $array[] = $row;
-  $arrayr[] = $row;
-}
-//////////////////////
-  function imprimirPagina($arregloTemas){
+  $total = mysqli_fetch_row($result2);
+  //$total = 10;
+  //Recorrer el arreglo
+  while ($row = mysqli_fetch_assoc($result)) {
+    $array[] = $row;
+    $arrayr[] = $row;
+  }
+  //////////////////////
+  function imprimirPagina($arregloTemas)
+  {
     imprimirTitulo();
     imprimirCita();
     imprimirSiempreAparece();
@@ -165,14 +179,15 @@ while ($row = mysqli_fetch_assoc($result)) {
     imprimirFooter();
   }
 
-  function imprimirTemas($arregloTemas){
+  function imprimirTemas($arregloTemas)
+  {
     $tamanho = count($arregloTemas);
-    for ($i = 0; $i < $tamanho; $i++) { 
-        imprimirTema($i+1,$arregloTemas[$i]["nombre"]);  
-      }
+    for ($i = 0; $i < $tamanho; $i++) {
+      imprimirTema($i + 1, $arregloTemas[$i]["nombre"]);
+    }
   }
-    
-  
+
+
 
   /* Recordatorio
   Recuerda que tienes 4 colores para cambiarlos
@@ -180,8 +195,9 @@ while ($row = mysqli_fetch_assoc($result)) {
   temaPrincipal1, temaPrincipal2, temaPrincipal3, temaPrincipal4
   */
 
-  function imprimirTitulo(){
-    echo'
+  function imprimirTitulo()
+  {
+    echo '
       <!----------------------------------------------TITULO--------------------------------------------->
       <div class="top">
         <div class="container">
@@ -216,7 +232,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     ';
   }
 
-  function imprimirCita(){
+  function imprimirCita()
+  {
     echo '
       <!----------------------------------------------CITA--------------------------------------------->
       <div class="container">
@@ -233,7 +250,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     ';
   }
 
-  function imprimirSiempreAparece(){
+  function imprimirSiempreAparece()
+  {
     echo '
         <div class="container">
         <div class="row">
@@ -268,23 +286,24 @@ while ($row = mysqli_fetch_assoc($result)) {
   }
 
 
-  function imprimirTema($numeroTema,$nombreTema){
-    $numeroCSSTema = 1+$numeroTema%4;
+  function imprimirTema($numeroTema, $nombreTema)
+  {
+    $numeroCSSTema = 1 + $numeroTema % 4;
     //Como decidiras que color elegir "temaPrincipal(1,2,3,4) "
     echo '
       <div class="container">
         <div class="row">
           <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
           <a href="subtemas.php">
-            <div class="temaPrincipal'.$numeroCSSTema.' textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+            <div class="temaPrincipal' . $numeroCSSTema . ' textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
               <table class="table">
                 <tbody>
                   <tr>
                     <td width="20%">
-                      <img class="icons" src="../CSSsJSs/icons/'.$numeroTema.'.svg" />
+                      <img class="icons" src="../CSSsJSs/icons/' . $numeroTema . '.svg" />
                     </td>
                     <td width="10%" class="separadorTemasPrincipales">|</td>
-                    <td width="70%" class="tituloTemasPrincipales">'.$nombreTema.'</td>
+                    <td width="70%" class="tituloTemasPrincipales">' . $nombreTema . '</td>
                   </tr>
                 </tbody>
               </table>
@@ -300,7 +319,6 @@ while ($row = mysqli_fetch_assoc($result)) {
         </div>
       </div>
     ';
-
   }
 
   function imprimirRelleno()
@@ -339,7 +357,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     ';
   }
 
-  function imprimirFooter(){
+  function imprimirFooter()
+  {
     echo '
       <div class="foot">
         <div class=" container ">
@@ -365,4 +384,5 @@ while ($row = mysqli_fetch_assoc($result)) {
   ?>
 
 </body>
+
 </html>
