@@ -212,7 +212,7 @@ function traerSubtemas(){
                     <img class="icons" src="../CSSsJSs/icons/run.svg" />
                   </td>
                   <td>
-                    <a href="lecciones.php"><img class="iconContinue" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
+                    <a href="lecciones.php?subtema='.$numeroSubtema.'"><img class="iconContinue" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
                   </td>
                 </tr>
               </tbody>
