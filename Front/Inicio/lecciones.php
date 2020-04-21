@@ -148,7 +148,7 @@
 
     /*----Paso 2 Llamar a las lecciones del subtema-------*/
     $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?"); //WHERE mail = ? AND pswd = ?
-    mysqli_stmt_bind_param($statement, "s", $$arregloIdsubtema["id_subtema"]);
+    mysqli_stmt_bind_param($statement, "s", $arregloIdsubtema["id_subtema"]);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
