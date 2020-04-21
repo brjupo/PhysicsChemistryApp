@@ -79,7 +79,6 @@
 function traerSubtemas(){
 
    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-   
    $tema = $_GET['tema'];
    echo '<script type="text/javascript">
            alert("'.$tema.'");
