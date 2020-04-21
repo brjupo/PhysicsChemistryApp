@@ -299,7 +299,7 @@
       <div class="container">
         <div class="row">
           <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-          <a href="subtemas.php">
+          <a href="subtemas.php?subtema=' . $nombreTema . '">
             <div class="temaPrincipal' . $numeroCSSTema . ' textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
               <table class="table">
                 <tbody>
