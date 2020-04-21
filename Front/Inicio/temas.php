@@ -132,17 +132,22 @@
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     /*----Paso 1 Obtener el ID de la asignatura----*/
-    $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE nombre = $asignatura");
+    $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE nombre = ?");
+    mysqli_stmt_bind_param($statement, "s", $asignatura);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_tema, $id_asignatura, $nombre);
+    mysqli_stmt_bind_result($statement, $id_asignatura);
+
+    $arregloIdasignatura = array();
+    //Leemos datos del usuario
+    while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
+      $arregloIdasignatura["id_asignatura"] = $id_asignatura;
+    }
 
 
-
-    $ID_asignatura=0;
     /*----Paso 2 Llamar a los temas de la asignatura-------*/
-    $statement = mysqli_prepare($con, "SELECT * FROM tema WHERE id_asignatura = $ID_asignatura"); //WHERE mail = ? AND pswd = ?
-    mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+    $statement = mysqli_prepare($con, "SELECT * FROM tema WHERE id_asignatura = ?"); //WHERE mail = ? AND pswd = ?
+    mysqli_stmt_bind_param($statement, "s", $arregloIdasignatura["id_asignatura"]);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $id_tema, $id_asignatura, $nombre);
