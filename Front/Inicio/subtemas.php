@@ -100,6 +100,7 @@ function traerSubtemas(){
    
     /*----Paso 2 Llamar a los subtemas de los temas-------*/
   $statement = mysqli_prepare($con, "SELECT * FROM subtema WHERE id_tema = ?");//WHERE mail = ? AND pswd = ?
+  
   mysqli_stmt_bind_param($statement, "s", $arregloIdtema["id_tema"]);
   mysqli_stmt_execute($statement);
 
