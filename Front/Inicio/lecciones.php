@@ -125,9 +125,30 @@
 
   function traerLecciones()
   {
+
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    $subtema = $_GET['subtema'];
+    echo '<script type="text/javascript">
+            alert("'.$subtema.'");
+            </script>';
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    $statement = mysqli_prepare($con, "SELECT * FROM leccion"); //WHERE mail = ? AND pswd = ?
-    //mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+    /*----Paso 1 Obtener el ID del subtema----*/
+    $statement = mysqli_prepare($con, "SELECT id_subtema FROM subtema WHERE nombre = ?");
+    mysqli_stmt_bind_param($statement, "s", $subtema);
+    mysqli_stmt_execute($statement);
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $id_subtema);
+
+    $arregloIdsubtema = array();
+    //Leemos datos del usuario
+    while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
+      $arregloIdsubtema["id_subtema"] = $id_subtema;
+    }
+
+    /*----Paso 2 Llamar a las lecciones del subtema-------*/
+    $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?"); //WHERE mail = ? AND pswd = ?
+    mysqli_stmt_bind_param($statement, "s", $$arregloIdsubtema["id_subtema"]);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);

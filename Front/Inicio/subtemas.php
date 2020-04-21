@@ -77,9 +77,30 @@
   <?php
 
 function traerSubtemas(){
-  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT * FROM subtema");//WHERE mail = ? AND pswd = ?
-  //mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+
+   /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+   $tema = $_GET['tema'];
+   echo '<script type="text/javascript">
+           alert("'.$tema.'");
+           </script>';
+   /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+   /*----Paso 1 Obtener el ID de la asignatura----*/
+   $statement = mysqli_prepare($con, "SELECT id_tema FROM tema WHERE nombre = ?");
+   mysqli_stmt_bind_param($statement, "s", $tema);
+   mysqli_stmt_execute($statement);
+   mysqli_stmt_store_result($statement);
+   mysqli_stmt_bind_result($statement, $id_tema);
+
+   $arregloIdtema = array();
+   //Leemos datos del usuario
+   while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
+     $arregloIdtema["id_tema"] = $id_tema;
+   }
+   
+    /*----Paso 2 Llamar a los subtemas de los temas-------*/
+  $statement = mysqli_prepare($con, "SELECT * FROM subtema WHERE nombre = ?");//WHERE mail = ? AND pswd = ?
+  mysqli_stmt_bind_param($statement, "s", $arregloIdtema["id_tema"]);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
