@@ -110,6 +110,7 @@
         //Imprimimos pantalla de temas
         $arregloTemas = array();
         $arregloTemas = traerTemas();
+        $_SESSION["asignaturaNavegacion"]=$_GET['asignatura'];
         imprimirPagina($arregloTemas);
       }
 
