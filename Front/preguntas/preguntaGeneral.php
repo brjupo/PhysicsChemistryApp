@@ -68,10 +68,10 @@
 
     $idL = $arregloIdleccion["id_leccion"];
         //Traer todas las preguntas
-        $query = "SELECT * FROM pregunta WHERE id_pregunta = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
+        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
         $result = mysqli_query($con, $query);
         //contar Numero de elementos
-        $query2 = "SELECT count(*) FROM pregunta WHERE id_pregunta = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+        $query2 = "SELECT count(*) FROM pregunta WHERE id_leccion = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
         $result2 = mysqli_query($con, $query2);
         $total = mysqli_fetch_row($result2);
         //$total = 10;
