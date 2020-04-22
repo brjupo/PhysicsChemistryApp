@@ -140,7 +140,7 @@ function traerSubtemas(){
 
 
   function imprimirTitulo()
-  {
+  { 
     echo '
     <!----------------------------------------------TITULO--------------------------------------------->
     <div class="top">
