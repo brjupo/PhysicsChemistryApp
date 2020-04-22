@@ -18,8 +18,6 @@
   //////////////////////////////////////////////////////
   session_start();
 
-  $_SESSION["temaNavegacion"]=$_GET['tema'];
-
   $tokenValidar = array();
   /* echo'<script type="text/javascript">
             alert("$_SESSION["mail"]");
@@ -45,6 +43,7 @@
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloSubtemas = array();
     $arregloSubtemas = traerSubtemas();
+    $_SESSION["temaNavegacion"]=$_GET['tema'];
     imprimirPaginaSubtemas($arregloSubtemas);
   } else {
 
