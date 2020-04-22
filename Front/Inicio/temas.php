@@ -16,6 +16,11 @@
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
+
+  $_SESSION["asignaturaNavegacion"]=$_GET['asignatura'];
+
+
+
   $tokenValidar = array();
   /* echo'<script type="text/javascript">
             alert("$_SESSION["mail"]");
