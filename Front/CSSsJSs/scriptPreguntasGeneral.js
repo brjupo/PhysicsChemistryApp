@@ -22,7 +22,8 @@ document.addEventListener("click", function (evt) {
     }
     if (targetElement == botonSiguientePregunta) {
       if(cantidadIDs-1000 == preguntaActual){
-        window.location.replace("https://kaanbal.net");
+        var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
+        window.location.replace(stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim()));
       }
       else{
         siguientePregunta();
