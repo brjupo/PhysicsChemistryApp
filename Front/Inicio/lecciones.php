@@ -16,6 +16,9 @@
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
+
+  $_SESSION["subtemaNavegacion"]=$_GET['subtema'];
+
   $tokenValidar = array();
   /* echo'<script type="text/javascript">
           alert("$_SESSION["mail"]");
@@ -188,13 +191,14 @@
 
   function imprimirTitulo()
   {
+    $temaNavegacion = $_SESSION["temaNavegacion"];
     echo '
     <!----------------------------------------------TITULO--------------------------------------------->
     <div class="top">
       <div class="container">
         <div class="row titulo">
           <div class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            <a href="subtemas.php"><img class="iconoBack" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
+            <a href="subtemas.php?tema='.$temaNavegacion.'"><img class="iconoBack" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
           </div>
           <div class="textCenter col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
             <p class="Materia fuenteTitulo">Notación científica</p>
