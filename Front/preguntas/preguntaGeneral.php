@@ -17,6 +17,9 @@
 <body>
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+    //////////////////////////////////////////////////////
+    session_start();
+
     //Traer todas las preguntas
     $query = "SELECT * FROM pregunta WHERE id_pregunta > 5200"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
     $result = mysqli_query($con, $query);
@@ -132,7 +135,8 @@
     <?php
 
     function imprimirBarraProgresoCruz($totalPreguntas)
-    {
+    {   
+        $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
         echo '
             <div class="container">
                 <div class="row topMargin">
@@ -140,6 +144,7 @@
                     <img src="../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                    <p id="subtemaPrevio">'.$subtemaNavegacion.'</p>
                     <p id="totalPreguntas">'.$totalPreguntas.'</p>
                     <div class="progress progressMargin">
                     <!-- class="active"-->

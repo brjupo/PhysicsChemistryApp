@@ -63,7 +63,8 @@ function seguroRegresar() {
       "¿Estás seguro de regresar?\n Si regresas perderás todo tu avance de este tema"
     )
   ) {
-    window.location.href = "https://kaanbal.net/Front/Inicio/lecciones.php";
+    var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
+    window.location.href = stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim());
   }
 }
 
