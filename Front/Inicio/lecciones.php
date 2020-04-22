@@ -17,8 +17,6 @@
   //////////////////////////////////////////////////////
   session_start();
 
-  $_SESSION["subtemaNavegacion"]=$_GET['subtema'];
-
   $tokenValidar = array();
   /* echo'<script type="text/javascript">
           alert("$_SESSION["mail"]");
@@ -44,6 +42,7 @@
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloLecciones = array();
     $arregloLecciones = traerLecciones();
+    $_SESSION["subtemaNavegacion"]=$_GET['subtema'];
     imprimirPaginaLecciones($arregloLecciones);
   } else {
 

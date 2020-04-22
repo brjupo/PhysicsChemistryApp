@@ -20,6 +20,30 @@
     //////////////////////////////////////////////////////
     session_start();
 
+    $tokenValidar = array();
+  /* echo'<script type="text/javascript">
+          alert("$_SESSION["mail"]");
+          </script>'; */
+
+  //Consultar si existe token de usuario
+  $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
+  mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
+  mysqli_stmt_execute($statement);
+
+  mysqli_stmt_store_result($statement);
+  mysqli_stmt_bind_result($statement, $tokenSesionp);
+
+  while (mysqli_stmt_fetch($statement)) {
+    $tokenValidar["tokenSesionp"] = $tokenSesionp;
+  }
+
+  /* echo'<script type="text/javascript">
+          alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
+          </script>'; */
+
+
+  if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
+    //Si existe un token de sesion activo se mostraran las preguntas 
     //Traer todas las preguntas
     $query = "SELECT * FROM pregunta WHERE id_pregunta > 5200"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
     $result = mysqli_query($con, $query);
@@ -75,6 +99,15 @@
         }
     }
     //print_r($arrayr);
+ } else {
+    //Si NO existe un token de sesion activo se redireccionara a pagina de inicio
+    echo '<script type="text/javascript">
+          alert("Ingresa usuario y/o contraseña");
+          window.location.href="https://kaanbal.net";
+          </script>';
+
+ }
+
     ?>
 
     <?php
