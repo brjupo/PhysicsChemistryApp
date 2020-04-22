@@ -21,92 +21,91 @@
     session_start();
 
     $tokenValidar = array();
-  /* echo'<script type="text/javascript">
+    /* echo'<script type="text/javascript">
           alert("$_SESSION["mail"]");
           </script>'; */
 
-  //Consultar si existe token de usuario
-  $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
-  mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
-  mysqli_stmt_execute($statement);
+    //Consultar si existe token de usuario
+    $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
+    mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
+    mysqli_stmt_execute($statement);
 
-  mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $tokenSesionp);
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $tokenSesionp);
 
-  while (mysqli_stmt_fetch($statement)) {
-    $tokenValidar["tokenSesionp"] = $tokenSesionp;
-  }
+    while (mysqli_stmt_fetch($statement)) {
+        $tokenValidar["tokenSesionp"] = $tokenSesionp;
+    }
 
-  /* echo'<script type="text/javascript">
+    /* echo'<script type="text/javascript">
           alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
           </script>'; */
 
 
-  if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
-    //Si existe un token de sesion activo se mostraran las preguntas 
-    //Traer todas las preguntas
-    $query = "SELECT * FROM pregunta WHERE id_pregunta > 5200"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
-    $result = mysqli_query($con, $query);
-    //contar Numero de elementos
-    $query2 = "SELECT count(*) FROM pregunta WHERE id_pregunta > 5200"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
-    $result2 = mysqli_query($con, $query2);
-    $total = mysqli_fetch_row($result2);
-    //$total = 10;
-    //Recorrer el arreglo
-    while ($row = mysqli_fetch_assoc($result)) {
-        $array[] = $row;
-        $arrayr[] = $row;
-    }
-    ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
-    ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
-    for ($j = 0; $j < $total[0]; $j++) {
-        // CONVERTIR LA CADENA DE TEXTO EN UN ARRAY
-        $arreglo = str_split($arrayr[$j]["pregunta"]);
-        //print_r ($arreglo);
-        // LEER CON BUCLE FOR EL ARREGLO HASTA ENCONTRAR GUION BAJO Y GUARDAR LA POSICION DONDE SE ENCUENTRE
-        $posicion = 0;
-        $tamanho = count($arreglo);
-        for ($i = 0; $i < $tamanho - 2; $i++) {
-            if ($arreglo[$i] == '_' && $arreglo[$i + 1] == '_' && $arreglo[$i + 2] == '_') {
-                $posicion = $i;
-                break;
+    if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
+        //Si existe un token de sesion activo se mostraran las preguntas 
+        //Traer todas las preguntas
+        $query = "SELECT * FROM pregunta WHERE id_pregunta > 5200"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
+        $result = mysqli_query($con, $query);
+        //contar Numero de elementos
+        $query2 = "SELECT count(*) FROM pregunta WHERE id_pregunta > 5200"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+        $result2 = mysqli_query($con, $query2);
+        $total = mysqli_fetch_row($result2);
+        //$total = 10;
+        //Recorrer el arreglo
+        while ($row = mysqli_fetch_assoc($result)) {
+            $array[] = $row;
+            $arrayr[] = $row;
+        }
+        ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
+        ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
+        for ($j = 0; $j < $total[0]; $j++) {
+            // CONVERTIR LA CADENA DE TEXTO EN UN ARRAY
+            $arreglo = str_split($arrayr[$j]["pregunta"]);
+            //print_r ($arreglo);
+            // LEER CON BUCLE FOR EL ARREGLO HASTA ENCONTRAR GUION BAJO Y GUARDAR LA POSICION DONDE SE ENCUENTRE
+            $posicion = 0;
+            $tamanho = count($arreglo);
+            for ($i = 0; $i < $tamanho - 2; $i++) {
+                if ($arreglo[$i] == '_' && $arreglo[$i + 1] == '_' && $arreglo[$i + 2] == '_') {
+                    $posicion = $i;
+                    break;
+                }
+            }
+            // PARTIR LA PREGUNTA EN 2 CADENAS, SI POSICION = 0, SIGNIFICA QUE LA PREGUNTA NO DEBE SER PARTIDA
+            if ($posicion != 0) {
+                $preguntaParte1 = substr($arrayr[$j]["pregunta"], 0, $posicion - 1);
+                $preguntaParte2 = substr($arrayr[$j]["pregunta"], $posicion + 4, strlen($arrayr[$j]["pregunta"]));
+            } else {
+                $preguntaParte1 = $arrayr[$j]["pregunta"];
+                $preguntaParte2 = "";
+            }
+            $arrayr[$j]["preguntaParte1"] = $preguntaParte1;
+            $arrayr[$j]["preguntaParte2"] = $preguntaParte2;
+        }
+        //print_r ($arrayr);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        $respuestas = array('respuesta_correcta', 'respuesta2', 'respuesta3', 'respuesta4');
+        $respuestasr = array('respuesta_correcta', 'respuesta2', 'respuesta3', 'respuesta4');
+        for ($j = 0; $j < $total[0]; $j++) {
+            $i = 0;
+            shuffle($respuestas);
+            foreach ($respuestas as $val) {
+                //print_r ($val);
+                $arrayr[$j][$respuestasr[$i]] = $array[$j][$val];
+                //print_r ($i);
+                $i = $i + 1;
             }
         }
-        // PARTIR LA PREGUNTA EN 2 CADENAS, SI POSICION = 0, SIGNIFICA QUE LA PREGUNTA NO DEBE SER PARTIDA
-        if ($posicion != 0) {
-            $preguntaParte1 = substr($arrayr[$j]["pregunta"], 0, $posicion - 1);
-            $preguntaParte2 = substr($arrayr[$j]["pregunta"], $posicion + 4, strlen($arrayr[$j]["pregunta"]));
-        } else {
-            $preguntaParte1 = $arrayr[$j]["pregunta"];
-            $preguntaParte2 = "";
-        }
-        $arrayr[$j]["preguntaParte1"] = $preguntaParte1;
-        $arrayr[$j]["preguntaParte2"] = $preguntaParte2;
-    }
-    //print_r ($arrayr);
-    ////////////////////////////////////////////////////////////////////////////////////////////
-
-    $respuestas = array('respuesta_correcta', 'respuesta2', 'respuesta3', 'respuesta4');
-    $respuestasr = array('respuesta_correcta', 'respuesta2', 'respuesta3', 'respuesta4');
-    for ($j = 0; $j < $total[0]; $j++) {
-        $i = 0;
-        shuffle($respuestas);
-        foreach ($respuestas as $val) {
-            //print_r ($val);
-            $arrayr[$j][$respuestasr[$i]] = $array[$j][$val];
-            //print_r ($i);
-            $i = $i + 1;
-        }
-    }
-    //print_r($arrayr);
- } else {
-    //Si NO existe un token de sesion activo se redireccionara a pagina de inicio
-    echo '<script type="text/javascript">
+        //print_r($arrayr);
+    } else {
+        //Si NO existe un token de sesion activo se redireccionara a pagina de inicio
+        echo '<script type="text/javascript">
           alert("Ingresa usuario y/o contraseña");
           window.location.href="https://kaanbal.net";
           </script>';
-
- }
+    }
 
     ?>
 
@@ -134,10 +133,10 @@
         $r3 = "1,000,000";
         $r4 = "10,000";
         $rc = "10,000,000";
-        $imagen=1;
+        $imagen = 1;
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
-            if ($arrayr[$x]["tipo"]=="1") {
+            if ($arrayr[$x]["tipo"] == "1") {
                 imprimirPreguntaTipo1($x + 1, $arrayr[$x]["pregunta"]);
                 imprimirImagenRespuestasTipo1(
                     $x + 1,
@@ -168,7 +167,7 @@
     <?php
 
     function imprimirBarraProgresoCruz($totalPreguntas)
-    {   
+    {
         $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
         echo '
             <div class="container">
@@ -177,8 +176,8 @@
                     <img src="../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p id="subtemaPrevio">'.$subtemaNavegacion.'</p>
-                    <p id="totalPreguntas">'.$totalPreguntas.'</p>
+                    <p id="subtemaPrevio">' . $subtemaNavegacion . '</p>
+                    <p id="totalPreguntas">' . $totalPreguntas . '</p>
                     <div class="progress progressMargin">
                     <!-- class="active"-->
                     <div    id="barraAvance"
@@ -237,8 +236,8 @@
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
                 <p id="preguntaNumero">' . $preguntaNumero . '</p>
                 <p class="formatoPreguntas">'
-                    . $preguntaTexto .
-                    '  
+            . $preguntaTexto .
+            '  
                 </p>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
@@ -289,8 +288,7 @@
             </div>
             </div>
         ';
-        }
-        elseif (file_exists($pathJPG)) {
+        } elseif (file_exists($pathJPG)) {
             echo '
             <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
@@ -320,8 +318,7 @@
             </div>
             </div>
         ';
-        }
-        else{
+        } else {
             echo '
             <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
@@ -355,7 +352,6 @@
             </div>
         ';
         }
-        
     }
     /*
     Mis nacadas
@@ -383,12 +379,12 @@
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
                     <p id="preguntaNumero">' . $preguntaNumero . '</p>
                     <p class="formatoPreguntas">'
-                    . $preguntaTexto .
-                    ' 
+            . $preguntaTexto .
+            ' 
                     <input type="text" id="' . $IDTextoEscrito . '">
                     '
-                    . $preguntaTexto2 .
-                    '  
+            . $preguntaTexto2 .
+            '  
                     </p>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
@@ -425,8 +421,7 @@
                     </div>
                 </div>
                 ';
-        }
-        elseif (file_exists($pathJPG)) {
+        } elseif (file_exists($pathJPG)) {
             echo '
                 <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
                 <div class="container" style="display:none" id ="' . $respuestaNumero . '">
@@ -444,8 +439,7 @@
                     </div>
                 </div>
                 ';
-        } 
-        else {
+        } else {
             echo '
                 <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
                 <div class="container" style="display:none" id ="' . $respuestaNumero . '">
