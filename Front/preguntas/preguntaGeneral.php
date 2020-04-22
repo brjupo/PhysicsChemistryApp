@@ -44,11 +44,34 @@
 
     if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
         //Si existe un token de sesion activo se mostraran las preguntas 
+
+        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+        $leccion = $_GET['leccion'];
+        echo '<script type="text/javascript">
+                alert("'.$leccion.'");
+                </script>';
+        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+    /*----Paso 1 Obtener el ID del subtema----*/
+    $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
+    mysqli_stmt_bind_param($statement, "s", $leccion);
+    mysqli_stmt_execute($statement);
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $id_leccion);
+
+    $arregloIdleccion = array();
+    //Leemos datos ID de leccion
+    while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
+      $arregloIdleccion["id_leccion"] = $id_leccion;
+    }
+
+    $idL = $arregloIdleccion["id_leccion"];
         //Traer todas las preguntas
-        $query = "SELECT * FROM pregunta WHERE id_pregunta > 5200"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
+        $query = "SELECT * FROM pregunta WHERE id_pregunta = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
         $result = mysqli_query($con, $query);
         //contar Numero de elementos
-        $query2 = "SELECT count(*) FROM pregunta WHERE id_pregunta > 5200"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+        $query2 = "SELECT count(*) FROM pregunta WHERE id_pregunta = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
         $result2 = mysqli_query($con, $query2);
         $total = mysqli_fetch_row($result2);
         //$total = 10;

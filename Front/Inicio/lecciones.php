@@ -143,8 +143,8 @@
     mysqli_stmt_bind_result($statement, $id_subtema);
 
     $arregloIdsubtema = array();
-    //Leemos datos del usuario
-    while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
+    //Leemos datos de leccion
+    while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
       $arregloIdsubtema["id_subtema"] = $id_subtema;
     }
 
