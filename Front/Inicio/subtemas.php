@@ -230,7 +230,7 @@ function traerSubtemas(){
                   '.$nombreSubtema.'
                   </td>
                   <td>
-                    <a href="../preguntas/preguntaGeneral.php"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg"/></a>
+                    <img class="icons" src="../CSSsJSs/icons/lecciones.svg"/>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/run.svg" />
