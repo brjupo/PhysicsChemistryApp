@@ -141,7 +141,7 @@
     function imprimirPreguntas($arrayr, $array, $total)
     {
         imprimirBarraProgresoCruz($total[0]);
-        //imprimirContador();
+        imprimirContador();
         imprimirPreguntasRespuestas($arrayr, $array, $total);
         imprimirFooter();
     }
@@ -224,9 +224,9 @@
                 <div class="row">
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p class="slide-bottom" id="previous">0m 10s</p>
-                    <p class="slide-bottom" id="actual">0m 10s</p>
-                    <p class="slide-bottom" id="later">0m 10s</p>
+                    <p style="display:none" class="slide-bottom" id="previous">0m 10s</p>
+                    <p style="display:none" class="slide-bottom" id="actual">0m 10s</p>
+                    <p style="display:none" class="slide-bottom" id="later">0m 10s</p>
                     <p id="puntosBuenos"></p>
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
