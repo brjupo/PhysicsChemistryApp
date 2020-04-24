@@ -64,7 +64,7 @@ echo '
           <input type="email" name="validarUsuario" id="validarUsuario" placeholder="A01169493@itesm.mx" required /><br>
 
           <label class="fuenteForma" for="validarPassword" id="contrasena">Contraseña</label><br>
-          <input type="text" name="validarPassword" id="validarPassword" required /><br>
+          <input type="password" name="validarPassword" id="validarPassword" required /><br>
 
           <label class="olvidada" id="contraOlvidada">¿Olvidaste tu contraseña?</label><br>
           <input type="submit" value="Log In" class="boton2">
