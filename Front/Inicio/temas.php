@@ -128,9 +128,10 @@
   {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $asignatura = $_GET['asignatura'];
-    echo '<script type="text/javascript">
+    /*echo '<script type="text/javascript">
             alert("'.$asignatura.'");
             </script>';
+    */
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     /*----Paso 1 Obtener el ID de la asignatura----*/
@@ -179,7 +180,7 @@
   {
     imprimirTitulo();
     imprimirCita();
-    imprimirSiempreAparece();
+    //imprimirSiempreAparece();
     /* RECORDATORIO */
     imprimirTemas($arregloTemas);
     imprimirRelleno();

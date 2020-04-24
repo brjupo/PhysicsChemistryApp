@@ -81,9 +81,10 @@ function traerSubtemas(){
 
    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
    $tema = $_GET['tema'];
-   echo '<script type="text/javascript">
+   /*echo '<script type="text/javascript">
            alert("'.$tema.'");
            </script>';
+    */
    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
    /*----Paso 1 Obtener el ID de la asignatura----*/
@@ -123,7 +124,7 @@ function traerSubtemas(){
   function imprimirPaginaSubtemas($arregloSubtemas)
   {
     imprimirTitulo();
-    imprimirSiempreAparece();
+    //imprimirSiempreAparece();
     imprimirSubtemas($arregloSubtemas);
 
     imprimirRelleno();
