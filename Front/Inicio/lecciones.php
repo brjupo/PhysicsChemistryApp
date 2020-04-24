@@ -201,7 +201,7 @@
             <a href="subtemas.php?tema='.$temaNavegacion.'"><img class="iconoBack" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
           </div>
           <div class="textCenter col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
-            <p class="Materia fuenteTitulo">Notación científica</p>
+            <p class="Materia fuenteTitulo">'.$_GET['subtema'];.'</p>
           </div>
         </div>
       </div>
