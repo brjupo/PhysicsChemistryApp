@@ -197,7 +197,9 @@
     $tamanho = count($arregloAsignaturastodas);
     $esImpar = $tamanho % 2;
     $numeroDePares = intval($tamanho / 2);
-
+    echo '<script type="text/javascript">
+            alert("' . $tamanho . '");
+            </script>';
 
     for ($i = 0; $i < $numeroDePares; $i++) {
       if (in_array($arregloAsignaturas[2 * $i]["nombre"], $arregloAsignaturastodas)) {
@@ -295,8 +297,8 @@
                     <img class="imagenAsignatura" src="../CSSsJSs/icons/star.svg" />
                   </div>
                   <div class="tituloAsignaturas">'
-                  . $nombreAsignatura .
-                  '</div>
+      . $nombreAsignatura .
+      '</div>
                 </div>              
               </a>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
