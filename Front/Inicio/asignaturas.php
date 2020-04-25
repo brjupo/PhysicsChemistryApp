@@ -216,7 +216,7 @@
     }
     //si es del 0 a 4, te regresa 5
     if ($esImpar) {
-      if (in_array($arregloAsignaturas[$tamanho - 1], $arregloAsignaturastodas)) {
+      if (in_array($arregloAsignaturas[$tamanho - 1]["nombre"], $arregloAsignaturastodas)) {
         imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 1);
       } else {
         imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 0);
