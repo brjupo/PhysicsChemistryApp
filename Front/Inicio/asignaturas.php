@@ -148,9 +148,6 @@
   function imprimirPagina($arregloAsignaturas)
   {
     imprimirTitulo();
-    imprimirCita();
-    //imprimirSiempreAparece();
-    /* RECORDATORIO */
     imprimirAsignaturas($arregloAsignaturas);
     imprimirRelleno();
     imprimirFooter();
@@ -160,7 +157,8 @@
   {
     $tamanho = count($arregloAsignaturas);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirTema($i + 1, $arregloAsignaturas[$i]["id_asignatura"]);//SE ESTARIAN IMPRIMIENDO ASIGNATURAS POR EL ID
+      $permiso=1;
+      imprimirAsignatura($i + 1, $arregloAsignaturas[$i]["nombre"], $permiso);//SE ESTARIAN IMPRIMIENDO ASIGNATURAS POR EL ID
     }
   }
 
@@ -168,126 +166,87 @@
   function imprimirTitulo()
   {
     echo '
-      <!----------------------------------------------TITULO--------------------------------------------->
-      <div class="top">
-        <div class="container">
-          <div class="row titulo">
-            <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
-              <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
-            </div>
-            <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-              <p class="Ciencia fuenteTitulo">'.$_GET['asignatura'].'</p>
-            </div>
-            <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <td width="60%">
-                      <img class="iconoDiamantes imgRight" src="../CSSsJSs/icons/diamante.svg" />
-                    </td>
-                    <td width="40%">
-                      <p class="diamantes textLeft">112</p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-              <p class="Materia fuenteTitulo"></p>
+          <!----------------------------------------------TITULO--------------------------------------------->
+          <div class="top">
+            <div class="container">
+              <div class="row">
+                <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+                  <img
+                    class="iconoPrincipal"
+                    src="../CSSsJSs/icons/quetzalcoatl.svg"
+                  />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                  <p class="titulo">Kaanbal</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <!------------------------------------------------FIN TITULO----------------------------------------------->
-    ';
-  }
+          <!------------------------------------------------FIN TITULO----------------------------------------------->
 
-  function imprimirCita()
-  {
-    echo '
-      <!----------------------------------------------CITA--------------------------------------------->
-      <div class="container">
-        <div class="row">
-          <div class="textCenter col-xs-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
-          <div class="textCenter col-xs-10 col-sm-8 col-md-6 col-lg-4 col-xl-4">
-            <p class="cita">
-            </p>
+          <!------------------------------------------------RELLENO----------------------------------------------->
+          <div class="container">
+            <div class="row">
+              <p class="relleno">.</p>
+            </div>
+            <div class="row">
+              <p class="relleno">.</p>
+            </div>
           </div>
-          <div class="textCenter col-xs-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
-        </div>
-      </div>
-      <!------------------------------------------------FIN CITA----------------------------------------------->
+          <!------------------------------------------------FIN RELLENO----------------------------------------------->
     ';
   }
 
-  function imprimirSiempreAparece()
+
+
+  function imprimirAsignatura($numeroAsignatura, $nombreAsignatura, $siTienePermiso)
   {
+    
     echo '
         <div class="container">
-        <div class="row">
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-          <a href="subtemas.php">
-            <div class="temaPrincipal1 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <td width="20%">
-                      <img class="icons" src="../CSSsJSs/icons/1.svg" />
-                    </td>
-                    <td width="10%" class="separadorTemasPrincipales">|</td>
-                    <td width="70%" class="tituloTemasPrincipales">
-                      Siempre Aparece
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </a>
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+          <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+            <a href="temas.php?asignatura=Materia y el entorno">
+              <div
+                class="asignaturaPrincipal col-xs-10 col-sm-10 col-md-4 col-lg-4 col-xl-4"
+              >
+                <div>
+                  <img
+                    class="imagenAsignatura"
+                    src="../CSSsJSs/icons/nuclear.svg"
+                  />
+                </div>
+                <div class="tituloAsignaturas">
+                  Materia y el entorno
+                </div>
+              </div>
+            </a>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+            <a href="temas.php?asignatura=Fisica">
+              <div
+                class="asignaturaPrincipal col-xs-10 col-sm-10 col-md-4 col-lg-4 col-xl-4"
+              >
+                <div>
+                  <img
+                    class="imagenAsignatura"
+                    src="../CSSsJSs/icons/physics.svg"
+                  />
+                </div>
+                <div class="tituloAsignaturas">
+                  Física
+                </div>
+              </div>
+            </a>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          </div>
         </div>
-      </div>
 
-      <div class="container">
-        <div class="row">
-          <p></p>
+        <div class="container">
+          <div class="row">
+            <p style="color: rgba(0, 0, 0, 0);">.</p>
+          </div>
         </div>
-      </div>
-    ';
-  }
-
-
-  function imprimirTema($numeroTema, $nombreTema)
-  {
-    $numeroCSSTema = 1 + $numeroTema % 4;
-    //Como decidiras que color elegir "temaPrincipal(1,2,3,4) "
-    echo '
-      <div class="container">
-        <div class="row">
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-          <a href="subtemas.php?tema=' . $nombreTema . '">
-            <div class="temaPrincipal' . $numeroCSSTema . ' textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <td width="20%">
-                      <img class="icons" src="../CSSsJSs/icons/' . $numeroTema . '.svg" />
-                    </td>
-                    <td width="10%" class="separadorTemasPrincipales">|</td>
-                    <td width="70%" class="tituloTemasPrincipales">' . $nombreTema . '</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </a>
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <p></p>
-        </div>
-      </div>
     ';
   }
 
@@ -330,24 +289,19 @@
   function imprimirFooter()
   {
     echo '
-      <div class="foot">
-        <div class=" container ">
-          <div class=" row text-center ">
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
-              <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/lecciones.svg" />
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
-              <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/usuario.svg" />
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
-              <img class="footIcon" id="botonAyuda" src="../CSSsJSs/icons/ayuda.svg" />
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
-              <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
+          <div class="foot">
+            <div class="container">
+              <div class="row text-center">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <img
+                    class="footIcon"
+                    id="botonLogout"
+                    src="../CSSsJSs/icons/logout.svg"
+                  />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
     ';
   }
 
