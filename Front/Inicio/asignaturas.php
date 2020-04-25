@@ -5,10 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
-  <title>Temas</title>
+  <title>Asignaturas</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-  <link rel="stylesheet" href="../CSSsJSs/styleTemas.css" />
-  <script src="../CSSsJSs/scriptTemas.js"></script>
+  <link rel="stylesheet" href="../CSSsJSs/styleAsignaturas.css" />
+  <script src="../CSSsJSs/scriptAsignaturas.js"></script>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
   //////////////////////////////////////////////////////
   session_start();
   $tokenValidar = array();
-  
+
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
   mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
@@ -33,7 +33,7 @@
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
-    $_SESSION["asignaturaNavegacion"]=$_GET['asignatura'];
+    $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
     imprimirPagina($arregloAsignaturas);
   } else {
 
@@ -94,7 +94,7 @@
         //Imprimimos pantalla de asignaturas
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
-        $_SESSION["asignaturaNavegacion"]=$_GET['asignatura'];
+        $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
         //todas las asignaturas
         $arregloAsignaturastodas = array("Materia y el entorno", "Fisica", "Asignatura Brgas");
         imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
@@ -129,9 +129,9 @@
     mysqli_stmt_bind_result($statement, $id_asignatura, $nombre, $nivel, $grado_academico, $idioma);
 
     $arregloAsignaturas = array();
-   
+
     $i = 0;
-    while (mysqli_stmt_fetch($statement)) { 
+    while (mysqli_stmt_fetch($statement)) {
       $arregloAsignaturas[$i]["id_asignatura"] = $id_asignatura;
       $arregloAsignaturas[$i]["nombre"] = $nombre;
       $arregloAsignaturas[$i]["nivel"] = $nivel;
@@ -139,18 +139,18 @@
       $arregloAsignaturas[$i]["idioma"] = $idioma;
       $i = $i + 1;
     }
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-//DETECTAR DONDE DA CLIC A LA ASIGNATURA PARA GUARDAR LA VARIABLE DE SESION DEL ID DE LA ASIGNATURA
-    
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    //DETECTAR DONDE DA CLIC A LA ASIGNATURA PARA GUARDAR LA VARIABLE DE SESION DEL ID DE LA ASIGNATURA
+
     return ($arregloAsignaturas);
   }
 
- 
+
   //////////////////////
-  function imprimirPagina($arregloAsignaturas,$arregloAsignaturastodas)
+  function imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas)
   {
     imprimirTitulo();
-    imprimirAsignaturas($arregloAsignaturas,$arregloAsignaturastodas);
+    imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas);
     imprimirRelleno();
     imprimirFooter();
   }
@@ -192,80 +192,73 @@
     ';
   }
 
-  function imprimirAsignaturas($arregloAsignaturas,$arregloAsignaturastodas)
+  function imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas)
   {
     $tamanho = count($arregloAsignaturastodas);
-    $esImpar=$tamanho%2;
-    $numeroDePares=intval($tamanho/2);
+    $esImpar = $tamanho % 2;
+    $numeroDePares = intval($tamanho / 2);
 
-    
+
     for ($i = 0; $i < $numeroDePares; $i++) {
-      if (in_array($arregloAsignaturas[2*$i]["nombre"], $arregloAsignaturastodas))
-      {
-        $permiso1=1;
+      if (in_array($arregloAsignaturas[2 * $i]["nombre"], $arregloAsignaturastodas)) {
+        $permiso1 = 1;
+      } else {
+        $permiso1 = 0;
       }
-      else{
-        $permiso1=0;
+      if (in_array($arregloAsignaturas[2 * $i + 1]["nombre"], $arregloAsignaturastodas)) {
+        $permiso2 = 1;
+      } else {
+        $permiso2 = 0;
       }
-      if (in_array($arregloAsignaturas[2*$i+1]["nombre"], $arregloAsignaturastodas))
-      {
-        $permiso2=1;
-      }
-      else{
-        $permiso2=0;
-      }
-      imprimirAsignaturaPar($arregloAsignaturas[2*$i]["nombre"],$arregloAsignaturas[2*$i+1]["nombre"], $permiso1, $permiso2);
+      imprimirAsignaturaPar($arregloAsignaturas[2 * $i]["nombre"], $arregloAsignaturas[2 * $i + 1]["nombre"], $permiso1, $permiso2);
     }
     //si es del 0 a 4, te regresa 5
-    if($esImpar){
-      if (in_array($arregloAsignaturas[$tamanho-1]["nombre"], $arregloAsignaturastodas)){
-        imprimirAsignaturaImpar($arregloAsignaturas[$tamanho-1]["nombre"], 1);
-      }
-      else{
-        imprimirAsignaturaImpar($arregloAsignaturas[$tamanho-1]["nombre"], 0);
+    if ($esImpar) {
+      if (in_array($arregloAsignaturas[$tamanho - 1]["nombre"], $arregloAsignaturastodas)) {
+        imprimirAsignaturaImpar($arregloAsignaturas[$tamanho - 1]["nombre"], 1);
+      } else {
+        imprimirAsignaturaImpar($arregloAsignaturas[$tamanho - 1]["nombre"], 0);
       }
     }
   }
 
-  function imprimirAsignaturaPar($nombreAsignatura1,$nombreAsignatura2, $siTienePermiso1, $siTienePermiso2)
+  function imprimirAsignaturaPar($nombreAsignatura1, $nombreAsignatura2, $siTienePermiso1, $siTienePermiso2)
   {
-    if($siTienePermiso1==1){
-      $claseBloque1="asignaturaPrincipal";
+    if ($siTienePermiso1 == 1) {
+      $claseBloque1 = "asignaturaPrincipal";
+    } else {
+      $claseBloque1 = "asignaturaDesactivada";
     }
-    else{
-      $claseBloque1="asignaturaDesactivada";
-    }
-    if($siTienePermiso2==1){
-      $claseBloque2="asignaturaPrincipal";
-    }
-    else{
-      $claseBloque2="asignaturaDesactivada";
+    if ($siTienePermiso2 == 1) {
+      $claseBloque2 = "asignaturaPrincipal";
+    } else {
+      $claseBloque2 = "asignaturaDesactivada";
     }
     echo '
         <div class="container">
           <div class="row">
             <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>        
               <div
-                class="'.$claseBloque1.' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                class="' . $claseBloque1 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
               >
                 <div>
                   <img class="imagenAsignatura" src="../CSSsJSs/icons/star.svg" />
                 </div>
                 <div class="tituloAsignaturas">
-                  '.$nombreAsignatura1.'
+                  ' . $nombreAsignatura1 . '
                 </div>
               </div>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
               <a href="temas.php?asignatura=Asignatura Brgas">
                 <div
-                  class="'.$claseBloque2.' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                  class="' . $claseBloque2 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
                     <img class="imagenAsignatura" src="../CSSsJSs/icons/examen.svg" />
                   </div>
                   <div class="tituloAsignaturas">
-                  '.$nombreAsignatura2.'
+                  ' . $nombreAsignatura2 . '
                   </div>
                 </div>
               </a>
@@ -282,26 +275,25 @@
   }
 
   function imprimirAsignaturaImpar($nombreAsignatura, $siTienePermiso)
-  { 
-    if($siTienePermiso==1){
-      $claseBloque="asignaturaPrincipal";
-    }
-    else{
-      $claseBloque="asignaturaDesactivada";
+  {
+    if ($siTienePermiso == 1) {
+      $claseBloque = "asignaturaPrincipal";
+    } else {
+      $claseBloque = "asignaturaDesactivada";
     }
     echo '
         <div class="container">
           <div class="row">
             <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>        
               <div
-                class="'.$claseBloque.' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
               >
                 <div>
                   <img class="imagenAsignatura" src="../CSSsJSs/icons/star.svg" />
                 </div>
                 <div class="tituloAsignaturas">'
-                  .$nombreAsignatura.
-                '</div>
+      . $nombreAsignatura .
+      '</div>
               </div>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
