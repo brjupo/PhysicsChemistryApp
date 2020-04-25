@@ -33,7 +33,6 @@
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
-    $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
     imprimirPagina($arregloAsignaturas);
   } else {
 
@@ -94,7 +93,6 @@
         //Imprimimos pantalla de asignaturas
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
-        $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
         //todas las asignaturas
         $arregloAsignaturastodas = array("Materia y el entorno", "Fisica", "Asignatura Brgas");
         imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
@@ -230,20 +228,16 @@
     if ($siTienePermiso1 == 1) {
       $claseBloque1 = "asignaturaPrincipal";
       $link1=$link.$nombreAsignatura1;
-      $imagen1="imagenAsignatura";
     } else {
       $claseBloque1 = "asignaturaDesactivada";
       $link1="";
-      $imagen1="imagenDesactivada";
     }
     if ($siTienePermiso2 == 1) {
       $claseBloque2 = "asignaturaPrincipal";
       $link2=$link.$nombreAsignatura2;
-      $imagen2="imagenAsignatura";
     } else {
       $claseBloque2 = "asignaturaDesactivada";
       $link2="";
-      $imagen2="imagenDesactivada";
     }
     echo '
         <div class="container">
@@ -254,7 +248,7 @@
                   class="' . $claseBloque1 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
-                    <img class="'.$imagen1.'" src="../CSSsJSs/icons/star.svg" />
+                    <img class="imagenAsignatura" src="../CSSsJSs/icons/star.svg" />
                   </div>
                   <div class="tituloAsignaturas">
                     ' . $nombreAsignatura1 . '
@@ -268,7 +262,7 @@
                   class="' . $claseBloque2 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
-                    <img class="'.$imagen2.'" src="../CSSsJSs/icons/examen.svg" />
+                    <img class="imagenAsignatura" src="../CSSsJSs/icons/examen.svg" />
                   </div>
                   <div class="tituloAsignaturas">
                   ' . $nombreAsignatura2 . '
@@ -294,26 +288,21 @@
 
   function imprimirAsignaturaImpar($nombreAsignatura, $siTienePermiso)
   {
-    $link = "temas.php?asignatura=";
     if ($siTienePermiso == 1) {
       $claseBloque = "asignaturaPrincipal";
-      $link.=$nombreAsignatura;
-      $imagen="imagenAsignatura";
     } else {
       $claseBloque = "asignaturaDesactivada";
-      $link="";
-      $imagen="imagenDesactivada";
     }
     echo '
         <div class="container">
           <div class="row">
             <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
-              <a href="' . $link . '">      
+              <a href="temas.php?asignatura=' . $nombreAsignatura . '">      
                 <div
                   class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
-                    <img class="'.$imagen.'" src="../CSSsJSs/icons/star.svg" />
+                    <img class="imagenAsignatura" src="../CSSsJSs/icons/star.svg" />
                   </div>
                   <div class="tituloAsignaturas">'
                   . $nombreAsignatura .
