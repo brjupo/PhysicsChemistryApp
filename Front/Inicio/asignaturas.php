@@ -95,7 +95,9 @@
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
         $_SESSION["asignaturaNavegacion"]=$_GET['asignatura'];
-        imprimirPagina($arregloAsignaturas);
+        //todas las asignaturas
+        $arregloAsignaturastodas = array("Materia y el entorno", "Fisica", "Asignatura Brgas");
+        imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
       }
 
       //Si el usuario NO EXISTE mensaje de error y retorna a inicio
@@ -119,7 +121,7 @@
     */
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++PROBADO*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    /*----Paso 1 Obtener todas las asignaturas----*/
+    /*----Paso 1 Obtener las asignaturas a las que se tienen permiso ----*/
     $statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
     mysqli_stmt_bind_param($statement, "s", $_SESSION["id_usuario"]);
     mysqli_stmt_execute($statement);
@@ -145,20 +147,27 @@
 
  
   //////////////////////
-  function imprimirPagina($arregloAsignaturas)
+  function imprimirPagina($arregloAsignaturas,$arregloAsignaturastodas)
   {
     imprimirTitulo();
-    imprimirAsignaturas($arregloAsignaturas);
+    imprimirAsignaturas($arregloAsignaturas,$arregloAsignaturastodas);
     imprimirRelleno();
     imprimirFooter();
   }
 
-  function imprimirAsignaturas($arregloAsignaturas)
+  function imprimirAsignaturas($arregloAsignaturas,$arregloAsignaturastodas)
   {
-    $tamanho = count($arregloAsignaturas);
+    $tamanho = count($arregloAsignaturas,$arregloAsignaturastodas);
     for ($i = 0; $i < $tamanho; $i++) {
-      $permiso=1;
-      imprimirAsignatura($i + 1, $arregloAsignaturas[$i]["nombre"], $permiso);//SE ESTARIAN IMPRIMIENDO ASIGNATURAS POR EL ID
+      if (in_array($arregloAsignaturas[$i]["nombre"], $arregloAsignaturastodas))
+      {
+        $permiso=1;
+        imprimirAsignatura($i + 1, $arregloAsignaturas[$i]["nombre"], $permiso);//SE ESTARIAN IMPRIMIENDO ASIGNATURAS POR EL ID
+      }
+      else{
+        $permiso=0;
+        imprimirAsignatura($i + 1, $arregloAsignaturas[$i]["nombre"], $permiso);
+      }
     }
   }
 
