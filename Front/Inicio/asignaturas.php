@@ -155,21 +155,7 @@
     imprimirFooter();
   }
 
-  function imprimirAsignaturas($arregloAsignaturas,$arregloAsignaturastodas)
-  {
-    $tamanho = count($arregloAsignaturas,$arregloAsignaturastodas);
-    for ($i = 0; $i < $tamanho; $i++) {
-      if (in_array($arregloAsignaturas[$i]["nombre"], $arregloAsignaturastodas))
-      {
-        $permiso=1;
-        imprimirAsignatura($i + 1, $arregloAsignaturas[$i]["nombre"], $permiso);//SE ESTARIAN IMPRIMIENDO ASIGNATURAS POR EL ID
-      }
-      else{
-        $permiso=0;
-        imprimirAsignatura($i + 1, $arregloAsignaturas[$i]["nombre"], $permiso);
-      }
-    }
-  }
+
 
 
   function imprimirTitulo()
@@ -206,56 +192,132 @@
     ';
   }
 
-
-
-  function imprimirAsignatura($numeroAsignatura, $nombreAsignatura, $siTienePermiso)
+  function imprimirAsignaturas($arregloAsignaturas,$arregloAsignaturastodas)
   {
+    $tamanho = count($arregloAsignaturastodas);
+    $esImpar=$tamanho%2;
+    $numeroDePares=intval($tamanho/2);
+
     
+    for ($i = 0; $i < $numeroDePares; $i++) {
+      if (in_array($arregloAsignaturas[2*$i]["nombre"], $arregloAsignaturastodas))
+      {
+        $permiso1=1;
+      }
+      else{
+        $permiso1=0;
+      }
+      if (in_array($arregloAsignaturas[2*$i+1]["nombre"], $arregloAsignaturastodas))
+      {
+        $permiso2=1;
+      }
+      else{
+        $permiso2=0;
+      }
+      imprimirAsignaturaPar($arregloAsignaturas[2*$i]["nombre"],$arregloAsignaturas[2*$i+1]["nombre"], $permiso1, $permiso2);
+    }
+    //si es del 0 a 4, te regresa 5
+    if($esImpar){
+      if (in_array($arregloAsignaturas[$tamanho-1]["nombre"], $arregloAsignaturastodas)){
+        imprimirAsignaturaImpar($arregloAsignaturas[$tamanho-1]["nombre"], 1);
+      }
+      else{
+        imprimirAsignaturaImpar($arregloAsignaturas[$tamanho-1]["nombre"], 0);
+      }
+    }
+  }
+
+  function imprimirAsignaturaPar($nombreAsignatura1,$nombreAsignatura2, $siTienePermiso1, $siTienePermiso2)
+  {
+    if($siTienePermiso1==1){
+      $claseBloque1="asignaturaPrincipal";
+    }
+    else{
+      $claseBloque1="asignaturaDesactivada";
+    }
+    if($siTienePermiso2==1){
+      $claseBloque2="asignaturaPrincipal";
+    }
+    else{
+      $claseBloque2="asignaturaDesactivada";
+    }
     echo '
         <div class="container">
           <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-            <a href="temas.php?asignatura=Materia y el entorno">
+            <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>        
               <div
-                class="asignaturaPrincipal col-xs-10 col-sm-10 col-md-4 col-lg-4 col-xl-4"
+                class="'.$claseBloque1.' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
               >
                 <div>
-                  <img
-                    class="imagenAsignatura"
-                    src="../CSSsJSs/icons/nuclear.svg"
-                  />
+                  <img class="imagenAsignatura" src="../CSSsJSs/icons/star.svg" />
                 </div>
                 <div class="tituloAsignaturas">
-                  Materia y el entorno
+                  '.$nombreAsignatura1.'
                 </div>
               </div>
-            </a>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-            <a href="temas.php?asignatura=Fisica">
-              <div
-                class="asignaturaPrincipal col-xs-10 col-sm-10 col-md-4 col-lg-4 col-xl-4"
-              >
-                <div>
-                  <img
-                    class="imagenAsignatura"
-                    src="../CSSsJSs/icons/physics.svg"
-                  />
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              <a href="temas.php?asignatura=Asignatura Brgas">
+                <div
+                  class="'.$claseBloque2.' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                >
+                  <div>
+                    <img class="imagenAsignatura" src="../CSSsJSs/icons/examen.svg" />
+                  </div>
+                  <div class="tituloAsignaturas">
+                  '.$nombreAsignatura2.'
+                  </div>
                 </div>
-                <div class="tituloAsignaturas">
-                  Física
-                </div>
-              </div>
-            </a>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+              </a>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+            </div>
           </div>
-        </div>
 
+          <div class="container">
+            <div class="row">
+              <p></p>
+            </div>
+          </div>
+    ';
+  }
+
+  function imprimirAsignaturaImpar($nombreAsignatura, $siTienePermiso)
+  { 
+    if($siTienePermiso==1){
+      $claseBloque="asignaturaPrincipal";
+    }
+    else{
+      $claseBloque="asignaturaDesactivada";
+    }
+    echo '
         <div class="container">
           <div class="row">
-            <p style="color: rgba(0, 0, 0, 0);">.</p>
+            <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>        
+              <div
+                class="'.$claseBloque.' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+              >
+                <div>
+                  <img class="imagenAsignatura" src="../CSSsJSs/icons/star.svg" />
+                </div>
+                <div class="tituloAsignaturas">'
+                  .$nombreAsignatura.
+                '</div>
+              </div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              <div
+                class="asignaturaPrincipal col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+              >
+              </div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+            </div>
           </div>
-        </div>
+
+          <div class="container">
+            <div class="row">
+              <p></p>
+            </div>
+          </div>
     ';
   }
 
