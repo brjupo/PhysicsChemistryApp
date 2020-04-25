@@ -237,7 +237,8 @@
     echo '
         <div class="container">
           <div class="row">
-            <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>        
+            <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
+            <a href="temas.php?asignatura=' . $nombreAsignatura1 . '">     
               <div
                 class="' . $claseBloque1 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
               >
@@ -247,10 +248,11 @@
                 <div class="tituloAsignaturas">
                   ' . $nombreAsignatura1 . '
                 </div>
+              </a>
               </div>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-              <a href="temas.php?asignatura=Asignatura Brgas">
+              <a href="temas.php?asignatura=' . $nombreAsignatura2 . '">
                 <div
                   class="' . $claseBloque2 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
@@ -284,17 +286,19 @@
     echo '
         <div class="container">
           <div class="row">
-            <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>        
-              <div
-                class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
-              >
-                <div>
-                  <img class="imagenAsignatura" src="../CSSsJSs/icons/star.svg" />
-                </div>
-                <div class="tituloAsignaturas">'
-      . $nombreAsignatura .
-      '</div>
-              </div>
+            <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>  
+              <a href="temas.php?asignatura=' . $nombreAsignatura . '">      
+                <div
+                  class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                >
+                  <div>
+                    <img class="imagenAsignatura" src="../CSSsJSs/icons/star.svg" />
+                  </div>
+                  <div class="tituloAsignaturas">'
+                  . $nombreAsignatura .
+                  '</div>
+                </div>              
+              </a>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
               <div
