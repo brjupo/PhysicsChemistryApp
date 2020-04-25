@@ -6,7 +6,7 @@
     $puntos = $_POST["puntos"];
     
     //Lanzar consulta para actualizar calificacion
-    $sql = "UPDATE puntuacion SET puntuacion = 7 WHERE id_leccion = 1 AND id_licencia = 4";
+    $sql = "UPDATE puntuacion SET puntuacion = 5 WHERE id_leccion = 1 AND id_licencia = 4";
     mysqli_query($con,$sql);
     
     $response["response"] = 'exito';
