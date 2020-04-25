@@ -6,8 +6,12 @@
     $puntos = $_POST["puntos"];
     
     //Lanzar consulta para actualizar calificacion
-    $sql = "UPDATE puntuacion SET puntuacion = '$puntos' WHERE id_puntuacion = (SELECT id_puntuacion FROM puntuacion WHERE id_leccion = '$leccion' AND id_licencia = (SELECT id_licencia FROM licencia WHERE id_usuario = '$id' and vigencia > NOW()))";
+    $sql = "UPDATE puntuacion SET puntuacion = '$puntos' WHERE id_leccion = '$leccion' AND id_licencia = '$id'";
     mysqli_query($con,$sql);
+    
+    $response["response"] = 'exito';
+            
+            echo json_encode($response);   
 
     
             

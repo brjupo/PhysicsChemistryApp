@@ -132,16 +132,14 @@
           </script>';
     }
 
+  
+    imprimirPreguntas($arrayr, $array, $total,$idL);
     ?>
 
     <?php
-    imprimirPreguntas($arrayr, $array, $total);
-    ?>
-
-    <?php
-    function imprimirPreguntas($arrayr, $array, $total)
+    function imprimirPreguntas($arrayr, $array, $total,$idL)
     {
-        imprimirBarraProgresoCruz($total[0]);
+        imprimirBarraProgresoCruz($total[0],$idL);
         imprimirContador();
         imprimirPreguntasRespuestas($arrayr, $array, $total);
         imprimirFooter();
@@ -191,7 +189,7 @@
 
     <?php
 
-    function imprimirBarraProgresoCruz($totalPreguntas)
+    function imprimirBarraProgresoCruz($totalPreguntas,$idL)
     {
         $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
         echo '
@@ -204,7 +202,7 @@
                     <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
-                    <p id="nombreLeccion" style="display:none">' .$_GET['leccion']. '</p>
+                    <p id="leccionID" style="display:none">' .$idL. '</p>
                     <div class="progress progressMargin">
                     <!-- class="active"-->
                     <div    id="barraAvance"
