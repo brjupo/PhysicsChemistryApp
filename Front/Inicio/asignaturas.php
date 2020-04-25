@@ -219,7 +219,7 @@
       if (in_array($arregloAsignaturas[$tamanho - 1]["nombre"], $arregloAsignaturastodas)) {
         imprimirAsignaturaImpar($arregloAsignaturas[$tamanho - 1]["nombre"], 1);
       } else {
-        imprimirAsignaturaImpar($arregloAsignaturas[$tamanho - 1]["nombre"], 0);
+        imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1]["nombre"], 0);
       }
     }
   }
