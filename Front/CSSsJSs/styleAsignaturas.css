@@ -46,29 +46,38 @@ body {
 }
 
 .iconoPrincipal {
-  padding: 10px 0px 10px 0px;
-  width: 6vw;
-}
-
-@media screen and (min-width: 768px) {
-  .iconoPrincipal {
-    width: 40px;
-  }
+  margin-top: 0.5vh;
+  height: 5vh;
 }
 
 .top {
   border: 1px solid #d6d6d6;
   background-color: rgb(35, 85, 145);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 7vh;
+  z-index: 1;
 }
 
 .titulo {
   color: white;
-  font-size: 8vw;
+  margin-top: 0.5vh;
+  font-size: 5vh;
   line-height: 50px;
   font-family: "ubuntu";
 }
 @media screen and (min-width: 611px) {
+  .iconoPrincipal {
+    margin-top: 10px;
+    height: 50px;
+  }
+  .top{
+    height: 80px;
+  }
   .titulo {
+    margin-top: 10px;
     font-size: 45px;
     line-height: 50px;
   }
@@ -277,130 +286,4 @@ p {
 
 /*--------------------------------------------------------- FIN FOOTER ---------------------------------------*/
 
-.relleno {
-  color: white;
-}
 
-/*--------------------------------------------------------- PERFIL --------------------------------------------*/
-
-.avatarImg {
-  display: block;
-  border-radius: 50%;
-  margin: 0px auto;
-  height: 25vh;
-}
-
-@media screen and (min-width: 768px) {
-  .avatarImg {
-    display: block;
-    border-radius: 50%;
-    margin: 0px auto;
-    height: 250px;
-  }
-}
-
-.mostrarOpciones {
-  display: block;
-}
-.ocultarOpciones {
-  display: none;
-}
-
-.avatarOpciones {
-  display: block;
-  border-radius: 50%;
-  margin: 0px auto;
-  height: 10vh;
-}
-
-@media screen and (min-width: 768px) {
-  .avatarOpciones {
-    display: block;
-    border-radius: 50%;
-    margin: 0px auto;
-    height: 100px;
-  }
-}
-
-#avatarElegir {
-  background-color: rgb(240, 240, 240);
-  border-radius: 20px;
-}
-
-#guardarAvatar {
-  display: block;
-  margin: 3vh auto;
-  height: 6vh;
-}
-
-@media screen and (min-width: 768px) {
-  #guardarAvatar {
-    display: block;
-    margin: 30px auto 15px auto;
-    height: 50px;
-  }
-}
-
-.topNumber {
-  font-family: "Monse";
-  text-align: right;
-  font-weight: 700;
-  font-size: 5vh;
-  margin: 1vh 0px;
-}
-.avatarTop {
-  margin: 1vh 0px;
-  height: 6vh;
-  width: auto;
-  border-radius: 50%;
-}
-.ID3st {
-  font-family: "Monse";
-  text-align: center;
-  margin: 2.5vh 0px;
-  font-size: 3vh;
-}
-.IDiamonds {
-  font-family: "Monse";
-  text-align: right;
-  margin: 3vh 0px;
-  font-size: 2vh;
-}
-.diamantesTop {
-  margin: 3vh 0px;
-  height: 2vh;
-  width: auto;
-}
-
-@media screen and (min-width: 768px) {
-  .topNumber {
-    font-family: "Monse";
-    text-align: right;
-    font-weight: 700;
-    font-size: 10vh;
-    margin: 2vh 0px;
-  }
-  .avatarTop {
-    margin: 2vh 0px;
-    height: 10vh;
-    width: auto;
-    border-radius: 50%;
-  }
-  .ID3st {
-    font-family: "Monse";
-    text-align: center;
-    margin: 3vh 0px;
-    font-size: 8vh;
-  }
-  .IDiamonds {
-    font-family: "Monse";
-    text-align: right;
-    margin: 4.5vh 0px;
-    font-size: 5vh;
-  }
-  .diamantesTop {
-    margin: 4.5vh 0px;
-    height: 5vh;
-    width: auto;
-  }
-}
