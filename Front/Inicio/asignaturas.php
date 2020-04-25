@@ -196,10 +196,10 @@
     $tamanho = count($arregloAsignaturastodas);
     $esImpar = $tamanho % 2;
     $numeroDePares = intval($tamanho / 2);
-    echo '<script type="text/javascript">
+    /*echo '<script type="text/javascript">
             alert("' . $tamanho . '");
             </script>';
-
+    */
     for ($i = 0; $i < $numeroDePares; $i++) {
       if (in_array($arregloAsignaturas[2 * $i]["nombre"], $arregloAsignaturastodas)) {
         $permiso1 = 1;
