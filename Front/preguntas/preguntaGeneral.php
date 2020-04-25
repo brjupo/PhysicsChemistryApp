@@ -403,12 +403,12 @@
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
                     <p id="preguntaNumero" style="display:none">' . $preguntaNumero . '</p>
                     <p class="formatoPreguntas">'
-            . $preguntaTexto .
-            ' 
+                    . $preguntaTexto .
+                    ' 
                     <input type="text" id="' . $IDTextoEscrito . '">
                     '
-            . $preguntaTexto2 .
-            '  
+                    . $preguntaTexto2 .
+                    '  
                     </p>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
@@ -471,7 +471,7 @@
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
-                            <p id="' . $IDvalorCorrecto . '">
+                            <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
                         </div>

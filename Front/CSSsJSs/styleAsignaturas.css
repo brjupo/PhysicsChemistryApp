@@ -1,0 +1,406 @@
+/*Auto Indent Ctrl+Shift+I*/
+
+/*--------------------------------------------------FUENTES-----------------------------------------------------------*/
+
+/*
+@font-face {
+    font-family: "CustomFont";
+    src: url("CustomFont.eot");
+    src: url("CustomFont.woff") format("woff"),
+    url("CustomFont.otf") format("opentype"),
+    url('webfont.ttf')  format('truetype'), 
+    url("CustomFont.svg#filename") format("svg");
+    }
+*/
+@font-face {
+  font-family: "ubuntu";
+  src: url("../CSSsJSs/Fonts/ubuntu/ubuntu.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../CSSsJSs/Fonts/open-sans/OpenSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../CSSsJSs/Fonts/roboto/RobotoCondensed-Light.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Monse";
+  src: url("../CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "SSP";
+  src: url("../CSSsJSs/Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
+}
+
+/*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
+
+body {
+  background-color: white;
+}
+
+.iconoPrincipal {
+  padding: 10px 0px 10px 0px;
+  width: 6vw;
+}
+
+@media screen and (min-width: 768px) {
+  .iconoPrincipal {
+    width: 40px;
+  }
+}
+
+.top {
+  border: 1px solid #d6d6d6;
+  background-color: rgb(35, 85, 145);
+}
+
+.titulo {
+  color: white;
+  font-size: 8vw;
+  line-height: 50px;
+  font-family: "ubuntu";
+}
+@media screen and (min-width: 611px) {
+  .titulo {
+    font-size: 45px;
+    line-height: 50px;
+  }
+}
+
+.fuenteTitulo {
+  color: rgb(50, 50, 50);
+  font-family: "Monse";
+}
+
+p {
+  color: rgb(15, 15, 15);
+  font-family: "Monse";
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.imgRight {
+  float: right;
+}
+
+.icons {
+  width: 8vw;
+}
+
+@media screen and (min-width: 768px) {
+  .icons {
+    width: 4vw;
+  }
+}
+
+/*---------------------------------------------------------TEMAS PRINCIPALES---------------------------------------*/
+
+.imagenAsignatura {
+  display: block;
+  height: 30vh;
+  margin: 0px auto 0px auto;
+  padding: 2vh 0vh;
+}
+
+.imagenDesactivada {
+  display: block;
+  height: 30vh;
+  margin: 0px auto 0px auto;
+  padding: 2vh 0vh;
+  filter: grayscale(100%);
+}
+
+.asignaturaPrincipal {
+  color: #333333;
+  background-color: #fbfbfb;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  padding: 0vh 0vh 0vh 0vh;
+  margin: 0vh 0vh 3vh 0vh;
+  box-shadow: 0vh 3vh 0vh #d6d6d6;
+  /*El tamaño de la sombra debe conincidir con el padding*/
+}
+
+.asignaturaPrincipal:hover,
+.asignaturaPrincipal:active {
+  color: #000000;
+  background-color: #f5f5f5;
+  border: 1px solid #a1a1a1;
+  border-radius: 10px;
+  padding: 1vh 0vh 2vh 0vh;
+  /*El tamaño de la sombra debe conincidir con el padding*/
+  margin: 0vh 0vh 0vh 0vh;
+  box-shadow: none;
+}
+
+.asignaturaDesactivada {
+  color: #555;
+  background-color: #dfdfdf;
+  border: 1px solid #a0a0a0;
+  border-radius: 10px;
+  padding: 0vh 0vh 0vh 0vh;
+  margin: 0vh 0vh 3vh 0vh;
+  box-shadow: 0vh 3vh 0vh #d6d6d6;
+  /*El tamaño de la sombra debe conincidir con el padding*/
+}
+
+.asignaturaDesactivada:hover,
+.asignaturaDesactivada:active {
+  color: #000000;
+  background-color: #f5f5f5;
+  border: 1px solid #a1a1a1;
+  border-radius: 10px;
+  padding: 1vh 0vh 2vh 0vh;
+  /*El tamaño de la sombra debe conincidir con el padding*/
+  margin: 0vh 0vh 0vh 0vh;
+  box-shadow: none;
+}
+
+@media screen and (min-width: 768px) {
+  .imagenAsignatura {
+    display: block;
+    height: 250px;
+    margin: 0px auto 0px auto;
+    padding: 8px 0px;
+  }
+  .imagenDesactivada {
+    display: block;
+    height: 250px;
+    margin: 0px auto 0px auto;
+    padding: 8px 0px;
+    filter: grayscale(100%);
+  }
+
+  .asignaturaPrincipal {
+    border-radius: 10px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 3px 0px;
+    box-shadow: 0px 6px 0px #d6d6d6;
+    /*El tamaño de la sombra debe conincidir con el padding*/
+  }
+
+  .asignaturaPrincipal:hover,
+  .asignaturaPrincipal:active {
+    border-radius: 10px;
+    padding: 1px 0px 2px 0px;
+    /*El tamaño de la sombra debe conincidir con el padding*/
+    margin: 0px 0px 0px 0px;
+    box-shadow: none;
+  }
+  .asignaturaDesactivada {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 3px 0px;
+    box-shadow: 0px 6px 0px #aaaaaa;
+    /*El tamaño de la sombra debe conincidir con el padding*/
+  }
+
+  .asignaturaDesactivada:hover,
+  .asignaturaDesactivada:active {
+    padding: 1px 0px 2px 0px;
+    /*El tamaño de la sombra debe conincidir con el padding*/
+    margin: 0px 0px 0px 0px;
+    box-shadow: none;
+  }
+}
+
+.tituloAsignaturas {
+  font-size: 4.5vw;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .tituloAsignaturas {
+    font-size: 25px;
+  }
+}
+
+/*--------------------------------------------------------- FIN TEMAS PRINCIPALES---------------------------------------*/
+
+/*--------------------------------------------------------- INICIA FOOTER ---------------------------------------*/
+
+.foot {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+  background-color: rgba(255, 255, 255, 1);
+  text-align: center;
+  margin: 2rem 0px 0px 0px;
+  border: 1px solid #d6d6d6;
+}
+
+.footIcon {
+  filter: opacity(70%) brightness(80%);
+  padding: 1vh 0px 0px 0px;
+  height: 8vh;
+}
+.footIcon:hover,
+.footIcon:active {
+  filter: opacity(70%) brightness(80%);
+  padding: 1vh 0px 0px 0px;
+  height: 9vh;
+}
+
+@media screen and (min-width: 768px) {
+  .foot {
+    height: 80px;
+  }
+  .footIcon {
+    padding: 10px 0px 0px 0px;
+    height: 60px;
+  }
+  .footIcon:hover,
+  .footIcon:active {
+    padding: 10px 0px 0px 0px;
+    height: 70px;
+  }
+}
+
+/*--------------------------------------------------------- FIN FOOTER ---------------------------------------*/
+
+.relleno {
+  color: white;
+}
+
+/*--------------------------------------------------------- PERFIL --------------------------------------------*/
+
+.avatarImg {
+  display: block;
+  border-radius: 50%;
+  margin: 0px auto;
+  height: 25vh;
+}
+
+@media screen and (min-width: 768px) {
+  .avatarImg {
+    display: block;
+    border-radius: 50%;
+    margin: 0px auto;
+    height: 250px;
+  }
+}
+
+.mostrarOpciones {
+  display: block;
+}
+.ocultarOpciones {
+  display: none;
+}
+
+.avatarOpciones {
+  display: block;
+  border-radius: 50%;
+  margin: 0px auto;
+  height: 10vh;
+}
+
+@media screen and (min-width: 768px) {
+  .avatarOpciones {
+    display: block;
+    border-radius: 50%;
+    margin: 0px auto;
+    height: 100px;
+  }
+}
+
+#avatarElegir {
+  background-color: rgb(240, 240, 240);
+  border-radius: 20px;
+}
+
+#guardarAvatar {
+  display: block;
+  margin: 3vh auto;
+  height: 6vh;
+}
+
+@media screen and (min-width: 768px) {
+  #guardarAvatar {
+    display: block;
+    margin: 30px auto 15px auto;
+    height: 50px;
+  }
+}
+
+.topNumber {
+  font-family: "Monse";
+  text-align: right;
+  font-weight: 700;
+  font-size: 5vh;
+  margin: 1vh 0px;
+}
+.avatarTop {
+  margin: 1vh 0px;
+  height: 6vh;
+  width: auto;
+  border-radius: 50%;
+}
+.ID3st {
+  font-family: "Monse";
+  text-align: center;
+  margin: 2.5vh 0px;
+  font-size: 3vh;
+}
+.IDiamonds {
+  font-family: "Monse";
+  text-align: right;
+  margin: 3vh 0px;
+  font-size: 2vh;
+}
+.diamantesTop {
+  margin: 3vh 0px;
+  height: 2vh;
+  width: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .topNumber {
+    font-family: "Monse";
+    text-align: right;
+    font-weight: 700;
+    font-size: 10vh;
+    margin: 2vh 0px;
+  }
+  .avatarTop {
+    margin: 2vh 0px;
+    height: 10vh;
+    width: auto;
+    border-radius: 50%;
+  }
+  .ID3st {
+    font-family: "Monse";
+    text-align: center;
+    margin: 3vh 0px;
+    font-size: 8vh;
+  }
+  .IDiamonds {
+    font-family: "Monse";
+    text-align: right;
+    margin: 4.5vh 0px;
+    font-size: 5vh;
+  }
+  .diamantesTop {
+    margin: 4.5vh 0px;
+    height: 5vh;
+    width: auto;
+  }
+}
