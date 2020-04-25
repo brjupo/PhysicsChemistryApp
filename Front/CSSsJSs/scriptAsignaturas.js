@@ -1,5 +1,4 @@
 window.onload = function () {
-    //lectionsv();
     if (window.history.replaceState) { // verificamos disponibilidad
         window.history.replaceState(null, null, window.location.href);
       }

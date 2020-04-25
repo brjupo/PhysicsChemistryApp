@@ -3,7 +3,6 @@ var nodoPadre = null;
 var nombreImagen;
 
 window.onload = function () {
-    //lectionsv();
 }
 
 document.addEventListener("click", function (evt) {
