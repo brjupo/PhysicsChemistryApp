@@ -18,6 +18,8 @@
   session_start();
   $tokenValidar = array();
 
+  
+  $arregloAsignaturastodas = array("Materia y el entorno", "Fisica", "Asignatura Brgas");
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
   mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
@@ -33,7 +35,7 @@
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
-    imprimirPagina($arregloAsignaturas);
+    imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
   } else {
 
     /* echo'<script type="text/javascript">
@@ -94,7 +96,6 @@
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
         //todas las asignaturas
-        $arregloAsignaturastodas = array("Materia y el entorno", "Fisica", "Asignatura Brgas");
         imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
       }
 
