@@ -5,6 +5,8 @@ var puntos = 0;
 
 window.onload = function () {
   //startClock();
+  var CorrectAudio = new Audio("sounds/Correct.mp3");
+  var IncorrectAudio = new Audio("sounds/Incorrect.mp3");
   contarIDs();
   limpiarInputs(cantidadIDs);
   showQuestion(1);
@@ -90,9 +92,13 @@ function whiteButtons(seleccionada) {
   //Buscar la respuesta correcta
   document.getElementById(IDrespuestaCorrecta).className = "OpcionCorrecta";
   if (IDrespuestaCorrecta == seleccionada) {
+    CorrectAudio.play();
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
+  }
+  else{
+    IncorrectAudio.play();    
   }
 }
 
@@ -140,6 +146,7 @@ function whiteButtonsType2() {
   var respuestaEscritaUpper = respuestaEscritaNormalizada.toUpperCase();
 
   if (respuestaEscritaUpper == respuestaCorrectaUpper) {
+    CorrectAudio.play();
     document.getElementById(inputEscrito).style.color = "green";
     document.getElementById(inputEscrito).value = document
       .getElementById(inputEscrito)
@@ -148,6 +155,7 @@ function whiteButtonsType2() {
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
   } else {
+    IncorrectAudio.play();
     document.getElementById(inputEscrito).style.color = "red";
     document.getElementById(inputEscrito).value = document
       .getElementById(inputEscrito)
