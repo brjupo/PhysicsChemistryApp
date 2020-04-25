@@ -17,10 +17,7 @@
   //////////////////////////////////////////////////////
   session_start();
   $tokenValidar = array();
-  /* echo'<script type="text/javascript">
-            alert("$_SESSION["mail"]");
-            </script>'; */
-
+  
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
   mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
@@ -33,43 +30,86 @@
     $tokenValidar["tokenSesionp"] = $tokenSesionp;
   }
 
-  /* echo'<script type="text/javascript">
-            alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
-            </script>'; */
-
-
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
-    $arregloTemas = array();
-    $arregloTemas = traerTemas();
+    $arregloAsignaturas = array();
+    $arregloAsignaturas = traerAsignaturas();
     $_SESSION["asignaturaNavegacion"]=$_GET['asignatura'];
-    imprimirPagina($arregloTemas);
+    imprimirPagina($arregloAsignaturas);
   } else {
 
     /* echo'<script type="text/javascript">
             alert("segundo caminio");
             </script>'; */
-    ////////////////////////////////////////
-    //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
-      //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-      $stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
-      $result = mysqli_query($con, $stringQuery);
-      $rowp = mysqli_fetch_array($result);
+
+    $correo = $_POST["validarUsuario"];
+    $password = $_POST["validarPassword"];
 
     //Validamos que los campos correo y password no lleguen vacios
-    if ($rowp) {
-        $arregloTemas = array();
-        $arregloTemas = traerTemas();
-        $_SESSION["asignaturaNavegacion"]=$_GET['asignatura'];
-        imprimirPagina($arregloTemas);
+    if ($correo == "" or $password == "") {
+      echo '<script type="text/javascript">
+            alert("Ingresa usuario y/o contraseña");
+            window.location.href="https://kaanbal.net";
+            </script>';
     } else {
 
-      echo '<script type="text/javascript">
-        window.location.href="https://kaanbal.net";
-        </script>';
+      //Consultar si existe usuario en tabla alumnos
+      $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
+      mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+      mysqli_stmt_execute($statement);
+
+      mysqli_stmt_store_result($statement);
+      mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA, $tokenSesion, $idioma);
+
+
+
+      //Leemos datos del usuario
+      while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
+        $temp_id_usuario = $id_usuario;
+        $temp_mail = $mail;
+        $temp_pswd = $pswd;
+        $temp_tokenA = $tokenA;
+        $temp_tokenSesion = $tokenSesion;
+        $temp_idioma = $idioma;
+        //$response["token"] = $token;
+        //$response["token_a"] = $token_a;
+        //$response["tokenp"] = $tokenp;
+        //$response["tokenpp"] = $tokenpp;
+        //$response["flag"] = $flag;
+      }
+
+      //Si el usuario EXISTE despliega el menú de las asignaturas
+      if ($temp_id_usuario) {
+        //Creamos token de sesión
+        $rand = bin2hex(random_bytes(5));
+        //Registrar token de sesion en BD
+        $sql = "UPDATE usuario_prueba SET tokenSesion='$rand' WHERE mail = '$correo'";
+        mysqli_query($con, $sql);
+        //Aactualizamos variables de sesión
+        $_SESSION["id_usuario"] = $temp_id_usuario;
+        $_SESSION["mail"] = $temp_mail;
+        $_SESSION["pswd"] = $temp_pswd;
+        $_SESSION["tokenA"] = $temp_tokenA;
+        $_SESSION["tokenSesion"] = $rand;
+        $_SESSION["idioma"] = $temp_idioma;
+        //Imprimimos pantalla de asignaturas
+        $arregloAsignaturas = array();
+        $arregloAsignaturas = traerAsignaturas();
+        $_SESSION["asignaturaNavegacion"]=$_GET['asignatura'];
+        imprimirPagina($arregloAsignaturas);
+      }
+
+      //Si el usuario NO EXISTE mensaje de error y retorna a inicio
+      else {
+        echo '<script type="text/javascript">
+            alert("Usuario y/o contraseña incorrectos");
+            window.location.href="https://kaanbal.net";
+            </script>';
+      }
     }
   }
 
-  function traerTemas()
+  //traer licencias disponibles
+  function traerAsignaturas()
   {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $asignatura = $_GET['asignatura'];
@@ -77,76 +117,53 @@
             alert("'.$asignatura.'");
             </script>';
     */
-    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++PROBADO*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    /*----Paso 1 Obtener el ID de la asignatura----*/
-    $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE nombre = ?");
-    mysqli_stmt_bind_param($statement, "s", $asignatura);
+    /*----Paso 1 Obtener todas las asignaturas----*/
+    $statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
+    mysqli_stmt_bind_param($statement, "s", $_SESSION["id_usuario"]);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_asignatura);
+    mysqli_stmt_bind_result($statement, $id_asignatura, $nombre, $nivel, $grado_academico, $idioma);
 
-    $arregloIdasignatura = array();
-    //Leemos datos del usuario
-    while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
-      $arregloIdasignatura["id_asignatura"] = $id_asignatura;
-    }
-
-
-    /*----Paso 2 Llamar a los temas de la asignatura-------*/
-    $statement = mysqli_prepare($con, "SELECT * FROM tema WHERE id_asignatura = ?"); //WHERE mail = ? AND pswd = ?
-    mysqli_stmt_bind_param($statement, "s", $arregloIdasignatura["id_asignatura"]);
-    mysqli_stmt_execute($statement);
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_tema, $id_asignatura, $nombre);
-
-    $arregloTemas = array();
+    $arregloAsignaturas = array();
+   
     $i = 0;
-    //Leemos datos del usuario
-    while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
-      $arregloTemas[$i]["id_tema"] = $id_tema;
-      $arregloTemas[$i]["id_asignatura"] = $id_asignatura;
-      $arregloTemas[$i]["nombre"] = $nombre;
+    while (mysqli_stmt_fetch($statement)) { 
+      $arregloAsignaturas[$i]["id_asignatura"] = $id_asignatura;
+      $arregloAsignaturas[$i]["nombre"] = $nombre;
+      $arregloAsignaturas[$i]["nivel"] = $nivel;
+      $arregloAsignaturas[$i]["grado_academico"] = $grado_academico;
+      $arregloAsignaturas[$i]["idioma"] = $idioma;
       $i = $i + 1;
     }
-
-    return ($arregloTemas);
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+//DETECTAR DONDE DA CLIC A LA ASIGNATURA PARA GUARDAR LA VARIABLE DE SESION DEL ID DE LA ASIGNATURA
+    
+    return ($arregloAsignaturas);
   }
 
-  $total = mysqli_fetch_row($result2);
-  //$total = 10;
-  //Recorrer el arreglo
-  while ($row = mysqli_fetch_assoc($result)) {
-    $array[] = $row;
-    $arrayr[] = $row;
-  }
+ 
   //////////////////////
-  function imprimirPagina($arregloTemas)
+  function imprimirPagina($arregloAsignaturas)
   {
     imprimirTitulo();
     imprimirCita();
     //imprimirSiempreAparece();
     /* RECORDATORIO */
-    imprimirTemas($arregloTemas);
+    imprimirAsignaturas($arregloAsignaturas);
     imprimirRelleno();
     imprimirFooter();
   }
 
-  function imprimirTemas($arregloTemas)
+  function imprimirAsignaturas($arregloAsignaturas)
   {
-    $tamanho = count($arregloTemas);
+    $tamanho = count($arregloAsignaturas);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirTema($i + 1, $arregloTemas[$i]["nombre"]);
+      imprimirTema($i + 1, $arregloAsignaturas[$i]["id_asignatura"]);//SE ESTARIAN IMPRIMIENDO ASIGNATURAS POR EL ID
     }
   }
 
-
-
-  /* Recordatorio
-  Recuerda que tienes 4 colores para cambiarlos
-  <div class="temaPrincipal1 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-  temaPrincipal1, temaPrincipal2, temaPrincipal3, temaPrincipal4
-  */
 
   function imprimirTitulo()
   {

@@ -50,7 +50,6 @@
     /* echo'<script type="text/javascript">
               alert("segundo caminio");
               </script>'; */
-
     ////////////////////////////////////
 
     /* echo'<script type="text/javascript">
