@@ -64,14 +64,14 @@ document.addEventListener("click", function (evt) {
 
 function enviarCalificacion() {
   var userID= $("#userID").val();
-  var nombreLeccion= $("#nombreLeccion").val();
-  alert(userID, " ", puntos, " ", nombreLeccion);
+  var leccionID= $("#leccionID").val();
+  alert(userID, " ", puntos, " ", leccionID);
 
   $.ajax({
     type: "POST",
     url: "../../Servicios/subirPuntos.php",
     dataType: "json",
-    data: { id: userID, leccion: nombreLeccion, puntos: puntos },
+    data: { id: userID, leccion: leccionID, puntos: puntos },
     success: function(data) {
       console.log(data.response);
       if (data.response == "exito") {
