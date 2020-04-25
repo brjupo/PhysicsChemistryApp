@@ -24,8 +24,9 @@ document.addEventListener("click", function (evt) {
     }
     if (targetElement == botonSiguientePregunta) {
       if(cantidadIDs-1000 == preguntaActual){
-        var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
-        window.location.replace(stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim()));
+        //var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
+        //window.location.replace(stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim()));
+        enviarCalificacion();
       }
       else{
         siguientePregunta();
@@ -68,19 +69,18 @@ function enviarCalificacion() {
 
   $.ajax({
     type: "POST",
-    url: "../../Servicios/login.php",
+    url: "../../Servicios/subirPuntos.php",
     dataType: "json",
-    data: { correo: matricula, password: pswd },
+    data: { id: userID, leccion: nombreLeccion, puntos: puntos },
     success: function(data) {
       console.log(data.response);
       if (data.response == "Sesion iniciada correctamente") {
-        //alert("Etcito");
+        alert("Etcito");
         console.log("Sesion iniciada correctamente");
-        //goToTemas(data.tokenA);
-        //****no location.replace("Front/Inicio/temas.php");
-        //console.log(data.tokenA);
+        var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
+        window.location.replace(stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim()));
       } else {
-        //alert(data.response);
+        alert(data.response);
         console.log("Algo salio mal");
       }
     }
