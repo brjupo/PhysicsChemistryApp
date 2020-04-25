@@ -226,6 +226,7 @@
 
   function imprimirAsignaturaPar($nombreAsignatura1, $nombreAsignatura2, $siTienePermiso1, $siTienePermiso2)
   {
+    $link=1;
     if ($siTienePermiso1 == 1) {
       $claseBloque1 = "asignaturaPrincipal";
     } else {
@@ -288,7 +289,7 @@
     echo '
         <div class="container">
           <div class="row">
-            <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>  
+            <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
               <a href="temas.php?asignatura=' . $nombreAsignatura . '">      
                 <div
                   class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
@@ -301,13 +302,7 @@
                   '</div>
                 </div>              
               </a>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-              <div
-                class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
-              >
-              </div>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
             </div>
           </div>
 
