@@ -114,14 +114,14 @@ p {
 
 .imagenAsignatura {
   display: block;
-  height: 30vh;
+  height: 20vh;
   margin: 0px auto 0px auto;
   padding: 2vh 0vh;
 }
 
 .imagenDesactivada {
   display: block;
-  height: 30vh;
+  height: 20vh;
   margin: 0px auto 0px auto;
   padding: 2vh 0vh;
   filter: grayscale(100%);
@@ -132,9 +132,9 @@ p {
   background-color: #fbfbfb;
   border: 1px solid #d6d6d6;
   border-radius: 10px;
-  padding: 0vh 0vh 0vh 0vh;
-  margin: 0vh 0vh 3vh 0vh;
-  box-shadow: 0vh 3vh 0vh #d6d6d6;
+  padding: 0vh 10vw 0vh 10vw;
+  margin: 5vh 0vh 1.5vh 0vh;
+  box-shadow: 0vh 1.5vh 0vh #d6d6d6;
   /*El tamaño de la sombra debe conincidir con el padding*/
 }
 
@@ -144,9 +144,9 @@ p {
   background-color: #f5f5f5;
   border: 1px solid #a1a1a1;
   border-radius: 10px;
-  padding: 1vh 0vh 2vh 0vh;
+  padding: 0.5vh 10vw 1vh 10vw;
   /*El tamaño de la sombra debe conincidir con el padding*/
-  margin: 0vh 0vh 0vh 0vh;
+  margin: 5vh 0vh 0vh 0vh;
   box-shadow: none;
 }
 
@@ -155,9 +155,9 @@ p {
   background-color: #dfdfdf;
   border: 1px solid #a0a0a0;
   border-radius: 10px;
-  padding: 0vh 0vh 0vh 0vh;
-  margin: 0vh 0vh 3vh 0vh;
-  box-shadow: 0vh 3vh 0vh #d6d6d6;
+  padding: 0vh 10vw 0vh 10vw;
+  margin: 5vh 0vh 1.5vh 0vh;
+  box-shadow: 0vh 1.5vh 0vh #d6d6d6;
   /*El tamaño de la sombra debe conincidir con el padding*/
 }
 
@@ -167,9 +167,9 @@ p {
   background-color: #f5f5f5;
   border: 1px solid #a1a1a1;
   border-radius: 10px;
-  padding: 1vh 0vh 2vh 0vh;
+  padding: 0.5vh 10vw 1vh 10vw;
   /*El tamaño de la sombra debe conincidir con el padding*/
-  margin: 0vh 0vh 0vh 0vh;
+  margin: 5vh 0vh 0vh 0vh;
   box-shadow: none;
 }
 
