@@ -297,14 +297,14 @@
                     <img class="imagenAsignatura" src="../CSSsJSs/icons/star.svg" />
                   </div>
                   <div class="tituloAsignaturas">'
-      . $nombreAsignatura .
-      '</div>
+                  . $nombreAsignatura .
+                  '</div>
                 </div>              
               </a>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
               <div
-                class="asignaturaPrincipal col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
               >
               </div>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
