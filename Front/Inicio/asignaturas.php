@@ -212,14 +212,14 @@
       } else {
         $permiso2 = 0;
       }
-      imprimirAsignaturaPar($arregloAsignaturastodas[2 * $i]["nombre"], $arregloAsignaturastodas[2 * $i + 1]["nombre"], $permiso1, $permiso2);
+      imprimirAsignaturaPar($arregloAsignaturastodas[2 * $i], $arregloAsignaturastodas[2 * $i + 1], $permiso1, $permiso2);
     }
     //si es del 0 a 4, te regresa 5
     if ($esImpar) {
-      if (in_array($arregloAsignaturas[$tamanho - 1]["nombre"], $arregloAsignaturastodas)) {
-        imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1]["nombre"], 1);
+      if (in_array($arregloAsignaturas[$tamanho - 1], $arregloAsignaturastodas)) {
+        imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 1);
       } else {
-        imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1]["nombre"], 0);
+        imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 0);
       }
     }
   }
