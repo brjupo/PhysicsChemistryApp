@@ -60,6 +60,33 @@ document.addEventListener("click", function (evt) {
   } while (targetElement);
 });
 
+
+function enviarCalificacion() {
+  var userID= $("#userID").val();
+  var nombreLeccion= $("#nombreLeccion").val();
+  alert(userID, " ", puntos, " ", nombreLeccion);
+
+  $.ajax({
+    type: "POST",
+    url: "../../Servicios/login.php",
+    dataType: "json",
+    data: { correo: matricula, password: pswd },
+    success: function(data) {
+      console.log(data.response);
+      if (data.response == "Sesion iniciada correctamente") {
+        //alert("Etcito");
+        console.log("Sesion iniciada correctamente");
+        //goToTemas(data.tokenA);
+        //****no location.replace("Front/Inicio/temas.php");
+        //console.log(data.tokenA);
+      } else {
+        //alert(data.response);
+        console.log("Algo salio mal");
+      }
+    }
+  });
+}
+
 function seguroRegresar() {
   if (
     confirm(
