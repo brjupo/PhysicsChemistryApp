@@ -74,9 +74,9 @@ function enviarCalificacion() {
     data: { id: userID, leccion: nombreLeccion, puntos: puntos },
     success: function(data) {
       console.log(data.response);
-      if (data.response == "Sesion iniciada correctamente") {
+      if (data.response == "exito") {
         alert("Etcito");
-        console.log("Sesion iniciada correctamente");
+        console.log("Valores enviados correctamente");
         var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
         window.location.replace(stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim()));
       } else {
