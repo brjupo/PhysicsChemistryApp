@@ -2,11 +2,11 @@ var preguntaActual = 1;
 var popUpLevantado = false;
 var cantidadIDs = 0;
 var puntos = 0;
+var CorrectAudio = new Audio("sounds/Correct.mp3");
+var IncorrectAudio = new Audio("sounds/Incorrect.mp3");
 
 window.onload = function () {
   //startClock();
-  var CorrectAudio = new Audio("sounds/Correct.mp3");
-  var IncorrectAudio = new Audio("sounds/Incorrect.mp3");
   contarIDs();
   limpiarInputs(cantidadIDs);
   showQuestion(1);
