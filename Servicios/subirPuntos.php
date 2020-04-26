@@ -1,18 +1,28 @@
 <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
-    $id = $_POST["id"];
+    $id_usuario = $_POST["id"];
     $leccion = $_POST["leccion"];
-    $puntos = $_POST["puntos"];
+    $puntosNuevos = $_POST["puntos"];
     
-    //Lanzar consulta para actualizar calificacion
+    //Lanzar consulta para saber si existe calificacion y la trae
+    $statement = mysqli_prepare($con, "SELECT puntuacion FROM puntuacion WHERE id_leccion = ? AND id_usuario = ?");
+      mysqli_stmt_bind_param($statement, "ss", $leccion, $id_usuario);
+      mysqli_stmt_execute($statement);
+      mysqli_stmt_store_result($statement);
+      mysqli_stmt_bind_result($statement, $puntuacion);
+
+      //Leemos la calificacion 
+      while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
+        $puntosActuales = $puntuacion ;
+      }
+    
+    if($puntosNuevos >= $puntosActuales){
+    //Lanzar consulta para actualizar calificacion solo si es mayor
     $sql = "UPDATE puntuacion SET puntuacion = $puntos WHERE id_leccion = $leccion AND id_usuario = $id";
     mysqli_query($con,$sql);
-    
-    $response["response"] = 'exito';
-            
-            echo json_encode($response);   
-
+    }
+    //Lanzar consulta para insertar primera calificacion
     
             
     //SELECT puntuacion FROM puntuacion WHERE id_leccion = 1 AND id_licencia = (SELECT id_licencia FROM licencia WHERE id_usuario = 4 and vigencia > NOW());
@@ -29,5 +39,9 @@
         //Si existe registrar contraseña en base de datos y responder true
         $sql = "UPDATE usuario_prueba SET pswd='$password' WHERE mail = '$correo'";
         mysqli_query($con,$sql); */
+
+        $response["response"] = 'exito';
+            
+            echo json_encode($response); 
 
 ?>
