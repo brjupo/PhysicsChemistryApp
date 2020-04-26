@@ -17,10 +17,16 @@
         $puntosActuales = $puntuacion ;
       }
     
-    if($puntosNuevos >= $puntosActuales){
-    //Lanzar consulta para actualizar calificacion solo si es mayor
-    $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos WHERE id_leccion = $leccion AND id_usuario = $id_usuario";
-    mysqli_query($con,$sql);
+    if($puntosActuales){//validamos que exista una calificacion
+                if($puntosNuevos >= $puntosActuales){
+                //Lanzar consulta para actualizar calificacion solo si es mayor
+                        $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos WHERE id_leccion = $leccion AND id_usuario = $id_usuario";
+                        mysqli_query($con,$sql);
+                }
+        }
+    else{
+                $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion) VALUES ('$id_usuario', '$leccion', '$puntosNuevos')";
+                mysqli_query($con,$sql);
     }
     //Lanzar consulta para insertar primera calificacion
     
