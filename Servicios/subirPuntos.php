@@ -19,7 +19,7 @@
     
     if($puntosNuevos >= $puntosActuales){
     //Lanzar consulta para actualizar calificacion solo si es mayor
-    $sql = "UPDATE puntuacion SET puntuacion = $puntos WHERE id_leccion = $leccion AND id_usuario = $id";
+    $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos WHERE id_leccion = $leccion AND id_usuario = $id_usuario";
     mysqli_query($con,$sql);
     }
     //Lanzar consulta para insertar primera calificacion
