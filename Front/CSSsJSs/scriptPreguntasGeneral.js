@@ -65,7 +65,7 @@ document.addEventListener("click", function (evt) {
 function enviarCalificacion() {
   var userID= document.getElementById("userID").innerHTML.trim();
   var leccionID= document.getElementById("leccionID").innerHTML.trim();
-  alert(userID+ " "+ puntos+ " "+ leccionID);
+  //alert(userID+ " "+ puntos+ " "+ leccionID);
 
   $.ajax({
     type: "POST",
