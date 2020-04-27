@@ -75,12 +75,12 @@ function enviarCalificacion() {
     success: function(data) {
       console.log(data.response);
       if (data.response == "exito") {
-        alert("Etcito");
+        //alert("Etcito");
         console.log("Valores enviados correctamente");
         var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
         window.location.replace(stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim()));
       } else {
-        alert(data.response);
+        //alert(data.response);
         console.log("Algo salio mal");
       }
     }
