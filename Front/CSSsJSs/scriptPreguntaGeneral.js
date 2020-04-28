@@ -115,9 +115,9 @@ function whiteButtons(seleccionada) {
   var numeroCorrecta = 3000 + numero;
   respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML.trim();
   //console.log(respuestaCorrecta);
-  posicionRespuestaCorrecta = document
-    .getElementById(numeroCorrecta)
-    .innerHTML.trim();
+  posicionRespuestaCorrecta = parseInt(document
+    .getElementById(3000+preguntaActual)
+    .innerHTML.trim());
   var IDrespuestaCorrecta;
   for (var i = 10 * numero - 3; i <= 10 * numero; i++) {
     //Convertir todos a blanco de la pregunta en curso
@@ -135,9 +135,9 @@ function whiteButtons(seleccionada) {
   document.getElementById(seleccionada).className = "OpcionIncorrecta";
   //Buscar la respuesta correcta
   document.getElementById(
-    10 * numero - 3 + posicionRespuestaCorrecta
+    10 * preguntaActual - 3 + posicionRespuestaCorrecta
   ).className = "OpcionCorrecta";
-  if (seleccionada == 10 * numero - 3 + posicionRespuestaCorrecta) {
+  if (seleccionada == 10 * preguntaActual - 3 + posicionRespuestaCorrecta) {
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
