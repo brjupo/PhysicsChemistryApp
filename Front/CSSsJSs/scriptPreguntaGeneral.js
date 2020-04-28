@@ -2,18 +2,14 @@ var preguntaActual = 1;
 var popUpLevantado = false;
 var cantidadIDs = 0;
 var puntos = 0;
-var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
-var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
-var preguntasIncorrectas = [];
-var primerVueltaTerminada = false;
-var preguntaPrevia2daVuelta = 0;
+var CorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
+var IncorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
 
 window.onload = function () {
   //startClock();
   contarIDs();
   limpiarInputs(cantidadIDs);
   showQuestion(1);
-  preguntaPrevia2daVuelta = cantidadIDs;
 };
 
 document.addEventListener("click", function (evt) {
@@ -27,17 +23,14 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == botonSiguientePregunta) {
-      if (cantidadIDs - 1000 == preguntaActual) {
-        primerVueltaTerminada = true;
-        if (preguntasIncorrectas.length == 0) {
-          enviarCalificacion();
-        } else {
-          siguientePregunta(preguntasIncorrectas[0]);
-          preguntaPrevia2daVuelta = preguntasIncorrectas[0];
-        }
-      } else {
-        siguientePregunta(0);
+      if(cantidadIDs-1000 == preguntaActual){
+        //var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
+        //window.location.replace(stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim()));
+        enviarCalificacion();
       }
+      else{
+        siguientePregunta();
+      }     
       return;
     }
     if (
@@ -68,9 +61,10 @@ document.addEventListener("click", function (evt) {
   } while (targetElement);
 });
 
+
 function enviarCalificacion() {
-  var userID = document.getElementById("userID").innerHTML.trim();
-  var leccionID = document.getElementById("leccionID").innerHTML.trim();
+  var userID= document.getElementById("userID").innerHTML.trim();
+  var leccionID= document.getElementById("leccionID").innerHTML.trim();
   //alert(userID+ " "+ puntos+ " "+ leccionID);
 
   $.ajax({
@@ -78,23 +72,18 @@ function enviarCalificacion() {
     url: "../../Servicios/subirPuntos.php",
     dataType: "json",
     data: { id: userID, leccion: leccionID, puntos: puntos },
-    success: function (data) {
+    success: function(data) {
       console.log(data.response);
       if (data.response == "exito") {
         //alert("Etcito");
         console.log("Valores enviados correctamente");
-        var stringLiga =
-          "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
-        window.location.replace(
-          stringLiga.concat(
-            document.getElementById("subtemaPrevio").innerHTML.trim()
-          )
-        );
+        var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
+        window.location.replace(stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim()));
       } else {
         //alert(data.response);
         console.log("Algo salio mal");
       }
-    },
+    }
   });
 }
 
@@ -105,9 +94,7 @@ function seguroRegresar() {
     )
   ) {
     var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
-    window.location.href = stringLiga.concat(
-      document.getElementById("subtemaPrevio").innerHTML.trim()
-    );
+    window.location.href = stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim());
   }
 }
 
@@ -131,28 +118,20 @@ function whiteButtons(seleccionada) {
   document.getElementById(seleccionada).className = "OpcionIncorrecta";
   //Buscar la respuesta correcta
   document.getElementById(IDrespuestaCorrecta).className = "OpcionCorrecta";
-  //Si la contesta bien
   if (IDrespuestaCorrecta == seleccionada) {
-    if (preguntasIncorrectas.includes(numero)) {
-      preguntasIncorrectas.shift();
-    }
+    CorrectAudio.play();
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
-    CorrectAudio.play();
   }
-  //Si se equivoca
-  else {
-    preguntasIncorrectas.push(numero);
-    IncorrectAudio.play();
+  else{
+    IncorrectAudio.play();    
   }
 }
 
-function barWidth(puntos) {
-  anchoBarra = 100 * puntos;
-  anchoBarra =
-    anchoBarra /
-    parseInt(document.getElementById("totalPreguntas").innerHTML.trim());
+function barWidth(puntos){
+  anchoBarra = 100*puntos;
+  anchoBarra = anchoBarra / parseInt(document.getElementById("totalPreguntas").innerHTML.trim());
   anchoBarra = parseInt(anchoBarra).toString(10);
   //barraAvance
   stringPorcentaje = anchoBarra.concat("%");
@@ -194,9 +173,7 @@ function whiteButtonsType2() {
   var respuestaEscritaUpper = respuestaEscritaNormalizada.toUpperCase();
 
   if (respuestaEscritaUpper == respuestaCorrectaUpper) {
-    if (preguntasIncorrectas.includes(numero)) {
-      preguntasIncorrectas.shift();
-    }
+    CorrectAudio.play();
     document.getElementById(inputEscrito).style.color = "green";
     document.getElementById(inputEscrito).value = document
       .getElementById(inputEscrito)
@@ -204,19 +181,17 @@ function whiteButtonsType2() {
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
-    CorrectAudio.play();
   } else {
-    preguntasIncorrectas.push(numero);
+    IncorrectAudio.play();
     document.getElementById(inputEscrito).style.color = "red";
     document.getElementById(inputEscrito).value = document
       .getElementById(inputEscrito)
       .value.toLowerCase();
-    IncorrectAudio.play();
   }
 }
 
 function restoreInputColors() {
-  if (document.getElementById(10 * preguntaActual - 5)) {
+  if(document.getElementById(10 * preguntaActual - 5)){
     document.getElementById(10 * preguntaActual - 5).style.color = "black";
   }
 }
@@ -242,17 +217,13 @@ function disableMiniButton() {
   document.getElementById(j).disabled = true;
 }
 
-function siguientePregunta(preguntaForzada) {
+function siguientePregunta() {
   popUpLevantado = false;
   //enableAllButtons();
   document.getElementById("sprintNext").style.display = "none";
   restoreInputColors();
-  if (preguntaForzada == 0) {
-    preguntaActual = preguntaActual + 1;
-    showQuestion(preguntaActual);
-  } else {
-    showQuestion(preguntaForzada);
-  }
+  preguntaActual = preguntaActual + 1;
+  showQuestion(preguntaActual);
 }
 
 function enableAllButtons() {
@@ -349,12 +320,6 @@ function showQuestion(pregunta) {
   if (pregunta == 1) {
     document.getElementById(1001).style.display = "block";
     document.getElementById(2001).style.display = "block";
-  } else if (primerVueltaTerminada == true) {
-    document.getElementById(preguntaTexto).style.display = "block";
-    document.getElementById(respuestaTexto).style.display = "block";
-    //preguntaPrevia2daVuelta
-    document.getElementById(1000+preguntaPrevia2daVuelta).style.display = "none";
-    document.getElementById(2000+preguntaPrevia2daVuelta).style.display = "none";
   } else {
     document.getElementById(preguntaTexto).style.display = "block";
     document.getElementById(respuestaTexto).style.display = "block";
@@ -364,3 +329,4 @@ function showQuestion(pregunta) {
     document.getElementById(respuestaTexto).style.display = "none";
   }
 }
+
