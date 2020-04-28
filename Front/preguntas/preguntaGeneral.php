@@ -157,9 +157,25 @@
         $r4 = "10,000";
         $rc = "10,000,000";
         $imagen = 1;
+
+        
+
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
             if ($arrayr[$x]["tipo"] == "1") {
+                //encontrar id´s de las respuestas correctas
+                $rcorrecta = $array[$x]["respuesta_correcta"];
+
+                $arraytemp = array();
+                $arraytemp[0] = "respuesta_correcta";
+                $arraytemp[1] = "respuesta2";
+                $arraytemp[2] = "respuesta3";
+                $arraytemp[3]= "respuesta4";
+
+                $posicion = array_search($rcorrecta,$arraytemp);
+
+
+                //////////////
                 imprimirPreguntaTipo1($x + 1, $arrayr[$x]["pregunta"]);
                 imprimirImagenRespuestasTipo1(
                     $x + 1,
@@ -167,7 +183,7 @@
                     $arrayr[$x]["respuesta2"],
                     $arrayr[$x]["respuesta3"],
                     $arrayr[$x]["respuesta4"],
-                    $array[$x]["respuesta_correcta"],
+                    $posicion,//aqui mandar posicion de respuesta correcta
                     $array[$x]["id_pregunta"]
                 );
             } else {
@@ -178,7 +194,7 @@
                 );
                 imprimirImagenRespuestasTipo2(
                     $x + 1,
-                    $array[$x]["respuesta_correcta"],
+                    $posicion,
                     $array[$x]["id_pregunta"]
                 );
             }
