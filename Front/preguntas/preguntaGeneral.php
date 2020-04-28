@@ -164,7 +164,7 @@
         for ($x = 0; $x < $total[0]; $x++) {
             if ($arrayr[$x]["tipo"] == "1") {
                 //encontrar id´s de las respuestas correctas
-                $rcorrecta = $array[$x]["respuesta_correcta"];
+                $rcorrecta = "respuesta_correcta";
 
                 echo '<script type="text/javascript">
                 alert('.$rcorrecta.');
