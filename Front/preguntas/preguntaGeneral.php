@@ -167,13 +167,13 @@
                 $rcorrecta = $array[$x]["respuesta_correcta"];
 
                 $arraytemp = array();
-                $arraytemp[0] = "respuesta_correcta";
-                $arraytemp[1] = "respuesta2";
-                $arraytemp[2] = "respuesta3";
-                $arraytemp[3]= "respuesta4";
+                $arraytemp[0] = $arrayr[$x]["respuesta_correcta"];
+                $arraytemp[1] = $arrayr[$x]["respuesta2"];
+                $arraytemp[2] = $arrayr[$x]["respuesta3"];
+                $arraytemp[3]= $arrayr[$x]["respuesta4"];
 
                 $posicion = array_search($rcorrecta,$arraytemp);
-
+                
 
                 //////////////
                 imprimirPreguntaTipo1($x + 1, $arrayr[$x]["pregunta"]);
@@ -198,6 +198,7 @@
                     $array[$x]["id_pregunta"]
                 );
             }
+            
         }
     }
     ?>
