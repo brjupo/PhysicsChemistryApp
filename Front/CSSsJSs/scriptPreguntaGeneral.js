@@ -23,14 +23,13 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == botonSiguientePregunta) {
-      if(cantidadIDs-1000 == preguntaActual){
+      if (cantidadIDs - 1000 == preguntaActual) {
         //var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
         //window.location.replace(stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim()));
         enviarCalificacion();
-      }
-      else{
+      } else {
         siguientePregunta();
-      }     
+      }
       return;
     }
     if (
@@ -61,10 +60,9 @@ document.addEventListener("click", function (evt) {
   } while (targetElement);
 });
 
-
 function enviarCalificacion() {
-  var userID= document.getElementById("userID").innerHTML.trim();
-  var leccionID= document.getElementById("leccionID").innerHTML.trim();
+  var userID = document.getElementById("userID").innerHTML.trim();
+  var leccionID = document.getElementById("leccionID").innerHTML.trim();
   //alert(userID+ " "+ puntos+ " "+ leccionID);
 
   $.ajax({
@@ -72,18 +70,23 @@ function enviarCalificacion() {
     url: "../../Servicios/subirPuntos.php",
     dataType: "json",
     data: { id: userID, leccion: leccionID, puntos: puntos },
-    success: function(data) {
+    success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
         //alert("Etcito");
         console.log("Valores enviados correctamente");
-        var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
-        window.location.replace(stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim()));
+        var stringLiga =
+          "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
+        window.location.replace(
+          stringLiga.concat(
+            document.getElementById("subtemaPrevio").innerHTML.trim()
+          )
+        );
       } else {
         //alert(data.response);
         console.log("Algo salio mal");
       }
-    }
+    },
   });
 }
 
@@ -94,44 +97,61 @@ function seguroRegresar() {
     )
   ) {
     var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
-    window.location.href = stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim());
+    window.location.href = stringLiga.concat(
+      document.getElementById("subtemaPrevio").innerHTML.trim()
+    );
   }
 }
+
+/*
+$uno = 10 * $respuestas - 3;
+$dos = 10 * $respuestas - 2;
+$tres = 10 * $respuestas - 1;
+$cuatro = 10 * $respuestas;
+*/
 
 function whiteButtons(seleccionada) {
   var numero = preguntaActual;
   var numeroCorrecta = 3000 + numero;
   respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML.trim();
   //console.log(respuestaCorrecta);
+  posicionRespuestaCorrecta = document
+    .getElementById(numeroCorrecta)
+    .innerHTML.trim();
   var IDrespuestaCorrecta;
   for (var i = 10 * numero - 3; i <= 10 * numero; i++) {
     //Convertir todos a blanco de la pregunta en curso
     document.getElementById(i).className = "OpcionBlanco";
     //Buscar el id que contiene lo mismo que la respuesta correcta
     //console.log(document.getElementById(i).innerHTML);
+    /*
     if (document.getElementById(i).innerHTML.trim() == respuestaCorrecta) {
       IDrespuestaCorrecta = i;
       //console.log(i);
     }
+    */
   }
   //Marcar en rojo la respuesta seleccionada
   document.getElementById(seleccionada).className = "OpcionIncorrecta";
   //Buscar la respuesta correcta
-  document.getElementById(IDrespuestaCorrecta).className = "OpcionCorrecta";
-  if (IDrespuestaCorrecta == seleccionada) {
-    CorrectAudio.play();
+  document.getElementById(
+    10 * numero - 3 + posicionRespuestaCorrecta
+  ).className = "OpcionCorrecta";
+  if (seleccionada == 10 * numero - 3 + posicionRespuestaCorrecta) {
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
-  }
-  else{
-    IncorrectAudio.play();    
+    CorrectAudio.play();
+  } else {
+    IncorrectAudio.play();
   }
 }
 
-function barWidth(puntos){
-  anchoBarra = 100*puntos;
-  anchoBarra = anchoBarra / parseInt(document.getElementById("totalPreguntas").innerHTML.trim());
+function barWidth(puntos) {
+  anchoBarra = 100 * puntos;
+  anchoBarra =
+    anchoBarra /
+    parseInt(document.getElementById("totalPreguntas").innerHTML.trim());
   anchoBarra = parseInt(anchoBarra).toString(10);
   //barraAvance
   stringPorcentaje = anchoBarra.concat("%");
@@ -173,7 +193,6 @@ function whiteButtonsType2() {
   var respuestaEscritaUpper = respuestaEscritaNormalizada.toUpperCase();
 
   if (respuestaEscritaUpper == respuestaCorrectaUpper) {
-    CorrectAudio.play();
     document.getElementById(inputEscrito).style.color = "green";
     document.getElementById(inputEscrito).value = document
       .getElementById(inputEscrito)
@@ -181,6 +200,7 @@ function whiteButtonsType2() {
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
+    CorrectAudio.play();
   } else {
     IncorrectAudio.play();
     document.getElementById(inputEscrito).style.color = "red";
@@ -191,7 +211,7 @@ function whiteButtonsType2() {
 }
 
 function restoreInputColors() {
-  if(document.getElementById(10 * preguntaActual - 5)){
+  if (document.getElementById(10 * preguntaActual - 5)) {
     document.getElementById(10 * preguntaActual - 5).style.color = "black";
   }
 }
@@ -329,4 +349,3 @@ function showQuestion(pregunta) {
     document.getElementById(respuestaTexto).style.display = "none";
   }
 }
-
