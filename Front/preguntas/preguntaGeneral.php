@@ -173,7 +173,9 @@
                 $arraytemp[3]= "respuesta4";
 
                 $posicion = array_search($rcorrecta,$arraytemp);
-
+                echo '<script type="text/javascript">
+                alert("$posicion");
+                </script>';
 
                 //////////////
                 imprimirPreguntaTipo1($x + 1, $arrayr[$x]["pregunta"]);
