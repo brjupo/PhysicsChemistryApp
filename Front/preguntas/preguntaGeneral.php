@@ -164,17 +164,17 @@
         for ($x = 0; $x < $total[0]; $x++) {
             if ($arrayr[$x]["tipo"] == "1") {
                 //encontrar id´s de las respuestas correctas
-                $rcorrecta = "respuesta_correcta";
+                $rcorrecta = $array[$x]["respuesta_correcta"];
 
                 echo '<script type="text/javascript">
                 alert('.$rcorrecta.');
                 </script>';
 
                 $arraytemp = array();
-                $arraytemp[0] = "respuesta_correcta";
-                $arraytemp[1] = "respuesta2";
-                $arraytemp[2] = "respuesta3";
-                $arraytemp[3]= "respuesta4";
+                $arraytemp[0] = $arrayr[$x]["respuesta_correcta"];
+                $arraytemp[1] = $arrayr[$x]["respuesta2"];
+                $arraytemp[2] = $arrayr[$x]["respuesta3"];
+                $arraytemp[3]= $arrayr[$x]["respuesta4"];
 
                 $posicion = array_search($rcorrecta,$arraytemp);
 
