@@ -166,10 +166,6 @@
                 //encontrar id´s de las respuestas correctas
                 $rcorrecta = $array[$x]["respuesta_correcta"];
 
-                echo '<script type="text/javascript">
-                alert('.$rcorrecta.');
-                </script>';
-
                 $arraytemp = array();
                 $arraytemp[0] = $arrayr[$x]["respuesta_correcta"];
                 $arraytemp[1] = $arrayr[$x]["respuesta2"];
@@ -177,10 +173,6 @@
                 $arraytemp[3]= $arrayr[$x]["respuesta4"];
 
                 $posicion = array_search($rcorrecta,$arraytemp);
-
-                echo '<script type="text/javascript">
-                alert('.$posicion.');
-                </script>';
                 
 
                 //////////////
