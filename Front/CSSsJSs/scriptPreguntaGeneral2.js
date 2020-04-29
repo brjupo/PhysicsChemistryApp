@@ -116,9 +116,9 @@ function whiteButtons(seleccionada) {
   var numeroCorrecta = 3000 + numero;
   respuestaCorrecta = document.getElementById(numeroCorrecta).innerHTML.trim();
   //console.log(respuestaCorrecta);
-  posicionRespuestaCorrecta = parseInt(document
-    .getElementById(3000+preguntaActual)
-    .innerHTML.trim());
+  posicionRespuestaCorrecta = parseInt(
+    document.getElementById(3000 + preguntaActual).innerHTML.trim()
+  );
   var IDrespuestaCorrecta;
   for (var i = 10 * numero - 3; i <= 10 * numero; i++) {
     //Convertir todos a blanco de la pregunta en curso
@@ -139,11 +139,17 @@ function whiteButtons(seleccionada) {
     10 * preguntaActual - 3 + posicionRespuestaCorrecta
   ).className = "OpcionCorrecta";
   if (seleccionada == 10 * preguntaActual - 3 + posicionRespuestaCorrecta) {
+    if (preguntasIncorrectas.includes(numero)) {
+      preguntasIncorrectas.shift();
+    }
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
     CorrectAudio.play();
-  } else {
+  }
+  //Si se equivoca
+  else {
+    preguntasIncorrectas.push(numero);
     IncorrectAudio.play();
   }
 }
@@ -353,8 +359,10 @@ function showQuestion(pregunta) {
     document.getElementById(preguntaTexto).style.display = "block";
     document.getElementById(respuestaTexto).style.display = "block";
     //preguntaPrevia2daVuelta
-    document.getElementById(1000+preguntaPrevia2daVuelta).style.display = "none";
-    document.getElementById(2000+preguntaPrevia2daVuelta).style.display = "none";
+    document.getElementById(1000 + preguntaPrevia2daVuelta).style.display =
+      "none";
+    document.getElementById(2000 + preguntaPrevia2daVuelta).style.display =
+      "none";
   } else {
     document.getElementById(preguntaTexto).style.display = "block";
     document.getElementById(respuestaTexto).style.display = "block";

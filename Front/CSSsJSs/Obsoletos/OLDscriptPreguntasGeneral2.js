@@ -353,8 +353,10 @@ function showQuestion(pregunta) {
     document.getElementById(preguntaTexto).style.display = "block";
     document.getElementById(respuestaTexto).style.display = "block";
     //preguntaPrevia2daVuelta
-    document.getElementById(1000+preguntaPrevia2daVuelta).style.display = "none";
-    document.getElementById(2000+preguntaPrevia2daVuelta).style.display = "none";
+    document.getElementById(1000 + preguntaPrevia2daVuelta).style.display =
+      "none";
+    document.getElementById(2000 + preguntaPrevia2daVuelta).style.display =
+      "none";
   } else {
     document.getElementById(preguntaTexto).style.display = "block";
     document.getElementById(respuestaTexto).style.display = "block";
