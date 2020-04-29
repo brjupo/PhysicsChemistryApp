@@ -13,7 +13,7 @@ window.onload = function () {
   contarIDs();
   limpiarInputs(cantidadIDs);
   showQuestion(1);
-  preguntaPrevia2daVuelta = cantidadIDs;
+  preguntaPrevia2daVuelta = cantidadIDs-1000;
 };
 
 document.addEventListener("click", function (evt) {
@@ -358,10 +358,10 @@ function showQuestion(pregunta) {
   } else if (primerVueltaTerminada == true) {
     document.getElementById(preguntaTexto).style.display = "block";
     document.getElementById(respuestaTexto).style.display = "block";
-    //preguntaPrevia2daVuelta, se le restan mil, porque se le asigna el valor de cantidadIDs, que inicia en 1000
-    document.getElementById(1000 + preguntaPrevia2daVuelta-1000).style.display =
+    //preguntaPrevia2daVuelta
+    document.getElementById(1000 + preguntaPrevia2daVuelta).style.display =
       "none";
-    document.getElementById(2000 + preguntaPrevia2daVuelta-1000).style.display =
+    document.getElementById(2000 + preguntaPrevia2daVuelta).style.display =
       "none";
   } else {
     document.getElementById(preguntaTexto).style.display = "block";
