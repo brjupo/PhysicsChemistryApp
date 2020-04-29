@@ -194,7 +194,7 @@
                 );
                 imprimirImagenRespuestasTipo2(
                     $x + 1,
-                    $posicion,
+                    $array[$x]["respuesta_correcta"],
                     $array[$x]["id_pregunta"]
                 );
             }
