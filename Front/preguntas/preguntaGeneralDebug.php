@@ -7,8 +7,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas.css" />
-    <script src="../CSSsJSs/scriptPreguntaGeneral2.js"></script>
+    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas2.css" />
+    <script src="../CSSsJSs/scriptPreguntaGeneral4.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -48,9 +48,10 @@
 
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
         $leccion = $_GET['leccion'];
-        echo '<script type="text/javascript">
+        /*echo '<script type="text/javascript">
                 alert("'.$leccion.'");
                 </script>';
+        */
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
@@ -156,9 +157,25 @@
         $r4 = "10,000";
         $rc = "10,000,000";
         $imagen = 1;
+
+        
+
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
             if ($arrayr[$x]["tipo"] == "1") {
+                //encontrar id´s de las respuestas correctas
+                $rcorrecta = $array[$x]["respuesta_correcta"];
+
+                $arraytemp = array();
+                $arraytemp[0] = $arrayr[$x]["respuesta_correcta"];
+                $arraytemp[1] = $arrayr[$x]["respuesta2"];
+                $arraytemp[2] = $arrayr[$x]["respuesta3"];
+                $arraytemp[3]= $arrayr[$x]["respuesta4"];
+
+                $posicion = array_search($rcorrecta,$arraytemp);
+                
+
+                //////////////
                 imprimirPreguntaTipo1($x + 1, $arrayr[$x]["pregunta"]);
                 imprimirImagenRespuestasTipo1(
                     $x + 1,
@@ -166,7 +183,7 @@
                     $arrayr[$x]["respuesta2"],
                     $arrayr[$x]["respuesta3"],
                     $arrayr[$x]["respuesta4"],
-                    $array[$x]["respuesta_correcta"],
+                    $posicion,//aqui mandar posicion de respuesta correcta
                     $array[$x]["id_pregunta"]
                 );
             } else {
@@ -177,10 +194,11 @@
                 );
                 imprimirImagenRespuestasTipo2(
                     $x + 1,
-                    $array[$x]["respuesta_correcta"],
+                    $posicion,
                     $array[$x]["id_pregunta"]
                 );
             }
+            
         }
     }
     ?>
@@ -188,7 +206,7 @@
 
     <?php
 
-    function imprimirBarraProgresoCruz($totalPreguntas)
+    function imprimirBarraProgresoCruz($totalPreguntas,$idL)
     {
         $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
         echo '
@@ -198,8 +216,10 @@
                     <img src="../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p id="subtemaPrevio">' . $subtemaNavegacion . '</p>
-                    <p id="totalPreguntas">' . $totalPreguntas . '</p>
+                    <p id="subtemaPrevio" style="display:block">' . $subtemaNavegacion . '</p>
+                    <p id="totalPreguntas" style="display:block">' . $totalPreguntas . '</p>
+                    <p id="userID" style="display:block">' . $_SESSION["id_usuario"] . '</p>
+                    <p id="leccionID" style="display:block">' .$idL. '</p>
                     <div class="progress progressMargin">
                     <!-- class="active"-->
                     <div    id="barraAvance"
@@ -222,9 +242,9 @@
                 <div class="row">
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p class="slide-bottom" id="previous">0m 10s</p>
-                    <p class="slide-bottom" id="actual">0m 10s</p>
-                    <p class="slide-bottom" id="later">0m 10s</p>
+                    <p style="display:none" class="slide-bottom" id="previous">0m 10s</p>
+                    <p style="display:none" class="slide-bottom" id="actual">0m 10s</p>
+                    <p style="display:none" class="slide-bottom" id="later">0m 10s</p>
                     <p id="puntosBuenos"></p>
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
@@ -256,7 +276,7 @@
             <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">' . $preguntaNumero . '</p>
+                <p id="preguntaNumero" style="display:block">' . $preguntaNumero . '</p>
                 <p class="formatoPreguntas">'
             . $preguntaTexto .
             '  
@@ -287,7 +307,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
-                <p id="' . $IDvalorCorrecto . '">
+                <p id="' . $IDvalorCorrecto . '" style="display:block">
                     ' . $respCorrecta . '
                 </p>
                 </div>
@@ -317,7 +337,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <img src="../imagenes/' . $imagen . '.JPG" class="imagenPregunta" />
-                <p id="' . $IDvalorCorrecto . '">
+                <p id="' . $IDvalorCorrecto . '" style="display:block">
                     ' . $respCorrecta . '
                 </p>
                 </div>
@@ -346,7 +366,7 @@
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="' . $IDvalorCorrecto . '">
+                <p id="' . $IDvalorCorrecto . '" style="display:block">
                     ' . $respCorrecta . '
                 </p>
                 </div>
@@ -399,14 +419,14 @@
                 <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                    <p id="preguntaNumero">' . $preguntaNumero . '</p>
+                    <p id="preguntaNumero" style="display:block">' . $preguntaNumero . '</p>
                     <p class="formatoPreguntas">'
-            . $preguntaTexto .
-            ' 
+                    . $preguntaTexto .
+                    ' 
                     <input type="text" id="' . $IDTextoEscrito . '">
                     '
-            . $preguntaTexto2 .
-            '  
+                    . $preguntaTexto2 .
+                    '  
                     </p>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
@@ -436,7 +456,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                             <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
-                            <p id="' . $IDvalorCorrecto . '">
+                            <p id="' . $IDvalorCorrecto . '" style="display:block">
                             ' . $respCorrecta . '
                             </p>
                         </div>
@@ -454,7 +474,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                             <img src="../imagenes/' . $imagen . '.JPG" class="imagenPregunta" />
-                            <p id="' . $IDvalorCorrecto . '">
+                            <p id="' . $IDvalorCorrecto . '" style="display:block">
                             ' . $respCorrecta . '
                             </p>
                         </div>
@@ -469,7 +489,7 @@
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
-                            <p id="' . $IDvalorCorrecto . '">
+                            <p id="' . $IDvalorCorrecto . '" style="display:block">
                             ' . $respCorrecta . '
                             </p>
                         </div>
