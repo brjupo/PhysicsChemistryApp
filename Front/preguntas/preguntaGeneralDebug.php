@@ -131,16 +131,14 @@
           </script>';
     }
 
+  
+    imprimirPreguntas($arrayr, $array, $total,$idL);
     ?>
 
     <?php
-    imprimirPreguntas($arrayr, $array, $total);
-    ?>
-
-    <?php
-    function imprimirPreguntas($arrayr, $array, $total)
+    function imprimirPreguntas($arrayr, $array, $total,$idL)
     {
-        imprimirBarraProgresoCruz($total[0]);
+        imprimirBarraProgresoCruz($total[0],$idL);
         imprimirContador();
         imprimirPreguntasRespuestas($arrayr, $array, $total);
         imprimirFooter();
