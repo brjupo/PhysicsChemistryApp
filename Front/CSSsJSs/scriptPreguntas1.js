@@ -21,15 +21,15 @@ function getQuestionMatrix() {
   
     $.ajax({
       type: "POST",
-      url: "../../Servicios/subirPuntos.php",
+      url: "../../Servicios/preguntasGral.php",
       dataType: "json",
       //data: {leccion: leccionID, userID: Usuario, pass:Password},
       data: {IDLeccion: leccionID},
       success: function (data) {
-        console.log(data.response);
-        if (data.response == "exito") {
+        console.log(data);
+        if (data) {
             
-            document.getElementById("ID_pregunta").innerHTML=1;
+            document.getElementById("ID_pregunta").innerHTML=data[0]["id_pregunta"];
             document.getElementById("Tipo").innerHTML=1;
             document.getElementById("PreguntaParte1").innerHTML=1;
             document.getElementById("PreguntaParte2").innerHTML=1;
