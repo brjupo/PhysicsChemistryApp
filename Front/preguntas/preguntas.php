@@ -22,6 +22,7 @@
     <input type="text" id="Usuario"><br><br>
     <label for="Password">Password</label>
     <input type="text" id="Password"><br><br>
+    <button id="goButton">GO</button>
 
     <h1>Pregunta [0]</h1>
     <p id="ID_pregunta"></p>
