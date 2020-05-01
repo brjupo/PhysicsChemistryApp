@@ -112,7 +112,7 @@ echo '
   ?>
 </body>
 
-<footer class="foot">
+<div class="foot">
   <div class=" container ">
     <div class=" row text-center">
       <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3 "></div>
@@ -132,6 +132,6 @@ echo '
       <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div>
     </div>
   </div>
-</footer>
+</div>
 
 </html>

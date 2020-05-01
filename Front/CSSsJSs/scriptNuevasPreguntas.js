@@ -46,7 +46,7 @@ function borrarParaLoBueno() {
       tipo: "1",
       tiene_imagen: "true",
     },
-/*
+    
     {
       estatus: "1",
       id_autor: "1",
@@ -85,7 +85,7 @@ function borrarParaLoBueno() {
       tipo: "2",
       tiene_imagen: "false",
     },
-    */
+    
   ];
 }
 
@@ -143,17 +143,17 @@ function enableAllButtons() {
   document.getElementById("acceptConImagen").disabled = false;
   document.getElementById("acceptSinImagen").disabled = false;
 }
-function colorAllButtons(){
-    document.getElementById("Opcion1SinImagen").className = "Opcion1";
-    document.getElementById("Opcion2SinImagen").className = "Opcion2";
-    document.getElementById("Opcion3SinImagen").className = "Opcion3";
-    document.getElementById("Opcion4SinImagen").className = "Opcion4";
-    document.getElementById("Opcion1ConImagen").className = "Opcion1";
-    document.getElementById("Opcion2ConImagen").className = "Opcion2";
-    document.getElementById("Opcion3ConImagen").className = "Opcion3";
-    document.getElementById("Opcion4ConImagen").className = "Opcion4";
-    document.getElementById("acceptConImagen").className = "miniBoton";
-    document.getElementById("acceptSinImagen").className = "miniBoton";
+function colorAllButtons() {
+  document.getElementById("Opcion1SinImagen").className = "Opcion1";
+  document.getElementById("Opcion2SinImagen").className = "Opcion2";
+  document.getElementById("Opcion3SinImagen").className = "Opcion3";
+  document.getElementById("Opcion4SinImagen").className = "Opcion4";
+  document.getElementById("Opcion1ConImagen").className = "Opcion1";
+  document.getElementById("Opcion2ConImagen").className = "Opcion2";
+  document.getElementById("Opcion3ConImagen").className = "Opcion3";
+  document.getElementById("Opcion4ConImagen").className = "Opcion4";
+  document.getElementById("acceptConImagen").className = "miniBoton";
+  document.getElementById("acceptSinImagen").className = "miniBoton";
 }
 
 function displayQuestionContainers(questionID) {
@@ -269,10 +269,16 @@ document.addEventListener("click", function (evt) {
     }
     if (targetElement == acceptConImagen) {
       disableAllButtons();
+      colorAllButtonsToWhite();
+      verifyIfTextIsCorrect();
+      showContinueButton();
       return;
     }
     if (targetElement == acceptSinImagen) {
       disableAllButtons();
+      colorAllButtonsToWhite();
+      verifyIfTextIsCorrect();
+      showContinueButton();
       return;
     }
     if (targetElement == botonSiguientePregunta) {
@@ -320,8 +326,8 @@ function colorAllButtonsToWhite() {
   document.getElementById("Opcion2ConImagen").className = "OpcionBlanco";
   document.getElementById("Opcion3ConImagen").className = "OpcionBlanco";
   document.getElementById("Opcion4ConImagen").className = "OpcionBlanco";
-  document.getElementById("acceptConImagen").className = "OpcionBlanco";
-  document.getElementById("acceptSinImagen").className = "OpcionBlanco";
+  document.getElementById("acceptConImagen").className = "OpcionMiniBlanco";
+  document.getElementById("acceptSinImagen").className = "OpcionMiniBlanco";
 }
 
 function verifyIfCorrectOption(targetID) {
@@ -339,12 +345,60 @@ function verifyIfCorrectOption(targetID) {
   if (res[6] == questionMatrix[questionIDs[0]]["patrona"]) {
     questionIDs.shift();
     puntos = puntos + 1;
-    //document.getElementById("puntosBuenos").innerHTML = puntos;
+    document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
     CorrectAudio.play();
   } else {
     questionIDs.push(questionIDs[0]);
     questionIDs.shift();
+    IncorrectAudio.play();
+  }
+}
+
+function verifyIfTextIsCorrect() {
+  if (questionMatrix[questionIDs[0]]["patrona"] == 1) {
+  }
+  //NORMALIZAR la respuesta CORRECTA
+  var respuestaCorrectaNormalizada = 
+    questionMatrix[questionIDs[0]]["patrona"]
+    .normalize("NFD")
+    .replace(
+      /([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,
+      "$1"
+    )
+    .normalize();
+  var respuestaCorrectaUpper = respuestaCorrectaNormalizada.toUpperCase();
+
+  //NORMALIZAR la respuesta ESCRITA
+  var respuestaEscritaTrim = document.getElementById("idTextoEscrito").value.trim();
+  var respuestaEscritaNormalizada = respuestaEscritaTrim
+    .normalize("NFD")
+    .replace(
+      /([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,
+      "$1"
+    )
+    .normalize();
+  var respuestaEscritaUpper = respuestaEscritaNormalizada.toUpperCase();
+  //Muestras la respuesta correcta en el Boton
+  document.getElementById("acceptConImagen").innerHTML = questionMatrix[questionIDs[0]]["patrona"];
+  document.getElementById("acceptSinImagen").innerHTML = questionMatrix[questionIDs[0]]["patrona"];
+  if (respuestaEscritaUpper == respuestaCorrectaUpper) {
+    questionIDs.shift();
+    document.getElementById("idTextoEscrito").style.color = "green";
+    document.getElementById("idTextoEscrito").value = document
+      .getElementById("idTextoEscrito")
+      .value.toLowerCase();
+    puntos = puntos + 1;
+    document.getElementById("puntosBuenos").innerHTML = puntos;
+    barWidth(puntos);
+    CorrectAudio.play();
+  } else {
+    questionIDs.push(questionIDs[0]);
+    questionIDs.shift();
+    document.getElementById("idTextoEscrito").style.color = "red";
+    document.getElementById("idTextoEscrito").value = document
+      .getElementById("idTextoEscrito")
+      .value.toLowerCase();
     IncorrectAudio.play();
   }
 }
@@ -376,6 +430,8 @@ function hiddeAll() {
 
 function nextQuestion() {
   hiddeAll();
+  document.getElementById("acceptConImagen").innerHTML = "Accept";
+  document.getElementById("acceptSinImagen").innerHTML = "Accept";
   if (questionIDs.length == 0) {
     enviarCalificacion();
   } else {
