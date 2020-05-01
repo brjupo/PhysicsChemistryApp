@@ -41,10 +41,24 @@
         for ($j = 0; $j < $total[0]; $j++) {
             if ($arrayr[$j]["tiene_imagen"]==1){
                 $arrayr[$j]["tiene_imagen"]="true";
-            }$arrayr[$j]["tiene_imagen"]="false";
+            }else{$arrayr[$j]["tiene_imagen"]="false";}
 
+            if ($arrayr[$j]["tipo"]==1){
+                    //encontrar id´s de las respuestas correctas
+                    $rcorrecta = $array[$x]["respuesta_correcta"];
+
+                    $arraytemp = array();
+                    $arraytemp[0] = $arrayr[$x]["respuesta_correcta"];
+                    $arraytemp[1] = $arrayr[$x]["respuesta2"];
+                    $arraytemp[2] = $arrayr[$x]["respuesta3"];
+                    $arraytemp[3]= $arrayr[$x]["respuesta4"];
+                    $posicion = array_search($rcorrecta,$arraytemp);
+
+                    $arrayr[$j]["patrona"] = $posicion;
+                }else{
             // AGREGAR RESPUESTA CORRECTA A ARRAY DE RETORNO
-            $arrayr[$j]["patrona"] = $array[$j]["respuesta_correcta"];
+            $arrayr[$j]["patrona"] = $array[$j]["respuesta_correcta"];}
+
             // CONVERTIR LA CADENA DE TEXTO EN UN ARRAY
             $arreglo = str_split($arrayr[$j]["pregunta"]);
             //print_r ($arreglo);
