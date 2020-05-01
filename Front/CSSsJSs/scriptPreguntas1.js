@@ -23,11 +23,12 @@ function getQuestionMatrix() {
       type: "POST",
       url: "../../Servicios/subirPuntos.php",
       dataType: "json",
-      data: {leccion: leccionID, userID: Usuario, pass:Password},
+      //data: {leccion: leccionID, userID: Usuario, pass:Password},
+      data: {IDLeccion: leccionID},
       success: function (data) {
         console.log(data.response);
         if (data.response == "exito") {
-            /* 
+            
             document.getElementById("ID_pregunta").innerHTML=1;
             document.getElementById("Tipo").innerHTML=1;
             document.getElementById("PreguntaParte1").innerHTML=1;
@@ -60,7 +61,7 @@ function getQuestionMatrix() {
             document.getElementById("2RC_Num").innerHTML=1;
 
             //document.getElementById("").innerHTML=1;
-            */
+            
         } else {
             alert("Algo malo sucedio");
             document.getElementById("ID_pregunta").innerHTML=1;
