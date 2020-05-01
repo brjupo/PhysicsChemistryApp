@@ -35,7 +35,7 @@ function getQuestionMatrix() {
             document.getElementById("R2").innerHTML=data[0]["respuesta2"];
             document.getElementById("R3").innerHTML=data[0]["respuesta3"];
             document.getElementById("R4").innerHTML=data[0]["respuesta2"];
-            document.getElementById("RC_Num").innerHTML=data[0]["respuestac"];
+            document.getElementById("RC_Num").innerHTML=data[0]["patrona"];
 
             document.getElementById("1ID_pregunta").innerHTML=1;
             document.getElementById("1Tipo").innerHTML=1;

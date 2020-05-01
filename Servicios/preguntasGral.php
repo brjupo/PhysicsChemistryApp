@@ -40,7 +40,7 @@
         ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
         for ($j = 0; $j < $total[0]; $j++) {
             // AGREGAR RESPUESTA CORRECTA A ARRAY DE RETORNO
-            $arrayr[$j]["respuestac"] = $array[$j]["respuesta_correcta"];
+            $arrayr[$j]["patrona"] = $array[$j]["respuesta_correcta"];
             // CONVERTIR LA CADENA DE TEXTO EN UN ARRAY
             $arreglo = str_split($arrayr[$j]["pregunta"]);
             //print_r ($arreglo);
