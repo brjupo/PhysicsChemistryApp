@@ -27,15 +27,15 @@ function getQuestionMatrix() {
       success: function (data) {
         
             console.log(data);
-            document.getElementById("ID_pregunta").innerHTML=data[2]["id_pregunta"];
-            document.getElementById("Tipo").innerHTML=1;
-            document.getElementById("PreguntaParte1").innerHTML=1;
-            document.getElementById("PreguntaParte2").innerHTML=1;
-            document.getElementById("R1").innerHTML=1;
-            document.getElementById("R2").innerHTML=1;
-            document.getElementById("R3").innerHTML=1;
-            document.getElementById("R4").innerHTML=1;
-            document.getElementById("RC_Num").innerHTML=1;
+            document.getElementById("ID_pregunta").innerHTML=data[0]["id_pregunta"];
+            document.getElementById("Tipo").innerHTML=data[0]["tipo"];
+            document.getElementById("PreguntaParte1").innerHTML=data[0]["PreguntaParte1"];
+            document.getElementById("PreguntaParte2").innerHTML=data[0]["PreguntaParte2"];
+            document.getElementById("R1").innerHTML=data[0]["respuesta_correcta"];
+            document.getElementById("R2").innerHTML=data[0]["respuesta2"];
+            document.getElementById("R3").innerHTML=data[0]["respuesta3"];
+            document.getElementById("R4").innerHTML=data[0]["respuesta2"];
+            document.getElementById("RC_Num").innerHTML=data[0]["patrona"];
 
             document.getElementById("1ID_pregunta").innerHTML=1;
             document.getElementById("1Tipo").innerHTML=1;
