@@ -20,14 +20,14 @@ questionMatrix =[
     respuesta_correcta: null,
     tipo: "2", tiene_imagen:"false"},
     
-    {estatus:"1", id_autor:"1",id_leccion: "2"​​,id_pregunta: "13"​​,orden: "4"​​, patrona: "ABIOTICOS"​​,
-    pregunta: "El mar, las rocas y el aire que se observan en la siguiente fotografía, son ejemplos de factores:"​​,
-    preguntaParte1: "El mar, las rocas y el aire que se observan en la siguiente fotografía, son ejemplos de factores:"​​,
-    preguntaParte2: ""​​,
-    respuesta2: null​​,
-    respuesta3: null​​,
-    respuesta4: "ABIOTICOS"​​,
-    respuesta_correcta: null​​,
+    {estatus:"1", id_autor:"1",id_leccion: "2",id_pregunta: "13",orden: "4", patrona: "ABIOTICOS",
+    pregunta: "El mar, las rocas y el aire que se observan en la siguiente fotografía, son ejemplos de factores:",
+    preguntaParte1: "El mar, las rocas y el aire que se observan en la siguiente fotografía, son ejemplos de factores:",
+    preguntaParte2: "",
+    respuesta2: null,
+    respuesta3: null,
+    respuesta4: "ABIOTICOS",
+    respuesta_correcta: null,
     tipo: "2", tiene_imagen:"true"},
 
     {
