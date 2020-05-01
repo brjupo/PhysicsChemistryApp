@@ -14,9 +14,9 @@ document.addEventListener("click", function (evt) {
   });
 
 function getQuestionMatrix() {    
-    var leccionID = document.getElementById("leccionID").innerHTML.trim();
-    var Usuario = document.getElementById("Usuario").innerHTML.trim();
-    var Password = document.getElementById("Password").innerHTML.trim();
+    var leccionID = document.getElementById("leccionID").value.trim();
+    var Usuario = document.getElementById("Usuario").value.trim();
+    var Password = document.getElementById("Password").value.trim();
     alert(Usuario+ " "+ Password+ " "+ leccionID);
   
     $.ajax({
