@@ -23,7 +23,7 @@ function getQuestionMatrix() {
       url: "../../Servicios/preguntasGral.php",
       dataType: "json",
       //data: {leccion: leccionID, userID: Usuario, pass:Password},
-      data: {IDLeccion: leccionID},
+      data: {idLeccion: leccionID},
       success: function (data) {
         
             console.log(data);
