@@ -25,10 +25,9 @@ function getQuestionMatrix() {
       //data: {leccion: leccionID, userID: Usuario, pass:Password},
       data: {IDLeccion: leccionID},
       success: function (data) {
-        console.log(data);
-        if (data.response) {
-            
-            document.getElementById("ID_pregunta").innerHTML=data[0]["id_pregunta"];
+        
+            console.log(data);
+            document.getElementById("ID_pregunta").innerHTML=data[2]["id_pregunta"];
             document.getElementById("Tipo").innerHTML=1;
             document.getElementById("PreguntaParte1").innerHTML=1;
             document.getElementById("PreguntaParte2").innerHTML=1;
@@ -60,40 +59,6 @@ function getQuestionMatrix() {
             document.getElementById("2RC_Num").innerHTML=1;
 
             //document.getElementById("").innerHTML=1;
-            
-        } else {
-            alert("Algo malo sucedio");
-            document.getElementById("ID_pregunta").innerHTML=1;
-            document.getElementById("Tipo").innerHTML=1;
-            document.getElementById("PreguntaParte1").innerHTML=1;
-            document.getElementById("PreguntaParte2").innerHTML=1;
-            document.getElementById("R1").innerHTML=1;
-            document.getElementById("R2").innerHTML=1;
-            document.getElementById("R3").innerHTML=1;
-            document.getElementById("R4").innerHTML=1;
-            document.getElementById("RC_Num").innerHTML=1;
-
-            document.getElementById("1ID_pregunta").innerHTML=1;
-            document.getElementById("1Tipo").innerHTML=1;
-            document.getElementById("1PreguntaParte1").innerHTML=1;
-            document.getElementById("1PreguntaParte2").innerHTML=1;
-            document.getElementById("1R1").innerHTML=1;
-            document.getElementById("1R2").innerHTML=1;
-            document.getElementById("1R3").innerHTML=1;
-            document.getElementById("1R4").innerHTML=1;
-            document.getElementById("1RC_Num").innerHTML=1;
-
-
-            document.getElementById("2ID_pregunta").innerHTML=1;
-            document.getElementById("2Tipo").innerHTML=1;
-            document.getElementById("2PreguntaParte1").innerHTML=1;
-            document.getElementById("2PreguntaParte2").innerHTML=1;
-            document.getElementById("2R1").innerHTML=1;
-            document.getElementById("2R2").innerHTML=1;
-            document.getElementById("2R3").innerHTML=1;
-            document.getElementById("2R4").innerHTML=1;
-            document.getElementById("2RC_Num").innerHTML=1;
-        }
       },
     });
   }
