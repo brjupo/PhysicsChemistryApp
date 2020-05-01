@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../CSSsJSs/icons/pyramid.svg"
+    />
+    <title>Pregunta</title>
+    <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
+    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas.css" />
+    <!--script src="../CSSsJSs/scriptSprint.js"></script-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row topMargin">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+          <img src="../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+          <div class="progress progressMargin">
+            <!-- class="active"-->
+            <div
+              class="progress-bar progress-bar-striped"
+              role="progressbar"
+              aria-valuenow="40"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width: 50%;"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+          <p class="slide-bottom" id="previous">0m 10s</p>
+          <p class="slide-bottom" id="actual">0m 10s</p>
+          <p class="slide-bottom" id="later">0m 10s</p>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      </div>
+    </div>
+    <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="container">
+      <div class="row">
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+          <p class="formatoPreguntas">
+            En tu clase de biología se mencionó que en las hojas de las plantas
+            hay varios pigmentos tales como
+            <input type="text" id="lname" />
+            ¿Con qué método podrías separar estos pigmentos tras extraer el
+            líquido verde de una espinaca?
+            <input type="text" id="lname" />
+          </p>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+      </div>
+    </div>
+    <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="container">
+      <div class="row">
+        <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <button class="miniBoton">Accept</button>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <img
+            src="../CSSsJSs/images/problemaFisica.jpg"
+            class="imagenPregunta"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="popUp animated bounceInUp"
+      id="sprintNext"
+      style="display: block;"
+    >
+      <div class="container">
+        <div class="row text-center">
+          <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <a href="pregunta2.html"
+              ><button class="botonContinuar">Continuar</button></a
+            >
+          </div>
+          <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
