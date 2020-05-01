@@ -40,9 +40,9 @@
         ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////tiene_imagen
         for ($j = 0; $j < $total[0]; $j++) {
             if ($arrayr[$j]["tiene_imagen"]==1){
-                $arrayr[$j]["tiene_imagen"]=="true";
-            }$arrayr[$j]["tiene_imagen"]=="false";
-            
+                $arrayr[$j]["tiene_imagen"]="true";
+            }$arrayr[$j]["tiene_imagen"]="false";
+
             // AGREGAR RESPUESTA CORRECTA A ARRAY DE RETORNO
             $arrayr[$j]["patrona"] = $array[$j]["respuesta_correcta"];
             // CONVERTIR LA CADENA DE TEXTO EN UN ARRAY
