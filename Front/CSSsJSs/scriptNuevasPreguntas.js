@@ -1,5 +1,10 @@
 var questionMatrix = []; //En realidad es un array con objetos, por ser JSON
-var questionIDs = [];
+var questionIDs = []; //NO ES EL ID DE BBDD es la posición en el arreglo
+var puntos = 0;
+
+var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
+var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
+
 function borrarParaLoBueno() {
   questionMatrix = [
     {
@@ -8,7 +13,7 @@ function borrarParaLoBueno() {
       id_leccion: "2",
       id_pregunta: "10",
       orden: "1",
-      patrona: "Factores bióticos",
+      patrona: "2",
       pregunta:
         "Comprende a todos los seres vivos de un ecosistema y las interrelaciones entre ellos",
       preguntaParte1:
@@ -21,6 +26,47 @@ function borrarParaLoBueno() {
       tipo: "1",
       tiene_imagen: "false",
     },
+
+    {
+      estatus: "1",
+      id_autor: "1",
+      id_leccion: "2",
+      id_pregunta: "15",
+      orden: "6",
+      patrona: "3",
+      pregunta:
+        "En la siguiente fotografía se observa un pato parado sobre la arena a punto de ser alcanzado por el agua de mar. Estos son ejemplos de:",
+      preguntaParte1:
+        "En la siguiente fotografía se observa un pato parado sobre la arena a punto de ser alcanzado por el agua de mar. Estos son ejemplos de:",
+      preguntaParte2: "",
+      respuesta2: "Factores bióticos y abióticos",
+      respuesta3: "Factores abióticos",
+      respuesta4: "Fenómenos físicos",
+      respuesta_correcta: "Factores bióticos",
+      tipo: "1",
+      tiene_imagen: "true",
+    },
+/*
+    {
+      estatus: "1",
+      id_autor: "1",
+      id_leccion: "2",
+      id_pregunta: "13",
+      orden: "4",
+      patrona: "ABIOTICOS",
+      pregunta:
+        "El mar, las rocas y el aire que se observan en la siguiente fotografía, son ejemplos de factores:",
+      preguntaParte1:
+        "El mar, las rocas y el aire que se observan en la siguiente fotografía, son ejemplos de factores:",
+      preguntaParte2: "",
+      respuesta2: null,
+      respuesta3: null,
+      respuesta4: "ABIOTICOS",
+      respuesta_correcta: null,
+      tipo: "2",
+      tiene_imagen: "true",
+    },
+
     {
       estatus: "1",
       id_autor: "1",
@@ -39,6 +85,7 @@ function borrarParaLoBueno() {
       tipo: "2",
       tiene_imagen: "false",
     },
+    */
   ];
 }
 
@@ -72,12 +119,14 @@ function createArrayWithQuestions() {
   console.log(questionMatrix[0]["id_pregunta"]);
   console.log(questionMatrix[1]["id_pregunta"]);
   for (i = 0; i < questionMatrix.length; i++) {
-    questionIDs.push(questionMatrix[i]["id_pregunta"]);
+    //questionIDs.push(questionMatrix[i]["id_pregunta"]);
+    questionIDs.push(i);
   }
 }
 
 function loadNewQuestion(questionID) {
   enableAllButtons();
+  colorAllButtons();
   displayQuestionContainers(questionID);
   loadInfoInContainers(questionID);
 }
@@ -93,6 +142,18 @@ function enableAllButtons() {
   document.getElementById("Opcion4ConImagen").disabled = false;
   document.getElementById("acceptConImagen").disabled = false;
   document.getElementById("acceptSinImagen").disabled = false;
+}
+function colorAllButtons(){
+    document.getElementById("Opcion1SinImagen").className = "Opcion1";
+    document.getElementById("Opcion2SinImagen").className = "Opcion2";
+    document.getElementById("Opcion3SinImagen").className = "Opcion3";
+    document.getElementById("Opcion4SinImagen").className = "Opcion4";
+    document.getElementById("Opcion1ConImagen").className = "Opcion1";
+    document.getElementById("Opcion2ConImagen").className = "Opcion2";
+    document.getElementById("Opcion3ConImagen").className = "Opcion3";
+    document.getElementById("Opcion4ConImagen").className = "Opcion4";
+    document.getElementById("acceptConImagen").className = "miniBoton";
+    document.getElementById("acceptSinImagen").className = "miniBoton";
 }
 
 function displayQuestionContainers(questionID) {
@@ -124,9 +185,11 @@ function loadInfoInContainers(questionID) {
   if (questionMatrix[questionID]["tipo"] == "1") {
     document.getElementById("textoPreguntaTipo1").innerHTML =
       questionMatrix[questionID]["preguntaParte1"];
+    console.log(questionMatrix[questionID]["preguntaParte1"]);
+
     if (questionMatrix[questionID]["tiene_imagen"] == "true") {
       document.getElementById("imagenPreguntaTipo1").src =
-        "../../CSSsJSs/imagenes/" + questionID + ".jpg";
+        "../imagenes/" + questionMatrix[questionID]["id_pregunta"] + ".jpg";
       document.getElementById("Opcion1ConImagen").innerHTML =
         questionMatrix[questionID]["respuesta_correcta"];
       document.getElementById("Opcion2ConImagen").innerHTML =
@@ -135,15 +198,17 @@ function loadInfoInContainers(questionID) {
         questionMatrix[questionID]["respuesta3"];
       document.getElementById("Opcion4ConImagen").innerHTML =
         questionMatrix[questionID]["respuesta4"];
+      console.log(questionMatrix[questionID]["respuesta4"]);
     } else {
       document.getElementById("Opcion1SinImagen").innerHTML =
         questionMatrix[questionID]["respuesta_correcta"];
       document.getElementById("Opcion2SinImagen").innerHTML =
         questionMatrix[questionID]["respuesta2"];
-      document.getElementById("Opcion3ConImagen").innerHTML =
+      document.getElementById("Opcion3SinImagen").innerHTML =
         questionMatrix[questionID]["respuesta3"];
-      document.getElementById("Opcion4ConImagen").innerHTML =
+      document.getElementById("Opcion4SinImagen").innerHTML =
         questionMatrix[questionID]["respuesta4"];
+      console.log(questionMatrix[questionID]["respuesta4"]);
     }
   } else if (questionMatrix[questionID]["tipo"] == "2") {
     document.getElementById("textoPreguntaTipo2").innerHTML =
@@ -152,59 +217,198 @@ function loadInfoInContainers(questionID) {
       questionMatrix[questionID]["preguntaParte2"];
     if (questionMatrix[questionID]["tiene_imagen"] == "true") {
       document.getElementById("imagenPreguntaTipo2").src =
-        "../../CSSsJSs/imagenes/" + questionID + ".jpg";
+        "../imagenes/" + questionMatrix[questionID]["id_pregunta"] + ".jpg";
     }
   }
 }
 
 document.addEventListener("click", function (evt) {
-    var cruzCerrar = document.getElementById("cruzCerrar");
-    var botonSiguientePregunta = document.getElementById("sprintNext");
-    targetElement = evt.target; // clicked element
-  
-    do {
-      if (targetElement == cruzCerrar) {
-        seguroRegresar();
-        return;
+  cruzCerrar = document.getElementById("cruzCerrar");
+  botonSiguientePregunta = document.getElementById("botonSiguientePregunta");
+  Opcion1SinImagen = document.getElementById("Opcion1SinImagen");
+  Opcion2SinImagen = document.getElementById("Opcion2SinImagen");
+  Opcion3SinImagen = document.getElementById("Opcion3SinImagen");
+  Opcion4SinImagen = document.getElementById("Opcion4SinImagen");
+  Opcion1ConImagen = document.getElementById("Opcion1ConImagen");
+  Opcion2ConImagen = document.getElementById("Opcion2ConImagen");
+  Opcion3ConImagen = document.getElementById("Opcion3ConImagen");
+  Opcion4ConImagen = document.getElementById("Opcion4ConImagen");
+  acceptConImagen = document.getElementById("acceptConImagen");
+  acceptSinImagen = document.getElementById("acceptSinImagen");
+  targetElement = evt.target; // clicked element
+
+  do {
+    console.log(targetElement.id);
+    if (targetElement == cruzCerrar) {
+      seguroRegresar();
+      return;
+    }
+    if (
+      targetElement == Opcion1SinImagen ||
+      targetElement == Opcion2SinImagen ||
+      targetElement == Opcion3SinImagen ||
+      targetElement == Opcion4SinImagen
+    ) {
+      disableAllButtons();
+      colorAllButtonsToWhite();
+      verifyIfCorrectOption(targetElement.id);
+      showContinueButton();
+      return;
+    }
+    if (
+      targetElement == Opcion1ConImagen ||
+      targetElement == Opcion2ConImagen ||
+      targetElement == Opcion3ConImagen ||
+      targetElement == Opcion4ConImagen
+    ) {
+      disableAllButtons();
+      colorAllButtonsToWhite();
+      verifyIfCorrectOption(targetElement.id);
+      showContinueButton();
+      return;
+    }
+    if (targetElement == acceptConImagen) {
+      disableAllButtons();
+      return;
+    }
+    if (targetElement == acceptSinImagen) {
+      disableAllButtons();
+      return;
+    }
+    if (targetElement == botonSiguientePregunta) {
+      nextQuestion();
+      return;
+    }
+
+    // Go up the DOM
+    targetElement = targetElement.parentNode;
+  } while (targetElement);
+});
+
+function seguroRegresar() {
+  if (
+    confirm(
+      "¿Estás seguro de regresar?\n Si regresas perderás todo tu avance de este tema"
+    )
+  ) {
+    var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
+    window.location.href = stringLiga.concat(
+      document.getElementById("subtemaPrevio").innerHTML.trim()
+    );
+  }
+}
+
+function disableAllButtons() {
+  document.getElementById("Opcion1SinImagen").disabled = true;
+  document.getElementById("Opcion2SinImagen").disabled = true;
+  document.getElementById("Opcion3SinImagen").disabled = true;
+  document.getElementById("Opcion4SinImagen").disabled = true;
+  document.getElementById("Opcion1ConImagen").disabled = true;
+  document.getElementById("Opcion2ConImagen").disabled = true;
+  document.getElementById("Opcion3ConImagen").disabled = true;
+  document.getElementById("Opcion4ConImagen").disabled = true;
+  document.getElementById("acceptConImagen").disabled = true;
+  document.getElementById("acceptSinImagen").disabled = true;
+}
+
+function colorAllButtonsToWhite() {
+  document.getElementById("Opcion1SinImagen").className = "OpcionBlanco";
+  document.getElementById("Opcion2SinImagen").className = "OpcionBlanco";
+  document.getElementById("Opcion3SinImagen").className = "OpcionBlanco";
+  document.getElementById("Opcion4SinImagen").className = "OpcionBlanco";
+  document.getElementById("Opcion1ConImagen").className = "OpcionBlanco";
+  document.getElementById("Opcion2ConImagen").className = "OpcionBlanco";
+  document.getElementById("Opcion3ConImagen").className = "OpcionBlanco";
+  document.getElementById("Opcion4ConImagen").className = "OpcionBlanco";
+  document.getElementById("acceptConImagen").className = "OpcionBlanco";
+  document.getElementById("acceptSinImagen").className = "OpcionBlanco";
+}
+
+function verifyIfCorrectOption(targetID) {
+  var res = targetID.split("");
+  // res[6]; == 1|2|3|4
+  document.getElementById(targetID).className = "OpcionIncorrecta";
+  document.getElementById(
+    "Opcion" +
+      questionMatrix[questionIDs[0]]["patrona"] +
+      res[7] +
+      res[8] +
+      "nImagen"
+  ).className = "OpcionCorrecta";
+  //AUN NO DESPLAZAMOS EL ARREGLO questionIDs[], por lo que podemos seguir leyendo de la posicion [0]
+  if (res[6] == questionMatrix[questionIDs[0]]["patrona"]) {
+    questionIDs.shift();
+    puntos = puntos + 1;
+    //document.getElementById("puntosBuenos").innerHTML = puntos;
+    barWidth(puntos);
+    CorrectAudio.play();
+  } else {
+    questionIDs.push(questionIDs[0]);
+    questionIDs.shift();
+    IncorrectAudio.play();
+  }
+}
+
+function barWidth(puntos) {
+  anchoBarra = 100 * puntos;
+  anchoBarra = anchoBarra / questionMatrix.length;
+  anchoBarra = parseInt(anchoBarra).toString(10);
+  //barraAvance
+  stringPorcentaje = anchoBarra.concat("%");
+  document.getElementById("barraAvance").style.width = stringPorcentaje;
+}
+
+function showContinueButton() {
+  document.getElementById("botonSiguientePregunta").style.display = "block";
+}
+
+function hiddeAll() {
+  document.getElementById("PreguntaTipo1").style.display = "none";
+  document.getElementById("RespuestasTipo1ConImagen").style.display = "none";
+  document.getElementById("RespuestasTipo1SinImagen").style.display = "none";
+
+  document.getElementById("PreguntaTipo2").style.display = "none";
+  document.getElementById("RespuestasTipo2ConImagen").style.display = "none";
+  document.getElementById("RespuestasTipo2SinImagen").style.display = "none";
+
+  document.getElementById("botonSiguientePregunta").style.display = "none";
+}
+
+function nextQuestion() {
+  hiddeAll();
+  if (questionIDs.length == 0) {
+    enviarCalificacion();
+  } else {
+    loadNewQuestion(questionIDs[0]);
+  }
+}
+
+function enviarCalificacion() {
+  var userID = document.getElementById("userID").innerHTML.trim();
+  var leccionID = document.getElementById("leccionID").innerHTML.trim();
+  //alert(userID+ " "+ puntos+ " "+ leccionID);
+
+  $.ajax({
+    type: "POST",
+    url: "../../Servicios/subirPuntos.php",
+    dataType: "json",
+    data: { id: userID, leccion: leccionID, puntos: puntos },
+    success: function (data) {
+      console.log(data.response);
+      if (data.response == "exito") {
+        //alert("Etcito");
+        console.log("Valores enviados correctamente");
+        var stringLiga =
+          "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
+        window.location.replace(
+          stringLiga.concat(
+            document.getElementById("subtemaPrevio").innerHTML.trim()
+          )
+        );
+      } else {
+        //alert(data.response);
+        console.log("Algo salio mal");
       }
-      if (targetElement == botonSiguientePregunta) {
-        if (cantidadIDs - 1000 == preguntaActual) {
-          primerVueltaTerminada = true;
-          if (preguntasIncorrectas.length == 0) {
-            enviarCalificacion();
-          } else {
-            siguientePregunta(preguntasIncorrectas[0]);
-            preguntaPrevia2daVuelta = preguntasIncorrectas[0];
-          }
-        } else {
-          siguientePregunta(0);
-        }
-        return;
-      }
-      if (
-        parseInt(targetElement.id) >= 10 * preguntaActual - 3 &&
-        parseInt(targetElement.id) <= 10 * preguntaActual &&
-        popUpLevantado === false
-      ) {
-        //console.log(parseInt(targetElement.id));
-        whiteButtons(targetElement.id);
-        sprintNext();
-        popUpLevantado = true;
-        //console.log(popUpLevantado);
-        return;
-      }
-      if (
-        parseInt(targetElement.id) == 10 * preguntaActual - 4 &&
-        popUpLevantado === false
-      ) {
-        //console.log(parseInt(targetElement.id));
-        whiteButtonsType2(targetElement.id);
-        sprintNextType2();
-        popUpLevantado = true;
-        //console.log(popUpLevantado);
-        return;
-      }
-      // Go up the DOM
-      targetElement = targetElement.parentNode;
-    } while (targetElement);
+    },
   });
+}
