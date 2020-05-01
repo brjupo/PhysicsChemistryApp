@@ -8,7 +8,7 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas2.css" />
-    <script src="../CSSsJSs/scriptPreguntas2.js"></script>
+    <script src="../CSSsJSs/scriptPreguntas3.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
