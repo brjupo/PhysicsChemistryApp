@@ -101,6 +101,8 @@ function getQuestionMatrix() {
     success: function (data) {
       console.log(data);
       questionMatrix = data;
+      createArrayWithQuestions();
+      loadNewQuestion(questionIDs[0]);
     },
   });
 }
@@ -108,8 +110,6 @@ function getQuestionMatrix() {
 window.onload = function () {
   //borrarParaLoBueno();
   questionMatrix = getQuestionMatrix();
-  createArrayWithQuestions();
-  loadNewQuestion(questionIDs[0]);
 };
 
 function createArrayWithQuestions() {
