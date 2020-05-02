@@ -158,6 +158,8 @@
             <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
           </div>
         </div>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <!--+++++++++++++++++++++++++++++++++++++++TIPO 1 IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
         <div class="container" id="RespuestasTipo1ConImagen" style="display: none;">
           <div class="row">
@@ -187,6 +189,8 @@
             </div>
           </div>
         </div>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <!--+++++++++++++++++++++++++++++++++++++++TIPO 1 SIN IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
         <div class="container" id="RespuestasTipo1SinImagen" style="display: none;">
           <div class="row">
@@ -214,6 +218,8 @@
             </div>
           </div>
         </div>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA TIPO 2++++++++++++++++++++++++++++++++++++++++++++-->
         <div class="container" id="PreguntaTipo2" style="display: none;">
           <div class="row">
@@ -230,6 +236,8 @@
             <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
           </div>
         </div>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <!--+++++++++++++++++++++++++++++++++++++++TIPO 2 IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
         <div class="container" id="RespuestasTipo2ConImagen" style="display: none;">
           <div class="row">
@@ -245,6 +253,8 @@
             </div>
           </div>
         </div>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <!--+++++++++++++++++++++++++++++++++++++++TIPO 2 SIN IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
         <div class="container" id="RespuestasTipo2SinImagen" style="display: none;">
           <div class="row">
@@ -253,6 +263,8 @@
             </div>
           </div>
         </div>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         ';
     }
     ?>
@@ -277,8 +289,7 @@
             </div>
             </div>
         </div>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
         ';
     }
     ?>
