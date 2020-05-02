@@ -55,15 +55,20 @@
       <div id="forma" class="textCenter col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4">
         <p class="slogan">¡Divertete aprendiendo!</p>
         <p style="color:rgba(0,0,0,0);">.</p>
-        <form action="Front/Inicio/temas.php" method="POST">
+        <form id='demo-form' action="Front/Inicio/asignaturas.php" method="POST">
           <label class="fuenteForma" for="validarUsuario">Usuario</label><br>
           <input type="email" name="validarUsuario" id="validarUsuario" placeholder="A01169493@itesm.mx" required /><br>
 
           <label class="fuenteForma" for="validarPassword" id="contrasena">Contraseña</label><br>
-          <input type="text" name="validarPassword" id="validarPassword" required /><br>
+          <input type="password" name="validarPassword" id="validarPassword" required /><br>
 
           <label class="olvidada" id="contraOlvidada">¿Olvidaste tu contraseña?</label><br>
-          <input type="submit" value="Log In" class="boton2">
+            <!-- ZONA EN CONSTRUCCION -->
+            <!-- <form id='demo-form' action="?" method="POST"> -->
+            <button class="g-recaptcha" data-sitekey="6LdnLvEUAAAAADFTp-wwjA8nP0vkPfusUfbPPja3" data-callback="onSubmit" data-size="invisible" style="display:none"></button>
+              <input type="submit" value="Log In" class="boton2">
+          <!-- </form> -->
+            <!-- TERMINA ZONA EN CONSTRUCCION -->
         </form>
       </div>
       <div id="emailSent" class="textCenter col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4" style="display:none;">
@@ -73,7 +78,6 @@
       <div class="textCenter col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
-
   <div class="container">
     <div class="row">
       <p></p>
@@ -104,9 +108,17 @@
         <p style="color:rgba(0,0,0,0)">.</p>
       </div>
     </div>
-  </div></body>
-
-<div class="foot">
+  </div>
+  <!-- ZONA EN CONSTRUCCION -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+     <script>
+       function onSubmit(token) {
+         document.getElementById("demo-form").submit();
+       }
+     </script>
+<!-- TERMINA ZONA EN CONSTRUCCION -->
+</body>
+<div class="foot" style="z-index:-1;">
   <div class=" container ">
     <div class=" row text-center">
       <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3 "></div>
@@ -127,5 +139,4 @@
     </div>
   </div>
 </div>
-
 </html>
