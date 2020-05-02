@@ -17,6 +17,8 @@
     session_start();
     session_destroy();
 
+    imprimirIndex();
+
     function imprimirIndex()
     {
         imprimirTitulo();
@@ -87,6 +89,7 @@
 
                 <label class="olvidada" id="contraOlvidada">¿Olvidaste tu contraseña?</label><br>
                 <input type="submit" value="Log In" class="boton2">
+                <button class="g-recaptcha" data-sitekey="6LdnLvEUAAAAADFTp-wwjA8nP0vkPfusUfbPPja3" data-callback="onSubmit" data-size="invisible" style="display:none"></button>
                 </form>
             </div>
             <div id="emailSent" class="textCenter col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4" style="display:none;">
@@ -102,7 +105,7 @@
     function imprimirFooter()
     {
         echo '
-        <div class="foot">
+        <div class="foot" style="z-index:-1;">
             <div class=" container ">
                 <div class=" row text-center">
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3 "></div>

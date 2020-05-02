@@ -90,28 +90,26 @@ function borrarParaLoBueno() {
 }
 
 function getQuestionMatrix() {
-  var leccionID = document.getElementById("leccionID").value.trim();
-  var Usuario = document.getElementById("Usuario").value.trim();
-  var Password = document.getElementById("Password").value.trim();
-  alert(Usuario + " " + Password + " " + leccionID);
+  var leccionID = document.getElementById("leccionID").innerHTML.trim();
+  console.log("Leccion ID= " + leccionID);
 
   $.ajax({
     type: "POST",
     url: "../../Servicios/preguntasGral.php",
     dataType: "json",
-    //data: {leccion: leccionID, userID: Usuario, pass:Password},
-    data: { IDLeccion: leccionID },
+    data: { idLeccion: leccionID },
     success: function (data) {
       console.log(data);
+      questionMatrix = data;
+      createArrayWithQuestions();
+      loadNewQuestion(questionIDs[0]);
     },
   });
 }
 
 window.onload = function () {
-  borrarParaLoBueno();
-  //questionMatrix = getQuestionMatrix();
-  createArrayWithQuestions();
-  loadNewQuestion(questionIDs[0]);
+  //borrarParaLoBueno();
+  questionMatrix = getQuestionMatrix();
 };
 
 function createArrayWithQuestions() {
@@ -334,15 +332,16 @@ function verifyIfCorrectOption(targetID) {
   var res = targetID.split("");
   // res[6]; == 1|2|3|4
   document.getElementById(targetID).className = "OpcionIncorrecta";
+  patronaMasUno = parseInt(questionMatrix[questionIDs[0]]["patrona"]) + 1;
   document.getElementById(
     "Opcion" +
-      questionMatrix[questionIDs[0]]["patrona"] +
+    patronaMasUno +
       res[7] +
       res[8] +
       "nImagen"
   ).className = "OpcionCorrecta";
   //AUN NO DESPLAZAMOS EL ARREGLO questionIDs[], por lo que podemos seguir leyendo de la posicion [0]
-  if (res[6] == questionMatrix[questionIDs[0]]["patrona"]) {
+  if (res[6] == patronaMasUno) {
     questionIDs.shift();
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
