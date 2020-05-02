@@ -45,13 +45,13 @@
 
             if ($arrayr[$j]["tipo"]==1){
                     //encontrar id´s de las respuestas correctas
-                    $rcorrecta = $array[$x]["respuesta_correcta"];
+                    $rcorrecta = $array[$j]["respuesta_correcta"];
 
                     $arraytemp = array();
-                    $arraytemp[0] = $arrayr[$x]["respuesta_correcta"];
-                    $arraytemp[1] = $arrayr[$x]["respuesta2"];
-                    $arraytemp[2] = $arrayr[$x]["respuesta3"];
-                    $arraytemp[3]= $arrayr[$x]["respuesta4"];
+                    $arraytemp[0] = $arrayr[$j]["respuesta_correcta"];
+                    $arraytemp[1] = $arrayr[$j]["respuesta2"];
+                    $arraytemp[2] = $arrayr[$j]["respuesta3"];
+                    $arraytemp[3]= $arrayr[$j]["respuesta4"];
                     $posicion = array_search($rcorrecta,$arraytemp);
 
                     $arrayr[$j]["patrona"] = $posicion;
