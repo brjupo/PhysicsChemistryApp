@@ -54,23 +54,23 @@
         */
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    /*----Paso 1 Obtener el ID del subtema----*/
-    $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
-    mysqli_stmt_bind_param($statement, "s", $leccion);
-    mysqli_stmt_execute($statement);
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_leccion);
+        $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+        /*----Paso 1 Obtener el ID del subtema----*/
+        $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
+        mysqli_stmt_bind_param($statement, "s", $leccion);
+        mysqli_stmt_execute($statement);
+        mysqli_stmt_store_result($statement);
+        mysqli_stmt_bind_result($statement, $id_leccion);
 
-    $arregloIdleccion = array();
-    //Leemos datos ID de leccion
-    while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-      $arregloIdleccion["id_leccion"] = $id_leccion;
-    }
+        $arregloIdleccion = array();
+        //Leemos datos ID de leccion
+        while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
+            $arregloIdleccion["id_leccion"] = $id_leccion;
+        }
 
-    $idL = $arregloIdleccion["id_leccion"];
+        $idL = $arregloIdleccion["id_leccion"];
         //Traer todas las preguntas del servicio
-      
+
     } else {
         //Si NO existe un token de sesion activo se redireccionara a pagina de inicio
         echo '<script type="text/javascript">
@@ -79,20 +79,26 @@
           </script>';
     }
 
-  
+
     ?>
 
-    
+    <?php
+    function imprimirPreguntas()
+    {
+        imprimirBarraProgresoCruz();
+        imprimirContador();
+        imprimirPreguntasRespuestas();
+        imprimirFooter();
+    }
+    ?>
 
-    
-  
+
+
+
+
 
 
     <?php
-
-    
-    
-    
     function imprimirFooter()
     {
         echo '
@@ -109,8 +115,6 @@
             </footer>
             ';
     }
-
-
     ?>
 
 
