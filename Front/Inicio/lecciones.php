@@ -238,7 +238,7 @@
                     Identificar triángulos rectángulos
                   </td>
                   <td>
-                    <a href="preguntas/preguntasAll.php"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
+                    <a href="preguntas/preguntaGeneral.php"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/run.svg" />
@@ -279,7 +279,7 @@
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                    <a href="../preguntas/preguntasAll.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
+                    <a href="../preguntas/preguntaGeneral.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/run.svg" />
