@@ -105,7 +105,7 @@
     function imprimirFooter()
     {
         echo '
-        <div class="foot">
+        <div class="foot" style="z-index:-1;">
             <div class=" container ">
                 <div class=" row text-center">
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3 "></div>
