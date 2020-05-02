@@ -332,15 +332,16 @@ function verifyIfCorrectOption(targetID) {
   var res = targetID.split("");
   // res[6]; == 1|2|3|4
   document.getElementById(targetID).className = "OpcionIncorrecta";
+  patronaMasUno = parseInt(questionMatrix[questionIDs[0]]["patrona"]) + 1;
   document.getElementById(
     "Opcion" +
-      questionMatrix[questionIDs[0]]["patrona"] +
+    patronaMasUno +
       res[7] +
       res[8] +
       "nImagen"
   ).className = "OpcionCorrecta";
   //AUN NO DESPLAZAMOS EL ARREGLO questionIDs[], por lo que podemos seguir leyendo de la posicion [0]
-  if (res[6] == questionMatrix[questionIDs[0]]["patrona"]) {
+  if (res[6] == patronaMasUno) {
     questionIDs.shift();
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
