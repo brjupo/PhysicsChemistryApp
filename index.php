@@ -90,7 +90,6 @@
                 <label class="olvidada" id="contraOlvidada">¿Olvidaste tu contraseña?</label><br>
                 <input type="submit" value="Log In" class="boton2">
                 <button class="g-recaptcha" data-sitekey="6LdnLvEUAAAAADFTp-wwjA8nP0vkPfusUfbPPja3" data-callback="onSubmit" data-size="invisible" style="display:none"></button>
-                <input type="submit" value="Log In" class="boton2">
                 </form>
             </div>
             <div id="emailSent" class="textCenter col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4" style="display:none;">
