@@ -107,6 +107,3 @@
         $response["response"] = 'fail';
         echo json_encode($response); 
     } */
-
-        
-?>

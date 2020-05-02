@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas2.css" />
     <script src="../CSSsJSs/scriptNuevasPreguntas5.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
 </head>
 
 
@@ -278,6 +277,8 @@
             </div>
             </div>
         </div>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         ';
     }
     ?>
