@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../CSSsJSs/icons/pyramid.svg"
+    />
+    <title>Pregunta</title>
+    <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
+    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas2.css" />
+    <script src="../CSSsJSs/script5.js"></script>
+    <script src="../CSSsJSs/minAJAX.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row topMargin">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+          <img src="../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+          <p id="subtemaPrevio" style="display: block;">
+            Operaciones vectoriales
+          </p>
+          <p id="userID" style="display: block;">4</p>
+          <p id="leccionID" style="display: block;">58</p>
+          <div class="progress progressMargin">
+            <!-- class="active"-->
+            <div
+              id="barraAvance"
+              class="progress-bar progress-bar-striped"
+              role="progressbar"
+              aria-valuenow="40"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width: 0%;"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+          <p style="display: block;" class="slide-bottom" id="previous">
+            0m 10s
+          </p>
+          <p style="display: block;" class="slide-bottom" id="actual">0m 10s</p>
+          <p style="display: block;" class="slide-bottom" id="later">0m 10s</p>
+          <p id="puntosBuenos"></p>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      </div>
+    </div>
+
+    <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA TIPO 1++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="container" id="PreguntaTipo1" style="display:block;">
+      <div class="row">
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+          <p class="formatoPreguntas" id="textoPreguntaTipo1">
+            ¿Cuál es la equivalencia correcta para la expresion
+            <strong>10<sup>6</sup></strong
+            >? (\(\vec{A}\))
+          </p>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+      </div>
+    </div>
+    <!--+++++++++++++++++++++++++++++++++++++++TIPO 1 IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="container" id="RespuestasTipo1ConImagen" style="display:block;">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <img
+            id="imagenPreguntaTipo1"
+            src="../CSSsJSs/images/problemaFisica.jpg"
+            class="imagenPregunta"
+          />
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+          <button class="Opcion1" id="Opcion1ConImagen">
+            10,000
+          </button>
+          <br />
+          <button class="Opcion3" id="Opcion3ConImagen">
+            1,000,000
+          </button>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+          <button class="Opcion2" id="Opcion2ConImagen">
+            100,000
+          </button>
+          <br />
+          <button class="Opcion4" id="Opcion4ConImagen">
+            10,000,000
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--+++++++++++++++++++++++++++++++++++++++TIPO 1 SIN IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="container" id="RespuestasTipo1SinImagen" style="display:block;">
+      <div class="row">
+        <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+          <button class="Opcion1" id="Opcion1SinImagen">
+            10,000
+          </button>
+          <br />
+          <button class="Opcion3" id="Opcion3SinImagen">
+            1,000,000
+          </button>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+          <button class="Opcion2" id="Opcion2SinImagen">
+            100,000
+          </button>
+          <br />
+          <button class="Opcion4" id="Opcion4SinImagen">
+            10,000,000
+          </button>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div>
+      </div>
+    </div>
+    <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA TIPO 2++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="container" id="PreguntaTipo2" style="display:block;">
+      <div class="row">
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+          <p class="formatoPreguntas" id="textoPreguntaTipo2">
+            En tu clase de biología se mencionó que en las hojas de las plantas
+            hay varios pigmentos tales como
+            <input type="text" id="lname" />
+            ¿Con qué método podrías separar estos pigmentos tras extraer el
+            líquido verde de una espinaca?
+          </p>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+      </div>
+    </div>
+    <!--+++++++++++++++++++++++++++++++++++++++TIPO 2 IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="container" id="RespuestasTipo2ConImagen" style="display:block;">
+      <div class="row">
+        <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <button id="acceptConImagen" class="miniBoton">Accept</button>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <img
+            id="imagenPreguntaTipo2"
+            src="../CSSsJSs/images/problemaFisica.jpg"
+            class="imagenPregunta"
+          />
+        </div>
+      </div>
+    </div>
+    <!--+++++++++++++++++++++++++++++++++++++++TIPO 2 SIN IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="container" id="RespuestasTipo2SinImagen" style="display:block;">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <button id="acceptSinImagen" class="miniBoton">Accept</button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="popUp animated bounceInUp"
+      id="botonSiguientePregunta"
+      style="display:block;"
+    >
+      <div class="container">
+        <div class="row text-center">
+          <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <button class="botonContinuar fondoNeutro">Continuar</button>
+          </div>
+          <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </body>
+</html>
