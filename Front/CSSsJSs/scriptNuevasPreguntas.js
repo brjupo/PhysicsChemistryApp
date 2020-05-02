@@ -91,25 +91,23 @@ function borrarParaLoBueno() {
 
 function getQuestionMatrix() {
   var leccionID = document.getElementById("leccionID").value.trim();
-  var Usuario = document.getElementById("Usuario").value.trim();
-  var Password = document.getElementById("Password").value.trim();
-  alert(Usuario + " " + Password + " " + leccionID);
+  console.log("Leccion ID= " + leccionID);
 
   $.ajax({
     type: "POST",
     url: "../../Servicios/preguntasGral.php",
     dataType: "json",
-    //data: {leccion: leccionID, userID: Usuario, pass:Password},
-    data: { IDLeccion: leccionID },
+    data: { idLeccion: leccionID },
     success: function (data) {
       console.log(data);
+      questionMatrix = data;
     },
   });
 }
 
 window.onload = function () {
-  borrarParaLoBueno();
-  //questionMatrix = getQuestionMatrix();
+  //borrarParaLoBueno();
+  questionMatrix = getQuestionMatrix();
   createArrayWithQuestions();
   loadNewQuestion(questionIDs[0]);
 };
