@@ -8,7 +8,7 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas2.css" />
-    <script src="../CSSsJSs/scriptPreguntaGeneral4.js"></script>
+    <script src="../CSSsJSs/scriptQuestions.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -258,12 +258,12 @@
     ID Respuesta = 2000 + Número de pregunta        Ejemplo: Respuesta1 id="2001"
     ID Respuesta correcta = 3000 + Número de pregunta   Ejemplo: ResCorrecta1 id="3001"
 
-    Opción 4 = 10 * Número de pregunta              
-    Opción 3 = 10 * Número de pregunta - 1
-    Opción 2 = 10 * Número de pregunta - 2
-    Opción 1 = 10 * Número de pregunta - 3
-    ID Boton aceptar = 10 * Número de pregunta - 4
-    Texto Escrito = 10 * Número de pregunta - 5
+    Opción 4 = 10 * Número de pregunta              Ejemplo: class="Opcion4"id="10"
+    Opción 3 = 10 * Número de pregunta - 1          Ejemplo: class="Opcion3"id="9"
+    Opción 2 = 10 * Número de pregunta - 2          Ejemplo: class="Opcion2"id="8"
+    Opción 1 = 10 * Número de pregunta - 3          Ejemplo: class="Opcion1"id="7"
+    ID Boton aceptar = 10 * Número de pregunta - 4  Ejemplo: id="6"
+    Texto Escrito = 10 * Número de pregunta - 5     Ejempo: id="5"
 
     */
     function imprimirPreguntaTipo1(int $preguntaNumero, $preguntaTexto)
@@ -295,9 +295,7 @@
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
-        $imgJPG = $imagen . ".JPG";
         $pathjpg = "../imagenes/" . $imgjpg;
-        $pathJPG = "../imagenes/" . $imgJPG;
         //echo '<p>'.$path.'</p>';
         if (file_exists($pathjpg)) {
             echo '
@@ -314,43 +312,13 @@
                 <button class="Opcion1" id="' . $uno . '">
                     ' . $r1 . '
                 </button><br>
-                <button class="Opcion3" id="' . $dos . '">
-                    ' . $r2 . '
-                </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                <button class="Opcion2" id="' . $tres . '">
+                <button class="Opcion3" id="' . $tres . '">
                     ' . $r3 . '
-                </button><br>
-                <button class="Opcion4" id="' . $cuatro . '">
-                    ' . $r4 . '
                 </button>
                 </div>
-            </div>
-            </div>
-        ';
-        } elseif (file_exists($pathJPG)) {
-            echo '
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="' . $respuestaNumero . '">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../imagenes/' . $imagen . '.JPG" class="imagenPregunta" />
-                <p id="' . $IDvalorCorrecto . '" style="display:none">
-                    ' . $respCorrecta . '
-                </p>
-                </div>
                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                <button class="Opcion1" id="' . $uno . '">
-                    ' . $r1 . '
-                </button><br>
-                <button class="Opcion3" id="' . $dos . '">
+                <button class="Opcion2" id="' . $dos . '">
                     ' . $r2 . '
-                </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                <button class="Opcion2" id="' . $tres . '">
-                    ' . $r3 . '
                 </button><br>
                 <button class="Opcion4" id="' . $cuatro . '">
                     ' . $r4 . '
@@ -375,13 +343,13 @@
                     <button class="Opcion1" id="' . $uno . '">
                         ' . $r1 . '
                     </button><br>
-                    <button class="Opcion3" id="' . $dos . '">
-                        ' . $r2 . '
+                    <button class="Opcion3" id="' . $tres . '">
+                        ' . $r3 . '
                     </button>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="' . $tres . '">
-                        ' . $r3 . '
+                    <button class="Opcion2" id="' . $dos . '">
+                        ' . $r2 . '
                     </button><br>
                     <button class="Opcion4" id="' . $cuatro . '">
                         ' . $r4 . '
@@ -440,9 +408,7 @@
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
-        $imgJPG = $imagen . ".JPG";
         $pathjpg = "../imagenes/" . $imgjpg;
-        $pathJPG = "../imagenes/" . $imgJPG;
         //echo '<p>'.$path.'</p>';
         if (file_exists($pathjpg)) {
             echo '
@@ -455,24 +421,6 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                             <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
-                            <p id="' . $IDvalorCorrecto . '" style="display:none">
-                            ' . $respCorrecta . '
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                ';
-        } elseif (file_exists($pathJPG)) {
-            echo '
-                <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-                <div class="container" style="display:none" id ="' . $respuestaNumero . '">
-                    <div class="row">
-                        <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../imagenes/' . $imagen . '.JPG" class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
@@ -500,7 +448,7 @@
     function imprimirFooter()
     {
         echo '
-            <footer class="popUp animated bounceInUp" id="sprintNext" style="display: none;">
+            <div class="popUp animated bounceInUp" id="sprintNext" style="display: none;">
                 <div class="container">
                 <div class="row text-center">
                     <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
@@ -510,7 +458,7 @@
                     <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
                 </div>
                 </div>
-            </footer>
+            </div>
             ';
     }
 
