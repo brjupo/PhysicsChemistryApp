@@ -19,7 +19,7 @@
   $tokenValidar = array();
 
   
-  $arregloAsignaturastodas = array("Materia y el entorno", "Fisica", "Topicos de Licenciatura");
+  $arregloAsignaturastodas = array("Materia y el entorno", "Física", "Tópicos de Licenciatura");
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
   mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
@@ -270,7 +270,7 @@
                   class="' . $claseBloque2 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
-                    <img class="'.$imagen2.'" src="../CSSsJSs/icons/examen.svg" />
+                    <img class="'.$imagen2.'" src="../CSSsJSs/icons/physics.svg" />
                   </div>
                   <div class="tituloAsignaturas">
                   ' . $nombreAsignatura2 . '
