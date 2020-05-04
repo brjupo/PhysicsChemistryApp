@@ -448,7 +448,7 @@
     function imprimirFooter()
     {
         echo '
-            <div class="popUp animated bounceInUp" id="sprintNext" style="display: none;">
+            <div class="popUp animated bounceInUp" id="botonSiguientePregunta" style="display: none;">
                 <div class="container">
                 <div class="row text-center">
                     <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
