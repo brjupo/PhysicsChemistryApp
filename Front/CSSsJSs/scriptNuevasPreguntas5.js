@@ -355,8 +355,6 @@ function verifyIfCorrectOption(targetID) {
 }
 
 function verifyIfTextIsCorrect() {
-  if (questionMatrix[questionIDs[0]]["patrona"] == 1) {
-  }
   //NORMALIZAR la respuesta CORRECTA
   var respuestaCorrectaNormalizada = 
     questionMatrix[questionIDs[0]]["patrona"]

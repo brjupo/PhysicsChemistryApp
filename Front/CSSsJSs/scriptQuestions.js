@@ -1,5 +1,5 @@
-var questionMatrix = []; //En realidad es un array con objetos, por ser JSON
-var questionNumber = []; 
+var lastQuestion = 0;
+var questionNumberArray = [];
 var puntos = 0;
 
 var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
@@ -8,97 +8,135 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
-    createArrayWithQuestions();
-    loadNewQuestion(questionNumber[0]);
+  createArrayWithQuestions();
 };
 
 function createArrayWithQuestions() {
   for (var i = 1001; i <= 1100; i++) {
     if (document.getElementById(i)) {
-      questionNumber.push(i);
+      questionNumberArray.push(i - 1000);
     }
+  }
+  loadNewQuestion(questionNumberArray[0]);
+}
+
+function loadNewQuestion(questionNumber) {
+  enableNextQuestionButtons(questionNumber);
+  colorNextQuestionButtons(questionNumber);
+  displayNextQuestion(questionNumber);
+  displayNextAnswer(questionNumber);
+
+  //displayQuestionContainers(questionNumber);
+  //loadInfoInContainers(questionNumber);
+}
+
+function enableNextQuestionButtons(questionNumber) {
+  //Si existe el ID 10*numeroDePregunta, es porque es pregunta tipo 1, de opción múltiple
+  //Por lo tanto debemos habilitar los 4 botones de opción múltiple. De lo contrario
+  //Habilitar el boton de Aceptar
+  if (document.getElementById(10 * questionNumber)) {
+    document.getElementById(10 * questionNumber).disabled = false;
+    document.getElementById(10 * questionNumber - 1).disabled = false;
+    document.getElementById(10 * questionNumber - 2).disabled = false;
+    document.getElementById(10 * questionNumber - 3).disabled = false;
+  } else {
+    document.getElementById(10 * questionNumber - 4).disabled = false;
+  }
+}
+function colorNextQuestionButtons(questionNumber) {
+  //Se deben colorear las opciones, esto no afecta al principio, pero en las preguntas
+  //que se repiten, porque el usuario se equivocó, se deben volver a colorear
+  //QUIZÁ debamos llamar otra pantalla, ya que las preguntas no se vuelven a revolver
+
+  //Si existe el ID 10*numeroDePregunta, es porque es pregunta tipo 1, de opción múltiple
+  //Por lo tanto debemos habilitar los 4 botones de opción múltiple. De lo contrario
+  //Habilitar el boton de Aceptar
+  if (document.getElementById(10 * questionNumber)) {
+    document.getElementById(10 * questionNumber).className = "Opcion4";
+    document.getElementById(10 * questionNumber - 1).className = "Opcion3";
+    document.getElementById(10 * questionNumber - 2).className = "Opcion2";
+    document.getElementById(10 * questionNumber - 3).className = "Opcion1";
+  } else {
+    document.getElementById(10 * questionNumber - 4).className = "miniBoton";
+  }
+  //Limpiar si es necesario y Colorear a negro de nuevo el campo de respuesta
+  if (document.getElementById(questionNumber * 10 - 5)) {
+    document.getElementById(questionNumber * 10 - 5).value = "";
+    document.getElementById(questionNumber * 10 - 5).style.color = "black";
   }
 }
 
-
-function loadNewQuestion(questionID) {
-  enableNextQuestionButtons(questionID);
-  colorNextQuestionButtons(questionID);
-  displayNextQuestion(questionID);
-  displayNextAnswer(questionID);
-  //displayQuestionContainers(questionID);
-  //loadInfoInContainers(questionID);
+function displayNextQuestion(questionNumber) {
+  //document.getElementById("PreguntaTipo1").style.display = "block";
+  //Se deben mostrar los bloques de pregunta y respuesta. Dado que ya tenemos un arreglo
+  //Con el numero relativo de cada pregunta, por ejemplo si en esta lección existen 5 preguntas
+  //Tenemos un arreglo {1,2,3,4,5}.
+  //El bloque de pregunta es numeroDePregunta + 1000
+  //El bloque de respuestas/botones es numeroDePregunta + 2000
+  document.getElementById(questionNumber + 1000).style.display = "block";
 }
 
-function enableNextQuestionButtons(questionID) {
-  //document.getElementById("Opcion1SinImagen").disabled = false;
-}
-function colorNextQuestionButtons(questionID) {
-  //document.getElementById("Opcion1SinImagen").className = "Opcion1";
-  //document.getElementById("acceptSinImagen").className = "miniBoton";
+function displayNextAnswer(questionNumber) {
+  //document.getElementById("PreguntaTipo1").style.display = "block";
+  //Se deben mostrar los bloques de pregunta y respuesta. Dado que ya tenemos un arreglo
+  //Con el numero relativo de cada pregunta, por ejemplo si en esta lección existen 5 preguntas
+  //Tenemos un arreglo {1,2,3,4,5}.
+  //El bloque de pregunta es numeroDePregunta + 1000
+  //El bloque de respuestas/botones es numeroDePregunta + 2000
+  document.getElementById(questionNumber + 2000).style.display = "block";
 }
 
-function displayNextQuestion(questionID) {
-}
+/*
+disableAllButtons();
+colorAllButtonsToWhite();
+verifyIfCorrectOption(targetElement.id);
+showContinueButton();
+*/
 
-function displayNextAnswer(questionID){
+/*
+disableAllButtons();
+colorAllButtonsToWhite();
+verifyIfTextIsCorrect();
+showContinueButton();
+*/
 
-}
-///////////////////////////////////TE QUEDASTE AQUI, RECOMIENDO CREAR LAS 4 FUNCIONES PREVIAS
+//nextQuestion();
+
+//questionNumberArray[0]
 
 document.addEventListener("click", function (evt) {
-  cruzCerrar = document.getElementById("cruzCerrar");
+  var cruzCerrar = document.getElementById("cruzCerrar");
+  var botonSiguientePregunta = document.getElementById(
+    "botonSiguientePregunta"
+  );
   targetElement = evt.target; // clicked element
 
   do {
-    console.log(targetElement.id);
     if (targetElement == cruzCerrar) {
       seguroRegresar();
       return;
     }
-    if (
-      targetElement == Opcion1SinImagen ||
-      targetElement == Opcion2SinImagen ||
-      targetElement == Opcion3SinImagen ||
-      targetElement == Opcion4SinImagen
-    ) {
-      disableAllButtons();
-      colorAllButtonsToWhite();
-      verifyIfCorrectOption(targetElement.id);
-      showContinueButton();
-      return;
-    }
-    if (
-      targetElement == Opcion1ConImagen ||
-      targetElement == Opcion2ConImagen ||
-      targetElement == Opcion3ConImagen ||
-      targetElement == Opcion4ConImagen
-    ) {
-      disableAllButtons();
-      colorAllButtonsToWhite();
-      verifyIfCorrectOption(targetElement.id);
-      showContinueButton();
-      return;
-    }
-    if (targetElement == acceptConImagen) {
-      disableAllButtons();
-      colorAllButtonsToWhite();
-      verifyIfTextIsCorrect();
-      showContinueButton();
-      return;
-    }
-    if (targetElement == acceptSinImagen) {
-      disableAllButtons();
-      colorAllButtonsToWhite();
-      verifyIfTextIsCorrect();
-      showContinueButton();
-      return;
-    }
     if (targetElement == botonSiguientePregunta) {
-      nextQuestion();
+      nextQuestion(lastQuestion);
       return;
     }
-
+    if (
+      parseInt(targetElement.id) >= 10 * questionNumberArray[0] - 3 &&
+      parseInt(targetElement.id) <= 10 * questionNumberArray[0]
+    ) {
+      disableAllButtons(questionNumberArray[0]);
+      colorAllButtonsToWhite(questionNumberArray[0]);
+      verifyIfCorrectOption(targetElement.id, questionNumberArray[0]);
+      showContinueButton();
+      return;
+    }
+    if (parseInt(targetElement.id) == 10 * questionNumberArray[0] - 4) {
+      disableAllButtons(questionNumberArray[0]);
+      colorAllButtonsToWhite(questionNumberArray[0]);
+      verifyIfTextIsCorrect(questionNumberArray[0]);
+      showContinueButton();
+      return;
+    }
     // Go up the DOM
     targetElement = targetElement.parentNode;
   } while (targetElement);
@@ -117,101 +155,142 @@ function seguroRegresar() {
   }
 }
 
-function disableAllButtons() {
-  document.getElementById("Opcion1SinImagen").disabled = true;
-  document.getElementById("Opcion2SinImagen").disabled = true;
-  document.getElementById("Opcion3SinImagen").disabled = true;
-  document.getElementById("Opcion4SinImagen").disabled = true;
-  document.getElementById("Opcion1ConImagen").disabled = true;
-  document.getElementById("Opcion2ConImagen").disabled = true;
-  document.getElementById("Opcion3ConImagen").disabled = true;
-  document.getElementById("Opcion4ConImagen").disabled = true;
-  document.getElementById("acceptConImagen").disabled = true;
-  document.getElementById("acceptSinImagen").disabled = true;
+function disableAllButtons(questionNumber) {
+  //Si existe el ID 10*numeroDePregunta, es porque es pregunta tipo 1, de opción múltiple
+  //Por lo tanto debemos deshabilitar los 4 botones de opción múltiple. De lo contrario
+  //Deshabilitar el boton de Aceptar
+  if (document.getElementById(10 * questionNumber)) {
+    document.getElementById(10 * questionNumber).disabled = true;
+    document.getElementById(10 * questionNumber - 1).disabled = true;
+    document.getElementById(10 * questionNumber - 2).disabled = true;
+    document.getElementById(10 * questionNumber - 3).disabled = true;
+  } else {
+    document.getElementById(10 * questionNumber - 4).disabled = true;
+  }
 }
 
-function colorAllButtonsToWhite() {
-  document.getElementById("Opcion1SinImagen").className = "OpcionBlanco";
-  document.getElementById("Opcion2SinImagen").className = "OpcionBlanco";
-  document.getElementById("Opcion3SinImagen").className = "OpcionBlanco";
-  document.getElementById("Opcion4SinImagen").className = "OpcionBlanco";
-  document.getElementById("Opcion1ConImagen").className = "OpcionBlanco";
-  document.getElementById("Opcion2ConImagen").className = "OpcionBlanco";
-  document.getElementById("Opcion3ConImagen").className = "OpcionBlanco";
-  document.getElementById("Opcion4ConImagen").className = "OpcionBlanco";
-  document.getElementById("acceptConImagen").className = "OpcionMiniBlanco";
-  document.getElementById("acceptSinImagen").className = "OpcionMiniBlanco";
+function colorAllButtonsToWhite(questionNumber) {
+  //Se deben descolorear las opciones.
+  //Si existe el ID 10*numeroDePregunta, es porque es pregunta tipo 1, de opción múltiple
+  //Por lo tanto debemos habilitar los 4 botones de opción múltiple. De lo contrario
+  //Habilitar el boton de Aceptar
+  if (document.getElementById(10 * questionNumber)) {
+    document.getElementById(10 * questionNumber).className = "OpcionBlanco";
+    document.getElementById(10 * questionNumber - 1).className = "OpcionBlanco";
+    document.getElementById(10 * questionNumber - 2).className = "OpcionBlanco";
+    document.getElementById(10 * questionNumber - 3).className = "OpcionBlanco";
+  } else {
+    document.getElementById(10 * questionNumber - 4).className =
+      "OpcionMiniBlanco";
+  }
 }
 
-function verifyIfCorrectOption(targetID) {
-  var res = targetID.split("");
-  // res[6]; == 1|2|3|4
+function verifyIfCorrectOption(targetID, questionNumber) {
+  //Debido a que
+  /*
+    ID Pregunta = 1000 + Número de pregunta         Ejemplo: Pregunta1 id="1001"
+    ID Respuesta = 2000 + Número de pregunta        Ejemplo: Respuesta1 id="2001"
+    ID Respuesta correcta = 3000 + Número de pregunta   Ejemplo: ResCorrecta1 id="3001"
+
+    ID Opción 4 = 10 * Número de pregunta              
+    ID Opción 3 = 10 * Número de pregunta - 1
+    ID Opción 2 = 10 * Número de pregunta - 2
+    ID Opción 1 = 10 * Número de pregunta - 3
+    ID Boton aceptar = 10 * Número de pregunta - 4
+    ID Texto Escrito = 10 * Número de pregunta - 5
+  */
+  //La ecuación para obtener el valor [entre 1 y 4] de la pregunta seleccionada es: selectedAnswer1to4
+  selectedAnswer1to4 = 4 + parseInt(targetID) - 10 * questionNumber - 1;
+  //De inmediato pintamos de rojo la elegida, si selecciono la correcta
+  //No te preocupes, en seguida se pinta de verde. className = "OpcionCorrecta";
   document.getElementById(targetID).className = "OpcionIncorrecta";
-  patronaMasUno = parseInt(questionMatrix[questionNumber[0]]["patrona"]) + 1;
+  correctOption = parseInt(
+    document.getElementById(3000 + questionNumber).innerHTML.trim()
+  );
+  //Para encontrar la correcta y dadas las condiciones previas, la ecuacion queda como 10*questionNumber-4+correctOption
   document.getElementById(
-    "Opcion" +
-    patronaMasUno +
-      res[7] +
-      res[8] +
-      "nImagen"
+    10 * questionNumber - 4 + correctOption + 1
   ).className = "OpcionCorrecta";
-  //AUN NO DESPLAZAMOS EL ARREGLO questionNumber[], por lo que podemos seguir leyendo de la posicion [0]
-  if (res[6] == patronaMasUno) {
-    questionNumber.shift();
+  //AUN NO DESPLAZAMOS EL ARREGLO questionNumberArray[], por lo que podemos seguir leyendo de la posicion [0]
+  if (selectedAnswer1to4 == correctOption) {
+    lastQuestion = questionNumber;
+    questionNumberArray.shift();
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
     CorrectAudio.play();
   } else {
-    questionNumber.push(questionNumber[0]);
-    questionNumber.shift();
+    lastQuestion = questionNumber;
+    questionNumberArray.push(questionNumberArray[0]);
+    questionNumberArray.shift();
     IncorrectAudio.play();
   }
 }
 
-function verifyIfTextIsCorrect() {
-  if (questionMatrix[questionNumber[0]]["patrona"] == 1) {
-  }
+function verifyIfTextIsCorrect(questionNumber) {
+  //Debido a que
+  /*
+    ID Pregunta = 1000 + Número de pregunta         Ejemplo: Pregunta1 id="1001"
+    ID Respuesta = 2000 + Número de pregunta        Ejemplo: Respuesta1 id="2001"
+    ID Respuesta correcta = 3000 + Número de pregunta   Ejemplo: ResCorrecta1 id="3001"
+
+    ID Opción 4 = 10 * Número de pregunta              
+    ID Opción 3 = 10 * Número de pregunta - 1
+    ID Opción 2 = 10 * Número de pregunta - 2
+    ID Opción 1 = 10 * Número de pregunta - 3
+    ID Boton aceptar = 10 * Número de pregunta - 4
+    ID Texto Escrito = 10 * Número de pregunta - 5
+  */
   //NORMALIZAR la respuesta CORRECTA
-  var respuestaCorrectaNormalizada = 
-    questionMatrix[questionNumber[0]]["patrona"]
+  correctText = document.getElementById(3000 + questionNumber).innerHTML.trim();
+  respuestaCorrectaNormalizada = correctText
     .normalize("NFD")
     .replace(
       /([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,
       "$1"
     )
     .normalize();
-  var respuestaCorrectaUpper = respuestaCorrectaNormalizada.toUpperCase();
+  respuestaCorrectaUpper = respuestaCorrectaNormalizada.toUpperCase();
 
   //NORMALIZAR la respuesta ESCRITA
-  var respuestaEscritaTrim = document.getElementById("idTextoEscrito").value.trim();
-  var respuestaEscritaNormalizada = respuestaEscritaTrim
+  respuestaEscritaTrim = document
+    .getElementById(10 * questionNumber - 5)
+    .value.trim();
+  respuestaEscritaNormalizada = respuestaEscritaTrim
     .normalize("NFD")
     .replace(
       /([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,
       "$1"
     )
     .normalize();
-  var respuestaEscritaUpper = respuestaEscritaNormalizada.toUpperCase();
+  respuestaEscritaUpper = respuestaEscritaNormalizada.toUpperCase();
   //Muestras la respuesta correcta en el Boton
-  document.getElementById("acceptConImagen").innerHTML = questionMatrix[questionNumber[0]]["patrona"];
-  document.getElementById("acceptSinImagen").innerHTML = questionMatrix[questionNumber[0]]["patrona"];
+  document.getElementById(
+    10 * questionNumber - 4
+  ).innerHTML = respuestaCorrectaUpper;
+  //Se calida si la respuesta es correcta
   if (respuestaEscritaUpper == respuestaCorrectaUpper) {
-    questionNumber.shift();
-    document.getElementById("idTextoEscrito").style.color = "green";
-    document.getElementById("idTextoEscrito").value = document
-      .getElementById("idTextoEscrito")
+    lastQuestion = questionNumber;
+    questionNumberArray.shift();
+    document.getElementById(10 * questionNumber - 5).style.color = "green";
+    document.getElementById(
+      10 * questionNumber - 5
+    ).value = document
+      .getElementById(10 * questionNumber - 5)
       .value.toLowerCase();
     puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
     CorrectAudio.play();
   } else {
-    questionNumber.push(questionNumber[0]);
-    questionNumber.shift();
-    document.getElementById("idTextoEscrito").style.color = "red";
-    document.getElementById("idTextoEscrito").value = document
-      .getElementById("idTextoEscrito")
+    lastQuestion = questionNumber;
+    questionNumberArray.push(questionNumberArray[0]);
+    questionNumberArray.shift();
+    document.getElementById(10 * questionNumber - 5).style.color = "red";
+    document.getElementById(
+      10 * questionNumber - 5
+    ).value = document
+      .getElementById(10 * questionNumber - 5)
       .value.toLowerCase();
     IncorrectAudio.play();
   }
@@ -219,9 +298,10 @@ function verifyIfTextIsCorrect() {
 
 function barWidth(puntos) {
   anchoBarra = 100 * puntos;
-  anchoBarra = anchoBarra / questionMatrix.length;
+  anchoBarra =
+    anchoBarra /
+    parseInt(document.getElementById("totalPreguntas").innerHTML.trim());
   anchoBarra = parseInt(anchoBarra).toString(10);
-  //barraAvance
   stringPorcentaje = anchoBarra.concat("%");
   document.getElementById("barraAvance").style.width = stringPorcentaje;
 }
@@ -230,26 +310,36 @@ function showContinueButton() {
   document.getElementById("botonSiguientePregunta").style.display = "block";
 }
 
-function hiddeAll() {
-  document.getElementById("PreguntaTipo1").style.display = "none";
-  document.getElementById("RespuestasTipo1ConImagen").style.display = "none";
-  document.getElementById("RespuestasTipo1SinImagen").style.display = "none";
-
-  document.getElementById("PreguntaTipo2").style.display = "none";
-  document.getElementById("RespuestasTipo2ConImagen").style.display = "none";
-  document.getElementById("RespuestasTipo2SinImagen").style.display = "none";
-
-  document.getElementById("botonSiguientePregunta").style.display = "none";
+function hiddePreviousQuestion(lastQuestion) {
+  //Se deben ocultar los bloques de pregunta y respuesta. Dado que ya tenemos un arreglo
+  //Con el numero relativo de cada pregunta, por ejemplo si en esta lección existen 5 preguntas
+  //Tenemos un arreglo {1,2,3,4,5}.
+  //El bloque de pregunta es numeroDePregunta + 1000
+  //El bloque de respuestas/botones es numeroDePregunta + 2000
+  document.getElementById(lastQuestion + 1000).style.display = "none";
+}
+function hiddePreviousAnswers(lastQuestion) {
+  //Se deben ocultar los bloques de pregunta y respuesta. Dado que ya tenemos un arreglo
+  //Con el numero relativo de cada pregunta, por ejemplo si en esta lección existen 5 preguntas
+  //Tenemos un arreglo {1,2,3,4,5}.
+  //El bloque de pregunta es numeroDePregunta + 1000
+  //El bloque de respuestas/botones es numeroDePregunta + 2000
+  document.getElementById(lastQuestion + 2000).style.display = "none";
 }
 
-function nextQuestion() {
-  hiddeAll();
-  document.getElementById("acceptConImagen").innerHTML = "Accept";
-  document.getElementById("acceptSinImagen").innerHTML = "Accept";
-  if (questionNumber.length == 0) {
+function nextQuestion(lastQuestion) {
+  hiddePreviousQuestion(lastQuestion);
+  hiddePreviousAnswers(lastQuestion);
+  //Ocultamos esta seccion
+  document.getElementById("botonSiguientePregunta").style.display = "none";
+  //Si la pregunta previa contiene el boton de accept, quitarle la respuesta y volverle a poner Accept
+  if (document.getElementById(10 * lastQuestion - 4)) {
+    document.getElementById(10 * lastQuestion - 4).innerHTML = "Accept";
+  }
+  if (questionNumberArray.length == 0) {
     enviarCalificacion();
   } else {
-    loadNewQuestion(questionNumber[0]);
+    loadNewQuestion(questionNumberArray[0]);
   }
 }
 
@@ -281,4 +371,19 @@ function enviarCalificacion() {
       }
     },
   });
+}
+
+//Cada vez que se escribe sobre un input
+//Firefox y o Google guardar la variable
+//Para evitar que ya se tengan las respuestas, se limpiaran
+//los campos input cada vez que se inicie [5,15,20,25]
+function limpiarInputs(cantidadIDs) {
+  console.log(cantidadIDs - 1000);
+  for (var i = 1; i <= cantidadIDs - 1000; i++) {
+    //borrar a los i*10-5
+    if (document.getElementById(i * 10 - 5)) {
+      document.getElementById(i * 10 - 5).value = "";
+      console.log(i * 10 - 5);
+    }
+  }
 }

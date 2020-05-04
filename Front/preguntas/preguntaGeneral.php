@@ -258,12 +258,12 @@
     ID Respuesta = 2000 + Número de pregunta        Ejemplo: Respuesta1 id="2001"
     ID Respuesta correcta = 3000 + Número de pregunta   Ejemplo: ResCorrecta1 id="3001"
 
-    Opción 4 = 10 * Número de pregunta              
-    Opción 3 = 10 * Número de pregunta - 1
-    Opción 2 = 10 * Número de pregunta - 2
-    Opción 1 = 10 * Número de pregunta - 3
+    ID Opción 4 = 10 * Número de pregunta              
+    ID Opción 3 = 10 * Número de pregunta - 1
+    ID Opción 2 = 10 * Número de pregunta - 2
+    ID Opción 1 = 10 * Número de pregunta - 3
     ID Boton aceptar = 10 * Número de pregunta - 4
-    Texto Escrito = 10 * Número de pregunta - 5
+    ID Texto Escrito = 10 * Número de pregunta - 5
 
     */
     function imprimirPreguntaTipo1(int $preguntaNumero, $preguntaTexto)
