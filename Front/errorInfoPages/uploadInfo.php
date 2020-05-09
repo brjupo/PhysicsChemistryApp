@@ -67,99 +67,62 @@
       </div>
     </div>
   </div>
-  <div class="foot">
+
+
+
+  <div class="container">
+    <div class="row">
+      <form class="form-horizontal" action="functions.php" method="post" name="upload_excel" enctype="multipart/form-data">
+        <fieldset>
+          <!-- Form Name -->
+          <legend>Form Name</legend>
+          <!-- File Button -->
+          <div class="form-group">
+            <label class="col-md-12 control-label" for="filebutton">Select File</label>
+            <div class="col-md-12">
+              <input type="file" name="file" id="file" class="input-large">
+            </div>
+          </div>
+          <!-- Button -->
+          <div class="form-group">
+            <label class="col-md-12 control-label" for="singlebutton">Import data</label>
+            <div class="col-md-12">
+              <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">Import</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+
     <div class="container">
       <div class="row">
-        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-          <p class="footSubject">Nosotros</p>
+        <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0);">.</p>
         </div>
-        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-          <p class="footSubject">Ayuda</p>
-        </div>
-        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-          <p class="footSubject">Términos</p>
+      </div>
+      <div class="row">
+        <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0);">.</p>
         </div>
       </div>
     </div>
-  </div>
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $("#frmCSVImport").on("submit", function() {
-        $("#response").attr("class", "");
-        $("#response").html("");
-        var fileType = ".csv";
-        var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(" + fileType + ")$");
-        if (!regex.test($("#file").val().toLowerCase())) {
-          $("#response").addClass("error");
-          $("#response").addClass("display-block");
-          $("#response").html(
-            "Invalid File. Upload : <b>" + fileType + "</b> Files."
-          );
-          return false;
-        }
-        return true;
-      });
-    });
-  </script>
-
-  <?php
-
-  use Phppot\DataSource;
-
-  require_once 'DataSource.php';
-  $db = new DataSource();
-  $conn = $db->getConnection();
-
-  if (isset($_POST["import"])) {
-    $fileName = $_FILES["file"]["tmp_name"];
-    if ($_FILES["file"]["size"] > 0) {
-
-      $file = fopen($fileName, "r");
-
-      while (($column = fgetcsv($file, 10000, ",")) !== FALSE) {
-        $mail = "";
-        if (isset($column[0])) {
-          $mail = mysqli_real_escape_string($conn, $column[0]);
-        }
-        $pswd = "";
-        if (isset($column[1])) {
-          $pswd = mysqli_real_escape_string($conn, $column[1]);
-        }
-        /*$password = "";
-            if (isset($column[2])) {
-                $password = mysqli_real_escape_string($conn, $column[2]);
-            }
-            $firstName = "";
-            if (isset($column[3])) {
-                $firstName = mysqli_real_escape_string($conn, $column[3]);
-            }
-            $lastName = "";
-            if (isset($column[4])) {
-                $lastName = mysqli_real_escape_string($conn, $column[4]);
-            } */
-
-        $sqlInsert = "INSERT into usuario_prueba (mail,pswd)
-                   values (?,?)";
-        $paramType = "ss";
-        $paramArray = array(
-          $mail,
-          $pswd,
-        );
-        $insertId = $db->insert($sqlInsert, $paramType, $paramArray);
-
-        if (!empty($insertId)) {
-          $type = "success";
-          $message = "CSV Data Imported into the Database";
-        } else {
-          $type = "error";
-          $message = "Problem in Importing CSV Data";
-        }
-      }
-    }
-  }
-  ?>
-
+    <div class="foot">
+      <div class="container">
+        <div class="row">
+          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <p class="footSubject">Nosotros</p>
+          </div>
+          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <p class="footSubject">Ayuda</p>
+          </div>
+          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <p class="footSubject">Términos</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 </body>
