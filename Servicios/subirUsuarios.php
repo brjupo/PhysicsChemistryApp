@@ -18,13 +18,13 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
         {
           echo "<script type=\"text/javascript\">
               alert(\"Invalid File:Please Upload CSV File.\");
-              window.location = \"index.php\"
+              window.location = \"../Front/errorInfoPages/uploadInfo.php\"
               </script>";    
         }
         else {
             echo "<script type=\"text/javascript\">
             alert(\"CSV File has been successfully Imported.\");
-            window.location = \"index.php\"
+            window.location = \"../Front/errorInfoPages/uploadInfo.php\"
           </script>";
         }
            }
