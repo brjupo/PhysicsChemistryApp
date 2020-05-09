@@ -38,57 +38,58 @@
 
   <div class="container">
     <div class="row">
-      <form class="form-horizontal" action="../../Servicios/subirUsuarios.php" method="post" name="upload_excel" enctype="multipart/form-data">
-        <fieldset>
-          <!-- Form Name -->
-          <legend>Carga de alumnos</legend>
-          <!-- File Button -->
-          <div class="form-group">
-            <label class="col-md-12 control-label" for="filebutton">Select File</label>
-            <div class="col-md-12">
-              <input type="file" name="file" id="file" class="input-large">
+      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <form class="form-horizontal" action="../../Servicios/subirUsuarios.php" method="post" name="upload_excel" enctype="multipart/form-data">
+          <fieldset>
+            <!-- Form Name -->
+            <legend>Student information upload</legend>
+            <!-- File Button -->
+            <div class="form-group">
+              <label class="control-label" for="filebutton">Select File</label>
+              <div class="">
+                <input type="file" name="file" id="file" class="input-large">
+              </div>
             </div>
-          </div>
-          <!-- Button -->
-          <div class="form-group">
-            <label class="col-md-12 control-label" for="singlebutton">Import data</label>
-            <div class="col-md-12">
-              <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading boton2" data-loading-text="Loading...">Import</button>
+            <!-- Button -->
+            <div class="form-group">
+              <div class="">
+                <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading boton2" data-loading-text="Loading...">Import</button>
+              </div>
             </div>
-          </div>
-        </fieldset>
-      </form>
+          </fieldset>
+        </form>
+      </div>
     </div>
+  </div>
 
+  <div class="container">
+    <div class="row">
+      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
 
+  <div class="foot">
     <div class="container">
       <div class="row">
-        <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p style="color: rgba(0, 0, 0, 0);">.</p>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <p class="footSubject">Nosotros</p>
         </div>
-      </div>
-      <div class="row">
-        <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p style="color: rgba(0, 0, 0, 0);">.</p>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <p class="footSubject">Ayuda</p>
         </div>
-      </div>
-    </div>
-
-    <div class="foot">
-      <div class="container">
-        <div class="row">
-          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-            <p class="footSubject">Nosotros</p>
-          </div>
-          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-            <p class="footSubject">Ayuda</p>
-          </div>
-          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-            <p class="footSubject">Términos</p>
-          </div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <p class="footSubject">Términos</p>
         </div>
       </div>
     </div>
+  </div>
 
 
 </body>
