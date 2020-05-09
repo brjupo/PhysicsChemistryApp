@@ -15,7 +15,7 @@
     <div class="row">
       <div class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textLeft col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-        <p class="titulo" id="titulo">EducApp</p>
+        <p class="titulo" id="titulo">Kaanbal</p>
       </div>
       <div class="textRight col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
       <div class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
@@ -30,7 +30,18 @@
 
   <div class="container">
     <div class="row">
-      <h2>Descargar Calificaciones</h2>
+      <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <label for="subtema">Acciones</label>
+        <select id="subtema" class="form-control">
+          <option disabled selected>Elegir</option>
+          <option>Programar Examen</option>
+          <option>Descargar Calificaciones Examen</option>
+          <option>Descargar Calificaciones Sprint Particular</option>
+          <option>Descargar Calificaciones Sprint General</option>
+          <option>Descargar Calificaciones Práctica Particular</option>
+          <option>Descargar Calificaciones Práctica General</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -74,24 +85,24 @@
 
   <div class="container">
     <div class="row">
-      <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+      <div class="textCenter col-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
         <label for="desde">Desde [Inclusivo]</label>
         <input type="date" id="desde" name="desde" class="form-control" />
       </div>
-      <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <div class="textCenter col-12 col-sm-4 col-md-2 col-lg-2 col-xl-2">
         <label for="desde_tiempo">Hora</label>
         <input type="time" value="07:00" id="desde_tiempo" name="desde_tiempo" class="form-control" />
       </div>
-      <div class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-      <div class="textCenter col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+      <div class="textCenter col-12 col-sm-2 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="textCenter col-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
         <label for="hasta">Hasta [Inclusivo]</label>
         <input type="date" id="hasta" name="hasta" class="form-control" />
       </div>
-      <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <div class="textCenter col-12 col-sm-4 col-md-2 col-lg-2 col-xl-2">
         <label for="hasta_tiempo">Hora</label>
         <input type="time" value="07:00" id="hasta_tiempo" name="hasta_tiempo" class="form-control" />
       </div>
-      <div class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="textCenter col-12 col-sm-2 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
 
@@ -116,7 +127,7 @@
         <label for="tema">Tema</label>
         <select id="tema" class="form-control">
           <option disabled selected>Elegir</option>
-          <option>!!!TOTAL DE BONUS!!!</option>
+          <option>Todos los temas</option>
           <option>Tema 1</option>
           <option>Tema 2</option>
         </select>
@@ -149,17 +160,7 @@
           <option>Hypotenusa</option>
         </select>
       </div>
-      <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <label for="subtema">Modo</label>
-        <select id="subtema" class="form-control">
-          <option disabled selected>Elegir</option>
-          <option>Examen</option>
-          <option>Leccion</option>
-          <option>Sprint</option>
-          <option>Todos</option>
-        </select>
-      </div>
-      <div class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="textCenter col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
     </div>
   </div>
 

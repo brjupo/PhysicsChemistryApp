@@ -16,6 +16,7 @@ function createArrayWithQuestions() {
     if (document.getElementById(i)) {
       questionNumberArray.push(i - 1000);
     }
+    else{ break; }
   }
   loadNewQuestion(questionNumberArray[0]);
 }
@@ -44,7 +45,7 @@ function enableNextQuestionButtons(questionNumber) {
   }
 }
 function colorNextQuestionButtons(questionNumber) {
-  //Se deben colorear las opciones, esto no afecta al principio, pero en las preguntas
+  //Se deben colorear las opciones, esto no afecta al principio, pero si en las preguntas
   //que se repiten, porque el usuario se equivocó, se deben volver a colorear
   //QUIZÁ debamos llamar otra pantalla, ya que las preguntas no se vuelven a revolver
 
@@ -145,7 +146,7 @@ document.addEventListener("click", function (evt) {
 function seguroRegresar() {
   if (
     confirm(
-      "¿Estás seguro de regresar?\n Si regresas perderás todo tu avance de este tema"
+      "¿Estás seguro de regresar?\n Si regresas perderás todo tu avance de esta lección"
     )
   ) {
     var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
@@ -192,27 +193,42 @@ function verifyIfCorrectOption(targetID, questionNumber) {
     ID Respuesta = 2000 + Número de pregunta        Ejemplo: Respuesta1 id="2001"
     ID Respuesta correcta = 3000 + Número de pregunta   Ejemplo: ResCorrecta1 id="3001"
 
-    ID Opción 4 = 10 * Número de pregunta              
-    ID Opción 3 = 10 * Número de pregunta - 1
-    ID Opción 2 = 10 * Número de pregunta - 2
-    ID Opción 1 = 10 * Número de pregunta - 3
-    ID Boton aceptar = 10 * Número de pregunta - 4
-    ID Texto Escrito = 10 * Número de pregunta - 5
+    ID Opción 4 = 10 * Número de pregunta           Ejemplo: class="Opcion4"  id="10"
+    Correcta = 3  idOprimido-(numPreg-1)*10-7 [numPreg=1] ---- numpreg=2 idOprimido=20 idOprimido-(numPreg-1)*10-7
+    ID Opción 3 = 10 * Número de pregunta - 1       Ejemplo: class="Opcion3"  id="9"
+    Correcta = 2  idOprimido-(numPreg-1)*10-7 [numPreg=1] ---- numpreg=2 idOprimido=19 idOprimido-(numPreg-1)*10-7
+    ID Opción 2 = 10 * Número de pregunta - 2       Ejemplo: class="Opcion2"  id="8"
+    Corecta = 1 
+    ID Opción 1 = 10 * Número de pregunta - 3       Ejemplo: class="Opcion4"  id="7"
+    Correcta = 0
+    ID Boton aceptar = 10 * Número de pregunta - 4  Ejemplo: class="miniBoton"  id="6"
+    ID Texto Escrito = 10 * Número de pregunta - 5  Ejemplo: <input>          id="5"
+
+    opcionCorrecta = idOprimido-(numPreg-1)*10-7
+    opcionCorrecta = idOprimido - numPreg*10 + 10 - 7
+    opcionCorrecta = idOprimido - numPreg*10 + 3
+    En realidad
+    opcionCorrecta = idBotonExistente - numPreg*10 + 3
+    opcionCorrecta + numPreg*10 - 3 = idBotonExistente
+    
   */
-  //La ecuación para obtener el valor [entre 1 y 4] de la pregunta seleccionada es: selectedAnswer1to4
-  selectedAnswer1to4 = 4 + parseInt(targetID) - 10 * questionNumber - 1;
-  //De inmediato pintamos de rojo la elegida, si selecciono la correcta
+  //La ecuación para obtener el valor [entre 0 y 3] de la pregunta seleccionada es: selectedAnswer0to3
+  selectedAnswer0to3 = parseInt(targetID) - 10 * questionNumber + 3;
+  //De inmediato pintamos de rojo la elegida. Si selecciono la correcta
   //No te preocupes, en seguida se pinta de verde. className = "OpcionCorrecta";
   document.getElementById(targetID).className = "OpcionIncorrecta";
   correctOption = parseInt(
     document.getElementById(3000 + questionNumber).innerHTML.trim()
   );
-  //Para encontrar la correcta y dadas las condiciones previas, la ecuacion queda como 10*questionNumber-4+correctOption
+  //Para encontrar la correcta y dadas las condiciones previas, la ecuacion queda como 10*questionNumber-3+correctOption
   document.getElementById(
-    10 * questionNumber - 4 + correctOption + 1
+    correctOption + 10 * questionNumber - 3
   ).className = "OpcionCorrecta";
   //AUN NO DESPLAZAMOS EL ARREGLO questionNumberArray[], por lo que podemos seguir leyendo de la posicion [0]
-  if (selectedAnswer1to4 == correctOption) {
+  // INICIO ARRAY = {1,2,3,4,5}
+  // APLICAMOS ARRAY.SHIFT();
+  // AL FINAL QUEDA COMO ARRAY = {2,3,4,5}
+  if (selectedAnswer0to3 == correctOption) {
     lastQuestion = questionNumber;
     questionNumberArray.shift();
     puntos = puntos + 1;
@@ -221,7 +237,7 @@ function verifyIfCorrectOption(targetID, questionNumber) {
     CorrectAudio.play();
   } else {
     lastQuestion = questionNumber;
-    questionNumberArray.push(questionNumberArray[0]);
+    questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
     IncorrectAudio.play();
   }
@@ -268,7 +284,7 @@ function verifyIfTextIsCorrect(questionNumber) {
   document.getElementById(
     10 * questionNumber - 4
   ).innerHTML = respuestaCorrectaUpper;
-  //Se calida si la respuesta es correcta
+  //Se valida si la respuesta es correcta
   if (respuestaEscritaUpper == respuestaCorrectaUpper) {
     lastQuestion = questionNumber;
     questionNumberArray.shift();
@@ -284,7 +300,7 @@ function verifyIfTextIsCorrect(questionNumber) {
     CorrectAudio.play();
   } else {
     lastQuestion = questionNumber;
-    questionNumberArray.push(questionNumberArray[0]);
+    questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
     document.getElementById(10 * questionNumber - 5).style.color = "red";
     document.getElementById(
