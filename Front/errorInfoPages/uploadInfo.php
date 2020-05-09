@@ -41,7 +41,7 @@
       <form class="form-horizontal" action="../../Servicios/subirUsuarios.php" method="post" name="upload_excel" enctype="multipart/form-data">
         <fieldset>
           <!-- Form Name -->
-          <legend>Form Name</legend>
+          <legend>Carga de alumnos</legend>
           <!-- File Button -->
           <div class="form-group">
             <label class="col-md-12 control-label" for="filebutton">Select File</label>
