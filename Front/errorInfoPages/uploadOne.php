@@ -53,32 +53,6 @@
         </div>
     </div>
 
-
-
-
-    <div class="container">
-        <div class="row">
-            <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-            <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                <div id="message">
-                    <h3>Recuerda, tu contraseña debe contener:</h3>
-                    <p id="letter" class="invalid">Al menos 1 letra <b>minúscula</b></p>
-                    <p id="capital" class="invalid">
-                        Al menos 1 letra <b>mayúscula</b>
-                    </p>
-                    <p id="number" class="invalid">Al menos 1 <b>número</b></p>
-                    <p id="symbol" class="invalid">
-                        Al menos 1 <b>símbolo</b> @#$%^&+=
-                    </p>
-                    <p id="length" class="invalid">
-                        En total, mínimo <b>8 caracteres</b>
-                    </p>
-                </div>
-            </div>
-            <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-        </div>
-    </div>
-
     <div class="container">
         <div class="row">
             <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
