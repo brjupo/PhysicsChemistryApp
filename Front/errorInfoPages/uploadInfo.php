@@ -45,7 +45,7 @@
             <legend>Student information upload</legend>
             <!-- File Button -->
             <div class="form-group">
-              <label class="control-label" for="filebutton">Select File</label>
+              <label class="control-label" for="filebutton">Select CSV File</label>
               <div class="">
                 <input type="file" name="file" id="file" class="input-large">
               </div>
