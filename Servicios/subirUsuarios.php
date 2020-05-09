@@ -10,7 +10,7 @@ if (isset($_POST["Import"])) {
     $file = fopen($filename, "r");
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
       $sql = "INSERT into usuario_prueba (mail,pswd) 
-                   values ('" . $getData[0] . "','" . $getData[1] . "')";
+                   values ('" . $getData[0] . "@itesm.mx','" . $getData[1] . "')";
       $result = mysqli_query($con, $sql);
       if (!isset($result)) {
         echo "<script type=\"text/javascript\">
