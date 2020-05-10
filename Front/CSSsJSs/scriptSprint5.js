@@ -30,7 +30,6 @@ function loadNewQuestion(questionNumber) {
   displayNextQuestion(questionNumber);
   displayNextAnswer(questionNumber);
   questionWasAnswered = false;
-  clearInterval(timeIntervalX);
   startClock();
   //displayQuestionContainers(questionNumber);
   //loadInfoInContainers(questionNumber);
@@ -131,6 +130,7 @@ document.addEventListener("click", function (evt) {
       parseInt(targetElement.id) <= 10 * questionNumberArray[0]
     ) {
       questionWasAnswered = true;
+      clearInterval(timeIntervalX);
       disableAllButtons(questionNumberArray[0]);
       colorAllButtonsToWhite(questionNumberArray[0]);
       verifyIfCorrectOption(targetElement.id, questionNumberArray[0]);
@@ -139,6 +139,7 @@ document.addEventListener("click", function (evt) {
     }
     if (parseInt(targetElement.id) == 10 * questionNumberArray[0] - 4) {
       questionWasAnswered = true;
+      clearInterval(timeIntervalX);
       disableAllButtons(questionNumberArray[0]);
       colorAllButtonsToWhite(questionNumberArray[0]);
       verifyIfTextIsCorrect(questionNumberArray[0]);
@@ -456,6 +457,7 @@ function startClock() {
         incorrectByTime(questionNumberArray[0]);
         showContinueButton();
       }
+      clearInterval(timeIntervalX);
     }
     sumaSegundos = sumaSegundos + unSegundo;
   }, 1000);
