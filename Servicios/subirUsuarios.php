@@ -9,6 +9,16 @@ if (isset($_POST["Import"])) {
   if ($_FILES["file"]["size"] > 0) {
     $file = fopen($filename, "r");
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
+      
+      $mailr = $getData[0]+"@itesm.mx";
+      //Corroborar que no existe el correo en base de datos
+      $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$mailr'";
+      $resultp = mysqli_query($con, $sql);
+      $rowp = mysqli_fetch_array($resultp);
+
+      if ($rowp) {
+      }else{
+
       $sql = "INSERT into usuario_prueba (mail,pswd) 
                    values ('" . $getData[0] . "@itesm.mx','" . $getData[1] . "')";
       $result = mysqli_query($con, $sql);
@@ -23,6 +33,7 @@ if (isset($_POST["Import"])) {
             window.location = \"../Front/errorInfoPages/uploadInfo.php\"
           </script>";
       }
+    }
     }
 
     fclose($file);
