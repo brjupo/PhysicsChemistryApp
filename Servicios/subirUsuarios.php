@@ -22,7 +22,7 @@ if (isset($_POST["Import"])) {
 
       if ($rowp) {
 
-        if (!isset($result)) {
+        if (!isset($rowp)) {
           echo "<script type=\"text/javascript\">
                 alert(\"Invalid File:Please Upload CSV File.\");
                 window.location = \"../Front/errorInfoPages/uploadInfo.php\"
