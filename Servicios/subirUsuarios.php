@@ -11,9 +11,9 @@ if (isset($_POST["Import"])) {
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
       
       $mailr = $getData[0]."@itesm.mx";
-      echo "<script type=\"text/javascript\">
+      /* echo "<script type=\"text/javascript\">
               alert(\"".$mailr."\");
-              </script>";
+              </script>"; */
 
       //Corroborar que no existe el correo en base de datos
       $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$mailr'";
