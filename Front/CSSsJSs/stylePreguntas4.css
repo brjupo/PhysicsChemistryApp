@@ -1,16 +1,36 @@
+/*--------------------------------------------------FUENTES-----------------------------------------------------------*/
+@font-face {
+  font-family: "ubuntu";
+  src: url("Fonts/ubuntu/ubuntu.ttf") format("truetype");
+}
+@font-face {
+  font-family: "georgia";
+  src: url("Fonts/georgia/georgiaz.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Monse";
+  src: url("Fonts/montserrat/Montserrat-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "SSF";
+  src: url("Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
+}
+/*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
+
 /*--------------------------------DIALOGOS Inspiracionales-----------------------------------*/
 .noPaddingMargin {
   padding-left: 0px !important;
   margin-left: 0px !important;
 }
 .dialogoInsp {
+  font-family: "Monse";
   color: rgb(150, 150, 150);
   font-size: 4.5vw;
   margin: 0px 0px 0px 35vw;
   font-weight: 600;
   line-height: 5vw;
   padding: 1vh 0vh 20vh 0vh;
-  width: 65vw;
+  width: 55vw;
 }
 .imagenEdu {
   display: block;
