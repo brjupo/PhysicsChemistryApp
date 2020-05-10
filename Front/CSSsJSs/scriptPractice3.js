@@ -400,7 +400,7 @@ function motivationBadMessage(lastQuestion) {
   rand = Math.floor(Math.random() * (badJobMessages.length+1));
   hiddePreviousQuestion(lastQuestion);
   hiddePreviousAnswers(lastQuestion);
-  document.getElementById("dialogo").innerHTML = goodJobMessages[rand];
+  document.getElementById("dialogo").innerHTML = badJobMessages[rand];
   //Mostramos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "block";
 }
