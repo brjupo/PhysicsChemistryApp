@@ -2,6 +2,7 @@ var lastQuestion = 0;
 var questionNumberArray = [];
 var puntos = 0;
 var questionWasAnswered = false;
+var timeIntervalX = setInterval(function(){ var i = 1; }, 500);
 
 var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
@@ -29,6 +30,7 @@ function loadNewQuestion(questionNumber) {
   displayNextQuestion(questionNumber);
   displayNextAnswer(questionNumber);
   questionWasAnswered = false;
+  clearInterval(timeIntervalX);
   startClock();
   //displayQuestionContainers(questionNumber);
   //loadInfoInContainers(questionNumber);
@@ -418,7 +420,7 @@ function startClock() {
   var sumaSegundos = new Date(1000).getTime();
 
   // Update the count down every 1 second
-  var x = setInterval(function () {
+  timeIntervalX = setInterval(function () {
     var previous = countDownDate - sumaSegundos - unSegundo;
     var actual = countDownDate - sumaSegundos;
     var later = countDownDate - sumaSegundos + unSegundo;
@@ -446,15 +448,14 @@ function startClock() {
       document.getElementById("previous").innerHTML = "---";
     }
     if (actual < 0) {
+      document.getElementById("actual").innerHTML = "TIEMPO!";
       if (questionWasAnswered == false) {
-        document.getElementById("actual").innerHTML = "TIEMPO!";
         //CONSECUENCIA POR TERMINARSE EL TIEMPO
         disableAllButtons(questionNumberArray[0]);
         colorAllButtonsToWhite(questionNumberArray[0]);
         incorrectByTime(questionNumberArray[0]);
         showContinueButton();
       }
-      clearInterval(x);
     }
     sumaSegundos = sumaSegundos + unSegundo;
   }, 1000);
