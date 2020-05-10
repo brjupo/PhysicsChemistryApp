@@ -1,25 +1,39 @@
-/*--------------------------------DIALOGOS DUO-----------------------------------*/
-
-.dialogoDuo {
-  color: rgb(150, 150, 150);
-  font-size: 3vw;
-  margin: 0px 0px 0px 22vw;
-  font-weight: 600;
-  line-height: 2.5vw;
-}
-
-@media screen and (min-width: 768px) {
-  .dialogoDuo {
-    font-size: 18px;
-    margin: 0px 0px 0px 130px;
-    font-weight: 600;
-    line-height: 15px;
-  }
-}
-
+/*--------------------------------DIALOGOS Inspiracionales-----------------------------------*/
 .noPaddingMargin {
   padding-left: 0px !important;
   margin-left: 0px !important;
+}
+.dialogoInsp {
+  color: rgb(150, 150, 150);
+  font-size: 4.5vw;
+  margin: 0px 0px 0px 35vw;
+  font-weight: 600;
+  line-height: 5vw;
+  padding: 1vh 0vh 20vh 0vh;
+  width: 65vw;
+}
+.imagenEdu {
+  display: block;
+  margin: 0px auto 0px 0px;
+  background-image: url("images/Duo.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.effortMessage {
+  line-height: 3.5vw;
+}
+@media screen and (min-width: 768px) {
+  .dialogoInsp {
+    font-size: 5vh;
+    margin: 0px 0px 0px 15vw;
+    font-weight: 600;
+    line-height: 6vh;
+    padding: 2.5vh 0vh 40vh 0vh;
+    width: 25vw;
+  }
+  .effortMessage {
+    line-height: 20px;
+  }
 }
 
 /*---------------------------------PREGUNTAS-------------------------------------*/
@@ -75,16 +89,6 @@ a:active {
     width: 80%;
     height: auto;
   }
-}
-
-.imagenEdu {
-  display: block;
-  margin: 0px auto 0px 0px;
-  /*width: 60%;*/
-  background-image: url("../images/Duo.png");
-  background-size: 60%;
-  background-repeat: no-repeat;
-  line-height: 15px;
 }
 
 /*--------------------------------------BOTONES--------------------------------------*/
@@ -305,7 +309,6 @@ input:active {
     background-color: rgb(245, 245, 245);
   }
 }
-
 
 .miniBoton {
   display: block;
