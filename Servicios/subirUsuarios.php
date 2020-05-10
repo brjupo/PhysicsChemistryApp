@@ -14,12 +14,26 @@ if (isset($_POST["Import"])) {
       echo "<script type=\"text/javascript\">
               alert(\"".$mailr."\");
               </script>";
+
       //Corroborar que no existe el correo en base de datos
       $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$mailr'";
       $resultp = mysqli_query($con, $sql);
       $rowp = mysqli_fetch_array($resultp);
 
       if ($rowp) {
+
+        if (!isset($result)) {
+          echo "<script type=\"text/javascript\">
+                alert(\"Invalid File:Please Upload CSV File.\");
+                window.location = \"../Front/errorInfoPages/uploadInfo.php\"
+                </script>";
+        } else {
+          echo "<script type=\"text/javascript\">
+              alert(\"CSV File has been successfully Imported.\");
+              window.location = \"../Front/errorInfoPages/uploadInfo.php\"
+            </script>";
+        }
+
       }else{
 
       $sql = "INSERT into usuario_prueba (mail,pswd) 
