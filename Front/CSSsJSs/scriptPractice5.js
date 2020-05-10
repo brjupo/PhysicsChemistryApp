@@ -385,7 +385,7 @@ function motivationGoodMessage(lastQuestion) {
   document.getElementById("motivationMessage").style.display = "block";
   goodJobMessages = ["Excelente, sigue así","Eres increible!","Eres el mejor!","Sabía que podías con esto y más"];
   //Numero random del 0 al goodJobMessages.length
-  rand = Math.floor(Math.random() * (goodJobMessages.length+1));
+  rand = Math.floor(Math.random() * (goodJobMessages.length));
   hiddePreviousQuestion(lastQuestion);
   hiddePreviousAnswers(lastQuestion);
   document.getElementById("dialogo").innerHTML = goodJobMessages[rand];
@@ -399,7 +399,7 @@ function motivationBadMessage(lastQuestion) {
   document.getElementById("motivationMessage").style.display = "block";
   badJobMessages = ["Aunque falles, sigues aprendiendo","Todo esfuerzo valdrá la pena","Yo confió en tí, sigue adelante","Has podido con más, solo concentrate","Todo se logra con un poco de esfuerzo"];
   //Numero random del 0 al goodJobMessages.length
-  rand = Math.floor(Math.random() * (badJobMessages.length+1));
+  rand = Math.floor(Math.random() * (badJobMessages.length));
   hiddePreviousQuestion(lastQuestion);
   hiddePreviousAnswers(lastQuestion);
   document.getElementById("dialogo").innerHTML = badJobMessages[rand];
