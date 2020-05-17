@@ -89,7 +89,7 @@
   <div class="container">
     <div class="well-sm col-sm-12">
       <div class="btn-group pull-right">
-      <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+      <form class="form-horizontal" action="../../Front/uploadInfo.php" method="post" name="download_excel" enctype="multipart/form-data">
         <button type="submit" id="export_data" name="export_data" value="Export to excel" class="btn btn-info">Exportar a Excel</button>
       </form>
   </div>
