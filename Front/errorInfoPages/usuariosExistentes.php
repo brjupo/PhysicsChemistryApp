@@ -24,7 +24,17 @@ while ($row = mysqli_fetch_assoc($result)) {
     $array[] = $row;
 }
 
-print_r($array[0]["id_usuario"]);
+//print_r($array[0]["id_usuario"]);
+$nroapto = $array[0]["id_usuario"];
+$cedula = $array[0]["mail"];
+echo"<table border='1' bordercolor='#00CC99' bgcolor='#99CC00' align='center'>
+ 	            <td><input type='text' value='$nroapto' name='nroapto' readonly='true'></td>
+				<td width='50'><input type='text' value='$cedula' name='cedula' readonly='true'></td>
+				<td width='50'><input type='text' value='$dia"."/"."$mes"."/"."$anio' readonly='true' name='fecha'></td>
+				<td width='50'><input type='text' value='$totaldeuda' size='8' readonly='true' name='deuda' align='right'></td>
+  		        <td width='50'><input type='text' value='$valor' size='8' name='valor'></td>
+				   </tr>
+    			</table><br>";
 
 ?>
 
