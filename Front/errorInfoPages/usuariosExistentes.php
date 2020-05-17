@@ -14,31 +14,7 @@
 
 <body>
 
-<?php
-$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-//Traer todos los usuarios
-$query = "SELECT id_usuario, mail FROM usuario_prueba"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
-$result = mysqli_query($con, $query);
-//Recorrer el arreglo
-while ($row = mysqli_fetch_assoc($result)) {
-    $array[] = $row;
-}
-
-//print_r($array[0]["id_usuario"]);
-$nroapto = $array[0]["id_usuario"];
-$cedula = $array[0]["mail"];
-echo"<table border='1' bordercolor='#00CC99' bgcolor='#99CC00' align='center'>
- 	            <td><input type='text' value='$nroapto' name='nroapto' readonly='true'></td>
-				<td width='50'><input type='text' value='$cedula' name='cedula' readonly='true'></td>
-				<td width='50'><input type='text' value='$dia"."/"."$mes"."/"."$anio' readonly='true' name='fecha'></td>
-				<td width='50'><input type='text' value='$totaldeuda' size='8' readonly='true' name='deuda' align='right'></td>
-  		        <td width='50'><input type='text' value='$valor' size='8' name='valor'></td>
-				   </tr>
-    			</table><br>";
-
-?>
-
-  <div class="container">
+<div class="container">
     <div class="row">
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
@@ -61,6 +37,31 @@ echo"<table border='1' bordercolor='#00CC99' bgcolor='#99CC00' align='center'>
     </div>
   </div>
 
+<?php
+$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+//Traer todos los usuarios
+$query = "SELECT id_usuario, mail FROM usuario_prueba"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
+$result = mysqli_query($con, $query);
+//Recorrer el arreglo
+while ($row = mysqli_fetch_assoc($result)) {
+    $array[] = $row;
+}
+
+$tamanho = count($array);
+
+for ($j = 0; $j < $tamanho; $j++) {
+//print_r($array[0]["id_usuario"]);
+$id = $array[$j]["id_usuario"];
+$mails = $array[$j]["mail"];
+echo"<table border='1' bordercolor='#00CC99' bgcolor='#99CC00' align='center'>
+ 	            <td><input type='text' value='$id' name='nroapto' readonly='true'></td>
+				<td width='50'><input type='text' value='$mails' name='cedula' readonly='true'></td>
+				   </tr>
+                </table><br>";
+                $i = $i+1;
+}
+
+?>
 
   <div class="foot">
     <div class="container">
