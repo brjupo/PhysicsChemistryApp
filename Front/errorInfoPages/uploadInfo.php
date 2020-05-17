@@ -15,7 +15,7 @@
 <body>
   <!---CRISTIAN-->
   <!--AGREGAR VALDIACIÓN DE USUARIO TIPO STAFF, POR LO MIENTRAS QUE TENGA USER Y PASS VALIDO-->
-  <!--AL FINAL DE LA PÁGINA, ANTES DEL FOOTER AGREGAR UN CODIGO PHP PARA QUE DIBUJE UNA TABLA CON TODOS LOS USUARIOS EN LA BBDD-->
+  <!--AL FINAL DE LA PÁGINA, ANTES DEL FOOTER AGREGAR UN CODIGO PHP PARA QUE DIBUJE UNA TABLA CON TODOS LOS USUARIOS EN LA BBDD--> ok
   <!--AGREGAR VALIDACION PARA QUE NO SE SUBAN CORREOS QUE YA EXISTEN--> ok
 
   <!--BRANDON-->
@@ -84,6 +84,34 @@
       </div>
     </div>
   </div>
+
+  <?php
+///////////////////////////////////////////////MOSTRAR LISTADO DE ALUMOS REGISTRADOS
+$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+//Traer todos los usuarios
+$query = "SELECT id_usuario, mail FROM usuario_prueba"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
+$result = mysqli_query($con, $query);
+//Recorrer el arreglo
+while ($row = mysqli_fetch_assoc($result)) {
+    $array[] = $row;
+}
+
+$tamanho = count($array);
+
+for ($j = 0; $j < $tamanho; $j++) {
+//print_r($array[0]["id_usuario"]);
+$id = $array[$j]["id_usuario"];
+$mails = $array[$j]["mail"];
+echo"<table border='1' bordercolor='#3351FF' bgcolor='#3351FF' align='center'>
+ 	            <td width='50'><input type='text' value='$id' name='nroapto' readonly='true'></td>
+				      <td><input type='text' value='$mails' name='cedula' readonly='true'></td>
+				   </tr>
+                </table><br>";
+                $i = $i+1;
+}
+///////////////////////////////////////////////MOSTRAR LISTADO DE ALUMOS REGISTRADOS
+?>
+
 
   <div class="foot">
     <div class="container">
