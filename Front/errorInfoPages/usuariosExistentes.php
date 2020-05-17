@@ -54,7 +54,7 @@ for ($j = 0; $j < $tamanho; $j++) {
 $id = $array[$j]["id_usuario"];
 $mails = $array[$j]["mail"];
 echo"<table border='1' bordercolor='#00CC99' bgcolor='#99CC00' align='center'>
- 	            <td><input type='text' value='$id' name='nroapto' readonly='true'></td>
+ 	            <td width='50'><input type='text' value='$id' name='nroapto' readonly='true'></td>
 				      <td><input type='text' value='$mails' name='cedula' readonly='true'></td>
 				   </tr>
                 </table><br>";
