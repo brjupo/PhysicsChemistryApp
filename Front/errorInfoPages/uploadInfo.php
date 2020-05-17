@@ -87,26 +87,13 @@
 
 
   <div class="container">
-<h2>Exportar datos a Excel con PHP y MySQL</h2>
-<div class="well-sm col-sm-12">
-<div class="btn-group pull-right">
-<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
-<button type="submit" id="export_data" name="export_data" value="Export to excel" class="btn btn-info">Exportar a Excel</button>
-</form>
-</div>
-
-<div class="container">
-    <div class="row">
-      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
+    <div class="well-sm col-sm-12">
+      <div class="btn-group pull-right">
+      <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+        <button type="submit" id="export_data" name="export_data" value="Export to excel" class="btn btn-info">Exportar a Excel</button>
+      </form>
   </div>
+
 
   <?php
 ///////////////////////////////////////////////MOSTRAR LISTADO DE ALUMOS REGISTRADOS
@@ -144,7 +131,7 @@ if(isset($_POST["export_data"])) {
 
    
   
-  foreach($libros as $libro) {
+  foreach($array as $libro) {
   
   if(!$mostrar_columnas) {
   echo implode("\t", array_keys($libro)) . "\n";
