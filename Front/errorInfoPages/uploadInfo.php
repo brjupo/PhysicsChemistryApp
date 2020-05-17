@@ -15,8 +15,8 @@
 <body>
   <!---CRISTIAN-->
   <!--AGREGAR VALDIACIÓN DE USUARIO TIPO STAFF, POR LO MIENTRAS QUE TENGA USER Y PASS VALIDO-->
-  <!--AL FINAL DE LA PÁGINA, ANTES DEL FOOTER AGREGAR UN CODIGO PHP PARA QUE DIBUJE UNA TABLA CON TODOS LOS USUARIOS EN LA BBDD--> ok
-  <!--AGREGAR VALIDACION PARA QUE NO SE SUBAN CORREOS QUE YA EXISTEN--> ok
+  <!--AL FINAL DE LA PÁGINA, ANTES DEL FOOTER AGREGAR UN CODIGO PHP PARA QUE DIBUJE UNA TABLA CON TODOS LOS USUARIOS EN LA BBDD ok--> 
+  <!--AGREGAR VALIDACION PARA QUE NO SE SUBAN CORREOS QUE YA EXISTEN OK--> 
 
   <!--BRANDON-->
   <!--AGREGAR UN BOTON DE LAYOUT PARA DESCARGAR UN EJEMPLO, ACLARAR EN UNA NOTA-->
@@ -103,6 +103,7 @@ for ($j = 0; $j < $tamanho; $j++) {
 $id = $array[$j]["id_usuario"];
 $mails = $array[$j]["mail"];
 echo"<table border='1' bordercolor='#3351FF' bgcolor='#3351FF' align='center'>
+            <tr>
  	            <td width='50'><input type='text' value='$id' name='nroapto' readonly='true'></td>
 				      <td><input type='text' value='$mails' name='cedula' readonly='true'></td>
 				   </tr>
