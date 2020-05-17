@@ -103,10 +103,11 @@ for ($j = 0; $j < $tamanho; $j++) {
 $id = $array[$j]["id_usuario"];
 $mails = $array[$j]["mail"];
 
-echo"<table border='1' bordercolor='#3351FF' bgcolor='#3351FF' align='center'>
- 	            <td width='50'><input type='text' value='$id' name='nroapto' readonly='true'></td>
+echo"<table border='1' bordercolor='#3351FF' bgcolor='#3351FF' >
+              <tr>
+               <td width='50'><input type='text' value='$id' name='nroapto' readonly='true'></td>
 				      <td><input type='text' value='$mails' name='cedula' readonly='true'></td>
-				   
+              </tr>
                 </table><br>";
                 $i = $i+1;
 }
