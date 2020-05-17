@@ -85,6 +85,29 @@
     </div>
   </div>
 
+
+  <div class="container">
+<h2>Exportar datos a Excel con PHP y MySQL</h2>
+<div class="well-sm col-sm-12">
+<div class="btn-group pull-right">
+<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+<button type="submit" id="export_data" name="export_data" value="Export to excel" class="btn btn-info">Exportar a Excel</button>
+</form>
+</div>
+
+<div class="container">
+    <div class="row">
+      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
   <?php
 ///////////////////////////////////////////////MOSTRAR LISTADO DE ALUMOS REGISTRADOS
 $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
@@ -112,6 +135,29 @@ echo"<table border='1' bordercolor='#33A4FF' bgcolor='#33A4FF' align='center'>
                 $i = $i+1;
 }
 ///////////////////////////////////////////////MOSTRAR LISTADO DE ALUMOS REGISTRADOS
+if(isset($_POST["export_data"])) {
+  if(!empty($array)) {
+  $filename = "libros.xls";
+  header("Content-Type: application/vnd.ms-excel");
+  header("Content-Disposition: attachment; filename=".$filename);
+  $mostrar_columnas = false;
+
+   
+  
+  foreach($libros as $libro) {
+  
+  if(!$mostrar_columnas) {
+  echo implode("\t", array_keys($libro)) . "\n";
+  $mostrar_columnas = true;
+  }
+  echo implode("\t", array_values($libro)) . "\n";
+  }
+  }else{
+  echo "No hay datos a exportar";
+  }
+  exit;
+  }
+
 ?>
 
 
