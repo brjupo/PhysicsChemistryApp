@@ -105,8 +105,8 @@ $mails = $array[$j]["mail"];
 
 echo"<table border='1' bordercolor='#33A4FF' bgcolor='#33A4FF' align='center'>
               <tr>
-               <td width='50'><input type='text' value='$id' name='nroapto' readonly='true'></td>
-				      <td><input type='text' value='$mails' name='cedula' readonly='true'></td>
+               <td width='50' align='center'><input type='text' value='$id' name='nroapto' readonly='true'></td>
+				      <td align='center'><input type='text' value='$mails' name='cedula' readonly='true'></td>
               </tr>
                 </table><br>";
                 $i = $i+1;
