@@ -127,7 +127,7 @@ if(isset($_POST["export_data"])) {
   $filename = "libros.xls";
   header("Content-Type: application/vnd.ms-excel");
   header("Content-Disposition: attachment; filename=".$filename);
-  $mostrar_columnas = false;
+  $mostrar_columnas = true;
 
    
   
