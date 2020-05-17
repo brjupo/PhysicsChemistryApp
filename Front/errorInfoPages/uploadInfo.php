@@ -89,8 +89,8 @@
   <div class="container">
     <div class="well-sm col-sm-12">
       <div class="btn-group pull-right">
-      <form class="form-horizontal" action="../../Front/uploadInfo.php" method="post" name="download_excel" enctype="multipart/form-data">
-        <button type="submit" id="export_data" name="export_data" value="Export to excel" class="btn btn-info">Exportar a Excel</button>
+      <form class="form-horizontal" action="../../Front/errorInfoPages/uploadInfo.php" method="post" name="download_excel" enctype="multipart/form-data">
+        <button type="submit" id="export_data" name="export_data" value="Export to excel" class="btn btn-info">Exportar Excel</button>
       </form>
   </div>
 
