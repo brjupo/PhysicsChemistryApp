@@ -24,7 +24,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $array[] = $row;
 }
 
-print_r($array[0]['id_usuario']);
+print_r($array[0]);
 
 ?>
 
