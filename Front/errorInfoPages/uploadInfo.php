@@ -52,10 +52,10 @@
         <form class="form-horizontal" action="../../Servicios/subirUsuarios.php" method="post" name="upload_excel" enctype="multipart/form-data">
           <fieldset>
             <!-- Form Name -->
-            <legend>Student information upload</legend>
+            <legend>Subir Información de Alumnos</legend>
             <!-- File Button -->
             <div class="form-group">
-              <label class="control-label" for="filebutton">Select CSV File</label>
+              <label class="control-label" for="filebutton">Seleccionar archivo .csv</label>
               <div class="">
                 <input type="file" name="file" id="file" class="input-large">
               </div>
@@ -63,7 +63,7 @@
             <!-- Button -->
             <div class="form-group">
               <div class="">
-                <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading boton2" data-loading-text="Loading...">Import</button>
+                <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading boton2" data-loading-text="Loading...">Subir</button>
               </div>
             </div>
           </fieldset>
@@ -90,7 +90,7 @@
     <div class="well-sm col-sm-12">
       <div class="btn-group pull-right">
       <form class="form-horizontal" action="../../Front/errorInfoPages/uploadInfo.php" method="post" name="download_excel" enctype="multipart/form-data">
-        <button type="submit" id="export_data" name="export_data" value="Export to excel" class="btn btn-info">Exportar Excel</button>
+        <button type="submit" id="export_data" name="export_data" value="Export to excel" class="btn btn-info">Descargar Reporte</button>
       </form>
   </div>
 
