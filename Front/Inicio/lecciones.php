@@ -282,7 +282,7 @@
                     <a href="../preguntas/practice.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
                   </td>
                   <td>
-                    <img class="icons" src="../CSSsJSs/icons/run.svg" />
+                  <a href="../preguntas/sprint.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/run.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/examen.svg" />
