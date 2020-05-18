@@ -414,7 +414,7 @@ function limpiarInputs(cantidadIDs) {
 function startClock() {
   // Set the date we're counting down to
   var minutos = 0;
-  var segundos = 10;
+  var segundos = 30;
   var milisegundos = segundos * 1000 + minutos * 60 * 1000;
   var countDownDate = new Date(milisegundos).getTime();
   var unSegundo = new Date(1000).getTime();
