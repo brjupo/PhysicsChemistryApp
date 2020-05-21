@@ -26,16 +26,16 @@
   font-family: "Monse";
   color: rgb(150, 150, 150);
   font-size: 4.5vw;
-  margin: 0px 0px 0px 35vw;
+  margin: 0px 0px 0px 5vw;
   font-weight: 600;
   line-height: 5vw;
-  padding: 1vh 0vh 20vh 0vh;
+  padding: 1vh 0vh 30vh 0vh;
   width: 55vw;
 }
 .imagenEdu {
   display: block;
   margin: 0px auto 0px 0px;
-  background-image: url("images/Duo.png");
+  background-image: url("images/Recurso 8.png");
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -44,11 +44,11 @@
 }
 @media screen and (min-width: 768px) {
   .dialogoInsp {
-    font-size: 5vh;
-    margin: 0px 0px 0px 15vw;
+    font-size: 4vh;
+    margin: 0px 0px 0px 0vw;
     font-weight: 600;
     line-height: 6vh;
-    padding: 2.5vh 0vh 40vh 0vh;
+    padding: 2.5vh 0vh 50vh 0vh;
     width: 25vw;
   }
   .effortMessage {
