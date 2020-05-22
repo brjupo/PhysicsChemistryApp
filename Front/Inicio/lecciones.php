@@ -7,7 +7,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Lecciones</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-  <link rel="stylesheet" href="../CSSsJSs/styleLecciones.css" />
+  <link rel="stylesheet" href="../CSSsJSs/styleLecciones2.css" />
   <script src="../CSSsJSs/scriptLecciones.js"></script>
 </head>
 
@@ -279,10 +279,10 @@
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                    <a href="../preguntas/practice.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
+                    <a href="../preguntas/practice.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
-                  <a href="../preguntas/sprint.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/run.svg" /></a>
+                  <a href="../preguntas/sprint.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/joggling.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/examen.svg" />

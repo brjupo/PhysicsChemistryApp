@@ -6,7 +6,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Subtemas</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../CSSsJSs/styleSubtemas.css" />
+    <link rel="stylesheet" href="../CSSsJSs/styleSubtemas2.css" />
     <script src="../CSSsJSs/scriptSubtemas.js"></script>
 </head>
 
@@ -229,13 +229,13 @@ function traerSubtemas(){
                   '.$nombreSubtema.'
                   </td>
                   <td>
-                    <img class="icons" src="../CSSsJSs/icons/lecciones.svg"/>
+                    <img class="icons" src="../CSSsJSs/icons/fullBook.svg"/>
                   </td>
                   <td>
-                    <img class="icons" src="../CSSsJSs/icons/run.svg" />
+                    <img class="icons" src="../CSSsJSs/icons/runner.svg" />
                   </td>
                   <td>
-                    <a href="lecciones.php?subtema='.$nombreSubtema.'"><img class="iconContinue" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
+                    <a href="lecciones.php?subtema='.$nombreSubtema.'"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
                   </td>
                 </tr>
               </tbody>
