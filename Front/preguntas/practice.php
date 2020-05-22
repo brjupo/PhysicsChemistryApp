@@ -257,7 +257,7 @@
         echo '
                 <div id="motivationMessage" class="container noPaddingMargin" style="display: none;">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 noPaddingMargin">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 noPaddingMargin">
                             <div class="imagenEdu">
                             <p id="dialogo" class="dialogoInsp">Aunque falles, sigues aprendiendo!</p>
                             </div>
