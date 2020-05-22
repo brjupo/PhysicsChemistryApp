@@ -34,6 +34,7 @@
 }
 .imagenEdu {
   display: block;
+  float:right;
   margin: 0px auto 0px 0px;
   background-image: url("images/Recurso 8.png");
   background-size: 100%;
@@ -45,7 +46,7 @@
 @media screen and (min-width: 768px) {
   .dialogoInsp {
     font-size: 4vh;
-    margin: 0px 0px 0px 0vw;
+    margin: 0px 18vw 0px 0vw;
     font-weight: 600;
     line-height: 6vh;
     padding: 2.5vh 0vh 50vh 0vh;
