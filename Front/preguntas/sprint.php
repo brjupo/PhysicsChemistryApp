@@ -82,6 +82,10 @@
             $array[] = $row;
             $arrayr[] = $row;
         }
+        //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
+        $arrayr = shuffle($arrayr);
+
+
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
         ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
         for ($j = 0; $j < $total[0]; $j++) {
@@ -132,8 +136,7 @@
           </script>';
     }
 
-    //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
-    $arrayr = shuffle($arrayr);
+    
     imprimirPreguntas($arrayr, $array, $total,$idL);
     ?>
 
