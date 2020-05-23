@@ -83,7 +83,7 @@
             $arrayr[] = $row;
         }
         //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
-        $arrayr = shuffle($arrayr);
+        $array = shuffle($array);
 
 
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
