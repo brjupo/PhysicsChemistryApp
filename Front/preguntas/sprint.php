@@ -132,7 +132,8 @@
           </script>';
     }
 
-  
+    //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
+    $array = shuffle($respuestas);
     imprimirPreguntas($arrayr, $array, $total,$idL);
     ?>
 
