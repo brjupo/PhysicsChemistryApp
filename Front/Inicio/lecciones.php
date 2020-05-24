@@ -149,7 +149,38 @@
       $arregloIdsubtema["id_subtema"] = $id_subtema;
     }
 
-    /*----Paso 2 Llamar a las lecciones del subtema-------*/
+    /*----Paso 2 Llamar a las lecciones del subtema-------*/    
+    ///Llamar a las habilitadas
+    $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ? AND id_leccion IN (SELECT id_leccion FROM puntuacion WHERE id_usuario = ? AND puntuacion > (SELECT FLOOR(COUNT(*) * 0.7) FROM pregunta WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema = ?)) GROUP BY id_leccion ASC)");
+    mysqli_stmt_bind_param($statement, "sis", $id_subtema,$_SESSION["id_usuario"],$id_subtema);
+    mysqli_stmt_execute($statement);
+
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $id_leccionh);
+
+    $arregloLeccionesh = array();
+    $i = 0;
+    //Leemos datos del la leccion habilitadas
+    while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
+      $arregloLeccionesh[$i]["id_leccion"] = $id_leccionh;
+      $i = $i + 1;
+    }
+    //Llamar no habilitadas
+    $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ? AND id_leccion IN (SELECT id_leccion FROM puntuacion WHERE id_usuario = ? AND puntuacion < (SELECT FLOOR(COUNT(*) * 0.7) FROM pregunta WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema = ?)) GROUP BY id_leccion)");
+    mysqli_stmt_bind_param($statement, "sis", $id_subtema,$_SESSION["id_usuario"],$id_subtema);
+    mysqli_stmt_execute($statement);
+
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $id_leccionh);
+
+    $arregloLeccionesh = array();
+    $i = 0;
+    //Leemos datos del la leccion habilitadas
+    while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
+      $arregloLeccionesh[$i]["id_leccion"] = $id_leccionh;
+      $i = $i + 1;
+    }
+    ////////////
     $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?"); //WHERE mail = ? AND pswd = ?
     mysqli_stmt_bind_param($statement, "s", $arregloIdsubtema["id_subtema"]);
     mysqli_stmt_execute($statement);
@@ -264,6 +295,8 @@
 
   function imprimirLeccion($numeroLeccion, $nombreLeccion)
   {
+
+    if($)
     echo '
       <div class="container">
         <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
@@ -279,7 +312,7 @@
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <img class="icons" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/practice.php?leccion='.$nombreLeccion.'"><img class="icons" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
                   <a href="../preguntas/sprint.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
