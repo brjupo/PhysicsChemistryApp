@@ -66,6 +66,10 @@
         $resultid = mysqli_query($con, $queryid);
         $iduser = mysqli_fetch_row($resultid);
 
+        echo '<script type="text/javascript">
+            alert("'.$iduser[0].'");
+            </script>';
+
         $query2 = "SELECT count(*) FROM licencia WHERE id_usuario = $iduser[0]"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
         $result2 = mysqli_query($con, $query2);
         $total = mysqli_fetch_row($result2);
