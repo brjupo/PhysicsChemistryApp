@@ -66,7 +66,7 @@
         $total = mysqli_fetch_row($result2);
 
         echo '<script type="text/javascript">
-            alert("'.$total[0].'");
+            alert("'.$correo.'");
             </script>';
 
 
