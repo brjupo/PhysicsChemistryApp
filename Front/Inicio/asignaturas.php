@@ -59,29 +59,6 @@
             </script>';
     } else {
 
-      
-    //Comprobar que tiene más de una licencia para no mostrar pantalla de materias
-
-        $query = "SELECT id_usuario FROM usuario_prueba WHERE mail = '$correo'"; 
-        $result = mysqli_query($con, $query);
-        while ($row = mysqli_fetch_assoc($result)) {
-          $iduser[] = $row;
-      }
-        echo '<script type="text/javascript">
-            alert("'.$iduser[0]["id_usuario"].'");
-            </script>';
-       
-            $iduser = $iduser[0]["id_usuario"];
-
-        $query2 = "SELECT count(*) FROM licencia WHERE id_usuario = $iduser"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
-        $result2 = mysqli_query($con, $query2);
-        $total = mysqli_fetch_row($result2);
-
-        echo '<script type="text/javascript">
-            alert("'.$total[0].'");
-            </script>';
-
-
       //Consultar si existe usuario en tabla alumnos
       $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
       mysqli_stmt_bind_param($statement, "ss", $correo, $password);
@@ -125,6 +102,31 @@
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
         //todas las asignaturas
+
+                  //Comprobar que tiene más de una licencia para no mostrar pantalla de materias
+               /*    $query = "SELECT id_usuario FROM usuario_prueba WHERE mail = '$correo'"; 
+                  $result = mysqli_query($con, $query);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $iduser[] = $row;}
+                  echo '<script type="text/javascript">
+                      alert("'.$iduser[0]["id_usuario"].'");
+                      </script>';
+                
+                      $iduser = $iduser[0]["id_usuario"];
+
+                  $query2 = "SELECT count(*) FROM licencia WHERE id_usuario = $iduser"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+                  $result2 = mysqli_query($con, $query2);
+                  $total = mysqli_fetch_row($result2);
+
+                  echo '<script type="text/javascript">
+                      alert("'.$total[0].'");
+                      </script>';
+
+                      if($total[0] > 1){
+                        //Traeer asignatura
+                      } */
+
+                      ///////////////////
         imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
       }
 
