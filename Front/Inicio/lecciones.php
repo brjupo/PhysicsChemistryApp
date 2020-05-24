@@ -152,7 +152,7 @@
     /*----Paso 2 Llamar a las lecciones del subtema-------*/    
     ///Llamar a las habilitadas
     $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ? AND id_leccion IN (SELECT id_leccion FROM puntuacion WHERE id_usuario = ? AND puntuacion > (SELECT FLOOR(COUNT(*) * 0.7) FROM pregunta WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema = ?)) GROUP BY id_leccion ASC)");
-    mysqli_stmt_bind_param($statement, "sis", $id_subtema,$_SESSION["id_usuario"],$id_subtema);
+    mysqli_stmt_bind_param($statement, "iii", $id_subtema,$_SESSION["id_usuario"],$id_subtema);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
@@ -169,7 +169,7 @@
     }
     //Llamar no habilitadas
     $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ? AND id_leccion IN (SELECT id_leccion FROM puntuacion WHERE id_usuario = ? AND puntuacion < (SELECT FLOOR(COUNT(*) * 0.7) FROM pregunta WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema = ?)) GROUP BY id_leccion)");
-    mysqli_stmt_bind_param($statement, "sis", $id_subtema,$_SESSION["id_usuario"],$id_subtema);
+    mysqli_stmt_bind_param($statement, "siii", $id_subtema,$_SESSION["id_usuario"],$id_subtema);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
