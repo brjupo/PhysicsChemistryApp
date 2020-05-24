@@ -156,13 +156,15 @@
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_leccionh);
+    mysqli_stmt_bind_result($statement, $id_leccionh, $id_subtemah, $nombreh);
 
     $arregloLeccionesh = array();
     $i = 0;
     //Leemos datos del la leccion habilitadas
     while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
       $arregloLeccionesh[$i]["id_leccion"] = $id_leccionh;
+      $arregloLeccionesh[$i]["id_subtema"] = $id_subtemah;
+      $arregloLeccionesh[$i]["nombre"] = $nombreh;
       $i = $i + 1;
     }
     //Llamar no habilitadas
@@ -171,17 +173,21 @@
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_leccionh);
+    mysqli_stmt_bind_result($statement, $id_leccion, $id_subtema, $nombre);
 
-    $arregloLeccionesh = array();
+    $arregloLecciones = array();
     $i = 0;
-    //Leemos datos del la leccion habilitadas
+    //Leemos datos del la leccion no habilitadas
     while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-      $arregloLeccionesh[$i]["id_leccion"] = $id_leccionh;
+      $arregloLecciones[$i]["id_leccion"] = $id_leccion;
+      $arregloLecciones[$i]["id_subtema"] = $id_subtema;
+      $arregloLecciones[$i]["nombre"] = $nombre;
       $i = $i + 1;
     }
+
+    $arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
     ////////////
-    $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?"); //WHERE mail = ? AND pswd = ?
+    /* $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?"); //WHERE mail = ? AND pswd = ?
     mysqli_stmt_bind_param($statement, "s", $arregloIdsubtema["id_subtema"]);
     mysqli_stmt_execute($statement);
 
@@ -196,9 +202,10 @@
       $arregloLecciones[$i]["id_subtema"] = $id_subtema;
       $arregloLecciones[$i]["nombre"] = $nombre;
       $i = $i + 1;
-    }
+    } */
+    ///////////////
 
-    return ($arregloLecciones);
+    return ($arregloLeccionesTodas);
   }
 
   function imprimirPaginaLecciones($arregloLecciones)
@@ -296,7 +303,7 @@
   function imprimirLeccion($numeroLeccion, $nombreLeccion)
   {
 
-    if($)
+    
     echo '
       <div class="container">
         <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
