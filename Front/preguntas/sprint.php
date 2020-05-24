@@ -70,7 +70,7 @@
 
     $idL = $arregloIdleccion["id_leccion"];
         //Traer todas las preguntas
-        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
+        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL "; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
         $result = mysqli_query($con, $query);
         //contar Numero de elementos
         $query2 = "SELECT count(*) FROM pregunta WHERE id_leccion = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
@@ -83,7 +83,6 @@
             $arrayr[] = $row;
         }
         //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
-        $array = shuffle($array);
 
 
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
