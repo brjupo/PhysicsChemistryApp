@@ -62,11 +62,11 @@
       
     //Comprobar que tiene más de una licencia para no mostrar pantalla de materias
 
-        //$queryid = "SELECT id_usuario FROM usuario_prueba WHERE mail = $correo"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
-        //$resultid = mysqli_query($con, $queryid);
-        //$iduser = mysqli_fetch_row($resultid);
+        $queryid = "SELECT id_usuario FROM usuario_prueba WHERE mail = $correo"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+        $resultid = mysqli_query($con, $queryid);
+        $iduser = mysqli_fetch_row($resultid);
 
-        $query2 = "SELECT count(*) FROM licencia WHERE id_usuario = (SELECT id_usuario FROM usuario_prueba WHERE mail = $correo)"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+        $query2 = "SELECT count(*) FROM licencia WHERE id_usuario = $iduser[0]"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
         $result2 = mysqli_query($con, $query2);
         $total = mysqli_fetch_row($result2);
 
