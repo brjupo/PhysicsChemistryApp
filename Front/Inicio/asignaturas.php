@@ -71,8 +71,9 @@
             alert("'.$iduser[0]["id_usuario"].'");
             </script>';
        
+            $iduser = $iduser[0]["id_usuario"];
 
-        $query2 = "SELECT count(*) FROM licencia WHERE id_usuario = $iduser[0]"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+        $query2 = "SELECT count(*) FROM licencia WHERE id_usuario = $iduser"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
         $result2 = mysqli_query($con, $query2);
         $total = mysqli_fetch_row($result2);
 
