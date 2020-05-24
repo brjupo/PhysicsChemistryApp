@@ -150,7 +150,7 @@
     }
 
     /*----Paso 2 Llamar a las lecciones del subtema-------*/    
-    ///Llamar a las habilitadas
+    /* ///Llamar a las habilitadas
     $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ? AND id_leccion IN (SELECT id_leccion FROM puntuacion WHERE id_usuario = ? AND puntuacion > (SELECT FLOOR(COUNT(*) * 0.7) FROM pregunta WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema = ?)) GROUP BY id_leccion ASC)");
     mysqli_stmt_bind_param($statement, "iii", $id_subtema,$_SESSION["id_usuario"],$id_subtema);
     mysqli_stmt_execute($statement);
@@ -185,9 +185,9 @@
       $i = $i + 1;
     }
 
-    $arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
+    $arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);*/
     ////////////
-    /* $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?"); //WHERE mail = ? AND pswd = ?
+    $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?"); //WHERE mail = ? AND pswd = ?
     mysqli_stmt_bind_param($statement, "s", $arregloIdsubtema["id_subtema"]);
     mysqli_stmt_execute($statement);
 
@@ -202,10 +202,10 @@
       $arregloLecciones[$i]["id_subtema"] = $id_subtema;
       $arregloLecciones[$i]["nombre"] = $nombre;
       $i = $i + 1;
-    } */
+    } 
     ///////////////
 
-    return ($arregloLeccionesTodas);
+    return ($arregloLecciones);
   }
 
   function imprimirPaginaLecciones($arregloLecciones)
