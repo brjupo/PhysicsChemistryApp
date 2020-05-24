@@ -33,11 +33,17 @@
   }
 
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
+
+    //Comprobar que tiene más de una licencia para no mostrar pantalla de materias
+    //$query2 = "SELECT count(*) FROM pregunta WHERE id_leccion = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+    //$result2 = mysqli_query($con, $query2);
+    //$total = mysqli_fetch_row($result2);
+
+
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
     imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
   } else {
-
     /* echo'<script type="text/javascript">
             alert("segundo caminio");
             </script>'; */
@@ -52,6 +58,18 @@
             window.location.href="https://kaanbal.net";
             </script>';
     } else {
+
+      
+    //Comprobar que tiene más de una licencia para no mostrar pantalla de materias
+        $query2 = "SELECT count(*) FROM pregunta WHERE id_leccion = (Select id_usuario FROM usuario_prueba WHERE mail = $correo)"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+        $result2 = mysqli_query($con, $query2);
+        $total = mysqli_fetch_row($result2);
+
+        echo '<script type="text/javascript">
+            alert("'.$total[0].'");
+            window.location.href="https://kaanbal.net";
+            </script>';
+
 
       //Consultar si existe usuario en tabla alumnos
       $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
