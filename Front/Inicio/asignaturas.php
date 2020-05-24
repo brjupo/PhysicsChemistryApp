@@ -67,7 +67,6 @@
 
         echo '<script type="text/javascript">
             alert("'.$total[0].'");
-            window.location.href="https://kaanbal.net";
             </script>';
 
 
