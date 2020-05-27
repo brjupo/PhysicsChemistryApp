@@ -104,7 +104,7 @@
         //todas las asignaturas
 
                   //Comprobar que tiene más de una licencia para no mostrar pantalla de materias
-               /*    $query = "SELECT id_usuario FROM usuario_prueba WHERE mail = '$correo'"; 
+                $query = "SELECT id_usuario FROM usuario_prueba WHERE mail = '$correo'"; 
                   $result = mysqli_query($con, $query);
                   while ($row = mysqli_fetch_assoc($result)) {
                     $iduser[] = $row;}
@@ -122,9 +122,9 @@
                       alert("'.$total[0].'");
                       </script>';
 
-                      if($total[0] > 1){
+                     /*  if($total[0] > 1){
                         //Traeer asignatura
-                      } */
+                      }  */
 
                       ///////////////////
         imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
