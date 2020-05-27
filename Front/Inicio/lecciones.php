@@ -188,7 +188,6 @@
 
     //Contar lecciones a habilitar
     $tamanhoh = count($arregloLeccionesh);
-    $tamanho = count($arregloLecciones);
 
     //para siempre habilitar la primera lección es el if
     if($tamanhoh == 0){
@@ -196,7 +195,7 @@
     }
     else{
       $arregloLecciones[0]["h"] = '1';
-      for ($i = 1; $i <= $tamanhoh; $i++) {
+      for ($i = 1; $i <= ($tamanhoh - 1); $i++) {
         $arregloLecciones[$i]["h"] = '1';
       }
     }
