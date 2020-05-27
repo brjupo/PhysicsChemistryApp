@@ -189,8 +189,14 @@
     //Contar lecciones a habilitar
     $tamanho = count($arregloLeccionesh);
 
-    for ($i = 0; $i < $tamanho; $i++) {
-      $arregloLecciones[$i]["h"] = '1';
+    //para siempre habilitar la primera lección es el if
+    if($tamanho = 0){
+      $arregloLecciones[0]["h"] = '1';
+    }
+    else{
+      for ($i = 0; $i < $tamanho; $i++) {
+        $arregloLecciones[$i]["h"] = '1';
+      }
     }
     //$arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
     ////////////
