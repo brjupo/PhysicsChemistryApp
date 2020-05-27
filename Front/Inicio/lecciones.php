@@ -189,15 +189,13 @@
     //Contar lecciones a habilitar
     $tamanho = count($arregloLeccionesh);
 
-    //para siempre habilitar la primera lección es el if
-    if($tamanho == 0){
+    //para siempre habilitar la primera lección es la siguiente linea
       $arregloLecciones[0]["h"] = '1';
-    }
-    else{
-      for ($i = 0; $i < $tamanho; $i++) {
+    
+      for ($i = 1; $i < $tamanho; $i++) {
         $arregloLecciones[$i]["h"] = '1';
       }
-    }
+
     //$arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
     ////////////
     /* $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?"); //WHERE mail = ? AND pswd = ?
