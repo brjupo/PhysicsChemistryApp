@@ -342,8 +342,12 @@
         </div>
       </div>
 
-      
-  ';}
+      <div class="container">
+        <div class="row">
+          <p></p>
+        </div>
+      </div>
+  ';}else{
 
   echo '
       <div class="container">
@@ -381,7 +385,7 @@
           <p></p>
         </div>
       </div>
-  ';
+  ';}
 
   }
 
