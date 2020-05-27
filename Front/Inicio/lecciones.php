@@ -189,7 +189,7 @@
     //Contar lecciones a habilitar
     $tamanho = count($arregloLeccionesh);
 
-    for ($i = 0; $i < $tamanho; $i++) {
+    for ($i = 0; $i <= $tamanho; $i++) {
       $arregloLecciones[$i]["h"] = '1';
     }
     //$arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
@@ -228,7 +228,7 @@
   function imprimirLecciones($arregloLecciones)
   {
     $tamanho = count($arregloLecciones);
-    for ($i = 0; $i <= $tamanho; $i++) {
+    for ($i = 0; $i < $tamanho; $i++) {
       imprimirLeccion($i + 1, $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["h"]);
     }
   }
