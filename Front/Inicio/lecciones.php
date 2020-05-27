@@ -229,7 +229,7 @@
   {
     $tamanho = count($arregloLecciones);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirLeccion($i + 1, $arregloLecciones[$i]["nombre"]);
+      imprimirLeccion($i + 1, $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["h"]);
     }
   }
 
@@ -307,10 +307,10 @@
   ';
   }
 
-  function imprimirLeccion($numeroLeccion, $nombreLeccion)
+  function imprimirLeccion($numeroLeccion, $nombreLeccion, $habilitar)
   {
 
-    
+    if($habilitar == '1'){
     echo '
       <div class="container">
         <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
@@ -347,7 +347,46 @@
           <p></p>
         </div>
       </div>
+  ';}
+
+  echo '
+      <div class="container">
+        <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
+          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+            <table class="table fixed">
+              <tbody>
+                <tr>
+                  <td>
+                    <img class="iconsNumber" src="../CSSsJSs/icons/' . $numeroLeccion . '.svg" />
+                  </td>
+                  <td class="tituloTemasPrincipales">
+                  ' . $nombreLeccion . '
+                  </td>
+                  <td>
+                  <a href="../preguntas/practice.php?leccion='.$nombreLeccion.'"><img class="icons" src="../CSSsJSs/icons/book.svg" /></a>
+                  </td>
+                  <td>
+                  <a href="../preguntas/sprint.php?leccion='.$nombreLeccion.'"><img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
+                  </td>
+                  <td>
+                    <img class="icons" src="../CSSsJSs/icons/examen.svg" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <p></p>
+        </div>
+      </div>
   ';
+
   }
 
   function imprimirRelleno()
