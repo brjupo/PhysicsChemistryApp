@@ -195,7 +195,7 @@
     }
     else{
       $arregloLecciones[0]["h"] = '1';
-      for ($i = 1; $i <= $tamanhoh; $i++) {
+      for ($i = 0; $i < $tamanhoh; $i++) {
         $arregloLecciones[$i]["h"] = '1';
       }
     }
