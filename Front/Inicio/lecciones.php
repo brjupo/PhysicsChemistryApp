@@ -190,7 +190,7 @@
     $tamanho = count($arregloLeccionesh);
 
     //para siempre habilitar la primera lección es el if
-    if($tamanho = 0){
+    if($tamanho == 0){
       $arregloLecciones[0]["h"] = '1';
     }
     else{
