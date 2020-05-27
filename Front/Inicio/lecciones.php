@@ -169,8 +169,8 @@
       $i = $i + 1;
     }
     //Llamar no habilitadas
-    $statement = mysqli_prepare($con, "SELECT DISTINCT le.* FROM leccion le JOIN pregunta pr JOIN puntuacion pu JOIN usuario_prueba us ON le.id_leccion = pr.id_leccion AND le.id_leccion = pu.id_leccion AND pr.id_leccion = pu.id_leccion AND pu.id_usuario = us.id_usuario WHERE us.id_usuario = ? AND le.id_subtema = ? AND pu.puntuacion < (SELECT FLOOR(COUNT(*) * 0.7) FROM pregunta WHERE le.id_subtema > ?) OR pu.puntuacion IS NULL");
-    mysqli_stmt_bind_param($statement, "iii",$_SESSION["id_usuario"],$id_subtema,$id_subtema);
+    $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?");
+    mysqli_stmt_bind_param($statement, "i",$id_subtema);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
@@ -186,7 +186,13 @@
       $i = $i + 1;
     }
 
-    $arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
+    //Contar lecciones a habilitar
+    $tamanho = count($arregloLeccionesh);
+
+    for ($i = 0; $i < $tamanho; $i++) {
+      $arregloLecciones[$i]["h"] = '1';
+    }
+    //$arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
     ////////////
     /* $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?"); //WHERE mail = ? AND pswd = ?
     mysqli_stmt_bind_param($statement, "s", $arregloIdsubtema["id_subtema"]);
@@ -206,7 +212,7 @@
     } */
     ///////////////
 
-    return ($arregloLeccionesTodas);
+    return ($arregloLecciones);
   }
 
   function imprimirPaginaLecciones($arregloLecciones)
