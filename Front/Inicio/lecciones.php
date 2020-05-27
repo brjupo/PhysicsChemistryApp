@@ -188,16 +188,22 @@
 
     //Contar lecciones a habilitar
     $tamanhoh = count($arregloLeccionesh);
+    $tamanho = count($arregloLecciones);
 
     //para siempre habilitar la primera lección es el if
     if($tamanhoh == 0){
       $arregloLecciones[0]["h"] = '1';
     }
     else{
-      $arregloLecciones[0]["h"] = '1';
-      for ($i = 0; $i < $tamanhoh; $i++) {
-        $arregloLecciones[$i]["h"] = '1';
-      }
+      if ($tamanhoh == $tamanho){
+        //Para activar ya todas las lecciones
+        for ($i = 0; $i < $tamanhoh; $i++) {
+          $arregloLecciones[$i]["h"] = '1';}
+      }else{
+        //Para activar solo la siguiente leccion
+        for ($i = 0; $i <= $tamanhoh; $i++) {
+          $arregloLecciones[$i]["h"] = '1';}
+      }   
     }
     //$arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
     ////////////
