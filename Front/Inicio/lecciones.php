@@ -342,11 +342,7 @@
         </div>
       </div>
 
-      <div class="container">
-        <div class="row">
-          <p></p>
-        </div>
-      </div>
+      
   ';}
 
   echo '
@@ -364,10 +360,10 @@
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/practice.php?leccion='.$nombreLeccion.'"><img class="icons" src="../CSSsJSs/icons/book.svg" /></a>
+                  <img class="icons" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
-                  <a href="../preguntas/sprint.php?leccion='.$nombreLeccion.'"><img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
+                  <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/examen.svg" />
