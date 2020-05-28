@@ -130,6 +130,9 @@
                         $result = mysqli_query($con, $query);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $idasignatura[] = $row;}
+                          echo '<script type="text/javascript">
+                      alert("'.$idasignatura[0].'");
+                      </script>';
                           $idMateria = $arregloAsignaturastodas[$idasignatura[0]]; 
                         echo '<script type="text/javascript">
                           window.location.href="https://kaanbal.net/Front/Inicio/temas.php?asignatura='.$idMateria.'";
