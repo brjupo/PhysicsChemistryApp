@@ -122,12 +122,22 @@
                       alert("'.$total[0].'");
                       </script>';
 
-                     /*  if($total[0] > 1){
+                     if($total[0] > 1){
+                        imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
+                      }else{
                         //Traeer asignatura
-                      }  */
+                        $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser[0]'"; 
+                        $result = mysqli_query($con, $query);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $idasignatura[] = $row;}
+                          $idMateria = $arregloAsignaturastodas[$idasignatura[0]]; 
+                        echo '<script type="text/javascript">
+                          window.location.href="https://kaanbal.net/Front/Inicio/temas.php?asignatura='.$idMateria.'";
+                          </script>';
+                      }
 
                       ///////////////////
-        imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
+        
       }
 
       //Si el usuario NO EXISTE mensaje de error y retorna a inicio
