@@ -133,7 +133,7 @@
                           $idMateria = $idasignatura[0]["id_asignatura"]-1;
                           $materia = $arregloAsignaturastodas[$idMateria]; 
                           echo '<script type="text/javascript">
-                      alert("'.$materia.'");
+                      alert("'.$idMateria.'");
                       </script>';
                         echo '<script type="text/javascript">
                           window.location.href="https://kaanbal.net/Front/Inicio/temas.php?asignatura='.$materia.'";
