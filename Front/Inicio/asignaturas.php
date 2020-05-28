@@ -126,7 +126,7 @@
                         imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
                       }else{
                         //Traeer asignatura
-                        $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser[0]'"; 
+                        $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser'"; 
                         $result = mysqli_query($con, $query);
                         while ($row = mysqli_fetch_assoc($result)) {
                           $idasignatura[] = $row;}
