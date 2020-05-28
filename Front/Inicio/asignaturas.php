@@ -108,9 +108,9 @@
                   $result = mysqli_query($con, $query);
                   while ($row = mysqli_fetch_assoc($result)) {
                     $iduser[] = $row;}
-                  echo '<script type="text/javascript">
+                 /*  echo '<script type="text/javascript">
                       alert("'.$iduser[0]["id_usuario"].'");
-                      </script>';
+                      </script>'; */
                 
                       $iduser = $iduser[0]["id_usuario"];
 
@@ -118,9 +118,9 @@
                   $result2 = mysqli_query($con, $query2);
                   $total = mysqli_fetch_row($result2);
 
-                  echo '<script type="text/javascript">
+                  /* echo '<script type="text/javascript">
                       alert("'.$total[0].'");
-                      </script>';
+                      </script>'; */
 
                      if($total[0] > 1){
                         imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
@@ -132,9 +132,6 @@
                           $idasignatura[] = $row;}
                           $idMateria = $idasignatura[0]["id_asignatura"]-1;
                           $materia = $arregloAsignaturastodas[$idMateria]; 
-                          echo '<script type="text/javascript">
-                      alert("'.$idMateria.'");
-                      </script>';
                         echo '<script type="text/javascript">
                           window.location.href="https://kaanbal.net/Front/Inicio/temas.php?asignatura='.$materia.'";
                           </script>';
