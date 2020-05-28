@@ -131,7 +131,7 @@
                         while ($row = mysqli_fetch_assoc($result)) {
                           $idasignatura[] = $row;}
                           $idMateria = $idasignatura[0]["id_asignatura"];
-                          $materia = $arregloAsignaturastodas[$idMateria ]; 
+                          $materia = $arregloAsignaturastodas[$idMateria-1]; 
                           echo '<script type="text/javascript">
                       alert("'.$materia.'");
                       </script>';
