@@ -136,7 +136,7 @@
                       alert("'.$materia.'");
                       </script>';
                         echo '<script type="text/javascript">
-                          window.location.href="https://kaanbal.net/Front/Inicio/temas.php?asignatura='.$idMateria.'";
+                          window.location.href="https://kaanbal.net/Front/Inicio/temas.php?asignatura='.$materia.'";
                           </script>';
                       }
 
