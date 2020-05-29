@@ -29,8 +29,14 @@
 
   $iduser = $_SESSION["id_usuario"];
   $materia = $_SESSION["asignaturaNavegacion"];
-  $idMateria = $_SESSION["idAsignatura"];
 
+  $query = "SELECT id_asignatura FROM asignatura WHERE nombre = '$materia'"; 
+  $result = mysqli_query($con, $query);
+  while ($row = mysqli_fetch_assoc($result)) {
+    $arrayidMateria[] = $row;}
+  $idMateria =  $arrayidMateria[0]["matricula"];//De aqui se obtendra el id de asignatura
+
+               
   echo '<script type="text/javascript">
                       alert("'.$idMateria.'");
                       </script>'; 
@@ -79,11 +85,11 @@
     $arregloPP = array();
 
     while (mysqli_stmt_fetch($statement)) {
-      $arregloPG[0]["porcentajePP"] = $porcentajePP;
+      $arregloPP[0]["porcentajePP"] = $porcentajePP;
     }
 
      echo '<script type="text/javascript">
-                      alert("'.$arregloPG[0]["porcentajePP"].'");
+                      alert("'.$arregloPP[0]["porcentajePP"].'");
                       </script>'; 
 
 ////////////////////////////////////////////////////////////////////////////////////
