@@ -31,6 +31,10 @@
   $materia = $_SESSION["asignaturaNavegacion"];
   $idMateria = $_SESSION["idAsignatura"];
 
+  echo '<script type="text/javascript">
+                      alert("'.$idMateria.'");
+                      </script>'; 
+
   $query = "SELECT matricula FROM alumno WHERE id_usuario = $iduser"; 
   $result = mysqli_query($con, $query);
   while ($row = mysqli_fetch_assoc($result)) {
