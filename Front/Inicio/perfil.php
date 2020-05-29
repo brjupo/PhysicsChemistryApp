@@ -8,7 +8,8 @@
   <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
   <link rel="stylesheet" href="../CSSsJSs/styleTemas.css" />
-  <script src="../CSSsJSs/scriptTemas.js"></script>
+  <script src="../CSSsJSs/scriptPerfil.js"></script>
+  <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
 <body>
@@ -50,7 +51,7 @@
                   <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
                 </div>
                 <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                  <p class="Ciencia fuenteTitulo">Energía y transformación</p>
+                  <p class="Ciencia fuenteTitulo" id="asignatura">' . $_GET['asignatura'] . '</p>
                 </div>
                 <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
                   <table class="table">
@@ -86,7 +87,7 @@
             <div class="row">
               <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
               <div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-                <p class="tituloTemasPrincipales textCenter">' . $matricula . '</p>
+                <p class="tituloTemasPrincipales textCenter" id="matricula">' . $matricula . '</p>
               </div>
               <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
