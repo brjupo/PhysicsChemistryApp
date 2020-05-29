@@ -28,7 +28,7 @@
   session_start();
 
   $iduser = $_SESSION["id_usuario"];
-  $materia = $_SESSION["materia"];
+  $materia = $_SESSION["asignaturaNavegacion"];
 
   $query = "SELECT matricula FROM alumno WHERE id_usuario = $iduser"; 
   $result = mysqli_query($con, $query);
