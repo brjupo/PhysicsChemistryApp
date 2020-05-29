@@ -75,9 +75,9 @@ function guardarAvatarEnBBDD(nombreImagen){
   
     $.ajax({
       type: "POST",
-      url: "../../Servicios/subirPuntos.php",
+      url: "../../Servicios/actualizarAvatar.php",
       dataType: "json",
-      data: { id: userID, imagen: nombreImagen },
+      data: { matricula: userID, avatar: nombreImagen },
       success: function (data) {
         console.log(data.response);
         if (data.response == "exito") {
