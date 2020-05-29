@@ -30,7 +30,7 @@
 
   $iduser = $_SESSION["id_usuario"];
 
-  $query = "SELECT mail FROM usuario_prueba WHERE id_usuario = $iduser"; 
+  $query = "SELECT matricula FROM alumno WHERE id_usuario = $iduser"; 
   $result = mysqli_query($con, $query);
   while ($row = mysqli_fetch_assoc($result)) {
     $mailArray[] = $row;}
