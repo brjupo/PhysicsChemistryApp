@@ -18,11 +18,11 @@
 
 
   <?php
-  $matricula="A01169493";
-  $materia="materia";
-  $porcentajeAvance="53.2%";
-  $avatarActual="avatar.jpg";
-  $diamantes="25,250";
+  $matricula = "A01169493";
+  $materia = "materia";
+  $porcentajeAvance = "53.2%";
+  $avatarActual = "avatar.jpg";
+  $diamantes = "25,250";
   imprimirVistaPerfil($matricula, $materia, $porcentajeAvance, $avatarActual, $diamantes);
 
   ?>
@@ -116,7 +116,10 @@
 
   function imprimirAvatarActual($avatarActual)
   {
-    echo '
+    if (empty($avatarActual) || $avatarActual == null) {
+      $avatarActual = "avatar.jpg";
+    } else if (file_exists("../CSSsJSs/images/" . $avatarActual)) {
+      echo '
           <div class="container" id="avatarActual">
             <div class="row">
               <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
@@ -126,7 +129,10 @@
               <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
           </div>
-    ';
+      ';
+    } else {
+      echo "<p>Error al intentar buscar ../CSSsJSs/images/" . $avatarActual . "</p>";
+    }
   }
 
   function imprimirComboAvatars()
@@ -182,7 +188,8 @@
     ';
   }
 
-  function imprimirDiamantes($diamantes){
+  function imprimirDiamantes($diamantes)
+  {
     echo '
           <div class="container">
             <div class="row">
@@ -191,7 +198,7 @@
                 <img class="icons imgRight" src="../CSSsJSs/icons/diamante.svg" />
               </div>
               <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                <p class="tituloTemasPrincipales textLeft">'.$diamantes.'</p>
+                <p class="tituloTemasPrincipales textLeft">' . $diamantes . '</p>
               </div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
             </div>
@@ -239,7 +246,7 @@
   ?>
 
 
-  
+
   <!----------------------------------------------FIN PERFIL--------------------------------------------->
 
   <div class="container">
