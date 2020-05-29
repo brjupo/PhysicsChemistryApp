@@ -29,6 +29,7 @@
 
   $iduser = $_SESSION["id_usuario"];
   $materia = $_SESSION["asignaturaNavegacion"];
+  $idMateria = $_SESSION["idAsignatura"];
 
   $query = "SELECT matricula FROM alumno WHERE id_usuario = $iduser"; 
   $result = mysqli_query($con, $query);
@@ -45,27 +46,41 @@
   $avatarActual = $avatarArray[0]["avatar"];//De aqui se obtendra el avatar del usuario
 
   //Obtener el porcentaje completado total de la asignatura de práctica general (PG) de la lección:
-    $statement = mysqli_prepare($con, "SELECT ((SELECT COUNT(*) FROM puntuacion WHERE id_usuario = [ID DEL USUARIO QUE INICIO SESIÓN] AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = [ID DE LA ASIGNATURA ACTUAL]))) AND tipo = 'PG' * 100) / (SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = [ID DE LA ASIGNATURA ACTUAL]))))");
+    /* $statement = mysqli_prepare($con, "SELECT ((SELECT COUNT(*) FROM puntuacion WHERE id_usuario = ? AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))) AND tipo = 'PG' * 100) / (SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))))");
     //[ID DEL USUARIO QUE INICIO SESIÓN]
-    //[ID DEL USUARIO QUE INICIO SESIÓN]
-    //[ID DEL USUARIO QUE INICIO SESIÓN]
-    mysqli_stmt_bind_param($statement, "iii", $iduser);
+    //[ID DE LA ASIGNATURA ACTUAL]
+    //[ID DE LA ASIGNATURA ACTUAL]
+    mysqli_stmt_bind_param($statement, "iii", $iduser, $idMateria, $idMateria);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_asignatura, $nombre, $nivel, $grado_academico, $idioma);
+    mysqli_stmt_bind_result($statement, $porcentajePG);
 
-    $arregloAsignaturas = array();
+    $arregloPG = array();
 
-    $i = 0;
     while (mysqli_stmt_fetch($statement)) {
-      $arregloAsignaturas[$i]["id_asignatura"] = $id_asignatura;
-      $arregloAsignaturas[$i]["nombre"] = $nombre;
-      $arregloAsignaturas[$i]["nivel"] = $nivel;
-      $arregloAsignaturas[$i]["grado_academico"] = $grado_academico;
-      $arregloAsignaturas[$i]["idioma"] = $idioma;
-      $i = $i + 1;
+      $arregloPG[0]["porcentajePG"] = $porcentajePG;
+    } */
+
+
+    //Obtener el porcentaje completado total de la asignatura de práctica particular(PP) de la lección:
+    $statement = mysqli_prepare($con, "SELECT ((SELECT COUNT(*) FROM puntuacion WHERE id_usuario = ? AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))) AND tipo = 'PP' * 100) / (SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))))");
+    //[ID DEL USUARIO QUE INICIO SESIÓN]
+    //[ID DE LA ASIGNATURA ACTUAL]
+    //[ID DE LA ASIGNATURA ACTUAL]
+    mysqli_stmt_bind_param($statement, "iii", $iduser, $idMateria, $idMateria);
+    mysqli_stmt_execute($statement);
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $porcentajePP);
+
+    $arregloPP = array();
+
+    while (mysqli_stmt_fetch($statement)) {
+      $arregloPG[0]["porcentajePP"] = $porcentajePP;
     }
 
+     echo '<script type="text/javascript">
+                      alert("'.$arregloPG[0]["porcentajePP"].'");
+                      </script>'; 
 
 ////////////////////////////////////////////////////////////////////////////////////
 
