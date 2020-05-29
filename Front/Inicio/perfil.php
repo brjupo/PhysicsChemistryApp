@@ -36,6 +36,8 @@
     $mailArray[] = $row;}
   $mail = $mailArray[0]["mail"];//De aqui se obtendra la matricula del usuario
 
+  $matricula = substr($mail, 0, 9);
+
   //Obtener el porcentaje completado total de la asignatura de práctica general (PG) de la lección:
     $statement = mysqli_prepare($con, "SELECT ((SELECT COUNT(*) FROM puntuacion WHERE id_usuario = [ID DEL USUARIO QUE INICIO SESIÓN] AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = [ID DE LA ASIGNATURA ACTUAL]))) AND tipo = 'PG' * 100) / (SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = [ID DE LA ASIGNATURA ACTUAL]))))");
     //[ID DEL USUARIO QUE INICIO SESIÓN]
