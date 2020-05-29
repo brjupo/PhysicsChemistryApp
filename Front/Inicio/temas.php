@@ -94,7 +94,7 @@
 
 
     /*----Paso 2 Llamar a los temas de la asignatura-------*/
-    $statement = mysqli_prepare($con, "SELECT * FROM tema WHERE id_asignatura = ?"); //WHERE mail = ? AND pswd = ?
+    $statement = mysqli_prepare($con, "SELECT id_tema, id_asignatura, nombre FROM tema WHERE id_asignatura = ? ORDER BY orden ASC"); //WHERE mail = ? AND pswd = ?
     mysqli_stmt_bind_param($statement, "s", $arregloIdasignatura["id_asignatura"]);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
