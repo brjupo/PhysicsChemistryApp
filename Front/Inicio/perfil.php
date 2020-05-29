@@ -34,7 +34,7 @@
   $result = mysqli_query($con, $query);
   while ($row = mysqli_fetch_assoc($result)) {
     $mailArray[] = $row;}
-  $mail = $mailArray[0]["mail"];//De aqui se obtendra la matricula del usuario
+  $mail = $mailArray[0]["matricula"];//De aqui se obtendra la matricula del usuario
 
   $matricula = substr($mail, 0, 9);
 
