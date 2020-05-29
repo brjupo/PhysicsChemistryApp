@@ -14,15 +14,13 @@
 <body>
   <!----------------------------------------------TITULO--------------------------------------------->
 
-
-
-
   <?php
   $matricula = "A01169493";
   $materia = "materia";
   $porcentajeAvance = "53.2%";
   $avatarActual = "avatar.jpg";
   $diamantes = "25,250";
+
   imprimirVistaPerfil($matricula, $materia, $porcentajeAvance, $avatarActual, $diamantes);
 
   ?>
