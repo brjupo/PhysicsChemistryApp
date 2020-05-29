@@ -34,7 +34,7 @@
   $result = mysqli_query($con, $query);
   while ($row = mysqli_fetch_assoc($result)) {
     $arrayidMateria[] = $row;}
-  $idMateria =  $arrayidMateria[0]["matricula"];//De aqui se obtendra el id de asignatura
+  $idMateria =  $arrayidMateria[0]["id_asignatura"];//De aqui se obtendra el id de asignatura
 
                
   echo '<script type="text/javascript">
