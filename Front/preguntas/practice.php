@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas7.css" />
+    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas8.css" />
     <script src="../CSSsJSs/scriptPractice6.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
