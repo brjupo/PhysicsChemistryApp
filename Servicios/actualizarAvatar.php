@@ -4,7 +4,7 @@
   $matricula = $_POST["matricula"];
   $avatar = $_POST["avatar"];
 
-  $sql = "UPDATE alumno SET avatar=$avatar WHERE matricula = $matricula";
+  $sql = "UPDATE alumno SET avatar = '$avatar' WHERE matricula = '$matricula'";
   mysqli_query($con, $sql);
 
   $response = array();
