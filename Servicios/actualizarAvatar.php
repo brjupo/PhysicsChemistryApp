@@ -7,4 +7,8 @@
   $sql = "UPDATE alumno SET avatar='$avatar' WHERE matricula = $matricula";
   mysqli_query($con, $sql);
 
+  $response = array();
+  $response['response'] = 'true';
+  echo json_encode($response);
+
 ?>

@@ -46,7 +46,7 @@ if ($arraySuper[0] != $password) {
         mail($to, $subject, $cuerpo, $headers);
         //Si no existe, regresar true
         $response = array();
-        $response['response'] = 'true';
+        $response['response'] = 'exito';
         echo json_encode($response);
     }
 }
