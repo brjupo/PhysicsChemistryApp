@@ -37,9 +37,9 @@
   $idMateria =  $arrayidMateria[0]["id_asignatura"];//De aqui se obtendra el id de asignatura
 
                
-  echo '<script type="text/javascript">
+  /* echo '<script type="text/javascript">
                       alert("'.$idMateria.'");
-                      </script>'; 
+                      </script>';  */
 
   $query = "SELECT matricula FROM alumno WHERE id_usuario = $iduser"; 
   $result = mysqli_query($con, $query);
@@ -87,10 +87,8 @@
     while (mysqli_stmt_fetch($statement)) {
       $arregloPP[0]["porcentajePP"] = $porcentajePP;
     }
-
-     echo '<script type="text/javascript">
-                      alert("'.$arregloPP[0]["porcentajePP"].'");
-                      </script>'; 
+    $porcentajeAvance = $arregloPP[0]["porcentajePP"];
+     
 
 ////////////////////////////////////////////////////////////////////////////////////
 
