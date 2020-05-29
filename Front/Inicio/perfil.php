@@ -38,6 +38,12 @@
 
   $matricula = substr($mail, 0, 9);
 
+  $query = "SELECT avatar FROM alumno WHERE id_usuario = $iduser"; 
+  $result = mysqli_query($con, $query);
+  while ($row = mysqli_fetch_assoc($result)) {
+    $avatarArray[] = $row;}
+  $avatarActual = $avatarArray[0]["avatar"];//De aqui se obtendra el avatar del usuario
+
   //Obtener el porcentaje completado total de la asignatura de práctica general (PG) de la lección:
     $statement = mysqli_prepare($con, "SELECT ((SELECT COUNT(*) FROM puntuacion WHERE id_usuario = [ID DEL USUARIO QUE INICIO SESIÓN] AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = [ID DE LA ASIGNATURA ACTUAL]))) AND tipo = 'PG' * 100) / (SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = [ID DE LA ASIGNATURA ACTUAL]))))");
     //[ID DEL USUARIO QUE INICIO SESIÓN]
