@@ -58,10 +58,14 @@
 
         for($i = 0; $i < 5; $i++){
           $posicion = $i + 1;
+          if($arregloTopUsuarios[$i]["avatar"] == NULL){
+            $avatar = "avatar.jpg";
+        }else{
           $avatar = $arregloTopUsuarios[$i]["avatar"];
+        }
           imprimirPersonaTop($posicion, $avatar, $ultimosDigitosMatricula, $diamantes);
         } 
-        
+
         imprimirRelleno();
         imprimirRelleno();
         imprimirRelleno();
