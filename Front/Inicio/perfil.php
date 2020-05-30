@@ -7,7 +7,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-  <link rel="stylesheet" href="../CSSsJSs/styleTemas2.css" />
+  <link rel="stylesheet" href="../CSSsJSs/styleTemas3.css" />
   <script src="../CSSsJSs/scriptPerfil5.js"></script>
   <script src="../CSSsJSs/minAJAX.js"></script>
 </head>

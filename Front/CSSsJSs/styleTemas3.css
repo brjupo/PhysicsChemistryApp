@@ -314,7 +314,6 @@ p {
 }
 
 .footIcon {
-  filter: opacity(70%) brightness(80%);
   padding: 10px 0px 10px 0px;
   width: 4vw;
 }
@@ -327,7 +326,6 @@ p {
 
 .footIcon:hover,
 .footIcon:active {
-  filter: opacity(70%) brightness(80%);
   padding: 0px 0px 0px 0px;
   width: 5vw;
 }
