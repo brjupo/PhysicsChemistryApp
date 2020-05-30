@@ -21,7 +21,7 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == top5) {
-      //top();
+      //topv();
       return;
     }
     if (targetElement == logout) {
@@ -43,7 +43,7 @@ function profilev() {
   var url = "perfil.php?asignatura=";
   location.replace(url.concat(asignatura));
 }
-function top() {
+function topv() {
   var asignatura = document.getElementById("asignatura").innerHTML;
   var url = "top.php?asignatura=";
   location.replace(url.concat(asignatura));
