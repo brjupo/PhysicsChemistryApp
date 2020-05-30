@@ -5,6 +5,7 @@ window.onload = function () {};
 
 document.addEventListener("click", function (evt) {
   var lections = document.getElementById("botonLecciones");
+  var top5 = document.getElementById("botonTop");
   var logout = document.getElementById("botonLogout");
   var editarAvatar = document.getElementById("editarAvatar");
   var botonGuardar = document.getElementById("guardarAvatar");
@@ -14,6 +15,10 @@ document.addEventListener("click", function (evt) {
   do {
     if (targetElement == lections) {
       lectionsv();
+      return;
+    }
+    if (targetElement == top5) {
+      top();
       return;
     }
     if (targetElement == logout) {
@@ -56,10 +61,18 @@ function lectionsv() {
   var url = "temas.php?asignatura=";
   location.replace(url.concat(asignatura));
 }
+
+function top() {
+  var asignatura = document.getElementById("asignatura").innerHTML;
+  var url = "top.php?asignatura=";
+  location.replace(url.concat(asignatura));
+}
+
 function toggleAvatar() {
   document.getElementById("avatarElegir").classList.toggle("mostrarOpciones");
   document.getElementById("avatarElegir").classList.toggle("ocultarOpciones");
 }
+
 function do_logout() {
   location.replace("../../index.php");
 }

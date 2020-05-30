@@ -8,7 +8,7 @@
   <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
   <link rel="stylesheet" href="../CSSsJSs/styleTemas2.css" />
-  <script src="../CSSsJSs/scriptPerfil3.js"></script>
+  <script src="../CSSsJSs/scriptPerfil5.js"></script>
   <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
@@ -108,6 +108,9 @@
     imprimirComboAvatars();
     imprimirRelleno();
     imprimirDiamantes($diamantes);
+    imprimirRelleno();
+    imprimirRelleno();
+    imprimirRelleno();
     imprimirFooter();
   }
   ?>
@@ -314,7 +317,7 @@
                 <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/usuario.svg" />
               </div>
               <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <img class="footIcon" id="botonAyuda" src="../CSSsJSs/icons/ayuda.svg" />
+                <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/ayuda.svg" />
               </div>
               <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
