@@ -102,9 +102,12 @@
     imprimirTop();
     imprimirRelleno();
     imprimirMatricula($matricula);
+    imprimirRelleno();
     imprimirAvanceMateria($materia, $porcentajeAvance);
+    imprimirRelleno();
     imprimirAvatarActual($avatarActual);
     imprimirComboAvatars();
+    imprimirRelleno();
     imprimirDiamantes($diamantes);
     imprimirFooter();
   }
