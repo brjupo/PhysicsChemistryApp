@@ -286,6 +286,7 @@ p {
 }
 
 .tituloTemasPrincipales {
+  margin: 2vw auto;
   font-size: 4.5vw;
   font-weight: 600;
   text-align: left;

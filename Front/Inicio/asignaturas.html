@@ -26,6 +26,9 @@
       } else if (event.ctrlKey && event.keyCode == 85) {
         // Prevent Ctrl+U
         return false;
+      } else if (event.ctrlKey && event.keyCode == 67) {
+        // Prevent Ctrl+C
+        return false;
       }
     });
   </script>
