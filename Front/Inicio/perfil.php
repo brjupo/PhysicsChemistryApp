@@ -311,13 +311,13 @@
           <div class="container">
             <div class="row text-center">
               <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/lecciones.svg" />
+                <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
               </div>
               <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
-                <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/usuario.svg" />
+                <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
               </div>
               <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/ayuda.svg" />
+                <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
               </div>
               <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
