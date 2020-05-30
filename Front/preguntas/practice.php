@@ -7,8 +7,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas8.css" />
-    <script src="../CSSsJSs/scriptPractice6.js"></script>
+    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas9.css" />
+    <script src="../CSSsJSs/scriptPractice7.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -258,8 +258,11 @@
                 <div id="motivationMessage" class="container noPaddingMargin" style="display: none;">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 noPaddingMargin">
-                            <div class="imagenEdu">
-                            <p id="dialogo" class="dialogoInsp">Aunque falles, sigues aprendiendo!</p>
+                            <!--div class="imagenEdu">
+                                <p id="dialogo" class="dialogoInsp">Aunque falles, sigues aprendiendo!</p>
+                            </div-->
+                            <div>
+                                <p id="dialogo" class="dialogoNoInsp">Aunque falles, sigues aprendiendo!</p>
                             </div>
                         </div>
                         <div class="hidden-xs hidden-sm col-md-6 col-lg-6 col-xl-6">
