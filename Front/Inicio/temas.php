@@ -8,7 +8,7 @@
   <title>Temas</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
   <link rel="stylesheet" href="../CSSsJSs/styleTemas3.css" />
-  <script src="../CSSsJSs/scriptTemas5.js"></script>
+  <script src="../CSSsJSs/scriptTemas6.js"></script>
 </head>
 
 <body>
