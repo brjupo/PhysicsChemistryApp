@@ -102,7 +102,6 @@
     imprimirTop();
     imprimirRelleno();
     imprimirMatricula($matricula);
-    imprimirRelleno();
     imprimirAvanceMateria($materia, $porcentajeAvance);
     imprimirRelleno();
     imprimirAvatarActual($avatarActual);
