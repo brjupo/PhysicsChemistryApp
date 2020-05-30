@@ -132,7 +132,8 @@
                           $idasignatura[] = $row;}
                           $idMateria = $idasignatura[0]["id_asignatura"]-1;
                           $materia = $arregloAsignaturastodas[$idMateria]; 
-                          $_SESSION["materia"] = $materia;
+                          $_SESSION["asignaturaNavegacion"] = $materia;
+                          $_SESSION["idAsignatura"] = $idMateria;
                         echo '<script type="text/javascript">
                           window.location.href="https://kaanbal.net/Front/Inicio/temas.php?asignatura='.$materia.'";
                           </script>';
