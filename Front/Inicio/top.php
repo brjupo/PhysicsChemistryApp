@@ -58,8 +58,8 @@
         imprimirTop();
         imprimirRelleno();
 
-        for($i = 0; $i < 5; $i++){
-          $posicion = 3;
+        for($i = 0; $i < 3; $i++){
+          $posicion = $i ;
           $diamantes = $arregloTopUsuarios[$i]["suma"];
           if($arregloTopUsuarios[$i]["avatar"] == NULL){
             $avatar = "avatar.jpg";
