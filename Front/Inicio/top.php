@@ -58,7 +58,7 @@
         imprimirTop();
         imprimirRelleno();
 
-        for($i = 0; $i < 3; $i++){
+        for($i = 0; $i < 5; $i++){
           $posicion = $i ;
           $diamantes = $arregloTopUsuarios[$i]["suma"];
           if($arregloTopUsuarios[$i]["avatar"] == NULL){
@@ -66,7 +66,7 @@
         }else{
           $avatar = $arregloTopUsuarios[$i]["avatar"];
         }
-          imprimirPersonaTop($posicion, $avatar, '666', $diamantes);
+          imprimirPersonaTop($posicion, $avatar, $arregloTopUsuarios[$i]["matricula"], $diamantes);
         } 
 
         imprimirRelleno();
