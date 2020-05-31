@@ -3,6 +3,7 @@
         header("Location: https://kaanbal.net");
     }
     $subtema= $_GET['subtema'];
+    $puntos=$_GET['puntos'];
 ?>
 <!DOCTYPE html>
 <html>
