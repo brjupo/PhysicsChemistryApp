@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas9.css" />
     <link rel="stylesheet" href="../CSSsJSs/styleNivelCompletado.css" />
-    <script src="../CSSsJSs/scriptSprintFinalizado.js"></script>
+    <script src="../CSSsJSs/scriptSprintFinalizado2.js"></script>
   </head>
 
   <body>

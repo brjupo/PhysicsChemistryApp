@@ -12,6 +12,6 @@ function countDiamonts() {
         if (diamantes > totalDiamantes) {
             clearInterval(x);
         }
-    }, 20);
+    }, 100);
 }
 
