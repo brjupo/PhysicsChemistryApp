@@ -243,9 +243,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                        <p class="slide-bottom" id="previous">30s</p>
+                        <p class="slide-bottom" id="previous" style="display:none">30s</p>
                         <p class="slide-bottom" id="actual">30s</p>
-                        <p class="slide-bottom" id="later">30s</p>
+                        <p class="slide-bottom" id="later" style="display:none">30s</p>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                         <p><a id="puntosBuenos">0</a><sub id="puntosTotales">/' . $totalPreguntas . '</sub></p>
