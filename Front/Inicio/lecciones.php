@@ -178,7 +178,7 @@
     $j = 0;
     for($i = 0; $i < $tamanhoLeccionesh; $i++){
       if($arregloLeccionesh[$i]["setenta"] <= $arregloLeccionesh[$i]["puntuacion"])
-      {$j = $j +1;}
+      {$j = $j + 1;}
     }
 
     echo'<script type="text/javascript">
@@ -342,6 +342,46 @@
   {
 
     if($habilitar == '1'){
+      if($numeroLeccion == $_SESSION["tamanhoh"] ){
+        echo '
+        <div class="container">
+          <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
+            <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+            <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+              <table class="table fixed">
+                <tbody>
+                  <tr>
+                    <td>
+                      <img class="iconsNumber" src="../CSSsJSs/icons/' . $numeroLeccion . '.svg" />
+                    </td>
+                    <td class="tituloTemasPrincipales">
+                    ' . $nombreLeccion . '
+                    </td>
+                    <td>
+                    <a href="../preguntas/practice.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                    </td>
+                    <td>
+                      <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
+                    </td>
+                    <td>
+                      <img class="icons" src="../CSSsJSs/icons/examen.svg" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <p></p>
+          </div>
+        </div>
+    ';
+      }else{
+      /////////////
     echo '
       <div class="container">
         <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
@@ -378,47 +418,10 @@
           <p></p>
         </div>
       </div>
-  ';}else{
+  ';}
 
-            if($numeroLeccion == $_SESSION["tamanhoh"] ){
-              echo '
-              <div class="container">
-                <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
-                  <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-                  <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
-                    <table class="table fixed">
-                      <tbody>
-                        <tr>
-                          <td>
-                            <img class="iconsNumber" src="../CSSsJSs/icons/' . $numeroLeccion . '.svg" />
-                          </td>
-                          <td class="tituloTemasPrincipales">
-                          ' . $nombreLeccion . '
-                          </td>
-                          <td>
-                          <a href="../preguntas/practice.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
-                          </td>
-                          <td>
-                            <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
-                          </td>
-                          <td>
-                            <img class="icons" src="../CSSsJSs/icons/examen.svg" />
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-                </div>
-              </div>
-
-              <div class="container">
-                <div class="row">
-                  <p></p>
-                </div>
-              </div>
-          ';
-            }else{
+}
+  else{
           echo '
               <div class="container">
                 <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
@@ -456,8 +459,6 @@
                 </div>
               </div>
           ';}
-        }
-
   }
 
   function imprimirRelleno()
