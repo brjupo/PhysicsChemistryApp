@@ -60,8 +60,8 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-          <h4>¡Haz terminado este nivel!</h4>
-          <h5>¡Felicidades!</h5>
+          <h3>¡Haz terminado este nivel!</h3>
+          <h4>¡Felicidades!</h4>
           <p id="numeroDiamantes" class="numeroDiamantes">100</p><p class="numeroDiamantes">%</p>
           <img class="diamanteIcon" src="../CSSsJSs/icons/diamante.svg" />
         </div>

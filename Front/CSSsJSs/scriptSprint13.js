@@ -373,12 +373,11 @@ function nextQuestion(lastQuestion) {
   }
   if (questionNumberArray.length == 0) {
     var stringLiga =
-      "https://kaanbal.net/Front/preguntas/nivelCompletado.php?subtema=";
-    window.location.replace(
-      stringLiga.concat(
-        document.getElementById("subtemaPrevio").innerHTML.trim()
-      )
-    );
+      "https://kaanbal.net/Front/preguntas/sprintFinalizado.php?subtema="
+      + document.getElementById("subtemaPrevio").innerHTML.trim() 
+      + "&puntos=" + puntos + "&totalPreguntas="
+      + document.getElementById("totalPreguntas").innerHTML.trim();
+    window.location.replace(stringLiga);
   } else {
     loadNewQuestion(questionNumberArray[0]);
   }
@@ -387,10 +386,11 @@ function nextQuestion(lastQuestion) {
 function enviarCalificacionRedirigir() {
   enviarCalificacion();
   var stringLiga =
-    "https://kaanbal.net/Front/preguntas/nivelCompletado.php?subtema=";
-  window.location.replace(
-    stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim())
-  );
+      "https://kaanbal.net/Front/preguntas/sprintFinalizado.php?subtema="
+      + document.getElementById("subtemaPrevio").innerHTML.trim() 
+      + "&puntos=" + puntos + "&totalPreguntas="
+      + document.getElementById("totalPreguntas").innerHTML.trim();
+    window.location.replace(stringLiga);
 }
 
 function enviarCalificacion() {

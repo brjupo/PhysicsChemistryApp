@@ -4,6 +4,7 @@
     }
     $subtema= $_GET['subtema'];
     $puntos=$_GET['puntos'];
+    $totalPreguntas=$_GET['totalPreguntas'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas9.css" />
     <link rel="stylesheet" href="../CSSsJSs/styleNivelCompletado.css" />
-    <script src="../CSSsJSs/scriptNivelCompletado.js"></script>
+    <script src="../CSSsJSs/scriptSprintFinalizado.js"></script>
   </head>
 
   <body>
@@ -31,9 +32,9 @@
               aria-valuenow="40"
               aria-valuemin="0"
               aria-valuemax="100"
-              style="width: 100%;"
+              <?php echo 'style="width:'.floor(100*intval($puntos)/intval($totalPreguntas)).'%"';?>
             >
-              100%
+            <?php echo ''.floor(100*intval($puntos)/intval($totalPreguntas)).'%';?>
             </div>
           </div>
         </div>
@@ -61,9 +62,10 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-          <h4>¡Haz terminado este nivel!</h4>
-          <h5>¡Felicidades!</h5>
-          <p id="numeroDiamantes" class="numeroDiamantes">100</p><p class="numeroDiamantes">%</p>
+          <h3>Ha concluido el sprint</h3>
+          <p id="numeroDiamantes" class="numeroDiamantes">
+            <?php echo intval($puntos);?>
+          </p>
           <img class="diamanteIcon" src="../CSSsJSs/icons/diamante.svg" />
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
