@@ -109,7 +109,7 @@
     }
 
 //////////////////////////////////////
-
+$porcentajeAvance = "";
   imprimirVistaPerfil($matricula, $materia, $porcentajeAvance, $avatarActual, $diamantes);
 
   ?>
