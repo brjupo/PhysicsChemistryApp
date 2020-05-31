@@ -2,6 +2,7 @@ var lastQuestion = 0;
 var questionNumberArray = [];
 var puntos = 0;
 var buenas0_malas1_alHilo = [0, 0];
+var firstTimeToSaveGrade = 0;
 
 var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
@@ -370,8 +371,10 @@ function nextQuestion(lastQuestion) {
   if (document.getElementById(10 * lastQuestion - 4)) {
     document.getElementById(10 * lastQuestion - 4).innerHTML = "Accept";
   }
-  if (questionNumberArray.length == 0) {
+  totalPreguntas = parseInt(document.getElementById("totalPreguntas").innerHTML.trim());
+  if (lastQuestion == totalPreguntas && firstTimeToSaveGrade==0) {
     enviarCalificacion();
+    firstTimeToSaveGrade=1;
   } else {
     loadNewQuestion(questionNumberArray[0]);
   }
