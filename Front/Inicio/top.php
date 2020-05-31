@@ -59,7 +59,7 @@
         imprimirRelleno();
 
         for($i = 0; $i < 5; $i++){
-          $posicion = 1;
+          $posicion = 3;
           $diamantes = $arregloTopUsuarios[$i]["suma"];
           if($arregloTopUsuarios[$i]["avatar"] == NULL){
             $avatar = "avatar.jpg";
