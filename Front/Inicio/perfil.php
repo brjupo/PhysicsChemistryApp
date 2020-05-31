@@ -102,7 +102,11 @@
     while (mysqli_stmt_fetch($statement)) {
       $arregloPoints[0]["diamantes"] = $points;
     }
+    if($arregloPoints[0]["diamantes"]){
     $diamantes = $arregloPoints[0]["diamantes"];
+    }else{
+      $diamantes = 0;
+    }
 
 //////////////////////////////////////
 
