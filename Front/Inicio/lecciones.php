@@ -207,16 +207,19 @@
     //para siempre habilitar la primera lección es el if
     if($tamanhoh == 0){
       $arregloLecciones[0]["h"] = '1';
+      $arregloLecciones[0]["hS"] = '0';
     }
     else{
       if ($tamanhoh == $tamanho){
         //Para activar ya todas las lecciones
         for ($i = 0; $i < $tamanhoh; $i++) {
-          $arregloLecciones[$i]["h"] = '1';}
+          $arregloLecciones[$i]["h"] = '1';
+          $arregloLecciones[$i]["hS"] = '1';}
       }else{
         //Para activar solo la siguiente leccion
         for ($i = 0; $i <= $tamanhoh; $i++) {
-          $arregloLecciones[$i]["h"] = '1';}
+          $arregloLecciones[$i]["h"] = '1';
+          $arregloLecciones[$i]["hS"] = '1';}
       }   
     }
     //$arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
@@ -256,7 +259,7 @@
   {
     $tamanho = count($arregloLecciones);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirLeccion($i + 1, $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["h"]);
+      imprimirLeccion($i + 1, $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["h"],$arregloLecciones[$i]["hS"]);
     }
   }
 
@@ -334,11 +337,9 @@
   ';
   }
 
-  function imprimirLeccion($numeroLeccion, $nombreLeccion, $habilitar)
+  function imprimirLeccion($numeroLeccion, $nombreLeccion, $habilitar, $habilitarS)
   {
-
-    if($habilitar == '1'){
-      /////////////
+    if($habilitar == '1' && $habilitarS == '1' ){
     echo '
       <div class="container">
         <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
@@ -358,6 +359,44 @@
                   </td>
                   <td>
                   <a href="../preguntas/sprint.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
+                  </td>
+                  <td>
+                    <img class="icons" src="../CSSsJSs/icons/examen.svg" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <p></p>
+        </div>
+      </div>
+  ';}
+  elseif($habilitar == '1'){
+      echo '
+      <div class="container">
+        <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
+          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+            <table class="table fixed">
+              <tbody>
+                <tr>
+                  <td>
+                    <img class="iconsNumber" src="../CSSsJSs/icons/' . $numeroLeccion . '.svg" />
+                  </td>
+                  <td class="tituloTemasPrincipales">
+                  ' . $nombreLeccion . '
+                  </td>
+                  <td>
+                  <a href="../preguntas/practice.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  </td>
+                  <td>
+                    <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/examen.svg" />
