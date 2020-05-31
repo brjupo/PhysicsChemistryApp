@@ -54,6 +54,9 @@
     }
 
 //////////////////////////////////////////////////////
+echo'<script type="text/javascript">
+alert("'.$arregloTopUsuarios[1]["matricula"].'");
+</script>';
 
         imprimirTop();
         imprimirRelleno();

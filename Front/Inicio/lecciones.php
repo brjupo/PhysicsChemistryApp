@@ -181,10 +181,6 @@
       {$j = $j + 1;}
     }
 
-    echo'<script type="text/javascript">
-          alert("'.$j.'");
-          </script>';
-
     //Llamar no habilitadas
     $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?");
     mysqli_stmt_bind_param($statement, "i",$id_subtema);
