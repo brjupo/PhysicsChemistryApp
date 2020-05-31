@@ -91,7 +91,8 @@
     while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
       $arregloIdasignatura["id_asignatura"] = $id_asignatura;
     }
-
+    //id de asignatura usado en top.php
+    $_SESSION["idAsignatura"] = $arregloIdasignatura["id_asignatura"];
 
     /*----Paso 2 Llamar a los temas de la asignatura-------*/
     $statement = mysqli_prepare($con, "SELECT id_tema, id_asignatura, nombre FROM tema WHERE id_asignatura = ? ORDER BY orden ASC"); //WHERE mail = ? AND pswd = ?
