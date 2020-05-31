@@ -218,8 +218,14 @@
       }else{
         //Para activar solo la siguiente leccion
         for ($i = 0; $i <= $tamanhoh; $i++) {
-          $arregloLecciones[$i]["h"] = '1';
-          $arregloLecciones[$i]["hS"] = '0';}
+          if ($i == $tamanho){
+            $arregloLecciones[$i]["h"] = '1';
+            $arregloLecciones[$i]["hS"] = '0';
+          }else{
+            $arregloLecciones[$i]["h"] = '1';
+            $arregloLecciones[$i]["hS"] = '1';
+          }
+        }
       }   
     }
     //$arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
