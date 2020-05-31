@@ -441,9 +441,9 @@ function startClock() {
     var minutes = Math.floor((actual % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((actual % (1000 * 60)) / 1000);
     // Output the result in an element with id="demo"
-    document.getElementById("actual").innerHTML =
-      minutes + "m " + seconds + "s ";
-
+    document.getElementById("actual").innerHTML = seconds + "s ";
+      //minutes + "m " + seconds + "s ";
+      
     //----------------------------PREVIO-----------------------------------
     minutes = Math.floor(((actual - 1000) % (1000 * 60 * 60)) / (1000 * 60));
     seconds = Math.floor(((actual - 1000) % (1000 * 60)) / 1000);
