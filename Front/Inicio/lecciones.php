@@ -218,7 +218,7 @@
       }else{
         //Para activar solo la siguiente leccion
         for ($i = 0; $i <= $tamanhoh; $i++) {
-          if ($i == $tamanho){
+          if ($i == $tamanhoh){
             $arregloLecciones[$i]["h"] = '1';
             $arregloLecciones[$i]["hS"] = '0';
           }else{
