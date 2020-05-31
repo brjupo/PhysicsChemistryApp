@@ -66,7 +66,7 @@
         }else{
           $avatar = $arregloTopUsuarios[$i]["avatar"];
         }
-          imprimirPersonaTop($posicion, $avatar, '444444', $diamantes);
+          imprimirPersonaTop($posicion, $avatar, '444444', '10');
         } 
 
         imprimirRelleno();
