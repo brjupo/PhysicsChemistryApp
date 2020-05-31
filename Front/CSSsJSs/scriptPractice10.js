@@ -508,16 +508,14 @@ function enviarCalificacion() {
 
   $.ajax({
     type: "POST",
-    url: "../../Servicios/subirPuntos.php",
+    url: "../../Servicios/subirPuntosType.php",
     dataType: "json",
-    data: { id: userID, leccion: leccionID, puntos: puntos },
+    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"PP" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
         //alert("Etcito");
         console.log("Valores enviados correctamente");
-        //var stringLiga =
-        //  "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
       } else {
         //alert(data.response);
         console.log("Algo salio mal");
