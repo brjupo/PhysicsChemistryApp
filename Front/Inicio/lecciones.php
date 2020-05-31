@@ -154,12 +154,12 @@
     /*----Paso 2 Llamar a las lecciones del subtema-------*/    
     ///Llamar a las habilitadas
     //Debe de traer todas en la que puntiacion PP sea mayor a 70%, las que sea mayor al 70% deberan tener habilitado el sprint y la siguiente leccion
-    $statement = mysqli_prepare($con, "SELECT DISTINCT le.* FROM leccion le JOIN pregunta pr JOIN puntuacion pu JOIN usuario_prueba us ON le.id_leccion = pr.id_leccion AND le.id_leccion = pu.id_leccion AND pr.id_leccion = pu.id_leccion AND pu.id_usuario = us.id_usuario WHERE us.id_usuario = ? AND le.id_subtema = ? AND pu.puntuacion > (SELECT FLOOR(COUNT(*) * 0.7) FROM pregunta WHERE le.id_subtema > ?)");
-    mysqli_stmt_bind_param($statement, "iii",$_SESSION["id_usuario"],$id_subtema,$id_subtema);
+    $statement = mysqli_prepare($con, "SELECT l.*, FLOOR(COUNT(p.id_leccion) * 0.7) as setenta, pu.puntuacion FROM leccion l JOIN pregunta p JOIN puntuacion pu ON p.id_leccion = l.id_leccion AND l.id_leccion = pu.id_leccion AND p.id_leccion = pu.id_leccion WHERE l.id_subtema = ? AND pu.id_usuario = ? AND pu.tipo = 'PP' GROUP BY p.id_leccion");
+    mysqli_stmt_bind_param($statement, "ii",$id_subtema,$_SESSION["id_usuario"]);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_leccionh, $id_subtemah, $nombreh);
+    mysqli_stmt_bind_result($statement, $id_leccionh, $id_subtemah, $nombreh, $setenta, $puntuacion);
 
     $arregloLeccionesh = array();
     $i = 0;
@@ -168,8 +168,20 @@
       $arregloLeccionesh[$i]["id_leccion"] = $id_leccionh;
       $arregloLeccionesh[$i]["id_subtema"] = $id_subtemah;
       $arregloLeccionesh[$i]["nombre"] = $nombreh;
+      $arregloLeccionesh[$i]["setenta"] = $setenta;
+      $arregloLeccionesh[$i]["puntuacion"] = $puntuacion;
       $i = $i + 1;
     }
+
+    $tamanhoLeccionesh = count($arregloLeccionesh);
+
+    $j = 0;
+    for($i = 0; $i < $tamanhoLeccionesh; $i++){
+      if($arregloLeccionesh[$i]["setenta"] <= $arregloLeccionesh[$i]["puntuacion"])
+      {$j = $j +1;}
+    }
+
+
     //Llamar no habilitadas
     $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?");
     mysqli_stmt_bind_param($statement, "i",$id_subtema);
@@ -189,7 +201,7 @@
     }
 
     //Contar lecciones a habilitar
-    $tamanhoh = count($arregloLeccionesh);
+    $tamanhoh = $j;
     $_SESSION["tamanhoh"] = $tamanhoh;
     $tamanho = count($arregloLecciones);
 
