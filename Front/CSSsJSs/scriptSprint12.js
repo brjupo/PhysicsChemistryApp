@@ -250,6 +250,7 @@ function verifyIfCorrectOption(targetID, questionNumber) {
     questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
     IncorrectAudio.play();
+    enviarCalificacionRedirigir();
   }
 }
 
@@ -319,6 +320,7 @@ function verifyIfTextIsCorrect(questionNumber) {
       .getElementById(10 * questionNumber - 5)
       .value.toLowerCase();
     IncorrectAudio.play();
+    enviarCalificacionRedirigir();
   }
 }
 
@@ -382,6 +384,15 @@ function nextQuestion(lastQuestion) {
   }
 }
 
+function enviarCalificacionRedirigir() {
+  enviarCalificacion();
+  var stringLiga =
+    "https://kaanbal.net/Front/preguntas/nivelCompletado.php?subtema=";
+  window.location.replace(
+    stringLiga.concat(document.getElementById("subtemaPrevio").innerHTML.trim())
+  );
+}
+
 function enviarCalificacion() {
   var userID = document.getElementById("userID").innerHTML.trim();
   var leccionID = document.getElementById("leccionID").innerHTML.trim();
@@ -391,7 +402,7 @@ function enviarCalificacion() {
     type: "POST",
     url: "../../Servicios/subirPuntosType.php",
     dataType: "json",
-    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"SP"  },
+    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SP" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
@@ -441,8 +452,8 @@ function startClock() {
     var minutes = Math.floor((actual % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((actual % (1000 * 60)) / 1000);
     // Output the result in an element with id="demo"
-    document.getElementById("actual").innerHTML =
-      minutes + "m " + seconds + "s ";
+    document.getElementById("actual").innerHTML = seconds + "s ";
+    //minutes + "m " + seconds + "s ";
 
     //----------------------------PREVIO-----------------------------------
     minutes = Math.floor(((actual - 1000) % (1000 * 60 * 60)) / (1000 * 60));
@@ -491,6 +502,7 @@ function incorrectByTime(questionNumber) {
     //Mueve el arreglo para quitar de la posición cero la pregunta que acaba de equivocarse
     questionNumberArray.shift();
     IncorrectAudio.play();
+    enviarCalificacionRedirigir();
   } else {
     //NORMALIZAR la respuesta CORRECTA
     correctText = document
@@ -519,5 +531,6 @@ function incorrectByTime(questionNumber) {
     //Mueve el arreglo para quitar de la posición cero la pregunta que acaba de equivocarse
     questionNumberArray.shift();
     IncorrectAudio.play();
+    enviarCalificacionRedirigir();
   }
 }

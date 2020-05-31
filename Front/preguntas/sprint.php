@@ -8,7 +8,7 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas9.css" />
-    <script src="../CSSsJSs/scriptSprint10.js"></script>
+    <script src="../CSSsJSs/scriptSprint12.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -16,6 +16,24 @@
 
 
 <body>
+  <script>
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+    $(document).keydown(function (event) {
+      if (event.keyCode == 123) {
+        // Prevent F12
+        return false;
+      } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+        // Prevent Ctrl+Shift+I
+        return false;
+      } else if (event.ctrlKey && event.keyCode == 85) {
+        // Prevent Ctrl+U
+        return false;
+      } else if (event.ctrlKey && event.keyCode == 67) {
+        // Prevent Ctrl+C
+        return false;
+      }
+    });
+  </script>
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
