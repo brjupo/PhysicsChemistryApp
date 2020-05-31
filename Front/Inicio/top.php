@@ -55,7 +55,7 @@
 
 //////////////////////////////////////////////////////
 echo'<script type="text/javascript">
-alert("'.$arregloTopUsuarios[1]["matricula"].'");
+alert("'.$arregloTopUsuarios[0]["matricula"].'");
 </script>';
 
         imprimirTop();
