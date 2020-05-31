@@ -29,22 +29,6 @@
                 $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ('$id_usuario', '$leccion', '$puntosNuevos','$flagTipo')";
                 mysqli_query($con,$sql);
     }
-    //Lanzar consulta para insertar primera calificacion
-    
-            
-    //SELECT puntuacion FROM puntuacion WHERE id_leccion = 1 AND id_licencia = (SELECT id_licencia FROM licencia WHERE id_usuario = 4 and vigencia > NOW());
-
-    //UPDATE puntuacion SET puntuacion = 78768 WHERE id_puntuacion = (SELECT id_puntuacion FROM puntuacion WHERE id_leccion = 1 AND id_licencia = (SELECT id_licencia FROM licencia WHERE id_usuario = 4 and vigencia > NOW()));
-   
-    /* $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$correo'";
-    $resultp = mysqli_query($con,$sql);
-    $rowp = mysqli_fetch_array($resultp);
-    
-    if($rowp){
-
-        //Si existe registrar contraseña en base de datos y responder true
-        $sql = "UPDATE usuario_prueba SET pswd='$password' WHERE mail = '$correo'";
-        mysqli_query($con,$sql); */
 
         $response["response"] = 'exito';
             
