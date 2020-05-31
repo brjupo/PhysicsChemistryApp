@@ -61,12 +61,14 @@
         for($i = 0; $i < 5; $i++){
           $posicion = $i + 1;
           $diamantes = $arregloTopUsuarios[$i]["suma"];
+          $matricula = substr($arregloTopUsuarios[$i]["matricula"], 5, 9);
+
           if($arregloTopUsuarios[$i]["avatar"] == NULL){
             $avatar = "avatar.jpg";
         }else{
           $avatar = $arregloTopUsuarios[$i]["avatar"];
         }
-          imprimirPersonaTop($posicion, $avatar, $arregloTopUsuarios[$i]["matricula"], $diamantes);
+          imprimirPersonaTop($posicion, $avatar, $matricula, $diamantes);
         } 
 
         imprimirRelleno();
