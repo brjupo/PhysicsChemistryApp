@@ -219,7 +219,7 @@
         //Para activar solo la siguiente leccion
         for ($i = 0; $i <= $tamanhoh; $i++) {
           $arregloLecciones[$i]["h"] = '1';
-          $arregloLecciones[$i]["hS"] = '1';}
+          $arregloLecciones[$i]["hS"] = '0';}
       }   
     }
     //$arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
