@@ -342,7 +342,7 @@
   {
 
     if($habilitar == '1'){
-      if($numeroLeccion == $_SESSION["tamanhoh"] ){
+      if($numeroLeccion == ($_SESSION["tamanhoh"]+1) ){////HERE
         echo '
         <div class="container">
           <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
