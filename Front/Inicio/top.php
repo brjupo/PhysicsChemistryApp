@@ -54,9 +54,6 @@
     }
 
 //////////////////////////////////////////////////////
-echo'<script type="text/javascript">
-alert("'.$arregloTopUsuarios[0]["matricula"].'");
-</script>';
 
         imprimirTop();
         imprimirRelleno();
@@ -69,7 +66,7 @@ alert("'.$arregloTopUsuarios[0]["matricula"].'");
         }else{
           $avatar = $arregloTopUsuarios[$i]["avatar"];
         }
-          imprimirPersonaTop($posicion, $avatar, $ultimosDigitosMatricula, $diamantes);
+          imprimirPersonaTop($posicion, $avatar, '444444', $diamantes);
         } 
 
         imprimirRelleno();
