@@ -87,7 +87,7 @@
     while (mysqli_stmt_fetch($statement)) {
       $arregloPP[0]["porcentajePP"] = $porcentajePP;
     }
-    $porcentajeAvance = $arregloPP[0]["porcentajePP"];
+    $porcentajeAvance = round($arregloPP[0]["porcentajePP"]);
     $porcentajeAvance .= '%';
 
 ////////////////////////////////////////////////////////////////////////////////////
