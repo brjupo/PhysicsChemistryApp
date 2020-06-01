@@ -73,7 +73,7 @@
 
 
     //Obtener el porcentaje completado total de la asignatura de práctica particular(PP) de la lección:
-    $statement = mysqli_prepare($con, "SELECT ((SELECT COUNT(*) FROM puntuacion WHERE id_usuario = ? AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))) AND tipo = 'PP' * 100) / (SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))))");
+    $statement = mysqli_prepare($con, "SELECT ((SELECT COUNT(*) FROM puntuacion WHERE id_usuario = ? AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))) AND tipo = 'PP' * 100) / (SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?)))) * 100");
     //[ID DEL USUARIO QUE INICIO SESIÓN]
     //[ID DE LA ASIGNATURA ACTUAL]
     //[ID DE LA ASIGNATURA ACTUAL]
@@ -87,8 +87,8 @@
     while (mysqli_stmt_fetch($statement)) {
       $arregloPP[0]["porcentajePP"] = $porcentajePP;
     }
-    $porcentajeAvance = $arregloPP[0]["porcentajePP"];
-     
+    $porcentajeAvance = round($arregloPP[0]["porcentajePP"]);
+    $porcentajeAvance .= '%';
 
 ////////////////////////////////////////////////////////////////////////////////////
     $statement = mysqli_prepare($con, "SELECT SUM(puntuacion) FROM puntuacion WHERE id_usuario = ? AND tipo = 'PP'");
@@ -109,7 +109,7 @@
     }
 
 //////////////////////////////////////
-$porcentajeAvance = "";
+
   imprimirVistaPerfil($matricula, $materia, $porcentajeAvance, $avatarActual, $diamantes);
 
   ?>
