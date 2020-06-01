@@ -4,7 +4,7 @@
   $matricula = $_POST["matricula"];
   $avatar = $_POST["avatar"];
 
-  $matricula .= "@itesm.mx";//se completa matricula con correo
+  //$matricula .= "@itesm.mx";//se completa matricula con correo
 
   $sql = "UPDATE alumno SET avatar = '$avatar' WHERE matricula = '$matricula'";
   mysqli_query($con, $sql);
