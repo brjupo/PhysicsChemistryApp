@@ -19,7 +19,7 @@
   $matricula = "A01169493";
   $porcentajeAvance = "53.2%";
   $avatarActual = "avatar.jpg";
-  $diamantes = "25,250";
+  $diamantes = "25,25";
 
   /////////////////////////////////////////////////////////////////////////////////
 
