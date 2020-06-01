@@ -8,7 +8,7 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas11.css" />
-    <script src="../CSSsJSs/scriptSprint13.js"></script>
+    <script src="../CSSsJSs/scriptSprint15.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -266,7 +266,7 @@
                         <p class="slide-bottom" id="later" style="display:none">30s</p>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <p><a id="puntosBuenos">0</a><sub id="puntosTotales">/' . $totalPreguntas . '</sub></p>
+                        <p><a id="puntosBuenos">0</a><sub id="puntosTotales">/' . $totalPreguntas*3 . '</sub></p>
                     </div>
                 </div>
             </div>

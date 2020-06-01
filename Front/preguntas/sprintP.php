@@ -8,7 +8,7 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas11.css" />
-    <script src="../CSSsJSs/scriptPractice10.js"></script>
+    <script src="../CSSsJSs/scriptSprintP2.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -88,7 +88,7 @@
 
     $idL = $arregloIdleccion["id_leccion"];
         //Traer todas las preguntas
-        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
+        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL ORDER BY RAND()"; //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
         $result = mysqli_query($con, $query);
         //contar Numero de elementos
         $query2 = "SELECT count(*) FROM pregunta WHERE id_leccion = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
@@ -100,6 +100,9 @@
             $array[] = $row;
             $arrayr[] = $row;
         }
+        
+
+
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
         ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
         for ($j = 0; $j < $total[0]; $j++) {
@@ -150,7 +153,7 @@
           </script>';
     }
 
-  
+    
     imprimirPreguntas($arrayr, $array, $total,$idL);
     ?>
 
@@ -158,8 +161,7 @@
     function imprimirPreguntas($arrayr, $array, $total,$idL)
     {
         imprimirBarraProgresoCruz($total[0],$idL);
-        imprimirContador();
-        imprimirMotivador();
+        imprimirContador($total[0]);
         imprimirPreguntasRespuestas($arrayr, $array, $total);
         imprimirFooter();
     }
@@ -238,7 +240,7 @@
                     <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
-                    <p id="leccionID">' .$idL. '</p>
+                    <p id="leccionID" style="display:none">' .$idL. '</p>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
                             class="progress-bar progress-bar-striped" 
@@ -253,42 +255,22 @@
             </div>
             ';
     }
-    function imprimirContador()
+    function imprimirContador($totalPreguntas)
     {
         echo '
             <div class="container">
                 <div class="row">
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p style="display:none" class="slide-bottom" id="previous">0m 10s</p>
-                    <p style="display:none" class="slide-bottom" id="actual">0m 10s</p>
-                    <p style="display:none" class="slide-bottom" id="later">0m 10s</p>
-                    <p style="display:none" id="puntosBuenos"></p>
-                </div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                        <p class="slide-bottom" id="previous" style="display:none">30s</p>
+                        <p class="slide-bottom" id="actual">30s</p>
+                        <p class="slide-bottom" id="later" style="display:none">30s</p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        <p><a id="puntosBuenos">0</a><sub id="puntosTotales">/' . $totalPreguntas*3 . '</sub></p>
+                    </div>
                 </div>
             </div>
             ';
-    }
-
-    function imprimirMotivador(){
-        echo '
-                <div id="motivationMessage" class="container noPaddingMargin" style="display: none;">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 noPaddingMargin">
-                            <!--div class="imagenEdu">
-                                <p id="dialogo" class="dialogoInsp">Aunque falles, sigues aprendiendo!</p>
-                            </div-->
-                            <div>
-                                <p id="dialogo" class="dialogoNoInsp">Aunque falles, sigues aprendiendo!</p>
-                            </div>
-                        </div>
-                        <div class="hidden-xs hidden-sm col-md-6 col-lg-6 col-xl-6">
-                            <p  style="color:rgba(0,0,0,0);">.</p>
-                        </div>
-                    </div>
-                </div>
-        ';
     }
 
     /*
@@ -314,7 +296,7 @@
             <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">' . $preguntaNumero . '</p>
+                <p id="preguntaNumero" style="display:none">' . $preguntaNumero . '</p>
                 <p class="formatoPreguntas">'
             . $preguntaTexto .
             '  
@@ -425,7 +407,7 @@
                 <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                    <p id="preguntaNumero">' . $preguntaNumero . '</p>
+                    <p id="preguntaNumero" style="display:none">' . $preguntaNumero . '</p>
                     <p class="formatoPreguntas">'
                     . $preguntaTexto .
                     ' 
