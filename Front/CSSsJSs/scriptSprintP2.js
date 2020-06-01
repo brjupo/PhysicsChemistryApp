@@ -244,7 +244,7 @@ function verifyIfCorrectOption(targetID, questionNumber) {
     questionNumberArray.shift();
     if (segundosActuales > 20) {
       puntos = puntos + 3;
-    } else if (segundosActuales > 20) {
+    } else if (segundosActuales > 10) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
@@ -314,7 +314,7 @@ function verifyIfTextIsCorrect(questionNumber) {
       .value.toLowerCase();
     if (segundosActuales > 20) {
       puntos = puntos + 3;
-    } else if (segundosActuales > 20) {
+    } else if (segundosActuales > 10) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
