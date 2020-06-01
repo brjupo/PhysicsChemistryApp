@@ -14,8 +14,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas9.css" />
-    <link rel="stylesheet" href="../CSSsJSs/styleNivelCompletado.css" />
+    <link rel="stylesheet" href="../CSSsJSs/styleNivelCompletado2.css" />
     <script src="../CSSsJSs/scriptSprintFinalizado2.js"></script>
   </head>
 
