@@ -147,7 +147,7 @@
                   <p class="Ciencia fuenteTitulo" id="asignatura">' . $_GET['asignatura'] . '</p>
                 </div>
                 <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
-                  <table class="table">
+                  <table class="table" style="display:none">
                     <tbody>
                       <tr>
                         <td width="60%">
