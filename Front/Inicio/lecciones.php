@@ -265,7 +265,7 @@
   {
     $tamanho = count($arregloLecciones);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirLeccion($i + 1, $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["h"],$arregloLecciones[$i]["hS"]);
+      imprimirLeccion($i + 1, $arregloLecciones[$i]["id_leccion"],  $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["h"],$arregloLecciones[$i]["hS"]);
     }
   }
 
@@ -300,50 +300,7 @@
   ';
   }
 
-
-  function imprimirSiempreAparece()
-  {
-    echo '  
-      <!----------------------------------------------SUBTEMAS--------------------------------------------->
-      <div class="container">
-        <div id="seccion0" class="row">
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-          <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
-            <table class="table fixed">
-              <tbody>
-                <tr>
-                  <td>
-                    <img class="iconsNumber" src="../CSSsJSs/icons/1.svg" />
-                  </td>
-                  <td class="tituloTemasPrincipales">
-                    Identificar triángulos rectángulos
-                  </td>
-                  <td>
-                    <a href="preguntas/practice.php"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
-                  </td>
-                  <td>
-                    <img class="icons" src="../CSSsJSs/icons/run.svg" />
-                  </td>
-                  <td>
-                    <img class="icons" src="../CSSsJSs/icons/examen.svg" />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <p></p>
-        </div>
-      </div>
-  ';
-  }
-
-  function imprimirLeccion($numeroLeccion, $nombreLeccion, $habilitar, $habilitarS)
+  function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $habilitar, $habilitarS)
   {
     if($habilitar == '1' && $habilitarS == '1' ){
     echo '
@@ -361,10 +318,10 @@
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/practice.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/practice.php?leccion='.$idLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
-                  <a href="../preguntas/sprint.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
+                  <a href="../preguntas/sprint.php?leccion='.$idLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/examen.svg" />
@@ -399,7 +356,7 @@
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/practice.php?leccion='.$nombreLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/practice.php?leccion='.$idLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
