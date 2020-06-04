@@ -16,24 +16,24 @@
 
 
 <body>
-  <script>
-    document.addEventListener("contextmenu", (event) => event.preventDefault());
-    $(document).keydown(function (event) {
-      if (event.keyCode == 123) {
-        // Prevent F12
-        return false;
-      } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
-        // Prevent Ctrl+Shift+I
-        return false;
-      } else if (event.ctrlKey && event.keyCode == 85) {
-        // Prevent Ctrl+U
-        return false;
-      } else if (event.ctrlKey && event.keyCode == 67) {
-        // Prevent Ctrl+C
-        return false;
-      }
-    });
-  </script>
+    <script>
+        document.addEventListener("contextmenu", (event) => event.preventDefault());
+        $(document).keydown(function(event) {
+            if (event.keyCode == 123) {
+                // Prevent F12
+                return false;
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                // Prevent Ctrl+Shift+I
+                return false;
+            } else if (event.ctrlKey && event.keyCode == 85) {
+                // Prevent Ctrl+U
+                return false;
+            } else if (event.ctrlKey && event.keyCode == 67) {
+                // Prevent Ctrl+C
+                return false;
+            }
+        });
+    </script>
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
@@ -72,23 +72,23 @@
         */
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    /*----Paso 1 Obtener el ID del subtema----*/
-    /*
-    $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
-    mysqli_stmt_bind_param($statement, "s", $leccion);
-    mysqli_stmt_execute($statement);
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_leccion);
+        $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+        /*----Paso 1 Obtener el ID del subtema----*/
+        /*
+        $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
+        mysqli_stmt_bind_param($statement, "s", $leccion);
+        mysqli_stmt_execute($statement);
+        mysqli_stmt_store_result($statement);
+        mysqli_stmt_bind_result($statement, $id_leccion);
 
-    $arregloIdleccion = array();
-    //Leemos datos ID de leccion
-    while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-      $arregloIdleccion["id_leccion"] = $id_leccion;
-    }
-    $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
-    */ 
-    $idL = $leccion;
+        $arregloIdleccion = array();
+        //Leemos datos ID de leccion
+        while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
+        $arregloIdleccion["id_leccion"] = $id_leccion;
+        }
+        $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
+        */
+        $idL = $leccion;
         //Traer todas las preguntas
         $query = "SELECT * FROM pregunta WHERE id_leccion = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
         $result = mysqli_query($con, $query);
@@ -152,14 +152,14 @@
           </script>';
     }
 
-  
-    imprimirPreguntas($arrayr, $array, $total,$idL);
+
+    imprimirPreguntas($arrayr, $array, $total, $idL);
     ?>
 
     <?php
-    function imprimirPreguntas($arrayr, $array, $total,$idL)
+    function imprimirPreguntas($arrayr, $array, $total, $idL)
     {
-        imprimirBarraProgresoCruz($total[0],$idL);
+        imprimirBarraProgresoCruz($total[0], $idL);
         imprimirContador();
         imprimirMotivador();
         imprimirPreguntasRespuestas($arrayr, $array, $total);
@@ -179,7 +179,7 @@
         $rc = "10,000,000";
         $imagen = 1;
 
-        
+
 
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
@@ -191,10 +191,10 @@
                 $arraytemp[0] = $arrayr[$x]["respuesta_correcta"];
                 $arraytemp[1] = $arrayr[$x]["respuesta2"];
                 $arraytemp[2] = $arrayr[$x]["respuesta3"];
-                $arraytemp[3]= $arrayr[$x]["respuesta4"];
+                $arraytemp[3] = $arrayr[$x]["respuesta4"];
 
-                $posicion = array_search($rcorrecta,$arraytemp);
-                
+                $posicion = array_search($rcorrecta, $arraytemp);
+
 
                 //////////////
                 imprimirPreguntaTipo1($x + 1, $arrayr[$x]["pregunta"]);
@@ -204,7 +204,7 @@
                     $arrayr[$x]["respuesta2"],
                     $arrayr[$x]["respuesta3"],
                     $arrayr[$x]["respuesta4"],
-                    $posicion,//aqui mandar posicion de respuesta correcta
+                    $posicion, //aqui mandar posicion de respuesta correcta
                     $array[$x]["id_pregunta"]
                 );
             } else {
@@ -219,7 +219,6 @@
                     $array[$x]["id_pregunta"]
                 );
             }
-            
         }
     }
     ?>
@@ -227,7 +226,7 @@
 
     <?php
 
-    function imprimirBarraProgresoCruz($totalPreguntas,$idL)
+    function imprimirBarraProgresoCruz($totalPreguntas, $idL)
     {
         $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
         echo '
@@ -240,7 +239,7 @@
                     <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
-                    <p id="leccionID">' .$idL. '</p>
+                    <p id="leccionID">' . $idL . '</p>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
                             class="progress-bar progress-bar-striped" 
@@ -273,7 +272,8 @@
             ';
     }
 
-    function imprimirMotivador(){
+    function imprimirMotivador()
+    {
         echo '
                 <div id="motivationMessage" class="container noPaddingMargin" style="display: none;">
                     <div class="row">
@@ -429,12 +429,12 @@
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
                     <p id="preguntaNumero">' . $preguntaNumero . '</p>
                     <p class="formatoPreguntas">'
-                    . $preguntaTexto .
-                    ' 
+            . $preguntaTexto .
+            ' 
                     <input type="text" id="' . $IDTextoEscrito . '">
                     '
-                    . $preguntaTexto2 .
-                    '  
+            . $preguntaTexto2 .
+            '  
                     </p>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
