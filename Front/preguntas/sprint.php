@@ -71,9 +71,10 @@
                 </script>';
         */
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
+    
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     /*----Paso 1 Obtener el ID del subtema----*/
+    /*
     $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
     mysqli_stmt_bind_param($statement, "s", $leccion);
     mysqli_stmt_execute($statement);
@@ -86,7 +87,9 @@
       $arregloIdleccion["id_leccion"] = $id_leccion;
     }
 
-    $idL = $arregloIdleccion["id_leccion"];
+    $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
+    */
+    $idl = $leccion;
         //Traer todas las preguntas
         $query = "SELECT * FROM pregunta WHERE id_leccion = $idL ORDER BY RAND()"; //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
         $result = mysqli_query($con, $query);
