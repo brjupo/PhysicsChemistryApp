@@ -303,6 +303,8 @@
 
   function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $habilitar, $habilitarS)
   {
+    $habilitar = '1';
+    $habilitarS = '1';
     if($habilitar == '1' && $habilitarS == '1' ){
     echo '
       <div class="container">
