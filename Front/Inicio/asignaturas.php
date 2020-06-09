@@ -214,7 +214,7 @@
                 <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
                   <img
                     class="iconoPrincipal"
-                    src="../CSSsJSs/icons/quetzal.svg"
+                    src="../CSSsJSs/icons/quet.svg"
                   />
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
