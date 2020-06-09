@@ -18,7 +18,7 @@
   session_start();
   $tokenValidar = array();
 
-  
+
   $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
@@ -103,44 +103,46 @@
         $arregloAsignaturas = traerAsignaturas();
         //todas las asignaturas
 
-                  //Comprobar que tiene más de una licencia para no mostrar pantalla de materias
-                $query = "SELECT id_usuario FROM usuario_prueba WHERE mail = '$correo'"; 
-                  $result = mysqli_query($con, $query);
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $iduser[] = $row;}
-                 /*  echo '<script type="text/javascript">
+        //Comprobar que tiene más de una licencia para no mostrar pantalla de materias
+        $query = "SELECT id_usuario FROM usuario_prueba WHERE mail = '$correo'";
+        $result = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+          $iduser[] = $row;
+        }
+        /*  echo '<script type="text/javascript">
                       alert("'.$iduser[0]["id_usuario"].'");
                       </script>'; */
-                
-                      $iduser = $iduser[0]["id_usuario"];
 
-                  $query2 = "SELECT count(*) FROM licencia WHERE id_usuario = $iduser"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
-                  $result2 = mysqli_query($con, $query2);
-                  $total = mysqli_fetch_row($result2);
+        $iduser = $iduser[0]["id_usuario"];
 
-                  /* echo '<script type="text/javascript">
+        $query2 = "SELECT count(*) FROM licencia WHERE id_usuario = $iduser"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+        $result2 = mysqli_query($con, $query2);
+        $total = mysqli_fetch_row($result2);
+
+        /* echo '<script type="text/javascript">
                       alert("'.$total[0].'");
                       </script>'; */
 
-                     if($total[0] > 1){
-                        imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
-                      }else{
-                        //Traeer asignatura
-                        $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser'"; 
-                        $result = mysqli_query($con, $query);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                          $idasignatura[] = $row;}
-                          $idMateria = $idasignatura[0]["id_asignatura"]-1;
-                          $materia = $arregloAsignaturastodas[$idMateria]; 
-                          $_SESSION["asignaturaNavegacion"] = $materia;
-                          $_SESSION["idAsignatura"] = $idMateria;
-                        echo '<script type="text/javascript">
-                          window.location.href="https://kaanbal.net/Front/Inicio/temas.php?asignatura='.$materia.'";
+        if ($total[0] > 1) {
+          imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
+        } else {
+          //Traeer asignatura
+          $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser'";
+          $result = mysqli_query($con, $query);
+          while ($row = mysqli_fetch_assoc($result)) {
+            $idasignatura[] = $row;
+          }
+          $idMateria = $idasignatura[0]["id_asignatura"] - 1;
+          $materia = $arregloAsignaturastodas[$idMateria];
+          $_SESSION["asignaturaNavegacion"] = $materia;
+          $_SESSION["idAsignatura"] = $idMateria;
+          echo '<script type="text/javascript">
+                          window.location.href="https://kaanbal.net/Front/Inicio/temas.php?asignatura=' . $materia . '";
                           </script>';
-                      }
+        }
 
-                      ///////////////////
-        
+        ///////////////////
+
       }
 
       //Si el usuario NO EXISTE mensaje de error y retorna a inicio
@@ -165,7 +167,8 @@
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++PROBADO*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     /*----Paso 1 Obtener las asignaturas a las que se tienen permiso ----*/
-    $statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
+    //$statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
+    $statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ?");
     mysqli_stmt_bind_param($statement, "s", $_SESSION["id_usuario"]);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
@@ -275,21 +278,21 @@
     $link = "temas.php?asignatura=";
     if ($siTienePermiso1 == 1) {
       $claseBloque1 = "asignaturaPrincipal";
-      $link1=$link.$nombreAsignatura1;
-      $imagen1="imagenAsignatura";
+      $link1 = $link . $nombreAsignatura1;
+      $imagen1 = "imagenAsignatura";
     } else {
       $claseBloque1 = "asignaturaDesactivada";
-      $link1="";
-      $imagen1="imagenDesactivada";
+      $link1 = "";
+      $imagen1 = "imagenDesactivada";
     }
     if ($siTienePermiso2 == 1) {
       $claseBloque2 = "asignaturaPrincipal";
-      $link2=$link.$nombreAsignatura2;
-      $imagen2="imagenAsignatura";
+      $link2 = $link . $nombreAsignatura2;
+      $imagen2 = "imagenAsignatura";
     } else {
       $claseBloque2 = "asignaturaDesactivada";
-      $link2="";
-      $imagen2="imagenDesactivada";
+      $link2 = "";
+      $imagen2 = "imagenDesactivada";
     }
     echo '
         <div class="container">
@@ -300,7 +303,7 @@
                   class="' . $claseBloque1 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
-                    <img class="'.$imagen1.'" src="../CSSsJSs/icons/star.svg" />
+                    <img class="' . $imagen1 . '" src="../CSSsJSs/icons/star.svg" />
                   </div>
                   <div class="tituloAsignaturas">
                     ' . $nombreAsignatura1 . '
@@ -314,7 +317,7 @@
                   class="' . $claseBloque2 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
-                    <img class="'.$imagen2.'" src="../CSSsJSs/icons/physics.svg" />
+                    <img class="' . $imagen2 . '" src="../CSSsJSs/icons/physics.svg" />
                   </div>
                   <div class="tituloAsignaturas">
                   ' . $nombreAsignatura2 . '
@@ -343,12 +346,12 @@
     $link = "temas.php?asignatura=";
     if ($siTienePermiso == 1) {
       $claseBloque = "asignaturaPrincipal";
-      $link.=$nombreAsignatura;
-      $imagen="imagenAsignatura";
+      $link .= $nombreAsignatura;
+      $imagen = "imagenAsignatura";
     } else {
       $claseBloque = "asignaturaDesactivada";
-      $link="";
-      $imagen="imagenDesactivada";
+      $link = "";
+      $imagen = "imagenDesactivada";
     }
     echo '
         <div class="container">
@@ -359,11 +362,11 @@
                   class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
-                    <img class="'.$imagen.'" src="../CSSsJSs/icons/star.svg" />
+                    <img class="' . $imagen . '" src="../CSSsJSs/icons/star.svg" />
                   </div>
                   <div class="tituloAsignaturas">'
-                  . $nombreAsignatura .
-                  '</div>
+      . $nombreAsignatura .
+      '</div>
                 </div>              
               </a>
               <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
