@@ -167,8 +167,8 @@
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++PROBADO*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     /*----Paso 1 Obtener las asignaturas a las que se tienen permiso ----*/
-    //$statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
-    $statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ?)");
+    $statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
+    //$statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ?)");
     mysqli_stmt_bind_param($statement, "s", $_SESSION["id_usuario"]);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
@@ -214,7 +214,7 @@
                 <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
                   <img
                     class="iconoPrincipal"
-                    src="../CSSsJSs/icons/quet.svg"
+                    src="../CSSsJSs/icons/quetzal.svg"
                   />
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">

@@ -73,7 +73,7 @@
             <div class="row">
             <div class="textCenter col-2 col-md-2 col-md-1 col-lg-1 col-xl-1"></div>
             <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4">
-                <img class="iconoPrincipal" src="Front/CSSsJSs/icons/quet.svg" />
+                <img class="iconoPrincipal" src="Front/CSSsJSs/icons/quetzal.svg" />
             </div>
             <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
             <div class="textCenter col-2 col-sm-2 d-md-none"></div>
