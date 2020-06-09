@@ -168,7 +168,7 @@
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     /*----Paso 1 Obtener las asignaturas a las que se tienen permiso ----*/
     //$statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
-    $statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ?");
+    $statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ?)");
     mysqli_stmt_bind_param($statement, "s", $_SESSION["id_usuario"]);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
