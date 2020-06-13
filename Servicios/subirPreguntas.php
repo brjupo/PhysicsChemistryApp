@@ -44,7 +44,7 @@ if (isset($_POST["Import"])) {
           </script>";
       } */
 
-      $sql = "INSERT into pregunta (id_pregunta	id_autor, id_leccion, orden, pregunta, respuesta_correcta, respuesta2, respuesta3, respuesta4, tipo, estatus, tiene_imagen) 
+      $sql = "INSERT into pregunta (id_pregunta, id_autor, id_leccion, orden, pregunta, respuesta_correcta, respuesta2, respuesta3, respuesta4, tipo, estatus, tiene_imagen) 
                    values ('" . $getData[0] ."','" . $getData[1] . "','" . $getData[2] ."','" . $getData[3] ."','" . $getData[4] ."','" . $getData[5] ."','" . $getData[6] ."','" . $getData[7] ."','" . $getData[8] ."','" . $getData[9] ."','" . $getData[10] ."','" . $getData[11] ."')";
       $result = mysqli_query($con, $sql);
       if (!isset($result)) {
