@@ -12,8 +12,13 @@ if (isset($_POST["Import"])) {
       /* echo "<script type=\"text/javascript\">
               alert(\"".$mailr."\");
               </script>"; */
+
+      /*        //Corroborar que no existe el correo en base de datos
+      $sql = "SELECT id_pregunta FROM pregunta WHERE mail = '$mailr'";
+      $resultp = mysqli_query($con, $sql);
+      $rowp = mysqli_fetch_array($resultp);
          
-     /*  if ($rowp) {
+       if ($rowp) {
 
         if (!isset($rowp)) {
           echo "<script type=\"text/javascript\">
