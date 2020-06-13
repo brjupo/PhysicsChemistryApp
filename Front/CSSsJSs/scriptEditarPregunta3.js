@@ -30,7 +30,6 @@ function saveInDDBB() {
       console.log(data.response);
       if (data.response == "exito") {
         alert("Información obtenida");
-        showData(data);
       } else {
         alert(data.response);
       }
@@ -60,6 +59,7 @@ function loadInformation() {
       console.log(data.response);
       if (data.response == "exito") {
         alert("Información cargada");
+        showData(data);
       } else {
         alert(data.response);
       }
