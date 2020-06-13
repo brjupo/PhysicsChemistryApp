@@ -13,6 +13,12 @@
 
 <body>
   <?php
+  $GLOBALS['servername'] = "localhost";
+  $GLOBALS['username'] = "u526597556_dev";
+  $GLOBALS['password'] = "1BLeeAgwq1*isgm&jBJe";
+  $GLOBALS['dbname'] = "u526597556_kaanbal";
+  ?>
+  <?php
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
@@ -44,7 +50,7 @@
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloLecciones = array();
     $arregloLecciones = traerLecciones();
-    $_SESSION["subtemaNavegacion"]=$_GET['subtema'];
+    $_SESSION["subtemaNavegacion"] = $_GET['subtema'];
     imprimirPaginaLecciones($arregloLecciones);
   } else {
 
@@ -137,8 +143,10 @@
             </script>';
     */
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    //-------CAMBIADO POR EL BRANDON A LAS 15:30 EL 13 DE JUNIO
+    /*
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    /*----Paso 1 Obtener el ID del subtema----*/
+    //----Paso 1 Obtener el ID del subtema----
     $statement = mysqli_prepare($con, "SELECT id_subtema FROM subtema WHERE nombre = ?");
     mysqli_stmt_bind_param($statement, "s", $subtema);
     mysqli_stmt_execute($statement);
@@ -150,12 +158,16 @@
     while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
       $arregloIdsubtema["id_subtema"] = $id_subtema;
     }
+    */
+    $id_subtema = $subtema;
+    $arregloIdsubtema["id_subtema"] = $id_subtema;
 
-    /*----Paso 2 Llamar a las lecciones del subtema-------*/    
+    /*----Paso 2 Llamar a las lecciones del subtema-------*/
+    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     ///Llamar a las habilitadas
     //Debe de traer todas en la que puntiacion PP sea mayor a 70%, las que sea mayor al 70% deberan tener habilitado el sprint y la siguiente leccion
     $statement = mysqli_prepare($con, "SELECT l.*, FLOOR(COUNT(p.id_leccion) * 0.7) as setenta, pu.puntuacion FROM leccion l JOIN pregunta p JOIN puntuacion pu ON p.id_leccion = l.id_leccion AND l.id_leccion = pu.id_leccion AND p.id_leccion = pu.id_leccion WHERE l.id_subtema = ? AND pu.id_usuario = ? AND pu.tipo = 'PP' GROUP BY p.id_leccion");
-    mysqli_stmt_bind_param($statement, "ii",$id_subtema,$_SESSION["id_usuario"]);
+    mysqli_stmt_bind_param($statement, "ii", $id_subtema, $_SESSION["id_usuario"]);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
@@ -176,14 +188,15 @@
     $tamanhoLeccionesh = count($arregloLeccionesh);
 
     $j = 0;
-    for($i = 0; $i < $tamanhoLeccionesh; $i++){
-      if($arregloLeccionesh[$i]["setenta"] <= $arregloLeccionesh[$i]["puntuacion"])
-      {$j = $j + 1;}
+    for ($i = 0; $i < $tamanhoLeccionesh; $i++) {
+      if ($arregloLeccionesh[$i]["setenta"] <= $arregloLeccionesh[$i]["puntuacion"]) {
+        $j = $j + 1;
+      }
     }
 
     //Llamar no habilitadas
     $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?");
-    mysqli_stmt_bind_param($statement, "i",$id_subtema);
+    mysqli_stmt_bind_param($statement, "i", $id_subtema);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
@@ -205,28 +218,28 @@
     $tamanho = count($arregloLecciones);
 
     //para siempre habilitar la primera lección es el if
-    if($tamanhoh == 0){
+    if ($tamanhoh == 0) {
       $arregloLecciones[0]["h"] = '1';
       $arregloLecciones[0]["hS"] = '0';
-    }
-    else{
-      if ($tamanhoh == $tamanho){
+    } else {
+      if ($tamanhoh == $tamanho) {
         //Para activar ya todas las lecciones
         for ($i = 0; $i < $tamanhoh; $i++) {
           $arregloLecciones[$i]["h"] = '1';
-          $arregloLecciones[$i]["hS"] = '1';}
-      }else{
+          $arregloLecciones[$i]["hS"] = '1';
+        }
+      } else {
         //Para activar solo la siguiente leccion
         for ($i = 0; $i <= $tamanhoh; $i++) {
-          if ($i == $tamanhoh){
+          if ($i == $tamanhoh) {
             $arregloLecciones[$i]["h"] = '1';
             $arregloLecciones[$i]["hS"] = '0';
-          }else{
+          } else {
             $arregloLecciones[$i]["h"] = '1';
             $arregloLecciones[$i]["hS"] = '1';
           }
         }
-      }   
+      }
     }
     //$arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
     ////////////
@@ -254,9 +267,7 @@
   function imprimirPaginaLecciones($arregloLecciones)
   {
     imprimirTitulo();
-    //imprimirSiempreAparece();
     imprimirLecciones($arregloLecciones);
-
     imprimirRelleno();
     imprimirFooter();
   }
@@ -265,7 +276,7 @@
   {
     $tamanho = count($arregloLecciones);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirLeccion($i + 1, $arregloLecciones[$i]["id_leccion"],  $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["h"],$arregloLecciones[$i]["hS"]);
+      imprimirLeccion($i + 1, $arregloLecciones[$i]["id_leccion"],  $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["h"], $arregloLecciones[$i]["hS"]);
       //function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $habilitar, $habilitarS)
     }
   }
@@ -274,16 +285,29 @@
   function imprimirTitulo()
   {
     $temaNavegacion = $_SESSION["temaNavegacion"];
+    try {
+      $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";dbname=" . $GLOBALS['dbname'] . "", $GLOBALS['username'], $GLOBALS['password']);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $idSubtema = $_GET['subtema'];
+      $stringQuery = "SELECT nombre FROM subtema WHERE id_subtema='" . $idSubtema . "' ;";
+      $stmt = $conn->query($stringQuery);
+      while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+        $nombreSubtema = $row[0];
+      }
+    } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
     echo '
     <!----------------------------------------------TITULO--------------------------------------------->
     <div class="top">
       <div class="container">
         <div class="row titulo">
           <div class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            <a href="subtemas.php?tema='.$temaNavegacion.'"><img class="iconoBack" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
+            <a href="subtemas.php?tema=' . $temaNavegacion . '"><img class="iconoBack" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
           </div>
           <div class="textCenter col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
-            <p class="Materia fuenteTitulo">'.$_GET['subtema'].'</p>
+            <p class="Materia fuenteTitulo">' . $nombreSubtema . '</p>
           </div>
         </div>
       </div>
@@ -305,8 +329,8 @@
   {
     $habilitar = '1';
     $habilitarS = '1';
-    if($habilitar == '1' && $habilitarS == '1' ){
-    echo '
+    if ($habilitar == '1' && $habilitarS == '1') {
+      echo '
       <div class="container">
         <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
           <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
@@ -321,10 +345,10 @@
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/practice.php?leccion='.$idLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/practice.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
-                  <a href="../preguntas/sprint.php?leccion='.$idLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
+                  <a href="../preguntas/sprint.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/examen.svg" />
@@ -342,8 +366,8 @@
           <p></p>
         </div>
       </div>
-  ';}
-  elseif($habilitar == '1'){
+  ';
+    } elseif ($habilitar == '1') {
       echo '
       <div class="container">
         <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
@@ -359,7 +383,7 @@
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/practice.php?leccion='.$idLeccion.'"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/practice.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
@@ -380,9 +404,9 @@
           <p></p>
         </div>
       </div>
-  ';}
-  else{
-          echo '
+  ';
+    } else {
+      echo '
               <div class="container">
                 <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
                   <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
@@ -418,7 +442,8 @@
                   <p></p>
                 </div>
               </div>
-          ';}
+          ';
+    }
   }
 
   function imprimirRelleno()

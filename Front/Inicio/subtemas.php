@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Subtemas</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../CSSsJSs/styleSubtemas2.css" />
-    <script src="../CSSsJSs/scriptSubtemas.js"></script>
+  <link rel="stylesheet" href="../CSSsJSs/styleSubtemas2.css" />
+  <script src="../CSSsJSs/scriptSubtemas.js"></script>
 </head>
 
 <body>
-
+  <?php
+  $GLOBALS['servername'] = "localhost";
+  $GLOBALS['username'] = "u526597556_dev";
+  $GLOBALS['password'] = "1BLeeAgwq1*isgm&jBJe";
+  $GLOBALS['dbname'] = "u526597556_kaanbal";
+  ?>
   <?php
   ///////////////////////////////////////////
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
@@ -43,7 +49,7 @@
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloSubtemas = array();
     $arregloSubtemas = traerSubtemas();
-    $_SESSION["temaNavegacion"]=$_GET['tema'];
+    $_SESSION["temaNavegacion"] = $_GET['tema'];
     imprimirPaginaSubtemas($arregloSubtemas);
   } else {
 
@@ -65,7 +71,6 @@
       $arregloSubtemas = array();
       $arregloSubtemas = traerSubtemas();
       imprimirPaginaSubtemas($arregloSubtemas);
-
     } else {
       echo '<script type="text/javascript">
         window.location.href="https://kaanbal.net";
@@ -76,17 +81,19 @@
 
   <?php
 
-function traerSubtemas(){
-
-   /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-   $tema = $_GET['tema'];
-   /*echo '<script type="text/javascript">
+  function traerSubtemas()
+  {
+    //-------CAMBIADO POR EL BRANDON A LAS 16:00 EL 13 DE JUNIO
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    $id_tema = $_GET['tema'];
+    /*echo '<script type="text/javascript">
            alert("'.$tema.'");
            </script>';
     */
-   /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /*
    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-   /*----Paso 1 Obtener el ID de la asignatura----*/
+   //----Paso 1 Obtener el ID de la asignatura----
    $statement = mysqli_prepare($con, "SELECT id_tema FROM tema WHERE nombre = ?");
    mysqli_stmt_bind_param($statement, "s", $tema);
    mysqli_stmt_execute($statement);
@@ -98,27 +105,29 @@ function traerSubtemas(){
    while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
      $arregloIdtema["id_tema"] = $id_tema;
    }
-   
+   */
+    $arregloIdtema["id_tema"] = $id_tema;
     /*----Paso 2 Llamar a los subtemas de los temas-------*/
-  $statement = mysqli_prepare($con, "SELECT * FROM subtema WHERE id_tema = ?");//WHERE mail = ? AND pswd = ?
-  mysqli_stmt_bind_param($statement, "s", $arregloIdtema["id_tema"]);
-  mysqli_stmt_execute($statement);
+    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+    $statement = mysqli_prepare($con, "SELECT * FROM subtema WHERE id_tema = ?"); //WHERE mail = ? AND pswd = ?
+    mysqli_stmt_bind_param($statement, "s", $arregloIdtema["id_tema"]);
+    mysqli_stmt_execute($statement);
 
-  mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_subtema, $id_tema, $nombre);
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $id_subtema, $id_tema, $nombre);
 
-  $arregloSubtemas = array();
-  $i=0;
-  //Leemos datos del usuario
-  while(mysqli_stmt_fetch($statement)){//si si existe el usuario
+    $arregloSubtemas = array();
+    $i = 0;
+    //Leemos datos del usuario
+    while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
       $arregloSubtemas[$i]["id_subtema"] = $id_subtema;
-      $arregloSubtemas[$i]["id_tema"]= $id_tema;            
-      $arregloSubtemas[$i]["nombre"] = $nombre;  
-      $i=$i+1;   
-  }
+      $arregloSubtemas[$i]["id_tema"] = $id_tema;
+      $arregloSubtemas[$i]["nombre"] = $nombre;
+      $i = $i + 1;
+    }
 
-  return($arregloSubtemas);
-}
+    return ($arregloSubtemas);
+  }
 
   function imprimirPaginaSubtemas($arregloSubtemas)
   {
@@ -133,25 +142,38 @@ function traerSubtemas(){
   function imprimirSubtemas($arregloSubtemas)
   {
     $tamanho = count($arregloSubtemas);
-    for ($i = 0; $i < $tamanho; $i++) { 
-        imprimirSubtema($i+1,$arregloSubtemas[$i]["nombre"]);  
-      }
+    for ($i = 0; $i < $tamanho; $i++) {
+      imprimirSubtema($i + 1, $arregloSubtemas[$i]["id_subtema"], $arregloSubtemas[$i]["nombre"]);
+    }
   }
 
 
   function imprimirTitulo()
-  { 
+  {
     $asignaturaNavegacion = $_SESSION["asignaturaNavegacion"];
+    try {
+      $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";dbname=" . $GLOBALS['dbname'] . "", $GLOBALS['username'], $GLOBALS['password']);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $idTema = $_GET['tema'];
+      $stringQuery = "SELECT nombre FROM tema WHERE id_tema='" . $idTema . "' ;";
+      $stmt = $conn->query($stringQuery);
+      while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+        $nombreTema = $row[0];
+      }
+    } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
     echo '
     <!----------------------------------------------TITULO--------------------------------------------->
     <div class="top">
       <div class="container">
         <div class="row titulo">
           <div class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-            <a href="temas.php?asignatura='.$asignaturaNavegacion.'"><img class="iconoBack" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
+            <a href="temas.php?asignatura=' . $asignaturaNavegacion . '"><img class="iconoBack" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
           </div>
           <div class="textCenter col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
-            <p class="Materia fuenteTitulo">'.$_GET['tema'].'</p>
+            <p class="Materia fuenteTitulo">' . $nombreTema . '</p>
           </div>
         </div>
       </div>
@@ -212,21 +234,21 @@ function traerSubtemas(){
   ';
   }
 
-  function imprimirSubtema($numeroSubtema, $nombreSubtema)
+  function imprimirSubtema($numeroSubtema, $id_subtema, $nombreSubtema)
   {
     echo '
       <div class="container">
-        <div id="seccion'.$numeroSubtema.'" class="row fade">
+        <div id="seccion' . $numeroSubtema . '" class="row fade">
           <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
           <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
             <table class="table fixed">
               <tbody>
                 <tr>
                   <td>
-                    <img class="iconsNumber" src="../CSSsJSs/icons/'.$numeroSubtema.'.svg" />
+                    <img class="iconsNumber" src="../CSSsJSs/icons/' . $numeroSubtema . '.svg" />
                   </td>
                   <td class="tituloTemasPrincipales">
-                  '.$nombreSubtema.'
+                  ' . $nombreSubtema . '
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/fullBook.svg"/>
@@ -235,7 +257,7 @@ function traerSubtemas(){
                     <img class="icons" src="../CSSsJSs/icons/runner.svg" />
                   </td>
                   <td>
-                    <a href="lecciones.php?subtema='.$nombreSubtema.'"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
+                    <a href="lecciones.php?subtema=' . $id_subtema . '"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
                   </td>
                 </tr>
               </tbody>
