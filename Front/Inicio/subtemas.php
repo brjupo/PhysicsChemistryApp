@@ -12,7 +12,12 @@
 </head>
 
 <body>
-
+  <?php
+  $GLOBALS['servername'] = "localhost";
+  $GLOBALS['username'] = "u526597556_dev";
+  $GLOBALS['password'] = "1BLeeAgwq1*isgm&jBJe";
+  $GLOBALS['dbname'] = "u526597556_kaanbal";
+  ?>
   <?php
   ///////////////////////////////////////////
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
