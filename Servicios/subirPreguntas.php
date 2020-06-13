@@ -49,7 +49,7 @@ if (isset($_POST["Import"])) {
       $result = mysqli_query($con, $sql);
       if (!isset($result)) {
         echo "<script type=\"text/javascript\">
-              alert(\"Archivo no valido:Por favor carga un archivo CSV.\");
+              alert(\"Archivo no valido: Por favor carga un archivo CSV.\");
               window.location = \"../Front/errorInfoPages/uploadInfo.php\"
               </script>";
       } else {
