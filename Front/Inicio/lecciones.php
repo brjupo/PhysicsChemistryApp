@@ -137,8 +137,10 @@
             </script>';
     */
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    //-------CAMBIADO POR EL BRANDON A LAS 15:30 EL 13 DE JUNIO
+    /*
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    /*----Paso 1 Obtener el ID del subtema----*/
+    //----Paso 1 Obtener el ID del subtema----
     $statement = mysqli_prepare($con, "SELECT id_subtema FROM subtema WHERE nombre = ?");
     mysqli_stmt_bind_param($statement, "s", $subtema);
     mysqli_stmt_execute($statement);
@@ -150,8 +152,12 @@
     while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
       $arregloIdsubtema["id_subtema"] = $id_subtema;
     }
-
+    */
+    $id_subtema=$subtema;
+    $arregloIdsubtema["id_subtema"] = $id_subtema;
+    
     /*----Paso 2 Llamar a las lecciones del subtema-------*/    
+    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     ///Llamar a las habilitadas
     //Debe de traer todas en la que puntiacion PP sea mayor a 70%, las que sea mayor al 70% deberan tener habilitado el sprint y la siguiente leccion
     $statement = mysqli_prepare($con, "SELECT l.*, FLOOR(COUNT(p.id_leccion) * 0.7) as setenta, pu.puntuacion FROM leccion l JOIN pregunta p JOIN puntuacion pu ON p.id_leccion = l.id_leccion AND l.id_leccion = pu.id_leccion AND p.id_leccion = pu.id_leccion WHERE l.id_subtema = ? AND pu.id_usuario = ? AND pu.tipo = 'PP' GROUP BY p.id_leccion");

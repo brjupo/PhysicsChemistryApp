@@ -134,7 +134,7 @@ function traerSubtemas(){
   {
     $tamanho = count($arregloSubtemas);
     for ($i = 0; $i < $tamanho; $i++) { 
-        imprimirSubtema($i+1,$arregloSubtemas[$i]["nombre"]);  
+        imprimirSubtema($i+1,$arregloSubtemas[$i]["id_subtema"],$arregloSubtemas[$i]["nombre"]);  
       }
   }
 
@@ -212,7 +212,7 @@ function traerSubtemas(){
   ';
   }
 
-  function imprimirSubtema($numeroSubtema, $nombreSubtema)
+  function imprimirSubtema($numeroSubtema, $id_subtema, $nombreSubtema)
   {
     echo '
       <div class="container">
@@ -235,7 +235,7 @@ function traerSubtemas(){
                     <img class="icons" src="../CSSsJSs/icons/runner.svg" />
                   </td>
                   <td>
-                    <a href="lecciones.php?subtema='.$nombreSubtema.'"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
+                    <a href="lecciones.php?subtema='.$id_subtema.'"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
                   </td>
                 </tr>
               </tbody>
