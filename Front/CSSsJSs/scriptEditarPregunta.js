@@ -9,7 +9,7 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == guardarEnBBDD) {
-      //saveInDDBB();
+      saveInDDBB();
       return;
     }
     // Go up the DOM
@@ -17,12 +17,10 @@ document.addEventListener("click", function (evt) {
   } while (targetElement);
 });
 
-function saveInDDBB() {}
-
-function loadInformation() {
+function saveInDDBB() {
   $.ajax({
     type: "POST",
-    url: "../../Servicios/getQuestionInfo.php",
+    url: "../../Servicios/updateQuestionInfo.php",
     dataType: "json",
     data: {
       leccion: document.getElementById("idLeccion").value,
@@ -33,6 +31,35 @@ function loadInformation() {
       if (data.response == "exito") {
         alert("Información obtenida");
         showData(data);
+      } else {
+        alert(data.response);
+      }
+    },
+    error: function () {
+      alert("ERROR Desconocido");
+    },
+  });
+}
+
+function loadInformation() {
+  $.ajax({
+    type: "POST",
+    url: "../../Servicios/getQuestionInfo.php",
+    dataType: "json",
+    data: {
+      leccion: document.getElementById("idLeccion").value,
+      numeroPregunta: document.getElementById("numeroPregunta").value,
+      pregunta: document.getElementById("pregunta").value,
+      respuesta_correcta: document.getElementById("respuesta_correcta").value,
+      respuesta2: document.getElementById("respuesta2").value,
+      respuesta3: document.getElementById("respuesta3").value,
+      respuesta4: document.getElementById("respuesta4").value,
+      tipo: document.getElementById("tipo").value,
+    },
+    success: function (data) {
+      console.log(data.response);
+      if (data.response == "exito") {
+        alert("Información cargada");
       } else {
         alert(data.response);
       }
