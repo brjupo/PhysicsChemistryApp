@@ -50,12 +50,12 @@ if (isset($_POST["Import"])) {
       if (!isset($result)) {
         echo "<script type=\"text/javascript\">
               alert(\"Archivo no valido: Por favor carga un archivo CSV.\");
-              window.location = \"../Front/errorInfoPages/uploadInfo.php\"
+              window.location = \"../Front/errorInfoPages/uploadPreguntas.php\"
               </script>";
       } else {
         echo "<script type=\"text/javascript\">
             alert(\"Las preguntas se han cargado correctamente.\");
-            window.location = \"../Front/errorInfoPages/uploadInfo.php\"
+            window.location = \"../Front/errorInfoPages/uploadPreguntas.php\"
           </script>";
       }
     //cierreelse}
