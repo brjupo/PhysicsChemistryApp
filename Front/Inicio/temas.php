@@ -137,7 +137,7 @@
   {
     $tamanho = count($arregloTemas);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirTema($i + 1, $arregloTemas[$i]["id_asignatura"], $arregloTemas[$i]["nombre"]);
+      imprimirTema($i + 1, $arregloTemas[$i]["id_tema"], $arregloTemas[$i]["nombre"]);
     }
   }
 
