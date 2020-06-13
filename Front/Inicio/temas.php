@@ -41,7 +41,7 @@
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloTemas = array();
     $arregloTemas = traerTemas();
-    $_SESSION["asignaturaNavegacion"]=$_GET['asignatura'];
+    $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
     imprimirPagina($arregloTemas);
   } else {
 
@@ -50,17 +50,17 @@
             </script>'; */
     ////////////////////////////////////////
     //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");	
-      //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-      $stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
-      $result = mysqli_query($con, $stringQuery);
-      $rowp = mysqli_fetch_array($result);
+    //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+    $stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
+    $result = mysqli_query($con, $stringQuery);
+    $rowp = mysqli_fetch_array($result);
 
     //Validamos que los campos correo y password no lleguen vacios
     if ($rowp) {
-        $arregloTemas = array();
-        $arregloTemas = traerTemas();
-        $_SESSION["asignaturaNavegacion"]=$_GET['asignatura'];
-        imprimirPagina($arregloTemas);
+      $arregloTemas = array();
+      $arregloTemas = traerTemas();
+      $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
+      imprimirPagina($arregloTemas);
     } else {
 
       echo '<script type="text/javascript">
@@ -137,7 +137,7 @@
   {
     $tamanho = count($arregloTemas);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirTema($i + 1, $arregloTemas[$i]["nombre"]);
+      imprimirTema($i + 1, $arregloTemas[$i]["id_asignatura"], $arregloTemas[$i]["nombre"]);
     }
   }
 
@@ -160,7 +160,7 @@
               <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
             </div>
             <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-              <p class="Ciencia fuenteTitulo" id="asignatura">'.$_GET['asignatura'].'</p>
+              <p class="Ciencia fuenteTitulo" id="asignatura">' . $_GET['asignatura'] . '</p>
             </div>
             <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
               <table class="table" style="display:none">
@@ -239,7 +239,7 @@
   }
 
 
-  function imprimirTema($numeroTema, $nombreTema)
+  function imprimirTema($numeroTema, $idTema, $nombreTema)
   {
     $numeroCSSTema = 1 + $numeroTema % 4;
     //Como decidiras que color elegir "temaPrincipal(1,2,3,4) "
@@ -247,7 +247,7 @@
       <div class="container">
         <div class="row">
           <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-          <a href="subtemas.php?tema=' . $nombreTema . '">
+          <a href="subtemas.php?tema=' . $idTema . '">
             <div class="temaPrincipal' . $numeroCSSTema . ' textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
               <table class="table">
                 <tbody>
