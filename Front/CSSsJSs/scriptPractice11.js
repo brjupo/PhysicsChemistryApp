@@ -1,12 +1,8 @@
 var lastQuestion = 0;
 var questionNumberArray = [];
 var puntos = 0;
-var questionWasAnswered = false;
+var buenas0_malas1_alHilo = [0, 0];
 var firstTimeToSaveGrade = 0;
-var timeIntervalX = setInterval(function () {
-  var i = 1;
-}, 500);
-var segundosActuales = 0;
 
 var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
@@ -33,8 +29,7 @@ function loadNewQuestion(questionNumber) {
   colorNextQuestionButtons(questionNumber);
   displayNextQuestion(questionNumber);
   displayNextAnswer(questionNumber);
-  questionWasAnswered = false;
-  startClock();
+
   //displayQuestionContainers(questionNumber);
   //loadInfoInContainers(questionNumber);
 }
@@ -126,15 +121,21 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == botonSiguientePregunta) {
-      nextQuestion(lastQuestion);
+      if (buenas0_malas1_alHilo[0] == 5) {
+        motivationGoodMessage(lastQuestion);
+        buenas0_malas1_alHilo[0] = 0;
+      } else if (buenas0_malas1_alHilo[1] == 5) {
+        motivationBadMessage(lastQuestion);
+        buenas0_malas1_alHilo[1] = 0;
+      } else {
+        nextQuestion(lastQuestion);
+      }
       return;
     }
     if (
       parseInt(targetElement.id) >= 10 * questionNumberArray[0] - 3 &&
       parseInt(targetElement.id) <= 10 * questionNumberArray[0]
     ) {
-      questionWasAnswered = true;
-      clearInterval(timeIntervalX);
       disableAllButtons(questionNumberArray[0]);
       colorAllButtonsToWhite(questionNumberArray[0]);
       verifyIfCorrectOption(targetElement.id, questionNumberArray[0]);
@@ -142,8 +143,6 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (parseInt(targetElement.id) == 10 * questionNumberArray[0] - 4) {
-      questionWasAnswered = true;
-      clearInterval(timeIntervalX);
       disableAllButtons(questionNumberArray[0]);
       colorAllButtonsToWhite(questionNumberArray[0]);
       verifyIfTextIsCorrect(questionNumberArray[0]);
@@ -242,13 +241,8 @@ function verifyIfCorrectOption(targetID, questionNumber) {
   if (selectedAnswer0to3 == correctOption) {
     lastQuestion = questionNumber;
     questionNumberArray.shift();
-    if (segundosActuales > 20) {
-      puntos = puntos + 3;
-    } else if (segundosActuales > 10) {
-      puntos = puntos + 2;
-    } else {
-      puntos = puntos + 1;
-    }
+    puntos = puntos + 1;
+    buenas0_malas1_alHilo[0] += 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
     CorrectAudio.play();
@@ -256,8 +250,8 @@ function verifyIfCorrectOption(targetID, questionNumber) {
     lastQuestion = questionNumber;
     questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
+    buenas0_malas1_alHilo[1] += 1;
     IncorrectAudio.play();
-    enviarCalificacionRedirigir();
   }
 }
 
@@ -301,24 +295,19 @@ function verifyIfTextIsCorrect(questionNumber) {
   //Muestras la respuesta correcta en el Boton
   document.getElementById(
     10 * questionNumber - 4
-  ).innerHTML = respuestaCorrectaUpper;
+  ).innerHTML = correctText;
   //Se valida si la respuesta es correcta
   if (respuestaEscritaUpper == respuestaCorrectaUpper) {
     lastQuestion = questionNumber;
     questionNumberArray.shift();
+    buenas0_malas1_alHilo[0] += 1;
     document.getElementById(10 * questionNumber - 5).style.color = "green";
     document.getElementById(
       10 * questionNumber - 5
     ).value = document
       .getElementById(10 * questionNumber - 5)
       .value.toLowerCase();
-    if (segundosActuales > 20) {
-      puntos = puntos + 3;
-    } else if (segundosActuales > 10) {
-      puntos = puntos + 2;
-    } else {
-      puntos = puntos + 1;
-    }
+    puntos = puntos + 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
     barWidth(puntos);
     CorrectAudio.play();
@@ -326,6 +315,7 @@ function verifyIfTextIsCorrect(questionNumber) {
     lastQuestion = questionNumber;
     questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
+    buenas0_malas1_alHilo[1] += 1;
     document.getElementById(10 * questionNumber - 5).style.color = "red";
     document.getElementById(
       10 * questionNumber - 5
@@ -333,16 +323,14 @@ function verifyIfTextIsCorrect(questionNumber) {
       .getElementById(10 * questionNumber - 5)
       .value.toLowerCase();
     IncorrectAudio.play();
-    enviarCalificacionRedirigir();
   }
 }
 
 function barWidth(puntos) {
   anchoBarra = 100 * puntos;
-  intTotalPreguntas = parseInt(
-    document.getElementById("totalPreguntas").innerHTML.trim()
-  );
-  anchoBarra = anchoBarra / (3 * intTotalPreguntas);
+  anchoBarra =
+    anchoBarra /
+    parseInt(document.getElementById("totalPreguntas").innerHTML.trim());
   anchoBarra = parseInt(anchoBarra).toString(10);
   stringPorcentaje = anchoBarra.concat("%");
   document.getElementById("barraAvance").style.width = stringPorcentaje;
@@ -369,9 +357,14 @@ function hiddePreviousAnswers(lastQuestion) {
   document.getElementById(lastQuestion + 2000).style.display = "none";
 }
 
+function hiddeMotivationMessage() {
+  document.getElementById("motivationMessage").style.display = "none";
+}
+
 function nextQuestion(lastQuestion) {
   hiddePreviousQuestion(lastQuestion);
   hiddePreviousAnswers(lastQuestion);
+  hiddeMotivationMessage();
   //Ocultamos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "none";
   //Si la pregunta previa contiene el boton de accept, quitarle la respuesta y volverle a poner Accept
@@ -387,28 +380,125 @@ function nextQuestion(lastQuestion) {
   }
   if (questionNumberArray.length == 0) {
     var stringLiga =
-      "https://kaanbal.net/Front/preguntas/sprintFinalizado.php?subtema=" +
-      document.getElementById("subtemaPrevio").innerHTML.trim() +
-      "&puntos=" +
-      puntos +
-      "&totalPreguntas=" +
-      document.getElementById("totalPreguntas").innerHTML.trim();
-    window.location.replace(stringLiga);
+      "https://kaanbal.net/Front/preguntas/nivelCompletado.php?subtema=";
+    window.location.replace(
+      stringLiga.concat(
+        document.getElementById("subtemaPrevio").innerHTML.trim()
+      )
+    );
   } else {
     loadNewQuestion(questionNumberArray[0]);
   }
 }
 
-function enviarCalificacionRedirigir() {
-  enviarCalificacion();
-  var stringLiga =
-    "https://kaanbal.net/Front/preguntas/sprintFinalizado.php?subtema=" +
-    document.getElementById("subtemaPrevio").innerHTML.trim() +
-    "&puntos=" +
-    puntos +
-    "&totalPreguntas=" +
-    document.getElementById("totalPreguntas").innerHTML.trim();
-  window.location.replace(stringLiga);
+function motivationGoodMessage(lastQuestion) {
+  //Ocultamos esta seccion
+  document.getElementById("botonSiguientePregunta").style.display = "none";
+  document.getElementById("motivationMessage").style.display = "block";
+  goodJobMessages = [
+    "Excelente, sigue así",
+    "¡Eres increible!",
+    "¡Eres el mejor!",
+    "Sabía que podías con esto y más",
+    "¡Vas muy bien!",
+    "¡Bien hecho!",
+    "¡Sigue así!",
+    "¡Sigue adelante, vas muy bien!",
+    "¡Dá siempre tu 100%!",
+    "¡Perseverar rinde frutos!",
+    "Observa, escucha y aprende.",
+    "¡Lo lograste!",
+    "¡Muy bien!",
+    "Ten paciencia, obtendrás lo que deseas.",
+    "Un viaje de mil millas comienza con un simple paso.",
+    "Con autodisciplina casi todo es posible.",
+    "¡Eres joven y talentoso!",
+    "¡Lo lograste otra vez!",
+    "El secreto del éxito es el entusiasmo, ¡sigue adelante!",
+    "No hay ascensor al éxito, tienes que tomar las escaleras.",
+    "Con esfuerzo y perseverancia podrás alcanzar tus metas.",
+    " El precio del éxito es el trabajo, dedicación y determinación.",
+    "Siempre puedes ser mejor.",
+    "La suerte y el esfuerzo van de la mano.",
+    "Cuanto más trabajas, más suerte pareces tener.",
+    "¡Estás aprendiendo mucho! ",
+    "¡Sigue aprendiendo!",
+    "Cuando aprendes algo, nadie puede arrebatártelo.",
+    "Todo es práctica.",
+    "¡La fortuna te favorece!",
+    "Tu disciplina es el ingrediente más importante del éxito.",
+    "¡Das lo mejor que tienes!",
+    "Si eres constante, ¡serás éxitoso!",
+    "Nada es difícil si lo divides en pequeños trabajos.",
+    "La motivación te hizo iniciar y el hábito te permite continuar",
+    "Tu éxito es la suma de pequeños esfuerzos repetidos varias veces.",
+    "Perseverancia. No hay otro secreto para tu éxito",
+    "¡Busca la excelencia!",
+    "Esfuerzo continuo, ¡es la clave para alcanzar el éxito!",
+    "Tu actitud, no tu aptitud, determinará tu altitud.",
+    "Comienza a pensar en ti, como la persona que quieres ser.",
+    "Sé el cambio que quieres ver en el mundo.",
+    "No hay atajos para llegar a cualquier lugar al que merezca la pena llegar.",
+    "Si haces primero las cosas que son más fáciles, haces mucho progreso.",
+    "Siempre parece imposible hasta que se hace.",
+    "La motivación es lo que te pone en marcha, el hábito es lo que hace que sigas",
+    "Tus talentos y habilidades van mejorando con el tiempo.",
+    "Tu paciencia conseguirá más cosas que tu fuerza.",
+    "Los campeones siguen jugando hasta que lo hacen bien.",
+    "El éxito depende del esfuerzo",
+  ];
+  //Numero random del 0 al goodJobMessages.length
+  rand = Math.floor(Math.random() * goodJobMessages.length);
+  hiddePreviousQuestion(lastQuestion);
+  hiddePreviousAnswers(lastQuestion);
+  document.getElementById("dialogo").innerHTML = goodJobMessages[rand];
+  //Mostramos esta seccion
+  document.getElementById("botonSiguientePregunta").style.display = "block";
+}
+
+function motivationBadMessage(lastQuestion) {
+  //Ocultamos esta seccion
+  document.getElementById("botonSiguientePregunta").style.display = "none";
+  document.getElementById("motivationMessage").style.display = "block";
+  badJobMessages = [
+    "Aunque falles, sigues aprendiendo",
+    "Todo esfuerzo valdrá la pena",
+    "Yo confió en tí, sigue adelante",
+    "Has podido con más, solo concentrate",
+    "Todo se logra con un poco de esfuerzo",
+    "¡Mantén tu entusiasmo!",
+    "¡Tú puedes!",
+    "¡Sigue intentando!",
+    "¡Cree en ti mismo!",
+    "¡No te rindas!",
+    " ¡Tú decides seguir!",
+    "Sal de tu zona de confort",
+    "¡Nunca te conformes!",
+    "No bajes tus metas, aumenta tus esfuerzos.",
+    " La paciencia y la constancia son los mejores compañeros.",
+    "El 80% del éxito se basa simplemente en insistir.",
+    "La confianza en ti mismo es el primer secreto del éxito.",
+    "Sé constante y lo lograrás.",
+    "El éxito es la suma de pequeños esfuerzos repetidos todos los días.",
+    "Aprende de tus errores y sigue adelante.",
+    "Si crees que puedes, ya estás a medio camino.",
+    "a actitud es una pequeña cosa que marca una gran diferencia.",
+    "¡Busca la oportunidad!",
+    "Si te caes siete veces, levántate ocho.",
+    "¡Tú puedes!, sigue intentando.",
+    "¡Insiste y lo lograrás!",
+    "Las limitaciones viven solo en tu mente.",
+    "El mayor riesgo es no arriesgarse nada.",
+    "Los errores, son lecciones que te harán mejorar.",
+    "Todo comienza con nada.",
+  ];
+  //Numero random del 0 al goodJobMessages.length
+  rand = Math.floor(Math.random() * badJobMessages.length);
+  hiddePreviousQuestion(lastQuestion);
+  hiddePreviousAnswers(lastQuestion);
+  document.getElementById("dialogo").innerHTML = badJobMessages[rand];
+  //Mostramos esta seccion
+  document.getElementById("botonSiguientePregunta").style.display = "block";
 }
 
 function enviarCalificacion() {
@@ -420,14 +510,12 @@ function enviarCalificacion() {
     type: "POST",
     url: "../../Servicios/subirPuntosType.php",
     dataType: "json",
-    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SP" },
+    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"PP" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
         //alert("Etcito");
         console.log("Valores enviados correctamente");
-        //var stringLiga =
-        //  "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
       } else {
         //alert(data.response);
         console.log("Algo salio mal");
@@ -448,108 +536,5 @@ function limpiarInputs(cantidadIDs) {
       document.getElementById(i * 10 - 5).value = "";
       console.log(i * 10 - 5);
     }
-  }
-}
-
-function startClock() {
-  // Set the date we're counting down to
-  var minutos = 0;
-  var segundos = 30;
-  var milisegundos = segundos * 1000 + minutos * 60 * 1000;
-  var countDownDate = new Date(milisegundos).getTime();
-  var unSegundo = new Date(1000).getTime();
-  var sumaSegundos = new Date(1000).getTime();
-
-  // Update the count down every 1 second
-  timeIntervalX = setInterval(function () {
-    var previous = countDownDate - sumaSegundos - unSegundo;
-    var actual = countDownDate - sumaSegundos;
-    var later = countDownDate - sumaSegundos + unSegundo;
-    //----------------------------ACTUAL-----------------------------------
-    // Time calculations for days, hours, minutes and seconds
-    var minutes = Math.floor((actual % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((actual % (1000 * 60)) / 1000);
-    segundosActuales = seconds; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
-    // Output the result in an element with id="demo"
-    document.getElementById("actual").innerHTML = seconds + "s ";
-    //minutes + "m " + seconds + "s ";
-
-    //----------------------------PREVIO-----------------------------------
-    minutes = Math.floor(((actual - 1000) % (1000 * 60 * 60)) / (1000 * 60));
-    seconds = Math.floor(((actual - 1000) % (1000 * 60)) / 1000);
-    document.getElementById("previous").innerHTML =
-      minutes + "m " + seconds + "s ";
-    //----------------------------PREVIO-----------------------------------
-    minutes = Math.floor(((actual + 1000) % (1000 * 60 * 60)) / (1000 * 60));
-    seconds = Math.floor(((actual + 1000) % (1000 * 60)) / 1000);
-    document.getElementById("later").innerHTML =
-      minutes + "m " + seconds + "s ";
-
-    // If the count down is over, write some text
-    if (previous < 0) {
-      document.getElementById("previous").innerHTML = "---";
-    }
-    if (actual < 0) {
-      document.getElementById("actual").innerHTML = "TIEMPO!";
-      if (questionWasAnswered == false) {
-        //CONSECUENCIA POR TERMINARSE EL TIEMPO
-        disableAllButtons(questionNumberArray[0]);
-        colorAllButtonsToWhite(questionNumberArray[0]);
-        incorrectByTime(questionNumberArray[0]);
-        showContinueButton();
-      }
-      clearInterval(timeIntervalX);
-    }
-    sumaSegundos = sumaSegundos + unSegundo;
-  }, 1000);
-}
-
-function incorrectByTime(questionNumber) {
-  //Primero saber si es tipo 1 o tipo 2
-  //Si es tipo 1
-  if (document.getElementById(10 * questionNumber)) {
-    //Marca color verde la opcion correcta
-    correctOption = parseInt(
-      document.getElementById(3000 + questionNumber).innerHTML.trim()
-    );
-    //Para encontrar la correcta y dadas las condiciones previas, la ecuacion queda como 10*questionNumber-3+correctOption
-    document.getElementById(correctOption + 10 * questionNumber - 3).className =
-      "OpcionCorrecta";
-    //Almacena el valor de la pregunta previa
-    lastQuestion = questionNumber;
-    questionNumberArray.push(questionNumber);
-    //Mueve el arreglo para quitar de la posición cero la pregunta que acaba de equivocarse
-    questionNumberArray.shift();
-    IncorrectAudio.play();
-    enviarCalificacionRedirigir();
-  } else {
-    //NORMALIZAR la respuesta CORRECTA
-    correctText = document
-      .getElementById(3000 + questionNumber)
-      .innerHTML.trim();
-    respuestaCorrectaNormalizada = correctText
-      .normalize("NFD")
-      .replace(
-        /([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,
-        "$1"
-      )
-      .normalize();
-    respuestaCorrectaUpper = respuestaCorrectaNormalizada.toUpperCase();
-
-    //Muestras la respuesta correcta en el Boton
-    document.getElementById(
-      10 * questionNumber - 4
-    ).innerHTML = respuestaCorrectaUpper;
-
-    //Pinta de rojo lo escrito
-    document.getElementById(10 * questionNumber - 5).style.color = "red";
-
-    //Almacena el valor de la pregunta previa
-    lastQuestion = questionNumber;
-    questionNumberArray.push(questionNumber);
-    //Mueve el arreglo para quitar de la posición cero la pregunta que acaba de equivocarse
-    questionNumberArray.shift();
-    IncorrectAudio.play();
-    enviarCalificacionRedirigir();
   }
 }
