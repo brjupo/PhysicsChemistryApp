@@ -25,11 +25,17 @@ function saveInDDBB() {
     data: {
       leccion: document.getElementById("idLeccion").value,
       numeroPregunta: document.getElementById("numeroPregunta").value,
+      pregunta: document.getElementById("pregunta").value,
+      respuesta_correcta: document.getElementById("respuesta_correcta").value,
+      respuesta2: document.getElementById("respuesta2").value,
+      respuesta3: document.getElementById("respuesta3").value,
+      respuesta4: document.getElementById("respuesta4").value,
+      tipo: document.getElementById("tipo").value,
     },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
-        alert("Información obtenida");
+        alert("Pregunta actualizada en Base de datos");
       } else {
         alert(data.response);
       }
@@ -48,17 +54,11 @@ function loadInformation() {
     data: {
       leccion: document.getElementById("idLeccion").value,
       numeroPregunta: document.getElementById("numeroPregunta").value,
-      pregunta: document.getElementById("pregunta").value,
-      respuesta_correcta: document.getElementById("respuesta_correcta").value,
-      respuesta2: document.getElementById("respuesta2").value,
-      respuesta3: document.getElementById("respuesta3").value,
-      respuesta4: document.getElementById("respuesta4").value,
-      tipo: document.getElementById("tipo").value,
     },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
-        alert("Información cargada");
+        alert("Información mostrada");
         showData(data);
       } else {
         alert(data.response);
