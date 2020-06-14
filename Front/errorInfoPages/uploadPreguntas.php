@@ -13,17 +13,41 @@
 </head>
 
 <body>
-  <!---CRISTIAN-->
-  <!--AGREGAR VALDIACIÓN DE USUARIO TIPO STAFF, POR LO MIENTRAS QUE TENGA USER Y PASS VALIDO-->
-  <!--AL FINAL DE LA PÁGINA, ANTES DEL FOOTER AGREGAR UN CODIGO PHP PARA QUE DIBUJE UNA TABLA CON TODOS LOS USUARIOS EN LA BBDD ok--> 
-  <!--AGREGAR VALIDACION PARA QUE NO SE SUBAN CORREOS QUE YA EXISTEN OK--> 
+<?php
+  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+  //////////////////////////////////////////////////////
+  session_start();
+  $tokenValidar = array();
+  $idValidarprofe = array();
 
-  <!--BRANDON-->
-  <!--AGREGAR UN BOTON DE LAYOUT PARA DESCARGAR UN EJEMPLO, ACLARAR EN UNA NOTA-->
-  <!--AGREGAR CAMPO PARA INGRESAR LA CONTRASEÑA, LIMPIAR ESE VALOR CADA .ONLOAD()--->
-  <!--AGREGAR UN FORMATO A LA TABLA PARA QUE SE VEA DESCENTE-->
-  <!--AGREGAR BOTON REGRESO Y CREAR UNA VISTA PARA QUE EL STAFF DECIDA SI SUBIR ALUMNOS, PROFESORES O CREAR GRUPOS-->
-  <div class="container">
+  //Consultar si existe token de usuario
+  $statement = mysqli_prepare($con, "SELECT tokenSesion, id_usuario FROM usuario_prueba WHERE mail = ?");
+  mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
+  mysqli_stmt_execute($statement);
+
+  mysqli_stmt_store_result($statement);
+  mysqli_stmt_bind_result($statement, $tokenSesionp, $iduser);
+
+  while (mysqli_stmt_fetch($statement)) {
+    $idValidarprofe["profe"] = $iduser;
+    $tokenValidar["tokenSesionp"] = $tokenSesionp;
+  }
+
+  //Consultar si es profe
+  $statement = mysqli_prepare($con, "SELECT id_profesor FROM profesor WHERE id_usuario = ?");
+  mysqli_stmt_bind_param($statement, "s", $idValidarprofe["profe"]);
+  mysqli_stmt_execute($statement);
+
+  mysqli_stmt_store_result($statement);
+  mysqli_stmt_bind_result($statement, $idProfe);
+
+  while (mysqli_stmt_fetch($statement)) {
+    $existeProfe["profe"] = $idProfe;
+  }
+
+  if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["profe"] != "" and $tokenValidar["tokenSesionp"] != "") {
+            
+    echo'<div class="container">
     <div class="row">
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
@@ -84,70 +108,7 @@
       </div>
     </div>
   </div>
-
-
-  <!-- <div class="container">
-    <div class="well-sm col-sm-12">
-      <div class="btn-group pull-right">
-      <form class="form-horizontal" action="../../Front/errorInfoPages/uploadInfo.php" method="post" name="download_excel" enctype="multipart/form-data">
-        <button type="submit" id="export_data" name="export_data" value="Export to excel" class="btn btn-info">Descargar Reporte</button>
-      </form>
-  </div> -->
-
-
-  <?php
-///////////////////////////////////////////////MOSTRAR LISTADO DE ALUMOS REGISTRADOS
-/* $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-//Traer todos los usuarios
-$query = "SELECT id_usuario, mail FROM usuario_prueba"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
-$result = mysqli_query($con, $query);
-//Recorrer el arreglo
-while ($row = mysqli_fetch_assoc($result)) {
-    $array[] = $row;
-}
-
-$tamanho = count($array);
-
-for ($j = 0; $j < $tamanho; $j++) {
-//print_r($array[0]["id_usuario"]);
-$id = $array[$j]["id_usuario"];
-$mails = $array[$j]["mail"];
-
-echo"<table border='1' bordercolor='#33A4FF' bgcolor='#33A4FF' align='center'>
-              <tr>
-               <td width='50' align='center'><input type='text' value='$id' name='nroapto' readonly='true'></td>
-				      <td align='center'><input type='text' value='$mails' name='cedula' readonly='true'></td>
-              </tr>
-                </table><br>";
-                $i = $i+1;
-}
-///////////////////////////////////////////////MOSTRAR LISTADO DE ALUMOS REGISTRADOS
-if(isset($_POST["export_data"])) {
-  if(!empty($array)) {
-  $filename = "libros.xls";
-  header("Content-Type: application/vnd.ms-excel");
-  header("Content-Disposition: attachment; filename=".$filename);
-  $mostrar_columnas = true;
-
-   
   
-  foreach($array as $libro) {
-  
-  if(!$mostrar_columnas) {
-  echo implode("\t", array_keys($libro)) . "\n";
-  $mostrar_columnas = true;
-  }
-  echo implode("\t", array_values($libro)) . "\n";
-  }
-  }else{
-  echo "No hay datos a exportar";
-  }
-  exit;
-  } */
-
-?>
-
-
   <div class="foot">
     <div class="container">
       <div class="row">
@@ -162,8 +123,15 @@ if(isset($_POST["export_data"])) {
         </div>
       </div>
     </div>
-  </div>
+  </div>';
 
+}else{
+  echo '<script type="text/javascript">
+  alert("Inicie sesión");
+  window.location.href="https://kaanbal.net";
+  </script>';
+}
+?>
 
 </body>
 
