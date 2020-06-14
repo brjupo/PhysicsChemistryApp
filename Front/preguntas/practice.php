@@ -337,6 +337,9 @@
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
         $pathjpg = "../imagenes/" . $imgjpg;
+
+        $imgJPG = $imagen . ".JPG";
+        $pathJPG = "../imagenes/" . $imgJPG;
         //echo '<p>'.$path.'</p>';
         if (file_exists($pathjpg)) {
             echo '
@@ -345,6 +348,36 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
+                <p id="' . $IDvalorCorrecto . '" style="display:none">
+                    ' . $respCorrecta . '
+                </p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <button class="Opcion1" id="' . $uno . '">
+                    ' . $r1 . '
+                </button><br>
+                <button class="Opcion3" id="' . $tres . '">
+                    ' . $r3 . '
+                </button>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <button class="Opcion2" id="' . $dos . '">
+                    ' . $r2 . '
+                </button><br>
+                <button class="Opcion4" id="' . $cuatro . '">
+                    ' . $r4 . '
+                </button>
+                </div>
+            </div>
+            </div>
+        ';
+        } else if (file_exists($pathJPG)) {
+            echo '
+            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+            <div class="container" style="display:none" id ="' . $respuestaNumero . '">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <img src="../imagenes/' . $imagen . '.JPG" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '" style="display:none">
                     ' . $respCorrecta . '
                 </p>
