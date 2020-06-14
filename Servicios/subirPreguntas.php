@@ -12,43 +12,16 @@ if (isset($_POST["Import"])) {
       /* echo "<script type=\"text/javascript\">
               alert(\"".$mailr."\");
               </script>"; */
+              //$idp = $getData[0];
 
-      /*        //Corroborar que no existe el correo en base de datos
-      $sql = "SELECT id_pregunta FROM pregunta WHERE mail = '$mailr'";
+              //Corroborar que no existe el id de pregunta en base de datos
+      $sql = "SELECT id_pregunta FROM pregunta WHERE id_pregunta = '$idp'";
       $resultp = mysqli_query($con, $sql);
       $rowp = mysqli_fetch_array($resultp);
          
-       if ($rowp) {
+       if (isset($rowp)) {
 
-        if (!isset($rowp)) {
-          echo "<script type=\"text/javascript\">
-                alert(\"Invalid File:Please Upload CSV File.\");
-                window.location = \"../Front/errorInfoPages/uploadInfo.php\"
-                </script>";
-        } else {
-          echo "<script type=\"text/javascript\">
-              alert(\"CSV File has been successfully Imported.\");
-              window.location = \"../Front/errorInfoPages/uploadInfo.php\"
-            </script>";
-        }
-
-      } else{*/
-
-      /* $sql = "INSERT into usuario_prueba (mail,pswd) 
-                   values ('" . $getData[0] . "@itesm.mx','" . $getData[1] . "')";
-      $result = mysqli_query($con, $sql);
-      if (!isset($result)) {
-        echo "<script type=\"text/javascript\">
-              alert(\"Invalid File:Please Upload CSV File.\");
-              window.location = \"../Front/errorInfoPages/uploadInfo.php\"
-              </script>";
-      } else {
-        echo "<script type=\"text/javascript\">
-            alert(\"CSV File has been successfully Imported.\");
-            window.location = \"../Front/errorInfoPages/uploadInfo.php\"
-          </script>";
-      } */
-
+      } else{
       $sql = "INSERT into pregunta (id_pregunta, id_autor, id_leccion, orden, pregunta, respuesta_correcta, respuesta2, respuesta3, respuesta4, tipo, estatus, tiene_imagen) 
                    values ('" . $getData[0] ."','" . $getData[1] . "','" . $getData[2] ."','" . $getData[3] ."','" . $getData[4] ."','" . $getData[5] ."','" . $getData[6] ."','" . $getData[7] ."','" . $getData[8] ."','" . $getData[9] ."','" . $getData[10] ."','" . $getData[11] ."')";
       $result = mysqli_query($con, $sql);
@@ -63,7 +36,7 @@ if (isset($_POST["Import"])) {
             window.location = \"../Front/errorInfoPages/uploadPreguntas.php\"
           </script>";
       }
-    //cierreelse}
+     }
     }
 
     fclose($file);
