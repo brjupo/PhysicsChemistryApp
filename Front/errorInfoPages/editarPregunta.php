@@ -95,7 +95,7 @@
             </div>
             </div>
 
-            <div class="container">
+            <!--div class="container">
             <div class="row">
             <div
                 class="input-group input-group-sm col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
@@ -127,7 +127,7 @@
                 />
             </div>
             </div>
-            </div>
+            </div-->
 
             <div class="container">
             <div class="row">
@@ -152,6 +152,7 @@
                 type="text"
                 pattern="[0-9.]+"
                 class="form-control"
+                disabled
                 />
             </div>
             <div
