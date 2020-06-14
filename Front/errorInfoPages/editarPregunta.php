@@ -77,8 +77,7 @@
             <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p>Pasos para la correcta alta de información</p>
                 <p>1.- Recuerda que la regla para las fórmulas es \(LaTeX\)</p>
-                <p>NUNCA Oprima "Guardar en base de datos, si los campos están vacios, de lo contrario, la pregunta será eliminada"</p>
-                <p>** Campos Obligatorios</p>
+                <p>2.- NUNCA Oprima "Guardar en base de datos", si los campos están vacios, de lo contrario, la pregunta será eliminada</p>
             </div>
             </div>
             </div>
@@ -160,7 +159,7 @@
             >
                 <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-sm">
-                    ID Lección**
+                    ID Lección
                 </span>
                 </div>
                 <input
@@ -188,7 +187,7 @@
             >
                 <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-sm">
-                    Número de pregunta. Ejemplo, si 1027, escribir 27 **
+                    Número de pregunta. Ejemplo, si 1027, escribir 27 
                 </span>
                 </div>
                 <input
@@ -225,7 +224,7 @@
             <div
                 class="input-group input-group-sm col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
             >
-                <label for="pregunta">Pregunta**</label>
+                <label for="pregunta">Pregunta</label>
                 <div class="input-group mb-3">
                 <textarea id="pregunta" rows="4" cols="150" wrap="soft">
                 </textarea>
@@ -249,7 +248,7 @@
             >
                 <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-sm">
-                    Respuesta correcta**
+                    Respuesta correcta
                 </span>
                 </div>
                 <input id="respuesta_correcta" type="text" class="form-control" />
@@ -315,7 +314,7 @@
             >
                 <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01"
-                    >Tipo de pregunta**</label
+                    >Tipo de pregunta</label
                 >
                 </div>
                 <select class="custom-select" id="tipo">
