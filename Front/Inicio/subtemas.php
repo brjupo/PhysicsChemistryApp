@@ -144,7 +144,7 @@
   {
     $tamanho = count($arregloSubtemas);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirSubtema($i + 1, $arregloSubtemas[$i]["id_subtema"], $arregloSubtemas[$i]["nombre"],$arregloSubtemas[$i]["link"]);
+      imprimirSubtema($i + 1, $arregloSubtemas[$i]["id_subtema"], $arregloSubtemas[$i]["nombre"], $arregloSubtemas[$i]["link"]);
     }
   }
 
@@ -291,7 +291,7 @@
                   ' . $nombreSubtema . '
                   </td>
                   <td>
-                  <a href="https://www.youtube.com/"><img class="iconContinueActive" src="../CSSsJSs/icons/fullBook.svg"/>
+                  <a href="' . $link . '"><img class="iconContinueActive" src="../CSSsJSs/icons/fullBook.svg"/>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/runner.svg" />
