@@ -144,7 +144,7 @@
   {
     $tamanho = count($arregloSubtemas);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirSubtema($i + 1, $arregloSubtemas[$i]["id_subtema"], $arregloSubtemas[$i]["nombre"]);
+      imprimirSubtema($i + 1, $arregloSubtemas[$i]["id_subtema"], $arregloSubtemas[$i]["nombre"],$arregloSubtemas[$i]["link"]);
     }
   }
 
@@ -235,8 +235,9 @@
   ';
   }
 
-  function imprimirSubtema($numeroSubtema, $id_subtema, $nombreSubtema)
+  function imprimirSubtema($numeroSubtema, $id_subtema, $nombreSubtema, $link)
   {
+    if($link == Null){
     echo '
       <div class="container">
         <div id="seccion' . $numeroSubtema . '" class="row fade">
@@ -274,6 +275,45 @@
         </div>
       </div>
   ';
+    }else{
+      echo '
+      <div class="container">
+        <div id="seccion' . $numeroSubtema . '" class="row fade">
+          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+            <table class="table fixed">
+              <tbody>
+                <tr>
+                  <td>
+                    <img class="iconsNumber" src="../CSSsJSs/icons/' . $numeroSubtema . '.svg" />
+                  </td>
+                  <td class="tituloTemasPrincipales">
+                  ' . $nombreSubtema . '
+                  </td>
+                  <td>
+                  <a href="https://www.youtube.com/"><img class="iconContinueActive" src="../CSSsJSs/icons/fullBook.svg"/>
+                  </td>
+                  <td>
+                    <img class="icons" src="../CSSsJSs/icons/runner.svg" />
+                  </td>
+                  <td>
+                    <a href="lecciones.php?subtema=' . $id_subtema . '"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <p></p>
+        </div>
+      </div>
+  ';
+    }
   }
 
   function imprimirRelleno()
