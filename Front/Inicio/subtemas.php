@@ -291,7 +291,7 @@
                   ' . $nombreSubtema . '
                   </td>
                   <td>
-                  <a href="' . $link . '"><img class="iconContinueActive" src="../CSSsJSs/icons/fullBook.svg"/>
+                  <a href="' . $link . '"><img class="iconsActive" src="../CSSsJSs/icons/fullBook.svg"/>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/runner.svg" />
