@@ -114,7 +114,7 @@
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_subtema, $id_tema, $nombre);
+    mysqli_stmt_bind_result($statement, $id_subtema, $id_tema, $nombre, $link);
 
     $arregloSubtemas = array();
     $i = 0;
@@ -123,6 +123,7 @@
       $arregloSubtemas[$i]["id_subtema"] = $id_subtema;
       $arregloSubtemas[$i]["id_tema"] = $id_tema;
       $arregloSubtemas[$i]["nombre"] = $nombre;
+      $arregloSubtemas[$i]["link"] = $link;
       $i = $i + 1;
     }
 
