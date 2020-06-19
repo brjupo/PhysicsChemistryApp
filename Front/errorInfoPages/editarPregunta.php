@@ -77,7 +77,7 @@
             <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p>Pasos para la correcta alta de información</p>
                 <p>1.- Recuerda que la regla para las fórmulas es \(LaTeX\)</p>
-                <p>2.- El símbolo "\" SIEMPRE debe ir en pareja. "\\". Ejemplo.- Pregunta 1 \( x^2 \alpha = y\), para guardarlo en base de datos, deberá ser Pregunta 1 \\\\( x^2 \\\\alpha = y\\\\) </p>
+                <p>2.- El símbolo "\" SIEMPRE debe ir en pareja. "\\\\". Ejemplo.- Pregunta 1 \( x^2 \alpha = y\), para guardarlo en base de datos, deberá ser Pregunta 1 \\\\( x^2 \\\\alpha = y\\\\) </p>
                 <p>3.- NUNCA Oprima "Guardar en base de datos", si los campos están vacios, de lo contrario, la pregunta será eliminada</p>
             </div>
             </div>
