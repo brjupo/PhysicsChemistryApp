@@ -5,8 +5,8 @@ if (isset($_POST["Import"])) {
 
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
-  $formatos_permitidos =  array('.csv');
-  $filename = $_FILES["file"]["tmp_name"];
+  $formatos_permitidos =  array('csv');
+  $filename = $_FILES['doc_file']['name'];
   $extension = pathinfo($filename, PATHINFO_EXTENSION);
   if(!in_array($extension, $formatos_permitidos) ) {
     echo 'Error formato no permitido !!';
