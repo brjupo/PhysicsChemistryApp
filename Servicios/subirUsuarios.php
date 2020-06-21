@@ -5,7 +5,7 @@ if (isset($_POST["Import"])) {
 
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
-  $filename = $_FILES["file"]["namename"];
+  $filename = $_FILES["file"]["name"];
 
   $formatos_permitidos =  array('doc','docx' ,'xls');
   $archivo = $_FILES['doc_file']['name'];
