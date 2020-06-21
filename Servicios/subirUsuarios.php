@@ -6,7 +6,7 @@ if (isset($_POST["Import"])) {
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
   $filename = $_FILES["file"]["tmp_name"];
-  $tipo = filetype("tmp_name/file");
+  $tipo = filetype("tmp_name");
   echo '<script type="text/javascript">
            alert("'.$tipo.'");
            </script>';
