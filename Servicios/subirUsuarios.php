@@ -7,9 +7,9 @@ if (isset($_POST["Import"])) {
 
   $filename = $_FILES["file"]["name"];
 
-  $formatos_permitidos =  array('doc','docx' ,'xls');
-  $archivo = $_FILES['doc_file']['name'];
-  $extension = pathinfo($archivo, PATHINFO_EXTENSION);
+  $formatos_permitidos =  array('csv');
+  //$archivo = $_FILES['doc_file']['name'];
+  $extension = pathinfo($filename, PATHINFO_EXTENSION);
   if(!in_array($extension, $formatos_permitidos) ) {
     echo 'Error formato no permitido !!';
   }
