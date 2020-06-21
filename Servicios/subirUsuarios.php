@@ -51,7 +51,9 @@ if (isset($_POST["Import"])) {
           </script>";
       } */
 
-      $sql = "INSERT into alumno (id_usuario,matricula) 
+      // $sql = "INSERT into alumno (id_usuario,matricula) 
+      //              values ('" . $getData[0] ."','" . $getData[1] . "')";
+                   $sql = "INSERT into alumno_grupo (id_alumno,id_grupo) 
                    values ('" . $getData[0] ."','" . $getData[1] . "')";
       $result = mysqli_query($con, $sql);
       if (!isset($result)) {
