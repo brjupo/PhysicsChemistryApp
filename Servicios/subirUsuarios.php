@@ -5,16 +5,16 @@ if (isset($_POST["Import"])) {
 
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
-  $_FILES["file"]["tmp_name"];
+  $filename = $_FILES["file"]["namename"];
 
-  $formatos_permitidos =  array('csv');
-  $filename = $_FILES["doc_file"]["file"];
-  $extension = pathinfo($filename, PATHINFO_EXTENSION);
+  $formatos_permitidos =  array('doc','docx' ,'xls');
+  $archivo = $_FILES['doc_file']['name'];
+  $extension = pathinfo($archivo, PATHINFO_EXTENSION);
   if(!in_array($extension, $formatos_permitidos) ) {
     echo 'Error formato no permitido !!';
   }
   echo '<script type="text/javascript">
-           alert("'.$extension.'");
+           alert("'.$filename.'");
            </script>';
   
   if ($_FILES["file"]["size"] > 0) {
