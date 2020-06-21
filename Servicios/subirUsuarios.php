@@ -6,6 +6,11 @@ if (isset($_POST["Import"])) {
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
   $filename = $_FILES["file"]["tmp_name"];
+  $tipo = filetype("tmp_name/file");
+  echo '<script type="text/javascript">
+           alert("'.$tipo.'");
+           </script>';
+  
   if ($_FILES["file"]["size"] > 0) {
     $file = fopen($filename, "r");
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
@@ -53,7 +58,7 @@ if (isset($_POST["Import"])) {
 
       // $sql = "INSERT into alumno (id_usuario,matricula) 
       //              values ('" . $getData[0] ."','" . $getData[1] . "')";
-                   $sql = "INSERT into alumno_grupo (id_alumno,id_grupo) 
+                   $sql = "INSERT into test (id_alumno,id_grupo) 
                    values ('" . $getData[0] ."','" . $getData[1] . "')";
       $result = mysqli_query($con, $sql);
       if (!isset($result)) {

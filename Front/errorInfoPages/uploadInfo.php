@@ -124,7 +124,7 @@ echo"<table border='1' bordercolor='#33A4FF' bgcolor='#33A4FF' align='center'>
 ///////////////////////////////////////////////MOSTRAR LISTADO DE ALUMOS REGISTRADOS
 if(isset($_POST["export_data"])) {
   if(!empty($array)) {
-  $filename = "libros.xls";
+  $filename = "libros.csv";
   header("Content-Type: application/vnd.ms-excel");
   header("Content-Disposition: attachment; filename=".$filename);
   $mostrar_columnas = true;
