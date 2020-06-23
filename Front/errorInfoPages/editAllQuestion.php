@@ -45,6 +45,8 @@
             <title>Kaanbal</title>
             <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
             <link rel="stylesheet" href="../CSSsJSs/styleUploadInfo.css" />
+            <script src="../CSSsJSs/scriptEditarPregunta5.js"></script>
+            <script src="../CSSsJSs/minAJAX.js"></script>
             </head>
 
             <body>
