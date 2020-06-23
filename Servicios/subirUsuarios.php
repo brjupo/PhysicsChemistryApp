@@ -12,10 +12,10 @@ if (isset($_POST["Import"])) {
   $extension = pathinfo($filename, PATHINFO_EXTENSION);
   if(!in_array($extension, $formatos_permitidos) ) {
     echo 'Error formato no permitido !!';
-  }
-  echo '<script type="text/javascript">
+  }else{
+ /*  echo '<script type="text/javascript">
            alert("'.$filename.'");
-           </script>';
+           </script>'; */
   
   if ($_FILES["file"]["size"] > 0) {
     $file = fopen($filename, "r");
@@ -83,4 +83,5 @@ if (isset($_POST["Import"])) {
 
     fclose($file);
   }
+}
 }
