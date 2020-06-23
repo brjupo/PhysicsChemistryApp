@@ -5,7 +5,18 @@ if (isset($_POST["Import"])) {
 
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
-  $filename = $_FILES["file"]["tmp_name"];
+  $filename = $_FILES["file"]["name"];
+
+  $formatos_permitidos =  array('csv');
+  //$archivo = $_FILES['doc_file']['name'];
+  $extension = pathinfo($filename, PATHINFO_EXTENSION);
+  if(!in_array($extension, $formatos_permitidos) ) {
+    echo 'Error formato no permitido !!';
+  }else{
+ /*  echo '<script type="text/javascript">
+           alert("'.$filename.'");
+           </script>'; */
+  
   if ($_FILES["file"]["size"] > 0) {
     $file = fopen($filename, "r");
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
@@ -51,7 +62,9 @@ if (isset($_POST["Import"])) {
           </script>";
       } */
 
-      $sql = "INSERT into alumno (id_usuario,matricula) 
+      // $sql = "INSERT into alumno (id_usuario,matricula) 
+      //              values ('" . $getData[0] ."','" . $getData[1] . "')";
+                   $sql = "INSERT into test (id_alumno,id_grupo) 
                    values ('" . $getData[0] ."','" . $getData[1] . "')";
       $result = mysqli_query($con, $sql);
       if (!isset($result)) {
@@ -70,4 +83,5 @@ if (isset($_POST["Import"])) {
 
     fclose($file);
   }
+}
 }
