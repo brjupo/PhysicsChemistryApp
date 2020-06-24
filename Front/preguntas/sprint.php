@@ -465,8 +465,28 @@
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
         $pathjpg = "../imagenes/" . $imgjpg;
+        $imgJPG = $imagen . ".JPG";
+        $pathJPG = "../imagenes/" . $imgJPG;
+        $imgpng = $imagen . ".png";
+        $pathpng = "../imagenes/" . $imgpng;
+        $imgPNG = $imagen . ".PNG";
+        $pathPNG = "../imagenes/" . $imgPNG;
         //echo '<p>'.$path.'</p>';
+        $ext=NULL;
         if (file_exists($pathjpg)) {
+            $ext = ".jpg";
+        }
+        else if (file_exists($pathJPG)) {
+            $ext = ".JPG";
+        }
+        else if (file_exists($pathpng)) {
+            $ext = ".png";
+        }
+        else if (file_exists($pathPNG)) {
+            $ext = ".PNG";
+        }
+
+        if ($ext!=NULL) {
             echo '
                 <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
                 <div class="container" style="display:none" id ="' . $respuestaNumero . '">
@@ -476,7 +496,7 @@
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Acepto</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
+                            <img src="../imagenes/' . $imagen . $ext .'" class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
