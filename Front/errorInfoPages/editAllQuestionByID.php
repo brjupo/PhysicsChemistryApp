@@ -137,46 +137,6 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
             </div>
             </div>
 
-
-            <div class="container">
-                <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <p style="color: rgba(0, 0, 0, 0);">.</p>
-                </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                <div
-                    class="input-group input-group-sm col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
-                >
-                    <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">
-                        Número de pregunta. Ejemplo, si 1027, escribir 27 
-                    </span>
-                    </div>
-                    <input
-                    id="numeroPregunta"
-                    type="text"
-                    pattern="[0-9.]+"
-                    class="form-control"
-                    />
-                </div>
-                <div
-                    class="input-group input-group-sm col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
-                >
-                    <button
-                    id="cargarInformacion"
-                    type="button"
-                    class="btn btn-primary btn-sm"
-                    >
-                    Cargar información
-                    </button>
-                </div>
-                </div>
-            </div>
-
             <div class="container">
                 <div class="row">
                 <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
