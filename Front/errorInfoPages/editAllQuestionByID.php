@@ -81,8 +81,8 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
             <div class="row">
                 <div class="textCenter col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <p>El ID de las preguntas es:</p>
-                <p>Química > Del 1 al 4500</p>
-                <p>Física > Del 4500 en adelante</p>
+                <p>Química > Del 1 al 1731</p>
+                <p>Física > Del 4601 al 5824</p>
                 </div>
                 <div
                 class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
