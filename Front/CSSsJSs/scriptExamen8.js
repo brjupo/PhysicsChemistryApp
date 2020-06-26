@@ -519,12 +519,12 @@ function finTiempo(){
 }
 
 function imprimirTiempo(){
-var n = 0;
-var l = document.getElementById("number");
-window.setInterval(function(){
-  l.innerHTML = n;
-  n++;
-},1000);
+    var n = 0;
+    var l = document.getElementById("number");
+    window.setInterval(function(){
+          l.innerHTML = n.concat("s");
+          n++;
+        },1000);
 }
 
 function ocultarTiempo() {
