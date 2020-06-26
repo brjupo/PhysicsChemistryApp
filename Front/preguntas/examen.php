@@ -270,7 +270,7 @@
                       <p id="number">0</p>
                     </td>
                     <td>
-                      <img class="icons" src="../CSSsJSs/icons/examen.svg" onClick="ocultarTiempo()" />
+                      <img class="icons" src="../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
                     </td>
                   </tr>
                 </tbody>
