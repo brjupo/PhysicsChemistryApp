@@ -18,7 +18,7 @@
         $puntosActuales = $puntuacion ;
       }
     
-    if($puntosActuales >= 0){//validamos que exista una calificacion
+    if($puntosActuales != NULL){//validamos que exista una calificacion
                 if($puntosNuevos > $puntosActuales){
                 //Lanzar consulta para actualizar calificacion solo si es mayor
                         $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos WHERE id_leccion = $leccion AND id_usuario = $id_usuario AND tipo = '$flagTipo'";
