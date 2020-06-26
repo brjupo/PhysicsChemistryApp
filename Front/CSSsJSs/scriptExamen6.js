@@ -7,6 +7,7 @@ var firstTimeToSaveGrade = 0;
 var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
+var flagTiempo = 0;
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
@@ -525,7 +526,17 @@ window.setInterval(function(){
   n++;
 },1000);
 }
-/////////////777
+
+function ocultarTiempo() {
+  if(flagTiempo == 0){
+    document.getElementById('number').style.display = 'none';
+    f = 1;
+  }else{
+    document.getElementById('number').style.display = 'block';
+    f = 0;
+  }
+}
+/////////////777!///////////////////////////////////////////////////////////////////////////////////////////////////
 function enviarCalificacion() {
   var userID = document.getElementById("userID").innerHTML.trim();
   var leccionID = document.getElementById("leccionID").innerHTML.trim();
