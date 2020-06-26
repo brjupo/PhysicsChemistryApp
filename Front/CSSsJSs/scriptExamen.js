@@ -11,7 +11,7 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
 window.onload = function () {
   createArrayWithQuestions();
-  setTimeout(finTiempo(),10000);
+  setTimeout("finTiempo()",10000);
 };
 
 function createArrayWithQuestions() {
