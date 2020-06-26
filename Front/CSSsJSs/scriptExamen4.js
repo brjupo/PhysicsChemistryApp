@@ -506,7 +506,7 @@ function motivationBadMessage(lastQuestion) {
 function finTiempo(){
     enviarCalificacion();
     var stringLiga =
-      "https://kaanbal.net/Front/preguntas/sprintFinalizado.php?subtema=" +
+      "https://kaanbal.net/Front/preguntas/examenFinalizado.php?subtema=" +
       document.getElementById("subtemaPrevio").innerHTML.trim() +
       "&puntos=" +
       puntos +
