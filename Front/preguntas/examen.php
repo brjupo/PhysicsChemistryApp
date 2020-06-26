@@ -267,7 +267,7 @@
                 <tbody>
                   <tr>
                     <td>
-                      <p id="number">0m 10s</p>
+                      <p id="number"></p><p>s</p>
                     </td>
                     <td>
                       <img class="icons" src="../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
