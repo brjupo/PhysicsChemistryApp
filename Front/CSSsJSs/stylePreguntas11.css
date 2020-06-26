@@ -16,7 +16,10 @@
   src: url("Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
 }
 /*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
-
+#number {
+  font-size:100px;
+  color:#434343;
+}
 /*--------------------------------DIALOGOS Inspiracionales-----------------------------------*/
 .noPaddingMargin {
   padding-left: 0px !important;
