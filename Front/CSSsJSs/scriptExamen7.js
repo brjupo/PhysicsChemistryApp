@@ -530,10 +530,10 @@ window.setInterval(function(){
 function ocultarTiempo() {
   if(flagTiempo == 0){
     document.getElementById('number').style.display = 'none';
-    f = 1;
+    flagTiempo = 1;
   }else{
     document.getElementById('number').style.display = 'block';
-    f = 0;
+    flagTiempo = 0;
   }
 }
 /////////////777!///////////////////////////////////////////////////////////////////////////////////////////////////
