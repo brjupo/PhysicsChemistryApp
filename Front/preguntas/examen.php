@@ -160,7 +160,7 @@
     function imprimirPreguntas($arrayr, $array, $total, $idL)
     {
         imprimirBarraProgresoCruz($total[0], $idL);
-        imprimirContador();
+        //imprimirContador();
         imprimirMotivador();
         imprimirPreguntasRespuestas($arrayr, $array, $total);
         imprimirFooter();
