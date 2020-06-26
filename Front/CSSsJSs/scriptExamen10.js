@@ -524,7 +524,7 @@ function imprimirTiempo(){
     window.setInterval(function(){
           n = num.toString();
           l.innerHTML = n.concat("s");
-          n++;
+          num++;
         },1000);
 }
 
