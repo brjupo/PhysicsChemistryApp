@@ -11,6 +11,7 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
 window.onload = function () {
   createArrayWithQuestions();
+  setTimeout(finTiempo(),10000);
 };
 
 function createArrayWithQuestions() {
@@ -500,7 +501,21 @@ function motivationBadMessage(lastQuestion) {
   //Mostramos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "block";
 }
+////////////////77
 
+function finTiempo(){
+    //enviarCalificacion();
+    var stringLiga =
+      "https://kaanbal.net/Front/preguntas/sprintFinalizado.php?subtema=" +
+      document.getElementById("subtemaPrevio").innerHTML.trim() +
+      "&puntos=" +
+      puntos +
+      "&totalPreguntas=" +
+      document.getElementById("totalPreguntas").innerHTML.trim();
+    window.location.replace(stringLiga);
+  
+}
+/////////////777
 function enviarCalificacion() {
   var userID = document.getElementById("userID").innerHTML.trim();
   var leccionID = document.getElementById("leccionID").innerHTML.trim();
