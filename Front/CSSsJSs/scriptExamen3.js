@@ -11,7 +11,7 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
 window.onload = function () {
   createArrayWithQuestions();
-  setTimeout("finTiempo()",10000);
+  setTimeout("finTiempo()",30000);
 };
 
 function createArrayWithQuestions() {
@@ -504,7 +504,7 @@ function motivationBadMessage(lastQuestion) {
 ////////////////77
 
 function finTiempo(){
-    //enviarCalificacion();
+    enviarCalificacion();
     var stringLiga =
       "https://kaanbal.net/Front/preguntas/sprintFinalizado.php?subtema=" +
       document.getElementById("subtemaPrevio").innerHTML.trim() +
@@ -525,7 +525,7 @@ function enviarCalificacion() {
     type: "POST",
     url: "../../Servicios/subirPuntosType.php",
     dataType: "json",
-    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"PP" },
+    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"E" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
