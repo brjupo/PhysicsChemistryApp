@@ -519,9 +519,10 @@ function finTiempo(){
 }
 
 function imprimirTiempo(){
-    var n = 0;
+    var num = 0;
     var l = document.getElementById("number");
     window.setInterval(function(){
+          n = num.toString();
           l.innerHTML = n.concat("s");
           n++;
         },1000);
