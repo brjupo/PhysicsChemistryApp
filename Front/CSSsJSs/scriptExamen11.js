@@ -12,7 +12,7 @@ var flagTiempo = 0;
 
 window.onload = function () {
   createArrayWithQuestions();
-  setTimeout("finTiempo()",30000);
+  setTimeout("finTiempo()",70000);
   imprimirTiempo();
 };
 
@@ -520,10 +520,19 @@ function finTiempo(){
 
 function imprimirTiempo(){
     var num = 0;
+    var min = 0;
     var l = document.getElementById("number");
+
     window.setInterval(function(){
+      var resto = num % 60;   
+      if ( resto == 0 ){
+        min++;
+        num = 0;
+      }
+/////////////////////////////////////////
+          m = min.toString();
           n = num.toString();
-          l.innerHTML = n.concat("s");
+          l.innerHTML = m.concat("min",n,"s");
           num++;
         },1000);
 }
