@@ -8,12 +8,14 @@ var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
 var flagTiempo = 0;
+var totalTime = 70; //reloj descendente
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
   createArrayWithQuestions();
-  setTimeout("finTiempo()",70000);
-  imprimirTiempo();
+  //setTimeout("finTiempo()",70000);
+  //imprimirTiempo();
+  imprimirClock();
 };
 
 function createArrayWithQuestions() {
@@ -517,7 +519,18 @@ function finTiempo(){
     window.location.replace(stringLiga);
   
 }
+//cuenta descendente
+function imprimirClock() {
+  document.getElementById('number').innerHTML = totalTime;
+  if(totalTime==0){
+    finTiempo();
+  }else{
+    totalTime-=1;
+    setTimeout("imprimirClock()",1000);
+  }
+}
 
+//cuenta ascendente
 function imprimirTiempo(){
     var num = 0;
     var min = 0;
