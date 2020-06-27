@@ -266,10 +266,10 @@
                 <table class="table fixed" border="4px" color="black">
                 <tbody>
                   <tr>
-                    <td width="50%">
+                    <td style="text-align: left" width="50%">
                       <p id="number">0s</p>
                     </td>
-                    <td width="50%">
+                    <td style="text-align: right" width="50%">
                       <img class="icons" width="100" height="100" src="../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
                     </td>
                   </tr>
