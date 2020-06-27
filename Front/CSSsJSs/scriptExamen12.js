@@ -526,13 +526,14 @@ function imprimirTiempo(){
     window.setInterval(function(){
       var resto = num % 60;   
       if ( resto == 0 ){
-        min++;
+        if(num != 0){
+        min++;}
         num = 0;
       }
 /////////////////////////////////////////
           m = min.toString();
           n = num.toString();
-          l.innerHTML = m.concat("min",n,"s");
+          l.innerHTML = m.concat(":",n);
           num++;
         },1000);
 }
