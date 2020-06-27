@@ -221,12 +221,14 @@
     if ($tamanhoh == 0) {
       $arregloLecciones[0]["h"] = '1';
       $arregloLecciones[0]["hS"] = '0';
+      $arregloLecciones[0]["hE"] = '0';
     } else {
       if ($tamanhoh == $tamanho) {
         //Para activar ya todas las lecciones
         for ($i = 0; $i < $tamanhoh; $i++) {
           $arregloLecciones[$i]["h"] = '1';
           $arregloLecciones[$i]["hS"] = '1';
+          $arregloLecciones[0]["hE"] = '1';
         }
       } else {
         //Para activar solo la siguiente leccion
@@ -234,9 +236,11 @@
           if ($i == $tamanhoh) {
             $arregloLecciones[$i]["h"] = '1';
             $arregloLecciones[$i]["hS"] = '0';
+            $arregloLecciones[0]["hE"] = '0';
           } else {
             $arregloLecciones[$i]["h"] = '1';
             $arregloLecciones[$i]["hS"] = '1';
+            $arregloLecciones[0]["hE"] = '1';
           }
         }
       }
@@ -276,7 +280,7 @@
   {
     $tamanho = count($arregloLecciones);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirLeccion($i + 1, $arregloLecciones[$i]["id_leccion"],  $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["h"], $arregloLecciones[$i]["hS"]);
+      imprimirLeccion($i + 1, $arregloLecciones[$i]["id_leccion"],  $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["h"], $arregloLecciones[$i]["hS"], $arregloLecciones[0]["hE"]);
       //function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $habilitar, $habilitarS)
     }
   }
@@ -325,11 +329,12 @@
   ';
   }
 
-  function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $habilitar, $habilitarS)
+  function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $habilitar, $habilitarS, $habilitarE )
   {
     $habilitar = '1';
     $habilitarS = '1';
-    if ($habilitar == '1' && $habilitarS == '1') {
+    $habilitarE = '1';
+    if ($habilitar == '1' && $habilitarS == '1' && $habilitarE == '1') {
       echo '
       <div class="container">
         <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
@@ -351,7 +356,7 @@
                   <a href="../preguntas/sprint.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
                   </td>
                   <td>
-                    <img class="icons" src="../CSSsJSs/icons/examen.svg" />
+                  <a href="../preguntas/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" /></a>
                   </td>
                 </tr>
               </tbody>
