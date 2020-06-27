@@ -534,7 +534,8 @@ function imprimirClock() {
         min = Math.trunc(totalTime / 60);
         seg = totalTime - (min*60);
       //}
-
+      m = m + 00;
+      n = n + 00;
       m = min.toString();
       n = seg.toString();
   document.getElementById('number').innerHTML =  m.concat(":",n);;
