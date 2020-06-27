@@ -534,10 +534,10 @@ function imprimirClock() {
         min = Math.trunc(totalTime / 60);
         seg = totalTime - (min*60);
       //}
-      m = m + 00;
-      n = n + 00;
-      m = min.toString();
-      n = seg.toString();
+      var mt = min + 00;
+      var nt = seg + 00;
+      m = mt.toString();
+      n = nt.toString();
   document.getElementById('number').innerHTML =  m.concat(":",n);;
   if(totalTime==0){
     finTiempo();
