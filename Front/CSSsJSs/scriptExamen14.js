@@ -521,11 +521,28 @@ function finTiempo(){
 }
 //cuenta descendente
 function imprimirClock() {
-  document.getElementById('number').innerHTML = totalTime;
+
+    var min = Math.trunc(totalTime / 60);
+    var seg = (totalTime % 60)*60;
+
+  /* var resto = totalTime % 60;   
+      if ( resto == 0 ){
+        //obtener el cociente
+        min = totalTime / 60;
+        seg = 59;
+      }else{ */
+        min = Math.trunc(totalTime / 60);
+        seg = (totalTime % 60)*60;
+      //}
+
+      m = min.toString();
+      n = seg.toString();
+  document.getElementById('number').innerHTML =  m.concat(":",n);;
   if(totalTime==0){
     finTiempo();
   }else{
     totalTime-=1;
+    //seg-=1;
     setTimeout("imprimirClock()",1000);
   }
 }
