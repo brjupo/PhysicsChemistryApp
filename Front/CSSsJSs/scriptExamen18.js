@@ -531,14 +531,20 @@ function imprimirClock() {
         min = totalTime / 60;
         seg = 59;
       }else{ */
-        min = Math.trunc(totalTime / 60);
-        seg = totalTime - (min*60);
+        //min = Math.trunc(totalTime / 60);
+        //seg = totalTime - (min*60);
       //}
-      var mt = min + 00;
-      var nt = seg + 00;
-      m = mt.toString();
-      n = nt.toString();
-  document.getElementById('number').innerHTML =  m.concat(":",n);;
+      m = min.toString();
+      n = seg.toString();
+      if(m < 9 && n < 9){
+        document.getElementById('number').innerHTML =  "0".concat(m,":0",n);
+      }else if(m < 9){
+        document.getElementById('number').innerHTML =  "0".concat(m,":",n);
+      }else if(n < 9){
+        document.getElementById('number').innerHTML =  m.concat(":0",n);
+      }else{
+        document.getElementById('number').innerHTML =  m.concat(":",n);
+      }
   if(totalTime==0){
     finTiempo();
   }else{
