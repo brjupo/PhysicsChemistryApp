@@ -240,6 +240,7 @@
                     <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
+                    <p id="leccionID" style="display:none">' . $idL . '</p>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
                             class="progress-bar progress-bar-striped" 
@@ -343,6 +344,7 @@
             <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                <p id="preguntaNumero" style="display:none">' . $preguntaNumero . '</p>
                 <p class="formatoPreguntas">'
             . $preguntaTexto .
             '  
@@ -486,6 +488,7 @@
                 <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                    <p id="preguntaNumero" style="display:none">' . $preguntaNumero . '</p>
                     <p class="formatoPreguntas">'
             . $preguntaTexto .
             ' 
