@@ -237,6 +237,8 @@
                     <img src="../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                    <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
+                    <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
                     <p id="leccionID">' . $idL . '</p>
                     <div class="progress progressMargin">
