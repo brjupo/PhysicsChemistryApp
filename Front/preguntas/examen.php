@@ -159,8 +159,8 @@
     <?php
     function imprimirPreguntas($arrayr, $array, $total, $idL)
     {
-        imprimirTiempoexamen();
         imprimirBarraProgresoCruz($total[0], $idL);
+        imprimirTiempoexamen();
         imprimirContador();
         imprimirMotivador();
         imprimirPreguntasRespuestas($arrayr, $array, $total);
