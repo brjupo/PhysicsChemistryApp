@@ -522,8 +522,8 @@ function finTiempo(){
 //cuenta descendente
 function imprimirClock() {
 
-    var min = Math.trunc(totalTime / 60);
-    var seg = (totalTime % 60)*60;
+    var min = 0;
+    var seg = 0;
 
   /* var resto = totalTime % 60;   
       if ( resto == 0 ){
@@ -531,8 +531,8 @@ function imprimirClock() {
         min = totalTime / 60;
         seg = 59;
       }else{ */
-        //min = Math.trunc(totalTime / 60);
-        //seg = totalTime - (min*60);
+        min = Math.trunc(totalTime / 60);
+        seg = totalTime - (min*60);
       //}
       m = min.toString();
       n = seg.toString();
