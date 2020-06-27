@@ -532,7 +532,7 @@ function imprimirClock() {
         seg = 59;
       }else{ */
         min = Math.trunc(totalTime / 60);
-        seg = (totalTime % 60)*60;
+        seg = totalTime - (min*60);
       //}
 
       m = min.toString();
