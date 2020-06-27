@@ -270,7 +270,7 @@
                       <p id="number">0s</p>
                     </td>
                     <td style="text-align: right" width="50%">
-                      <img class="icons" width="100" height="100" src="../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
+                      <img class="icons" width="50" height="50" src="../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
                     </td>
                   </tr>
                 </tbody>
