@@ -257,20 +257,20 @@
     }
 
     function imprimirTiempoexamen()
-    {
+    {//border="4px" color="black"
         echo '
                 <div class="container">
                 <div class="row">
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                <table class="table fixed" border="4px" color="black">
+                <table class="table fixed">
                 <tbody>
                   <tr>
                     <td style="text-align: left" width="50%">
                       <p id="number">0s</p>
                     </td>
                     <td style="text-align: right" width="50%">
-                      <img class="icons" width="50" height="50" src="../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
+                      <img class="icons" width="50" height="30" src="../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
                     </td>
                   </tr>
                 </tbody>
