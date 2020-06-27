@@ -263,13 +263,13 @@
                 <div class="row">
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                <table class="table fixed" border="4px" color="black" WIDTH="50%">
+                <table class="table fixed" border="4px" color="black">
                 <tbody>
                   <tr>
-                    <td>
+                    <td width="50%">
                       <p id="number">0s</p>
                     </td>
-                    <td>
+                    <td width="50%">
                       <img class="icons" width="100" height="100" src="../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
                     </td>
                   </tr>
