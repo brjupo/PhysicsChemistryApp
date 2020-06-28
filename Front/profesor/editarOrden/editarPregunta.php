@@ -59,21 +59,21 @@ function printEditSubtopic()
 }
 
 function printSubtopics(){
-  $idSubtema = $_GET['ID_Subtema'];;
+  $idLeccion = $_GET['ID_Leccion'];;
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_leccion, nombre, orden FROM leccion WHERE id_subtema = ?");
-  mysqli_stmt_bind_param($statement,"i", $idSubtema);
+  $statement = mysqli_prepare($con, "SELECT id_pregunta, pregunta, orden FROM pregunta WHERE id_leccion = ?");
+  mysqli_stmt_bind_param($statement,"i", $idLeccion);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_leccion, $nombre, $orden);
+  mysqli_stmt_bind_result($statement, $id_pregunta, $pregunta, $orden);
 
   $arregloTemas = array();
   $i = 0;
   //Leemos datos del la leccion habilitadas
   while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-    $arregloTemas[$i]["id_leccion"] = $id_leccion;
-    $arregloTemas[$i]["nombre"] = $nombre;
+    $arregloTemas[$i]["id_pregunta"] = $id_pregunta;
+    $arregloTemas[$i]["pregunta"] = $pregunta;
     $arregloTemas[$i]["orden"] = $orden;
     $i = $i + 1;
   }
@@ -83,26 +83,21 @@ function printSubtopics(){
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printSubtopic($arregloTemas[$i]["id_leccion"],$arregloTemas[$i]["nombre"],$arregloTemas[$i]["orden"]);
+    printSubtopic($arregloTemas[$i]["id_pregunta"],$arregloTemas[$i]["pregunta"],$arregloTemas[$i]["orden"]);
   }
 }
 
-function printSubtopic($ID_Lection, $lectionName, $lectionOrder){
+function printSubtopic($ID_Question, $questionName, $questionOrder){
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <!--div class="input-group-prepend">
           </div-->
-          <input type="text" class="form-control" id="'.$ID_Lection.'" value="'.$lectionOrder.'" />
+          <input type="text" class="form-control" id="'.$ID_Question.'" value="'.$questionOrder.'" />
           <div class="input-group-append">
-            <span class="input-group-text">'.$lectionName.'</span>
-            <span class="input-group-text">'.$ID_Lection.'</span>
-            <a href="editarPregunta.php?ID_Leccion='.$ID_Lection.'">
-              <button class="btn btn-outline-secondary" type="button">
-                Buscar sus preguntas
-              </button>
-            </a>
+            <span class="input-group-text">'.$questionName.'</span>
+            <span class="input-group-text">'.$ID_Question.'</span>
           </div>
         </div>
       </div>
@@ -133,7 +128,7 @@ function printHead(){
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="../CSSsJSs/ordenLeccion.js"></script>
+    <script src="../CSSsJSs/ordenPregunta.js"></script>
   </head>
   ';
 }
@@ -166,13 +161,8 @@ function printInstructions(){
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <p>
-            - Para cambiar el orden de las <strong>lecciones</strong>, edite el
+            - Para cambiar el orden de las <strong>preguntas</strong>, edite el
             número y de clic en "Guardar en base de datos"
-          </p>
-          <p>
-            - Para editar el orden de preguntas, seleccione la
-            <strong>leccion</strong>
-            correspondiente y de clic en "Buscar sus preguntas"
           </p>
         </div>
       </div>
