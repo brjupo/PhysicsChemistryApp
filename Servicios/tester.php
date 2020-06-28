@@ -50,6 +50,7 @@
 
     for ($i = 0; $i < $tamanho; $i++) {
       print_r($arregloAsignaturas[$i]["id_asignatura"]);
+      print_r($arregloAsignaturas[$i]["nombre"]);
     }
   
 
