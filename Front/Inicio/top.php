@@ -34,7 +34,7 @@
 
   //Obtener el top 5 de alumnos con mayor puntuación
   
-    $statement = mysqli_prepare($con, "SELECT a.*, suma FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE tipo = 'PP' AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))) GROUP BY id_usuario LIMIT 6) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1) ORDER BY suma DESC");
+    $statement = mysqli_prepare($con, "SELECT a.*, suma FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE tipo = 'PP' AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))) GROUP BY id_usuario) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1) ORDER BY suma DESC LIMIT 5");
     //[ID DE LA ASIGNATURA ACTUAL]
     mysqli_stmt_bind_param($statement, "i", $idMateria);
     mysqli_stmt_execute($statement);
