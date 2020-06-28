@@ -32,7 +32,7 @@ while (mysqli_stmt_fetch($statement)) {
 
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["profe"] != "" and $tokenValidar["tokenSesionp"] != "") {
 
-    $idAsignatura = $_GET['idAsignatura'];;
+    $idAsignatura = $_GET['idAsignatura'];
 
     $statement = mysqli_prepare($con, "SELECT id_tema, nombre FROM tema WHERE id_asignatura = ?");
     mysqli_stmt_bind_param($statement,"i", $idAsignatura);
