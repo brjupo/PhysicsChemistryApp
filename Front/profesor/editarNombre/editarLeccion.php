@@ -123,6 +123,8 @@ function printHead(){
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
+    <script src="../CSSsJSs/minAJAX.js"></script>
+    <script src="../CSSsJSs/nombreLeccion.js"></script>
   </head>
   ';
 }
