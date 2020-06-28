@@ -22,7 +22,9 @@ document.addEventListener("click", function (evt) {
 
   do {
     if (targetElement == guardarEnBBDD) {
-      allIdsTemp = allIds;
+      //for(k=0; k<allIds.length;k++){        allIdsTemp[k] = allIds[k];      }
+      //COPIAR CORRECTAMENTE EL ARREGLO
+      allIdsTemp = [...allIds];
       saveInDB();
       return;
     }
