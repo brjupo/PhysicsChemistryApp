@@ -267,7 +267,7 @@
                     <table class="table fixed">
                 <tbody>
                   <tr>
-                    <td style="text-align: center" width="50%" font-size:40%;>
+                    <td style="text-align: center" width="50%" font-size:40%>
                         <p class="slide-bottom" id="previous" style="display:none">30s</p>
                         <p class="slide-bottom" id="actual">30s</p>
                         <p class="slide-bottom" id="later" style="display:none">30s</p>
