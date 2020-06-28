@@ -58,6 +58,7 @@ function printSubjects()
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
+    <script src="../CSSsJSs/elegirAsignatura.js"></script>
   </head>
 
   <body>
@@ -100,11 +101,11 @@ function printSubjects()
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01"
+            <label class="input-group-text" for="topics"
               >Asignaturas</label
             >
           </div>
-          <select class="custom-select" id="inputGroupSelect01">
+          <select class="custom-select" id="topics">
             <option selected disabled>Choose...</option>
             ';
   printSubjectOptions();
@@ -127,8 +128,8 @@ function printSubjects()
         <div
           class="input-group input-group-sm col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
         >
-          <button id="buscar" type="button" class="btn btn-primary btn-sm">
-            Buscar
+          <button id="buscarTemas" type="button" class="btn btn-primary btn-sm">
+            Buscar temas
           </button>
         </div>
       </div>
