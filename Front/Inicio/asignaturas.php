@@ -60,7 +60,7 @@
     } else {
 
       //Consultar si existe usuario en tabla alumnos
-      $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
+      $statement = mysqli_prepare($con, "SELECT id_usuario, mail, pswd, tokenA, tokenSesion, idioma FROM usuario_prueba WHERE mail = ? AND pswd = ?");
       mysqli_stmt_bind_param($statement, "ss", $correo, $password);
       mysqli_stmt_execute($statement);
 
