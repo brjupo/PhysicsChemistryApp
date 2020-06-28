@@ -21,7 +21,7 @@ document.addEventListener("click", function (evt) {
 
   do {
     if (targetElement == guardarEnBBDD) {
-      saveAllInDB();
+      saveInDB();
       return;
     }
     // Go up the DOM
@@ -29,27 +29,37 @@ document.addEventListener("click", function (evt) {
   } while (targetElement);
 });
 
+//NO SE PUEDE HACER ESTO, DEPENDES DEL TIEMPO QUE SE TARDE EL SERVICIO EN RESPONDER
+/*
 function saveAllInDB(){
     for(j = 0; j<allIds.length; j++){
-        console.log(j);
-        console.log(document.getElementById(j).value.trim());
+        console.log(allIds[j]);
+        console.log(document.getElementById(allIds[j]).value.trim());
+        saveInDB(allIds[j], document.getElementById(allIds[j]).value.trim());
     }
-    //saveInDB();
 }
+*/
 
 
-function saveInDB(id_tema, nombre) {
+function saveInDB() {
+    if(allIds.length==0){
+        return;
+    }
     $.ajax({
         type: "POST",
         url: "../SERVICIOS/nombreTema.php",
         dataType: "json",
         data: {
-          id_tema: id_tema,
-          nombre: nombre
+          id_tema: allIds[0],
+          nombre: document.getElementById(allIds[0]).value.trim()
         },
         success: function (data) {
           if (data.response == "exito") {
             console.log(data.response);
+            console.log(allIds[0]);
+            console.log(document.getElementById(allIds[0]).value.trim());
+            allIds.shift();
+            saveInDB();
             //alert("Nombre actualizado en Base de datos");
           } else {
             console.log(data.response);

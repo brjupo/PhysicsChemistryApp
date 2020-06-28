@@ -130,7 +130,7 @@ function printHead(){
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
-    <script src="../CSSsJSs/nombreTema.js"></script>
+    <script src="../CSSsJSs/nombreTema2.js"></script>
   </head>
   ';
 }
