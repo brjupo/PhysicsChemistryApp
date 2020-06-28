@@ -87,20 +87,20 @@ function printTopics(){
 }
 
 function printTopic($ID_Topic, $topicName){
-  $ID_check = $ID_Topic +100;
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="input-group-prepend">
-            <div class="input-group-text">
-              <!--Para validar por ID, en input check box es el ID+100 y en input text es el ID-->
-              <input type="checkbox" id="'.$ID_check.'" />
-            </div>
+            <span class="input-group-text">'.$ID_Topic.'</span>
           </div>
           <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicName.'" />
           <div class="input-group-append">
-            <span class="input-group-text">'.$ID_Topic.'</span>
+            <a href="editarSubtema.php?ID_Tema='.$ID_Topic.'">
+              <button class="btn btn-outline-secondary" type="button">
+                Buscar sus subtemas
+              </button>
+            </a>
           </div>
         </div>
       </div>
@@ -166,12 +166,8 @@ function printInstructions(){
           "Guardar en base de datos"
         </p>
         <p>
-          - Para editar subtemas o lecciones, seleccione el <strong>tema</strong>
-          correspondiente y de clic en "Buscar los subtemas"
-        </p>
-        <p style="font-size: smaller;">
-          Si elige 2 o más temas, solo se buscará el tema que se encuentre más
-          arriba
+          - Para editar subtemas o lecciones, ubique el <strong>tema</strong>
+          correspondiente y de clic en "Buscar sus subtemas"
         </p>
       </div>
     </div>
