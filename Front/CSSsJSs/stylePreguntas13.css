@@ -574,7 +574,7 @@ input:active {
 #actual {
   color: rgba(100, 100, 100, 1);
   text-align: center;
-  font-size: 10vh;
+  font-size: 2vh;
   margin: 0px auto 0px auto;
 }
 @media screen and (min-width: 768px) {
@@ -583,7 +583,7 @@ input:active {
     font-size: 12px;
   }
   #actual {
-    font-size: 15px;
+    font-size: 25px;
   }
 }
 /*-------------------------------------------PUNTOS BUENOS Y TOTALES----------------------------------*/
