@@ -471,7 +471,11 @@ function startClock() {
     var seconds = Math.floor((actual % (1000 * 60)) / 1000);
     segundosActuales = seconds; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
     // Output the result in an element with id="demo"
-    document.getElementById("actual").innerHTML = seconds + "s ";
+    //document.getElementById("actual").innerHTML = seconds + "";
+    if(seconds <= 9){
+      document.getElementById('actual').innerHTML = "00:0" + seconds;}
+    else{
+      document.getElementById("actual").innerHTML = "00:" + seconds;}
     //minutes + "m " + seconds + "s ";
 
     //----------------------------PREVIO-----------------------------------

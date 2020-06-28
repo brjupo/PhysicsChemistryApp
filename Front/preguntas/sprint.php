@@ -7,8 +7,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas11.css" />
-    <script src="../CSSsJSs/scriptSprint16.js"></script>
+    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas13.css" />
+    <script src="../CSSsJSs/scriptSprint17.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -262,15 +262,24 @@
         echo '
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                    <table class="table fixed">
+                <tbody>
+                  <tr>
+                    <td style="text-align: center" width="50%">
                         <p class="slide-bottom" id="previous" style="display:none">30s</p>
-                        <p class="slide-bottom" id="actual">30s</p>
+                        <p class="slide-bottom" id="actual" font-size:40%>00:00</p>
                         <p class="slide-bottom" id="later" style="display:none">30s</p>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <p><a id="puntosBuenos">0</a><sub id="puntosTotales">/' . $totalPreguntas * 3 . '</sub></p>
-                    </div>
+                    </td>
+                    <td style="text-align: center" width="50%">
+                    <p><a id="puntosBuenos">0</a><sub id="puntosTotales">/' . $totalPreguntas * 3 . '</sub></p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
                 </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
             </div>
             ';
     }

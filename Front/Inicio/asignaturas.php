@@ -60,17 +60,18 @@
     } else {
 
       //Consultar si existe usuario en tabla alumnos
-      $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
+      $statement = mysqli_prepare($con, "SELECT id_usuario, mail, pswd, tokenA, tokenSesion, idioma, inicios FROM usuario_prueba WHERE mail = ? AND pswd = ?");
       mysqli_stmt_bind_param($statement, "ss", $correo, $password);
       mysqli_stmt_execute($statement);
 
       mysqli_stmt_store_result($statement);
-      mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA, $tokenSesion, $idioma);
+      mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA, $tokenSesion, $idioma, $inicios);
 
 
 
       //Leemos datos del usuario
       while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
+        $temp_inicios = $inicios;
         $temp_id_usuario = $id_usuario;
         $temp_mail = $mail;
         $temp_pswd = $pswd;
@@ -86,6 +87,10 @@
 
       //Si el usuario EXISTE despliega el menú de las asignaturas
       if ($temp_id_usuario) {
+        //Conteo de inicios de sesión
+        $temp_inicios = $temp_inicios+1;
+        $sql = "UPDATE usuario_prueba SET inicios = $temp_inicios WHERE mail = '$correo'";
+        mysqli_query($con,$sql);
         //Creamos token de sesión
         $rand = bin2hex(random_bytes(5));
         //Registrar token de sesion en BD

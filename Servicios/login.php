@@ -15,10 +15,9 @@
     $response['response'] = 'Usuario o contraseña inválida';//Si no existe el usuario 
     
     //consultar si existe usuario en tabla alumnos
-    $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
+    $statement = mysqli_prepare($con, "SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE mail = ? AND pswd = ?");
     mysqli_stmt_bind_param($statement, "ss", $correo, $password);
     mysqli_stmt_execute($statement);
-    
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA);
     
@@ -27,6 +26,10 @@
     
      //$im = file_get_contents("$foto",true);      
      //$imdata = base64_encode($im);
+
+     //Lanzar consulta para actualizar inicios de sesión
+     //$sql = "UPDATE tabla SET inicios =  WHERE mail $correo AND tipo = '$flagTipo'";
+     //mysqli_query($con,$sql);
     
         $response['response'] = 'Sesion iniciada correctamente';  
         $response["id_usuario"] = $id_usuario;
