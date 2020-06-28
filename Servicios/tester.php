@@ -36,7 +36,7 @@ while (mysqli_stmt_fetch($statement)) {
     $idAsignatura = 1;//$_GET['idAsignatura'];
 
     $statement = mysqli_prepare($con, "SELECT id_tema, nombre, orden FROM tema WHERE id_asignatura = ?");
-    mysqli_stmt_execute($statement,"i", $idAsignatura);
+    mysqli_stmt_bind_param($statement,"i", $idAsignatura);
     mysqli_stmt_execute($statement);
     
     mysqli_stmt_store_result($statement);
@@ -65,7 +65,7 @@ while (mysqli_stmt_fetch($statement)) {
    $idTema = 1;//$_GET['idTema'];
     
    $statement = mysqli_prepare($con, "SELECT id_subtema, nombre, orden FROM subtema WHERE id_tema = ?");
-   mysqli_stmt_execute($statement,"i", $idTema);
+   mysqli_stmt_bind_param($statement,"i", $idTema);
    mysqli_stmt_execute($statement);
    
    mysqli_stmt_store_result($statement);
@@ -93,7 +93,7 @@ while (mysqli_stmt_fetch($statement)) {
  $idSubtema = 1;//$_GET['idSubtema'];
     
  $statement = mysqli_prepare($con, "SELECT id_leccion, nombre, orden FROM leccion WHERE id_subtema = ?");
- mysqli_stmt_execute($statement,"i", $idSubtema);
+ mysqli_stmt_bind_param($statement,"i", $idSubtema);
  mysqli_stmt_execute($statement);
  
  mysqli_stmt_store_result($statement);
@@ -121,7 +121,7 @@ while (mysqli_stmt_fetch($statement)) {
 $idLeccion= 1;//$_GET['idLeccion'];
     
 $statement = mysqli_prepare($con, "SELECT id_pregunta, pregunta, orden FROM pregunta WHERE id_leccion = ?");
-mysqli_stmt_execute($statement,"i", $idLeccion);
+mysqli_stmt_bind_param($statement,"i", $idLeccion);
 mysqli_stmt_execute($statement);
 
 mysqli_stmt_store_result($statement);
