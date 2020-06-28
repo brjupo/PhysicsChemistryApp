@@ -61,12 +61,12 @@ function printEditSubtopic()
 function printSubtopics(){
   $idTema = $_GET['ID_Tema'];;
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre FROM subtema WHERE id_tema = ?");
+  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre, orden FROM subtema WHERE id_tema = ?");
   mysqli_stmt_bind_param($statement,"i", $idTema);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_subtema, $nombre);
+  mysqli_stmt_bind_result($statement, $id_subtema, $nombre, $orden);
 
   $arregloTemas = array();
   $i = 0;
@@ -74,6 +74,7 @@ function printSubtopics(){
   while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
     $arregloTemas[$i]["id_subtema"] = $id_subtema;
     $arregloTemas[$i]["nombre"] = $nombre;
+    $arregloTemas[$i]["orden"] = $orden;
     $i = $i + 1;
   }
 
@@ -82,20 +83,21 @@ function printSubtopics(){
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printSubtopic($arregloTemas[$i]["id_subtema"],$arregloTemas[$i]["nombre"]);
+    printSubtopic($arregloTemas[$i]["id_subtema"],$arregloTemas[$i]["nombre"],$arregloTemas[$i]["orden"]);
   }
 }
 
-function printSubtopic($ID_Subtopic, $subtopicName){
+function printSubtopic($ID_Subtopic, $subtopicName, $subtopicOrder){
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <div class="input-group-prepend">
-            <span class="input-group-text">'.$ID_Subtopic.'</span>
-          </div>
-          <input type="text" class="form-control" id="'.$ID_Subtopic.'" value="'.$subtopicName.'" />
+          <!--div class="input-group-prepend">
+          </div-->
+          <input type="text" class="form-control" id="'.$ID_Subtopic.'" value="'.$subtopicOrder.'" />
           <div class="input-group-append">
+            <span class="input-group-text">'.$subtopicName.'</span>
+            <span class="input-group-text">'.$ID_Subtopic.'</span>
             <a href="editarLeccion.php?ID_Subtema='.$ID_Subtopic.'">
               <button class="btn btn-outline-secondary" type="button">
                 Buscar sus lecciones
@@ -131,7 +133,7 @@ function printHead(){
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="../CSSsJSs/nombreSubtema.js"></script>
+    <script src="../CSSsJSs/ordenSubtema.js"></script>
   </head>
   ';
 }
