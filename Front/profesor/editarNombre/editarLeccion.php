@@ -59,20 +59,20 @@ function printEditSubtopic()
 }
 
 function printSubtopics(){
-  $idTema = $_GET['ID_Tema'];;
+  $idSubtema = $_GET['ID_Subtema'];;
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre FROM subtema WHERE id_tema = ?");
-  mysqli_stmt_bind_param($statement,"i", $idTema);
+  $statement = mysqli_prepare($con, "SELECT id_leccion, nombre FROM leccion WHERE id_subtema = ?");
+  mysqli_stmt_bind_param($statement,"i", $idSubtema);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_subtema, $nombre);
+  mysqli_stmt_bind_result($statement, $id_leccion, $nombre);
 
   $arregloTemas = array();
   $i = 0;
   //Leemos datos del la leccion habilitadas
   while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-    $arregloTemas[$i]["id_subtema"] = $id_subtema;
+    $arregloTemas[$i]["id_leccion"] = $id_leccion;
     $arregloTemas[$i]["nombre"] = $nombre;
     $i = $i + 1;
   }
@@ -82,26 +82,19 @@ function printSubtopics(){
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printSubtopic($arregloTemas[$i]["id_subtema"],$arregloTemas[$i]["nombre"]);
+    printSubtopic($arregloTemas[$i]["id_leccion"],$arregloTemas[$i]["nombre"]);
   }
 }
 
-function printSubtopic($ID_Subtopic, $subtopicName){
+function printSubtopic($ID_Lection, $LectionName){
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="input-group-prepend">
-            <span class="input-group-text">'.$ID_Subtopic.'</span>
+            <span class="input-group-text">'.$ID_Lection.'</span>
           </div>
-          <input type="text" class="form-control" id="'.$ID_Subtopic.'" value="'.$subtopicName.'" />
-          <div class="input-group-append">
-            <a href="editarLeccion.php?ID_Subtema='.$ID_Subtopic.'">
-              <button class="btn btn-outline-secondary" type="button">
-                Buscar sus lecciones
-              </button>
-            </a>
-          </div>
+          <input type="text" class="form-control" id="'.$ID_Lection.'" value="'.$LectionName.'" />
         </div>
       </div>
     </div>
