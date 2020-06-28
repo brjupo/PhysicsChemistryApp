@@ -45,6 +45,7 @@ function saveAllInDB(){
 
 function saveInDB() {
     if(allIdsTemp.length==0){
+        alert("Información actualizada en base de datos");
         return;
     }
     $.ajax({
