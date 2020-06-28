@@ -196,12 +196,12 @@
     }
 
     //Llamar no habilitadas
-    $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?");
+    $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, nombre, orden FROM leccion WHERE id_subtema = ?");
     mysqli_stmt_bind_param($statement, "i", $id_subtema);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_leccion, $id_subtema, $nombre);
+    mysqli_stmt_bind_result($statement, $id_leccion, $id_subtema, $nombre, $orden);
 
     $arregloLecciones = array();
     $i = 0;
@@ -210,6 +210,7 @@
       $arregloLecciones[$i]["id_leccion"] = $id_leccion;
       $arregloLecciones[$i]["id_subtema"] = $id_subtema;
       $arregloLecciones[$i]["nombre"] = $nombre;
+      $arregloLecciones[$i]["orden"] = $orden;////////280622020 se agrego lo del orden de las lecciones
       $i = $i + 1;
     }
 
