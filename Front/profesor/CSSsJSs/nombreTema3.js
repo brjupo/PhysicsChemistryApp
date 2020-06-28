@@ -1,4 +1,5 @@
 var allIds = [];
+var allIdsTemp = [];
 
 window.onload = function () {
   var allElements = document.getElementsByTagName("*");
@@ -21,6 +22,7 @@ document.addEventListener("click", function (evt) {
 
   do {
     if (targetElement == guardarEnBBDD) {
+      allIdsTemp = allIds;
       saveInDB();
       return;
     }
@@ -42,7 +44,7 @@ function saveAllInDB(){
 
 
 function saveInDB() {
-    if(allIds.length==0){
+    if(allIdsTemp.length==0){
         return;
     }
     $.ajax({
