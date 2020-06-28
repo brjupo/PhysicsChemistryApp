@@ -52,10 +52,10 @@ function saveInDB() {
     }
     $.ajax({
         type: "POST",
-        url: "../SERVICIOS/nombreTema.php",
+        url: "../SERVICIOS/nombreSubtema.php",
         dataType: "json",
         data: {
-          id_tema: allIdsTemp[0],
+          id_subtema: allIdsTemp[0],
           nombre: document.getElementById(allIdsTemp[0]).value.trim()
         },
         success: function (data) {
