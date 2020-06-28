@@ -53,15 +53,15 @@ function saveInDB() {
         url: "../SERVICIOS/nombreTema.php",
         dataType: "json",
         data: {
-          id_tema: allIds[0],
-          nombre: document.getElementById(allIds[0]).value.trim()
+          id_tema: allIdsTemp[0],
+          nombre: document.getElementById(allIdsTemp[0]).value.trim()
         },
         success: function (data) {
           if (data.response == "exito") {
             console.log(data.response);
-            console.log(allIds[0]);
-            console.log(document.getElementById(allIds[0]).value.trim());
-            allIds.shift();
+            console.log(allIdsTemp[0]);
+            console.log(document.getElementById(allIdsTemp[0]).value.trim());
+            allIdsTemp.shift();
             saveInDB();
             //alert("Nombre actualizado en Base de datos");
           } else {
