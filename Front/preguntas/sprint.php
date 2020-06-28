@@ -263,13 +263,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                        <p class="slide-bottom" id="previous" style="display:none">30s</p>
-                        <p class="slide-bottom" id="actual">30s</p>
-                        <p class="slide-bottom" id="later" style="display:none">30s</p>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <p><a id="puntosBuenos">0</a><sub id="puntosTotales">/' . $totalPreguntas * 3 . '</sub></p>
-                    </div>
+                    <table class="table fixed">
+                <tbody>
+                  <tr>
+                    <td style="text-align: left" width="50%">
+                    <p class="slide-bottom" id="actual">30s</p>
+                    </td>
+                    <td style="text-align: right" width="50%">
+                    <p><a id="puntosBuenos">0</a><sub id="puntosTotales">/' . $totalPreguntas * 3 . '</sub></p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
                 </div>
             </div>
             ';
