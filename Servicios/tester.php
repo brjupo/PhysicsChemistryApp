@@ -33,7 +33,7 @@ while (mysqli_stmt_fetch($statement)) {
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["profe"] != "" and $tokenValidar["tokenSesionp"] != "") {
 
     /////////////////////////////////////////////TRAER INFO DE TEMAS
-    $idAsignatura = 1;//$_GET['idAsignatura'];
+    $idAsignatura = $_GET['idAsignatura'];
 
     $statement = mysqli_prepare($con, "SELECT id_tema, nombre, orden FROM tema WHERE id_asignatura = ?");
     mysqli_stmt_bind_param($statement,"i", $idAsignatura);
@@ -62,7 +62,7 @@ while (mysqli_stmt_fetch($statement)) {
   ///////////////////////////////////////////////////////////////////////////////////////////////
 
    /////////////////////////////////////////////TRAER INFO DE SUBTEMAS
-   $idTema = 1;//$_GET['idTema'];
+   $idTema = $_GET['idTema'];
     
    $statement = mysqli_prepare($con, "SELECT id_subtema, nombre, orden FROM subtema WHERE id_tema = ?");
    mysqli_stmt_bind_param($statement,"i", $idTema);
@@ -90,7 +90,7 @@ while (mysqli_stmt_fetch($statement)) {
  
  ///////////////////////////////////////////////////////////////////////////////////////////////
  /////////////////////////////////////////////TRAER INFO DE LECCIONES
- $idSubtema = 1;//$_GET['idSubtema'];
+ $idSubtema = $_GET['idSubtema'];
     
  $statement = mysqli_prepare($con, "SELECT id_leccion, nombre, orden FROM leccion WHERE id_subtema = ?");
  mysqli_stmt_bind_param($statement,"i", $idSubtema);
@@ -118,7 +118,7 @@ while (mysqli_stmt_fetch($statement)) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////TRAER INFO DE PREGUNTAS
-$idLeccion= 1;//$_GET['idLeccion'];
+$idLeccion= $_GET['idLeccion'];
     
 $statement = mysqli_prepare($con, "SELECT id_pregunta, pregunta, orden FROM pregunta WHERE id_leccion = ?");
 mysqli_stmt_bind_param($statement,"i", $idLeccion);
