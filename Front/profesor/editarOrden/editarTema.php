@@ -93,11 +93,11 @@ function printTopic($ID_Topic, $topicName, $topicOrder){
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="input-group-prepend">
-            <span class="input-group-text">'.$ID_Topic.'</span>
-            <span class="input-group-text">'.$topicName.'</span>
           </div>
           <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicOrder.'" />
           <div class="input-group-append">
+            <span class="input-group-text">'.$topicName.'</span>
+            <span class="input-group-text">'.$ID_Topic.'</span>
             <a href="editarSubtema.php?ID_Tema='.$ID_Topic.'">
               <button class="btn btn-outline-secondary" type="button">
                 Buscar sus subtemas
