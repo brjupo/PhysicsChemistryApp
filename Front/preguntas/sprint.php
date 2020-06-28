@@ -267,12 +267,12 @@
                     <table class="table fixed" border="4px" color="black">
                 <tbody>
                   <tr>
-                    <td style="text-align: left" width="50%">
+                    <td style="text-align: center" width="50%">
                         <p class="slide-bottom" id="previous" style="display:none">30s</p>
                         <p class="slide-bottom" id="actual">30s</p>
                         <p class="slide-bottom" id="later" style="display:none">30s</p>
                     </td>
-                    <td style="text-align: right" width="50%">
+                    <td style="text-align: center" width="50%">
                     <p><a id="puntosBuenos">0</a><sub id="puntosTotales">/' . $totalPreguntas * 3 . '</sub></p>
                     </td>
                   </tr>
