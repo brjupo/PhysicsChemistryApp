@@ -30,31 +30,37 @@ while (mysqli_stmt_fetch($statement)) {
   $existeProfe["profe"] = $idProfe;
 }
 
-if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["profe"] != "" and $tokenValidar["tokenSesionp"] != "") {
+  if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["profe"] != "" and $tokenValidar["tokenSesionp"] != "") {
 
-  $statement = mysqli_prepare($con, "SELECT id_asignatura, nombre FROM asignatura");
-  mysqli_stmt_execute($statement);
-  mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_asignatura, $nombre);
+    $idAsignatura = 1;
 
-  $arregloAsignaturas = array();
-  $i = 0;
-  //Leemos datos del la leccion habilitadas
-  while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-    $arregloAsignaturas[$i]["id_asignatura"] = $id_asignatura;
-    $arregloAsignaturas[$i]["nombre"] = $nombre;
-    $i = $i + 1;
-  }
+    $statement = mysqli_prepare($con, "SELECT id_tema, nombre FROM tema WHERE id_asignatura = ?");
+    mysqli_stmt_execute($statement,"i", $idAsignatura);
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $id_tema, $nombre);
 
-  $tamanho = count($arregloAsignaturas);
+    $arregloTemas = array();
+    $i = 0;
+    //Leemos datos del la leccion habilitadas
+    while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
+      $arregloTemas[$i]["id_tema"] = $id_tema;
+      $arregloTemas[$i]["nombre"] = $nombre;
+      $i = $i + 1;
+    }
 
-  for ($i = 0; $i < $tamanho; $i++) {
-    print_r($arregloAsignaturas[$i]["id_asignatura"]);
-    print_r($arregloAsignaturas[$i]["nombre"]);
-  }
-} else {
+    $tamanho = count($arregloTemas);
+
+    for ($i = 0; $i < $tamanho; $i++) {
+      print_r($arregloTemas[$i]["id_tema"]);
+      print_r($arregloTemas[$i]["nombre"]);
+    }
+  
+
+}else{
   echo '<script type="text/javascript">
   alert("Inicie sesión");
   window.location.href="https://kaanbal.net";
   </script>';
 }
+
+?>
