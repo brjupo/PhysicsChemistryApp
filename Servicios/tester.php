@@ -46,7 +46,7 @@
       $i = $i + 1;
     }
   
-    
+    print_r($arregloAsignaturas);
 
 
 }else{
