@@ -58,7 +58,6 @@ function printSubjects()
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
-    <script src="../CSSsJSs/elegirAsignatura2.js"></script>
   </head>
 
   <body>
@@ -96,25 +95,9 @@ function printSubjects()
         </div>
       </div>
     </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="topics"
-              >Asignaturas</label
-            >
-          </div>
-          <select class="custom-select" id="topics">
-            <option selected disabled>Choose...</option>
-            ';
+    ';
   printSubjectOptions();
   echo '
-          </select>
-        </div>
-      </div>
-    </div>
-
     <div class="container">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -166,9 +149,27 @@ function printSubjectOptions(){
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloAsignaturas[$i]["id_asignatura"]);
     //print_r($arregloAsignaturas[$i]["nombre"]);
-    echo '<option value="'.$arregloAsignaturas[$i]["id_asignatura"].'">'.$arregloAsignaturas[$i]["nombre"].'</option>';
-    //<option value="1">Quimica</option>
-    //<option value="2">Fisica</option>
+    echo '
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <a href="editarTema.php?ID_Asignatura='.$arregloAsignaturas[$i]["id_asignatura"].'">
+            <button type="button" class="btn btn-outline-dark">
+            '.$arregloAsignaturas[$i]["nombre"].'
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0);">.</p>
+        </div>
+      </div>
+    </div>
+    ';
   }
 }
 ?>
