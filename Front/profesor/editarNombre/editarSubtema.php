@@ -82,7 +82,7 @@ function printSubtopics(){
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printSubtopic($arregloTemas[$i]["id_tema"],$arregloTemas[$i]["nombre"]);
+    printSubtopic($arregloTemas[$i]["id_subtema"],$arregloTemas[$i]["nombre"]);
   }
 }
 
@@ -98,7 +98,7 @@ function printSubtopic($ID_Subtopic, $subtopicName){
           <div class="input-group-append">
             <a href="editarLeccion.php?ID_Tema='.$ID_Subtopic.'">
               <button class="btn btn-outline-secondary" type="button">
-                Buscar sus subtemas
+                Buscar sus lecciones
               </button>
             </a>
           </div>
