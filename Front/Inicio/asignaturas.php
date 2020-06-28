@@ -87,6 +87,10 @@
 
       //Si el usuario EXISTE despliega el menú de las asignaturas
       if ($temp_id_usuario) {
+        //Conteo de inicios de sesión
+        $temp_inicios = $temp_inicios+1;
+        $sql = "UPDATE usuario_prueba SET inicios = $temp_inicios WHERE mail = '$correo'";
+        mysqli_query($con,$sql);
         //Creamos token de sesión
         $rand = bin2hex(random_bytes(5));
         //Registrar token de sesion en BD
