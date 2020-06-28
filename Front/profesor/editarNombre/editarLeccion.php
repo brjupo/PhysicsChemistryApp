@@ -155,12 +155,8 @@ function printInstructions(){
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para cambiar el nombre de los <strong>subtemas</strong>, edite el nombre y de clic en
+          - Para cambiar el nombre de las <strong>lecciones</strong>, edite el nombre y de clic en
           "Guardar en base de datos"
-        </p>
-        <p>
-          - Para editar lecciones, ubique el <strong>tema</strong>
-          correspondiente y de clic en "Buscar sus lecciones"
         </p>
       </div>
     </div>

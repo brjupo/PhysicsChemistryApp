@@ -166,7 +166,7 @@ function printInstructions(){
           "Guardar en base de datos"
         </p>
         <p>
-          - Para editar lecciones, ubique el <strong>tema</strong>
+          - Para editar lecciones, ubique el <strong>subtema</strong>
           correspondiente y de clic en "Buscar sus lecciones"
         </p>
       </div>
