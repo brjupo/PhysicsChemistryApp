@@ -171,7 +171,7 @@
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_leccionh, $id_subtemah, $nombreh, $setenta, $puntuacion);
+    mysqli_stmt_bind_result($statement, $id_leccionh, $id_subtemah, $nombreh, $setenta, $puntuacion, $orden);
 
     $arregloLeccionesh = array();
     $i = 0;
@@ -182,6 +182,7 @@
       $arregloLeccionesh[$i]["nombre"] = $nombreh;
       $arregloLeccionesh[$i]["setenta"] = $setenta;
       $arregloLeccionesh[$i]["puntuacion"] = $puntuacion;
+      $arregloLeccionesh[$i]["orden"] = $orden;////////280622020 se agrego lo del orden de las lecciones
       $i = $i + 1;
     }
 
