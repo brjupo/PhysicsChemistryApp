@@ -163,19 +163,20 @@ function printTitle(){
 function printInstructions(){
   echo '
   <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p>
-          - Para cambiar el nombre de los <strong>subtemas</strong>, edite el nombre y de clic en
-          "Guardar en base de datos"
-        </p>
-        <p>
-          - Para editar lecciones, ubique el <strong>subtema</strong>
-          correspondiente y de clic en "Buscar sus lecciones"
-        </p>
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p>
+            - Para cambiar el orden de los <strong>subtemas</strong>, edite el
+            número y de clic en "Guardar en base de datos"
+          </p>
+          <p>
+            - Para editar el orden de lecciones o preguntas, seleccione el
+            <strong>subtema</strong>
+            correspondiente y de clic en "Buscar las lecciones"
+          </p>
+        </div>
       </div>
     </div>
-  </div>
 
   <div class="container">
     <div class="row">
