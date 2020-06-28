@@ -536,11 +536,11 @@ function imprimirClock() {
       //}
       m = min.toString();
       n = seg.toString();
-      if(m < 9 && n < 9){
+      if(m <= 9 && n <= 9){
         document.getElementById('number').innerHTML =  "0".concat(m,":0",n);
-      }else if(m < 9){
+      }else if(m <= 9){
         document.getElementById('number').innerHTML =  "0".concat(m,":",n);
-      }else if(n < 9){
+      }else if(n <= 9){
         document.getElementById('number').innerHTML =  m.concat(":0",n);
       }else{
         document.getElementById('number').innerHTML =  m.concat(":",n);
