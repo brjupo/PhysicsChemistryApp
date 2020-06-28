@@ -105,26 +105,6 @@ function printSubjects()
         </div>
       </div>
     </div>
-
-    <div class="container">
-      <div class="row">
-        <div
-          class="input-group input-group-sm col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
-        >
-          <button id="buscarTemas" type="button" class="btn btn-primary btn-sm">
-            Buscar temas
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p style="color: rgba(0, 0, 0, 0);">.</p>
-        </div>
-      </div>
-    </div>
     ';
 }
 
