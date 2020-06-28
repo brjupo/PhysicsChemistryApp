@@ -62,7 +62,7 @@
           $posicion = $i + 1;
           $diamantes = $arregloTopUsuarios[$i]["suma"];
           //$matricula = substr($arregloTopUsuarios[$i]["matricula"], 5, 4);
-          $matricula = substr($arregloTopUsuarios[$i]["matricula"], 0, 8);
+          $matricula = substr($arregloTopUsuarios[$i]["matricula"], 0, 9);
 
           if($arregloTopUsuarios[$i]["avatar"] == NULL){
             $avatar = "avatar.jpg";
