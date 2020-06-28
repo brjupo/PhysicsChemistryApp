@@ -45,9 +45,13 @@
       $arregloAsignaturas[$i]["nombre"] = $nombre;
       $i = $i + 1;
     }
-  
-    print_r($arregloAsignaturas);
 
+    $tamanho = count($arregloAsignaturas);
+
+    for ($i = 0; $i < $tamanho; $i++) {
+      print_r($arregloAsignaturas[$i]["id_asignatura"]);
+    }
+  
 
 }else{
   echo '<script type="text/javascript">
