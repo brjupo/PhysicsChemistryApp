@@ -37,8 +37,18 @@
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <p>
-            - Para cambiar el nombre de las <strong>lecciones</strong>, edite el
-            nombre y de clic en "Guardar en base de datos"
+            - Para crear una nueva <strong>lección</strong>, ingrese el nombre
+            de la nueva lección en la última sección y de clic en "Guardar en
+            base de datos"
+          </p>
+          <p>
+            - Para crear un nueva pregunta, seleccione la
+            <strong>lección</strong>
+            correspondiente y de clic en "Crear pregunta"
+          </p>
+          <p style="font-size: smaller;">
+            Si elige 2 o más lecciones, solo se buscará la que se encuentre más
+            arriba
           </p>
         </div>
       </div>
@@ -55,8 +65,16 @@
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <!--Para validar por ID, en input check box es el ID+100 y en input text es el ID-->
+              <input type="checkbox" id="101" />
+            </div>
+          </div>
           <input type="text" class="form-control" id="1" />
           <div class="input-group-append">
+            <span class="input-group-text">Orden</span>
+            <span class="input-group-text">..</span>
             <span class="input-group-text">ID</span>
           </div>
         </div>
@@ -74,9 +92,51 @@
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <!--Para validar por ID, en input check box es el ID+100 y en input text es el ID-->
+              <input type="checkbox" id="101" />
+            </div>
+          </div>
           <input type="text" class="form-control" id="1" />
           <div class="input-group-append">
+            <span class="input-group-text">Orden</span>
+            <span class="input-group-text">..</span>
             <span class="input-group-text">ID</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0);">.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="border-top: 4px dotted #007bff;">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0);">.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <input
+            id="nuevoTema"
+            type="text"
+            class="form-control"
+            placeholder="Escribe AQUI el nombre de la nueva lección"
+          />
+          <div class="input-group-append">
+            <span class="input-group-text">Orden</span>
+            <span class="input-group-text">..</span>
+            <span class="input-group-text">__</span>
           </div>
         </div>
       </div>
@@ -101,6 +161,17 @@
             class="btn btn-primary btn-sm"
           >
             Guardar en base de datos
+          </button>
+        </div>
+        <div
+          class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+        >
+          <button
+            id="buscarSubtemas"
+            type="button"
+            class="btn btn-primary btn-sm"
+          >
+            Crear pregunta
           </button>
         </div>
       </div>

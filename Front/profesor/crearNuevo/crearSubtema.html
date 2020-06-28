@@ -37,15 +37,17 @@
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <p>
-            - Para cambiar el nombre de los <strong>subtemas</strong>, edite el nombre y de clic en
-            "Guardar en base de datos"
+            - Para crear un nuevo <strong>subtema</strong>, ingrese el nombre del
+            nuevo subtema en la última sección y de clic en "Guardar en base de
+            datos"
           </p>
           <p>
-            - Para editar lecciones, seleccione el <strong>subtema</strong>
-            correspondiente y de clic en "Buscar las lecciones"
+            - Para crear un nueva lección o pregunta, seleccione el
+            <strong>subtema</strong>
+            correspondiente y de clic en "Buscar lecciones"
           </p>
           <p style="font-size: smaller;">
-            Si elige 2 o más subtemas, solo se buscará el subtema que se encuentre más
+            Si elige 2 o más subtemas, solo se buscará el que se encuentre más
             arriba
           </p>
         </div>
@@ -71,6 +73,8 @@
           </div>
           <input type="text" class="form-control" id="1" />
           <div class="input-group-append">
+            <span class="input-group-text">Orden</span>
+            <span class="input-group-text">..</span>
             <span class="input-group-text">ID</span>
           </div>
         </div>
@@ -96,7 +100,43 @@
           </div>
           <input type="text" class="form-control" id="1" />
           <div class="input-group-append">
+            <span class="input-group-text">Orden</span>
+            <span class="input-group-text">..</span>
             <span class="input-group-text">ID</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0);">.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="border-top: 4px dotted #007bff;">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0);">.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <input
+            id="nuevoTema"
+            type="text"
+            class="form-control"
+            placeholder="Escribe AQUI el nombre del nuevo subtema"
+          />
+          <div class="input-group-append">
+            <span class="input-group-text">Orden</span>
+            <span class="input-group-text">..</span>
+            <span class="input-group-text">__</span>
           </div>
         </div>
       </div>
