@@ -92,8 +92,8 @@ function printTopic($ID_Topic, $topicName, $topicOrder){
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <div class="input-group-prepend">
-          </div>
+          <!--div class="input-group-prepend">
+          </div-->
           <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicOrder.'" />
           <div class="input-group-append">
             <span class="input-group-text">'.$topicName.'</span>
