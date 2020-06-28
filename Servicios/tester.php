@@ -32,31 +32,30 @@ while (mysqli_stmt_fetch($statement)) {
 
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["profe"] != "" and $tokenValidar["tokenSesionp"] != "") {
 
-    $idAsignatura = $_GET['idAsignatura'];;
-    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    $statement = mysqli_prepare($con, "SELECT id_tema, nombre FROM tema WHERE id_asignatura = ?");
-    mysqli_stmt_bind_param($statement,"i", $idAsignatura);
+    /////////////////////////////////////////////TRAER INFO DE TEMAS
+    $statement = mysqli_prepare($con, "SELECT id_tema, nombre, orden FROM tema");
     mysqli_stmt_execute($statement);
-
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_tema, $nombre);
+    mysqli_stmt_bind_result($statement, $id_tema, $nombre, $orden);
 
     $arregloTemas = array();
     $i = 0;
-    //Leemos datos del la leccion habilitadas
-    while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-      $arregloTemas[$i]["id_tema"] = $id_tema;
+    while (mysqli_stmt_fetch($statement)) { 
+      $arregloTemas[$i]["id_asignatura"] = $id_asignatura;
       $arregloTemas[$i]["nombre"] = $nombre;
+      $arregloTemas[$i]["orden"] = $orden;
       $i = $i + 1;
     }
 
     $tamanho = count($arregloTemas);
 
     for ($i = 0; $i < $tamanho; $i++) {
-      print_r($arregloTemas[$i]["id_tema"]);
+      print_r($arregloTemas[$i]["id_asignatura"]);
       print_r($arregloTemas[$i]["nombre"]);
+      print_r($arregloTemas[$i]["orden"]);
     }
   
+  ///////////////////////////////////////////////////////////////////////////////////////////////
 
 }else{
   echo '<script type="text/javascript">
