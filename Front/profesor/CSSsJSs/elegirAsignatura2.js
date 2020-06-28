@@ -14,5 +14,5 @@ document.addEventListener("click", function (evt) {
 
 function searchTopics(){
     IDtopic = document.getElementById("topics").value;
-    window.location.href = "/editarTema.php?ID_Asignatura="+IDtopic;
+    window.location.href = "editarTema.php?ID_Asignatura="+IDtopic;
 }

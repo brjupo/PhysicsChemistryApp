@@ -58,7 +58,7 @@ function printSubjects()
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
-    <script src="../CSSsJSs/elegirAsignatura.js"></script>
+    <script src="../CSSsJSs/elegirAsignatura2.js"></script>
   </head>
 
   <body>
