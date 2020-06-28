@@ -53,9 +53,37 @@ function printEditTopic()
   echo '<body>';
   printTitle();
   printInstructions();
-  printTopic(NULL, NULL);
+  printTopics();
   printButtons();
   echo '</body>';  
+}
+
+function printTopics(){
+  $idAsignatura = $_GET['ID_Asignatura'];;
+  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+  $statement = mysqli_prepare($con, "SELECT id_tema, nombre FROM tema WHERE id_asignatura = ?");
+  mysqli_stmt_bind_param($statement,"i", $idAsignatura);
+  mysqli_stmt_execute($statement);
+
+  mysqli_stmt_store_result($statement);
+  mysqli_stmt_bind_result($statement, $id_tema, $nombre);
+
+  $arregloTemas = array();
+  $i = 0;
+  //Leemos datos del la leccion habilitadas
+  while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
+    $arregloTemas[$i]["id_tema"] = $id_tema;
+    $arregloTemas[$i]["nombre"] = $nombre;
+    $i = $i + 1;
+  }
+
+  $tamanho = count($arregloTemas);
+
+  for ($i = 0; $i < $tamanho; $i++) {
+    //print_r($arregloTemas[$i]["id_tema"]);
+    //print_r($arregloTemas[$i]["nombre"]);
+    printTopic($arregloTemas[$i]["id_tema"],$arregloTemas[$i]["nombre"]);
+  }
 }
 
 function printTopic($ID_Topic, $topicName){
