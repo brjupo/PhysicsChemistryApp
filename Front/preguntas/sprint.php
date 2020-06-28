@@ -263,7 +263,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                    <table class="table fixed">
+                    <table class="table fixed" border="4px" color="black">
                 <tbody>
                   <tr>
                     <td style="text-align: left" width="50%">
