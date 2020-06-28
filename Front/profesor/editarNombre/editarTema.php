@@ -198,17 +198,6 @@ function printButtons(){
           Guardar en base de datos
         </button>
       </div>
-      <div
-        class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
-      >
-        <button
-          id="buscarSubtemas"
-          type="button"
-          class="btn btn-primary btn-sm"
-        >
-          Buscar subtemas
-        </button>
-      </div>
     </div>
   </div>
   <div class="container">
