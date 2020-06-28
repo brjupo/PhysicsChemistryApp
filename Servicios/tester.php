@@ -48,7 +48,7 @@ while (mysqli_stmt_fetch($statement)) {
       $i = $i + 1;
     }
 
-    $tamanho = count($arregloAsignaturas);
+    $tamanho = count($arregloTemas);
 
     for ($i = 0; $i < $tamanho; $i++) {
       print_r($arregloTemas[$i]["id_tema"]);
