@@ -3,7 +3,8 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
 //////////////////////////////////////////////////////
     $date = date('Y-m-j H:i:s');
     $newDate = strtotime('-5 hour', strtotime($date));
-    $sql = "INSERT into alumno_grupo (id_alumno,id_grupo,tiempo) values (16,9,$newDate)";
+    $newDate = date('Y-m-j H:i:s', $newDate);
+    $sql = "INSERT into alumno_grupo (id_alumno,id_grupo,tiempo) values (19,9,$newDate)";
     mysqli_multi_query($con, $sql);
 
 ?>
