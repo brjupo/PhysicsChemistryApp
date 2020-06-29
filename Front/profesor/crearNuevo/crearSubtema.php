@@ -34,7 +34,7 @@ while (mysqli_stmt_fetch($statement)) {
 }
 
 if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["profe"] != "" and $tokenValidar["tokenSesionp"] != "") {
-  printEditSubtopic();
+  printEditTopic();
 } else {
   echo '<script type="text/javascript">
   alert("Inicie sesión");
@@ -47,32 +47,33 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
 <?php
 
-function printEditSubtopic()
+function printEditTopic()
 {
   printHead();
   echo '<body>';
   printTitle();
   printInstructions();
-  printSubtopics();
+  printTopics();
+  printNewTopic();
   printButtons();
   echo '</body>';  
 }
 
-function printSubtopics(){
-  $idSubtema = $_GET['ID_Subtema'];
+function printTopics(){
+  $idTema = $_GET['ID_Tema'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_leccion, nombre FROM leccion WHERE id_subtema = ?");
-  mysqli_stmt_bind_param($statement,"i", $idSubtema);
+  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre FROM subtema WHERE id_tema = ?");
+  mysqli_stmt_bind_param($statement,"i", $idTema);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_leccion, $nombre);
+  mysqli_stmt_bind_result($statement, $id_subtema, $nombre);
 
   $arregloTemas = array();
   $i = 0;
   //Leemos datos del la leccion habilitadas
   while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-    $arregloTemas[$i]["id_leccion"] = $id_leccion;
+    $arregloTemas[$i]["id_subtema"] = $id_subtema;
     $arregloTemas[$i]["nombre"] = $nombre;
     $i = $i + 1;
   }
@@ -82,19 +83,26 @@ function printSubtopics(){
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printSubtopic($arregloTemas[$i]["id_leccion"],$arregloTemas[$i]["nombre"]);
+    printTopic($arregloTemas[$i]["id_subtema"],$arregloTemas[$i]["nombre"]);
   }
 }
 
-function printSubtopic($ID_Lection, $LectionName){
+function printTopic($ID_Subtopic, $subtopicName){
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="input-group-prepend">
-            <span class="input-group-text">'.$ID_Lection.'</span>
+            <span class="input-group-text">'.$ID_Subtopic.'</span>
           </div>
-          <input type="text" class="form-control" id="'.$ID_Lection.'" value="'.$LectionName.'" />
+          <input type="text" class="form-control" id="'.$ID_Subtopic.'" value="'.$subtopicName.'" />
+          <div class="input-group-append">
+            <a href="crearSubtema.php?ID_Tema='.$ID_Subtopic.'">
+              <button class="btn btn-outline-secondary" type="button">
+                Buscar sus lecciones
+              </button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -107,6 +115,43 @@ function printSubtopic($ID_Lection, $LectionName){
       </div>
     </div>
 
+  ';
+}
+
+function printNewTopic(){
+  echo'
+  <div class="container" style="border-top: 4px dotted #007bff;">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <input
+          id="nuevoSubtema"
+          type="text"
+          class="form-control"
+          placeholder="Escribe AQUI el nombre del nuevo tema"
+        />
+        <div class="input-group-append">
+          <span class="input-group-text">ID Tema = </span>
+          <span class="input-group-text" id="id_tema">'.$_GET['ID_Tema'].'</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
   ';
 }
 
@@ -124,7 +169,7 @@ function printHead(){
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="../CSSsJSs/nombreLeccion.js"></script>
+    <script src="../CSSsJSs/crearSubtema.js"></script>
   </head>
   ';
 }
@@ -157,8 +202,12 @@ function printInstructions(){
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para cambiar el nombre de las <strong>lecciones</strong>, edite el nombre y de clic en
+          - Para cambiar el nombre de los <strong>temas</strong>, edite el nombre y de clic en
           "Guardar en base de datos"
+        </p>
+        <p>
+          - Para editar subtemas o lecciones, ubique el <strong>tema</strong>
+          correspondiente y de clic en "Buscar sus subtemas"
         </p>
       </div>
     </div>
