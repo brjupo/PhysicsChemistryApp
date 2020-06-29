@@ -61,12 +61,12 @@ function printEditTopic()
 function printTopics(){
   $idAsignatura = $_GET['ID_Asignatura'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_tema, nombre FROM tema WHERE id_asignatura = ?");
+  $statement = mysqli_prepare($con, "SELECT id_tema, nombre, orden FROM tema WHERE id_asignatura = ?");
   mysqli_stmt_bind_param($statement,"i", $idAsignatura);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_tema, $nombre);
+  mysqli_stmt_bind_result($statement, $id_tema, $nombre, $orden);
 
   $arregloTemas = array();
   $i = 0;
@@ -74,6 +74,7 @@ function printTopics(){
   while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
     $arregloTemas[$i]["id_tema"] = $id_tema;
     $arregloTemas[$i]["nombre"] = $nombre;
+    $arregloTemas[$i]["orden"] = $orden;
     $i = $i + 1;
   }
 
@@ -82,20 +83,21 @@ function printTopics(){
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printTopic($arregloTemas[$i]["id_tema"],$arregloTemas[$i]["nombre"]);
+    printTopic($arregloTemas[$i]["id_tema"],$arregloTemas[$i]["nombre"],$arregloTemas[$i]["orden"]);
   }
 }
 
-function printTopic($ID_Topic, $topicName){
+function printTopic($ID_Topic, $topicName, $topicOrder){
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <div class="input-group-prepend">
-            <span class="input-group-text">'.$ID_Topic.'</span>
-          </div>
-          <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicName.'" />
+          <!--div class="input-group-prepend">
+          </div-->
+          <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicOrder.'" />
           <div class="input-group-append">
+            <span class="input-group-text">'.$topicName.'</span>
+            <span class="input-group-text">'.$ID_Topic.'</span>
             <a href="editarSubtema.php?ID_Tema='.$ID_Topic.'">
               <button class="btn btn-outline-secondary" type="button">
                 Buscar sus subtemas
@@ -131,7 +133,7 @@ function printHead(){
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="../CSSsJSs/nombreTema6.js"></script>
+    <script src="../CSSsJSs/ordenTema.js"></script>
   </head>
   ';
 }
@@ -161,19 +163,25 @@ function printTitle(){
 function printInstructions(){
   echo '
   <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p>
-          - Para cambiar el nombre de los <strong>temas</strong>, edite el nombre y de clic en
-          "Guardar en base de datos"
-        </p>
-        <p>
-          - Para editar subtemas o lecciones, ubique el <strong>tema</strong>
-          correspondiente y de clic en "Buscar sus subtemas"
-        </p>
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p>
+            - Para cambiar de orden los <strong>temas</strong>, edite el número
+            y de clic en "Guardar orden en base de datos"
+          </p>
+          <p style="font-size: smaller;">
+            Revisar ANTES de guardar, de lo contrario, el orden puede verse
+            alterado
+          </p>
+          <p>.</p>
+          <p>
+            - Para editar orden de subtemas, lecciones o preguntas, seleccione
+            el <strong>tema</strong>
+            correspondiente y de clic en "Buscar sus subtemas"
+          </p>
+        </div>
       </div>
     </div>
-  </div>
 
   <div class="container">
     <div class="row">

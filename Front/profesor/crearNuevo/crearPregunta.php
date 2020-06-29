@@ -54,26 +54,28 @@ function printEditTopic()
   printTitle();
   printInstructions();
   printTopics();
+  printNewTopic();
   printButtons();
-  echo '</body>';  
+  echo '</body>';
 }
 
-function printTopics(){
-  $idAsignatura = $_GET['ID_Asignatura'];
+function printTopics()
+{
+  $idLeccion = $_GET['ID_Leccion'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_tema, nombre FROM tema WHERE id_asignatura = ?");
-  mysqli_stmt_bind_param($statement,"i", $idAsignatura);
+  $statement = mysqli_prepare($con, "SELECT id_pregunta, pregunta FROM pregunta WHERE id_leccion = ?");
+  mysqli_stmt_bind_param($statement, "i", $idLeccion);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_tema, $nombre);
+  mysqli_stmt_bind_result($statement, $id_pregunta, $pregunta);
 
   $arregloTemas = array();
   $i = 0;
   //Leemos datos del la leccion habilitadas
   while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-    $arregloTemas[$i]["id_tema"] = $id_tema;
-    $arregloTemas[$i]["nombre"] = $nombre;
+    $arregloTemas[$i]["id_pregunta"] = $id_pregunta;
+    $arregloTemas[$i]["pregunta"] = $pregunta;
     $i = $i + 1;
   }
 
@@ -82,26 +84,20 @@ function printTopics(){
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printTopic($arregloTemas[$i]["id_tema"],$arregloTemas[$i]["nombre"]);
+    printTopic($arregloTemas[$i]["id_pregunta"], $arregloTemas[$i]["pregunta"]);
   }
 }
 
-function printTopic($ID_Topic, $topicName){
+function printTopic($ID_Question, $questionName)
+{
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="input-group-prepend">
-            <span class="input-group-text">'.$ID_Topic.'</span>
+            <span class="input-group-text">' . $ID_Question . '</span>
           </div>
-          <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicName.'" />
-          <div class="input-group-append">
-            <a href="editarSubtema.php?ID_Tema='.$ID_Topic.'">
-              <button class="btn btn-outline-secondary" type="button">
-                Buscar sus subtemas
-              </button>
-            </a>
-          </div>
+          <input type="text" class="form-control" id="' . $ID_Question . '" value="' . $questionName . '" />
         </div>
       </div>
     </div>
@@ -117,8 +113,47 @@ function printTopic($ID_Topic, $topicName){
   ';
 }
 
-function printHead(){
-  echo'
+function printNewTopic()
+{
+  echo '
+  <div class="container" style="border-top: 4px dotted #007bff;">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <input
+          id="nuevaPregunta"
+          type="text"
+          class="form-control"
+          placeholder="Escribe AQUI la nueva pregunta"
+        />
+        <div class="input-group-append">
+          <span class="input-group-text">ID Lección = </span>
+          <span class="input-group-text" id="id_leccion">' . $_GET['ID_Leccion'] . '</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+  ';
+}
+
+function printHead()
+{
+  echo '
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -131,11 +166,12 @@ function printHead(){
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="../CSSsJSs/nombreTema6.js"></script>
+    <script src="../CSSsJSs/crearPregunta.js"></script>
   </head>
   ';
 }
-function printTitle(){
+function printTitle()
+{
   echo '
   <div class="container">
     <div class="row">
@@ -158,18 +194,24 @@ function printTitle(){
   ';
 }
 
-function printInstructions(){
+function printInstructions()
+{
   echo '
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para cambiar el nombre de los <strong>temas</strong>, edite el nombre y de clic en
-          "Guardar en base de datos"
+          - Para crear una nueva <strong>pregunta</strong>, inserte la pregunta en la última sección 
+          y de clic en "Guardar en base de datos"
         </p>
         <p>
-          - Para editar subtemas o lecciones, ubique el <strong>tema</strong>
-          correspondiente y de clic en "Buscar sus subtemas"
+          - Recuerde, aquí solo se crea la pregunta en español, para crear las respuestas, el tipo de 
+          pregunta y su traducción, utilice la sección "Editar preguntas por ID", ubicada en el panel 
+          de profesores
+        </p>
+        <p>
+          - Por el momento, falta la carga de imagen. Nombre de la imagen == al ID mostrado en esta 
+          pantalla 
         </p>
       </div>
     </div>
@@ -185,7 +227,8 @@ function printInstructions(){
   ';
 }
 
-function printButtons(){
+function printButtons()
+{
   echo '
   <div class="container">
     <div class="row">

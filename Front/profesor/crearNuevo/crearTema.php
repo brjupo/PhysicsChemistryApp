@@ -54,6 +54,7 @@ function printEditTopic()
   printTitle();
   printInstructions();
   printTopics();
+  printNewTopic();
   printButtons();
   echo '</body>';  
 }
@@ -96,7 +97,7 @@ function printTopic($ID_Topic, $topicName){
           </div>
           <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicName.'" />
           <div class="input-group-append">
-            <a href="editarSubtema.php?ID_Tema='.$ID_Topic.'">
+            <a href="crearSubtema.php?ID_Tema='.$ID_Topic.'">
               <button class="btn btn-outline-secondary" type="button">
                 Buscar sus subtemas
               </button>
@@ -117,6 +118,43 @@ function printTopic($ID_Topic, $topicName){
   ';
 }
 
+function printNewTopic(){
+  echo'
+  <div class="container" style="border-top: 4px dotted #007bff;">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <input
+          id="nuevoTema"
+          type="text"
+          class="form-control"
+          placeholder="Escribe AQUI el nombre del nuevo tema"
+        />
+        <div class="input-group-append">
+          <span class="input-group-text">ID Asignatura = </span>
+          <span class="input-group-text" id="id_asignatura">'.$_GET['ID_Asignatura'].'</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+  ';
+}
+
 function printHead(){
   echo'
   <head>
@@ -131,7 +169,7 @@ function printHead(){
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="../CSSsJSs/nombreTema6.js"></script>
+    <script src="../CSSsJSs/crearTema3.js"></script>
   </head>
   ';
 }
@@ -164,11 +202,11 @@ function printInstructions(){
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para cambiar el nombre de los <strong>temas</strong>, edite el nombre y de clic en
+          - Para crear un nuevo <strong>tema</strong>, inserte el nombre en la última sección y de clic en
           "Guardar en base de datos"
         </p>
         <p>
-          - Para editar subtemas o lecciones, ubique el <strong>tema</strong>
+          - Para editar subtemas, lecciones o preguntas, ubique el <strong>tema</strong>
           correspondiente y de clic en "Buscar sus subtemas"
         </p>
       </div>

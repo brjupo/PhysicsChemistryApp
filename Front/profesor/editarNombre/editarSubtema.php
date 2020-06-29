@@ -34,7 +34,7 @@ while (mysqli_stmt_fetch($statement)) {
 }
 
 if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["profe"] != "" and $tokenValidar["tokenSesionp"] != "") {
-  printEditTopic();
+  printEditSubtopic();
 } else {
   echo '<script type="text/javascript">
   alert("Inicie sesión");
@@ -47,32 +47,32 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
 <?php
 
-function printEditTopic()
+function printEditSubtopic()
 {
   printHead();
   echo '<body>';
   printTitle();
   printInstructions();
-  printTopics();
+  printSubtopics();
   printButtons();
   echo '</body>';  
 }
 
-function printTopics(){
-  $idAsignatura = $_GET['ID_Asignatura'];
+function printSubtopics(){
+  $idTema = $_GET['ID_Tema'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_tema, nombre FROM tema WHERE id_asignatura = ?");
-  mysqli_stmt_bind_param($statement,"i", $idAsignatura);
+  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre FROM subtema WHERE id_tema = ?");
+  mysqli_stmt_bind_param($statement,"i", $idTema);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_tema, $nombre);
+  mysqli_stmt_bind_result($statement, $id_subtema, $nombre);
 
   $arregloTemas = array();
   $i = 0;
   //Leemos datos del la leccion habilitadas
   while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-    $arregloTemas[$i]["id_tema"] = $id_tema;
+    $arregloTemas[$i]["id_subtema"] = $id_subtema;
     $arregloTemas[$i]["nombre"] = $nombre;
     $i = $i + 1;
   }
@@ -82,23 +82,23 @@ function printTopics(){
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printTopic($arregloTemas[$i]["id_tema"],$arregloTemas[$i]["nombre"]);
+    printSubtopic($arregloTemas[$i]["id_subtema"],$arregloTemas[$i]["nombre"]);
   }
 }
 
-function printTopic($ID_Topic, $topicName){
+function printSubtopic($ID_Subtopic, $subtopicName){
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="input-group-prepend">
-            <span class="input-group-text">'.$ID_Topic.'</span>
+            <span class="input-group-text">'.$ID_Subtopic.'</span>
           </div>
-          <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicName.'" />
+          <input type="text" class="form-control" id="'.$ID_Subtopic.'" value="'.$subtopicName.'" />
           <div class="input-group-append">
-            <a href="editarSubtema.php?ID_Tema='.$ID_Topic.'">
+            <a href="editarLeccion.php?ID_Subtema='.$ID_Subtopic.'">
               <button class="btn btn-outline-secondary" type="button">
-                Buscar sus subtemas
+                Buscar sus lecciones
               </button>
             </a>
           </div>
@@ -131,7 +131,7 @@ function printHead(){
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="../CSSsJSs/nombreTema6.js"></script>
+    <script src="../CSSsJSs/nombreSubtema.js"></script>
   </head>
   ';
 }
@@ -164,12 +164,12 @@ function printInstructions(){
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para cambiar el nombre de los <strong>temas</strong>, edite el nombre y de clic en
+          - Para cambiar el nombre de los <strong>subtemas</strong>, edite el nombre y de clic en
           "Guardar en base de datos"
         </p>
         <p>
-          - Para editar subtemas o lecciones, ubique el <strong>tema</strong>
-          correspondiente y de clic en "Buscar sus subtemas"
+          - Para editar lecciones, ubique el <strong>subtema</strong>
+          correspondiente y de clic en "Buscar sus lecciones"
         </p>
       </div>
     </div>

@@ -108,7 +108,8 @@ function printSubjects()
     ';
 }
 
-function printSubjectOptions(){
+function printSubjectOptions()
+{
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   $statement = mysqli_prepare($con, "SELECT id_asignatura, nombre FROM asignatura");
   mysqli_stmt_execute($statement);
@@ -133,9 +134,9 @@ function printSubjectOptions(){
     <div class="container">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <a href="editarTema.php?ID_Asignatura='.$arregloAsignaturas[$i]["id_asignatura"].'">
+          <a href="crearTema.php?ID_Asignatura=' . $arregloAsignaturas[$i]["id_asignatura"] . '">
             <button type="button" class="btn btn-outline-dark">
-            '.$arregloAsignaturas[$i]["nombre"].'
+            ' . $arregloAsignaturas[$i]["nombre"] . '
             </button>
           </a>
         </div>
