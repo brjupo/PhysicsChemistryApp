@@ -7,7 +7,7 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
     mysqli_multi_query($con, $sql);
 
     function getDatetimeNow() {
-        $tz_object = new DateTimeZone('Brazil/East');
+        $tz_object = new DateTimeZone('America/Mexico_City');
         //date_default_timezone_set('Brazil/East');
     
         $datetime = new DateTime();
