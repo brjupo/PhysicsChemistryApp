@@ -26,6 +26,7 @@ function saveInDB() {
         success: function (data) {
           if (data.response == "exito") {
             alert("Creado en Base de datos");
+            location.reload();
           } else {
             console.log(data.response);
             alert("Error: " + data.response);

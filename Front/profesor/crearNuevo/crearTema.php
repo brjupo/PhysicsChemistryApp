@@ -161,7 +161,7 @@ function printHead(){
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="../CSSsJSs/crearTema2.js"></script>
+    <script src="../CSSsJSs/crearTema3.js"></script>
   </head>
   ';
 }
