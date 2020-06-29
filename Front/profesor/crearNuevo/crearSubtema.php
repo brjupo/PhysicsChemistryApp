@@ -97,7 +97,7 @@ function printTopic($ID_Subtopic, $subtopicName){
           </div>
           <input type="text" class="form-control" id="'.$ID_Subtopic.'" value="'.$subtopicName.'" />
           <div class="input-group-append">
-            <a href="crearSubtema.php?ID_Tema='.$ID_Subtopic.'">
+            <a href="crearLeccion.php?ID_Subtema='.$ID_Subtopic.'">
               <button class="btn btn-outline-secondary" type="button">
                 Buscar sus lecciones
               </button>
@@ -135,7 +135,7 @@ function printNewTopic(){
           id="nuevoSubtema"
           type="text"
           class="form-control"
-          placeholder="Escribe AQUI el nombre del nuevo tema"
+          placeholder="Escribe AQUI el nombre del nuevo subtema"
         />
         <div class="input-group-append">
           <span class="input-group-text">ID Tema = </span>
@@ -202,12 +202,12 @@ function printInstructions(){
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para cambiar el nombre de los <strong>temas</strong>, edite el nombre y de clic en
+          - Para crear un nuevo <strong>subtema</strong>, inserte el nombre en la última sección y de clic en
           "Guardar en base de datos"
         </p>
         <p>
-          - Para editar subtemas o lecciones, ubique el <strong>tema</strong>
-          correspondiente y de clic en "Buscar sus subtemas"
+          - Para crear lecciones o preguntas, ubique el <strong>subtema</strong>
+          correspondiente y de clic en "Buscar sus lecciones"
         </p>
       </div>
     </div>
