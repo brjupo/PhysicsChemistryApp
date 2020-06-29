@@ -181,7 +181,7 @@ function printTeacherControlPanel()
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <a href="">
+            <a href="crearNuevo/elegirAsignatura.php">
               <button type="button" class="btn btn-secondary">
                 Crear nuevo tema, subtema, lección y/o pregunta
               </button>
