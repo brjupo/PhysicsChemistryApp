@@ -20,7 +20,7 @@ function saveInDB() {
         url: "../SERVICIOS/crearTema.php",
         dataType: "json",
         data: {
-          id_asignatura: document.getElementById("id_asignatura").value.trim(),
+          id_asignatura: document.getElementById("id_asignatura").innerHTML.trim(),
           nuevoTema: document.getElementById("nuevoTema").value.trim()
         },
         success: function (data) {

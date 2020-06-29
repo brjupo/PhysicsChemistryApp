@@ -134,7 +134,7 @@ function printSubjectOptions()
     <div class="container">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <a href="editarTema.php?ID_Asignatura=' . $arregloAsignaturas[$i]["id_asignatura"] . '">
+          <a href="crearTema.php?ID_Asignatura=' . $arregloAsignaturas[$i]["id_asignatura"] . '">
             <button type="button" class="btn btn-outline-dark">
             ' . $arregloAsignaturas[$i]["nombre"] . '
             </button>
