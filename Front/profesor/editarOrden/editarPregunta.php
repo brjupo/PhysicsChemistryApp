@@ -59,7 +59,7 @@ function printEditSubtopic()
 }
 
 function printSubtopics(){
-  $idLeccion = $_GET['ID_Leccion'];;
+  $idLeccion = $_GET['ID_Leccion'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   $statement = mysqli_prepare($con, "SELECT id_pregunta, pregunta, orden FROM pregunta WHERE id_leccion = ?");
   mysqli_stmt_bind_param($statement,"i", $idLeccion);

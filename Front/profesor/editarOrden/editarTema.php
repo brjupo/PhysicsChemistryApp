@@ -59,7 +59,7 @@ function printEditTopic()
 }
 
 function printTopics(){
-  $idAsignatura = $_GET['ID_Asignatura'];;
+  $idAsignatura = $_GET['ID_Asignatura'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   $statement = mysqli_prepare($con, "SELECT id_tema, nombre, orden FROM tema WHERE id_asignatura = ?");
   mysqli_stmt_bind_param($statement,"i", $idAsignatura);
