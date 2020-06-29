@@ -97,7 +97,7 @@ function printTopic($ID_Lection, $lectionName){
           </div>
           <input type="text" class="form-control" id="'.$ID_Lection .'" value="'.$lectionName.'" />
           <div class="input-group-append">
-            <a href="crearPreguntas.php?ID_Leccion='.$ID_Lection .'">
+            <a href="crearPregunta.php?ID_Leccion='.$ID_Lection .'">
               <button class="btn btn-outline-secondary" type="button">
                 Buscar sus preguntas
               </button>
