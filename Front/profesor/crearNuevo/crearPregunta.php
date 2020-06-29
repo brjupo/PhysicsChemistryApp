@@ -128,7 +128,7 @@ function printNewTopic()
     <div class="row">
       <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <input
-          id="nuevaLeccion"
+          id="nuevaPregunta"
           type="text"
           class="form-control"
           placeholder="Escribe AQUI la nueva pregunta"
