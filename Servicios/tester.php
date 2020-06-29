@@ -8,7 +8,6 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
 
     function getDatetimeNow() {
         $tz_object = new DateTimeZone('America/Mexico_City');
-        //date_default_timezone_set('Brazil/East');
     
         $datetime = new DateTime();
         $datetime->setTimezone($tz_object);
