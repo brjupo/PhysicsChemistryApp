@@ -337,6 +337,8 @@
     $habilitarS = '1';
     $habilitarE = '1';
     if ($habilitar == '1' && $habilitarS == '1' && $habilitarE == '1') {
+      //<a href="../preguntas/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" /></a>
+                  
       echo '
       <div class="container">
         <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
@@ -358,7 +360,7 @@
                   <a href="../preguntas/sprint.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
                   </td>
                   <td>
-                  <a href="../preguntas/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" /></a>
+                  <img class="icons" src="../CSSsJSs/icons/examen.svg" />
                   </td>
                 </tr>
               </tbody>
