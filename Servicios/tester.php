@@ -11,7 +11,7 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
     
         $datetime = new DateTime();
         $datetime->setTimezone($tz_object);
-        return $datetime->format('Y\-m\-d\ h:i:s');
+        return $datetime->format('Y\-m\-d\ H:i:s');
     }
 
 ?>
