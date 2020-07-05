@@ -84,7 +84,7 @@ function printTeacherControlPanel()
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <h4>Panel de profesores</h4>
+            <h4>Panel de Profesores</h4>
           </div>
         </div>
       </div>
@@ -100,7 +100,7 @@ function printTeacherControlPanel()
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <a href="../errorInfoPages/editAllQuestionByID.php">
+            <a href="editarPreguntas/editAllQuestionByID.php">
               <button type="button" class="btn btn-info">
                 Editar preguntas por ID. Con boton de "siguiente"
               </button>
@@ -120,7 +120,7 @@ function printTeacherControlPanel()
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <a href="../errorInfoPages/editAllQuestion.php">
+            <a href="editarPreguntas/editAllQuestion.php">
               <button type="button" class="btn btn-info">
                 Editar preguntas por leccion y número de pregunta"
               </button>
@@ -186,10 +186,66 @@ function printTeacherControlPanel()
                 Crear nuevo tema, subtema, lección y/o pregunta
               </button>
             </a>
-            <!--a href=""
-              >Eliminar tema, subtema, lección y/o pregunta [Solo válido para
-              programadores]</a
-            -->
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p style="color: rgba(0, 0, 0, 0);">.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <a href="tiempoSprintExamen/elegirAsignatura.php">
+              <button type="button" class="btn btn-secondary">
+                Modificar el tiempo para los sprints y los examenes
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p style="color: rgba(0, 0, 0, 0);">.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <a href="linksGenially/elegirAsignatura.php">
+              <button type="button" class="btn btn-warning">
+                Agregar links de Genially
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p style="color: rgba(0, 0, 0, 0);">.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <a href="traducirTSL/elegirAsignatura.php">
+              <button type="button" class="btn btn-warning">
+                Traducir temas, subtemas y lecciones
+              </button>
+            </a>
           </div>
         </div>
       </div>
