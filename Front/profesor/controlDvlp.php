@@ -209,6 +209,26 @@ function printTeacherControlPanel()
           </div>
         </div>
       </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p style="color: rgba(0, 0, 0, 0);">.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <a href="tiempoSprintExamen/elegirAsignatura.php">
+              <button type="button" class="btn btn-warning">
+                Modificar el tiempo para los sprints y los examenes
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
   
   
       <div class="container">
