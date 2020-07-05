@@ -164,7 +164,7 @@ function printInstructions()
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para cambiar el tiempo del <strong>sprint</strong>, ubique la <strong>lección</strong> correspondiente,
+          - Para cambiar el tiempo de <strong>cada pregunta del sprint</strong>, ubique la <strong>lección</strong> correspondiente,
            edite el valor y de clic en "Guardar en base de datos".
         </p>
         <p>
