@@ -166,9 +166,8 @@ function printInstructions(){
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <p>
-            - Para agregar el <strong>link de Genially&reg;</strong>, indique en 
-            la primer casilla el id del subtema, pegue el link en la segunda casilla 
-            y de clic en "Guardar en base de datos" al finalizar.
+            - Para agregar el <strong>link de Genially&reg;</strong>, indique el link
+            y de clic en "Guardar en base de datos".
           </p>
         </div>
       </div>

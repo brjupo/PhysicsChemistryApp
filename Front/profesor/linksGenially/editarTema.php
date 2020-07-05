@@ -94,7 +94,7 @@ function printTopic($ID_Topic, $topicName){
           <div class="input-group-prepend">
             <span class="input-group-text">'.$ID_Topic.'</span>
           </div>
-          <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicName.'" />
+          <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicName.'" disabled />
           <div class="input-group-append">
             <a href="editarSubtema.php?ID_Tema='.$ID_Topic.'">
               <button class="btn btn-outline-secondary" type="button">
