@@ -61,15 +61,27 @@ function getDataToSaveInDDBB() {
     tipo: document.getElementById("tipo").value,
   };
   // En casos se debe transformar la informacion más de una vez
+  //Curiosamente existe problema con los campos en objetos que tienen el guion bajo
+  tempCorrecta = document
+  .getElementById("respuesta_correcta")
+  .value.replace(/\\/g, "\\\\");
+  tempCorrecta = tempCorrecta.replace(/'/g, "''");
+
+  tempCorrect = document
+  .getElementById("correct_answer")
+  .value.replace(/\\/g, "\\\\");
+  tempCorrect = tempCorrect.replace(/'/g, "''");
+
+
   informacion = {
     IDPregunta: informacion.IDPregunta,
     pregunta: informacion.pregunta.replace(/'/g, "''"),
-    respuesta_correcta: informacion.respuesta_correcta.replace(/'/g, "''"),
+    respuesta_correcta: tempCorrecta,
     respuesta2: informacion.respuesta2.replace(/'/g, "''"),
     respuesta3: informacion.respuesta3.replace(/'/g, "''"),
     respuesta4: informacion.respuesta4.replace(/'/g, "''"),
     question: informacion.question.replace(/'/g, "''"),
-    correct_answer: informacion.correct_answer.replace(/'/g, "''"),
+    correct_answer: tempCorrect,
     answer2: informacion.answer2.replace(/'/g, "''"),
     answer3: informacion.answer3.replace(/'/g, "''"),
     answer4: informacion.answer4.replace(/'/g, "''"),
