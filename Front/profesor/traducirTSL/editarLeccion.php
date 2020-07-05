@@ -131,7 +131,7 @@ function printHead()
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="lectionName.js"></script>
+    <script src="lectionName2.js"></script>
   </head>
   ';
 }

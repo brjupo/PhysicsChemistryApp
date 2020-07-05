@@ -134,7 +134,7 @@ function printHead()
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="topicName.js"></script>
+    <script src="topicName2.js"></script>
   </head>
   ';
 }
