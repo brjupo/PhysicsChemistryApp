@@ -162,7 +162,7 @@ document.addEventListener("click", function (evt) {
 function seguroRegresar() {
   if (
     confirm(
-      "¿Estás seguro de regresar?\n Si regresas perderás todo tu avance de esta lección"
+      "Are you sure to return?\n If you return you will lose all your progress of this lesson"
     )
   ) {
     var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
