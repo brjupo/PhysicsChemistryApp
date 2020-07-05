@@ -66,10 +66,9 @@ if (isset($_POST["Import"])) {
                    values ($ultimoId,'" . $getData[0] . "')";
       $result = mysqli_query($con, $sql);
 
-      $date = date('m/d/Y h:i:s');
       //tabla licencia (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigenvia,estatus)
       $sql = "INSERT into licencia (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigencia,estatus) 
-                   values ($ultimoId,'" . $getData[3] . "',$ultimoId,$ultimoId,$ultimoId,'12/30/2020 12:00:00',1)";
+                   values ($ultimoId,'" . $getData[3] . "',$ultimoId,$ultimoId,$ultimoId,'2020-12-31 12:00:00',1)";
       $result = mysqli_query($con, $sql); 
 
 
