@@ -52,7 +52,7 @@ if (isset($_POST["Import"])) {
 
       }else{
 
-        $ultimoId += 1;
+        //$ultimoId += 1;
 
         //tabla usuario_prueba (mail, password, idioma)
       $sql = "INSERT into usuario_prueba (mail,pswd,idioma) 
