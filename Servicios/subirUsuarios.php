@@ -2,7 +2,7 @@
 
 $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 //traer el último id
-$query = "SELECT MAX (id_usuario) FROM usuario_prueba"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+$query = "SELECT MAX(id_usuario) FROM usuario_prueba"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
         $result= mysqli_query($con, $query);
         $lastId = mysqli_fetch_row($result);
 
