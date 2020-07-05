@@ -159,16 +159,14 @@
                 <div class=" row text-center">
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3 "></div>
                     <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
-                        <p class="footSubject">
-                            <a href="Front/CSSsJSs/errorInfoPages/nosotros.html">Nosotros</a>
+                        <p class="footSubject">.
                         </p>
                     </div>
                     <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
-                        <p class="footSubject">Ayuda</p>
+                        <p class="footSubject">.</p>
                     </div>
                     <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
-                        <p class="footSubject">
-                            <a href="Front/CSSsJSs/errorInfoPages/terminos.html">Términos</a>
+                        <p class="footSubject">.
                         </p>
                     </div>
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div>
