@@ -168,12 +168,13 @@ function printInstructions(){
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para cambiar el nombre de los <strong>subtemas</strong>, edite el nombre y de clic en
-          "Guardar en base de datos"
+          - Ubique el <strong>subtema</strong> correspondiente.
         </p>
         <p>
-          - Para editar lecciones, ubique el <strong>subtema</strong>
-          correspondiente y de clic en "Buscar sus lecciones"
+          - Si desea cambiar el tiempo de cada pregunta del sprint, de clic en SPRINT
+        </p>
+        <p>
+          - Si desea cambiar el tiempo total del examen, de clic en EXAMEN
         </p>
       </div>
     </div>
