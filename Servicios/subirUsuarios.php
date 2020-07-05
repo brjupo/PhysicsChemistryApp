@@ -1,9 +1,14 @@
 <?php
 
+$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+//traer el último id
+$query = "SELECT MAX (id_usuario) FROM usuario_prueba"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+        $result= mysqli_query($con, $query);
+        $lastId = mysqli_fetch_row($result);
+
+        $ultimoId = $lastId[0];
 
 if (isset($_POST["Import"])) {
-
-  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
   $filename = $_FILES["file"]["name"];
 
@@ -21,7 +26,7 @@ if (isset($_POST["Import"])) {
     $file = fopen($filename, "r");
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
       
-      $mailr = $getData[0]."@itesm.mx";
+      $mailr = $getData[0];
       /* echo "<script type=\"text/javascript\">
               alert(\"".$mailr."\");
               </script>"; */
@@ -47,9 +52,24 @@ if (isset($_POST["Import"])) {
 
       }else{
 
-      /* $sql = "INSERT into usuario_prueba (mail,pswd) 
-                   values ('" . $getData[0] . "@itesm.mx','" . $getData[1] . "')";
+        $ultimoId += 1;
+
+        //tabla usuario_prueba (mail, password, idioma)
+      $sql = "INSERT into usuario_prueba (mail,pswd,idioma) 
+                   values ('" . $getData[0] . "','" . $getData[1] . "','" . $getData[2] . "')";
       $result = mysqli_query($con, $sql);
+
+        //tabla alumno (id_usuario,matricula(mail))
+      $sql = "INSERT into alumno (id_usuario,matrícula) 
+                   values ($ultimoId,'" . $getData[0] . "')";
+      $result = mysqli_query($con, $sql);
+
+      //tabla licencia (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigenvia,estatus)
+      $sql = "INSERT into alumno (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigencia,estatus) 
+                   values ($ultimoId,'" . $getData[3] . "',$ultimoId,$ultimoId,$ultimoId,'30/06/2022  11:59:59 p. m.',1)";
+      $result = mysqli_query($con, $sql);
+
+
       if (!isset($result)) {
         echo "<script type=\"text/javascript\">
               alert(\"Invalid File:Please Upload CSV File.\");
@@ -60,11 +80,11 @@ if (isset($_POST["Import"])) {
             alert(\"CSV File has been successfully Imported.\");
             window.location = \"../Front/errorInfoPages/uploadInfo.php\"
           </script>";
-      } */
+      } 
 
       // $sql = "INSERT into alumno (id_usuario,matricula) 
       //              values ('" . $getData[0] ."','" . $getData[1] . "')";
-                   $sql = "INSERT into test (id_alumno,id_grupo) 
+       /*             $sql = "INSERT into test (id_alumno,id_grupo) 
                    values ('" . $getData[0] ."','" . $getData[1] . "')";
       $result = mysqli_query($con, $sql);
       if (!isset($result)) {
@@ -77,7 +97,7 @@ if (isset($_POST["Import"])) {
             alert(\"CSV File has been successfully Imported.\");
             window.location = \"../Front/errorInfoPages/uploadInfo.php\"
           </script>";
-      }
+      } */
     }
     }
 
