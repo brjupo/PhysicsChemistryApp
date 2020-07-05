@@ -98,11 +98,6 @@ function printSubtopic($ID_Subtopic, $subtopicName, $linkGenially){
           <input type="text" class="form-control" id="'.$ID_Subtopic.'" value="'.$linkGenially.'" />
           <div class="input-group-append">
             <span class="input-group-text">'.$subtopicName.'</span>
-            <a href="editarLeccion.php?ID_Subtema='.$ID_Subtopic.'">
-              <button class="btn btn-outline-secondary" type="button">
-                Buscar sus lecciones
-              </button>
-            </a>
           </div>
         </div>
       </div>
