@@ -223,7 +223,7 @@ function printTeacherControlPanel()
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <a href="tiempoSprintExamen/elegirAsignatura.php">
               <button type="button" class="btn btn-warning">
-                Modificar el tiempo para los sprints y los examenes
+                Agregar links de Genially
               </button>
             </a>
           </div>
