@@ -62,7 +62,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-          <h3>Ha concluido el sprint</h3>
+          <h3>You have completed this sprint!</h3>
           <p id="numeroDiamantes" class="numeroDiamantes">
             <?php echo intval($puntos);?>
           </p>

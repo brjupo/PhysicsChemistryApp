@@ -62,7 +62,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-          <h3>Ha concluido el Examen</h3>
+          <h3>You have completed the exam!</h3>
           <p id="numeroDiamantes" class="numeroDiamantes">
             <?php echo intval($puntos);?>
           </p>
@@ -84,7 +84,7 @@
           <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
             <a href="<?php echo 'https://kaanbal.net/Front/Inicio/lecciones.php?subtema='.$subtema; ?>">
-                <button class="botonContinuar">Continuar</button>
+                <button class="botonContinuar">Continue</button>
             </a>
           </div>
           <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
