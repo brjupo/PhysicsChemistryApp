@@ -94,7 +94,7 @@ function getDataToSaveInDDBB() {
 function saveInDDBB(informacion) {
   $.ajax({
     type: "POST",
-    url: "updateFullQuestionInfoByID.php",
+    url: "../SERVICIOS/updateFullQuestionInfoByID.php",
     dataType: "json",
     data: {
       IDPregunta: informacion.IDPregunta,
@@ -127,7 +127,7 @@ function saveInDDBB(informacion) {
 function loadInformation() {
   $.ajax({
     type: "POST",
-    url: "getFullQuestionInfoByID.php",
+    url: "../SERVICIOS/getFullQuestionInfoByID.php",
     dataType: "json",
     data: {
       IDPregunta: document.getElementById("IDPregunta").value,
