@@ -16,10 +16,10 @@ if (isset($_POST["Import"])) {
   //$archivo = $_FILES['doc_file']['name'];
   $extension = pathinfo($filename, PATHINFO_EXTENSION);
   if(!in_array($extension, $formatos_permitidos) ) {
-      echo '<script type="text/javascript">
-           alert("Formato de archivo no permitido");
-           window.location = \"../Front/errorInfoPages/uploadInfo.php"
-           </script>'; 
+            echo "<script type=\"text/javascript\">
+            alert(\"Formato de archivo no permitido\");
+            window.location = \"../Front/errorInfoPages/uploadInfo.php\"
+          </script>";
   }else{
  /*  echo '<script type="text/javascript">
            alert("'.$filename.'");
