@@ -24,7 +24,7 @@ if (isset($_POST["Import"])) {
   
   if ($_FILES["file"]["size"] > 0) {
     $file = fopen($filename, "r");
-    while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
+    while (($getData = fgetcsv($file, 10, ",")) !== FALSE) {
       
       $mailr = $getData[0];
       /* echo "<script type=\"text/javascript\">
@@ -59,7 +59,7 @@ if (isset($_POST["Import"])) {
                    values ('" . $getData[0] . "','" . $getData[1] . "','" . $getData[2] . "')";
       $result = mysqli_query($con, $sql);
 
-        //tabla alumno (id_usuario,matricula(mail))
+      /*   //tabla alumno (id_usuario,matricula(mail))
       $sql = "INSERT into alumno (id_usuario,matrícula) 
                    values ($ultimoId,'" . $getData[0] . "')";
       $result = mysqli_query($con, $sql);
@@ -67,7 +67,7 @@ if (isset($_POST["Import"])) {
       //tabla licencia (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigenvia,estatus)
       $sql = "INSERT into licencia (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigencia,estatus) 
                    values ($ultimoId,'" . $getData[3] . "',$ultimoId,$ultimoId,$ultimoId,'30/06/2022  11:59:59 p. m.',1)";
-      $result = mysqli_query($con, $sql);
+      $result = mysqli_query($con, $sql); */
 
 
       if (!isset($result)) {
