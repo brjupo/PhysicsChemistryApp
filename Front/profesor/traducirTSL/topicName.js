@@ -50,13 +50,14 @@ function saveInDB() {
         alert("Información actualizada en base de datos");
         return;
     }
+    tempName = document.getElementById(allIdsTemp[0]).value.trim();
     $.ajax({
         type: "POST",
         url: "../SERVICIOS/setEnglishTopicName.php",
         dataType: "json",
         data: {
           id_tema: allIdsTemp[0],
-          name: document.getElementById(allIdsTemp[0]).value.trim()
+          name: tempName.replace(/'/g, "''")
         },
         success: function (data) {
           if (data.response == "exito") {
