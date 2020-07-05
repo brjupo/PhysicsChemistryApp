@@ -2,7 +2,7 @@
 
 $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 //traer el último id
-$query = "SELECT MAX (id_usuario) FROM usuario_prueba"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+$query = "SELECT MAX(id_usuario) FROM usuario_prueba"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
         $result= mysqli_query($con, $query);
         $lastId = mysqli_fetch_row($result);
 
@@ -65,7 +65,7 @@ if (isset($_POST["Import"])) {
       $result = mysqli_query($con, $sql);
 
       //tabla licencia (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigenvia,estatus)
-      $sql = "INSERT into alumno (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigencia,estatus) 
+      $sql = "INSERT into licencia (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigencia,estatus) 
                    values ($ultimoId,'" . $getData[3] . "',$ultimoId,$ultimoId,$ultimoId,'30/06/2022  11:59:59 p. m.',1)";
       $result = mysqli_query($con, $sql);
 
