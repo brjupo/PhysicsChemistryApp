@@ -83,7 +83,7 @@ function printSubjects()
     <div class="container">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p>Elija la asignatura a la que desea cambiar los títulos</p>
+          <p>Elija la asignatura</p>
         </div>
       </div>
     </div>

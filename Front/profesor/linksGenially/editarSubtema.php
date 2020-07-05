@@ -54,25 +54,26 @@ function printEditSubtopic()
   printTitle();
   printInstructions();
   printSubtopics();
-  printButtons();
+  //printButtons();
   echo '</body>';  
 }
 
 function printSubtopics(){
   $idTema = $_GET['ID_Tema'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_subtema, link FROM subtema WHERE id_tema = ?");
+  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre, link FROM subtema WHERE id_tema = ?");
   mysqli_stmt_bind_param($statement,"i", $idTema);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_subtema, $link);
+  mysqli_stmt_bind_result($statement, $id_subtema, $nombre, $link);
 
   $arregloTemas = array();
   $i = 0;
   //Leemos datos del la leccion habilitadas
   while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
     $arregloTemas[$i]["id_subtema"] = $id_subtema;
+    $arregloTemas[$i]["nombre"] = $nombre;
     $arregloTemas[$i]["link"] = $link;
     $i = $i + 1;
   }
@@ -82,11 +83,11 @@ function printSubtopics(){
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printSubtopic($arregloTemas[$i]["id_subtema"],$arregloTemas[$i]["link"]);
+    printSubtopic($arregloTemas[$i]["id_subtema"],$arregloTemas[$i]["nombre"],$arregloTemas[$i]["link"]);
   }
 }
 
-function printSubtopic($ID_Subtopic, $linkGenially){
+function printSubtopic($ID_Subtopic, $subtopicName, $linkGenially){
   echo '
     <div class="container">
       <div class="row">
@@ -96,6 +97,7 @@ function printSubtopic($ID_Subtopic, $linkGenially){
           </div>
           <input type="text" class="form-control" id="'.$ID_Subtopic.'" value="'.$linkGenially.'" />
           <div class="input-group-append">
+            <span class="input-group-text">'.$subtopicName.'</span>
             <a href="editarLeccion.php?ID_Subtema='.$ID_Subtopic.'">
               <button class="btn btn-outline-secondary" type="button">
                 Buscar sus lecciones
@@ -131,7 +133,7 @@ function printHead(){
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="../CSSsJSs/nombreSubtema.js"></script>
+    <script src="linkGenially.js"></script>
   </head>
   ';
 }

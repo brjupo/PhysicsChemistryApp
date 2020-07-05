@@ -6,15 +6,18 @@
     $dbname = "u526597556_kaanbal";
 
     //Leer las variables del POST
-    $subtema = $_POST['subtema'];
-    $linkGenially = $_POST['linkGenially'];
+    //PD: link es palabra RESERVADA
+    $id_subtema = $_POST['id_subtema'];
+    $geniallyLink = $_POST['geniallyLink'];
 
     //Crear la escritura en base de datos
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE subtema SET link = '".$linkGenially."' WHERE id_subtema = '".$subtema."'";
+        //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
+        //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
+        $sql = "UPDATE subtema SET link = '".$geniallyLink."' WHERE id_subtema = '".$id_subtema."'";
         // use exec() because no results are returned
         $conn->exec($sql);
         $response["response"] = 'exito';
@@ -24,12 +27,5 @@
       }
       
       $conn = null;
-    
-
-
     ////////////////    
-    echo json_encode($response); 
-?>
-
-
-
+    echo json_encode($response);
