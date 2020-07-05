@@ -1,0 +1,134 @@
+/*--------------------------------------------------FUENTES-----------------------------------------------------------*/
+@font-face {
+  font-family: "ubuntu";
+  src: url("Fonts/ubuntu/ubuntu.ttf") format("truetype");
+}
+@font-face {
+  font-family: "georgia";
+  src: url("Fonts/georgia/georgiaz.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Monse";
+  src: url("Fonts/montserrat/Montserrat-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "SSF";
+  src: url("Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
+}
+/*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
+body {
+  background-color: white;
+}
+.titulo {
+  color: rgb(35, 85, 145);
+  font-size: 6vw;
+  line-height: 30px;
+  font-family: "ubuntu";
+}
+@media screen and (min-width: 611px) {
+  .titulo {
+    font-size: 45px;
+    line-height: 50px;
+  }
+}
+
+legend {
+  font-family: "Monse";
+}
+
+/* Style all input fields */
+input {
+  width: 100%;
+  font-family: "Monse";
+  height: 6vh;
+}
+
+
+/*-------------------------------BOTONES------------------------------------------*/
+
+.boton2 {
+  display: block;
+  margin: 2vw auto 2vw auto;
+  font-size: 3vw;
+  font-weight: 600;
+  width: 20vw;
+  height: 7vw;
+  color: white;
+  background-color: rgba(35, 120, 250, 1);
+  border: 1px solid rgba(0, 70, 200, 1);
+  border-radius: 15px;
+  box-shadow: 0px -0.5vw 0px #d6d6d6 inset;
+}
+.boton2:hover,
+.boton2:active {
+  display: block;
+  margin: 2.5vw auto 2vw auto;
+  height: 6.5vw;
+  background-color: rgba(15, 100, 230, 1);
+  border: 1px solid rgba(0, 70, 200, 1);
+  box-shadow: none;
+}
+@media screen and (min-width: 768px) {
+  .boton2 {
+    display: block;
+    margin: 40px auto 15px auto;
+    font-size: 20px;
+    width: 40%;
+    height: 60px;
+    box-shadow: 0px -5px 0px #d6d6d6 inset;
+  }
+  .boton2:hover,
+  .boton2:active {
+    display: block;
+    margin: 45px auto 15px auto;
+    font-size: 20px;
+    width: 40%;
+    height: 55px;
+  }
+}
+
+/*-------------------------------INICIA FOOTER---------------------*/
+.foot {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 8vw;
+  background-color: rgba(110, 180, 230, 1);
+  /*text-align: center;*/
+  margin: 2rem 0px 0px 0px;
+}
+@media screen and (min-width: 768px) {
+  .foot {
+    height: 40px;
+  }
+}
+
+.footSubject {
+  font-size: 4vw;
+  font-weight: 600;
+  color: white;
+  font-family: "Monse";
+  margin: 1vw 0px 0px 0px;
+  text-align: center;
+}
+.footSubject:hover,
+.footSubject:active {
+  font-size: 4.4vw;
+  color: rgb(240, 240, 240);
+}
+@media screen and (min-width: 768px) {
+  .footSubject {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    font-family: "Monse";
+    margin: 5px 0px 0px 0px;
+    text-align: center;
+  }
+  .footSubject:hover,
+  .footSubject:active {
+    font-size: 22px;
+    color: rgb(240, 240, 240);
+  }
+}
