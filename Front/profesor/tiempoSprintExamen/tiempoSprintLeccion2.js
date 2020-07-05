@@ -52,7 +52,7 @@ function saveInDB() {
     }
     $.ajax({
         type: "POST",
-        url: "tiempoSprintLeccion.php",
+        url: "./SERVICIOS/tiempoSprintLeccion.php",
         dataType: "json",
         data: {
           id_leccion: allIdsTemp[0],
