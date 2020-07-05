@@ -20,7 +20,7 @@ document.addEventListener("click", function (evt) {
 function saveInDDBB() {
   $.ajax({
     type: "POST",
-    url: "../../Servicios/updateSubtopicLink.php",
+    url: "../Servicios/updateSubtopicLink.php",
     dataType: "json",
     data: {
       subtema: document.getElementById("subtema").value,
@@ -43,7 +43,7 @@ function saveInDDBB() {
 function loadInformation() {
   $.ajax({
     type: "POST",
-    url: "../../Servicios/getSubtopicLinkInfo.php",
+    url: "../Servicios/getSubtopicLinkInfo.php",
     dataType: "json",
     data: {
       leccion: document.getElementById("subtema").value,
