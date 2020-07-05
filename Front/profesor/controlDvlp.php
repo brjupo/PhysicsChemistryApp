@@ -222,7 +222,7 @@ function printTeacherControlPanel()
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <a href="tiempoSprintExamen/elegirAsignatura.php">
-              <button type="button" class="btn btn-light">
+              <button type="button" class="btn btn-warning">
                 Modificar el tiempo para los sprints y los examenes
               </button>
             </a>
