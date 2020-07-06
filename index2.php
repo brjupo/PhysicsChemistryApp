@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="Front/CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="Front/CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="styleIndex4.css" />
+    <link rel="stylesheet" href="styleIndex5.css" />
     <script src="Front/CSSsJSs/minAJAX.js"></script>
     <script src="scriptIndex.js"></script>
 </head>
@@ -22,9 +22,9 @@
     function imprimirIndex()
     {
         imprimirTitulo();
-        imprimirRelleno();
+        //imprimirRelleno();
         imprimirForma();
-        imprimirRelleno();
+        //imprimirRelleno();
         imprimirRelleno();
         imprimirFooter();
     }
@@ -46,7 +46,7 @@
                 <div
                     class="textCenter col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"
                 ></div>
-                <div class="textLeft col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+                <div class="textRight col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
                     <img
                     id="english"
                     class="idiom"
@@ -63,6 +63,17 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+                <div class="row">
+                <div
+                    class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"
+                ></div>
+                <div
+                    class="textCenter col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"
+                >
+                    <p>Language</p>
+                </div>
+            </div>
         <!------------------------------------------------FIN TITULO----------------------------------------------->
 
         ';

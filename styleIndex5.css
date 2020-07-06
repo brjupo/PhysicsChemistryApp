@@ -35,8 +35,8 @@ a {
 }
 @media screen and (min-width: 611px) {
   .idiom {
-    width: 30%;
-    margin-top: 3vw;
+    width: 70%;
+    margin-top: 1vw;
   }
 }
 
