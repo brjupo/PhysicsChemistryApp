@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="Front/CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="Front/CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="styleIndex3.css" />
+    <link rel="stylesheet" href="styleIndex4.css" />
     <script src="Front/CSSsJSs/minAJAX.js"></script>
     <script src="scriptIndex.js"></script>
 </head>
@@ -44,16 +44,16 @@
                     <p class="titulo">Kaanbal</p>
                 </div>
                 <div
-                    class="textCenter col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"
+                    class="textCenter col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"
                 ></div>
-                <div class="textRight col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <div class="textLeft col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
                     <img
                     id="english"
                     class="idiom"
                     src="Front/CSSsJSs/icons/uk.svg"
                     />
                 </div>
-                <div class="textLeft col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <div class="textLeft col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
                     <img
                     id="spanish"
                     class="idiom"
