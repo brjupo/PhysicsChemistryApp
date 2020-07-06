@@ -222,8 +222,8 @@ function printTeacherControlPanel()
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <a href="linksGenially/elegirAsignatura.php">
-              <button type="button" class="btn btn-warning">
-                Agregar links de Genially
+              <button type="button" class="btn btn-danger">
+                Agregar links de Genially [En Español]
               </button>
             </a>
           </div>
@@ -242,7 +242,7 @@ function printTeacherControlPanel()
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <a href="traducirTSL/elegirAsignatura.php">
-              <button type="button" class="btn btn-warning">
+              <button type="button" class="btn btn-danger">
                 Traducir temas, subtemas y lecciones
               </button>
             </a>
