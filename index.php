@@ -22,7 +22,7 @@
     function imprimirIndex()
     {
         imprimirTitulo();
-        imprimirRelleno();
+        //imprimirRelleno();
         imprimirForma();
         imprimirRelleno();
         imprimirRelleno();
