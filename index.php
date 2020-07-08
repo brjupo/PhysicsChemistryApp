@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="Front/CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="Front/CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="Front/CSSsJSs/styleIndex.css" />
+    <link rel="stylesheet" href="styleIndex6.css" />
     <script src="Front/CSSsJSs/minAJAX.js"></script>
     <script src="Front/CSSsJSs/scriptIndex.js"></script>
 </head>
@@ -105,7 +105,7 @@
     function imprimirFooter()
     {
         echo '
-        <div class="foot" style="z-index:-1;">
+        <div class="foot">
             <div class=" container ">
                 <div class=" row text-center">
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3 "></div>
