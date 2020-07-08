@@ -105,13 +105,12 @@
     function imprimirFooter()
     {
         echo '
-        <div class="foot" style="z-index:-1;">
+        <div class="foot">
             <div class=" container ">
                 <div class=" row text-center">
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3 "></div>
                     <div class="textCenter col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <button class="footSubject" onclick="location.href="contacto.html"">Contáctanos</button>
-                        <!--a href="contacto.html"><p class="footSubject">Contáctanos</p></a-->
+                        <a href="contacto.html"><p class="footSubject"><strong>Contáctanos</strong></p></a>
                     </div>
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div>
                 </div>

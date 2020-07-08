@@ -236,7 +236,7 @@ a {
   bottom: 0;
   width: 100%;
   height: 12vw;
-  background-color: rgba(110, 180, 230, 1);
+  background-color: rgba(110, 180, 230, 0);
   /*text-align: center;*/
   margin: 2rem 0px 0px 0px;
 }
