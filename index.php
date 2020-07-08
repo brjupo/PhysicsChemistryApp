@@ -109,14 +109,8 @@
             <div class=" container ">
                 <div class=" row text-center">
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3 "></div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
-                        <p class="footSubject">.</p>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
+                    <div class="textCenter col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <a href="contacto.html"><p class="footSubject">Contáctanos</p></a>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
-                        <p class="footSubject">.</p>
                     </div>
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div>
                 </div>
