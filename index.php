@@ -81,10 +81,10 @@
                 <p class="slogan">¡Diviértete aprendiendo!</p>
                 <p style="color:rgba(0,0,0,0);">.</p>
                 <form action="Front/Inicio/asignaturas.php" method="POST">
-                <label class="fuenteForma" for="validarUsuario">Usuario</label><br>
+                <label class="fuenteForma" for="validarUsuario">Usuario</label>
                 <input type="email" name="validarUsuario" id="validarUsuario" placeholder="A01169493@itesm.mx" required /><br>
 
-                <label class="fuenteForma" for="validarPassword" id="contrasena">Contraseña</label><br>
+                <label class="fuenteForma" for="validarPassword" id="contrasena">Contraseña</label>
                 <input type="password" name="validarPassword" id="validarPassword" required /><br>
 
                 <label class="olvidada" id="contraOlvidada">¿Olvidaste tu contraseña?</label><br>
