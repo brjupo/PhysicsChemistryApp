@@ -239,7 +239,6 @@
     {
         $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
         echo '
-        <input type="hidden" id="tiempo" name="msg" value=' . $tiempo . ' style="display:none"/>
             <div class="container">
                 <div class="row topMargin">
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
@@ -250,6 +249,7 @@
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
                     <p id="leccionID" style="display:none">' . $idL . '</p>
+                    <input type="hidden" id="tiempo" name="msg" value=' . $tiempo . ' style="display:none"/>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
                             class="progress-bar progress-bar-striped" 

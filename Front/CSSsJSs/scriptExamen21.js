@@ -9,7 +9,7 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
 var flagTiempo = 0;
  //var totalTime = 70;reloj descendente
-var totalTime = document.getElementById("tiempo").value;
+var totalTime = 70;
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
