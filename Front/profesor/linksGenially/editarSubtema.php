@@ -54,7 +54,7 @@ function printEditSubtopic()
   printTitle();
   printInstructions();
   printSubtopics();
-  //printButtons();
+  printButtons();
   echo '</body>';  
 }
 
