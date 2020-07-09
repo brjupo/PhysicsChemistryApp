@@ -8,7 +8,7 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/styleExamen1.css" />
-    <script src="../CSSsJSs/scriptExamen22.js"></script>
+    <script src="../CSSsJSs/scriptExamen1.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -249,7 +249,7 @@
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
                     <p id="leccionID" style="display:none">' . $idL . '</p>
-                    <input type="hidden" id="tiempo" name="msg" value=' . $tiempo . ' style="display:none"/>
+                    <input type="hidden" id="tiempo" name="msg" value='.$tiempo.' style="display:none"/>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
                             class="progress-bar progress-bar-striped" 
