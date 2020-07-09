@@ -321,20 +321,6 @@
         ';
     }
 
-    /*
-    Mis nacadas
-    ID Pregunta = 1000 + Número de pregunta         Ejemplo: Pregunta1 id="1001"
-    ID Respuesta = 2000 + Número de pregunta        Ejemplo: Respuesta1 id="2001"
-    ID Respuesta correcta = 3000 + Número de pregunta   Ejemplo: ResCorrecta1 id="3001"
-
-    Opción 4 = 10 * Número de pregunta              Ejemplo: class="Opcion4"id="10"
-    Opción 3 = 10 * Número de pregunta - 1          Ejemplo: class="Opcion3"id="9"
-    Opción 2 = 10 * Número de pregunta - 2          Ejemplo: class="Opcion2"id="8"
-    Opción 1 = 10 * Número de pregunta - 3          Ejemplo: class="Opcion1"id="7"
-    ID Boton aceptar = 10 * Número de pregunta - 4  Ejemplo: id="6"
-    Texto Escrito = 10 * Número de pregunta - 5     Ejempo: id="5"
-
-    */
     function imprimirPreguntaTipo1(int $preguntaNumero, $preguntaTexto)
     {
         $preguntaNumero = 1000 + $preguntaNumero;
@@ -368,7 +354,6 @@
 
         $imgJPG = $imagen . ".JPG";
         $pathJPG = "../imagenes/" . $imgJPG;
-        //echo '<p>'.$path.'</p>';
         if (file_exists($pathjpg)) {
             echo '
             <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
@@ -464,20 +449,7 @@
         ';
         }
     }
-    /*
-    Mis nacadas
-    ID Pregunta = 1000 + Número de pregunta
-    ID Respuesta = 2000 + Número de pregunta
-    ID Respuesta correcta = 3000 + Número de pregunta
-
-    Opción 4 = 10 * Número de pregunta
-    Opción 3 = 10 * Número de pregunta - 1
-    Opción 2 = 10 * Número de pregunta - 2
-    Opción 1 = 10 * Número de pregunta - 3
-    ID Boton aceptar = 10 * Número de pregunta - 4
-    Texto Escrito = 10 * Número de pregunta - 5
-
-    */
+    
     function imprimirPreguntaTipo2(int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
     {
         $IDTextoEscrito = 10 * $preguntaNumero - 5;
