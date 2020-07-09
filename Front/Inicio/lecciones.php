@@ -359,7 +359,7 @@
                   <a href="../preguntas/sprint.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
                   </td>
                   <td>
-                  <img class="icons" src="../CSSsJSs/icons/examen.svg" />
+                  <a href="../preguntas/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" />
                   </td>
                 </tr>
               </tbody>

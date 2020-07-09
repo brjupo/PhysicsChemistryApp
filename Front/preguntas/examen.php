@@ -8,7 +8,7 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/styleExamen1.css" />
-    <script src="../CSSsJSs/scriptExamen20.js"></script>
+    <script src="../CSSsJSs/scriptExamen21.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -34,6 +34,7 @@
             }
         });
     </script>
+
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
@@ -73,6 +74,13 @@
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
         $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+
+        //Traer tiempo para el examen
+        $query2 = "SELECT tiempo_examen FROM leccion WHERE id_leccion = $leccion"; 
+        $result2 = mysqli_query($con, $query2);
+        $tiempo = mysqli_fetch_row($result2);
+
+        
         /*----Paso 1 Obtener el ID del subtema----*/
         /*
         $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
@@ -153,13 +161,13 @@
     }
 
 
-    imprimirPreguntas($arrayr, $array, $total, $idL);
+    imprimirPreguntas($arrayr, $array, $total, $idL, $tiempo);
     ?>
 
     <?php
-    function imprimirPreguntas($arrayr, $array, $total, $idL)
+    function imprimirPreguntas($arrayr, $array, $total, $idL, $tiempo)
     {
-        imprimirBarraProgresoCruz($total[0], $idL);
+        imprimirBarraProgresoCruz($total[0], $idL, $tiempo);
         imprimirTiempoexamen();
         imprimirContador();
         imprimirMotivador();
@@ -227,10 +235,11 @@
 
     <?php
 
-    function imprimirBarraProgresoCruz($totalPreguntas, $idL)
+    function imprimirBarraProgresoCruz($totalPreguntas, $idL, $tiempo)
     {
         $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
         echo '
+        <input type="hidden" id="tiempo" name="msg" value=' . $tiempo . ' style="display:none"/>
             <div class="container">
                 <div class="row topMargin">
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">

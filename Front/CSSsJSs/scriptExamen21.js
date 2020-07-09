@@ -8,7 +8,8 @@ var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
 var flagTiempo = 0;
-var totalTime = 70; //reloj descendente
+ //var totalTime = 70;reloj descendente
+var totalTime = document.getElementById("tiempo").value;
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
