@@ -66,11 +66,11 @@
           <p id="numeroDiamantes" class="numeroDiamantes">
             <?php echo intval($puntos);?>
           </p>
-          <img class="diamanteIcon" src="../CSSsJSs/icons/diamante.svg" />
+          <img class="diamanteIcon" src="../../CSSsJSs/icons/diamante.svg" />
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
           <img
-            src="../CSSsJSs/icons/star.svg"
+            src="../../CSSsJSs/icons/star.svg"
             class="spin animated star"
             style="width: 60%;"
           />
