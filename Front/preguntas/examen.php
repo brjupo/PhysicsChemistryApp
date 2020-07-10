@@ -267,7 +267,7 @@
     }
 
     function imprimirTiempoexamen($tiempo)
-    {//border="4px" color="black" 
+    {//border="4px" color="black"  <p id="tiempo" style="display:none"/>'.$tiempo.'</p>
         echo '
                 <div class="container">
                 <div class="row">
@@ -277,8 +277,7 @@
                 <tbody>
                   <tr>
                     <td style="text-align: left" width="50%">
-                      <p id="number">00:00</p>
-                      <p id="tiempo" style="display:none"/>'.$tiempo.'</p>
+                      <p id="number">10:00</p>
                     </td>
                     <td style="text-align: right" width="50%">
                       <img class="icons" width="50" height="30" src="../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
