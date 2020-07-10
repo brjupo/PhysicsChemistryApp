@@ -22,7 +22,7 @@ function getTimeForSprint() {
   leccion = document.getElementById("leccionID").innerHTML.trim();
   $.ajax({
     type: "POST",
-    url: "../../Servicios/getTimeForSprint.php",
+    url: "getTimeForSprint.php",
     dataType: "json",
     data: { leccion : leccion},
     success: function(data) {
@@ -411,7 +411,7 @@ function nextQuestion(lastQuestion) {
   }
   if (questionNumberArray.length == 0) {
     var stringLiga =
-      "https://kaanbal.net/Front/preguntas/sprintFinalizado.php?subtema=" +
+      "https://kaanbal.net/Front/preguntas/Sprint/sprintFinalizado.php?subtema=" +
       document.getElementById("subtemaPrevio").innerHTML.trim() +
       "&puntos=" +
       puntos +
@@ -428,7 +428,7 @@ function enviarCalificacionRedirigir() {
   var leccionID = document.getElementById("leccionID").innerHTML.trim();
   $.ajax({
     type: "POST",
-    url: "../../Servicios/subirPuntosType.php",
+    url: "subirPuntosByType.php",
     dataType: "json",
     data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SP" },
     success: function (data) {
@@ -436,7 +436,7 @@ function enviarCalificacionRedirigir() {
       if (data.response == "exito") {
         console.log("Valores enviados correctamente");
         var stringLiga =
-          "https://kaanbal.net/Front/preguntas/sprintFinalizado.php?subtema=" +
+          "https://kaanbal.net/Front/preguntas/Sprint/sprintFinalizado.php?subtema=" +
           document.getElementById("subtemaPrevio").innerHTML.trim() +
           "&puntos=" +
           puntos +
@@ -458,7 +458,7 @@ function enviarCalificacion() {
 
   $.ajax({
     type: "POST",
-    url: "../../Servicios/subirPuntosType.php",
+    url: "subirPuntosByType.php",
     dataType: "json",
     data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SP" },
     success: function (data) {
