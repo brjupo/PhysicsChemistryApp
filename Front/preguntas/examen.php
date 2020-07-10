@@ -8,7 +8,7 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/styleExamen1.css" />
-    <script src="../CSSsJSs/scriptExamen1.js"></script>
+    <script src="../CSSsJSs/scriptExamen2.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -267,7 +267,7 @@
     }
 
     function imprimirTiempoexamen($tiempo)
-    {//border="4px" color="black"  <p id="tiempo" style="display:none"/>'.$tiempo.'</p>
+    {//border="4px" color="black"  
         echo '
                 <div class="container">
                 <div class="row">
@@ -278,6 +278,7 @@
                   <tr>
                     <td style="text-align: left" width="50%">
                       <p id="number">10:00</p>
+                      <p id="tiempo" style="display:none"/>'.$tiempo.'</p>
                     </td>
                     <td style="text-align: right" width="50%">
                       <img class="icons" width="50" height="30" src="../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
