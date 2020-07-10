@@ -15,7 +15,7 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
-  getTimeForSprint();
+  segundos = getTimeForSprint();
   createArrayWithQuestions();
 };
 
@@ -27,6 +27,7 @@ function getTimeForSprint() {
     dataType: "json",
     data: { leccion : leccion},
     success: function(data) {
+      console.log(data.seconds);
       console.log(data.response);
       if (data.response == "true") {
         segundos = parseInt(data.seconds);
@@ -36,6 +37,7 @@ function getTimeForSprint() {
       }
     }
   });
+  return segundos;
 }
 
 
