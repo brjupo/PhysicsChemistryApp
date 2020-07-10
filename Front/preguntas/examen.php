@@ -267,7 +267,11 @@
     }
 
     function imprimirTiempoexamen($tiempo)
-    {//border="4px" color="black"       
+    {//border="4px" color="black" 
+        echo '<script type="text/javascript">
+        alert("'.$tiempo.'");
+        </script>';
+              
         echo '
                 <div class="container">
                 <div class="row">
