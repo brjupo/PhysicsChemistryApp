@@ -430,7 +430,7 @@ function enviarCalificacionRedirigir() {
     puntos +
     "&totalPreguntas=" +
     document.getElementById("totalPreguntas").innerHTML.trim();
-  window.location.replace(stringLiga);
+  //window.location.replace(stringLiga);
 }
 
 function enviarCalificacion() {
