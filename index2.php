@@ -71,7 +71,7 @@
                 <div
                     class="textCenter col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"
                 >
-                    <p>Language</p>
+                    <p style="color:white">Language</p>
                 </div>
             </div>
         <!------------------------------------------------FIN TITULO----------------------------------------------->
