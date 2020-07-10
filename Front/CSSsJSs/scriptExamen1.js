@@ -526,7 +526,7 @@ function imprimirClock() {
     var min = 0;
     var seg = 0;
 
-    totalTime = getElementById("tiempo").value;
+    totalTime = document.getElementById("tiempo").value;
   /* var resto = totalTime % 60;   
       if ( resto == 0 ){
         //obtener el cociente
