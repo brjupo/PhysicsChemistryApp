@@ -78,9 +78,10 @@
         //Traer tiempo para el examen
         $query2 = "SELECT tiempo_examen FROM leccion WHERE id_leccion = $leccion"; 
         $result2 = mysqli_query($con, $query2);
-        $tiempo = mysqli_fetch_row($result2);
+        $tiempoa = mysqli_fetch_row($result2);
+        $tiempo = $tiempo[0];
            echo '<script type="text/javascript">
-                alert("'.$tiempo.'");
+                alert("'.$tiempo[0].'");
                 </script>';
         
         
