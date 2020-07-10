@@ -61,7 +61,7 @@ function printEditSubtopic()
 function printSubtopics(){
   $idTema = $_GET['ID_Tema'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre, link FROM subtema WHERE id_tema = ?");
+  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre, englishLink FROM subtema WHERE id_tema = ?");
   mysqli_stmt_bind_param($statement,"i", $idTema);
   mysqli_stmt_execute($statement);
 
