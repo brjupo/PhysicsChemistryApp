@@ -6,6 +6,7 @@ var firstTimeToSaveGrade = 0;
 var timeIntervalX = setInterval(function () {
   var i = 1;
 }, 500);
+var segundos = 0;
 var segundosActuales = 0;
 
 var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
@@ -14,8 +15,29 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
+  getTimeForSprint();
   createArrayWithQuestions();
 };
+
+function getTimeForSprint() {
+  leccion = document.getElementById("leccionID").innerHTML.trim();
+  $.ajax({
+    type: "POST",
+    url: "../../Servicios/getTimeForSprint.php",
+    dataType: "json",
+    data: { leccion : leccion},
+    success: function(data) {
+      console.log(data.response);
+      if (data.response == "true") {
+        segundos = parseInt(data.seconds);
+      }
+      else{
+        alert("Error en el tiempo.");
+      }
+    }
+  });
+}
+
 
 function createArrayWithQuestions() {
   for (var i = 1001; i <= 1100; i++) {
@@ -242,9 +264,9 @@ function verifyIfCorrectOption(targetID, questionNumber) {
   if (selectedAnswer0to3 == correctOption) {
     lastQuestion = questionNumber;
     questionNumberArray.shift();
-    if (segundosActuales > 20) {
+    if (segundosActuales > segundos*2/3) {
       puntos = puntos + 3;
-    } else if (segundosActuales > 10) {
+    } else if (segundosActuales > segundos/3) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
@@ -312,9 +334,9 @@ function verifyIfTextIsCorrect(questionNumber) {
     ).value = document
       .getElementById(10 * questionNumber - 5)
       .value.toLowerCase();
-    if (segundosActuales > 20) {
+    if (segundosActuales > segundos*2/3) {
       puntos = puntos + 3;
-    } else if (segundosActuales > 10) {
+    } else if (segundosActuales > segundos/3) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
@@ -453,9 +475,12 @@ function limpiarInputs(cantidadIDs) {
 
 function startClock() {
   // Set the date we're counting down to
+  /*
   var minutos = 0;
   var segundos = 30;
   var milisegundos = segundos * 1000 + minutos * 60 * 1000;
+  */
+  var milisegundos = segundos * 1000;
   var countDownDate = new Date(milisegundos).getTime();
   var unSegundo = new Date(1000).getTime();
   var sumaSegundos = new Date(1000).getTime();
