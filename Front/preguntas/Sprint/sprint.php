@@ -236,7 +236,7 @@
             <div class="container">
                 <div class="row topMargin">
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <img src="../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
+                    <img src="../../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                     <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>

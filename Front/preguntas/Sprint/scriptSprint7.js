@@ -9,8 +9,8 @@ var timeIntervalX = setInterval(function () {
 var segundos = 0;
 var segundosActuales = 0;
 
-var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
-var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
+var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
+var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
