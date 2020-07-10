@@ -241,6 +241,26 @@ function printTeacherControlPanel()
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <a href="linksGenially/elegirAsignatura.php">
+              <button type="button" class="btn btn-danger">
+                Add Genially s Link [English]
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p style="color: rgba(0, 0, 0, 0);">.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <a href="traducirTSL/elegirAsignatura.php">
               <button type="button" class="btn btn-danger">
                 Traducir temas, subtemas y lecciones
