@@ -40,7 +40,7 @@ if (isset($_POST["Import"])) {
       $resultp = mysqli_query($con, $sql);
       $rowp = mysqli_fetch_array($resultp);
          //$rowp
-      if (FALSE) {
+      if ($rowp) {
 
         if (!isset($rowp)) {
           echo "<script type=\"text/javascript\">
