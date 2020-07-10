@@ -35,7 +35,6 @@ if (isset($_POST["Import"])) {
       /* echo "<script type=\"text/javascript\">
               alert(\"".$mailr."\");
               </script>"; */
-
       //Corroborar que no existe el correo en base de datos
       $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$mailr'";
       $resultp = mysqli_query($con, $sql);

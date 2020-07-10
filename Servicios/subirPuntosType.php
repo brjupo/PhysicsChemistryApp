@@ -32,5 +32,6 @@ if ($puntosActuales != NULL or $puntosActuales == 0) { //validamos que exista un
 }
 
 
-
 echo json_encode($response);
+
+?>
