@@ -237,7 +237,7 @@
 
     <?php
 
-    function imprimirBarraProgresoCruz($totalPreguntas, $idL, $tiempo)
+    function imprimirBarraProgresoCruz($totalPreguntas, $idL)
     {
         $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
         echo '
@@ -267,9 +267,7 @@
     }
 
     function imprimirTiempoexamen($tiempo)
-    {//border="4px" color="black"
-
-       
+    {//border="4px" color="black"       
         echo '
                 <div class="container">
                 <div class="row">
