@@ -26,7 +26,7 @@ if ($puntosActuales != NULL or $puntosActuales == 0) { //validamos que exista un
     $response["response"] = 'exito';
   }
 } else {
-  $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ($id_usuario, $leccion, $puntosNuevos,'$flagTipo')";
+  $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ('$id_usuario', '$leccion', '$puntosNuevos','$flagTipo')";
   mysqli_query($con, $sql);
   $response["response"] = 'exito';
 }
