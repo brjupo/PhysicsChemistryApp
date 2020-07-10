@@ -16,7 +16,6 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
 window.onload = function () {
   segundos = getTimeForSprint();
-  createArrayWithQuestions();
 };
 
 function getTimeForSprint() {
@@ -31,6 +30,7 @@ function getTimeForSprint() {
       console.log(data.response);
       if (data.response == "true") {
         segundos = parseInt(data.seconds);
+        createArrayWithQuestions();
       }
       else{
         alert("Error en el tiempo.");
