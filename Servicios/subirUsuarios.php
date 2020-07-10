@@ -41,7 +41,6 @@ if (isset($_POST["Import"])) {
       $rowp = mysqli_fetch_array($resultp);
          //$rowp
       if ($rowp) {
-
         if (!isset($rowp)) {
           echo "<script type=\"text/javascript\">
                 alert(\"Invalid File:Please Upload CSV File.\");
