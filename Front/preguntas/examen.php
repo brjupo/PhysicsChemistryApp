@@ -79,7 +79,10 @@
         $query2 = "SELECT tiempo_examen FROM leccion WHERE id_leccion = $leccion"; 
         $result2 = mysqli_query($con, $query2);
         $tiempo = mysqli_fetch_row($result2);
-
+           echo '<script type="text/javascript">
+                alert("'.$tiempo.'");
+                </script>';
+        
         
         /*----Paso 1 Obtener el ID del subtema----*/
         /*
