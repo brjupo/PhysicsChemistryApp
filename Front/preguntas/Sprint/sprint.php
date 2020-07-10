@@ -327,10 +327,10 @@
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../imagenes/" . $imgjpg;
+        $pathjpg = "../../imagenes/" . $imgjpg;
 
         $imgJPG = $imagen . ".JPG";
-        $pathJPG = "../imagenes/" . $imgJPG;
+        $pathJPG = "../../imagenes/" . $imgJPG;
         //echo '<p>'.$path.'</p>';
         if (file_exists($pathjpg)) {
             echo '
@@ -338,7 +338,7 @@
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
+                <img src="../../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '" style="display:none">
                     ' . $respCorrecta . '
                 </p>
@@ -368,7 +368,7 @@
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../imagenes/' . $imagen . '.JPG" class="imagenPregunta" />
+                <img src="../../imagenes/' . $imagen . '.JPG" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '" style="display:none">
                     ' . $respCorrecta . '
                 </p>
@@ -473,13 +473,13 @@
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../imagenes/" . $imgjpg;
+        $pathjpg = "../../imagenes/" . $imgjpg;
         $imgJPG = $imagen . ".JPG";
-        $pathJPG = "../imagenes/" . $imgJPG;
+        $pathJPG = "../../imagenes/" . $imgJPG;
         $imgpng = $imagen . ".png";
-        $pathpng = "../imagenes/" . $imgpng;
+        $pathpng = "../../imagenes/" . $imgpng;
         $imgPNG = $imagen . ".PNG";
-        $pathPNG = "../imagenes/" . $imgPNG;
+        $pathPNG = "../../imagenes/" . $imgPNG;
         //echo '<p>'.$path.'</p>';
         $ext=NULL;
         if (file_exists($pathjpg)) {
@@ -505,7 +505,7 @@
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../imagenes/' . $imagen . $ext .'" class="imagenPregunta" />
+                            <img src="../../imagenes/' . $imagen . $ext .'" class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
@@ -520,7 +520,7 @@
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Acepto</button>
+                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>

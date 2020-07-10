@@ -32,9 +32,9 @@
               aria-valuenow="40"
               aria-valuemin="0"
               aria-valuemax="100"
-              <?php echo 'style="width:'.floor(100*intval($puntos)/intval($totalPreguntas)).'%"';?>
+              <?php echo 'style="width:'.floor(100*intval($puntos/3)/intval($totalPreguntas)).'%"';?>
             >
-            <?php echo ''.floor(100*intval($puntos)/intval($totalPreguntas)).'%';?>
+            <?php echo ''.floor(100*intval($puntos/3)/intval($totalPreguntas)).'%';?>
             </div>
           </div>
         </div>
@@ -66,11 +66,11 @@
           <p id="numeroDiamantes" class="numeroDiamantes">
             <?php echo intval($puntos);?>
           </p>
-          <img class="diamanteIcon" src="../CSSsJSs/icons/diamante.svg" />
+          <img class="diamanteIcon" src="../../CSSsJSs/icons/diamante.svg" />
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
           <img
-            src="../CSSsJSs/icons/star.svg"
+            src="../../CSSsJSs/icons/star.svg"
             class="spin animated star"
             style="width: 60%;"
           />
@@ -84,7 +84,7 @@
           <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
             <a href="<?php echo 'https://kaanbal.net/Front/Inicio/lecciones.php?subtema='.$subtema; ?>">
-                <button class="botonContinuar">Continuar</button>
+                <button class="botonContinuar">Continue</button>
             </a>
           </div>
           <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
