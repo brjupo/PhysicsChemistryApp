@@ -21,14 +21,14 @@ $response["response"] = 'failed';
 if (is_null($puntosActuales)){
   $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ($id_usuario, $leccion, $puntosNuevos,'$flagTipo')";
   mysqli_query($con, $sql);
-  $response["response"] = 'exitoInsert';
+  $response["response"] = 'exito';
 }
 else{ 
   if ($puntosNuevos >= $puntosActuales) {
     //Lanzar consulta para actualizar calificacion solo si es mayor
     $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos WHERE id_leccion = $leccion AND id_usuario = $id_usuario AND tipo = '$flagTipo'";
     mysqli_query($con, $sql);
-    $response["response"] = 'exitoUpdate';
+    $response["response"] = 'exito';
   }
 }
 echo json_encode($response);
