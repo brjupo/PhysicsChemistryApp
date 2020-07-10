@@ -9,7 +9,7 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
 var flagTiempo = 0;
  //var totalTime = 70;reloj descendente
-var totalTime = 70;
+var totalTime = parseInt(document.getElementById("tiempo").innerHTML.trim());
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
@@ -525,8 +525,6 @@ function imprimirClock() {
 
     var min = 0;
     var seg = 0;
-
-    totalTime = parseInt(document.getElementById("tiempo").innerHTML.trim());
   /* var resto = totalTime % 60;   
       if ( resto == 0 ){
         //obtener el cociente
