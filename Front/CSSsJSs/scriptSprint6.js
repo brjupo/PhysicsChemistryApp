@@ -424,15 +424,31 @@ function nextQuestion(lastQuestion) {
 }
 
 function enviarCalificacionRedirigir() {
-  enviarCalificacion();
-  var stringLiga =
-    "https://kaanbal.net/Front/preguntas/sprintFinalizado.php?subtema=" +
-    document.getElementById("subtemaPrevio").innerHTML.trim() +
-    "&puntos=" +
-    puntos +
-    "&totalPreguntas=" +
-    document.getElementById("totalPreguntas").innerHTML.trim();
-  window.location.replace(stringLiga);
+  var userID = document.getElementById("userID").innerHTML.trim();
+  var leccionID = document.getElementById("leccionID").innerHTML.trim();
+  $.ajax({
+    type: "POST",
+    url: "../../Servicios/subirPuntosType.php",
+    dataType: "json",
+    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SP" },
+    success: function (data) {
+      console.log(data.response);
+      if (data.response == "exito") {
+        console.log("Valores enviados correctamente");
+        var stringLiga =
+          "https://kaanbal.net/Front/preguntas/sprintFinalizado.php?subtema=" +
+          document.getElementById("subtemaPrevio").innerHTML.trim() +
+          "&puntos=" +
+          puntos +
+          "&totalPreguntas=" +
+          document.getElementById("totalPreguntas").innerHTML.trim();
+        window.location.replace(stringLiga);
+      } else {
+        console.log("Algo salio mal");
+      }
+    },
+  });
+  
 }
 
 function enviarCalificacion() {
