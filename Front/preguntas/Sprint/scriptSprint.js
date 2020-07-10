@@ -442,7 +442,7 @@ function enviarCalificacionRedirigir() {
           puntos +
           "&totalPreguntas=" +
           document.getElementById("totalPreguntas").innerHTML.trim();
-        //window.location.replace(stringLiga);
+        window.location.replace(stringLiga);
       } else {
         console.log("Algo salio mal");
       }
