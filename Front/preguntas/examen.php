@@ -80,9 +80,7 @@
         $result2 = mysqli_query($con, $query2);
         $tiempoa = mysqli_fetch_row($result2);
         $tiempo = $tiempoa[0];
-           echo '<script type="text/javascript">
-                alert("'.$tiempo.'");
-                </script>';
+           
         
         
         /*----Paso 1 Obtener el ID del subtema----*/
@@ -171,8 +169,8 @@
     <?php
     function imprimirPreguntas($arrayr, $array, $total, $idL, $tiempo)
     {
-        imprimirBarraProgresoCruz($total[0], $idL, $tiempo);
-        imprimirTiempoexamen();
+        imprimirBarraProgresoCruz($total[0], $idL);
+        imprimirTiempoexamen($tiempo);
         imprimirContador();
         imprimirMotivador();
         imprimirPreguntasRespuestas($arrayr, $array, $total);
@@ -253,7 +251,6 @@
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
                     <p id="leccionID" style="display:none">' . $idL . '</p>
-                    <input type="number" id="tiempo" name="tiempo" value='.$tiempo.' style="display:none"/>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
                             class="progress-bar progress-bar-striped" 
@@ -269,13 +266,18 @@
             ';
     }
 
-    function imprimirTiempoexamen()
+    function imprimirTiempoexamen($tiempo)
     {//border="4px" color="black"
+
+        echo '<script type="text/javascript">
+                alert("'.$tiempo.'");
+                </script>';
         echo '
                 <div class="container">
                 <div class="row">
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                <input type="number" id="tiempo" name="tiempo" value='.$tiempo.' style="display:none"/>
                 <table class="table fixed">
                 <tbody>
                   <tr>
