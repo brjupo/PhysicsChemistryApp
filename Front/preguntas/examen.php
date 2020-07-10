@@ -278,7 +278,7 @@
                   <tr>
                     <td style="text-align: left" width="50%">
                       <p id="number">00:00</p>
-                      <p type="number" id="tiempo" name="tiempo" value="'.$tiempo.'" style="display:none"/>
+                      <p id="tiempo" style="display:none"/>'.$tiempo.'</p>
                     </td>
                     <td style="text-align: right" width="50%">
                       <img class="icons" width="50" height="30" src="../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
