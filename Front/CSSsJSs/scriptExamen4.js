@@ -9,13 +9,14 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
 var flagTiempo = 0;
  //var totalTime = 70;reloj descendente
-var totalTime = parseInt(document.getElementById("tiempo").innerHTML.trim());
+var totalTime = 0;
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
   createArrayWithQuestions();
   //setTimeout("finTiempo()",70000);
   //imprimirTiempo();
+  totalTime = parseInt(document.getElementById("tiempo").innerHTML.trim());
   imprimirClock();
 };
 
