@@ -31,7 +31,7 @@ if ($puntosActuales != NULL or $puntosActuales == 0) { //validamos que exista un
   $response["response"] = 'exito';
 }
 
-$response["response"] = 'failed';
+$response["response"] = 'fail';
 echo json_encode($response);
 
 ?>
