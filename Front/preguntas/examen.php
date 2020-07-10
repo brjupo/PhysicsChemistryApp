@@ -81,7 +81,7 @@
         $tiempoa = mysqli_fetch_row($result2);
         $tiempo = $tiempoa[0];
            echo '<script type="text/javascript">
-                alert("'.$tiempo[0].'");
+                alert("'.$tiempo.'");
                 </script>';
         
         
