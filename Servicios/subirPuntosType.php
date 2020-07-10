@@ -17,7 +17,7 @@ mysqli_stmt_bind_result($statement, $puntuacion);
 while (mysqli_stmt_fetch($statement)) { //si si existe 
   $puntosActuales = $puntuacion;
 }
-
+echo $puntosActuales;
 if ($puntosActuales != NULL or $puntosActuales == 0) { //validamos que exista una calificacion
   if ($puntosNuevos >= $puntosActuales) {
     //Lanzar consulta para actualizar calificacion solo si es mayor
