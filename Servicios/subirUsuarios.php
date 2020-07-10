@@ -63,11 +63,19 @@ if (isset($_POST["Import"])) {
       $sql = "INSERT into usuario_prueba (mail,pswd) 
                    values ('" . $getData[0] . "','" . $getData[1] . "')";
       $result = mysqli_query($con, $sql);
+      //Si es profesor
+      if($getData[3] == 'P' OR $getData[3] == 'p'){
+        //tabla profesor (id_usuario,matricula(mail))
+      $sql = "INSERT into profesor (id_usuario) 
+      values ($ultimoId)";
+      $result = mysqli_query($con, $sql);
 
+      }else{
         //tabla alumno (id_usuario,matricula(mail))
       $sql = "INSERT into alumno (id_usuario,matricula) 
                    values ($ultimoId,'" . $getData[0] . "')";
       $result = mysqli_query($con, $sql);
+      }
 
       //tabla licencia (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigenvia,estatus)
       $sql = "INSERT into licencia (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigencia,estatus) 
