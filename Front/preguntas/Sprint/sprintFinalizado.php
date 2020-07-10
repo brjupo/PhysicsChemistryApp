@@ -84,7 +84,7 @@
           <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
             <a href="<?php echo 'https://kaanbal.net/Front/Inicio/lecciones.php?subtema='.$subtema; ?>">
-                <button class="botonContinuar">Continuar</button>
+                <button class="botonContinuar">Continue</button>
             </a>
           </div>
           <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
