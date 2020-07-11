@@ -21,7 +21,7 @@ while (mysqli_stmt_fetch($statement)) { //si si existe
   $puntosActuales = $puntuacion;
 }
 
-print_r($puntosActuales);
+//print_r($puntosActuales);
 
 if ($puntosActuales != 'xxx' ) { //validamos que exista una calificacion $puntosActuales != NULL or $puntosActuales == 0
   if ($puntosNuevos >= $puntosActuales) {
