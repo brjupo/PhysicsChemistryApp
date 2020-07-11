@@ -17,6 +17,7 @@
   //////////////////////////////////////////////////////
   session_start();
   /////ESTABLECER UN TIME OUT DE SESION
+  $_SESSION["timeout"] = time();
 
   session_start();
     // Establecer tiempo de vida de la sesión en segundos
@@ -30,8 +31,6 @@
             header("Location: /logout.php");
         }
     }
-    // El siguiente key se crea cuando se inicia sesión
-    $_SESSION["timeout"] = time();
 
   /////
   $tokenValidar = array();
