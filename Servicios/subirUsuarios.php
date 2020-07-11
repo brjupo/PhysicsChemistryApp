@@ -37,7 +37,7 @@ if (isset($_POST["Import"])) {
 
       if($vatemp != 0){
       echo "<script type=\"text/javascript\">
-              alert(\"".$vatemp."".$mailr."".$compy."\");
+              alert(\"".$vatemp."".$mailr[0]."".$compy."\");
               </script>";} 
       //Corroborar que no existe el correo en base de datos
       $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$mailr'";
