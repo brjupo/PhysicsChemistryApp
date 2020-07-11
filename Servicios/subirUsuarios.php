@@ -33,7 +33,7 @@ if (isset($_POST["Import"])) {
       
       $mailr = $getData[0];
 
-      if($mailr != 'correo'){
+      if(strcmp ($mailr , "correo" ) == 0){
       echo "<script type=\"text/javascript\">
               alert(\"".$mailr."igual\");
               </script>";} 
