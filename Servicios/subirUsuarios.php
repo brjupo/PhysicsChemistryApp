@@ -40,7 +40,7 @@ if (isset($_POST["Import"])) {
       $resultp = mysqli_query($con, $sql);
       $rowp = mysqli_fetch_array($resultp);
          //$rowp
-      if ($rowp OR $getData[0] == "correo" ) {
+      if ($rowp OR ($getData[0] == "correo") ) {
         /* if (!isset($rowp)) {
           echo "<script type=\"text/javascript\">
                 alert(\"Invalid File:Please Upload CSV File.\");
