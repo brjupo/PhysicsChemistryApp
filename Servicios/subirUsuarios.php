@@ -33,10 +33,11 @@ if (isset($_POST["Import"])) {
       
       $mailr = $getData[0];
       $compy = 'correo';
+      $vatemp = strcmp($mailr,$compy);
 
-      if(strnatcasecmp($mailr,$compy) != 0){
+      if($vatemp != 0){
       echo "<script type=\"text/javascript\">
-              alert(\"".$mailr."".$compy."\");
+              alert(\"".$vatemp."".$mailr."".$compy."\");
               </script>";} 
       //Corroborar que no existe el correo en base de datos
       $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$mailr'";
