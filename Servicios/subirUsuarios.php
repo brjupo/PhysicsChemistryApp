@@ -34,7 +34,7 @@ if (isset($_POST["Import"])) {
       $mailr = $getData[0];
       $compy = 'correo';
 
-      if($mailr != $compy){
+      if(strcmp($mailr,$compy) == 0){
       echo "<script type=\"text/javascript\">
               alert(\"".gettype($mailr)."".gettype($compy)."\");
               </script>";} 
