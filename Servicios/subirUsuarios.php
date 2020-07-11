@@ -32,15 +32,17 @@ if (isset($_POST["Import"])) {
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
       
       $mailr = $getData[0];
+
+      if($getData[0] == "correo"){
       echo "<script type=\"text/javascript\">
-              alert(\"".$mailr."\");
-              </script>"; 
+              alert(\"".$mailr."igual\");
+              </script>";} 
       //Corroborar que no existe el correo en base de datos
       $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$mailr'";
       $resultp = mysqli_query($con, $sql);
       $rowp = mysqli_fetch_array($resultp);
          //$rowp
-      if ($rowp OR ($getData[0] == "correo") ) {
+      if ($rowp) {
         /* if (!isset($rowp)) {
           echo "<script type=\"text/javascript\">
                 alert(\"Invalid File:Please Upload CSV File.\");
