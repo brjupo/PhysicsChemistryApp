@@ -28,7 +28,7 @@ if ($puntosActuales == 'xxx' or $puntosActuales == 0) { //validamos que exista u
     //Lanzar consulta para actualizar calificacion solo si es mayor
     $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos WHERE id_leccion = $leccion AND id_usuario = $id_usuario AND tipo = '$flagTipo'";
     mysqli_query($con, $sql);
-    $response["response"] = 'exito1';
+    $response["response"] = 'exito1u';
   }
 } else {
   $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ('$id_usuario', '$leccion', '$puntosNuevos','$flagTipo')";
