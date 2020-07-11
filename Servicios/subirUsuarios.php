@@ -32,8 +32,9 @@ if (isset($_POST["Import"])) {
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
       
       $mailr = $getData[0];
+      $comp = 'correo';
 
-      if(strcmp ($mailr , "correo" ) == 0){
+      if(strcmp ($mailr,$comp) == 0){
       echo "<script type=\"text/javascript\">
               alert(\"".$mailr."igual\");
               </script>";} 
