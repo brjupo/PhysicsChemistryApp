@@ -40,8 +40,8 @@ if (isset($_POST["Import"])) {
       $resultp = mysqli_query($con, $sql);
       $rowp = mysqli_fetch_array($resultp);
          //$rowp
-      if ($rowp OR $getData[0] == "correo") {
-        if (!isset($rowp)) {
+      if ($rowp) {
+        /* if (!isset($rowp)) {
           echo "<script type=\"text/javascript\">
                 alert(\"Invalid File:Please Upload CSV File.\");
                 window.location = \"../Front/errorInfoPages/uploadInfo.php\"
@@ -51,7 +51,7 @@ if (isset($_POST["Import"])) {
               alert(\"CSV File has been successfully Imported.\");
               window.location = \"../Front/errorInfoPages/uploadInfo.php\"
             </script>";
-        }
+        } */
 
       }else{
 
