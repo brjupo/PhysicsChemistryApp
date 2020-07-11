@@ -46,12 +46,12 @@ if (isset($_POST["Import"])) {
                 alert(\"Invalid File:Please Upload CSV File.\");
                 window.location = \"../Front/errorInfoPages/uploadInfo.php\"
                 </script>";
-        } else {
+        } else {} */
           echo "<script type=\"text/javascript\">
               alert(\"CSV File has been successfully Imported.\");
               window.location = \"../Front/errorInfoPages/uploadInfo.php\"
             </script>";
-        } */
+        
 
       }else{
 
