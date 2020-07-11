@@ -13,7 +13,7 @@ mysqli_stmt_execute($statement);
 mysqli_stmt_store_result($statement);
 mysqli_stmt_bind_result($statement, $puntuacion);
 
-$puntosActuales = NULL;
+$puntosActuales = 'xxx';
 
 $response["response"] = 'fail';
 //Leemos la calificacion 
@@ -23,7 +23,7 @@ while (mysqli_stmt_fetch($statement)) { //si si existe
 
 print_r($puntosActuales);
 
-if ($puntosActuales != NULL or $puntosActuales == 0) { //validamos que exista una calificacion $puntosActuales != NULL or $puntosActuales == 0
+if ($puntosActuales == 'xxx' or $puntosActuales == 0) { //validamos que exista una calificacion $puntosActuales != NULL or $puntosActuales == 0
   if ($puntosNuevos >= $puntosActuales) {
     //Lanzar consulta para actualizar calificacion solo si es mayor
     $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos WHERE id_leccion = $leccion AND id_usuario = $id_usuario AND tipo = '$flagTipo'";
