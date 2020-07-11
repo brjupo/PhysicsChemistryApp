@@ -33,7 +33,7 @@ if (isset($_POST["Import"])) {
       
       $mailr = $getData[0];
       $compy = 'correo';
-      $vatemp = strcmp($mailr,$compy);
+      $vatemp = $mailr + $compy;
 
       if($mailr != $compy){
       echo "<script type=\"text/javascript\">
