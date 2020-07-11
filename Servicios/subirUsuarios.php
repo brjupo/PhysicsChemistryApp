@@ -34,9 +34,9 @@ if (isset($_POST["Import"])) {
       $mailr = $getData[0];
       $compy = 'correo';
 
-      if(strcmp (strval($mailr),$compy) == 0){
+      if(strcmp (strval($mailr),$compy) != 0){
       echo "<script type=\"text/javascript\">
-              alert(\"".$mailr."igual\");
+              alert(\"".$mailr."".$compy."\");
               </script>";} 
       //Corroborar que no existe el correo en base de datos
       $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$mailr'";
