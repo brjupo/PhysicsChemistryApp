@@ -15,7 +15,7 @@ mysqli_stmt_bind_result($statement, $puntuacion);
 
 $puntosActuales = 'xxx';
 
-$response["response"] = 'failessd';
+$response["response"] = 'failesasdfsd';
 //Leemos la calificacion 
 while (mysqli_stmt_fetch($statement)) { //si si existe 
   $puntosActuales = $puntuacion;
