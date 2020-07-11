@@ -32,7 +32,7 @@ if (isset($_POST["Import"])) {
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
       
       $mailr = $getData[0];
-      $compy = 'correos';
+      $compy = 'correo';
 
       if(strcmp ($mailr,$compy) != 0){
       echo "<script type=\"text/javascript\">
