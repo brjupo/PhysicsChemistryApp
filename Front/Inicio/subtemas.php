@@ -162,7 +162,11 @@
       $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";dbname=" . $GLOBALS['dbname'] . "", $GLOBALS['username'], $GLOBALS['password']);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $idTema = $_GET['tema'];
-      $stringQuery = "SELECT nombre FROM tema WHERE id_tema='" . $idTema . "' ;";
+      if($_SESSION["idioma"] == 'I'){
+        $stringQuery = "SELECT names FROM tema WHERE id_tema='" . $idTema . "' ;";
+      }else{
+        $stringQuery = "SELECT nombre FROM tema WHERE id_tema='" . $idTema . "' ;";
+      }
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $nombreTema = $row[0];
