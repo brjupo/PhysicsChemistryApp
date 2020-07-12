@@ -306,7 +306,11 @@
       $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";dbname=" . $GLOBALS['dbname'] . "", $GLOBALS['username'], $GLOBALS['password']);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $idSubtema = $_GET['subtema'];
-      $stringQuery = "SELECT nombre FROM subtema WHERE id_subtema='" . $idSubtema . "' ;";
+      if($_SESSION["idioma"] == 'I'){
+        $stringQuery = "SELECT names FROM subtema WHERE id_subtema='" . $idSubtema . "' ;";
+      }else{
+        $stringQuery = "SELECT nombre FROM subtema WHERE id_subtema='" . $idSubtema . "' ;";
+      }
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $nombreSubtema = $row[0];
