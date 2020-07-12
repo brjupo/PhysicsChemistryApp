@@ -32,27 +32,29 @@ if (isset($_POST["Import"])) {
     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
       
       $mailr = $getData[0];
-      /* echo "<script type=\"text/javascript\">
-              alert(\"".$mailr."\");
-              </script>"; */
+      $compy = 'correo';
+
+      if(strcmp($mailr,$compy) == 0){
+      echo "<script type=\"text/javascript\">
+              alert(\"".gettype($mailr)."".gettype($compy)."\");
+              </script>";} 
       //Corroborar que no existe el correo en base de datos
       $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$mailr'";
       $resultp = mysqli_query($con, $sql);
       $rowp = mysqli_fetch_array($resultp);
          //$rowp
       if ($rowp) {
-
-        if (!isset($rowp)) {
+        /* if (!isset($rowp)) {
           echo "<script type=\"text/javascript\">
                 alert(\"Invalid File:Please Upload CSV File.\");
                 window.location = \"../Front/errorInfoPages/uploadInfo.php\"
                 </script>";
-        } else {
+        } else {} */
           echo "<script type=\"text/javascript\">
               alert(\"CSV File has been successfully Imported.\");
               window.location = \"../Front/errorInfoPages/uploadInfo.php\"
             </script>";
-        }
+        
 
       }else{
 

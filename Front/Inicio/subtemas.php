@@ -108,8 +108,13 @@
    */
     $arregloIdtema["id_tema"] = $id_tema;
     /*----Paso 2 Llamar a los subtemas de los temas-------*/
+    //Verificamos el idioma//
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    $statement = mysqli_prepare($con, "SELECT id_subtema, id_tema, nombre, link, orden FROM subtema WHERE id_tema = ? ORDER BY orden"); //WHERE mail = ? AND pswd = ?
+    if($_SESSION["idioma"] == 'I'){
+      $statement = mysqli_prepare($con, "SELECT id_subtema, id_tema, names, link, orden FROM subtema WHERE id_tema = ? ORDER BY orden"); //WHERE mail = ? AND pswd = ?
+    }else{
+      $statement = mysqli_prepare($con, "SELECT id_subtema, id_tema, nombre, link, orden FROM subtema WHERE id_tema = ? ORDER BY orden"); //WHERE mail = ? AND pswd = ?
+    }
     mysqli_stmt_bind_param($statement, "s", $arregloIdtema["id_tema"]);
     mysqli_stmt_execute($statement);
 

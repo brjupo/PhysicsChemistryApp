@@ -13,18 +13,22 @@ mysqli_stmt_execute($statement);
 mysqli_stmt_store_result($statement);
 mysqli_stmt_bind_result($statement, $puntuacion);
 
-$response["response"] = 'fail';
+$puntosActuales = 'xxx';
+
+$response["response"] = 'failesasdfsd';
 //Leemos la calificacion 
 while (mysqli_stmt_fetch($statement)) { //si si existe 
   $puntosActuales = $puntuacion;
 }
 
-if ($puntosActuales or $puntosActuales == 0) { //validamos que exista una calificacion $puntosActuales != NULL or $puntosActuales == 0
-  if ($puntosNuevos >= $puntosActuales) {
+//print_r($puntosActuales);
+
+if ($puntosActuales != 'xxx' OR $puntosActuales == NULL) { //validamos que exista una calificacion $puntosActuales != NULL or $puntosActuales == 0
+  if ($puntosNuevos > $puntosActuales) {
     //Lanzar consulta para actualizar calificacion solo si es mayor
     $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos WHERE id_leccion = $leccion AND id_usuario = $id_usuario AND tipo = '$flagTipo'";
     mysqli_query($con, $sql);
-    $response["response"] = 'exito1';
+    $response["response"] = 'exito1ul';
   }
 } else {
   $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ('$id_usuario', '$leccion', '$puntosNuevos','$flagTipo')";

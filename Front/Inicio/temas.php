@@ -16,6 +16,7 @@
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
+  $_SESSION["idioma"] = 'I';
   $tokenValidar = array();
   /* echo'<script type="text/javascript">
             alert("$_SESSION["mail"]");
@@ -95,7 +96,12 @@
     $_SESSION["idAsignatura"] = $arregloIdasignatura["id_asignatura"];
 
     /*----Paso 2 Llamar a los temas de la asignatura-------*/
-    $statement = mysqli_prepare($con, "SELECT id_tema, id_asignatura, nombre FROM tema WHERE id_asignatura = ? ORDER BY orden ASC"); //WHERE mail = ? AND pswd = ?
+    //Verificamos el idioma//
+    if($_SESSION["idioma"] == 'I'){
+      $statement = mysqli_prepare($con, "SELECT id_tema, id_asignatura, names FROM tema WHERE id_asignatura = ? ORDER BY orden ASC"); //WHERE mail = ? AND pswd = ?
+    }else{
+      $statement = mysqli_prepare($con, "SELECT id_tema, id_asignatura, nombre FROM tema WHERE id_asignatura = ? ORDER BY orden ASC"); //WHERE mail = ? AND pswd = ?
+    }
     mysqli_stmt_bind_param($statement, "s", $arregloIdasignatura["id_asignatura"]);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);

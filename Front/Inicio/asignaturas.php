@@ -16,6 +16,23 @@
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
+  /////ESTABLECER UN TIME OUT DE SESION
+  $_SESSION["timeout"] = time();
+
+  session_start();
+    // Establecer tiempo de vida de la sesión en segundos
+    $inactividad = 10;
+    // Comprobar si $_SESSION["timeout"] está establecida
+    if(isset($_SESSION["timeout"])){
+        // Calcular el tiempo de vida de la sesión (TTL = Time To Live)
+        $sessionTTL = time() - $_SESSION["timeout"];
+        if($sessionTTL > $inactividad){
+            session_destroy();
+            //header("Location: /logout.php");
+        }
+    }
+
+  /////
   $tokenValidar = array();
 
 
