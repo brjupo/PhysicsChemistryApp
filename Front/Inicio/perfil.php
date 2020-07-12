@@ -16,6 +16,11 @@
   <!----------------------------------------------TITULO--------------------------------------------->
 
   <?php
+  $servername = "localhost";
+  $dbname = "u526597556_dev";
+  $username = "1BLeeAgwq1*isgm&jBJe";
+  $password = "u526597556_kaanbal";
+
   $matricula = "A01169493";
   $porcentajeAvance = "53.2%";
   $avatarActual = "avatar.jpg";
@@ -30,48 +35,35 @@
   $iduser = $_SESSION["id_usuario"];
   $materia = $_SESSION["asignaturaNavegacion"];
 
-  $query = "SELECT id_asignatura FROM asignatura WHERE nombre = '$materia'"; 
+  $query = "SELECT id_asignatura FROM asignatura WHERE nombre = '$materia'";
   $result = mysqli_query($con, $query);
   while ($row = mysqli_fetch_assoc($result)) {
-    $arrayidMateria[] = $row;}
-  $idMateria =  $arrayidMateria[0]["id_asignatura"];//De aqui se obtendra el id de asignatura
+    $arrayidMateria[] = $row;
+  }
+  $idMateria =  $arrayidMateria[0]["id_asignatura"]; //De aqui se obtendra el id de asignatura
 
-               
+
   /* echo '<script type="text/javascript">
                       alert("'.$idMateria.'");
                       </script>';  */
 
-  $query = "SELECT matricula FROM alumno WHERE id_usuario = $iduser"; 
+  $query = "SELECT matricula FROM alumno WHERE id_usuario = $iduser";
   $result = mysqli_query($con, $query);
   while ($row = mysqli_fetch_assoc($result)) {
-    $mailArray[] = $row;}
-  $mail = $mailArray[0]["matricula"];//De aqui se obtendra la matricula del usuario
+    $mailArray[] = $row;
+  }
+  $mail = $mailArray[0]["matricula"]; //De aqui se obtendra la matricula del usuario
 
   $matricula = $mail;
 
-  $query = "SELECT avatar FROM alumno WHERE id_usuario = $iduser"; 
+  $query = "SELECT avatar FROM alumno WHERE id_usuario = $iduser";
   $result = mysqli_query($con, $query);
   while ($row = mysqli_fetch_assoc($result)) {
-    $avatarArray[] = $row;}
-  $avatarActual = $avatarArray[0]["avatar"];//De aqui se obtendra el avatar del usuario
+    $avatarArray[] = $row;
+  }
+  $avatarActual = $avatarArray[0]["avatar"]; //De aqui se obtendra el avatar del usuario
 
-  //Obtener el porcentaje completado total de la asignatura de práctica general (PG) de la lección:
-    /* $statement = mysqli_prepare($con, "SELECT ((SELECT COUNT(*) FROM puntuacion WHERE id_usuario = ? AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))) AND tipo = 'PG' * 100) / (SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))))");
-    //[ID DEL USUARIO QUE INICIO SESIÓN]
-    //[ID DE LA ASIGNATURA ACTUAL]
-    //[ID DE LA ASIGNATURA ACTUAL]
-    mysqli_stmt_bind_param($statement, "iii", $iduser, $idMateria, $idMateria);
-    mysqli_stmt_execute($statement);
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $porcentajePG);
-
-    $arregloPG = array();
-
-    while (mysqli_stmt_fetch($statement)) {
-      $arregloPG[0]["porcentajePG"] = $porcentajePG;
-    } */
-
-
+  /*
     //Obtener el porcentaje completado total de la asignatura de práctica particular(PP) de la lección:
     $statement = mysqli_prepare($con, "SELECT ((SELECT COUNT(*) FROM puntuacion WHERE id_usuario = ? AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))) AND tipo = 'PP' * 100) / (SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?)))) * 100");
     //[ID DEL USUARIO QUE INICIO SESIÓN]
@@ -89,26 +81,48 @@
     }
     $porcentajeAvance = round($arregloPP[0]["porcentajePP"]);
     $porcentajeAvance .= '%';
+*/
 
-////////////////////////////////////////////////////////////////////////////////////
-    $statement = mysqli_prepare($con, "SELECT SUM(puntuacion) FROM puntuacion WHERE id_usuario = ? AND tipo = 'PP'");
-    mysqli_stmt_bind_param($statement, "i", $iduser);
-    mysqli_stmt_execute($statement);
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $points);
-
-    $arregloPoints = array();
-
-    while (mysqli_stmt_fetch($statement)) {
-      $arregloPoints[0]["diamantes"] = $points;
+  $porcentajeAvance = 0;
+  //Total de lecciones de la asignatura = 100%
+  try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?)))";
+    $stmt = $conn->query($stringQuery);
+    while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+      $totalLeccionesAsignatura = $row[0];
     }
-    if($arregloPoints[0]["diamantes"]){
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+  $conn = null;
+
+  //Todos los registros de puntuacion donde el alumno tenga algo
+
+  //Filtras por aquellos que pertenezcan a la asignatura
+
+
+
+  ////////////////////////////////////////////////////////////////////////////////////
+  $statement = mysqli_prepare($con, "SELECT SUM(puntuacion) FROM puntuacion WHERE id_usuario = ? AND tipo = 'PP'");
+  mysqli_stmt_bind_param($statement, "i", $iduser);
+  mysqli_stmt_execute($statement);
+  mysqli_stmt_store_result($statement);
+  mysqli_stmt_bind_result($statement, $points);
+
+  $arregloPoints = array();
+
+  while (mysqli_stmt_fetch($statement)) {
+    $arregloPoints[0]["diamantes"] = $points;
+  }
+  if ($arregloPoints[0]["diamantes"]) {
     $diamantes = $arregloPoints[0]["diamantes"];
-    }else{
-      $diamantes = 0;
-    }
+  } else {
+    $diamantes = 0;
+  }
 
-//////////////////////////////////////
+  //////////////////////////////////////
 
   imprimirVistaPerfil($matricula, $materia, $porcentajeAvance, $avatarActual, $diamantes);
 
