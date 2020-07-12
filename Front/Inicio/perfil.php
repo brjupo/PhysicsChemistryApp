@@ -18,9 +18,9 @@
   <?php
   $servername = "localhost";
   $dbname = "u526597556_dev";
-  $username = "1BLeeAgwq1*isgm&jBJe";
-  $password = "u526597556_kaanbal";
-
+  $username = "u526597556_kaanbal";
+  $password = "1BLeeAgwq1*isgm&jBJe";
+  
   $matricula = "A01169493";
   $porcentajeAvance = "53.2%";
   $avatarActual = "avatar.jpg";
