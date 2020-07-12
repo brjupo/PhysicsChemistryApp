@@ -131,7 +131,6 @@
         $_SESSION["pswd"] = $temp_pswd;
         $_SESSION["tokenA"] = $temp_tokenA;
         $_SESSION["tokenSesion"] = $rand;
-        $_SESSION["idioma"] = $temp_idioma;
         //Imprimimos pantalla de asignaturas
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
