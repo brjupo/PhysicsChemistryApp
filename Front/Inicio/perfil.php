@@ -116,7 +116,7 @@
   $porcentaje = 100 * (float)$porcentaje;
   $porcentaje = round($porcentaje);
   //if($porcentaje>100){$porcentaje = 100;}
-  $porcentajeAvance = $porcentajeAvance . "%";
+  $porcentajeAvance = strval($porcentaje) . "%";
 
   ////////////////////////////////////////////////////////////////////////////////////
   $statement = mysqli_prepare($con, "SELECT SUM(puntuacion) FROM puntuacion WHERE id_usuario = ? AND tipo = 'PP'");
