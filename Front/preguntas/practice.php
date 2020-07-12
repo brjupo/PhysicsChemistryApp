@@ -512,7 +512,7 @@
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Acepto</button>
+                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
