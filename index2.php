@@ -132,7 +132,7 @@
                     id="validarPassword"
                     required
                     /><br />
-                    <input type="text" id="idioma" /><br />
+                    <input type="text" id="idioma"/><br />
 
                     <label class="olvidada" id="contraOlvidada">Forgot password?</label
                     ><br />

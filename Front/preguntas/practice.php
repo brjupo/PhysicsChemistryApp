@@ -103,7 +103,7 @@
             $arrayr[] = $row;
         }
         ///VALIDAMOS EL IDIOMA PARA HACER CAMBIO EN EL NOMBRE DE LOS CAMPOS Y MOSTRAR LAS PREGUNTAS EN INGLES
-        if($_SESSION["idioma"] == 'I'){
+        if($_SESSION["idioma"] == 'i'){
             for ($j = 0; $j < $total[0]; $j++) {
             $array[$j]["pregunta"] = $array[$j]["question"];
             $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];

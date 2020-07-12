@@ -71,6 +71,7 @@
 
     $correo = $_POST["validarUsuario"];
     $password = $_POST["validarPassword"];
+    $idioma = $_POST["idioma"];
 
     //Validamos que los campos correo y password no lleguen vacios
     if ($correo == "" or $password == "") {
@@ -122,6 +123,9 @@
         $sql = "UPDATE usuario_prueba SET tokenSesion='$rand' WHERE mail = '$correo'";
         mysqli_query($con, $sql);
         //Aactualizamos variables de sesión
+        //////IDIOMA
+        $_SESSION["timeout"] = $idioma;
+        ////
         $_SESSION["id_usuario"] = $temp_id_usuario;
         $_SESSION["mail"] = $temp_mail;
         $_SESSION["pswd"] = $temp_pswd;
