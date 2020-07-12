@@ -198,49 +198,6 @@
   ';
   }
 
-
-  function imprimirSiempreAparece()
-  {
-    echo '  
-      <!----------------------------------------------SUBTEMAS--------------------------------------------->
-      <div class="container">
-        <div id="seccion0" class="row">
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-          <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
-            <table class="table fixed">
-              <tbody>
-                <tr>
-                  <td>
-                    <img class="iconsNumber" src="../CSSsJSs/icons/1.svg" />
-                  </td>
-                  <td class="tituloTemasPrincipales">
-                    Identificar triángulos rectángulos
-                  </td>
-                  <td>
-                    <a href="preguntas/preguntaSprint.html"><img class="iconsActive" src="../CSSsJSs/icons/lecciones.svg" /></a>
-                  </td>
-                  <td>
-                    <img class="icons" src="../CSSsJSs/icons/run.svg" />
-                  </td>
-                  <td>
-                    <img class="icons" src="../CSSsJSs/icons/FlechaIzq.svg" />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <p></p>
-        </div>
-      </div>
-  ';
-  }
-
   function imprimirSubtema($numeroSubtema, $id_subtema, $nombreSubtema, $link)
   {
     if($link == Null){
@@ -262,7 +219,7 @@
                     <img class="icons" src="../CSSsJSs/icons/fullBook.svg"/>
                   </td>
                   <td>
-                    <img class="icons" src="../CSSsJSs/icons/runner.svg" />
+                  <a href="../preguntas/SuperSprint/superSprint.php?subtema=' . $id_subtema . '"><img class="iconsActive" src="../CSSsJSs/icons/runner.svg" /></a>
                   </td>
                   <td>
                     <a href="lecciones.php?subtema=' . $id_subtema . '"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
@@ -297,13 +254,13 @@
                   ' . $nombreSubtema . '
                   </td>
                   <td>
-                  <a href="' . $link . '"><img class="iconsActive" src="../CSSsJSs/icons/fullBook.svg"/>
+                    <a href="' . $link . '"><img class="iconsActive" src="../CSSsJSs/icons/fullBook.svg"/></a>
                   </td>
                   <td>
-                    <img class="icons" src="../CSSsJSs/icons/runner.svg" />
+                    <a href="../preguntas/SuperSprint/superSprint.php?subtema=' . $id_subtema . '"><img class="iconsActive" src="../CSSsJSs/icons/runner.svg" /></a>
                   </td>
                   <td>
-                    <a href="lecciones.php?subtema=' . $id_subtema . '"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
+                    <a href="lecciones.php?subtema=' . $id_subtema . '"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
                   </td>
                 </tr>
               </tbody>
