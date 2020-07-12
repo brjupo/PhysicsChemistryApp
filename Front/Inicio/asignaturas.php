@@ -35,8 +35,12 @@
   /////
   $tokenValidar = array();
 
-
-  $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
+  if($_SESSION["idioma"] == 'I'){
+    //$arregloAsignaturastodas = array("Chemistry", "Physics I", ".");
+    $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
+  }else{
+    $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
+  }
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
   mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
