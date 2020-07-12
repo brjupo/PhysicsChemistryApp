@@ -94,12 +94,11 @@
       $totalLeccionesAsignatura = $row[0];
     }
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    echo "Error en total lecciones: " . $e->getMessage();
   }
   $conn = null;
 
   //Todos los registros de puntuacion donde el alumno tenga algo
-  
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -109,7 +108,7 @@
       $totalLeccionesJugadas = $row[0];
     }
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    echo "Error en lecciones jugadas: " . $e->getMessage();
   }
   $conn = null;
 
