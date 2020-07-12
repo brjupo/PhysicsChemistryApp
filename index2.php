@@ -133,8 +133,8 @@
                     required
                     /><br />
 
-                    <label class="fuenteForma" for="idioma" id="contrasena"
-                    >Password</label
+                    <label class="fuenteForma" for="idioma" id="contrasena" style="display:none"
+                    >Idioma</label
                     ><br />
                     <input type="text" id="idioma" name="idioma"/><br />
 
