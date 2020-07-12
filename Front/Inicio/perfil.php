@@ -17,9 +17,9 @@
 
   <?php
   $servername = "localhost";
-  $dbname = "u526597556_dev";
-  $username = "1BLeeAgwq1*isgm&jBJe";
-  $password = "u526597556_kaanbal";
+  $username = "u526597556_dev";
+  $dbname = "u526597556_kaanbal";
+  $password = "1BLeeAgwq1*isgm&jBJe";
 
   $matricula = "A01169493";
   $porcentajeAvance = "53.2%";
@@ -83,40 +83,40 @@
     $porcentajeAvance .= '%';
 */
 
-  $porcentajeAvance = 0;
+  $porcentajeAvance = "";
   //Total de lecciones de la asignatura = 100%
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = $idMateria)))";
+    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = $idMateria))";
     $stmt = $conn->query($stringQuery);
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
       $totalLeccionesAsignatura = $row[0];
     }
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    echo "Error en total lecciones: " . $e->getMessage();
   }
   $conn = null;
 
   //Todos los registros de puntuacion donde el alumno tenga algo
-  //SELECT COUNT(*) FROM leccion WHERE tipo = 'PP' AND id_leccion IN (SELECT id_leccion FROM puntuacion WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))));
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE tipo = 'PP'  AND id_usuario = $iduser AND id_leccion IN (SELECT id_leccion FROM puntuacion WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = $idMateria))));";
+    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_leccion IN (SELECT id_leccion FROM puntuacion WHERE tipo = 'PP' AND id_usuario = $iduser AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = $idMateria))))";
     $stmt = $conn->query($stringQuery);
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
       $totalLeccionesJugadas = $row[0];
     }
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    echo "Error en lecciones jugadas: " . $e->getMessage();
   }
   $conn = null;
 
-  $porcentajeAvance = (int)$totalLeccionesJugadas / (int)$totalLeccionesAsignatura;
-  $porcentajeAvance = 100 * (float)$porcentajeAvance;
-  $porcentajeAvance = round($porcentajeAvance);
-  if($porcentajeAvance>100){$porcentajeAvance = 100;}
+  $porcentaje = (int)$totalLeccionesJugadas / (int)$totalLeccionesAsignatura;
+  $porcentaje = 100 * (float)$porcentaje;
+  $porcentaje = round($porcentaje);
+  if($porcentaje>100){$porcentaje = 100;}
+  $porcentajeAvance = strval($porcentaje) . "%";
 
   ////////////////////////////////////////////////////////////////////////////////////
   $statement = mysqli_prepare($con, "SELECT SUM(puntuacion) FROM puntuacion WHERE id_usuario = ? AND tipo = 'PP'");
