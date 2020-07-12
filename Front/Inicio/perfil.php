@@ -83,7 +83,7 @@
     $porcentajeAvance .= '%';
 */
 
-  $porcentajeAvance = 0;
+  $porcentajeAvance = "";
   //Total de lecciones de la asignatura = 100%
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -112,10 +112,11 @@
   }
   $conn = null;
 
-  $porcentajeAvance = (int)$totalLeccionesJugadas / (int)$totalLeccionesAsignatura;
-  $porcentajeAvance = 100 * (float)$porcentajeAvance;
-  $porcentajeAvance = round($porcentajeAvance);
-  //if($porcentajeAvance>100){$porcentajeAvance = 100;}
+  $porcentaje = (int)$totalLeccionesJugadas / (int)$totalLeccionesAsignatura;
+  $porcentaje = 100 * (float)$porcentaje;
+  $porcentaje = round($porcentaje);
+  //if($porcentaje>100){$porcentaje = 100;}
+  $porcentajeAvance = $porcentajeAvance . "%";
 
   ////////////////////////////////////////////////////////////////////////////////////
   $statement = mysqli_prepare($con, "SELECT SUM(puntuacion) FROM puntuacion WHERE id_usuario = ? AND tipo = 'PP'");
