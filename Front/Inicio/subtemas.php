@@ -111,7 +111,6 @@
     //Verificamos el idioma//
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     if($_SESSION["idioma"] == 'I'){
-      
       $statement = mysqli_prepare($con, "SELECT id_subtema, id_tema, names, link, orden FROM subtema WHERE id_tema = ? ORDER BY orden"); //WHERE mail = ? AND pswd = ?
     }else{
       $statement = mysqli_prepare($con, "SELECT id_subtema, id_tema, nombre, link, orden FROM subtema WHERE id_tema = ? ORDER BY orden"); //WHERE mail = ? AND pswd = ?
