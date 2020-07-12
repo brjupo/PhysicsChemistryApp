@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas11.css" />
+    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas13.css" />
     <link rel="stylesheet" href="../CSSsJSs/styleNivelCompletado2.css" />
     <script src="../CSSsJSs/scriptNivelCompletado.js"></script>
   </head>
