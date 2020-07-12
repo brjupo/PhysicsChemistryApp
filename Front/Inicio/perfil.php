@@ -115,7 +115,7 @@
   $porcentaje = (int)$totalLeccionesJugadas / (int)$totalLeccionesAsignatura;
   $porcentaje = 100 * (float)$porcentaje;
   $porcentaje = round($porcentaje);
-  //if($porcentaje>100){$porcentaje = 100;}
+  if($porcentaje>100){$porcentaje = 100;}
   $porcentajeAvance = strval($porcentaje) . "%";
 
   ////////////////////////////////////////////////////////////////////////////////////
