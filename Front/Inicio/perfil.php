@@ -88,7 +88,7 @@
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?)))";
+    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = $idMateria)))";
     $stmt = $conn->query($stringQuery);
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
       $totalLeccionesAsignatura = $row[0];
@@ -99,10 +99,24 @@
   $conn = null;
 
   //Todos los registros de puntuacion donde el alumno tenga algo
+  //SELECT COUNT(*) FROM leccion WHERE tipo = 'PP' AND id_leccion IN (SELECT id_leccion FROM puntuacion WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))));
+  try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE tipo = 'PP'  AND id_usuario = $iduser AND id_leccion IN (SELECT id_leccion FROM puntuacion WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = $idMateria))));";
+    $stmt = $conn->query($stringQuery);
+    while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+      $totalLeccionesJugadas = $row[0];
+    }
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+  $conn = null;
 
-  //Filtras por aquellos que pertenezcan a la asignatura
-
-
+  $porcentajeAvance = (int)$totalLeccionesJugadas / (int)$totalLeccionesAsignatura;
+  $porcentajeAvance = 100 * (float)$porcentajeAvance;
+  $porcentajeAvance = round($porcentajeAvance);
+  if($porcentajeAvance>100){$porcentajeAvance = 100;}
 
   ////////////////////////////////////////////////////////////////////////////////////
   $statement = mysqli_prepare($con, "SELECT SUM(puntuacion) FROM puntuacion WHERE id_usuario = ? AND tipo = 'PP'");
