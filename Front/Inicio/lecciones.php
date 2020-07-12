@@ -171,12 +171,11 @@
       $statement = mysqli_prepare($con, "SELECT l.id_leccion, l.id_subtema, l.names, l.setenta, l.puntuacion, l.orden FLOOR(COUNT(p.id_leccion) * 0.7) as setenta, pu.puntuacion FROM leccion l JOIN pregunta p JOIN puntuacion pu ON p.id_leccion = l.id_leccion AND l.id_leccion = pu.id_leccion AND p.id_leccion = pu.id_leccion WHERE l.id_subtema = ? AND pu.id_usuario = ? AND pu.tipo = 'PP' GROUP BY p.id_leccion ORDER BY orden");
     }else{
     //Debe de traer todas en la que puntiacion PP sea mayor a 70%, las que sea mayor al 70% deberan tener habilitado el sprint y la siguiente leccion
-      
-    $statement = mysqli_prepare($con, "SELECT l.id_leccion, l.id_subtema, l.names, l.setenta, l.puntuacion, l.orden FLOOR(COUNT(p.id_leccion) * 0.7) as setenta, pu.puntuacion FROM leccion l JOIN pregunta p JOIN puntuacion pu ON p.id_leccion = l.id_leccion AND l.id_leccion = pu.id_leccion AND p.id_leccion = pu.id_leccion WHERE l.id_subtema = ? AND pu.id_usuario = ? AND pu.tipo = 'PP' GROUP BY p.id_leccion ORDER BY orden");
-    //$statement = mysqli_prepare($con, "SELECT l.*, FLOOR(COUNT(p.id_leccion) * 0.7) as setenta, pu.puntuacion FROM leccion l JOIN pregunta p JOIN puntuacion pu ON p.id_leccion = l.id_leccion AND l.id_leccion = pu.id_leccion AND p.id_leccion = pu.id_leccion WHERE l.id_subtema = ? AND pu.id_usuario = ? AND pu.tipo = 'PP' GROUP BY p.id_leccion ORDER BY orden");
+      $statement = mysqli_prepare($con, "SELECT l.*, FLOOR(COUNT(p.id_leccion) * 0.7) as setenta, pu.puntuacion FROM leccion l JOIN pregunta p JOIN puntuacion pu ON p.id_leccion = l.id_leccion AND l.id_leccion = pu.id_leccion AND p.id_leccion = pu.id_leccion WHERE l.id_subtema = ? AND pu.id_usuario = ? AND pu.tipo = 'PP' GROUP BY p.id_leccion ORDER BY orden");
     }
     mysqli_stmt_bind_param($statement, "ii", $id_subtema, $_SESSION["id_usuario"]);
     mysqli_stmt_execute($statement);
+
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $id_leccionh, $id_subtemah, $nombreh, $setenta, $puntuacion, $orden);
 
@@ -203,7 +202,12 @@
     }
 
     //Llamar no habilitadas
-    $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, nombre, orden FROM leccion WHERE id_subtema = ? ORDER BY orden");
+    //Verificamos el idioma//
+    if($_SESSION["idioma"] == 'I'){
+      $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, names, orden FROM leccion WHERE id_subtema = ? ORDER BY orden");
+    }else{
+      $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, nombre, orden FROM leccion WHERE id_subtema = ? ORDER BY orden");
+    }
     mysqli_stmt_bind_param($statement, "i", $id_subtema);
     mysqli_stmt_execute($statement);
 
