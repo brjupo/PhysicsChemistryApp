@@ -102,6 +102,22 @@
             $array[] = $row;
             $arrayr[] = $row;
         }
+        ///Validamos el idioma para hacer un cAMBIO EN EL NOMBRE DE LOS CAMPOS Y MOSTRAR LAS PREGUNTAS EN INGLES
+        if($_SESSION["idioma"] == 'I'){
+            for ($j = 0; $j < $total[0]; $j++) {
+            $array["pregunta"] = $array["question"];
+            $array["respuesta_correcta"] = $array["correct_answer"];
+            $array["respuesta2"] = $array["answer2"];
+            $array["respuesta3"] = $array["answer3"];
+            $array["respuesta4"] = $array["answer4"];
+
+            $arrayr["pregunta"] = $arrayr["question"];
+            $arrayr["respuesta_correcta"] = $arrayr["correct_answer"];
+            $arrayr["respuesta2"] = $arrayr["answer2"];
+            $arrayr["respuesta3"] = $arrayr["answer3"];
+            $arrayr["respuesta4"] = $arrayr["answer4"];
+            }
+        }
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
         ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
         for ($j = 0; $j < $total[0]; $j++) {
