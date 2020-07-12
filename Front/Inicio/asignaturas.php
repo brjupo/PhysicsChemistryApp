@@ -35,7 +35,7 @@
   /////
   $tokenValidar = array();
 
-  if($_SESSION["idioma"] == 'I'){
+  if($_SESSION["idioma"] == 'i'){
     //$arregloAsignaturastodas = array("Chemistry", "Physics I", ".");
     $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
   }else{
@@ -71,7 +71,11 @@
 
     $correo = $_POST["validarUsuario"];
     $password = $_POST["validarPassword"];
-    $idioma = $_POST["idioma"];
+    $idiomas = $_POST["idioma"];
+
+    echo '<script type="text/javascript">
+                      alert("'.$idiomas.'");
+                      </script>'; 
 
     //Validamos que los campos correo y password no lleguen vacios
     if ($correo == "" or $password == "") {
@@ -124,14 +128,13 @@
         mysqli_query($con, $sql);
         //Aactualizamos variables de sesión
         //////IDIOMA
-        $_SESSION["timeout"] = $idioma;
+        $_SESSION["idioma"] = $idiomas;
         ////
         $_SESSION["id_usuario"] = $temp_id_usuario;
         $_SESSION["mail"] = $temp_mail;
         $_SESSION["pswd"] = $temp_pswd;
         $_SESSION["tokenA"] = $temp_tokenA;
         $_SESSION["tokenSesion"] = $rand;
-        $_SESSION["idioma"] = $temp_idioma;
         //Imprimimos pantalla de asignaturas
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
