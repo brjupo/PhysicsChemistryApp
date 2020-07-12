@@ -73,6 +73,10 @@
     $password = $_POST["validarPassword"];
     $idiomas = $_POST["idioma"];
 
+    echo '<script type="text/javascript">
+                      alert("'.$idiomas.'");
+                      </script>'; 
+
     //Validamos que los campos correo y password no lleguen vacios
     if ($correo == "" or $password == "") {
       echo '<script type="text/javascript">
