@@ -124,7 +124,7 @@
         mysqli_query($con, $sql);
         //Aactualizamos variables de sesión
         //////IDIOMA
-        $_SESSION["idioma"] = $idiomas;
+        $_SESSION["idioma"] = 'i';
         ////
         $_SESSION["id_usuario"] = $temp_id_usuario;
         $_SESSION["mail"] = $temp_mail;
