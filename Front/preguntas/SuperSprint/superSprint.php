@@ -91,7 +91,7 @@
         */
         $idSubtema = $subtema;
         //Traer todas las preguntas
-        $query = "SELECT * FROM pregunta WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema = $idSubtema);";
+        $query = "SELECT * FROM pregunta WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema = $idSubtema) ORDER BY RAND();";
         //$query = "SELECT * FROM pregunta WHERE id_subtema = $idSubtema ORDER BY RAND()"; //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
         $result = mysqli_query($con, $query);
         //contar Numero de elementos
