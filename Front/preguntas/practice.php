@@ -102,20 +102,20 @@
             $array[] = $row;
             $arrayr[] = $row;
         }
-        ///Validamos el idioma para hacer un cAMBIO EN EL NOMBRE DE LOS CAMPOS Y MOSTRAR LAS PREGUNTAS EN INGLES
+        ///VALIDAMOS EL IDIOMA PARA HACER CAMBIO EN EL NOMBRE DE LOS CAMPOS Y MOSTRAR LAS PREGUNTAS EN INGLES
         if($_SESSION["idioma"] == 'I'){
             for ($j = 0; $j < $total[0]; $j++) {
-            $array["pregunta"] = $array["question"];
-            $array["respuesta_correcta"] = $array["correct_answer"];
-            $array["respuesta2"] = $array["answer2"];
-            $array["respuesta3"] = $array["answer3"];
-            $array["respuesta4"] = $array["answer4"];
+            $array[$j]["pregunta"] = $array[$j]["question"];
+            $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];
+            $array[$j]["respuesta2"] = $array[$j]["answer2"];
+            $array[$j]["respuesta3"] = $array[$j]["answer3"];
+            $array[$j]["respuesta4"] = $array[$j]["answer4"];
 
-            $arrayr["pregunta"] = $arrayr["question"];
-            $arrayr["respuesta_correcta"] = $arrayr["correct_answer"];
-            $arrayr["respuesta2"] = $arrayr["answer2"];
-            $arrayr["respuesta3"] = $arrayr["answer3"];
-            $arrayr["respuesta4"] = $arrayr["answer4"];
+            $arrayr[$j]["pregunta"] = $arrayr[$j]["question"];
+            $arrayr[$j]["respuesta_correcta"] = $arrayr[$j]["correct_answer"];
+            $arrayr[$j]["respuesta2"] = $arrayr[$j]["answer2"];
+            $arrayr[$j]["respuesta3"] = $arrayr[$j]["answer3"];
+            $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
             }
         }
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
