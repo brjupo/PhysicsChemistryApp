@@ -132,6 +132,10 @@
                     id="validarPassword"
                     required
                     /><br />
+
+                    <label class="fuenteForma" for="idioma" id="contrasena"
+                    >Password</label
+                    ><br />
                     <input type="text" id="idioma" name="idioma"/><br />
 
                     <label class="olvidada" id="contraOlvidada">Forgot password?</label
