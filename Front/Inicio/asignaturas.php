@@ -71,7 +71,7 @@
 
     $correo = $_POST["validarUsuario"];
     $password = $_POST["validarPassword"];
-    $idioma = $_POST["idioma"];
+    $idiomas = $_POST["idioma"];
 
     //Validamos que los campos correo y password no lleguen vacios
     if ($correo == "" or $password == "") {
@@ -124,7 +124,7 @@
         mysqli_query($con, $sql);
         //Aactualizamos variables de sesión
         //////IDIOMA
-        $_SESSION["idioma"] = $idioma;
+        $_SESSION["idioma"] = $idiomas;
         ////
         $_SESSION["id_usuario"] = $temp_id_usuario;
         $_SESSION["mail"] = $temp_mail;
