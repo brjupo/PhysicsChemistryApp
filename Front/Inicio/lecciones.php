@@ -203,7 +203,7 @@
 
     //Llamar no habilitadas
     //Verificamos el idioma//
-    if($_SESSION["idioma"] == 'I'){
+    if($_SESSION["idioma"] == 'i'){
       $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, names, orden FROM leccion WHERE id_subtema = ? ORDER BY orden");
     }else{
       $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, nombre, orden FROM leccion WHERE id_subtema = ? ORDER BY orden");
@@ -306,7 +306,7 @@
       $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";dbname=" . $GLOBALS['dbname'] . "", $GLOBALS['username'], $GLOBALS['password']);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $idSubtema = $_GET['subtema'];
-      if($_SESSION["idioma"] == 'I'){
+      if($_SESSION["idioma"] == 'i'){
         $stringQuery = "SELECT names FROM subtema WHERE id_subtema='" . $idSubtema . "' ;";
       }else{
         $stringQuery = "SELECT nombre FROM subtema WHERE id_subtema='" . $idSubtema . "' ;";
