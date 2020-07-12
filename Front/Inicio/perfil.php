@@ -115,7 +115,7 @@
   $porcentajeAvance = (int)$totalLeccionesJugadas / (int)$totalLeccionesAsignatura;
   $porcentajeAvance = 100 * (float)$porcentajeAvance;
   $porcentajeAvance = round($porcentajeAvance);
-  if($porcentajeAvance>100){$porcentajeAvance = 200;}
+  //if($porcentajeAvance>100){$porcentajeAvance = 100;}
 
   ////////////////////////////////////////////////////////////////////////////////////
   $statement = mysqli_prepare($con, "SELECT SUM(puntuacion) FROM puntuacion WHERE id_usuario = ? AND tipo = 'PP'");
