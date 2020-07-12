@@ -19,12 +19,12 @@ window.onload = function () {
 };
 
 function getTimeForSprint() {
-  leccion = document.getElementById("leccionID").innerHTML.trim();
+  subtema = document.getElementById("subtemaID").innerHTML.trim();
   $.ajax({
     type: "POST",
     url: "getTimeForSuperSprint.php",
     dataType: "json",
-    data: { leccion : leccion},
+    data: { subtema : subtema},
     success: function(data) {
       console.log(data.seconds);
       console.log(data.response);
@@ -412,7 +412,7 @@ function nextQuestion(lastQuestion) {
   if (questionNumberArray.length == 0) {
     var stringLiga =
       "https://kaanbal.net/Front/preguntas/SuperSprint/sprintFinalizado.php?tema=" +
-      document.getElementById("subtemaPrevio").innerHTML.trim() +
+      document.getElementById("temaPrevio").innerHTML.trim() +
       "&puntos=" +
       puntos +
       "&totalPreguntas=" +
@@ -425,19 +425,19 @@ function nextQuestion(lastQuestion) {
 
 function enviarCalificacionRedirigir() {
   var userID = document.getElementById("userID").innerHTML.trim();
-  var leccionID = document.getElementById("leccionID").innerHTML.trim();
+  var subtemaID = document.getElementById("subtemaID").innerHTML.trim();
   $.ajax({
     type: "POST",
     url: "subirPuntosByType.php",
     dataType: "json",
-    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SS" },
+    data: { id: userID, leccion: subtemaID, puntos: puntos, flagTipo: "SG" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
         console.log("Valores enviados correctamente");
         var stringLiga =
           "https://kaanbal.net/Front/preguntas/SuperSprint/sprintFinalizado.php?tema=" +
-          document.getElementById("subtemaPrevio").innerHTML.trim() +
+          document.getElementById("temaPrevio").innerHTML.trim() +
           "&puntos=" +
           puntos +
           "&totalPreguntas=" +
@@ -453,21 +453,18 @@ function enviarCalificacionRedirigir() {
 
 function enviarCalificacion() {
   var userID = document.getElementById("userID").innerHTML.trim();
-  var leccionID = document.getElementById("leccionID").innerHTML.trim();
-  //alert(userID+ " "+ puntos+ " "+ leccionID);
+  var subtemaID = document.getElementById("subtemaID").innerHTML.trim();
 
   $.ajax({
     type: "POST",
     url: "subirPuntosByType.php",
     dataType: "json",
-    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SS" },
+    data: { id: userID, leccion: subtemaID, puntos: puntos, flagTipo: "SG" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
         //alert("Etcito");
         console.log("Valores enviados correctamente");
-        //var stringLiga =
-        //  "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
       } else {
         //alert(data.response);
         console.log("Algo salio mal");
