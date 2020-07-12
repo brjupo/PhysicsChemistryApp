@@ -412,7 +412,7 @@ function nextQuestion(lastQuestion) {
   if (questionNumberArray.length == 0) {
     var stringLiga =
       "https://kaanbal.net/Front/preguntas/SuperSprint/sprintFinalizado.php?tema=" +
-      document.getElementById("subtemaPrevio").innerHTML.trim() +
+      document.getElementById("temaPrevio").innerHTML.trim() +
       "&puntos=" +
       puntos +
       "&totalPreguntas=" +
@@ -437,7 +437,7 @@ function enviarCalificacionRedirigir() {
         console.log("Valores enviados correctamente");
         var stringLiga =
           "https://kaanbal.net/Front/preguntas/SuperSprint/sprintFinalizado.php?tema=" +
-          document.getElementById("subtemaPrevio").innerHTML.trim() +
+          document.getElementById("temaPrevio").innerHTML.trim() +
           "&puntos=" +
           puntos +
           "&totalPreguntas=" +
