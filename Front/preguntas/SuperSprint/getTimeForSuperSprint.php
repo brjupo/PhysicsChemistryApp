@@ -6,7 +6,7 @@
     $dbname = "u526597556_kaanbal";
 
     //Leer las variables del POST
-    $leccion = $_POST['leccion'];
+    $subtema = $_POST['subtema'];
 
 
     //Crear la lectura en base de datos
@@ -14,7 +14,7 @@
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery="SELECT  tiempo_sprint FROM leccion WHERE id_leccion = '".$leccion."' LIMIT 1;";
+        $stringQuery="SELECT tiempo_sprint FROM subtema WHERE id_subtema = '".$subtema."' LIMIT 1;";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)){
             $response["response"] = 'true';
