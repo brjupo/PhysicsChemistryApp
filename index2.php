@@ -131,12 +131,11 @@
                     name="validarPassword"
                     id="validarPassword"
                     required
-                    /><br />
+                    />
 
                     <label class="fuenteForma" for="idioma" id="contrasena" style="display:none"
-                    >Idioma</label
-                    ><br />
-                    <input type="text" id="idioma" name="idioma" style="display:none"/><br />
+                    >Idioma</label>
+                    <input type="text" id="idioma" name="idioma" style="display:none"/>
 
                     <label class="olvidada" id="contraOlvidada">Forgot password?</label
                     ><br />
@@ -148,8 +147,6 @@
                     style="display: none;"
                     ></button>
                     <input type="submit" value="Log In" class="boton2" />
-                    <!-- </form> -->
-                    <!-- TERMINA ZONA EN CONSTRUCCION -->
                 </form>
                 </div>
                 <div class="textCenter col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"></div>
