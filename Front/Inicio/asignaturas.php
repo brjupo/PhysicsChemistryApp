@@ -83,7 +83,7 @@
 
       //Actualizar el idioma que se eligío 
       if($idiomas == 'e' OR $idiomas == 'i'){
-        $sql = "UPDATE usuario_prueba SET idioma = $idiomas WHERE mail = '$correo'";
+        $sql = "UPDATE usuario_prueba SET idioma = '$idiomas' WHERE mail = '$correo'";
         mysqli_query($con,$sql);
       }else{
         $query = "SELECT idioma FROM usuario_prueba WHERE mail = '$correo'";
