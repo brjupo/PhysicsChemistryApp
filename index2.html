@@ -13,26 +13,7 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    session_destroy();
-
-    imprimirIndex();
-
-    function imprimirIndex()
-    {
-        imprimirTitulo();
-        //imprimirRelleno();
-        imprimirForma();
-        //imprimirRelleno();
-        imprimirRelleno();
-        imprimirFooter();
-    }
-
-
-    function imprimirTitulo()
-    {
-        echo '
+    
         <!----------------------------------------------TITULO--------------------------------------------->
         <div class="top">
             <div class="container">
@@ -71,30 +52,12 @@
                 <div
                     class="textCenter col-6 col-sm-6 col-md-2 col-lg-2 col-xl-2"
                 >
-                <p style="color:white; font-size:small">Language</p>
+                    <p style="color:white; font-size:small">Language</p>
                 </div>
             </div>
         <!------------------------------------------------FIN TITULO----------------------------------------------->
 
-        ';
-    }
-
-    function imprimirRelleno()
-    {
-        echo '
-        <div class="container">
-            <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <p style="color:rgba(0,0,0,0)">.</p>
-                </div>
-            </div>
-        </div>
-        ';
-    }
-
-    function imprimirForma()
-    {
-        echo '
+        
         <div class="container">
             <div class="row">
                 <div class="textCenter col-2 col-md-2 col-md-1 col-lg-1 col-xl-1"></div>
@@ -163,26 +126,21 @@
                 </div>
             </div>
             </div>
-        ';
-    }
-
-    function imprimirFooter()
-    {
-        echo '
-        <div class="foot" style="z-index:-1;">
+        
+        <div class="container">
+            <div class="row">
+                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <p style="color:rgba(0,0,0,0)">.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="foot">
             <div class=" container ">
                 <div class=" row text-center">
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3 "></div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
-                        <p class="footSubject">.
-                        </p>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
-                        <p class="footSubject">.</p>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 ">
-                        <p class="footSubject">.
-                        </p>
+                    <div class="textCenter col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <a href="contacto.html"><p class="footSubject"><strong>Contáctanos</strong></p></a>
                     </div>
                     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div>
                 </div>
@@ -194,10 +152,7 @@
                 document.getElementById("demo-form").submit();
             }
         </script>
-        ';
-    }
-    ?>
-
+        
 
 
 </body>
