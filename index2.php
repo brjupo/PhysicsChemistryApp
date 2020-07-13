@@ -131,7 +131,7 @@
                     name="validarPassword"
                     id="validarPassword"
                     required
-                    />
+                    /><br />
 
                     <label class="fuenteForma" for="idioma" id="contrasena" style="display:none"
                     >Idioma</label>
