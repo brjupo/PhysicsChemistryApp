@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="Front/CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="Front/CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="styleIndex.css" />
+    <link rel="stylesheet" href="styleIndex1.css" />
     <script src="Front/CSSsJSs/minAJAX.js"></script>
     <script src="Front/CSSsJSs/scriptIndex.js"></script>
 </head>
