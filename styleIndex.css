@@ -235,9 +235,6 @@ a {
 
 /*-------------------------------INICIA FOOTER---------------------*/
 .foot {
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
   height: 12vw;
   background-color: rgba(110, 180, 230, 0);
