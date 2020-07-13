@@ -5,7 +5,8 @@
 }
 @font-face {
   font-family: "Monse";
-  src: url("Front/CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf") format("opentype");
+  src: url("Front/CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf")
+    format("opentype");
 }
 /*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
 body {
@@ -23,7 +24,7 @@ a {
   line-height: 50px;
   font-family: "ubuntu";
 }
-@media screen and (min-width: 611px) {
+@media screen and (min-width: 768px) {
   .titulo {
     font-size: 45px;
     line-height: 50px;
@@ -31,12 +32,15 @@ a {
 }
 
 .idiom {
+  display: block;
   width: 100%;
+  margin: 2vw 0vw 0vw 0vw;
 }
-@media screen and (min-width: 611px) {
+@media screen and (min-width: 768px) {
   .idiom {
+    display: block;
     width: 70%;
-    margin-top: 1vw;
+    margin: 1vw 0vw 0vw 0vw;
   }
 }
 
@@ -46,7 +50,7 @@ a {
   line-height: 30px;
   font-family: "georgia";
 }
-@media screen and (min-width: 611px) {
+@media screen and (min-width: 768px) {
   .masInfo {
     font-size: 15px;
     line-height: 50px;
@@ -84,7 +88,7 @@ a {
   line-height: 20px;
   font-family: "ubuntu";
 }
-@media screen and (min-width: 611px) {
+@media screen and (min-width: 768px) {
   .slogan {
     font-size: 25px;
     line-height: 30px;
@@ -231,9 +235,7 @@ a {
 
 /*-------------------------------INICIA FOOTER---------------------*/
 .foot {
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  position: static;
   width: 100%;
   height: 12vw;
   background-color: rgba(110, 180, 230, 0);
@@ -242,6 +244,9 @@ a {
 }
 @media screen and (min-width: 768px) {
   .foot {
+    position: fixed;
+    bottom: 0;
+    right: 0;
     height: 50px;
   }
 }
