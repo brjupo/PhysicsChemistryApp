@@ -17,11 +17,11 @@
   //////////////////////////////////////////////////////
   session_start();
   /////ESTABLECER UN TIME OUT DE SESION
-  $_SESSION["timeout"] = time();
+ /*  $_SESSION["timeout"] = time();
 
   session_start();
     // Establecer tiempo de vida de la sesión en segundos
-    $inactividad = 10;
+    $inactividad = 6000;
     // Comprobar si $_SESSION["timeout"] está establecida
     if(isset($_SESSION["timeout"])){
         // Calcular el tiempo de vida de la sesión (TTL = Time To Live)
@@ -30,7 +30,7 @@
             session_destroy();
             //header("Location: /logout.php");
         }
-    }
+    } */
 
   /////
   $tokenValidar = array();
@@ -80,6 +80,19 @@
             window.location.href="https://kaanbal.net";
             </script>';
     } else {
+
+      //Actualizar el idioma que se eligío 
+      if($idiomas == 'e' OR $idiomas == 'i'){
+        $sql = "UPDATE usuario_prueba SET idioma = '$idiomas' WHERE mail = '$correo'";
+        mysqli_query($con,$sql);
+      }else{
+        $query = "SELECT idioma FROM usuario_prueba WHERE mail = '$correo'";
+        $result = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+          $idiomareg[] = $row;
+        }
+        $idiomas = $idiomareg[0]["idioma"];
+      }
 
       //Consultar si existe usuario en tabla alumnos
       $statement = mysqli_prepare($con, "SELECT id_usuario, mail, pswd, tokenA, tokenSesion, idioma, inicios FROM usuario_prueba WHERE mail = ? AND pswd = ?");
