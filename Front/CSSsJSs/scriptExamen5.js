@@ -128,15 +128,7 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == botonSiguientePregunta) {
-      if (buenas0_malas1_alHilo[0] == 5) {
-        motivationGoodMessage(lastQuestion);
-        buenas0_malas1_alHilo[0] = 0;
-      } else if (buenas0_malas1_alHilo[1] == 5) {
-        motivationBadMessage(lastQuestion);
-        buenas0_malas1_alHilo[1] = 0;
-      } else {
         nextQuestion(lastQuestion);
-      }
       return;
     }
     if (
