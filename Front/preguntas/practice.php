@@ -252,6 +252,7 @@
                     <img src="../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                    <p id="idioma" style="display:none"/>'.$_SESSION["idioma"].'</p>
                     <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
@@ -295,7 +296,6 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 noPaddingMargin">
                             <!--div class="imagenEdu">
-                                <p id="idioma" style="display:none"/>'.$_SESSION["idioma"].'</p>
                                 <p id="dialogo" class="dialogoInsp">Aunque falles, sigues aprendiendo!</p>
                             </div-->
                             <div>
