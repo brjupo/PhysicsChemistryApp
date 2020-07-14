@@ -11,7 +11,7 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
 window.onload = function () {
   createArrayWithQuestions();
-   idioma = parseInt(document.getElementById("idioma").innerHTML.trim());
+   idioma = document.getElementById("idioma").innerHTML.trim();
 };
 
 function createArrayWithQuestions() {
