@@ -296,10 +296,6 @@
 
   function imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas)
   {
-    if($_SESSION["idioma"] == 'i'){
-      $arregloAsignaturastodas = array("Chemistry", "Physics I", ".");
-    }
-    
     $tamanho = count($arregloAsignaturastodas);
     $esImpar = $tamanho % 2;
     $numeroDePares = intval($tamanho / 2);
