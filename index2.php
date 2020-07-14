@@ -102,10 +102,10 @@
                 <img class="iconoPrincipal" src="Front/CSSsJSs/icons/quet.svg" />
                 </div>
                 <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
-                <div class="textCenter col-2 col-sm-2 d-md-none"></div>
+                <div class="textCenter col-1 col-sm-1 d-md-none"></div>
                 <div
                 id="forma"
-                class="textCenter col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4"
+                class="textCenter col-10 col-sm-10 col-md-4 col-lg-4 col-xl-4"
                 >
                 <p class="slogan">¡Have fun learning!</p>
                 <p style="color: rgba(0, 0, 0, 0);">.</p>
@@ -131,7 +131,7 @@
                     name="validarPassword"
                     id="validarPassword"
                     required
-                    />
+                    /><br />
 
                     <label class="fuenteForma" for="idioma" id="contrasena" style="display:none"
                     >Idioma</label>
@@ -149,7 +149,7 @@
                     <input type="submit" value="Log In" class="boton2" />
                 </form>
                 </div>
-                <div class="textCenter col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"></div>
+                <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
             </div>
             </div>
 
