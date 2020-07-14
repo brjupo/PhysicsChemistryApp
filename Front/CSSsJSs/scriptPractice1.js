@@ -3,7 +3,7 @@ var questionNumberArray = [];
 var puntos = 0;
 var buenas0_malas1_alHilo = [0, 0];
 var firstTimeToSaveGrade = 0;
-
+var idioma = 'e';
 var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
@@ -11,6 +11,7 @@ var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
 window.onload = function () {
   createArrayWithQuestions();
+   idioma = parseInt(document.getElementById("idioma").innerHTML.trim());
 };
 
 function createArrayWithQuestions() {
@@ -395,6 +396,7 @@ function motivationGoodMessage(lastQuestion) {
   //Ocultamos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "none";
   document.getElementById("motivationMessage").style.display = "block";
+  if(idioma == 'e' ){
   goodJobMessages = [
     "Excelente, sigue así",
     "¡Eres increible!",
@@ -446,7 +448,62 @@ function motivationGoodMessage(lastQuestion) {
     "Tu paciencia conseguirá más cosas que tu fuerza.",
     "Los campeones siguen jugando hasta que lo hacen bien.",
     "El éxito depende del esfuerzo",
-  ];
+  ];}
+  else{
+    goodJobMessages = [
+      "Excellent, keep it up",
+      "You are amazing!",
+      "You're the best!",
+      "I knew you could do this and more",
+      "You're doing great!",
+      "Well done!",
+      "Keep it up!",
+      "Keep going, you're doing great!",
+      "Always give your 100%!",
+      "Persevering pays off!",
+      "Observe, listen and learn.",
+      "You did!",
+      "Very good!",
+      "Be patient, you will get what you want.",
+      "A journey of a thousand miles begins with a simple step.",
+      "With self-discipline almost everything is possible.",
+      "You are young and talented!",
+      "You did it again!",
+      "The secret to success is enthusiasm, keep going!",
+      "There is no elevator to success, you have to take the stairs.",
+      "With effort and perseverance you can achieve your goals.",
+      "The price of success is work, dedication and determination.",
+      "You can always be better.",
+      "Luck and effort go hand in hand.",
+      "The more you work, the luckier you seem to be.",
+      "You are learning a lot!",
+      "Keep learning!",
+      "When you learn something, no one can take it from you.",
+      "Everything is practical.",
+      "Fortune favors you!",
+      "Your discipline is the most important ingredient of success.",
+      "You give the best you have!",
+      "If you are constant, you will be successful!",
+      "Nothing is difficult if you divide it into small jobs.",
+      "Motivation made you start and habit allows you to continue",
+      "Your success is the sum of small efforts repeated several times.",
+      "Perseverance. There is no other secret to your success",
+      "Seek excellence!",
+      "Continuous effort, is the key to success!",
+      "Your attitude, not your fitness, will determine your altitude.",
+      "Start thinking of yourself as the person you want to be.",
+      "Be the change you want to see in the world.",
+      "There are no shortcuts to get anywhere that is worth getting to.",
+      "If you do the easiest things first, you make a lot of progress.",
+      "It always seems impossible until it's done.",
+      "Motivation is what gets you going, habit is what keeps you going",
+      "Your talents and abilities improve over time.",
+      "Your patience will achieve more things than your strength.",
+      "The champions keep playing until they do it right.",
+      "Success depends on effort",
+    ];
+  }
+
   //Numero random del 0 al goodJobMessages.length
   rand = Math.floor(Math.random() * goodJobMessages.length);
   hiddePreviousQuestion(lastQuestion);
@@ -460,6 +517,7 @@ function motivationBadMessage(lastQuestion) {
   //Ocultamos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "none";
   document.getElementById("motivationMessage").style.display = "block";
+  if(idioma == 'e' ){
   badJobMessages = [
     "Aunque falles, sigues aprendiendo",
     "Todo esfuerzo valdrá la pena",
@@ -491,7 +549,30 @@ function motivationBadMessage(lastQuestion) {
     "El mayor riesgo es no arriesgarse nada.",
     "Los errores, son lecciones que te harán mejorar.",
     "Todo comienza con nada.",
-  ];
+  ];}
+  else{
+    badJobMessages = [
+      "Even if you fail, you keep learning",
+       "Every effort will be worth it",
+       "I trusted you, keep going",
+       "You could with more, just concentrate",
+       "Everything is accomplished with a little effort",
+       "Keep up your enthusiasm!",
+       "You can!",
+       "Keep trying!",
+       "Believe in yourself!",
+       "Do not give up!",
+       "You decide to continue!",
+       "Get out of your comfort zone",
+       "Never settle!",
+       "Don't lower your goals, increase your efforts.",
+       "Patience and perseverance are the best companions.",
+       "80% of success is based simply on insisting.",
+       "Confidence in yourself is the first secret to success.",
+       "Be consistent and you will succeed.",
+       "Success is the sum of small efforts repeated every day.",
+    ];
+  }
   //Numero random del 0 al goodJobMessages.length
   rand = Math.floor(Math.random() * badJobMessages.length);
   hiddePreviousQuestion(lastQuestion);

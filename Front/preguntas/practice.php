@@ -8,7 +8,7 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../CSSsJSs/stylePreguntas13.css" />
-    <script src="../CSSsJSs/scriptPractice11.js"></script>
+    <script src="../CSSsJSs/scriptPractice1.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -295,6 +295,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 noPaddingMargin">
                             <!--div class="imagenEdu">
+                                <p id="idioma" style="display:none"/>'.$_SESSION["idioma"].'</p>
                                 <p id="dialogo" class="dialogoInsp">Aunque falles, sigues aprendiendo!</p>
                             </div-->
                             <div>
