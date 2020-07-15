@@ -144,6 +144,12 @@
         $_SESSION["tokenA"] = $temp_tokenA;
         $_SESSION["tokenSesion"] = $rand;
         //Imprimimos pantalla de asignaturas
+        if($_SESSION["idioma"] == 'i'){
+          $arregloAsignaturastodas = array("Chemistry", "Physics", ".");
+        }else{
+          $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
+        }
+
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
         //todas las asignaturas
