@@ -42,6 +42,14 @@
   }
   $idMateria =  $arrayidMateria[0]["id_asignatura"]; //De aqui se obtendra el id de asignatura
 
+  if(is_null($idMateria)){
+    $query = "SELECT id_asignatura FROM asignatura WHERE names = '$materia'";
+    $result = mysqli_query($con, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
+      $arrayidMateria[] = $row;
+    }
+    $idMateria =  $arrayidMateria[0]["id_asignatura"]; //De aqui se obtendra el id de asignatura
+  }
 
   /* echo '<script type="text/javascript">
                       alert("'.$idMateria.'");
