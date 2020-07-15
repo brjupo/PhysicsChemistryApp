@@ -7,10 +7,17 @@ var firstTimeToSaveGrade = 0;
 var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
 
+var flagTiempo = 0;
+ //var totalTime = 70;reloj descendente
+var totalTime = 0;
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
   createArrayWithQuestions();
+  //setTimeout("finTiempo()",70000);
+  //imprimirTiempo();
+  totalTime = parseInt(document.getElementById("tiempo").innerHTML.trim());
+  imprimirClock();
 };
 
 function createArrayWithQuestions() {
@@ -121,15 +128,7 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == botonSiguientePregunta) {
-      if (buenas0_malas1_alHilo[0] == 5) {
-        motivationGoodMessage(lastQuestion);
-        buenas0_malas1_alHilo[0] = 0;
-      } else if (buenas0_malas1_alHilo[1] == 5) {
-        motivationBadMessage(lastQuestion);
-        buenas0_malas1_alHilo[1] = 0;
-      } else {
         nextQuestion(lastQuestion);
-      }
       return;
     }
     if (
@@ -500,7 +499,85 @@ function motivationBadMessage(lastQuestion) {
   //Mostramos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "block";
 }
+////////////////77
 
+function finTiempo(){
+    enviarCalificacion();
+    var stringLiga =
+      "https://kaanbal.net/Front/preguntas/examenFinalizado.php?subtema=" +
+      document.getElementById("subtemaPrevio").innerHTML.trim() +
+      "&puntos=" +
+      puntos +
+      "&totalPreguntas=" +
+      document.getElementById("totalPreguntas").innerHTML.trim();
+    window.location.replace(stringLiga);
+  
+}
+//cuenta descendente
+function imprimirClock() {
+
+    var min = 0;
+    var seg = 0;
+  /* var resto = totalTime % 60;   
+      if ( resto == 0 ){
+        //obtener el cociente
+        min = totalTime / 60;
+        seg = 59;
+      }else{ */
+        min = Math.trunc(totalTime / 60);
+        seg = totalTime - (min*60);
+      //}
+      m = min.toString();
+      n = seg.toString();
+      if(m <= 9 && n <= 9){
+        document.getElementById('number').innerHTML =  "0".concat(m,":0",n);
+      }else if(m <= 9){
+        document.getElementById('number').innerHTML =  "0".concat(m,":",n);
+      }else if(n <= 9){
+        document.getElementById('number').innerHTML =  m.concat(":0",n);
+      }else{
+        document.getElementById('number').innerHTML =  m.concat(":",n);
+      }
+  if(totalTime==0){
+    finTiempo();
+  }else{
+    totalTime-=1;
+    //seg-=1;
+    setTimeout("imprimirClock()",1000);
+  }
+}
+
+//cuenta ascendente
+function imprimirTiempo(){
+    var num = 0;
+    var min = 0;
+    var l = document.getElementById("number");
+
+    window.setInterval(function(){
+      var resto = num % 60;   
+      if ( resto == 0 ){
+        if(num != 0){
+        min++;}
+        num = 0;
+      }
+/////////////////////////////////////////
+          m = min.toString();
+          n = num.toString();
+          l.innerHTML = m.concat(":",n);
+          num++;
+        },1000);
+}
+
+function ocultarTiempo() {
+  if(flagTiempo == 0){
+    document.getElementById('number').style.display = 'none';
+    flagTiempo = 1;
+  }else{
+    document.getElementById('number').style.display = 'block';
+    flagTiempo = 0;
+  }
+}
+/////////////777!///////////////////////////////////////////////////////////////////////////////////////////////////
 function enviarCalificacion() {
   var userID = document.getElementById("userID").innerHTML.trim();
   var leccionID = document.getElementById("leccionID").innerHTML.trim();
@@ -510,7 +587,7 @@ function enviarCalificacion() {
     type: "POST",
     url: "../../Servicios/subirPuntosType.php",
     dataType: "json",
-    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"PP" },
+    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"E" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {

@@ -36,8 +36,7 @@
   $tokenValidar = array();
 
   if($_SESSION["idioma"] == 'i'){
-    //$arregloAsignaturastodas = array("Chemistry", "Physics I", ".");
-    $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
+    $arregloAsignaturastodas = array("Chemistry", "Physics", ".");
   }else{
     $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
   }
@@ -145,6 +144,12 @@
         $_SESSION["tokenA"] = $temp_tokenA;
         $_SESSION["tokenSesion"] = $rand;
         //Imprimimos pantalla de asignaturas
+        if($_SESSION["idioma"] == 'i'){
+          $arregloAsignaturastodas = array("Chemistry", "Physics", ".");
+        }else{
+          $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
+        }
+
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
         //todas las asignaturas
@@ -213,7 +218,13 @@
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++PROBADO*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     /*----Paso 1 Obtener las asignaturas a las que se tienen permiso ----*/
-    $statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
+    //////XXXX
+    if($_SESSION["idioma"] == 'i'){
+      $statement = mysqli_prepare($con, "SELECT id_asignatura, names, nivel, grado_academico, idioma FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
+    }else{
+      $statement = mysqli_prepare($con, "SELECT id_asignatura, nombre, nivel, grado_academico, idioma FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
+    }
+    /////////xXXXX
     //$statement = mysqli_prepare($con, "SELECT * FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ?)");
     mysqli_stmt_bind_param($statement, "s", $_SESSION["id_usuario"]);
     mysqli_stmt_execute($statement);
