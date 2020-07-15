@@ -84,6 +84,7 @@
 */
 
   $porcentajeAvance = "";
+  echo "<!--".$iduser." y ".$idMateria."-->";
   //Total de lecciones de la asignatura = 100%
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
