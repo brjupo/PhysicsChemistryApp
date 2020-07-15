@@ -80,7 +80,11 @@
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     /*----Paso 1 Obtener el ID de la asignatura----*/
-    $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE nombre = ?");
+    if($_SESSION["idioma"] == 'i'){
+      $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE names = ?");
+    }else{
+      $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE nombre = ?");
+    }
     mysqli_stmt_bind_param($statement, "s", $asignatura);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
