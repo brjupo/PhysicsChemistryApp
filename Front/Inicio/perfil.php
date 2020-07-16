@@ -42,6 +42,14 @@
   }
   $idMateria =  $arrayidMateria[0]["id_asignatura"]; //De aqui se obtendra el id de asignatura
 
+  if(is_null($idMateria)){
+    $query = "SELECT id_asignatura FROM asignatura WHERE names = '$materia'";
+    $result = mysqli_query($con, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
+      $arrayidMateria[] = $row;
+    }
+    $idMateria =  $arrayidMateria[0]["id_asignatura"]; //De aqui se obtendra el id de asignatura
+  }
 
   /* echo '<script type="text/javascript">
                       alert("'.$idMateria.'");
@@ -84,11 +92,12 @@
 */
 
   $porcentajeAvance = "";
+  echo "<!--".$iduser." y ".$idMateria."-->";
   //Total de lecciones de la asignatura = 100%
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = $idMateria))";
+    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ".$idMateria."))";
     $stmt = $conn->query($stringQuery);
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
       $totalLeccionesAsignatura = $row[0];
@@ -102,7 +111,7 @@
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_leccion IN (SELECT id_leccion FROM puntuacion WHERE tipo = 'PP' AND id_usuario = $iduser AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = $idMateria))))";
+    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_leccion IN (SELECT id_leccion FROM puntuacion WHERE tipo = 'PP' AND id_usuario = ".$iduser." AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ".$idMateria."))))";
     $stmt = $conn->query($stringQuery);
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
       $totalLeccionesJugadas = $row[0];
