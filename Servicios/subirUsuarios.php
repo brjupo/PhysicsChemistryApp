@@ -60,7 +60,7 @@ if (isset($_POST["Import"])) {
 
         $ultimoId += 1;
 
-        //tabla usuario_prueba (mail, password, idioma)
+        //tabla usuario_prueba (mail, password)
       $sql = "INSERT into usuario_prueba (mail,pswd) 
                    values ('" . $getData[0] . "','" . $getData[1] . "')";
       $result = mysqli_query($con, $sql);
