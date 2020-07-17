@@ -26,7 +26,7 @@ try {
 }
 $conn = null;
 
-
+echo $puntosActuales;
 $response["response"] = 'failed';
 if (is_null($puntosActuales) || $puntosActuales == 0) {
   $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ($id_usuario, $leccion, $puntosNuevos,'$flagTipo')";
