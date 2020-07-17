@@ -36,7 +36,7 @@
   $tokenValidar = array();
 
   if($_SESSION["idioma"] == 'i'){
-    $arregloAsignaturastodas = array("Chemistry", "Physics", ".");
+    $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
   }else{
     $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
   }
@@ -145,7 +145,7 @@
         $_SESSION["tokenSesion"] = $rand;
         //Imprimimos pantalla de asignaturas
         if($_SESSION["idioma"] == 'i'){
-          $arregloAsignaturastodas = array("Chemistry", "Physics", ".");
+          $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
         }else{
           $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
         }

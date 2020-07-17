@@ -60,7 +60,7 @@ if (isset($_POST["Import"])) {
 
         $ultimoId += 1;
 
-        //tabla usuario_prueba (mail, password, idioma)
+        //tabla usuario_prueba (mail, password)
       $sql = "INSERT into usuario_prueba (mail,pswd) 
                    values ('" . $getData[0] . "','" . $getData[1] . "')";
       $result = mysqli_query($con, $sql);
@@ -80,7 +80,7 @@ if (isset($_POST["Import"])) {
 
       //tabla licencia (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigenvia,estatus)
       $sql = "INSERT into licencia (id_usuario,id_asignatura,codigo,autorizacion,activacion,vigencia,estatus) 
-                   values ($ultimoId,'" . $getData[2] . "',$ultimoId,$ultimoId,$ultimoId,'2020-12-31 12:00:00',1)";
+                   values ($ultimoId,'" . $getData[2] . "',$ultimoId,$ultimoId,$ultimoId,'2020-12-31 12:00:00','1')";
       $result = mysqli_query($con, $sql); 
 
 
