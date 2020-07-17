@@ -1,5 +1,9 @@
 <?php
-$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+//Informacion de la BBDD
+$servername = "localhost";
+$username = "u526597556_dev";
+$password = "1BLeeAgwq1*isgm&jBJe";
+$dbname = "u526597556_kaanbal";
 
 $id_usuario = $_POST["id"];
 $leccion = $_POST["leccion"];
@@ -24,7 +28,7 @@ $conn = null;
 
 
 $response["response"] = 'failed';
-if (is_null($puntosActuales) || $puntosActuales==0) {
+if (is_null($puntosActuales) || $puntosActuales == 0) {
   $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ($id_usuario, $leccion, $puntosNuevos,'$flagTipo')";
   mysqli_query($con, $sql);
   $response["response"] = 'exito';
