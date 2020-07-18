@@ -27,17 +27,37 @@ $conn = null;
 
 $response["response"] = 'failed';
 if (is_null($puntosActuales)) {
-  $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ($id_usuario, $leccion, $puntosNuevos,'$flagTipo')";
-  mysqli_query($con, $sql);
-  $response["response"] = 'exito';
-} 
-else if ($puntosNuevos > $puntosActuales) {
-    //Lanzar consulta para actualizar calificacion solo si es mayor
+  //Crear la escritura en base de datos
+  try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ($id_usuario, $leccion, $puntosNuevos,'$flagTipo')";
+    // use exec() because no results are returned
+    $conn->exec($sql);
+    $response["response"] = 'exito';
+    //$response["response"] = $sql;
+  } catch (PDOException $e) {
+    $response["response"] = $sql . "<br>" . $e->getMessage();
+  }
+  $conn = null;
+} else if ($puntosNuevos > $puntosActuales) {
+  //Lanzar consulta para actualizar calificacion solo si es mayor
+  //Crear la escritura en base de datos
+  try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos WHERE id_leccion = $leccion AND id_usuario = $id_usuario AND tipo = '$flagTipo'";
-    mysqli_query($con, $sql);
-    $response["response"] = 'exito'; 
-}
-else if($puntosNuevos <= $puntosActuales){
-  $response["response"] = 'exito'; 
+    // use exec() because no results are returned
+    $conn->exec($sql);
+    $response["response"] = 'exito';
+    //$response["response"] = $sql;
+  } catch (PDOException $e) {
+    $response["response"] = $sql . "<br>" . $e->getMessage();
+  }
+  $conn = null;
+} else if ($puntosNuevos <= $puntosActuales) {
+  $response["response"] = 'exito';
 }
 echo json_encode($response);
