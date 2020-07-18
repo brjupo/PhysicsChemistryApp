@@ -18,7 +18,7 @@ try {
   $stmt = $conn->query($stringQuery);
   while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
     //Leemos la calificacion 
-    echo  $row[0];
+    //echo  $row[0];
     $puntosActuales = $row[0];
   }
 } catch (PDOException $e) {
@@ -32,7 +32,7 @@ $response["response"] = 'failed';
 if (is_null($puntosActuales)) {
   $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ($id_usuario, $leccion, $puntosNuevos,'$flagTipo')";
   mysqli_query($con, $sql);
-  //$response["response"] = 'exito';
+  $response["response"] = 'exitoDeberiaSerNUll';
 } 
 else if ($puntosNuevos > $puntosActuales) {
     //Lanzar consulta para actualizar calificacion solo si es mayor
