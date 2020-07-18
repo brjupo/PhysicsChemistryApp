@@ -34,7 +34,7 @@ while (mysqli_stmt_fetch($statement)) {
 }
 
 if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["profe"] != "" and $tokenValidar["tokenSesionp"] != "") {
-  printEditTopic();
+  printEditSubtopic();
 } else {
   echo '<script type="text/javascript">
   alert("Inicie sesión");
@@ -47,33 +47,35 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
 <?php
 
-function printEditTopic()
+function printEditSubtopic()
 {
   printHead();
   echo '<body>';
   printTitle();
   printInstructions();
-  printTopics();
-  //printButtons();
-  echo '</body>';  
+  printSubtopics();
+  printButtons();
+  echo '</body>';
 }
 
-function printTopics(){
-  $idAsignatura = $_GET['ID_Asignatura'];
+function printSubtopics()
+{
+  $idTema = $_GET['ID_Tema'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_tema, nombre FROM tema WHERE id_asignatura = ?");
-  mysqli_stmt_bind_param($statement,"i", $idAsignatura);
+  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre, tiempo_super_sprint FROM subtema WHERE id_tema = ?");
+  mysqli_stmt_bind_param($statement, "i", $idTema);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_tema, $nombre);
+  mysqli_stmt_bind_result($statement, $id_subtema, $nombre, $tiempo_super_sprint);
 
   $arregloTemas = array();
   $i = 0;
   //Leemos datos del la leccion habilitadas
   while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-    $arregloTemas[$i]["id_tema"] = $id_tema;
+    $arregloTemas[$i]["id_subtema"] = $id_subtema;
     $arregloTemas[$i]["nombre"] = $nombre;
+    $arregloTemas[$i]["tiempo_super_sprint"] = $tiempo_super_sprint;
     $i = $i + 1;
   }
 
@@ -82,30 +84,20 @@ function printTopics(){
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printTopic($arregloTemas[$i]["id_tema"],$arregloTemas[$i]["nombre"]);
+    printLections($arregloTemas[$i]["id_subtema"], $arregloTemas[$i]["nombre"], $arregloTemas[$i]["tiempo_super_sprint"]);
   }
 }
 
-function printTopic($ID_Topic, $topicName){
+function printLections($ID_Lection, $LectionName, $sprintTime)
+{
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <div class="input-group-prepend">
-            <span class="input-group-text">'.$ID_Topic.'</span>
-          </div>
-          <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicName.'" disabled/>
-          <div class="input-group-append">            
-            <a href="tiempoSuperSprintSubtema.php?ID_Tema='.$ID_Topic.'">
-              <button class="btn btn-outline-secondary" type="button">
-                Super Sprint
-              </button>
-            </a>
-            <a href="elegirSubtema.php?ID_Tema='.$ID_Topic.'">
-              <button class="btn btn-outline-secondary" type="button">
-                Buscar sus subtemas
-              </button>
-            </a>
+          <input type="text" class="form-control" id="' . $ID_Lection . '" value="' . $sprintTime . '" />
+          <div class="input-group-append">
+            <span class="input-group-text">' . $LectionName . '</span>
+            <span class="input-group-text">' . $ID_Lection . '</span>
           </div>
         </div>
       </div>
@@ -122,8 +114,9 @@ function printTopic($ID_Topic, $topicName){
   ';
 }
 
-function printHead(){
-  echo'
+function printHead()
+{
+  echo '
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -136,10 +129,12 @@ function printHead(){
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
+    <script src="tiempoSuperSprintSubtema.js"></script>
   </head>
   ';
 }
-function printTitle(){
+function printTitle()
+{
   echo '
   <div class="container">
     <div class="row">
@@ -162,14 +157,18 @@ function printTitle(){
   ';
 }
 
-function printInstructions(){
+function printInstructions()
+{
   echo '
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Ubique el <strong>tema</strong>
-          correspondiente y de clic en "Buscar sus subtemas"
+          - Para cambiar el tiempo de <strong>cada pregunta del SUPER sprint</strong>, ubique el <strong>subtema</strong> correspondiente,
+           edite el valor y de clic en "Guardar en base de datos".
+        </p>
+        <p>
+          - Recuerde el valor deberá estar en <strong>SEGUNDOS</strong>
         </p>
       </div>
     </div>
@@ -185,7 +184,8 @@ function printInstructions(){
   ';
 }
 
-function printButtons(){
+function printButtons()
+{
   echo '
   <div class="container">
     <div class="row">

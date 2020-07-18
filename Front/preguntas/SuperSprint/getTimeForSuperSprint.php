@@ -10,11 +10,11 @@
 
 
     //Crear la lectura en base de datos
-    /*
+    
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery="SELECT tiempo_sprint FROM subtema WHERE id_subtema = '".$subtema."' LIMIT 1;";
+        $stringQuery="SELECT tiempo_super_sprint FROM subtema WHERE id_subtema = '".$subtema."' LIMIT 1;";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)){
             $response["response"] = 'true';
@@ -25,10 +25,10 @@
         echo "Error: " . $e->getMessage();
     }
     $conn = null;
-    */
+    
 
     $response["response"] = 'true';
-    $response["seconds"] = 30;
+    //$response["seconds"] = 30;
     ////////////////    
     echo json_encode($response); 
 ?>
