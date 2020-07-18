@@ -160,5 +160,10 @@ function showData(data) {
   document.getElementById("answer4").value = data.answer4;
   document.getElementById("tipo").value = data.tipo;
   //Traer si tiene imagen, si tiene, que me regrese la extension, sino tiene que me regrese null
-  document.getElementById("imagenPregunta").src = "../../imagenes/"+data.image;
+  if(data.image==NULL){
+    document.getElementById("imagenPregunta").src = "../../imagenes/sinImagen.jpg";
+  }
+  else{
+    document.getElementById("imagenPregunta").src = "../../imagenes/"+data.image;
+  }
 }
