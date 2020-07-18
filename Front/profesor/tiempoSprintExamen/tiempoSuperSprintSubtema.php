@@ -129,7 +129,7 @@ function printHead()
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="tiempoSuperSprintSubtema.js"></script>
+    <script src="tiempoSuperSprintSubtema2.js"></script>
   </head>
   ';
 }

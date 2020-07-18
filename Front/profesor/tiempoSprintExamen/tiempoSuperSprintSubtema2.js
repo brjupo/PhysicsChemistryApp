@@ -55,8 +55,8 @@ function saveInDB() {
         url: "../SERVICIOS/tiempoSuperSprintSubtema.php",
         dataType: "json",
         data: {
-          id_leccion: allIdsTemp[0],
-          tiempo_sprint: document.getElementById(allIdsTemp[0]).value.trim()
+          id_subtema: allIdsTemp[0],
+          tiempo_super_sprint: document.getElementById(allIdsTemp[0]).value.trim()
         },
         success: function (data) {
           if (data.response == "exito") {

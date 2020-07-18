@@ -7,7 +7,7 @@
 
     //Leer las variables del POST
     $id_subtema = $_POST['id_subtema'];
-    $tiempo_sprint = $_POST['tiempo_sprint'];
+    $tiempo_super_sprint = $_POST['tiempo_super_sprint'];
 
     //Crear la escritura en base de datos
     try {
@@ -16,7 +16,7 @@
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
         //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
-        $sql = "UPDATE subtema SET tiempo_super_sprint = '".$tiempo_sprint."' WHERE id_subtema = '".$id_subtema."'";
+        $sql = "UPDATE subtema SET tiempo_super_sprint = '".$tiempo_super_sprint."' WHERE id_subtema = '".$id_subtema."'";
         // use exec() because no results are returned
         $conn->exec($sql);
         $response["response"] = 'exito';
