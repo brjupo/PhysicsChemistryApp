@@ -373,7 +373,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
             <div class="container">
                 <div class="row">
                     <div class="textCenter col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
-                        <input id="nuevaImagen" type="file" name="myImage" accept=".png, .jpg" />
+                        <input id="nuevaImagen" type="file" name="myImage" accept=".jpg" />
                     </div>
                     <div class="textCenter col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
                         <img id="imagenPregunta" src="../../imagenes/sinImagen.jpg" width="100%" />
