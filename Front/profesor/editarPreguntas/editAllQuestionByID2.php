@@ -45,7 +45,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
             <title>Kaanbal</title>
             <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
             <link rel="stylesheet" href="../CSSsJSs/styleUploadInfo.css" />
-            <script src="scriptEditarPreguntaPorID_4.js"></script>
+            <script src="scriptEditarPreguntaPorID_5.js"></script>
             <script src="../CSSsJSs/minAJAX.js"></script>
             </head>
 
