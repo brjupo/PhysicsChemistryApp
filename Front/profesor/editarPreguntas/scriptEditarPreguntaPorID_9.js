@@ -39,7 +39,7 @@ document.addEventListener("click", function (evt) {
 });
 
 function uploadImage() {
-  if (document.getElementById("nuevaImagen").files - length != 0) {
+  if (document.getElementById("nuevaImagen").files.length != 0) {
     var data = new FormData(),
       files = document.getElementById("nuevaImagen").files;
     path = "../../imagenes/";
