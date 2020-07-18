@@ -364,8 +364,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
                     <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <p>Insertar/actualizar imagen</p>
                         <p style="font-size: small;">
-                        Solo se permiten imágenes <strong>jpg</strong> y
-                        <strong>png</strong>
+                        Solo se permiten imágenes <strong>jpg</strong>
                         </p>
                     </div>
                 </div>
@@ -377,7 +376,6 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
                         <input id="nuevaImagen" type="file" name="myImage" accept=".png, .jpg" />
                     </div>
                     <div class="textCenter col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
-                        <p>No se encontró la imagen de la pregunta XXXXX</p>
                         <img id="imagenPregunta" src="../../imagenes/sinImagen.jpg" width="100%" />
                     </div>
                 </div>
