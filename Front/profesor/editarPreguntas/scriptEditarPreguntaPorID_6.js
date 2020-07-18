@@ -26,7 +26,7 @@ document.addEventListener("click", function (evt) {
     if (targetElement == guardarEnBBDD) {
       //Por ser un proceso dependiente y quieren que todo se suba con un boton
       //Primero subiremos la imagen
-      //uploadImage();
+      uploadImage();
       //Luego preparamos la informacion
       //getDataToSaveInDDBB();
       //Al final subiremos la informacion
@@ -56,7 +56,8 @@ function uploadImage(){
     contentType: false,
     success: function (data) {
       if (data.response == "exito") {
-        console.log("bien, creo");
+        console.log("Segun se subió la imagen");
+        getDataToSaveInDDBB();
       } else {
         //alert(data.response);
         console.log("ve el post");
