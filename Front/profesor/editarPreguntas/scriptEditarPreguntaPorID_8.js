@@ -38,32 +38,38 @@ document.addEventListener("click", function (evt) {
   } while (targetElement);
 });
 
-function uploadImage(){
-  var data = new FormData(),
-  files = document.getElementById("nuevaImagen").files;
-  path = "../../imagenes/";
+function uploadImage() {
+  if (document.getElementById("nuevaImagen").files - length != 0) {
+    var data = new FormData(),
+      files = document.getElementById("nuevaImagen").files;
+    path = "../../imagenes/";
 
-  data.append("fileToUpload", files[0]);
-  data.append("path", path);
-  data.append("name", document.getElementById("IDPregunta").value);
+    data.append("fileToUpload", files[0]);
+    data.append("path", path);
+    data.append("name", document.getElementById("IDPregunta").value);
 
-  $.ajax({
-    url: "../SERVICIOS/uploadOneFile.php",
-    type: "post",
-    dataType: "json",
-    data: data,
-    processData: false,
-    contentType: false,
-    success: function (data) {
-      if (data.response == "exito") {
-        console.log("Segun se subió la imagen");
-        getDataToSaveInDDBB();
-      } else {
-        //alert(data.response);
-        console.log("ve el post");
-      }
-    },
-  });
+    $.ajax({
+      url: "../SERVICIOS/uploadOneFile.php",
+      type: "post",
+      dataType: "json",
+      data: data,
+      processData: false,
+      contentType: false,
+      success: function (data) {
+        if (data.response == "exito") {
+          console.log("Segun se subió la imagen");
+          getDataToSaveInDDBB();
+        } else {
+          //alert(data.response);
+          console.log("ve el post");
+        }
+      },
+    });
+  }
+  else{
+    console.log("No subió una nueva imagen");
+    getDataToSaveInDDBB();
+  }
 }
 
 function getDataToSaveInDDBB() {
@@ -180,10 +186,11 @@ function showData(data) {
   document.getElementById("answer4").value = data.answer4;
   document.getElementById("tipo").value = data.tipo;
   //Traer si tiene imagen, si tiene, que me regrese la extension, sino tiene que me regrese null
-  if(data.image==null){
-    document.getElementById("imagenPregunta").src = "../../imagenes/sinImagen.jpg";
-  }
-  else{
-    document.getElementById("imagenPregunta").src = "../../imagenes/"+data.image;
+  if (data.image == null) {
+    document.getElementById("imagenPregunta").src =
+      "../../imagenes/sinImagen.jpg";
+  } else {
+    document.getElementById("imagenPregunta").src =
+      "../../imagenes/" + data.image;
   }
 }
