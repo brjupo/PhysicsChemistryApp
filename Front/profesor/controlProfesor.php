@@ -203,7 +203,7 @@ function printTeacherControlPanel()
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <a href="tiempoSprintExamen/elegirAsignatura.php">
               <button type="button" class="btn btn-secondary">
-                Modificar el tiempo para los sprints y los examenes
+                Modificar el tiempo para los super sprints, sprints y los examenes
               </button>
             </a>
           </div>
