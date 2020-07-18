@@ -27,6 +27,7 @@ $conn = null;
 
 $response["response"] = 'failed';
 if (is_null($puntosActuales)) {
+  //Si es null, inserta la informacion
   //Crear la escritura en base de datos
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -58,6 +59,7 @@ if (is_null($puntosActuales)) {
   }
   $conn = null;
 } else if ($puntosNuevos <= $puntosActuales) {
+  //En caso de que la nueva calificacion sea menor o igual, no hagas nada, solo regresa exito.
   $response["response"] = 'exito';
 }
 echo json_encode($response);
