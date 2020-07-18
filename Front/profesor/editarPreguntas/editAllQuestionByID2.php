@@ -378,7 +378,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
                     </div>
                     <div class="textCenter col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
                         <p>No se encontró la imagen de la pregunta XXXXX</p>
-                        <img id="imagenPregunta" src="../../imagenes/1139.png" width="100%" />
+                        <img id="imagenPregunta" src="../../imagenes/sinImagen.jpg" width="100%" />
                     </div>
                 </div>
             </div>
