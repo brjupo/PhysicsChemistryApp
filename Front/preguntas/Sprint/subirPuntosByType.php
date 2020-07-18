@@ -19,6 +19,7 @@ try {
   $stmt = $conn->query($stringQuery);
   while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
     //Leemos la calificacion 
+    echo  $row[0];
     $puntosActuales = $row[0];
   }
 } catch (PDOException $e) {
@@ -26,7 +27,7 @@ try {
 }
 $conn = null;
 
-echo $puntosActuales;
+//echo $puntosActuales;
 //echo $puntosNuevos;
 $response["response"] = 'failed';
 if (is_null($puntosActuales)) {
