@@ -169,6 +169,8 @@ function printInstructions(){
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
           - Para cambiar el tiempo del Super Sprint, de clic en el "Super Sprint" correspondiente
+        </p>
+        <p>
           - Para cambiar el tiempo del sprint o examen, ubique el <strong>tema</strong>
           correspondiente y de clic en "Buscar sus subtemas"
         </p>
