@@ -24,14 +24,46 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == guardarEnBBDD) {
-      getDataToSaveInDDBB();
-      //saveInDDBB();//Llamada al finalizar la funcion previa. Ya que se necesitan multiples ocnversiones de info
+      //Por ser un proceso dependiente y quieren que todo se suba con un boton
+      //Primero subiremos la imagen
+      //uploadImage();
+      //Luego preparamos la informacion
+      //getDataToSaveInDDBB();
+      //Al final subiremos la informacion
+      //saveInDDBB();
       return;
     }
     // Go up the DOM
     targetElement = targetElement.parentNode;
   } while (targetElement);
 });
+
+function uploadImage(){
+  var data = new FormData(),
+  files = document.getElementById("nuevaImagen").files;
+  path = "../../imagenes/";
+
+  data.append("fileToUpload", files[0]);
+  data.append("path", path);
+  data.append("name", document.getElementById("IDPregunta").value);
+
+  $.ajax({
+    url: "../SERVICIOS/uploadOneFile.php",
+    type: "post",
+    dataType: "json",
+    data: data,
+    processData: false,
+    contentType: false,
+    success: function (data) {
+      if (data.response == "exito") {
+        console.log("bien, creo");
+      } else {
+        //alert(data.response);
+        console.log("ve el post");
+      }
+    },
+  });
+}
 
 function getDataToSaveInDDBB() {
   //Crear objeto informacion
@@ -60,19 +92,6 @@ function getDataToSaveInDDBB() {
     answer4: document.getElementById("answer4").value.replace(/\\/g, "\\\\"),
     tipo: document.getElementById("tipo").value,
   };
-  // En casos se debe transformar la informacion más de una vez
-  //Curiosamente existe problema con los campos en objetos que tienen el guion bajo
-  /*
-  tempCorrecta = document
-  .getElementById("respuesta_correcta")
-  .value.replace(/\\/g, "\\\\");
-  tempCorrecta = tempCorrecta.replace(/'/g, "''");
-
-  tempCorrect = document
-  .getElementById("correct_answer")
-  .value.replace(/\\/g, "\\\\");
-  tempCorrect = tempCorrect.replace(/'/g, "''");
-  */
 
   informacion = {
     IDPregunta: informacion.IDPregunta,
