@@ -11,7 +11,6 @@ $puntosNuevos = $_POST["puntos"];
 $flagTipo = $_POST["flagTipo"];
 
 //Lanzar consulta para saber si existe calificacion y la trae
-$puntosActuales = 0;
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
