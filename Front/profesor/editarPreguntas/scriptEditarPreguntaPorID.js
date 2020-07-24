@@ -188,9 +188,9 @@ function showData(data) {
   //Traer si tiene imagen, si tiene, que me regrese la extension, sino tiene que me regrese null
   if (data.image == null) {
     document.getElementById("imagenPregunta").src =
-      "../../imagenes/sinImagen.jpg";
+      "../../../IMAGENES/sinImagen.jpg";
   } else {
     document.getElementById("imagenPregunta").src =
-      "../../imagenes/" + data.image;
+      "../../../IMAGENES/" + data.image;
   }
 }

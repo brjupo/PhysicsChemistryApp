@@ -45,7 +45,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
             <title>Kaanbal</title>
             <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
             <link rel="stylesheet" href="../CSSsJSs/styleUploadInfo.css" />
-            <script src="scriptEditarPreguntaPorID3.js"></script>
+            <script src="scriptEditarPreguntaPorID_9.js"></script>
             <script src="../CSSsJSs/minAJAX.js"></script>
             </head>
 
@@ -359,29 +359,28 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
                 </div>
             </div>
 
-
-
-            <!--div class="container">
+            <div class="container">
                 <div class="row">
-                <div
-                    class="input-group input-group-sm col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
-                >
-                    <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">
-                        ID Pregunta
-                    </span>
+                    <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <p>Insertar/actualizar imagen</p>
+                        <p style="font-size: small;">
+                        Solo se permiten imágenes <strong>jpg</strong>
+                        </p>
+                        <p style="font-size: small;">
+                        <strong>Puede tomar hasta 30 minutos actualizarse la imagen</strong>
+                        </p>
                     </div>
-                    <input id="id_pregunta" type="text" class="form-control" disabled/>
                 </div>
-                
-                </div>
-            </div-->
+            </div>
 
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <p style="color: rgba(0, 0, 0, 0);">.</p>
-                </div>
+                    <div class="textCenter col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+                        <input id="nuevaImagen" type="file" name="myImage" accept=".jpg" />
+                    </div>
+                    <div class="textCenter col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+                        <img id="imagenPregunta" src="../../../IMAGENES/sinImagen.jpg" width="100%" />
+                    </div>
                 </div>
             </div>
 
