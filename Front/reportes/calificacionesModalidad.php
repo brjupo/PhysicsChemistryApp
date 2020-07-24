@@ -11,6 +11,7 @@ require '../../Servicios/DDBBVariables.php';
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
+    <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials.css" />
 </head>
 
 <body>
@@ -30,6 +31,21 @@ require '../../Servicios/DDBBVariables.php';
             <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
         </div>
     </div>
+    <!--+++++++++++++++++++++++++++++++++++ Logo Kaanbal ++++++++++++++++++++++++++++++++++++++++++++++++++++++-->function
+    <div class="container">
+        <div class="row">
+          <div
+            class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
+          ></div>
+          <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+            <p class="titulo">Kaanbal</p>
+          </div>
+          <div
+            class="textCenter col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+          ></div>
+        </div>
+      </div>
+
     <!--+++++++++++++++++++++++++++++++++++ CABECERA [Asignatura, Profesor, Grupo y Modalidad] +++++++++++++++++++++++++++++++++++++-->
     <?php
     //Crear la lectura en base de datos
