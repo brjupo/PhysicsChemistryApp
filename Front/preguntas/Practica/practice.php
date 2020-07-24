@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Pregunta</title>
-    <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas13.css" />
-    <script src="../CSSsJSs/scriptPractice1.js"></script>
-    <script src="../CSSsJSs/minAJAX.js"></script>
+    <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas13.css" />
+    <script src="../../CSSsJSs/scriptPractice1.js"></script>
+    <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -249,7 +249,7 @@
             <div class="container">
                 <div class="row topMargin">
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <img src="../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
+                    <img src="../../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                     <p id="idioma" style="display:none"/>'.$_SESSION["idioma"].'</p>
@@ -353,13 +353,13 @@
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../imagenes/" . $imgjpg;
+        $pathjpg = "../../../IMAGENES/" . $imgjpg;
         $imgJPG = $imagen . ".JPG";
-        $pathJPG = "../imagenes/" . $imgJPG;
+        $pathJPG = "../../../IMAGENES/" . $imgJPG;
         $imgpng = $imagen . ".png";
-        $pathpng = "../imagenes/" . $imgpng;
+        $pathpng = "../../../IMAGENES/" . $imgpng;
         $imgPNG = $imagen . ".PNG";
-        $pathPNG = "../imagenes/" . $imgPNG;
+        $pathPNG = "../../../IMAGENES/" . $imgPNG;
         //echo '<p>'.$path.'</p>';
         $ext=NULL;
         if (file_exists($pathjpg)) {
@@ -381,7 +381,7 @@
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../imagenes/' . $imagen . $ext .'" class="imagenPregunta" />
+                <img src="../../../IMAGENES/' . $imagen . $ext .'" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '" style="display:none">
                     ' . $respCorrecta . '
                 </p>
@@ -486,7 +486,7 @@
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../imagenes/" . $imgjpg;
+        $pathjpg = "../../../IMAGENES/" . $imgjpg;
         //echo '<p>'.$path.'</p>';
         if (file_exists($pathjpg)) {
             echo '
@@ -498,7 +498,7 @@
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
+                            <img src="../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>

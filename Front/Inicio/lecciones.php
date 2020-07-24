@@ -368,13 +368,13 @@
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/practice.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/Practica/practice.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
                   <a href="../preguntas/Sprint/sprint.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
                   </td>
                   <td>
-                  <a href="../preguntas/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" />
+                  <a href="../preguntas/Examen/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" />
                   </td>
                 </tr>
               </tbody>
@@ -406,7 +406,7 @@
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/practice.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/Practica/practice.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
