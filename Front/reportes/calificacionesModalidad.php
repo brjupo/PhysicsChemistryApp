@@ -102,7 +102,7 @@ require '../../Servicios/DDBBVariables.php';
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "";
+        $stringQuery = "SELECT t.nombre, s.nombre, l.nombre FROM leccion l JOIN subtema s JOIN tema t ON l.id_subtema = s.id_subtema AND s.id_tema = t.id_tema WHERE t.id_asignatura = (SELECT id_asignatura FROM grupo WHERE id_grupo = 1);";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Tema, subtema, leccion
