@@ -114,41 +114,64 @@ require '../../Servicios/DDBBVariables.php';
     }
     $conn = null;
     ?>
+
     <div class="container">
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <table style="border-collapse: separate !important; white-space: nowrap !important;">
-                    <tbody>
-                        <tr class="table-success">
-                            <td style="color:white;">.</td>
-                            <td style="color:white;">.</td>
-                            <?php
-                            for ($j = 0; $j < count($lectionsArray); $j++) {
-                                echo '<td>' . $lectionsArray[$j][0] . '</td>';
-                            }
-                            ?>
-                        </tr>
-                        <tr class="table-light">
-                            <td style="color:white;">.</td>
-                            <td style="color:white;">.</td>
-                            <?php
-                            for ($k = 0; $k < count($lectionsArray); $k++) {
-                                echo '<td>' . $lectionsArray[$k][1] . '</td>';
-                            }
-                            ?>
-                        </tr>
-                        <tr class="table-success">
-                            <td>Matricula</td>
-                            <td>Diamantes</td>
-                            <?php
-                            for ($l = 0; $l < count($lectionsArray); $l++) {
-                                echo '<td>' . $lectionsArray[$l][2] . '</td>';
-                            }
-                            ?>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table style="border-collapse: separate !important; white-space: nowrap !important;">
+                <tbody>
+                    <tr class="table-success">
+                        <td style="color:white;">.</td>
+                        <td style="color:white;">.</td>
+                        <?php
+                        for ($j = 0; $j < count($lectionsArray); $j++) {
+                            echo '<td>' . $lectionsArray[$j][0] . '</td>';
+                        }
+                        ?>
+                    </tr>
+                    <tr class="table-light">
+                        <td style="color:white;">.</td>
+                        <td style="color:white;">.</td>
+                        <?php
+                        for ($k = 0; $k < count($lectionsArray); $k++) {
+                            echo '<td>' . $lectionsArray[$k][1] . '</td>';
+                        }
+                        ?>
+                    </tr>
+                    <tr class="table-success">
+                        <td>Matricula</td>
+                        <td>Diamantes</td>
+                        <?php
+                        for ($l = 0; $l < count($lectionsArray); $l++) {
+                            echo '<td>' . $lectionsArray[$l][2] . '</td>';
+                        }
+                        ?>
+                    </tr>
+                    <!--+++++++++++++++++++++++++++++++++++ Matriculas y Diamantes +++++++++++++++++++++++++++++++++++++-->
+                    <p>.</p>
+                    <p>INPUTS: id grupo</p>
+                    <?php
+                    //Crear la lectura en base de datos
+                    try {
+                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = 1) GROUP BY a.matricula ORDER BY matricula ASC;";
+                        $stmt = $conn->query($stringQuery);
+                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                            //row [0] -> matricula, diamantes
+                            echo '
+                            <tr class="table-light">
+                                <td>'.$row[0].'</td>
+                                <td>'.$row[1].'</td>
+                            </tr>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                    }
+                    $conn = null;
+                    ?>
+                </tbody>
+            </table>
+
         </div>
     </div>
 
