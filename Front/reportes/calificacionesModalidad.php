@@ -120,6 +120,8 @@ require '../../Servicios/DDBBVariables.php';
                 <table>
                     <tbody>
                         <tr class="table-success">
+                            <td style="color:white;">.</td>
+                            <td style="color:white;">.</td>
                             <?php
                                 for($j=0; $j<count($lectionsArray);$j++){
                                     echo '<td>'.$lectionsArray[$j][0].'</td>';
@@ -127,6 +129,8 @@ require '../../Servicios/DDBBVariables.php';
                             ?>
                         </tr>
                         <tr class="table-light">
+                            <td style="color:white;">.</td>
+                            <td style="color:white;">.</td>
                             <?php
                                 for($k=0; $k<count($lectionsArray);$k++){
                                     echo '<td>'.$lectionsArray[$k][1].'</td>';
@@ -134,6 +138,8 @@ require '../../Servicios/DDBBVariables.php';
                             ?>
                         </tr>
                         <tr class="table-success">
+                            <td >Matricula</td>
+                            <td >Diamantes</td>
                             <?php
                                 for($l=0; $l<count($lectionsArray);$l++){
                                     echo '<td>'.$lectionsArray[$l][2].'</td>';
