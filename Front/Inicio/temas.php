@@ -7,8 +7,8 @@
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Temas</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-  <link rel="stylesheet" href="../CSSsJSs/styleTemas3.css" />
-  <script src="../CSSsJSs/scriptTemas6.js"></script>
+  <link rel="stylesheet" href="Temas.css" />
+  <script src="Temas.js"></script>
 </head>
 
 <body>

@@ -7,8 +7,8 @@
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Lecciones</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-  <link rel="stylesheet" href="../CSSsJSs/styleLecciones2.css" />
-  <script src="../CSSsJSs/scriptLecciones.js"></script>
+  <link rel="stylesheet" href="Lecciones.css" />
+  <script src="Lecciones.js"></script>
 </head>
 
 <body>
