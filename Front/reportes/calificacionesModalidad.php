@@ -34,19 +34,16 @@ require '../../Servicios/DDBBVariables.php';
     <!--+++++++++++++++++++++++++++++++++++ Logo Kaanbal ++++++++++++++++++++++++++++++++++++++++++++++++++++++-->function
     <div class="container">
         <div class="row">
-          <div
-            class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"
-          ></div>
-          <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-            <p class="titulo">Kaanbal</p>
-          </div>
-          <div
-            class="textCenter col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
-          ></div>
+            <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+            <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                <p class="titulo">Kaanbal</p>
+            </div>
+            <div class="textCenter col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"></div>
         </div>
-      </div>
+    </div>
 
     <!--+++++++++++++++++++++++++++++++++++ CABECERA [Asignatura, Profesor, Grupo y Modalidad] +++++++++++++++++++++++++++++++++++++-->
+    <p> INPUTS: Id de grupo y Modalidad</p>
     <?php
     //Crear la lectura en base de datos
     try {
@@ -73,24 +70,79 @@ require '../../Servicios/DDBBVariables.php';
                     <tbody>
                         <tr class="table-info">
                             <td>Asignatura</td>
-                            <td><?php echo $materia;?></td>
+                            <td><?php echo $materia; ?></td>
                         </tr>
                         <tr class="table-light">
                             <td>Profesor</td>
-                            <td><?php echo $correoProfesor;?></td>
+                            <td><?php echo $correoProfesor; ?></td>
                         </tr>
                         <tr class="table-info">
                             <td>Grupo</td>
-                            <td><?php echo $grupo;?></td>
+                            <td><?php echo $grupo; ?></td>
                         </tr>
                         <tr class="table-light">
                             <td>Modalidad</td>
-                            <td><?php echo $modalidad;?></td>
+                            <td><?php echo $modalidad; ?></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+        </div>
+    </div>
+
+    <!--+++++++++++++++++++++++++++++++++++ Temas, Subtemas y Lecciones +++++++++++++++++++++++++++++++++++++-->
+    <p>.</p>
+    <p>INPUTS: id grupo</p>
+    <?php
+    //Debemos trasponer el resultado, por ello necesitare un array
+    $lectionsArray = array();
+    $i = 0;
+    //Crear la lectura en base de datos
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stringQuery = "";
+        $stmt = $conn->query($stringQuery);
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            //row [0] -> Tema, subtema, leccion
+            $lectionsArray[$i] = array($row[0], $row[1], $row[2]);
+            $i = $i + 1;
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
+    ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <table>
+                    <tbody>
+                        <tr class="table-success">
+                            <?php
+                                for($j=0; $j<count($lectionsArray);$j++){
+                                    echo '<td>'.$lectionsArray[$j][0].'</td>';
+                                }
+                            ?>
+                        </tr>
+                        <tr class="table-light">
+                            <?php
+                                for($k=0; $k<count($lectionsArray);$k++){
+                                    echo '<td>'.$lectionsArray[$k][1].'</td>';
+                                }
+                            ?>
+                        </tr>
+                        <tr class="table-success">
+                            <?php
+                                for($l=0; $l<count($lectionsArray);$l++){
+                                    echo '<td>'.$lectionsArray[$l][2].'</td>';
+                                }
+                            ?>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
