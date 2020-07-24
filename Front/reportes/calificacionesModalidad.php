@@ -15,6 +15,14 @@ require '../../Servicios/DDBBVariables.php';
 </head>
 
 <body>
+    <style>
+        table {
+            border-collapse: separate !important; white-space: nowrap !important;
+        }
+        td {
+            text-align: center;
+        }
+    </style>
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
@@ -117,7 +125,7 @@ require '../../Servicios/DDBBVariables.php';
 
     <div class="container">
         <div class="row">
-            <table style="border-collapse: separate !important; white-space: nowrap !important;">
+            <table>
                 <tbody>
                     <tr class="table-success">
                         <td style="color:white;">.</td>
@@ -160,8 +168,8 @@ require '../../Servicios/DDBBVariables.php';
                             //row [0] -> matricula, diamantes
                             echo '
                             <tr class="table-light">
-                                <td>'.$row[0].'</td>
-                                <td>'.$row[1].'</td>
+                                <td>' . $row[0] . '</td>
+                                <td>' . $row[1] . '</td>
                             </tr>';
                         }
                     } catch (PDOException $e) {
