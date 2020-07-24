@@ -31,7 +31,7 @@ require '../../Servicios/DDBBVariables.php';
             <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
         </div>
     </div>
-    <!--+++++++++++++++++++++++++++++++++++ Logo Kaanbal ++++++++++++++++++++++++++++++++++++++++++++++++++++++-->function
+    <!--+++++++++++++++++++++++++++++++++++ Logo Kaanbal ++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
     <div class="container">
         <div class="row">
             <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
@@ -123,27 +123,27 @@ require '../../Servicios/DDBBVariables.php';
                             <td style="color:white;">.</td>
                             <td style="color:white;">.</td>
                             <?php
-                                for($j=0; $j<count($lectionsArray);$j++){
-                                    echo '<td>'.$lectionsArray[$j][0].'</td>';
-                                }
+                            for ($j = 0; $j < count($lectionsArray); $j++) {
+                                echo '<td>' . $lectionsArray[$j][0] . '</td>';
+                            }
                             ?>
                         </tr>
                         <tr class="table-light">
                             <td style="color:white;">.</td>
                             <td style="color:white;">.</td>
                             <?php
-                                for($k=0; $k<count($lectionsArray);$k++){
-                                    echo '<td>'.$lectionsArray[$k][1].'</td>';
-                                }
+                            for ($k = 0; $k < count($lectionsArray); $k++) {
+                                echo '<td>' . $lectionsArray[$k][1] . '</td>';
+                            }
                             ?>
                         </tr>
                         <tr class="table-success">
-                            <td >Matricula</td>
-                            <td >Diamantes</td>
+                            <td>Matricula</td>
+                            <td>Diamantes</td>
                             <?php
-                                for($l=0; $l<count($lectionsArray);$l++){
-                                    echo '<td>'.$lectionsArray[$l][2].'</td>';
-                                }
+                            for ($l = 0; $l < count($lectionsArray); $l++) {
+                                echo '<td>' . $lectionsArray[$l][2] . '</td>';
+                            }
                             ?>
                         </tr>
                     </tbody>
