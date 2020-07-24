@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="Front/CSSsJSs/icons/pyramid.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="PRODUCCION/Front/CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="Front/CSSsJSs/bootstrap441.css" />
+    <link rel="stylesheet" href="PRODUCCION/Front/CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="styleIndex2.css" />
-    <script src="Front/CSSsJSs/minAJAX.js"></script>
+    <script src="PRODUCCION/Front/CSSsJSs/minAJAX.js"></script>
     <script src="scriptIndex.js"></script>
 </head>
 
@@ -50,14 +50,14 @@
                     <img
                     id="english"
                     class="idiom"
-                    src="Front/CSSsJSs/icons/uk.svg"
+                    src="PRODUCCION/Front/CSSsJSs/icons/uk.svg"
                     />
                 </div>
                 <div class="textLeft col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1">
                     <img
                     id="spanish"
                     class="idiom"
-                    src="Front/CSSsJSs/icons/spain.svg"
+                    src="PRODUCCION/Front/CSSsJSs/icons/spain.svg"
                     />
                 </div>
                 </div>
@@ -99,7 +99,7 @@
             <div class="row">
                 <div class="textCenter col-2 col-md-2 col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4">
-                <img class="iconoPrincipal" src="Front/CSSsJSs/icons/quet.svg" />
+                <img class="iconoPrincipal" src="PRODUCCION/Front/CSSsJSs/icons/quet.svg" />
                 </div>
                 <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
                 <div class="textCenter col-1 col-sm-1 d-md-none"></div>
@@ -111,7 +111,7 @@
                 <p style="color: rgba(0, 0, 0, 0);">.</p>
                 <form
                     id="demo-form"
-                    action="Front/Inicio/asignaturas.php"
+                    action="PRODUCCION/Front/Inicio/asignaturas.php"
                     method="POST"
                 >
                     <label class="fuenteForma" for="validarUsuario">User</label><br />
