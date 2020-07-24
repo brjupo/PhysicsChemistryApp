@@ -4,18 +4,37 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Pregunta</title>
-    <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas11.css" />
-    <script src="../CSSsJSs/scriptQuestions2.js"></script>
-    <script src="../CSSsJSs/minAJAX.js"></script>
+    <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
+    <link rel="stylesheet" href="styleExamen.css" />
+    <script src="scriptExamen.js"></script>
+    <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 
 <body>
+    <script>
+        document.addEventListener("contextmenu", (event) => event.preventDefault());
+        $(document).keydown(function(event) {
+            if (event.keyCode == 123) {
+                // Prevent F12
+                return false;
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                // Prevent Ctrl+Shift+I
+                return false;
+            } else if (event.ctrlKey && event.keyCode == 85) {
+                // Prevent Ctrl+U
+                return false;
+            } else if (event.ctrlKey && event.keyCode == 67) {
+                // Prevent Ctrl+C
+                return false;
+            }
+        });
+    </script>
+
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
@@ -54,23 +73,34 @@
         */
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    /*----Paso 1 Obtener el ID del subtema----*/
-    $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
-    mysqli_stmt_bind_param($statement, "s", $leccion);
-    mysqli_stmt_execute($statement);
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_leccion);
+        $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
-    $arregloIdleccion = array();
-    //Leemos datos ID de leccion
-    while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-      $arregloIdleccion["id_leccion"] = $id_leccion;
-    }
+        //Traer tiempo para el examen
+        $query2 = "SELECT tiempo_examen FROM leccion WHERE id_leccion = $leccion"; 
+        $result2 = mysqli_query($con, $query2);
+        $tiempoa = mysqli_fetch_row($result2);
+        $tiempo = $tiempoa[0];
+           
+        
+        
+        /*----Paso 1 Obtener el ID del subtema----*/
+        /*
+        $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
+        mysqli_stmt_bind_param($statement, "s", $leccion);
+        mysqli_stmt_execute($statement);
+        mysqli_stmt_store_result($statement);
+        mysqli_stmt_bind_result($statement, $id_leccion);
 
-    $idL = $arregloIdleccion["id_leccion"];
+        $arregloIdleccion = array();
+        //Leemos datos ID de leccion
+        while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
+        $arregloIdleccion["id_leccion"] = $id_leccion;
+        }
+        $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
+        */
+        $idL = $leccion;
         //Traer todas las preguntas
-        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
+        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL ORDER BY RAND()"; //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
         $result = mysqli_query($con, $query);
         //contar Numero de elementos
         $query2 = "SELECT count(*) FROM pregunta WHERE id_leccion = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
@@ -82,6 +112,23 @@
             $array[] = $row;
             $arrayr[] = $row;
         }
+        ///VALIDAMOS EL IDIOMA PARA HACER CAMBIO EN EL NOMBRE DE LOS CAMPOS Y MOSTRAR LAS PREGUNTAS EN INGLES
+        if($_SESSION["idioma"] == 'i'){
+            for ($j = 0; $j < $total[0]; $j++) {
+            $array[$j]["pregunta"] = $array[$j]["question"];
+            $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];
+            $array[$j]["respuesta2"] = $array[$j]["answer2"];
+            $array[$j]["respuesta3"] = $array[$j]["answer3"];
+            $array[$j]["respuesta4"] = $array[$j]["answer4"];
+
+            $arrayr[$j]["pregunta"] = $arrayr[$j]["question"];
+            $arrayr[$j]["respuesta_correcta"] = $arrayr[$j]["correct_answer"];
+            $arrayr[$j]["respuesta2"] = $arrayr[$j]["answer2"];
+            $arrayr[$j]["respuesta3"] = $arrayr[$j]["answer3"];
+            $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
+            }
+        }
+
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
         ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
         for ($j = 0; $j < $total[0]; $j++) {
@@ -132,15 +179,17 @@
           </script>';
     }
 
-  
-    imprimirPreguntas($arrayr, $array, $total,$idL);
+
+    imprimirPreguntas($arrayr, $array, $total, $idL, $tiempo);
     ?>
 
     <?php
-    function imprimirPreguntas($arrayr, $array, $total,$idL)
+    function imprimirPreguntas($arrayr, $array, $total, $idL, $tiempo)
     {
-        imprimirBarraProgresoCruz($total[0],$idL);
+        imprimirBarraProgresoCruz($total[0], $idL);
+        imprimirTiempoexamen($tiempo);
         imprimirContador();
+        imprimirMotivador();
         imprimirPreguntasRespuestas($arrayr, $array, $total);
         imprimirFooter();
     }
@@ -158,7 +207,7 @@
         $rc = "10,000,000";
         $imagen = 1;
 
-        
+
 
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
@@ -170,10 +219,10 @@
                 $arraytemp[0] = $arrayr[$x]["respuesta_correcta"];
                 $arraytemp[1] = $arrayr[$x]["respuesta2"];
                 $arraytemp[2] = $arrayr[$x]["respuesta3"];
-                $arraytemp[3]= $arrayr[$x]["respuesta4"];
+                $arraytemp[3] = $arrayr[$x]["respuesta4"];
 
-                $posicion = array_search($rcorrecta,$arraytemp);
-                
+                $posicion = array_search($rcorrecta, $arraytemp);
+
 
                 //////////////
                 imprimirPreguntaTipo1($x + 1, $arrayr[$x]["pregunta"]);
@@ -183,7 +232,7 @@
                     $arrayr[$x]["respuesta2"],
                     $arrayr[$x]["respuesta3"],
                     $arrayr[$x]["respuesta4"],
-                    $posicion,//aqui mandar posicion de respuesta correcta
+                    $posicion, //aqui mandar posicion de respuesta correcta
                     $array[$x]["id_pregunta"]
                 );
             } else {
@@ -198,7 +247,6 @@
                     $array[$x]["id_pregunta"]
                 );
             }
-            
         }
     }
     ?>
@@ -206,20 +254,20 @@
 
     <?php
 
-    function imprimirBarraProgresoCruz($totalPreguntas,$idL)
+    function imprimirBarraProgresoCruz($totalPreguntas, $idL)
     {
         $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
         echo '
             <div class="container">
                 <div class="row topMargin">
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <img src="../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
+                    <img src="../../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                     <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
-                    <p id="leccionID" style="display:none">' .$idL. '</p>
+                    <p id="leccionID" style="display:none">' . $idL . '</p>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
                             class="progress-bar progress-bar-striped" 
@@ -234,6 +282,34 @@
             </div>
             ';
     }
+
+    function imprimirTiempoexamen($tiempo)
+    {//border="4px" color="black"  
+        echo '
+                <div class="container">
+                <div class="row">
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                <table class="table fixed">
+                <tbody>
+                  <tr>
+                    <td style="text-align: left" width="50%">
+                      <p id="number">10:00</p>
+                      <p id="tiempo" style="display:none"/>'.$tiempo.'</p>
+                    </td>
+                    <td style="text-align: right" width="50%">
+                      <img class="icons" width="50" height="30" src="../../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                </div>
+            </div>
+            ';
+    }
+
     function imprimirContador()
     {
         echo '
@@ -244,7 +320,7 @@
                     <p style="display:none" class="slide-bottom" id="previous">0m 10s</p>
                     <p style="display:none" class="slide-bottom" id="actual">0m 10s</p>
                     <p style="display:none" class="slide-bottom" id="later">0m 10s</p>
-                    <p id="puntosBuenos"></p>
+                    <p style="display:none" id="puntosBuenos"></p>
                 </div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
                 </div>
@@ -252,20 +328,27 @@
             ';
     }
 
-    /*
-    Mis nacadas
-    ID Pregunta = 1000 + Número de pregunta         Ejemplo: Pregunta1 id="1001"
-    ID Respuesta = 2000 + Número de pregunta        Ejemplo: Respuesta1 id="2001"
-    ID Respuesta correcta = 3000 + Número de pregunta   Ejemplo: ResCorrecta1 id="3001"
+    function imprimirMotivador()
+    {
+        echo '
+                <div id="motivationMessage" class="container noPaddingMargin" style="display: none;">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 noPaddingMargin">
+                            <!--div class="imagenEdu">
+                                <p id="dialogo" class="dialogoInsp">Aunque falles, sigues aprendiendo!</p>
+                            </div-->
+                            <div>
+                                <p id="dialogo" class="dialogoNoInsp">Aunque falles, sigues aprendiendo!</p>
+                            </div>
+                        </div>
+                        <div class="hidden-xs hidden-sm col-md-6 col-lg-6 col-xl-6">
+                            <p  style="color:rgba(0,0,0,0);">.</p>
+                        </div>
+                    </div>
+                </div>
+        ';
+    }
 
-    Opción 4 = 10 * Número de pregunta              Ejemplo: class="Opcion4"id="10"
-    Opción 3 = 10 * Número de pregunta - 1          Ejemplo: class="Opcion3"id="9"
-    Opción 2 = 10 * Número de pregunta - 2          Ejemplo: class="Opcion2"id="8"
-    Opción 1 = 10 * Número de pregunta - 3          Ejemplo: class="Opcion1"id="7"
-    ID Boton aceptar = 10 * Número de pregunta - 4  Ejemplo: id="6"
-    Texto Escrito = 10 * Número de pregunta - 5     Ejempo: id="5"
-
-    */
     function imprimirPreguntaTipo1(int $preguntaNumero, $preguntaTexto)
     {
         $preguntaNumero = 1000 + $preguntaNumero;
@@ -295,15 +378,47 @@
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../imagenes/" . $imgjpg;
-        //echo '<p>'.$path.'</p>';
+        $pathjpg = "../../../IMAGENES/" . $imgjpg;
+
+        $imgJPG = $imagen . ".JPG";
+        $pathJPG = "../../../IMAGENES/" . $imgJPG;
         if (file_exists($pathjpg)) {
             echo '
             <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
+                <img src="../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
+                <p id="' . $IDvalorCorrecto . '" style="display:none">
+                    ' . $respCorrecta . '
+                </p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <button class="Opcion1" id="' . $uno . '">
+                    ' . $r1 . '
+                </button><br>
+                <button class="Opcion3" id="' . $tres . '">
+                    ' . $r3 . '
+                </button>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <button class="Opcion2" id="' . $dos . '">
+                    ' . $r2 . '
+                </button><br>
+                <button class="Opcion4" id="' . $cuatro . '">
+                    ' . $r4 . '
+                </button>
+                </div>
+            </div>
+            </div>
+        ';
+        } else if (file_exists($pathJPG)) {
+            echo '
+            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+            <div class="container" style="display:none" id ="' . $respuestaNumero . '">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <img src="../../../IMAGENES/' . $imagen . '.JPG" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '" style="display:none">
                     ' . $respCorrecta . '
                 </p>
@@ -362,20 +477,7 @@
         ';
         }
     }
-    /*
-    Mis nacadas
-    ID Pregunta = 1000 + Número de pregunta
-    ID Respuesta = 2000 + Número de pregunta
-    ID Respuesta correcta = 3000 + Número de pregunta
-
-    Opción 4 = 10 * Número de pregunta
-    Opción 3 = 10 * Número de pregunta - 1
-    Opción 2 = 10 * Número de pregunta - 2
-    Opción 1 = 10 * Número de pregunta - 3
-    ID Boton aceptar = 10 * Número de pregunta - 4
-    Texto Escrito = 10 * Número de pregunta - 5
-
-    */
+    
     function imprimirPreguntaTipo2(int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
     {
         $IDTextoEscrito = 10 * $preguntaNumero - 5;
@@ -388,12 +490,12 @@
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
                     <p id="preguntaNumero" style="display:none">' . $preguntaNumero . '</p>
                     <p class="formatoPreguntas">'
-                    . $preguntaTexto .
-                    ' 
+            . $preguntaTexto .
+            ' 
                     <input type="text" id="' . $IDTextoEscrito . '">
                     '
-                    . $preguntaTexto2 .
-                    '  
+            . $preguntaTexto2 .
+            '  
                     </p>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
@@ -408,7 +510,7 @@
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../imagenes/" . $imgjpg;
+        $pathjpg = "../../../IMAGENES/" . $imgjpg;
         //echo '<p>'.$path.'</p>';
         if (file_exists($pathjpg)) {
             echo '
@@ -417,10 +519,10 @@
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
+                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../imagenes/' . $imagen . '.jpg" class="imagenPregunta" />
+                            <img src="../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
@@ -435,7 +537,7 @@
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Accept</button>
+                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Acepto</button>
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
@@ -453,7 +555,7 @@
                 <div class="row text-center">
                     <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                    <button class="botonContinuar">Continuar</button>
+                    <button class="botonContinuar">Continue</button>
                     </div>
                     <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
                 </div>

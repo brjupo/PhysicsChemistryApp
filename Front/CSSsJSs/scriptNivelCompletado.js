@@ -3,7 +3,7 @@ window.onload = function () {
 };
 
 function countDiamonts() {
-    var totalDiamantes = 100;
+    var totalDiamantes = parseInt(document.getElementById("numeroDiamantes").innerHTML.trim());
     var diamantes = 0;
     // Update the count down every 1 second
     var x = setInterval(function () {
@@ -12,6 +12,6 @@ function countDiamonts() {
         if (diamantes > totalDiamantes) {
             clearInterval(x);
         }
-    }, 20);
+    }, 100);
 }
 
