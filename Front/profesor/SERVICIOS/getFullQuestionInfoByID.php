@@ -34,10 +34,10 @@ try {
 }
 $conn = null;
 
-$pathjpg = "../../imagenes/" . $IDPregunta.".jpg";
-$pathpng = "../../imagenes/" . $IDPregunta.".png";
-$pathJPG = "../../imagenes/" . $IDPregunta.".JPG";
-$pathPNG = "../../imagenes/" . $IDPregunta.".PNG";
+$pathjpg = "../../../../IMAGENES/" . $IDPregunta.".jpg";
+$pathpng = "../../../../IMAGENES/" . $IDPregunta.".png";
+$pathJPG = "../../../../IMAGENES/" . $IDPregunta.".JPG";
+$pathPNG = "../../../../IMAGENES/" . $IDPregunta.".PNG";
 $response["image"] = NULL;
 if (file_exists($pathjpg)) {
     $response["image"] = $IDPregunta.".jpg";
