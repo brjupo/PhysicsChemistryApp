@@ -54,7 +54,7 @@ function printEditSubtopic()
   printTitle();
   printInstructions();
   printSubtopics();
-  printButtons();
+  //printButtons();
   echo '</body>';  
 }
 
@@ -95,6 +95,13 @@ function printSubtopic($ID_Lection, $LectionName){
             <span class="input-group-text">'.$ID_Lection.'</span>
           </div>
           <input type="text" class="form-control" id="'.$ID_Lection.'" value="'.$LectionName.'" />
+          <div class="input-group-append">
+            <a href="elegirLeccion.php?ID_Subtema='.$ID_Lection.'">
+              <button class="btn btn-outline-secondary" type="button">
+                Elegir grupo y modo
+              </button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -155,8 +162,7 @@ function printInstructions(){
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para cambiar el nombre de las <strong>lecciones</strong>, edite el nombre y de clic en
-          "Guardar en base de datos"
+          - De clic en el botón "Elegir grupo y modo"
         </p>
       </div>
     </div>
