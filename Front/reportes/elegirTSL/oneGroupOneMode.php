@@ -18,6 +18,7 @@ function print1g1m()
     echo '<body>';
     printTitle();
     printCabecera();
+    printTSL();
     echo '
     </body>
     </html>';
@@ -122,6 +123,66 @@ function printCabecera(){
                 </table>
             </div>
             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+        </div>
+    </div>
+    ';
+}
+
+function printTSL(){
+    global $servername, $username, $password, $dbname;
+    //Crear la lectura en base de datos
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stringQuery = "SELECT nombre FROM leccion WHERE id_leccion = ".$_GET["leccion"].";";
+        $stmt = $conn->query($stringQuery);
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $leccion = $row[0];
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
+    echo'
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <table style="width:100%">
+                    <tbody>
+                        <tr class="table-info">
+                            <td>.</td>
+                            <td>tema</td>
+                        </tr>
+                        <tr class="table-light">
+                            <td>.</td>
+                            <td>subtema</td>
+                        </tr>
+                        <tr class="table-info">
+                            <td>.</td>
+                            <td>'. $leccion. '</td>
+                        </tr>';
+    //Crear la lectura en base de datos
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = 1) GROUP BY a.matricula ORDER BY matricula ASC;";
+        $stmt = $conn->query($stringQuery);
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            //row [0] -> matricula, diamantes
+            echo '
+            <tr class="table-light">
+                <td>' . $row[0] . '</td>
+                <td>' . $row[1] . '</td>
+            </tr>';
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    $conn = null;                    
+    echo'
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     ';
