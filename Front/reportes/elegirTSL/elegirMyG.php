@@ -95,7 +95,7 @@ function printCombos($teacherID)
     echo '
   <div class="container">
     <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="input-group-prepend">
             <label class="input-group-text" for="grupo">Grupo</label>
             <p>'.$teacherID.'</p>
@@ -136,7 +136,7 @@ function printCombos($teacherID)
     echo '
   <div class="container">
     <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="input-group-prepend">
             <label class="input-group-text" for="modalidad">Modalidad</label>
         </div>
