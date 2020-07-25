@@ -189,8 +189,10 @@ function showData(data) {
   if (data.image == null) {
     document.getElementById("imagenPregunta").src =
       "../../../../IMAGENES/sinImagen.jpg";
+      console.log("sin imagen");
   } else {
     document.getElementById("imagenPregunta").src =
       "../../../../IMAGENES/" + data.image;
+      console.log("mostrando imagen");
   }
 }
