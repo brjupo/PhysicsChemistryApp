@@ -179,6 +179,9 @@ require '../../Servicios/DDBBVariables.php';
                                     if ($row[0] == $row2[0]) {
                                         echo '<td>' .  $row2[2] . '</td>';
                                     }
+                                    else{
+                                        echo '<td></td>';
+                                    }
                                 }
                             } catch (PDOException $e) {
                                 echo "Error: " . $e->getMessage();
