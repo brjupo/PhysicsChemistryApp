@@ -11,10 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../CSSsJSs/stylePreguntas.css" />
-    <link rel="stylesheet" href="../CSSsJSs/styleNivelCompletado.css" />
-    <script src="../CSSsJSs/scriptNivelCompletado.js"></script>
+    <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/styleNivelCompletado.css" />
+    <script src="../../CSSsJSs/scriptNivelCompletado.js"></script>
   </head>
 
   <body>
