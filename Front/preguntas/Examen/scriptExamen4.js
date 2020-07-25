@@ -615,6 +615,29 @@ function ocultarTiempo() {
     flagTiempo = 0;
   }
 }
+
+function enviarCalificacion() {
+  var userID = document.getElementById("userID").innerHTML.trim();
+  var leccionID = document.getElementById("leccionID").innerHTML.trim();
+  //alert(userID+ " "+ puntos+ " "+ leccionID);
+
+  $.ajax({
+    type: "POST",
+    url: "../../../Servicios/subirPuntosType.php",
+    dataType: "json",
+    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "E" },
+    success: function (data) {
+      console.log(data.response);
+      if (data.response == "exito") {
+        //alert("Etcito");
+        console.log("Valores enviados correctamente");
+      } else {
+        //alert(data.response);
+        console.log("Algo salio mal");
+      }
+    },
+  });
+}
 /////////////777!///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Cada vez que se escribe sobre un input
