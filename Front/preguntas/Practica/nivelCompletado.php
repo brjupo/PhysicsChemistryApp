@@ -9,7 +9,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
@@ -63,11 +63,11 @@
           <h3>¡You have completed this level!</h3>
           <h4>¡Congratulations!</h4>
           <p id="numeroDiamantes" class="numeroDiamantes">100</p><p class="numeroDiamantes">%</p>
-          <img class="diamanteIcon" src="../CSSsJSs/icons/diamante.svg" />
+          <img class="diamanteIcon" src="../../CSSsJSs/icons/diamante.svg" />
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
           <img
-            src="../CSSsJSs/icons/star.svg"
+            src="../../CSSsJSs/icons/star.svg"
             class="spin animated star"
             style="width: 60%;"
           />
