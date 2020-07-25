@@ -185,7 +185,7 @@ function seguroRegresar() {
       "Are you sure to return?\n If you return you will lose all your progress of this lesson"
     )
   ) {
-    var stringLiga = "https://kaanbal.net/Front/Inicio/subtemas.php?tema=";
+    var stringLiga = "../../Inicio/subtemas.php?tema=";
     window.location.href = stringLiga.concat(
       document.getElementById("temaPrevio").innerHTML.trim()
     );
@@ -411,7 +411,7 @@ function nextQuestion(lastQuestion) {
   }
   if (questionNumberArray.length == 0) {
     var stringLiga =
-      "https://kaanbal.net/Front/preguntas/SuperSprint/sprintFinalizado.php?tema=" +
+      "sprintFinalizado.php?tema=" +
       document.getElementById("temaPrevio").innerHTML.trim() +
       "&puntos=" +
       puntos +
@@ -436,7 +436,7 @@ function enviarCalificacionRedirigir() {
       if (data.response == "exito") {
         console.log("Valores enviados correctamente");
         var stringLiga =
-          "https://kaanbal.net/Front/preguntas/SuperSprint/sprintFinalizado.php?tema=" +
+          "sprintFinalizado.php?tema=" +
           document.getElementById("temaPrevio").innerHTML.trim() +
           "&puntos=" +
           puntos +
