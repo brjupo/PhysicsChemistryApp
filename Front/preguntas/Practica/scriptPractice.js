@@ -4,8 +4,8 @@ var puntos = 0;
 var buenas0_malas1_alHilo = [0, 0];
 var firstTimeToSaveGrade = 0;
 var idioma = 'e';
-var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
-var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
+var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
+var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
@@ -571,7 +571,7 @@ function enviarCalificacion() {
 
   $.ajax({
     type: "POST",
-    url: "../../Servicios/subirPuntosType.php",
+    url: "../../../Servicios/subirPuntosType.php",
     dataType: "json",
     data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"PP" },
     success: function (data) {
