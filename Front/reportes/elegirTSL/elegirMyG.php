@@ -41,7 +41,7 @@ function printHead()
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials.css" />
-    <script src="elegirMyG.js"></script>
+    <script src="elegirMyG2.js"></script>
   </head>
   ';
 }

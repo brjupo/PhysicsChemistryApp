@@ -20,5 +20,5 @@ function oneGroupOneMode() {
     document.getElementById("modalidad").value.trim()+
     "&leccion=" +
     document.getElementById("leccion").innerHTML.trim();
-  window.location.replace(tring);
+  window.location.replace(string);
 }
