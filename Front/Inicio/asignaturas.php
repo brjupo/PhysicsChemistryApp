@@ -1,3 +1,6 @@
+<?php
+require '../../Servicios/DDBBVariables.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -7,8 +10,8 @@
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Asignaturas</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-  <link rel="stylesheet" href=".Asignaturas.css" />
-  <script src="Asignaturas.js"></script>
+  <link rel="stylesheet" href="Asignaturas.css" />
+  <script src="Asignaturas2.js"></script>
 </head>
 
 <body>
@@ -188,7 +191,7 @@
           $_SESSION["asignaturaNavegacion"] = $materia;
           $_SESSION["idAsignatura"] = $idMateria;
           echo '<script type="text/javascript">
-                          window.location.href="https://kaanbal.net/Front/Inicio/temas.php?asignatura=' . $materia . '";
+                          window.location.href="temas.php?asignatura=' . $materia . '";
                           </script>';
         }
 
@@ -261,6 +264,8 @@
   {
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas);
+    imprimirRelleno();
+    imprimirEspaciosProfesor();
     imprimirRelleno();
     imprimirFooter();
   }
@@ -434,6 +439,65 @@
                 </div>              
               </a>
               <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
+            </div>
+          </div>
+
+          <!------------------------------------------------RELLENO----------------------------------------------->
+          <div class="container">
+            <div class="row">
+              <p class="relleno">.</p>
+            </div>
+            <div class="row">
+              <p class="relleno">.</p>
+            </div>
+          </div>
+          <!------------------------------------------------FIN RELLENO----------------------------------------------->
+    ';
+  }
+
+  function imprimirEspaciosProfesor()
+  {
+    echo '
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h1>Profesores</h1>
+          </div> 
+        </div>
+      </div>
+    ';
+
+    echo '
+        <div class="container">
+          <div class="row">
+            <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
+              <a href="../profesor/controlProfesor.php">     
+                <div
+                  class="asignaturaPrincipal col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                >
+                  <div>
+                    <img class="imagenAsignatura" src="../CSSsJSs/icons/design.svg" />
+                  </div>
+                  <div class="tituloAsignaturas">
+                    Editar
+                  </div>
+                </div>
+              </a>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
+              <a href="../reportes/calificacionesModalidad.php">    
+                <div
+                  class="asignaturaPrincipal col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                >
+                  <div>
+                    <img class="imagenAsignatura" src="../CSSsJSs/icons/reportes.svg" />
+                  </div>
+                  <div class="tituloAsignaturas">
+                    Reportes
+                  </div>
+                </div>
+              </a>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
             </div>
           </div>
 

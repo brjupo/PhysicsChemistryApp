@@ -74,7 +74,7 @@ function toggleAvatar() {
 }
 
 function do_logout() {
-  location.replace("../../index.php");
+  location.replace("../../../index.php");
 }
 
 function guardarAvatarEnBBDD(nombreImagen) {

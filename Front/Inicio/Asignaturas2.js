@@ -19,5 +19,5 @@ document.addEventListener("click", function (evt) {
 });
 
 function do_logout(){
-    location.replace("../../index.php");
+    location.replace("../../../index.php");
 }
