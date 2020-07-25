@@ -371,7 +371,6 @@ function nextQuestion(lastQuestion) {
   totalPreguntas = parseInt(
     document.getElementById("totalPreguntas").innerHTML.trim()
   );
-<<<<<<< HEAD:Front/preguntas/Examen/scriptExamen1.js
   if (lastQuestion == totalPreguntas && firstTimeToSaveGrade == 0) {
     //enviarCalificacion();
     //function enviarCalificacion() {
@@ -396,10 +395,6 @@ function nextQuestion(lastQuestion) {
       },
     });
     //}
-=======
-  if (lastQuestion == totalPreguntas) {
-    enviarCalificacion();
->>>>>>> e21c9466de5cc97d2f6c53ad66377305e0e6af66:Front/preguntas/Examen/scriptExamen2.js
     firstTimeToSaveGrade = 1;
   }
   if (questionNumberArray.length == 0) {
