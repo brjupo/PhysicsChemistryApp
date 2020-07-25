@@ -27,7 +27,7 @@ mysqli_stmt_bind_result($statement, $puntuacion);
 
 $puntosActuales = 'xxx';
 
-$response["response"] = 'failesasdfsd';
+$response["response"] = 'fail';
 //Leemos la calificacion 
 while (mysqli_stmt_fetch($statement)) { //si si existe 
   $puntosActuales = $puntuacion;
@@ -40,12 +40,12 @@ if ($puntosActuales != 'xxx' OR $puntosActuales == NULL) { //validamos que exist
     //Lanzar consulta para actualizar calificacion solo si es mayor
     $sql = "UPDATE puntuacion, tiempo SET puntuacion = $puntosNuevos, tiempo = $tiempo WHERE id_leccion = $leccion AND id_usuario = $id_usuario AND tipo = '$flagTipo'";
     mysqli_query($con, $sql);
-    $response["response"] = 'exito1ul';
   }
+  $response["response"] = 'exito';
 } else {
   $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo, tiempo) VALUES ('$id_usuario', '$leccion', '$puntosNuevos','$flagTipo','$tiempo')";
   mysqli_query($con, $sql);
-  $response["response"] = 'exito2';
+  $response["response"] = 'exito';
 }
 
 echo json_encode($response);
