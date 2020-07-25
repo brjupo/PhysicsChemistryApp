@@ -10,7 +10,7 @@ require '../../Servicios/DDBBVariables.php';
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials.css" />
+    <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials2.css" />
 </head>
 
 <body>
