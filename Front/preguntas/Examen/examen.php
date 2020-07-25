@@ -378,17 +378,17 @@
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../../../IMAGENES/" . $imgjpg;
+        $pathjpg = "../../../../IMAGENES/" . $imgjpg;
 
         $imgJPG = $imagen . ".JPG";
-        $pathJPG = "../../../IMAGENES/" . $imgJPG;
+        $pathJPG = "../../../../IMAGENES/" . $imgJPG;
         if (file_exists($pathjpg)) {
             echo '
             <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
+                <img src="../../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '" style="display:none">
                     ' . $respCorrecta . '
                 </p>
@@ -418,7 +418,7 @@
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../../../IMAGENES/' . $imagen . '.JPG" class="imagenPregunta" />
+                <img src="../../../../IMAGENES/' . $imagen . '.JPG" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '" style="display:none">
                     ' . $respCorrecta . '
                 </p>
@@ -510,7 +510,7 @@
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../../../IMAGENES/" . $imgjpg;
+        $pathjpg = "../../../../IMAGENES/" . $imgjpg;
         //echo '<p>'.$path.'</p>';
         if (file_exists($pathjpg)) {
             echo '
@@ -522,7 +522,7 @@
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
+                            <img src="../../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
