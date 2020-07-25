@@ -161,7 +161,7 @@ function seguroRegresar() {
       "Are you sure to return?\n If you return you will lose all your progress of this lesson"
     )
   ) {
-    var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
+    var stringLiga = "../../Inicio/lecciones.php?subtema=";
     window.location.href = stringLiga.concat(
       document.getElementById("subtemaPrevio").innerHTML.trim()
     );
@@ -381,7 +381,7 @@ function nextQuestion(lastQuestion) {
   }
   if (questionNumberArray.length == 0) {
     var stringLiga =
-      "https://kaanbal.net/Front/preguntas/nivelCompletado.php?subtema=";
+      "nivelCompletado.php?subtema=";
     window.location.replace(
       stringLiga.concat(
         document.getElementById("subtemaPrevio").innerHTML.trim()

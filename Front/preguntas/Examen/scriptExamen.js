@@ -4,8 +4,8 @@ var puntos = 0;
 var buenas0_malas1_alHilo = [0, 0];
 var firstTimeToSaveGrade = 0;
 
-var CorrectAudio = new Audio("../CSSsJSs/sounds/Incorrect.mp3");
-var IncorrectAudio = new Audio("../CSSsJSs/sounds/Correct.mp3");
+var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
+var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 
 var flagTiempo = 0;
  //var totalTime = 70;reloj descendente
@@ -159,7 +159,7 @@ function seguroRegresar() {
       "Are you sure to return?\n If you return you will lose all your progress of this lesson"
     )
   ) {
-    var stringLiga = "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
+    var stringLiga = "../../Inicio/lecciones.php?subtema=";
     window.location.href = stringLiga.concat(
       document.getElementById("subtemaPrevio").innerHTML.trim()
     );
@@ -379,7 +379,7 @@ function nextQuestion(lastQuestion) {
   }
   if (questionNumberArray.length == 0) {
     var stringLiga =
-      "https://kaanbal.net/Front/preguntas/nivelCompletado.php?subtema=";
+      "nivelCompletado.php?subtema=";
     window.location.replace(
       stringLiga.concat(
         document.getElementById("subtemaPrevio").innerHTML.trim()
@@ -504,7 +504,7 @@ function motivationBadMessage(lastQuestion) {
 function finTiempo(){
     enviarCalificacion();
     var stringLiga =
-      "https://kaanbal.net/Front/preguntas/examenFinalizado.php?subtema=" +
+      "examenFinalizado.php?subtema=" +
       document.getElementById("subtemaPrevio").innerHTML.trim() +
       "&puntos=" +
       puntos +
@@ -585,7 +585,7 @@ function enviarCalificacion() {
 
   $.ajax({
     type: "POST",
-    url: "../../Servicios/subirPuntosType.php",
+    url: "../../../Servicios/subirPuntosType.php",
     dataType: "json",
     data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"E" },
     success: function (data) {
