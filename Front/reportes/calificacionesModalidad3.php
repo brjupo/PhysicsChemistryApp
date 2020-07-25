@@ -57,7 +57,7 @@ require '../../Servicios/DDBBVariables.php';
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = 3 AND pu.tipo = 'SP';";
+        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = 1 AND pu.tipo = 'SP';";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Materia, mail, grupo, modalidad
@@ -109,7 +109,7 @@ require '../../Servicios/DDBBVariables.php';
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT t.nombre, s.nombre, l.nombre FROM leccion l JOIN subtema s JOIN tema t ON l.id_subtema = s.id_subtema AND s.id_tema = t.id_tema WHERE t.id_asignatura = (SELECT id_asignatura FROM grupo WHERE id_grupo = 3);";
+        $stringQuery = "SELECT t.nombre, s.nombre, l.nombre FROM leccion l JOIN subtema s JOIN tema t ON l.id_subtema = s.id_subtema AND s.id_tema = t.id_tema WHERE t.id_asignatura = (SELECT id_asignatura FROM grupo WHERE id_grupo = 1);";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Tema, subtema, leccion
@@ -160,7 +160,7 @@ require '../../Servicios/DDBBVariables.php';
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = 3) GROUP BY a.matricula ORDER BY matricula ASC;";
+                        $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = 1) GROUP BY a.matricula ORDER BY matricula ASC;";
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             //row [0] -> matricula
@@ -172,7 +172,7 @@ require '../../Servicios/DDBBVariables.php';
                             try {
                                 //Crear la lectura en base de datos
                                 $conn2 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                                $stringQuery2 = "SELECT a.matricula, l.id_leccion, p.puntuacion FROM alumno a JOIN leccion l JOIN puntuacion p ON p.id_leccion = l.id_leccion AND p.id_usuario = a.id_usuario WHERE p.tipo = 'SP' AND a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = 3) ORDER BY a.matricula ASC, l.id_leccion ASC;";
+                                $stringQuery2 = "SELECT a.matricula, l.id_leccion, p.puntuacion FROM alumno a JOIN leccion l JOIN puntuacion p ON p.id_leccion = l.id_leccion AND p.id_usuario = a.id_usuario WHERE p.tipo = 'SP' AND a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = 1) ORDER BY a.matricula ASC, l.id_leccion ASC;";
                                 $stmt2 = $conn2->query($stringQuery2);
                                 while ($row2 = $stmt2->fetch(PDO::FETCH_NUM)) {
                                     //$row[0] valor de la primera columna 
