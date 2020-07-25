@@ -373,7 +373,7 @@ function nextQuestion(lastQuestion) {
   totalPreguntas = parseInt(
     document.getElementById("totalPreguntas").innerHTML.trim()
   );
-  if (lastQuestion == totalPreguntas && firstTimeToSaveGrade == 0) {
+  if (lastQuestion == totalPreguntas) {
     enviarCalificacion();
     firstTimeToSaveGrade = 1;
   }
