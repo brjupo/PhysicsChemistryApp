@@ -17,6 +17,8 @@ function oneGroupOneMode() {
     "oneGroupOneMode.php?grupo=" +
     document.getElementById("grupo").value.trim() +
     "&modo=" +
-    document.getElementById("modalidad").value.trim();
+    document.getElementById("modalidad").value.trim()+
+    "&leccion=" +
+    document.getElementById("leccion").innerHTML.trim();
   window.location.replace(tring);
 }
