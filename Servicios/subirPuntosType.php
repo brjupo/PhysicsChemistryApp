@@ -35,8 +35,8 @@ while (mysqli_stmt_fetch($statement)) { //si si existe
 
 //print_r($puntosActuales);
 
-if ($puntosActuales != 'xxx' OR $puntosActuales == NULL) { //validamos que exista una calificacion $puntosActuales != NULL or $puntosActuales == 0
-  if ($puntosNuevos > $puntosActuales) {
+if (1) { //$puntosNuevos > $puntosActuales validamos que exista una calificacion $puntosActuales != NULL or $puntosActuales == 0  $puntosActuales != 'xxx' OR $puntosActuales == NULL
+  if (1) {
     //Lanzar consulta para actualizar calificacion solo si es mayor
     $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos, tiempo = $tiempo WHERE id_leccion = $leccion AND id_usuario = $id_usuario AND tipo = '$flagTipo'";
     mysqli_query($con, $sql);
