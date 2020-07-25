@@ -41,6 +41,7 @@ function printHead()
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials.css" />
+    <script src="elegirMyG.js"></script>
   </head>
   ';
 }
@@ -77,6 +78,7 @@ function printInstructions()
         <p>
           - Elija el grupo y la modalidad, y de clic en "generar reporte".
         </p>
+        <p id="leccion">'.$_GET["ID_Leccion"].'</p>
       </div>
     </div>
   </div>
