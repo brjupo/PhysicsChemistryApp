@@ -42,7 +42,7 @@ function uploadImage() {
   if (document.getElementById("nuevaImagen").files.length != 0) {
     var data = new FormData(),
       files = document.getElementById("nuevaImagen").files;
-    path = "../../../IMAGENES/";
+    path = "../../../../IMAGENES/";
 
     data.append("fileToUpload", files[0]);
     data.append("path", path);
