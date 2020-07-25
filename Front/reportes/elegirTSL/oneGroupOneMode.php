@@ -101,9 +101,9 @@ function printCabecera(){
     <div class="container">
         <div class="row">
             <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                <table style="width:100%">
+                <table style="width:100%" class="table table-striped">
                     <tbody>
-                        <tr class="table-info">
+                        <tr>
                             <td>Asignatura</td>
                             <td>'. $materia. '</td>
                         </tr>
@@ -111,7 +111,7 @@ function printCabecera(){
                             <td>Profesor</td>
                             <td>'. $correoProfesor. '</td>
                         </tr>
-                        <tr class="table-info">
+                        <tr>
                             <td>Grupo</td>
                             <td>'. $grupo. '</td>
                         </tr>
@@ -172,7 +172,7 @@ function printTSL(){
             echo '
             <tr class="table-light">
                 <td>' . $row[0] . '</td>
-                <td>' . $row[1] . '</td>
+                <td></td>
             </tr>';
         }
     } catch (PDOException $e) {
