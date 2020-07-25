@@ -3,7 +3,7 @@ var questionNumberArray = [];
 var puntos = 0;
 var buenas0_malas1_alHilo = [0, 0];
 var firstTimeToSaveGrade = 0;
-var idioma = 'e';
+var idioma = "e";
 var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 
@@ -11,7 +11,7 @@ var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 
 window.onload = function () {
   createArrayWithQuestions();
-   idioma = document.getElementById("idioma").innerHTML.trim();
+  idioma = document.getElementById("idioma").innerHTML.trim();
 };
 
 function createArrayWithQuestions() {
@@ -294,9 +294,7 @@ function verifyIfTextIsCorrect(questionNumber) {
     .normalize();
   respuestaEscritaUpper = respuestaEscritaNormalizada.toUpperCase();
   //Muestras la respuesta correcta en el Boton
-  document.getElementById(
-    10 * questionNumber - 4
-  ).innerHTML = correctText;
+  document.getElementById(10 * questionNumber - 4).innerHTML = correctText;
   //Se valida si la respuesta es correcta
   if (respuestaEscritaUpper == respuestaCorrectaUpper) {
     lastQuestion = questionNumber;
@@ -378,37 +376,56 @@ function nextQuestion(lastQuestion) {
   if (lastQuestion == totalPreguntas && firstTimeToSaveGrade == 0) {
     //enviarCalificacion();
     //function enviarCalificacion() {
-      var userID = document.getElementById("userID").innerHTML.trim();
-      var leccionID = document.getElementById("leccionID").innerHTML.trim();
-      //alert(userID+ " "+ puntos+ " "+ leccionID);
-    
-      $.ajax({
-        type: "POST",
-        url: "../../../Servicios/subirPuntosType.php",
-        dataType: "json",
-        data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"PP" },
-        success: function (data) {
-          console.log(data.response);
-          if (data.response == "exito") {
-            //alert("Etcito");
-            console.log("Valores enviados correctamente");
-          } else {
-            //alert(data.response);
-            console.log("Algo salio mal");
-          }
-        },
-      });
+    var userID = document.getElementById("userID").innerHTML.trim();
+    var leccionID = document.getElementById("leccionID").innerHTML.trim();
+    //alert(userID+ " "+ puntos+ " "+ leccionID);
+
+    $.ajax({
+      type: "POST",
+      url: "../../../Servicios/subirPuntosType.php",
+      dataType: "json",
+      data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "PP" },
+      success: function (data) {
+        console.log(data.response);
+        if (data.response == "exito") {
+          //alert("Etcito");
+          console.log("Valores enviados correctamente");
+        } else {
+          //alert(data.response);
+          console.log("Algo salio mal");
+        }
+      },
+    });
     //}
     firstTimeToSaveGrade = 1;
   }
   if (questionNumberArray.length == 0) {
-    var stringLiga =
-      "nivelCompletado.php?subtema=";
-    window.location.replace(
-      stringLiga.concat(
-        document.getElementById("subtemaPrevio").innerHTML.trim()
-      )
-    );
+    var userID = document.getElementById("userID").innerHTML.trim();
+    var leccionID = document.getElementById("leccionID").innerHTML.trim();
+    //alert(userID+ " "+ puntos+ " "+ leccionID);
+
+    $.ajax({
+      type: "POST",
+      url: "../../../Servicios/subirPuntosType.php",
+      dataType: "json",
+      data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "PP" },
+      success: function (data) {
+        console.log(data.response);
+        if (data.response == "exito") {
+          //alert("Etcito");
+          console.log("Valores enviados correctamente");
+          var stringLiga = "nivelCompletado.php?subtema=";
+          window.location.replace(
+            stringLiga.concat(
+              document.getElementById("subtemaPrevio").innerHTML.trim()
+            )
+          );
+        } else {
+          //alert(data.response);
+          console.log("Algo salio mal");
+        }
+      },
+    });
   } else {
     loadNewQuestion(questionNumberArray[0]);
   }
@@ -418,60 +435,60 @@ function motivationGoodMessage(lastQuestion) {
   //Ocultamos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "none";
   document.getElementById("motivationMessage").style.display = "block";
-  if(idioma == 'e' ){
-  goodJobMessages = [
-    "Excelente, sigue así",
-    "¡Eres increible!",
-    "¡Eres el mejor!",
-    "Sabía que podías con esto y más",
-    "¡Vas muy bien!",
-    "¡Bien hecho!",
-    "¡Sigue así!",
-    "¡Sigue adelante, vas muy bien!",
-    "¡Dá siempre tu 100%!",
-    "¡Perseverar rinde frutos!",
-    "Observa, escucha y aprende.",
-    "¡Lo lograste!",
-    "¡Muy bien!",
-    "Ten paciencia, obtendrás lo que deseas.",
-    "Un viaje de mil millas comienza con un simple paso.",
-    "Con autodisciplina casi todo es posible.",
-    "¡Eres joven y talentoso!",
-    "¡Lo lograste otra vez!",
-    "El secreto del éxito es el entusiasmo, ¡sigue adelante!",
-    "No hay ascensor al éxito, tienes que tomar las escaleras.",
-    "Con esfuerzo y perseverancia podrás alcanzar tus metas.",
-    " El precio del éxito es el trabajo, dedicación y determinación.",
-    "Siempre puedes ser mejor.",
-    "La suerte y el esfuerzo van de la mano.",
-    "Cuanto más trabajas, más suerte pareces tener.",
-    "¡Estás aprendiendo mucho! ",
-    "¡Sigue aprendiendo!",
-    "Cuando aprendes algo, nadie puede arrebatártelo.",
-    "Todo es práctica.",
-    "¡La fortuna te favorece!",
-    "Tu disciplina es el ingrediente más importante del éxito.",
-    "¡Das lo mejor que tienes!",
-    "Si eres constante, ¡serás éxitoso!",
-    "Nada es difícil si lo divides en pequeños trabajos.",
-    "La motivación te hizo iniciar y el hábito te permite continuar",
-    "Tu éxito es la suma de pequeños esfuerzos repetidos varias veces.",
-    "Perseverancia. No hay otro secreto para tu éxito",
-    "¡Busca la excelencia!",
-    "Esfuerzo continuo, ¡es la clave para alcanzar el éxito!",
-    "Tu actitud, no tu aptitud, determinará tu altitud.",
-    "Comienza a pensar en ti, como la persona que quieres ser.",
-    "Sé el cambio que quieres ver en el mundo.",
-    "No hay atajos para llegar a cualquier lugar al que merezca la pena llegar.",
-    "Si haces primero las cosas que son más fáciles, haces mucho progreso.",
-    "Siempre parece imposible hasta que se hace.",
-    "La motivación es lo que te pone en marcha, el hábito es lo que hace que sigas",
-    "Tus talentos y habilidades van mejorando con el tiempo.",
-    "Tu paciencia conseguirá más cosas que tu fuerza.",
-    "Los campeones siguen jugando hasta que lo hacen bien.",
-    "El éxito depende del esfuerzo",
-  ];}
-  else{
+  if (idioma == "e") {
+    goodJobMessages = [
+      "Excelente, sigue así",
+      "¡Eres increible!",
+      "¡Eres el mejor!",
+      "Sabía que podías con esto y más",
+      "¡Vas muy bien!",
+      "¡Bien hecho!",
+      "¡Sigue así!",
+      "¡Sigue adelante, vas muy bien!",
+      "¡Dá siempre tu 100%!",
+      "¡Perseverar rinde frutos!",
+      "Observa, escucha y aprende.",
+      "¡Lo lograste!",
+      "¡Muy bien!",
+      "Ten paciencia, obtendrás lo que deseas.",
+      "Un viaje de mil millas comienza con un simple paso.",
+      "Con autodisciplina casi todo es posible.",
+      "¡Eres joven y talentoso!",
+      "¡Lo lograste otra vez!",
+      "El secreto del éxito es el entusiasmo, ¡sigue adelante!",
+      "No hay ascensor al éxito, tienes que tomar las escaleras.",
+      "Con esfuerzo y perseverancia podrás alcanzar tus metas.",
+      " El precio del éxito es el trabajo, dedicación y determinación.",
+      "Siempre puedes ser mejor.",
+      "La suerte y el esfuerzo van de la mano.",
+      "Cuanto más trabajas, más suerte pareces tener.",
+      "¡Estás aprendiendo mucho! ",
+      "¡Sigue aprendiendo!",
+      "Cuando aprendes algo, nadie puede arrebatártelo.",
+      "Todo es práctica.",
+      "¡La fortuna te favorece!",
+      "Tu disciplina es el ingrediente más importante del éxito.",
+      "¡Das lo mejor que tienes!",
+      "Si eres constante, ¡serás éxitoso!",
+      "Nada es difícil si lo divides en pequeños trabajos.",
+      "La motivación te hizo iniciar y el hábito te permite continuar",
+      "Tu éxito es la suma de pequeños esfuerzos repetidos varias veces.",
+      "Perseverancia. No hay otro secreto para tu éxito",
+      "¡Busca la excelencia!",
+      "Esfuerzo continuo, ¡es la clave para alcanzar el éxito!",
+      "Tu actitud, no tu aptitud, determinará tu altitud.",
+      "Comienza a pensar en ti, como la persona que quieres ser.",
+      "Sé el cambio que quieres ver en el mundo.",
+      "No hay atajos para llegar a cualquier lugar al que merezca la pena llegar.",
+      "Si haces primero las cosas que son más fáciles, haces mucho progreso.",
+      "Siempre parece imposible hasta que se hace.",
+      "La motivación es lo que te pone en marcha, el hábito es lo que hace que sigas",
+      "Tus talentos y habilidades van mejorando con el tiempo.",
+      "Tu paciencia conseguirá más cosas que tu fuerza.",
+      "Los campeones siguen jugando hasta que lo hacen bien.",
+      "El éxito depende del esfuerzo",
+    ];
+  } else {
     goodJobMessages = [
       "Your're on fire!",
       "You are  doing amazing!",
@@ -514,45 +531,45 @@ function motivationBadMessage(lastQuestion) {
   //Ocultamos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "none";
   document.getElementById("motivationMessage").style.display = "block";
-  if(idioma == 'e' ){
-  badJobMessages = [
-    "Aunque falles, sigues aprendiendo",
-    "Todo esfuerzo valdrá la pena",
-    "Yo confió en tí, sigue adelante",
-    "Has podido con más, solo concentrate",
-    "Todo se logra con un poco de esfuerzo",
-    "¡Mantén tu entusiasmo!",
-    "¡Tú puedes!",
-    "¡Sigue intentando!",
-    "¡Cree en ti mismo!",
-    "¡No te rindas!",
-    " ¡Tú decides seguir!",
-    "Sal de tu zona de confort",
-    "¡Nunca te conformes!",
-    "No bajes tus metas, aumenta tus esfuerzos.",
-    " La paciencia y la constancia son los mejores compañeros.",
-    "El 80% del éxito se basa simplemente en insistir.",
-    "La confianza en ti mismo es el primer secreto del éxito.",
-    "Sé constante y lo lograrás.",
-    "El éxito es la suma de pequeños esfuerzos repetidos todos los días.",
-    "Aprende de tus errores y sigue adelante.",
-    "Si crees que puedes, ya estás a medio camino.",
-    "a actitud es una pequeña cosa que marca una gran diferencia.",
-    "¡Busca la oportunidad!",
-    "Si te caes siete veces, levántate ocho.",
-    "¡Tú puedes!, sigue intentando.",
-    "¡Insiste y lo lograrás!",
-    "Las limitaciones viven solo en tu mente.",
-    "El mayor riesgo es no arriesgarse nada.",
-    "Los errores, son lecciones que te harán mejorar.",
-    "Todo comienza con nada.",
-  ];}
-  else{
+  if (idioma == "e") {
     badJobMessages = [
-      "You can do it!", 
+      "Aunque falles, sigues aprendiendo",
+      "Todo esfuerzo valdrá la pena",
+      "Yo confió en tí, sigue adelante",
+      "Has podido con más, solo concentrate",
+      "Todo se logra con un poco de esfuerzo",
+      "¡Mantén tu entusiasmo!",
+      "¡Tú puedes!",
+      "¡Sigue intentando!",
+      "¡Cree en ti mismo!",
+      "¡No te rindas!",
+      " ¡Tú decides seguir!",
+      "Sal de tu zona de confort",
+      "¡Nunca te conformes!",
+      "No bajes tus metas, aumenta tus esfuerzos.",
+      " La paciencia y la constancia son los mejores compañeros.",
+      "El 80% del éxito se basa simplemente en insistir.",
+      "La confianza en ti mismo es el primer secreto del éxito.",
+      "Sé constante y lo lograrás.",
+      "El éxito es la suma de pequeños esfuerzos repetidos todos los días.",
+      "Aprende de tus errores y sigue adelante.",
+      "Si crees que puedes, ya estás a medio camino.",
+      "a actitud es una pequeña cosa que marca una gran diferencia.",
+      "¡Busca la oportunidad!",
+      "Si te caes siete veces, levántate ocho.",
+      "¡Tú puedes!, sigue intentando.",
+      "¡Insiste y lo lograrás!",
+      "Las limitaciones viven solo en tu mente.",
+      "El mayor riesgo es no arriesgarse nada.",
+      "Los errores, son lecciones que te harán mejorar.",
+      "Todo comienza con nada.",
+    ];
+  } else {
+    badJobMessages = [
+      "You can do it!",
       "Keep trying!",
       "Go for it!",
-      "Don´t give up!", 
+      "Don´t give up!",
       "It’s worth a shot!",
       "“The expert in anything was once a beginner” — Helen Hayes",
       "What do you have to lose?",
@@ -585,8 +602,6 @@ function motivationBadMessage(lastQuestion) {
   //Mostramos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "block";
 }
-
-
 
 //Cada vez que se escribe sobre un input
 //Firefox y o Google guardar la variable
