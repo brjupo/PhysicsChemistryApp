@@ -412,7 +412,7 @@ function nextQuestion(lastQuestion) {
         if (data.response == "exito") {
           //alert("Etcito");
           console.log("Valores enviados correctamente");
-          var stringLiga = "nivelCompletado.php?subtema=";
+          var stringLiga = "examenFinalizado.php?subtema=";
           window.location.replace(
             stringLiga.concat(
               document.getElementById("subtemaPrevio").innerHTML.trim()
