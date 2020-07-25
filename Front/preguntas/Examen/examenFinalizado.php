@@ -32,9 +32,9 @@
               aria-valuenow="40"
               aria-valuemin="0"
               aria-valuemax="100"
-              <?php echo 'style="width:'.floor(100*intval($puntos)/intval($totalPreguntas)).'%';?>
+              <?php echo 'style="width:'.floor(100*intval($puntos)/intval($totalPreguntas)).'%"';?>
             >
-            <?php echo ''.floor(100*intval($puntos)/intval($totalPreguntas)).'%';?>
+            <?php echo ''.floor(100*intval($puntos)/intval($totalPreguntas)).'%'';?>
             </div>
           </div>
         </div>
