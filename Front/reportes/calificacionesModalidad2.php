@@ -168,33 +168,28 @@ require '../../Servicios/DDBBVariables.php';
                             echo '
 	                            <tr class="table-light">
 	                                <td>' . $row[0] . '</td>
-                                    <td>' . $row[1] . '</td>
-                                    ' . obtenerPuntuacion($row[0], $servername,$dbname, $username, $password). '
-                                </tr>';
+                                    <td>' . $row[1] . '</td>';
+                            try {
+                                //Crear la lectura en base de datos
+                                $conn2 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                                $stringQuery2 = "SELECT a.matricula, l.id_leccion, p.puntuacion FROM alumno a JOIN leccion l JOIN puntuacion p ON p.id_leccion = l.id_leccion AND p.id_usuario = a.id_usuario WHERE p.tipo = 'SP' AND a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = 1) ORDER BY a.matricula ASC, l.id_leccion ASC;";
+                                $stmt2 = $conn2->query($stringQuery2);
+                                while ($row2 = $stmt2->fetch(PDO::FETCH_NUM)) {
+                                    //$row[0] valor de la primera columna 
+                                    if ($boleta == $row2[0]) {
+                                        echo '<td>' .  $row2[2] . '</td>';
+                                    }
+                                }
+                            } catch (PDOException $e) {
+                                echo "Error: " . $e->getMessage();
+                            }
+                            echo '</tr>';
                             //<td>' . obtenerPuntuacion($row[0]). '</td>
                         }
                     } catch (PDOException $e) {
                         echo "Error: " . $e->getMessage();
                     }
                     $conn = null;
-                    // funcion para obtener la puntuacion
-                    function obtenerPuntuacion($boleta, $servername,$dbname, $username, $password)
-                    {
-                        try {
-                            //Crear la lectura en base de datos
-                            $conn2 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                            $stringQuery2 = "SELECT a.matricula, l.id_leccion, p.puntuacion FROM alumno a JOIN leccion l JOIN puntuacion p ON p.id_leccion = l.id_leccion AND p.id_usuario = a.id_usuario WHERE p.tipo = 'SP' AND a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = 1) ORDER BY a.matricula ASC, l.id_leccion ASC;";
-                            $stmt2 = $conn2->query($stringQuery2);
-                            while ($row2 = $stmt2->fetch(PDO::FETCH_NUM)) {
-                                //$row[0] valor de la primera columna 
-                                if ($boleta == $row2[0]) {
-                                    echo '<td>' .  $row2[2] . '</td>';
-                                }                                
-                            }
-                        } catch (PDOException $e) {
-                            echo "Error: " . $e->getMessage();
-                        }
-                    }
                     ?>
                 </tbody>
             </table>
