@@ -11,7 +11,7 @@ require '../../Servicios/DDBBVariables.php';
   <title>Asignaturas</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
   <link rel="stylesheet" href="Asignaturas.css" />
-  <script src="Asignaturas.js"></script>
+  <script src="Asignaturas2.js"></script>
 </head>
 
 <body>
