@@ -49,5 +49,5 @@ function topv() {
   location.replace(url.concat(asignatura));
 }
 function do_logout() {
-  location.replace("../../index.php");
+  location.replace("../../../index.php");
 }
