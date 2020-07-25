@@ -3,7 +3,7 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
 //////////////////////////////////////////////////////
 
     $tiempo = getDatetimeNow();
-    $sql = "INSERT into alumno_grupo (id_alumno,id_grupo,tiempo) values (23,9,'$tiempo')";
+    $sql = "INSERT into alumno_grupo (id_alumno,id_grupo,tiempo) values (24,9,'$tiempo')";
     mysqli_multi_query($con, $sql);
 
     function getDatetimeNow() {
