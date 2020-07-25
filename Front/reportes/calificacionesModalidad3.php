@@ -174,11 +174,8 @@ require '../../Servicios/DDBBVariables.php';
                                 $stmt2 = $conn2->query($stringQuery2);
                                 while ($row2 = $stmt2->fetch(PDO::FETCH_NUM)) {
                                     //$row[0] valor de la primera columna 
-                                    if ($row[0] == $row2[0]) {
+                                    if ($row[0] === $row2[0]) {
                                         echo '<td>' .  $row2[2] . '</td>';
-                                    }
-                                    else{
-                                        echo '<td></td>';
                                     }
                                 }
                             } catch (PDOException $e) {
