@@ -190,6 +190,7 @@ require '../../Servicios/DDBBVariables.php';
                         echo "Error: " . $e->getMessage();
                     }
                     $conn = null;
+                    $conn2 = null;
                     ?>
                 </tbody>
             </table>
