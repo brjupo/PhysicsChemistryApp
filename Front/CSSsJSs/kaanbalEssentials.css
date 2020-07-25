@@ -1,19 +1,19 @@
 /*--------------------------------------------------FUENTES-----------------------------------------------------------*/
 @font-face {
     font-family: "ubuntu";
-    src: url("../CSSsJSs/Fonts/ubuntu/ubuntu.ttf") format("truetype");
+    src: url("Fonts/ubuntu/ubuntu.ttf") format("truetype");
   }
   @font-face {
     font-family: "georgia";
-    src: url("../CSSsJSs/Fonts/georgia/georgiaz.ttf") format("truetype");
+    src: url("Fonts/georgia/georgiaz.ttf") format("truetype");
   }
   @font-face {
     font-family: "Monse";
-    src: url("../CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf") format("opentype");
+    src: url("Fonts/montserrat/Montserrat-Regular.otf") format("opentype");
   }
   @font-face {
     font-family: "SSF";
-    src: url("../CSSsJSs/Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
+    src: url("Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
   }
   /*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
   body {
