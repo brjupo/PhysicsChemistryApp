@@ -45,7 +45,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
             <title>Kaanbal</title>
             <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
             <link rel="stylesheet" href="../CSSsJSs/styleUploadInfo.css" />
-            <script src="scriptEditarPreguntaPorID_9.js"></script>
+            <script src="scriptEditarPreguntaPorID.js"></script>
             <script src="../CSSsJSs/minAJAX.js"></script>
             </head>
 
@@ -379,7 +379,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
                         <input id="nuevaImagen" type="file" name="myImage" accept=".jpg" />
                     </div>
                     <div class="textCenter col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
-                        <img id="imagenPregunta" src="../../../IMAGENES/sinImagen.jpg" width="100%" />
+                        <img id="imagenPregunta" src="../../../../IMAGENES/sinImagen.jpg" width="100%" />
                     </div>
                 </div>
             </div>
