@@ -376,7 +376,29 @@ function nextQuestion(lastQuestion) {
     document.getElementById("totalPreguntas").innerHTML.trim()
   );
   if (lastQuestion == totalPreguntas && firstTimeToSaveGrade == 0) {
-    enviarCalificacion();
+    //enviarCalificacion();
+    //function enviarCalificacion() {
+      var userID = document.getElementById("userID").innerHTML.trim();
+      var leccionID = document.getElementById("leccionID").innerHTML.trim();
+      //alert(userID+ " "+ puntos+ " "+ leccionID);
+    
+      $.ajax({
+        type: "POST",
+        url: "../../../Servicios/subirPuntosType.php",
+        dataType: "json",
+        data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"PP" },
+        success: function (data) {
+          console.log(data.response);
+          if (data.response == "exito") {
+            //alert("Etcito");
+            console.log("Valores enviados correctamente");
+          } else {
+            //alert(data.response);
+            console.log("Algo salio mal");
+          }
+        },
+      });
+    //}
     firstTimeToSaveGrade = 1;
   }
   if (questionNumberArray.length == 0) {
@@ -564,28 +586,7 @@ function motivationBadMessage(lastQuestion) {
   document.getElementById("botonSiguientePregunta").style.display = "block";
 }
 
-function enviarCalificacion() {
-  var userID = document.getElementById("userID").innerHTML.trim();
-  var leccionID = document.getElementById("leccionID").innerHTML.trim();
-  //alert(userID+ " "+ puntos+ " "+ leccionID);
 
-  $.ajax({
-    type: "POST",
-    url: "../../../Servicios/subirPuntosType.php",
-    dataType: "json",
-    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo:"PP" },
-    success: function (data) {
-      console.log(data.response);
-      if (data.response == "exito") {
-        //alert("Etcito");
-        console.log("Valores enviados correctamente");
-      } else {
-        //alert(data.response);
-        console.log("Algo salio mal");
-      }
-    },
-  });
-}
 
 //Cada vez que se escribe sobre un input
 //Firefox y o Google guardar la variable
