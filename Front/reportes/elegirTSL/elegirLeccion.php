@@ -2,9 +2,10 @@
 require "../../../Servicios/DDBBVariables.php";
 require "../../../Servicios/isTeacher.php";
 
-if (isTeacher() === false) {
-  header('Location: https://kaanbal.net/');
-  exit;
+$teacherID = isTeacher();
+if ($teacherID=="null") {
+    header('Location: https://kaanbal.net/');
+    exit;
 }
 ?>
 
