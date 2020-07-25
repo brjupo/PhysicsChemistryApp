@@ -39,9 +39,9 @@ function isTeacher()
     }
 
     if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["profe"] != "" and $tokenValidar["tokenSesionp"] != "") {
-        return true;
+        return $idValidarprofe["profe"];
     } else {
-        return false;
+        return "null";
     }
 }
 

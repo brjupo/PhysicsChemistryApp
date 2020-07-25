@@ -1,16 +1,16 @@
 <?php
 require "../../../Servicios/DDBBVariables.php";
 require "../../../Servicios/isTeacher.php";
-
-if (isTeacher() === false) {
+$teacherID = isTeacher();
+if ($teacherID=="null") {
     header('Location: https://kaanbal.net/');
     exit;
 } else {
-    printMYG();
+    printMYG($teacherID);
 }
 
 
-function printMyG()
+function printMyG($teacherID)
 {
     echo '
         <!DOCTYPE html>
@@ -19,7 +19,7 @@ function printMyG()
     echo '<body>';
     printTitle();
     printInstructions();
-    printCombos();
+    printCombos($teacherID);
     echo '
         </body>
         </html>';
@@ -90,7 +90,7 @@ function printInstructions()
   ';
 }
 
-function printCombos()
+function printCombos($teacherID)
 {
     echo '
   <div class="container">
@@ -98,16 +98,17 @@ function printCombos()
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="input-group-prepend">
             <label class="input-group-text" for="grupo">Grupo</label>
+            <p>'.$teacherID.'</p>
         </div>
             <select class="custom-select" id="grupo">
                 <option selected disabled value="0">Elegir</option>';
 
-    global $servername, $username, $password, $dbname, $idValidarprofe;
+    global $servername, $username, $password, $dbname;
     //Crear la lectura en base de datos
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = 'SELECT id_grupo, nombre FROM grupo WHERE id_profesor = ' . $idValidarprofe["profe"] . ';';
+        $stringQuery = 'SELECT id_grupo, nombre FROM grupo WHERE id_profesor = ' . $teacherID . ';';
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
