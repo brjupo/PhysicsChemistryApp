@@ -153,8 +153,6 @@ require '../../Servicios/DDBBVariables.php';
                         ?>
                     </tr>
                     <!--+++++++++++++++++++++++++++++++++++ Matriculas y Diamantes +++++++++++++++++++++++++++++++++++++-->
-                    <p>.</p>
-                    <p>INPUTS: id grupo</p>
                     <?php
                     //Crear la lectura en base de datos
                     try {
