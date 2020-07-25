@@ -7,8 +7,9 @@
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
+  <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials.css" />
   <link rel="stylesheet" href="Temas.css" />
-  <script src="scriptPerfil.js"></script>
+  <script src="Perfil.js"></script>
   <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
@@ -164,6 +165,7 @@
     imprimirRelleno();
     imprimirDiamantes($diamantes);
     imprimirRelleno();
+    imprimirCreditos();
     imprimirRelleno();
     imprimirRelleno();
     imprimirFooter();
@@ -341,6 +343,18 @@
                 <p class="tituloTemasPrincipales textLeft">' . $diamantes . '</p>
               </div>
               <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+            </div>
+          </div>
+    ';
+  }
+
+  function imprimirCreditos(){
+    echo '
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <a href="creditos.html"><h1 class="textCenter titulo">Creditos</h1></a>
+              </div>
             </div>
           </div>
     ';
