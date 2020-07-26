@@ -412,18 +412,14 @@ function nextQuestion(lastQuestion) {
         if (data.response == "exito") {
           //alert("Etcito");
           console.log("Valores enviados correctamente");
-          var stringLiga =
+            var stringLiga =
             "examenFinalizado.php?subtema=" +
             document.getElementById("subtemaPrevio").innerHTML.trim() +
             "&puntos=" +
             puntos +
             "&totalPreguntas=" +
             document.getElementById("totalPreguntas").innerHTML.trim();
-          window.location.replace(
-            stringLiga.concat(
-              document.getElementById("subtemaPrevio").innerHTML.trim()
-            )
-          );
+          window.location.replace(stringLiga);
         } else {
           //alert(data.response);
           console.log("Algo salio mal");
