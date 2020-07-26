@@ -3,6 +3,7 @@ var questionNumberArray = [];
 var puntos = 0;
 var buenas0_malas1_alHilo = [0, 0];
 var firstTimeToSaveGrade = 0;
+var acumulador = 0;
 
 var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
@@ -16,9 +17,16 @@ window.onload = function () {
   createArrayWithQuestions();
   //setTimeout("finTiempo()",70000);
   //imprimirTiempo();
+  contarTiempo();
   totalTime = parseInt(document.getElementById("tiempo").innerHTML.trim());
   imprimirClock();
 };
+
+function contarTiempo() {
+  window.setInterval(function(){
+    acumulador++;
+  },1000);
+  }
 
 function createArrayWithQuestions() {
   for (var i = 1001; i <= 1100; i++) {
@@ -159,6 +167,8 @@ function seguroRegresar() {
       "Are you sure to return?\n If you return you will lose all your progress of this lesson"
     )
   ) {
+    var userID = document.getElementById("userID").innerHTML.trim();
+    enviarAcumulador(userID);
     var stringLiga = "../../Inicio/lecciones.php?subtema=";
     window.location.href = stringLiga.concat(
       document.getElementById("subtemaPrevio").innerHTML.trim()
@@ -396,6 +406,7 @@ function nextQuestion(lastQuestion) {
     });
     //}
     firstTimeToSaveGrade = 1;
+    enviarAcumulador(userID);
   }
   if (questionNumberArray.length == 0) {
     var userID = document.getElementById("userID").innerHTML.trim();
@@ -426,6 +437,7 @@ function nextQuestion(lastQuestion) {
         }
       },
     });
+    enviarAcumulador(userID);
   } else {
     loadNewQuestion(questionNumberArray[0]);
   }
@@ -640,6 +652,23 @@ function enviarCalificacion() {
     },
   });
 }
+
+function enviarAcumulador(userID) {
+  $.ajax({
+    type: "POST",
+    url: "../../../Servicios/enviarAcumulador.php",
+    dataType: "json",
+    data: { id: userID, acmldr: acumulador, flagTipo: "acmlrE" },
+    success: function (data) {
+      console.log(data.response);
+      if (data.response == "exito") {
+        console.log("Valores enviados correctamente");
+      } else {
+        console.log("Algo salio mal");
+      }
+    },
+  });
+  }
 /////////////777!///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Cada vez que se escribe sobre un input
@@ -656,3 +685,4 @@ function limpiarInputs(cantidadIDs) {
     }
   }
 }
+
