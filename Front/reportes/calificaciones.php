@@ -274,12 +274,6 @@ require '../../Servicios/DDBBVariables.php';
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             array_push($alumnos["matricula"], $row[0]);
                             array_push($alumnos["id"], $row[1]);
-                            echo '
-                            <tr>
-                                <td>' . $row[0] . '</td>
-                                <td>' . $row[1] . '</td>
-                            </tr>
-                            ';
                         }
                     } catch (PDOException $e) {
                         echo "Error: " . $e->getMessage();
