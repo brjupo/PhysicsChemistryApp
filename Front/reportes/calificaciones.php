@@ -240,30 +240,28 @@ require '../../Servicios/DDBBVariables.php';
             ?>
             <table>
                 <tbody>
-                    <?php
-                    //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
-                    for ($k = 0; $k < count($lecciones["id"]); $k++) {
-                        echo '
-                        <tr class="table-info">
-                            <td>'. $lecciones["tema"][$k] .'</td>
-                        </tr>
-                        ';
-                    }
-                    for ($k = 0; $k < count($lecciones["id"]); $k++) {
-                        echo '
-                        <tr class="table-light">
-                            <td>'. $lecciones["subtema"][$k] .'</td>
-                        </tr>
-                        ';
-                    }
-                    for ($k = 0; $k < count($lecciones["id"]); $k++) {
-                        echo '
-                        <tr class="table-info">
-                            <td>'. $lecciones["nombre"][$k] .'</td>
-                        </tr>
-                        ';
-                    }
-                    ?>
+                    <tr class="table-info">
+                        <?php
+                        //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
+                        for ($k = 0; $k < count($lecciones["id"]); $k++) {
+                            echo '<td>' . $lecciones["tema"][$k] . '</td>';
+                        } ?>
+                    </tr>
+                    <tr class="table-light">
+                        <?php
+                        for ($k = 0; $k < count($lecciones["id"]); $k++) {
+                            echo '<td>' . $lecciones["subtema"][$k] . '</td>';
+                        }
+                        ?>
+                    </tr>
+                    <tr class="table-info">
+                        <?php
+                        for ($k = 0; $k < count($lecciones["id"]); $k++) {
+                            echo '<td>' . $lecciones["nombre"][$k] . '</td>';
+                        }
+
+                        ?>
+                    </tr>
 
                 </tbody>
             </table>
