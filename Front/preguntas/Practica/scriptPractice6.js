@@ -630,7 +630,7 @@ function limpiarInputs(cantidadIDs) {
   }
 }
 
-function enviarAcumulador() {
+function enviarAcumulador(userID) {
 $.ajax({
   type: "POST",
   url: "../../../Servicios/enviarAcumulador.php",
