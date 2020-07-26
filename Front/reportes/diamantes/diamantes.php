@@ -148,7 +148,6 @@ if (!isset($_POST["grupo"])) {
 
     <div class="container">
         <div class="row">
-            <p>Si el alumno, NO está en la lista, es porque no se tiene actividad registrada</p>
             <table class="table table-striped">
                 <tbody>
                     <tr>
