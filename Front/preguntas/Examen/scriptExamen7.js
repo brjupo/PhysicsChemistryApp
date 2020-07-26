@@ -3,15 +3,21 @@ var questionNumberArray = [];
 var puntos = 0;
 var buenas0_malas1_alHilo = [0, 0];
 var firstTimeToSaveGrade = 0;
-var idioma = "e";
+
 var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 
+var flagTiempo = 0;
+//var totalTime = 70;reloj descendente
+var totalTime = 0;
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
   createArrayWithQuestions();
-  idioma = document.getElementById("idioma").innerHTML.trim();
+  //setTimeout("finTiempo()",70000);
+  //imprimirTiempo();
+  totalTime = parseInt(document.getElementById("tiempo").innerHTML.trim());
+  imprimirClock();
 };
 
 function createArrayWithQuestions() {
@@ -122,15 +128,7 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == botonSiguientePregunta) {
-      if (buenas0_malas1_alHilo[0] == 5) {
-        motivationGoodMessage(lastQuestion);
-        buenas0_malas1_alHilo[0] = 0;
-      } else if (buenas0_malas1_alHilo[1] == 5) {
-        motivationBadMessage(lastQuestion);
-        buenas0_malas1_alHilo[1] = 0;
-      } else {
-        nextQuestion(lastQuestion);
-      }
+      nextQuestion(lastQuestion);
       return;
     }
     if (
@@ -384,7 +382,7 @@ function nextQuestion(lastQuestion) {
       type: "POST",
       url: "../../../Servicios/subirPuntosType.php",
       dataType: "json",
-      data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "PP" },
+      data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "E" },
       success: function (data) {
         console.log(data.response);
         if (data.response == "exito") {
@@ -408,18 +406,20 @@ function nextQuestion(lastQuestion) {
       type: "POST",
       url: "../../../Servicios/subirPuntosType.php",
       dataType: "json",
-      data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "PP" },
+      data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "E" },
       success: function (data) {
         console.log(data.response);
         if (data.response == "exito") {
           //alert("Etcito");
           console.log("Valores enviados correctamente");
-          var stringLiga = "nivelCompletado.php?subtema=";
-          window.location.replace(
-            stringLiga.concat(
-              document.getElementById("subtemaPrevio").innerHTML.trim()
-            )
-          );
+            var stringLiga =
+            "examenFinalizado.php?subtema=" +
+            document.getElementById("subtemaPrevio").innerHTML.trim() +
+            "&puntos=" +
+            puntos +
+            "&totalPreguntas=" +
+            document.getElementById("totalPreguntas").innerHTML.trim();
+          window.location.replace(stringLiga);
         } else {
           //alert(data.response);
           console.log("Algo salio mal");
@@ -435,89 +435,58 @@ function motivationGoodMessage(lastQuestion) {
   //Ocultamos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "none";
   document.getElementById("motivationMessage").style.display = "block";
-  if (idioma == "e") {
-    goodJobMessages = [
-      "Excelente, sigue así",
-      "¡Eres increible!",
-      "¡Eres el mejor!",
-      "Sabía que podías con esto y más",
-      "¡Vas muy bien!",
-      "¡Bien hecho!",
-      "¡Sigue así!",
-      "¡Sigue adelante, vas muy bien!",
-      "¡Dá siempre tu 100%!",
-      "¡Perseverar rinde frutos!",
-      "Observa, escucha y aprende.",
-      "¡Lo lograste!",
-      "¡Muy bien!",
-      "Ten paciencia, obtendrás lo que deseas.",
-      "Un viaje de mil millas comienza con un simple paso.",
-      "Con autodisciplina casi todo es posible.",
-      "¡Eres joven y talentoso!",
-      "¡Lo lograste otra vez!",
-      "El secreto del éxito es el entusiasmo, ¡sigue adelante!",
-      "No hay ascensor al éxito, tienes que tomar las escaleras.",
-      "Con esfuerzo y perseverancia podrás alcanzar tus metas.",
-      " El precio del éxito es el trabajo, dedicación y determinación.",
-      "Siempre puedes ser mejor.",
-      "La suerte y el esfuerzo van de la mano.",
-      "Cuanto más trabajas, más suerte pareces tener.",
-      "¡Estás aprendiendo mucho! ",
-      "¡Sigue aprendiendo!",
-      "Cuando aprendes algo, nadie puede arrebatártelo.",
-      "Todo es práctica.",
-      "¡La fortuna te favorece!",
-      "Tu disciplina es el ingrediente más importante del éxito.",
-      "¡Das lo mejor que tienes!",
-      "Si eres constante, ¡serás éxitoso!",
-      "Nada es difícil si lo divides en pequeños trabajos.",
-      "La motivación te hizo iniciar y el hábito te permite continuar",
-      "Tu éxito es la suma de pequeños esfuerzos repetidos varias veces.",
-      "Perseverancia. No hay otro secreto para tu éxito",
-      "¡Busca la excelencia!",
-      "Esfuerzo continuo, ¡es la clave para alcanzar el éxito!",
-      "Tu actitud, no tu aptitud, determinará tu altitud.",
-      "Comienza a pensar en ti, como la persona que quieres ser.",
-      "Sé el cambio que quieres ver en el mundo.",
-      "No hay atajos para llegar a cualquier lugar al que merezca la pena llegar.",
-      "Si haces primero las cosas que son más fáciles, haces mucho progreso.",
-      "Siempre parece imposible hasta que se hace.",
-      "La motivación es lo que te pone en marcha, el hábito es lo que hace que sigas",
-      "Tus talentos y habilidades van mejorando con el tiempo.",
-      "Tu paciencia conseguirá más cosas que tu fuerza.",
-      "Los campeones siguen jugando hasta que lo hacen bien.",
-      "El éxito depende del esfuerzo",
-    ];
-  } else {
-    goodJobMessages = [
-      "Your're on fire!",
-      "You are  doing amazing!",
-      "Excellent!",
-      "Follow your dreams!",
-      "“Success is the sum of small efforts, repeated.” - R. Collier",
-      "“Motivation is what gets you started. Habit is what keeps you going.” – Jim Ryun",
-      "“What the mind can conceive and believe, and the heart desire, you can achieve.” – Norman Vincent Peale",
-      "The sky is the limit!",
-      "Look at what you can accomplish!",
-      "You are amazing!",
-      "Everything you need to accomplish your goals is already in you.",
-      "Consistent hard work leads to success.",
-      "Patience will take you farther than strength.",
-      "“There are no traffic jams on the extra mile.” -Zig Ziglar",
-      "Success isn't always about greatness. It's about consistency.- Dwayne “The Rock” Johnson",
-      "It always seems impossible until it's done. -Nelson Mandela",
-      "Perseverance is not a long race; it is many short races one after the other. -Walter Elliot",
-      "Let me tell you the secret that has led to my goal. My strength lies solely in my tenacity. -Louis Pasteur",
-      "I was taught the way of progress is neither swift nor easy. -Marie Curie",
-      "Success is not final, failure is not fatal: It is the courage to continue that counts. -Winston Churchill",
-      "Aim for success!",
-      "Your getting so much better!",
-      "“If you are working on something that you really care about, you don’t have to be pushed. The vision pulls you.” - Steve Jobs",
-      "“We may encounter, many defeats but we must not be defeated.” - Maya Angelou",
-      "“Success comes from having dreams that are bigger than your fears.” -Bobby Unser",
-    ];
-  }
-
+  goodJobMessages = [
+    "Excelente, sigue así",
+    "¡Eres increible!",
+    "¡Eres el mejor!",
+    "Sabía que podías con esto y más",
+    "¡Vas muy bien!",
+    "¡Bien hecho!",
+    "¡Sigue así!",
+    "¡Sigue adelante, vas muy bien!",
+    "¡Dá siempre tu 100%!",
+    "¡Perseverar rinde frutos!",
+    "Observa, escucha y aprende.",
+    "¡Lo lograste!",
+    "¡Muy bien!",
+    "Ten paciencia, obtendrás lo que deseas.",
+    "Un viaje de mil millas comienza con un simple paso.",
+    "Con autodisciplina casi todo es posible.",
+    "¡Eres joven y talentoso!",
+    "¡Lo lograste otra vez!",
+    "El secreto del éxito es el entusiasmo, ¡sigue adelante!",
+    "No hay ascensor al éxito, tienes que tomar las escaleras.",
+    "Con esfuerzo y perseverancia podrás alcanzar tus metas.",
+    " El precio del éxito es el trabajo, dedicación y determinación.",
+    "Siempre puedes ser mejor.",
+    "La suerte y el esfuerzo van de la mano.",
+    "Cuanto más trabajas, más suerte pareces tener.",
+    "¡Estás aprendiendo mucho! ",
+    "¡Sigue aprendiendo!",
+    "Cuando aprendes algo, nadie puede arrebatártelo.",
+    "Todo es práctica.",
+    "¡La fortuna te favorece!",
+    "Tu disciplina es el ingrediente más importante del éxito.",
+    "¡Das lo mejor que tienes!",
+    "Si eres constante, ¡serás éxitoso!",
+    "Nada es difícil si lo divides en pequeños trabajos.",
+    "La motivación te hizo iniciar y el hábito te permite continuar",
+    "Tu éxito es la suma de pequeños esfuerzos repetidos varias veces.",
+    "Perseverancia. No hay otro secreto para tu éxito",
+    "¡Busca la excelencia!",
+    "Esfuerzo continuo, ¡es la clave para alcanzar el éxito!",
+    "Tu actitud, no tu aptitud, determinará tu altitud.",
+    "Comienza a pensar en ti, como la persona que quieres ser.",
+    "Sé el cambio que quieres ver en el mundo.",
+    "No hay atajos para llegar a cualquier lugar al que merezca la pena llegar.",
+    "Si haces primero las cosas que son más fáciles, haces mucho progreso.",
+    "Siempre parece imposible hasta que se hace.",
+    "La motivación es lo que te pone en marcha, el hábito es lo que hace que sigas",
+    "Tus talentos y habilidades van mejorando con el tiempo.",
+    "Tu paciencia conseguirá más cosas que tu fuerza.",
+    "Los campeones siguen jugando hasta que lo hacen bien.",
+    "El éxito depende del esfuerzo",
+  ];
   //Numero random del 0 al goodJobMessages.length
   rand = Math.floor(Math.random() * goodJobMessages.length);
   hiddePreviousQuestion(lastQuestion);
@@ -531,69 +500,38 @@ function motivationBadMessage(lastQuestion) {
   //Ocultamos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "none";
   document.getElementById("motivationMessage").style.display = "block";
-  if (idioma == "e") {
-    badJobMessages = [
-      "Aunque falles, sigues aprendiendo",
-      "Todo esfuerzo valdrá la pena",
-      "Yo confió en tí, sigue adelante",
-      "Has podido con más, solo concentrate",
-      "Todo se logra con un poco de esfuerzo",
-      "¡Mantén tu entusiasmo!",
-      "¡Tú puedes!",
-      "¡Sigue intentando!",
-      "¡Cree en ti mismo!",
-      "¡No te rindas!",
-      " ¡Tú decides seguir!",
-      "Sal de tu zona de confort",
-      "¡Nunca te conformes!",
-      "No bajes tus metas, aumenta tus esfuerzos.",
-      " La paciencia y la constancia son los mejores compañeros.",
-      "El 80% del éxito se basa simplemente en insistir.",
-      "La confianza en ti mismo es el primer secreto del éxito.",
-      "Sé constante y lo lograrás.",
-      "El éxito es la suma de pequeños esfuerzos repetidos todos los días.",
-      "Aprende de tus errores y sigue adelante.",
-      "Si crees que puedes, ya estás a medio camino.",
-      "a actitud es una pequeña cosa que marca una gran diferencia.",
-      "¡Busca la oportunidad!",
-      "Si te caes siete veces, levántate ocho.",
-      "¡Tú puedes!, sigue intentando.",
-      "¡Insiste y lo lograrás!",
-      "Las limitaciones viven solo en tu mente.",
-      "El mayor riesgo es no arriesgarse nada.",
-      "Los errores, son lecciones que te harán mejorar.",
-      "Todo comienza con nada.",
-    ];
-  } else {
-    badJobMessages = [
-      "You can do it!",
-      "Keep trying!",
-      "Go for it!",
-      "Don´t give up!",
-      "It’s worth a shot!",
-      "“The expert in anything was once a beginner” — Helen Hayes",
-      "What do you have to lose?",
-      "Never give up!",
-      "Believe in yourself!",
-      "Hang in there!",
-      "Don’t give up!",
-      "Keep pushing!",
-      "Keep fighting!",
-      "Stay strong!",
-      "Never give up!",
-      "“There are no shortcuts to any place worth going.” - Beverly Stills",
-      "Come on! You can do it!",
-      "Just breathe and have faith that everything will work out for the best.",
-      "Don’t worry, be happy!",
-      "Stay positive",
-      "Be the smart person that you are!",
-      "Just relax, and keep trying!",
-      "It doesn’t matter how slow you go as long as you never stop.",
-      "“Never let the fear of striking out stop you from playing the game.” - Babe Ruth",
-      "“A person who never made a mistake never tried anything new”. - Albert Einstein",
-      "“Learning is never done without errors and defeat.” – Vladimir Lenin",
-    ];
-  }
+  badJobMessages = [
+    "Aunque falles, sigues aprendiendo",
+    "Todo esfuerzo valdrá la pena",
+    "Yo confió en tí, sigue adelante",
+    "Has podido con más, solo concentrate",
+    "Todo se logra con un poco de esfuerzo",
+    "¡Mantén tu entusiasmo!",
+    "¡Tú puedes!",
+    "¡Sigue intentando!",
+    "¡Cree en ti mismo!",
+    "¡No te rindas!",
+    " ¡Tú decides seguir!",
+    "Sal de tu zona de confort",
+    "¡Nunca te conformes!",
+    "No bajes tus metas, aumenta tus esfuerzos.",
+    " La paciencia y la constancia son los mejores compañeros.",
+    "El 80% del éxito se basa simplemente en insistir.",
+    "La confianza en ti mismo es el primer secreto del éxito.",
+    "Sé constante y lo lograrás.",
+    "El éxito es la suma de pequeños esfuerzos repetidos todos los días.",
+    "Aprende de tus errores y sigue adelante.",
+    "Si crees que puedes, ya estás a medio camino.",
+    "a actitud es una pequeña cosa que marca una gran diferencia.",
+    "¡Busca la oportunidad!",
+    "Si te caes siete veces, levántate ocho.",
+    "¡Tú puedes!, sigue intentando.",
+    "¡Insiste y lo lograrás!",
+    "Las limitaciones viven solo en tu mente.",
+    "El mayor riesgo es no arriesgarse nada.",
+    "Los errores, son lecciones que te harán mejorar.",
+    "Todo comienza con nada.",
+  ];
   //Numero random del 0 al goodJobMessages.length
   rand = Math.floor(Math.random() * badJobMessages.length);
   hiddePreviousQuestion(lastQuestion);
@@ -602,6 +540,107 @@ function motivationBadMessage(lastQuestion) {
   //Mostramos esta seccion
   document.getElementById("botonSiguientePregunta").style.display = "block";
 }
+////////////////77
+
+function finTiempo() {
+  enviarCalificacion();
+  var stringLiga =
+    "examenFinalizado.php?subtema=" +
+    document.getElementById("subtemaPrevio").innerHTML.trim() +
+    "&puntos=" +
+    puntos +
+    "&totalPreguntas=" +
+    document.getElementById("totalPreguntas").innerHTML.trim();
+  window.location.replace(stringLiga);
+}
+//cuenta descendente
+function imprimirClock() {
+  var min = 0;
+  var seg = 0;
+  /* var resto = totalTime % 60;   
+      if ( resto == 0 ){
+        //obtener el cociente
+        min = totalTime / 60;
+        seg = 59;
+      }else{ */
+  min = Math.trunc(totalTime / 60);
+  seg = totalTime - min * 60;
+  //}
+  m = min.toString();
+  n = seg.toString();
+  if (m <= 9 && n <= 9) {
+    document.getElementById("number").innerHTML = "0".concat(m, ":0", n);
+  } else if (m <= 9) {
+    document.getElementById("number").innerHTML = "0".concat(m, ":", n);
+  } else if (n <= 9) {
+    document.getElementById("number").innerHTML = m.concat(":0", n);
+  } else {
+    document.getElementById("number").innerHTML = m.concat(":", n);
+  }
+  if (totalTime == 0) {
+    finTiempo();
+  } else {
+    totalTime -= 1;
+    //seg-=1;
+    setTimeout("imprimirClock()", 1000);
+  }
+}
+
+//cuenta ascendente
+function imprimirTiempo() {
+  var num = 0;
+  var min = 0;
+  var l = document.getElementById("number");
+
+  window.setInterval(function () {
+    var resto = num % 60;
+    if (resto == 0) {
+      if (num != 0) {
+        min++;
+      }
+      num = 0;
+    }
+    /////////////////////////////////////////
+    m = min.toString();
+    n = num.toString();
+    l.innerHTML = m.concat(":", n);
+    num++;
+  }, 1000);
+}
+
+function ocultarTiempo() {
+  if (flagTiempo == 0) {
+    document.getElementById("number").style.display = "none";
+    flagTiempo = 1;
+  } else {
+    document.getElementById("number").style.display = "block";
+    flagTiempo = 0;
+  }
+}
+
+function enviarCalificacion() {
+  var userID = document.getElementById("userID").innerHTML.trim();
+  var leccionID = document.getElementById("leccionID").innerHTML.trim();
+  //alert(userID+ " "+ puntos+ " "+ leccionID);
+
+  $.ajax({
+    type: "POST",
+    url: "../../../Servicios/subirPuntosType.php",
+    dataType: "json",
+    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "E" },
+    success: function (data) {
+      console.log(data.response);
+      if (data.response == "exito") {
+        //alert("Etcito");
+        console.log("Valores enviados correctamente");
+      } else {
+        //alert(data.response);
+        console.log("Algo salio mal");
+      }
+    },
+  });
+}
+/////////////777!///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Cada vez que se escribe sobre un input
 //Firefox y o Google guardar la variable
