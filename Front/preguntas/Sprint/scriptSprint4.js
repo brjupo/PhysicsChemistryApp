@@ -16,8 +16,15 @@ var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
+  contarTiempo();
   segundos = getTimeForSprint();
 };
+
+function contarTiempo() {
+  window.setInterval(function(){
+    acumulador++;
+  },1000);
+  }
 
 function getTimeForSprint() {
   leccion = document.getElementById("leccionID").innerHTML.trim();
