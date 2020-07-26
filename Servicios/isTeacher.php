@@ -1,7 +1,8 @@
 
 <?php
 require "DDBBVariables.php";
-
+//---------------NO BORRAR
+//SI LO BORRAN, MUCHAS VISTAS DEJARÁN DE FUNCIONAR
 //////////////////////////////////////////////////////
 session_start();
 $tokenValidar = array();
