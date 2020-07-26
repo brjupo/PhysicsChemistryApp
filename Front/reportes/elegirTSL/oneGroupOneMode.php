@@ -73,18 +73,17 @@ function printTitle()
   ';
 }
 
-function printCabecera(){
+function printCabecera()
+{
     echo '
-
     <!--+++++++++++++++++++++++++++++++++++ CABECERA [Asignatura, Profesor, Grupo y Modalidad] +++++++++++++++++++++++++++++++++++++-->
-    <p> INPUTS: Id de grupo y Modalidad</p>
     ';
     global $servername, $username, $password, $dbname;
     //Crear la lectura en base de datos
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = ".$_GET["grupo"]." AND pu.tipo = '".$_GET["modo"]."';";
+        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $_GET["grupo"] . " AND pu.tipo = '" . $_GET["modo"] . "';";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Materia, mail, grupo, modalidad
@@ -97,27 +96,32 @@ function printCabecera(){
         echo "Error: " . $e->getMessage();
     }
     $conn = null;
-    echo'
+    // (Condition)?(thing's to do if condition true):(thing's to do if condition false);
+    if ($modalidad=="PP")$modalidad="Práctica";
+    if ($modalidad=="SP")$modalidad="Sprint";
+    if ($modalidad=="E")$modalidad="Examen";
+    if ($modalidad=="SS")$modalidad="Super Sprint";
+    echo '
     <div class="container">
         <div class="row">
             <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                <table style="width:100%">
+                <table style="width:100%" class="table table-striped">
                     <tbody>
-                        <tr class="table-info">
+                        <tr>
                             <td>Asignatura</td>
-                            <td>'. $materia. '</td>
+                            <td>' . $materia . '</td>
                         </tr>
                         <tr class="table-light">
                             <td>Profesor</td>
-                            <td>'. $correoProfesor. '</td>
+                            <td>' . $correoProfesor . '</td>
                         </tr>
-                        <tr class="table-info">
+                        <tr>
                             <td>Grupo</td>
-                            <td>'. $grupo. '</td>
+                            <td>' . $grupo . '</td>
                         </tr>
                         <tr class="table-light">
                             <td>Modalidad</td>
-                            <td>'. $modalidad. '</td>
+                            <td>' . $modalidad . '</td>
                         </tr>
                     </tbody>
                 </table>
@@ -128,13 +132,40 @@ function printCabecera(){
     ';
 }
 
-function printTSL(){
+function printTSL()
+{
     global $servername, $username, $password, $dbname;
     //Crear la lectura en base de datos
+    //SELECT nombre FROM tema WHERE id_tema IN (SELECT id_tema FROM subtema WHERE id_subtema IN (SELECT id_subtema FROM leccion WHERE id_leccion = 151)) 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT nombre FROM leccion WHERE id_leccion = ".$_GET["leccion"].";";
+        $stringQuery = "SELECT nombre FROM tema WHERE id_tema IN (SELECT id_tema FROM subtema WHERE id_subtema IN (SELECT id_subtema FROM leccion WHERE id_leccion = " . $_GET["leccion"] . "))";
+        $stmt = $conn->query($stringQuery);
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $tema = $row[0];
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
+    //SELECT nombre FROM subtema WHERE id_subtema IN (SELECT id_subtema FROM leccion WHERE id_leccion = 151) 
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stringQuery = "SELECT nombre FROM subtema WHERE id_subtema IN (SELECT id_subtema FROM leccion WHERE id_leccion = " . $_GET["leccion"] . ")";
+        $stmt = $conn->query($stringQuery);
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $subtema = $row[0];
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stringQuery = "SELECT nombre FROM leccion WHERE id_leccion = " . $_GET["leccion"] . ";";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             $leccion = $row[0];
@@ -143,7 +174,7 @@ function printTSL(){
         echo "Error: " . $e->getMessage();
     }
     $conn = null;
-    echo'
+    echo '
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -151,15 +182,15 @@ function printTSL(){
                     <tbody>
                         <tr class="table-info">
                             <td>.</td>
-                            <td>tema</td>
+                            <td>' . $tema . '</td>
                         </tr>
                         <tr class="table-light">
                             <td>.</td>
-                            <td>subtema</td>
+                            <td>' . $subtema . '</td>
                         </tr>
                         <tr class="table-info">
                             <td>.</td>
-                            <td>'. $leccion. '</td>
+                            <td>' . $leccion . '</td>
                         </tr>';
     //Crear la lectura en base de datos
     try {
@@ -172,14 +203,14 @@ function printTSL(){
             echo '
             <tr class="table-light">
                 <td>' . $row[0] . '</td>
-                <td>' . $row[1] . '</td>
+                <td></td>
             </tr>';
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
-    $conn = null;                    
-    echo'
+    $conn = null;
+    echo '
                     </tbody>
                 </table>
             </div>

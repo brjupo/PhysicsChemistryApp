@@ -99,11 +99,16 @@ function printCombos($teacherID)
   <div class="container">
     <div class="row">
       <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <form action="diamantes.php" id="groupForm" method="POST">
+            <input type="submit" class="btn btn-primary btn-sm">
+        </form>
+
         <div class="input-group-prepend">
             <label class="input-group-text" for="grupo">Grupo</label>
             <p>'.$teacherID.'</p>
         </div>
-            <select class="custom-select" id="grupo">
+            <label for="grupo" style="display:none;">grupo</label>
+            <select class="custom-select" id="grupo" name="grupo" form="groupForm">
                 <option selected disabled value="0">Elegir</option>';
 
     global $servername, $username, $password, $dbname;
@@ -135,33 +140,6 @@ function printCombos($teacherID)
     </div>
   </div>
   ';
-
-    echo '
-  <div class="container">
-    <div class="row">
-      <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="modalidad">Modalidad</label>
-        </div>
-            <select class="custom-select" id="modalidad">
-                <option selected disabled value="0">Elegir</option>
-                <option value="PP">Práctica</option>
-                <option value="SP">Sprint</option>
-                <option value="E">Examen</option>
-                <option value="SS">Super Sprint</option>
-            </select>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-  </div>
-  ';
 }
  function printButtons(){
     echo '
@@ -170,6 +148,7 @@ function printCombos($teacherID)
         <div
           class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
         >
+        <a href="diamantes.php?grupo=">
           <button
             id="generateReport"
             type="button"
