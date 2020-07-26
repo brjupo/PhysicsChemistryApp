@@ -128,7 +128,6 @@ require '../../Servicios/DDBBVariables.php';
                 $stringQuery = "SELECT id_asignatura FROM grupo WHERE id_grupo = 1 LIMIT 1";
                 $stmt = $conn->query($stringQuery);
                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                    echo "<p>" . $row[0] . "</p>";
                     $id_asignatura = $row[0];
                 }
             } catch (PDOException $e) {
@@ -154,7 +153,6 @@ require '../../Servicios/DDBBVariables.php';
                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                     array_push($temas["nombre"], $row[0]);
                     array_push($temas["id"], $row[1]);
-                    echo "<p>" . $row[0] . "__" . $row[1] . "</p><br>";
                 }
             } catch (PDOException $e) {
                 echo "Error: " . $e->getMessage();
@@ -230,17 +228,11 @@ require '../../Servicios/DDBBVariables.php';
     <!--IMRPIMIR LA LISTA DE LECCIONES EN ORDEN, DEL GRUPO 1-->
     <div class="container">
         <div class="row">
-            <?php
-            //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
-            for ($k = 0; $k < count($lecciones["id"]); $k++) {
-                echo "<p>" . $lecciones["tema"][$k] . " > " . $lecciones["subtema"][$k] . " > "
-                    . $lecciones["nombre"][$k] . "__" . $lecciones["id"][$k] . "</p><br>";
-            }
-
-            ?>
             <table>
                 <tbody>
                     <tr class="table-info">
+                        <td>.</td>
+                        <td>.</td>
                         <?php
                         //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
                         for ($k = 0; $k < count($lecciones["id"]); $k++) {
@@ -248,6 +240,8 @@ require '../../Servicios/DDBBVariables.php';
                         } ?>
                     </tr>
                     <tr class="table-light">
+                        <td>.</td>
+                        <td>.</td>
                         <?php
                         for ($k = 0; $k < count($lecciones["id"]); $k++) {
                             echo '<td>' . $lecciones["subtema"][$k] . '</td>';
@@ -255,6 +249,8 @@ require '../../Servicios/DDBBVariables.php';
                         ?>
                     </tr>
                     <tr class="table-info">
+                        <td>.</td>
+                        <td>.</td>
                         <?php
                         for ($k = 0; $k < count($lecciones["id"]); $k++) {
                             echo '<td>' . $lecciones["nombre"][$k] . '</td>';
