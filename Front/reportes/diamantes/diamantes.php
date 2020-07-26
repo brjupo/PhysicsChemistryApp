@@ -179,7 +179,7 @@ if (!isset($_POST["grupo"])) {
                         echo '
                             <tr>
                                 <td>' . $alumnos["matricula"][$o] . '</td>
-                                <td>' . $alumnos["matricula"][$o] . '</td>
+                                <td>' . $alumnos["diamantes"][$o] . '</td>
                             </tr>
                         ';
                     }
