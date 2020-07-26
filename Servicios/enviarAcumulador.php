@@ -37,7 +37,7 @@ if($flagTipo == 'acmlrSP' ){
 }
 
 //Tiempo examen
-if($flagTipo == 'acmlrSP' ){
+if($flagTipo == 'acmlrE' ){
   //Lanzar consulta para tener el acumulador E
   $query2 = "SELECT acmlrE FROM alumno WHERE id_usuario = $id_usuario"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
   $result2 = mysqli_query($con, $query2);
