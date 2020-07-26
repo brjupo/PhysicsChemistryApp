@@ -101,10 +101,65 @@ require '../../Servicios/DDBBVariables.php';
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color:white">.</p>
+            </div>
+        </div>
+    </div>
+
     <!--+++++++++++++++++++++++++++++++++++ Temas, Subtemas y Lecciones +++++++++++++++++++++++++++++++++++++-->
     <div class="container">
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <?php
+            $id_asignatura = "1";
+            //Crear la lectura en base de datos
+            try {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stringQuery = "SELECT id_asignatura FROM grupo WHERE id_grupo = 1 LIMIT 1";
+                $stmt = $conn->query($stringQuery);
+                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                    echo "<p>".$row[0]."</p>";
+                    $id_asignatura = $row[0];
+                }
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            $conn = null;
+            ?>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <?php
+            $temas=array();
+            $temas["nombre"] = array();
+            $temas["id"] = array();
+            //Crear la lectura en base de datos
+            try {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stringQuery = "SELECT nombre, id_tema FROM tema WHERE id_asignatura = ". $id_asignatura. "ORDER BY orden";
+                $stmt = $conn->query($stringQuery);
+                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                    array_push($temas["nombre"], $row[0]);
+                    array_push($temas["id"], $row[1]);
+                    echo "<p>".$row[0]."__".$row[1]."</p>";
+                }
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            $conn = null;
+            ?>
         </div>
     </div>
 
