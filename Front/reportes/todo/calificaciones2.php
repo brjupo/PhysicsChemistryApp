@@ -6,13 +6,13 @@ if ($teacherID == "null") {
     header('Location: https://kaanbal.net/');
     exit;
 }
-if(!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
-
-    echo "xxxxxx";
-    echo "yyyyyyyyyy";
-    
-    
-    }
+if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
+    echo '<p>';
+    echo $_POST["grupo"];
+    echo '<br>';
+    echo $_POST["modalidad"];
+    echo '</p>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +29,13 @@ if(!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
 
 <body>
     <?php
-        $id_grupo = $_POST["grupo"];
-        $tipo = $_POST["modo"];
+    $id_grupo = $_POST["grupo"];
+    $tipo = $_POST["modalidad"];
+    echo '<p>';
+    echo $_POST["grupo"];
+    echo '<br>';
+    echo $_POST["modalidad"];
+    echo '</p>';
     ?>
     <style>
         table {
@@ -329,7 +334,7 @@ if(!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
-                                    $calificacion = intval(100*$row[0]/$lecciones["totalPreguntas"][$l]);
+                                    $calificacion = intval(100 * $row[0] / $lecciones["totalPreguntas"][$l]);
                                     echo '<td>' . $calificacion . '</td>';
                                 }
                                 if ($entre == 0) {
