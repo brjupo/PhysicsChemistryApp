@@ -120,6 +120,7 @@ require '../../Servicios/DDBBVariables.php';
     <div class="container">
         <div class="row">
             <p>INPUTS: id_grupo</p><br>
+            <p>INPUTS: id_grupo</p><br>
             <?php
             $id_asignatura = "1";
             //Crear la lectura en base de datos
@@ -266,7 +267,6 @@ require '../../Servicios/DDBBVariables.php';
 
     <div class="container">
         <div class="row">
-            <p>INPUTS: id_grupo</p><br>
             <table class="table table-striped">
                 <tbody>
                     <?php
@@ -302,7 +302,6 @@ require '../../Servicios/DDBBVariables.php';
 
     <div class="container">
         <div class="row">
-            <p>INPUTS : tipo LIMIT 1</p><br>
             <table class="table table-striped">
                 <tbody>
                     <?php
