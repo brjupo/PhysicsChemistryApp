@@ -183,7 +183,42 @@ require '../../Servicios/DDBBVariables.php';
                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                         array_push($subtemas["nombre"], $row[0]);
                         array_push($subtemas["id"], $row[1]);
-                        echo "<p>". $temas["nombre"][$i] . " > " . $row[0] . "__" . $row[1] . "</p><br>";
+                        echo "<p>". $subtemas["tema"][$i] . " > " . $row[0] . "__" . $row[1] . "</p><br>";
+                        //echo "<p>". $temas["nombre"][$i] . " > " . $row[0] . "__" . $row[1] . "</p><br>";
+                    }
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                }
+                $conn = null;
+            }
+
+            ?>
+        </div>
+    </div>
+
+    <!--OBTENER LA LISTA DE LECCIONES EN ORDEN, DEL GRUPO 1-->
+    <div class="container">
+        <div class="row">
+            <?php
+            $lecciones = array();
+            $lecciones["nombre"] = array();
+            $lecciones["id"] = array();
+            $lecciones["tema"] = array();
+            $lecciones["subtema"] = array();
+            //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
+            for ($i = 0; $i < count($subtemas["id"]); $i++) {
+                array_push($lecciones["tema"], $subtemas["tema"][$i]);
+                array_push($lecciones["subtema"], $subtemas["nombre"][$i]);
+                //Crear la lectura en base de datos
+                try {
+                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $stringQuery = "SELECT nombre, id_leccion FROM leccion WHERE id_subtema = " . $subtemas["id"][$i] . " ORDER BY orden";
+                    $stmt = $conn->query($stringQuery);
+                    while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                        array_push($lecciones["nombre"], $row[0]);
+                        array_push($lecciones["id"], $row[1]);
+                        echo "<p>". $lecciones["tema"][$i] . " > " . $lecciones["subtema"][$i] . " > " . $row[0] . "__" . $row[1] . "</p><br>";
                     }
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
