@@ -230,9 +230,9 @@ require '../../Servicios/DDBBVariables.php';
     <!--IMRPIMIR LA LISTA DE LECCIONES EN ORDEN, DEL GRUPO 1-->
     <div class="container">
         <div class="row">
-            <table>
+            <table class="table table-striped">
                 <tbody>
-                    <tr class="table-info">
+                    <tr>
                         <td>.</td>
                         <td>.</td>
                         <?php
@@ -241,7 +241,7 @@ require '../../Servicios/DDBBVariables.php';
                             echo '<td>' . $lecciones["tema"][$k] . '</td>';
                         } ?>
                     </tr>
-                    <tr class="table-light">
+                    <tr>
                         <td>.</td>
                         <td>.</td>
                         <?php
@@ -250,7 +250,7 @@ require '../../Servicios/DDBBVariables.php';
                         }
                         ?>
                     </tr>
-                    <tr class="table-info">
+                    <tr>
                         <td>.</td>
                         <td>.</td>
                         <?php
@@ -260,15 +260,7 @@ require '../../Servicios/DDBBVariables.php';
 
                         ?>
                     </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <table class="table table-striped">
-                <tbody>
                     <?php
                     $alumnos = array();
                     $alumnos["matricula"] = array();
@@ -295,21 +287,13 @@ require '../../Servicios/DDBBVariables.php';
                     $conn = null;
 
                     ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <table class="table table-striped">
-                <tbody>
                     <?php
                     for ($m = 0; $m < count($alumnos["id"]); $m++) {
-                        echo '<td>'.$alumnos["matricula"][$m].'</td>';
-                        echo '<td>'.$alumnos["id"][$m].'</td>';
+                        echo '<tr>';
+                        echo '<td>' . $alumnos["matricula"][$m] . '</td>';
+                        echo '<td>' . $alumnos["id"][$m] . '</td>';
                         for ($l = 0; $l < count($lecciones["id"]); $l++) {
-                            $entre= 0;
+                            $entre = 0;
                             //Crear la lectura en base de datos
                             try {
                                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -317,10 +301,10 @@ require '../../Servicios/DDBBVariables.php';
                                 $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='PP' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                    $entre =1;
-                                    echo '<td>'.$row[0].'</td>';
+                                    $entre = 1;
+                                    echo '<td>' . $row[0] . '</td>';
                                 }
-                                if($entre==0){
+                                if ($entre == 0) {
                                     echo '<td>NP</td>';
                                 }
                             } catch (PDOException $e) {
@@ -328,6 +312,7 @@ require '../../Servicios/DDBBVariables.php';
                             }
                             $conn = null;
                         }
+                        echo'</tr>';
                     }
                     ?>
                 </tbody>
