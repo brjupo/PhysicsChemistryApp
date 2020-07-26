@@ -209,7 +209,7 @@ require '../../Servicios/DDBBVariables.php';
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $stringQuery = "SELECT nombre, id_leccion FROM leccion WHERE id_subtema = " . $subtemas["id"][$i] . " ORDER BY orden";
+                    $stringQuery = "SELECT nombre, id_leccion FROM leccion WHERE id_subtema = " . $subtemas["id"][$j] . " ORDER BY orden";
                     $stmt = $conn->query($stringQuery);
                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                         array_push($lecciones["tema"], $subtemas["tema"][$j]);
