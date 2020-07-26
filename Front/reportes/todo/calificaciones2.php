@@ -135,15 +135,13 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     </div>
     <div class="container">
         <div class="row">
-            <p>INPUTS: id_grupo</p><br>
-            <p>INPUTS: id_grupo</p><br>
             <?php
             $id_asignatura = "1";
             //Crear la lectura en base de datos
             try {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stringQuery = "SELECT id_asignatura FROM grupo WHERE id_grupo = 1 LIMIT 1";
+                $stringQuery = "SELECT id_asignatura FROM grupo WHERE id_grupo = ".$id_grupo." LIMIT 1";
                 $stmt = $conn->query($stringQuery);
                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                     $id_asignatura = $row[0];
@@ -301,7 +299,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = 1 ";
+                        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = " . $id_grupo;
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             array_push($alumnos["matricula"], $row[0]);
@@ -324,7 +322,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                             try {
                                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='PP' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
+                                $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='".$tipo."' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
