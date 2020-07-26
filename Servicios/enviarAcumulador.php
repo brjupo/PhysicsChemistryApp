@@ -6,17 +6,16 @@ $acumulador = $_POST["acmldr"];
 $flagTipo = $_POST["flagTipo"];
 
 
-//Lanzar consulta para tener el acumulador
-$query2 = "SELECT acmlrPP FROM alumno WHERE id_usuario = $id_usuario"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
-        $result2 = mysqli_query($con, $query2);
-        $total = mysqli_fetch_row($result2);
-
-        $acumulador = $acumulador/60;
-        $acmlrGral = $total[0] + $acumulador;
-
-
 //Tiempo practica particular
 if($flagTipo == 'acmlrPP' ){
+    //Lanzar consulta para tener el acumulador
+  $query2 = "SELECT acmlrPP FROM alumno WHERE id_usuario = $id_usuario"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+  $result2 = mysqli_query($con, $query2);
+  $total = mysqli_fetch_row($result2);
+
+  $acumulador = $acumulador/60;
+  $acmlrGral = $total[0] + $acumulador;
+
   $sql = "UPDATE alumno SET acmlrPP = $acmlrGral WHERE id_usuario = $id_usuario";
   mysqli_query($con, $sql);
   $response["response"] = 'exito';
@@ -24,6 +23,14 @@ if($flagTipo == 'acmlrPP' ){
 
 //Tiempo sprint particular
 if($flagTipo == 'acmlrSP' ){
+  //Lanzar consulta para tener el acumulador
+  $query2 = "SELECT acmlrSP FROM alumno WHERE id_usuario = $id_usuario"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+  $result2 = mysqli_query($con, $query2);
+  $total = mysqli_fetch_row($result2);
+    
+  $acumulador = $acumulador/60;
+  $acmlrGral = $total[0] + $acumulador;
+
   $sql = "UPDATE alumno SET acmlrSP = $acmlrGral WHERE id_usuario = $id_usuario";
   mysqli_query($con, $sql);
   $response["response"] = 'exito';
