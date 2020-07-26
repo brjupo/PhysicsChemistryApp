@@ -183,8 +183,6 @@ require '../../Servicios/DDBBVariables.php';
                         array_push($subtemas["tema"], $temas["nombre"][$i]);
                         array_push($subtemas["nombre"], $row[0]);
                         array_push($subtemas["id"], $row[1]);
-                        echo "<p>". $subtemas["tema"][$i] . " > " . $row[0] . "__" . $row[1] . "</p><br>";
-                        //echo "<p>". $temas["nombre"][$i] . " > " . $row[0] . "__" . $row[1] . "</p><br>";
                     }
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
@@ -218,7 +216,6 @@ require '../../Servicios/DDBBVariables.php';
                         array_push($lecciones["subtema"], $subtemas["nombre"][$j]);
                         array_push($lecciones["nombre"], $row[0]);
                         array_push($lecciones["id"], $row[1]);
-                        echo "<p>". $lecciones["tema"][$j] . " > " . $lecciones["subtema"][$j] . " > " . $row[0] . "__" . $row[1] . "</p><br>";
                     }
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
@@ -230,7 +227,27 @@ require '../../Servicios/DDBBVariables.php';
         </div>
     </div>
 
+    <!--IMRPIMIR LA LISTA DE LECCIONES EN ORDEN, DEL GRUPO 1-->
+    <div class="container">
+        <div class="row">
+            <?php
+            $lecciones = array();
+            $lecciones["nombre"] = array();
+            $lecciones["id"] = array();
+            $lecciones["tema"] = array();
+            $lecciones["subtema"] = array();
+            //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
+            for ($k = 0; $k < count($lecciones["id"]); $k++) {
+                echo "<p>". $lecciones["tema"][$k] . " > " . $lecciones["subtema"][$k] . " > "
+                 . $lecciones["nombre"][$k] . "__" . $lecciones["id"][$k] . "</p><br>";
+            }
 
+            ?>
+        </div>
+    </div>
+
+
+                   
 
 </body>
 
