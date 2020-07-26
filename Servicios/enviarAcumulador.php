@@ -23,7 +23,7 @@ if($flagTipo == 'acmlrPP' ){
 
 //Tiempo sprint particular
 if($flagTipo == 'acmlrSP' ){
-  //Lanzar consulta para tener el acumulador
+  //Lanzar consulta para tener el acumulador SP
   $query2 = "SELECT acmlrSP FROM alumno WHERE id_usuario = $id_usuario"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
   $result2 = mysqli_query($con, $query2);
   $total = mysqli_fetch_row($result2);
