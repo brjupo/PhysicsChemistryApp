@@ -121,6 +121,31 @@ if (!isset($_POST["grupo"])) {
         </div>
     </div>
 
+    <?php
+    //OBTENER TODOS LOS ALUMNOS
+    $alumnos = array();
+    $alumnos["matricula"] = array();
+    $alumnos["id"] = array();
+    $alumnos["diamantes"] = array();
+    //Crear la lectura en base de datos
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = " . $id_grupo;
+        $stmt = $conn->query($stringQuery);
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            array_push($alumnos["matricula"], $row[0]);
+            array_push($alumnos["id"], $row[1]);
+            array_push($alumnos["diamantes"], 0);
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
+
+    ?>
+
+
     <div class="container">
         <div class="row">
             <p>Si el alumno, NO está en la lista, es porque no se tiene actividad registrada</p>
@@ -130,28 +155,35 @@ if (!isset($_POST["grupo"])) {
                         <td>Matricula</td>
                         <td>Diamantes</td>
                     </tr>
-                        <?php
-                        //
-                        //Crear la lectura en base de datos
-                        try {
-                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = ".$id_grupo.") GROUP BY a.matricula ORDER BY matricula ASC;";
-                            $stmt = $conn->query($stringQuery);
-                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                echo '
-                                    <tr>
-                                        <td>'.$row[0].'</td>
-                                        <td>'.$row[1].'</td>
-                                    </tr>
-                                ';
+                    <?php
+                    //
+                    //Crear la lectura en base de datos
+                    try {
+                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY matricula ASC;";
+                        $stmt = $conn->query($stringQuery);
+                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                            for ($n = 0; $n < count($alumnos["matricula"]); $n++) {
+                                if ($alumnos["matricula"][$n] == $row[0]) {
+                                    $alumnos["diamantes"][$n] = $row[1];
+                                }
                             }
-                        } catch (PDOException $e) {
-                            echo "Error: " . $e->getMessage();
                         }
-                        $conn = null;
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                    }
+                    $conn = null;
 
-                        ?>
+                    for ($o = 0; $o < count($alumnos["matricula"]); $o++) {
+                        echo '
+                            <tr>
+                                <td>' . $alumnos["matricula"][$o] . '</td>
+                                <td>' . $alumnos["matricula"][$o] . '</td>
+                            </tr>
+                        ';
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
