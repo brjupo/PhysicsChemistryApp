@@ -1,5 +1,18 @@
 <?php
-require '../../Servicios/DDBBVariables.php';
+require "../../../Servicios/DDBBVariables.php";
+require "../../../Servicios/isTeacher.php";
+$teacherID = isTeacher();
+if ($teacherID == "null") {
+    header('Location: https://kaanbal.net/');
+    exit;
+}
+if(!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
+
+    echo "xxxxxx";
+    echo "yyyyyyyyyy";
+    
+    
+    }
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +28,10 @@ require '../../Servicios/DDBBVariables.php';
 </head>
 
 <body>
+    <?php
+        $id_grupo = $_POST["grupo"];
+        $tipo = $_POST["modo"];
+    ?>
     <style>
         table {
             border-collapse: separate !important;
