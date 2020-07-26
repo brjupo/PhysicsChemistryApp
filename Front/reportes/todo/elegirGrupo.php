@@ -61,11 +61,8 @@ if ($teacherID == "null") {
 
     <div class="container">
         <div class="row">
-            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <form action="calificaciones2.php" id="groupForm" method="POST">
-                    <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte"><br>
-                </form>
 
+            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="grupo">Grupo</label>
                 </div>
@@ -89,7 +86,9 @@ if ($teacherID == "null") {
                     $conn = null;
                     ?>
                 </select><br>
+            </div>
 
+            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="modalidad">Modalidad</label>
                 </div>
@@ -101,6 +100,12 @@ if ($teacherID == "null") {
                     <option value="SS">Super Sprint</option>
                 </select>
 
+            </div>
+
+            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <form action="calificaciones2.php" id="groupForm" method="POST">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte"><br>
+                </form>
             </div>
         </div>
     </div>
