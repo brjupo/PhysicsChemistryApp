@@ -312,7 +312,7 @@ require '../../Servicios/DDBBVariables.php';
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
-                                    $calificacion = intval($row[0]/$lecciones["totalPreguntas"][$l]);
+                                    $calificacion = intval(100*$row[0]/$lecciones["totalPreguntas"][$l]);
                                     echo '<td>' . $calificacion . '</td>';
                                 }
                                 if ($entre == 0) {
