@@ -1,6 +1,6 @@
 <?php
-require "../../../Servicios/DDBBVariables.php";
-require "../../../Servicios/isTeacher.php";
+require "../../Servicios/DDBBVariables.php";
+require "../../Servicios/isTeacher.php";
 $teacherID = isTeacher();
 if ($teacherID == "null") {
     header('Location: https://kaanbal.net/');
