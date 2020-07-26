@@ -75,7 +75,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = ".$id_grupo." AND pu.tipo = '".$tipo."';";
+        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo . " AND pu.tipo = '" . $tipo . "';";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Materia, mail, grupo, modalidad
@@ -141,7 +141,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
             try {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stringQuery = "SELECT id_asignatura FROM grupo WHERE id_grupo = ".$id_grupo." LIMIT 1";
+                $stringQuery = "SELECT id_asignatura FROM grupo WHERE id_grupo = " . $id_grupo . " LIMIT 1";
                 $stmt = $conn->query($stringQuery);
                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                     $id_asignatura = $row[0];
@@ -322,11 +322,14 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                             try {
                                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='".$tipo."' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
+                                $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='" . $tipo . "' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
                                     $calificacion = intval(100 * $row[0] / $lecciones["totalPreguntas"][$l]);
+                                    if ($tipo == "SP" | $tipo == "SS") {
+                                        $calificacion = $calificacion / 3;
+                                    }
                                     echo '<td>' . $calificacion . '</td>';
                                 }
                                 if ($entre == 0) {
