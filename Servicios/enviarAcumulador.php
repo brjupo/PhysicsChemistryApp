@@ -12,12 +12,19 @@ $query2 = "SELECT acmlrPP FROM alumno WHERE id_usuario = $id_usuario"; // WHERE 
         $total = mysqli_fetch_row($result2);
 
         $acumulador = $acumulador/60;
-        $acmlrPP = $total[0] + $acumulador;
+        $acmlrGral = $total[0] + $acumulador;
 
 
 //Tiempo practica particular
 if($flagTipo == 'acmlrPP' ){
-  $sql = "UPDATE alumno SET acmlrPP = $acmlrPP WHERE id_usuario = $id_usuario";
+  $sql = "UPDATE alumno SET acmlrPP = $acmlrGral WHERE id_usuario = $id_usuario";
+  mysqli_query($con, $sql);
+  $response["response"] = 'exito';
+}
+
+//Tiempo sprint particular
+if($flagTipo == 'acmlrSP' ){
+  $sql = "UPDATE alumno SET acmlrSP = $acmlrGral WHERE id_usuario = $id_usuario";
   mysqli_query($con, $sql);
   $response["response"] = 'exito';
 }
