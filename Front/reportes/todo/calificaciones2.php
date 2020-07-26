@@ -21,10 +21,10 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials.css" />
 </head>
 
 <body>
