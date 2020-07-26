@@ -7,7 +7,7 @@ $flagTipo = $_POST["flagTipo"];
 
 
 //Lanzar consulta para tener el acumulador
-$query2 = "SELECT acmlrPP FROM alumno WHERE id_leccion = $id_usuario"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+$query2 = "SELECT acmlrPP FROM alumno WHERE id_usuario = $id_usuario"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
         $result2 = mysqli_query($con, $query2);
         $total = mysqli_fetch_row($result2);
 
