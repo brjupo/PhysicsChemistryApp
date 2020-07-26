@@ -353,7 +353,7 @@
           <div class="container">
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <a href="creditos.html"><h1 class="textCenter titulo">Creditos</h1></a>
+                <a href="creditos.html"><h1 class="textCenter titulo">Créditos</h1></a>
               </div>
             </div>
           </div>
