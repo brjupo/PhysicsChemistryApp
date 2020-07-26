@@ -16,7 +16,7 @@ $query2 = "SELECT acmlrPP FROM alumno WHERE id_usuario = $id_usuario"; // WHERE 
 
 
 //Tiempo practica particular
-if($flagTipo == 'PP' ){
+if($flagTipo == 'acmlrPP' ){
   $sql = "UPDATE alumno SET acmlrPP = $acmlrPP WHERE id_usuario = $id_usuario";
   mysqli_query($con, $sql);
   $response["response"] = 'exito';
