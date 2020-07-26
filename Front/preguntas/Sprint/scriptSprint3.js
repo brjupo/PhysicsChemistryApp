@@ -8,6 +8,7 @@ var timeIntervalX = setInterval(function () {
 }, 500);
 var segundos = 0;
 var segundosActuales = 0;
+var acumulador = 0;
 
 var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
@@ -185,6 +186,8 @@ function seguroRegresar() {
       "Are you sure to return?\n If you return you will lose all your progress of this lesson"
     )
   ) {
+    var userID = document.getElementById("userID").innerHTML.trim();
+    enviarAcumulador(userID);
     var stringLiga = "../../Inicio/lecciones.php?subtema=";
     window.location.href = stringLiga.concat(
       document.getElementById("subtemaPrevio").innerHTML.trim()
@@ -448,7 +451,7 @@ function enviarCalificacionRedirigir() {
       }
     },
   });
-  
+  enviarAcumulador(userID);
 }
 
 function enviarCalificacion() {
@@ -474,6 +477,7 @@ function enviarCalificacion() {
       }
     },
   });
+  enviarAcumulador(userID);
 }
 
 //Cada vez que se escribe sobre un input
@@ -600,3 +604,20 @@ function incorrectByTime(questionNumber) {
     enviarCalificacionRedirigir();
   }
 }
+
+function enviarAcumulador(userID) {
+  $.ajax({
+    type: "POST",
+    url: "../../../Servicios/enviarAcumulador.php",
+    dataType: "json",
+    data: { id: userID, acmldr: acumulador, flagTipo: "acmlrSP" },
+    success: function (data) {
+      console.log(data.response);
+      if (data.response == "exito") {
+        console.log("Valores enviados correctamente");
+      } else {
+        console.log("Algo salio mal");
+      }
+    },
+  });
+  }
