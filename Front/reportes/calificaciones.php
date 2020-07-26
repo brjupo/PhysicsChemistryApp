@@ -119,6 +119,7 @@ require '../../Servicios/DDBBVariables.php';
     </div>
     <div class="container">
         <div class="row">
+            <p>INPUTS: id_grupo</p><br>
             <?php
             $id_asignatura = "1";
             //Crear la lectura en base de datos
@@ -258,13 +259,45 @@ require '../../Servicios/DDBBVariables.php';
 
                         ?>
                     </tr>
-
                 </tbody>
             </table>
-
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <p>INPUTS: id_grupo</p><br>
+            <p>INPUTS dentro: tipo LIMIT 1</p><br>
+            <table class="table table-striped">
+                <tbody>
+                    <?php
+                    $alumnos=array();
+                    $alumnos["matricula"]=array();
+                    $alumnos["id"]=array();
+                    //Crear la lectura en base de datos
+                    try {
+                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = 1 ";
+                        $stmt = $conn->query($stringQuery);
+                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                            echo '
+                            <tr>
+                                <td>'.$row[0].'</td>
+                                <td>'.$row[1].'</td>
+                            </tr>
+                            ';
+                        }
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                    }
+                    $conn = null;
+
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 
