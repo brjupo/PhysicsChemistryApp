@@ -110,6 +110,7 @@ require '../../Servicios/DDBBVariables.php';
     </div>
 
     <!--+++++++++++++++++++++++++++++++++++ Temas, Subtemas y Lecciones +++++++++++++++++++++++++++++++++++++-->
+    <!--OBTENER EL ID DE ASIGNATURA DEL GRUPO 1-->
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -127,7 +128,7 @@ require '../../Servicios/DDBBVariables.php';
                 $stringQuery = "SELECT id_asignatura FROM grupo WHERE id_grupo = 1 LIMIT 1";
                 $stmt = $conn->query($stringQuery);
                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                    echo "<p>".$row[0]."</p>";
+                    echo "<p>" . $row[0] . "</p>";
                     $id_asignatura = $row[0];
                 }
             } catch (PDOException $e) {
@@ -137,23 +138,23 @@ require '../../Servicios/DDBBVariables.php';
             ?>
         </div>
     </div>
-
+    <!--OBTENER LA LISTA DE TEMAS EN ORDEN, DEL GRUPO 1-->
     <div class="container">
         <div class="row">
             <?php
-            $temas=array();
+            $temas = array();
             $temas["nombre"] = array();
             $temas["id"] = array();
             //Crear la lectura en base de datos
             try {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stringQuery = "SELECT nombre, id_tema FROM tema WHERE id_asignatura = ". $id_asignatura. " ORDER BY orden";
+                $stringQuery = "SELECT nombre, id_tema FROM tema WHERE id_asignatura = " . $id_asignatura . " ORDER BY orden";
                 $stmt = $conn->query($stringQuery);
                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                     array_push($temas["nombre"], $row[0]);
                     array_push($temas["id"], $row[1]);
-                    echo "<p>".$row[0]."__".$row[1]."</p>";
+                    echo "<p>" . $row[0] . "__" . $row[1] . "</p><br>";
                 }
             } catch (PDOException $e) {
                 echo "Error: " . $e->getMessage();
@@ -162,6 +163,38 @@ require '../../Servicios/DDBBVariables.php';
             ?>
         </div>
     </div>
+    <!--OBTENER LA LISTA DE SUBTEMAS EN ORDEN, DEL GRUPO 1-->
+    <div class="container">
+        <div class="row">
+            <?php
+            $subtemas = array();
+            $subtemas["nombre"] = array();
+            $subtemas["id"] = array();
+            $subtemas["tema"] = array();
+            //Recorreremos todos los temas, y guardaremos en subtemas[nombre] el nombre de TODOS los subtemas por orden de usuario
+            for ($i = 0; $i < count($temas["id"]); $i++) {
+                array_push($subtemas["tema"], $temas["nombre"][$i]);
+                //Crear la lectura en base de datos
+                try {
+                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $stringQuery = "SELECT nombre, id_subtema FROM subtema WHERE id_tema = " . $temas["id"][$i] . " ORDER BY orden";
+                    $stmt = $conn->query($stringQuery);
+                    while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                        array_push($subtemas["nombre"], $row[0]);
+                        array_push($subtemas["id"], $row[1]);
+                        echo "<p>". $temas["nombre"][$i] . " > " . $row[0] . "__" . $row[1] . "</p><br>";
+                    }
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                }
+                $conn = null;
+            }
+
+            ?>
+        </div>
+    </div>
+
 
 
 </body>
