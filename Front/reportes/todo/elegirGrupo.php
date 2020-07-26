@@ -17,7 +17,7 @@ if ($teacherID == "null") {
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
 </head>
 
 <body>
@@ -63,12 +63,11 @@ if ($teacherID == "null") {
         <div class="row">
             <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <form action="calificaciones2.php" id="groupForm" method="POST">
-                    <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte"><br>
                 </form>
 
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="grupo">Grupo</label>
-                    <p><?php echo $teacherID; ?></p>
                 </div>
                 <label for="grupo" style="display:none;">grupo</label>
                 <select class="custom-select" id="grupo" name="grupo" form="groupForm">
@@ -89,7 +88,7 @@ if ($teacherID == "null") {
                     }
                     $conn = null;
                     ?>
-                </select>
+                </select><br>
 
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="modalidad">Modalidad</label>

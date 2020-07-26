@@ -24,18 +24,13 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
 </head>
 
 <body>
     <?php
     $id_grupo = $_POST["grupo"];
     $tipo = $_POST["modalidad"];
-    echo '<p>';
-    echo $_POST["grupo"];
-    echo '<br>';
-    echo $_POST["modalidad"];
-    echo '</p>';
     ?>
     <style>
         table {
@@ -75,13 +70,12 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     </div>
 
     <!--+++++++++++++++++++++++++++++++++++ CABECERA [Asignatura, Profesor, Grupo y Modalidad] +++++++++++++++++++++++++++++++++++++-->
-    <p> INPUTS: Id de grupo y Modalidad</p>
     <?php
     //Crear la lectura en base de datos
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = 1 AND pu.tipo = 'SP';";
+        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = ".$id_grupo." AND pu.tipo = '".$tipo."';";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Materia, mail, grupo, modalidad
