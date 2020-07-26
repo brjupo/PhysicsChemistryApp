@@ -267,13 +267,12 @@ require '../../Servicios/DDBBVariables.php';
     <div class="container">
         <div class="row">
             <p>INPUTS: id_grupo</p><br>
-            <p>INPUTS dentro: tipo LIMIT 1</p><br>
             <table class="table table-striped">
                 <tbody>
                     <?php
-                    $alumnos=array();
-                    $alumnos["matricula"]=array();
-                    $alumnos["id"]=array();
+                    $alumnos = array();
+                    $alumnos["matricula"] = array();
+                    $alumnos["id"] = array();
                     //Crear la lectura en base de datos
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -281,10 +280,12 @@ require '../../Servicios/DDBBVariables.php';
                         $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = 1 ";
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                            array_push($alumnos["matricula"], $row[0]);
+                            array_push($alumnos["id"], $row[1]);
                             echo '
                             <tr>
-                                <td>'.$row[0].'</td>
-                                <td>'.$row[1].'</td>
+                                <td>' . $row[0] . '</td>
+                                <td>' . $row[1] . '</td>
                             </tr>
                             ';
                         }
@@ -293,6 +294,42 @@ require '../../Servicios/DDBBVariables.php';
                     }
                     $conn = null;
 
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <p>INPUTS : tipo LIMIT 1</p><br>
+            <table class="table table-striped">
+                <tbody>
+                    <?php
+                    for ($m = 0; $m < count($alumnos["id"]); $m++) {
+                        echo '<td>'.$alumnos["matricula"][$m].'</td>';
+                        echo '<td>'.$alumnos["id"][$m].'</td>';
+                        for ($l = 0; $l < count($lecciones["id"]); $l++) {
+                            $entre= 0;
+                            //Crear la lectura en base de datos
+                            try {
+                                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='PP' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
+                                $stmt = $conn->query($stringQuery);
+                                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                    $entre =1;
+                                    echo '<td>'.$row[0].'</td>';
+                                }
+                                if($entre==0){
+                                    echo '<td>NP</td>';
+                                }
+                            } catch (PDOException $e) {
+                                echo "Error: " . $e->getMessage();
+                            }
+                            $conn = null;
+                        }
+                    }
                     ?>
                 </tbody>
             </table>
