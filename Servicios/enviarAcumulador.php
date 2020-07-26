@@ -15,11 +15,12 @@ $query2 = "SELECT acmlrPP FROM alumno WHERE id_usuario = $id_usuario"; // WHERE 
         $acmlrPP = $total[0] + $acumulador;
 
 
-//print_r($puntosActuales);
-
+//Tiempo practica particular
+if($flagTipo == 'PP' ){
   $sql = "UPDATE alumno SET acmlrPP = $acmlrPP WHERE id_usuario = $id_usuario";
   mysqli_query($con, $sql);
   $response["response"] = 'exito';
+}
 
 echo json_encode($response);
 
