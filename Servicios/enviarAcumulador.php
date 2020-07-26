@@ -11,7 +11,9 @@ $query2 = "SELECT acmlrPP FROM alumno WHERE id_usuario = $id_usuario"; // WHERE 
         $result2 = mysqli_query($con, $query2);
         $total = mysqli_fetch_row($result2);
 
+        $acumulador = $acumulador/60;
         $acmlrPP = $total[0] + $acumulador;
+
 
 //print_r($puntosActuales);
 
