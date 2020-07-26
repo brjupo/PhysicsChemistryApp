@@ -1,5 +1,18 @@
 <?php
-require '../../Servicios/DDBBVariables.php';
+require "../../../Servicios/DDBBVariables.php";
+require "../../../Servicios/isTeacher.php";
+$teacherID = isTeacher();
+if ($teacherID == "null") {
+    header('Location: https://kaanbal.net/');
+    exit;
+}
+if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
+    echo '<p>';
+    echo $_POST["grupo"];
+    echo '<br>';
+    echo $_POST["modalidad"];
+    echo '</p>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -8,13 +21,17 @@ require '../../Servicios/DDBBVariables.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
 </head>
 
 <body>
+    <?php
+    $id_grupo = $_POST["grupo"];
+    $tipo = $_POST["modalidad"];
+    ?>
     <style>
         table {
             border-collapse: separate !important;
@@ -53,13 +70,12 @@ require '../../Servicios/DDBBVariables.php';
     </div>
 
     <!--+++++++++++++++++++++++++++++++++++ CABECERA [Asignatura, Profesor, Grupo y Modalidad] +++++++++++++++++++++++++++++++++++++-->
-    <p> INPUTS: Id de grupo y Modalidad</p>
     <?php
     //Crear la lectura en base de datos
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = 1 AND pu.tipo = 'SP';";
+        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = ".$id_grupo." AND pu.tipo = '".$tipo."';";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Materia, mail, grupo, modalidad
@@ -119,15 +135,13 @@ require '../../Servicios/DDBBVariables.php';
     </div>
     <div class="container">
         <div class="row">
-            <p>INPUTS: id_grupo</p><br>
-            <p>INPUTS: id_grupo</p><br>
             <?php
             $id_asignatura = "1";
             //Crear la lectura en base de datos
             try {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stringQuery = "SELECT id_asignatura FROM grupo WHERE id_grupo = 1 LIMIT 1";
+                $stringQuery = "SELECT id_asignatura FROM grupo WHERE id_grupo = ".$id_grupo." LIMIT 1";
                 $stmt = $conn->query($stringQuery);
                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                     $id_asignatura = $row[0];
@@ -285,7 +299,7 @@ require '../../Servicios/DDBBVariables.php';
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = 1 ";
+                        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = " . $id_grupo;
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             array_push($alumnos["matricula"], $row[0]);
@@ -308,11 +322,11 @@ require '../../Servicios/DDBBVariables.php';
                             try {
                                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='PP' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
+                                $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='".$tipo."' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
-                                    $calificacion = intval($row[0]/$lecciones["totalPreguntas"][$l]);
+                                    $calificacion = intval(100 * $row[0] / $lecciones["totalPreguntas"][$l]);
                                     echo '<td>' . $calificacion . '</td>';
                                 }
                                 if ($entre == 0) {
