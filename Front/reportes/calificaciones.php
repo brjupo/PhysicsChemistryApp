@@ -231,11 +231,6 @@ require '../../Servicios/DDBBVariables.php';
     <div class="container">
         <div class="row">
             <?php
-            $lecciones = array();
-            $lecciones["nombre"] = array();
-            $lecciones["id"] = array();
-            $lecciones["tema"] = array();
-            $lecciones["subtema"] = array();
             //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
             for ($k = 0; $k < count($lecciones["id"]); $k++) {
                 echo "<p>". $lecciones["tema"][$k] . " > " . $lecciones["subtema"][$k] . " > "
