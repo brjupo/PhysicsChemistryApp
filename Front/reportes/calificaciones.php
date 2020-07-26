@@ -233,16 +233,46 @@ require '../../Servicios/DDBBVariables.php';
             <?php
             //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
             for ($k = 0; $k < count($lecciones["id"]); $k++) {
-                echo "<p>". $lecciones["tema"][$k] . " > " . $lecciones["subtema"][$k] . " > "
-                 . $lecciones["nombre"][$k] . "__" . $lecciones["id"][$k] . "</p><br>";
+                echo "<p>" . $lecciones["tema"][$k] . " > " . $lecciones["subtema"][$k] . " > "
+                    . $lecciones["nombre"][$k] . "__" . $lecciones["id"][$k] . "</p><br>";
             }
 
             ?>
+            <table>
+                <tbody>
+                    <?php
+                    //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
+                    for ($k = 0; $k < count($lecciones["id"]); $k++) {
+                        echo '
+                        <tr class="table-info">
+                            <td>'. $lecciones["tema"][$k] .'</td>
+                        </tr>
+                        ';
+                    }
+                    for ($k = 0; $k < count($lecciones["id"]); $k++) {
+                        echo '
+                        <tr class="table-light">
+                            <td>'. $lecciones["subtema"][$k] .'</td>
+                        </tr>
+                        ';
+                    }
+                    for ($k = 0; $k < count($lecciones["id"]); $k++) {
+                        echo '
+                        <tr class="table-info">
+                            <td>'. $lecciones["nombre"][$k] .'</td>
+                        </tr>
+                        ';
+                    }
+                    ?>
+
+                </tbody>
+            </table>
+
         </div>
     </div>
 
 
-                   
+
 
 </body>
 
