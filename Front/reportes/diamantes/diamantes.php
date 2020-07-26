@@ -83,7 +83,6 @@ if (!isset($_POST["grupo"])) {
             $materia = $row[0];
             $correoProfesor = $row[1];
             $grupo = $row[2];
-            $modalidad = $row[3];
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -107,10 +106,6 @@ if (!isset($_POST["grupo"])) {
                             <td>Grupo</td>
                             <td><?php echo $grupo; ?></td>
                         </tr>
-                        <tr class="table-light">
-                            <td>Modalidad</td>
-                            <td><?php echo $modalidad; ?></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -130,6 +125,10 @@ if (!isset($_POST["grupo"])) {
         <div class="row">
             <table class="table table-striped">
                 <tbody>
+                    <tr>
+                        <td>Matricula</td>
+                        <td>Diamantes</td>
+                    </tr>
                         <?php
                         //
                         //Crear la lectura en base de datos
