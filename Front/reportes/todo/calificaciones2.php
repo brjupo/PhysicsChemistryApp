@@ -112,7 +112,15 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                         </tr>
                         <tr class="table-light">
                             <td>Modalidad</td>
-                            <td><?php echo $modalidad; ?></td>
+                            <td>
+                                <?php 
+                                if($modalidad=="PP"){$modalidad="Práctica";}
+                                if($modalidad=="SP"){$modalidad="Sprint";}
+                                if($modalidad=="SS"){$modalidad="Super Sprint";}
+                                if($modalidad=="E"){$modalidad="Examen";}
+                                echo $modalidad; 
+                                ?>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
