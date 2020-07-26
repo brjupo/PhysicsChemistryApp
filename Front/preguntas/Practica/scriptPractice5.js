@@ -6,13 +6,21 @@ var firstTimeToSaveGrade = 0;
 var idioma = "e";
 var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
+var acumulador = 0;
 
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
   createArrayWithQuestions();
+  contarTiempo();
   idioma = document.getElementById("idioma").innerHTML.trim();
 };
+
+function contarTiempo() {
+window.setInterval(function(){
+  acumulador++;
+},1000);
+}
 
 function createArrayWithQuestions() {
   for (var i = 1001; i <= 1100; i++) {
@@ -161,6 +169,8 @@ function seguroRegresar() {
       "Are you sure to return?\n If you return you will lose all your progress of this lesson"
     )
   ) {
+    var userID = document.getElementById("userID").innerHTML.trim();
+    enviarAcumulador(userID);
     var stringLiga = "../../Inicio/lecciones.php?subtema=";
     window.location.href = stringLiga.concat(
       document.getElementById("subtemaPrevio").innerHTML.trim()
@@ -398,6 +408,7 @@ function nextQuestion(lastQuestion) {
     });
     //}
     firstTimeToSaveGrade = 1;
+    enviarAcumulador(userID);
   }
   if (questionNumberArray.length == 0) {
     var userID = document.getElementById("userID").innerHTML.trim();
@@ -426,6 +437,7 @@ function nextQuestion(lastQuestion) {
         }
       },
     });
+    enviarAcumulador(userID);
   } else {
     loadNewQuestion(questionNumberArray[0]);
   }
@@ -616,4 +628,21 @@ function limpiarInputs(cantidadIDs) {
       console.log(i * 10 - 5);
     }
   }
+}
+
+function enviarAcumulador() {
+$.ajax({
+  type: "POST",
+  url: "../../../Servicios/enviarAcumulador.php",
+  dataType: "json",
+  data: { id: userID, acmldr: acumulador, flagTipo: "acmlrPP" },
+  success: function (data) {
+    console.log(data.response);
+    if (data.response == "exito") {
+      console.log("Valores enviados correctamente");
+    } else {
+      console.log("Algo salio mal");
+    }
+  },
+});
 }
