@@ -173,7 +173,6 @@ require '../../Servicios/DDBBVariables.php';
             $subtemas["tema"] = array();
             //Recorreremos todos los temas, y guardaremos en subtemas[nombre] el nombre de TODOS los subtemas por orden de usuario
             for ($i = 0; $i < count($temas["id"]); $i++) {
-                array_push($subtemas["tema"], $temas["nombre"][$i]);
                 //Crear la lectura en base de datos
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -181,6 +180,7 @@ require '../../Servicios/DDBBVariables.php';
                     $stringQuery = "SELECT nombre, id_subtema FROM subtema WHERE id_tema = " . $temas["id"][$i] . " ORDER BY orden";
                     $stmt = $conn->query($stringQuery);
                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                        array_push($subtemas["tema"], $temas["nombre"][$i]);
                         array_push($subtemas["nombre"], $row[0]);
                         array_push($subtemas["id"], $row[1]);
                         echo "<p>". $subtemas["tema"][$i] . " > " . $row[0] . "__" . $row[1] . "</p><br>";
@@ -206,9 +206,7 @@ require '../../Servicios/DDBBVariables.php';
             $lecciones["tema"] = array();
             $lecciones["subtema"] = array();
             //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
-            for ($i = 0; $i < count($subtemas["id"]); $i++) {
-                array_push($lecciones["tema"], $subtemas["tema"][$i]);
-                array_push($lecciones["subtema"], $subtemas["nombre"][$i]);
+            for ($j = 0; $j < count($subtemas["id"]); $j++) {
                 //Crear la lectura en base de datos
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -216,9 +214,11 @@ require '../../Servicios/DDBBVariables.php';
                     $stringQuery = "SELECT nombre, id_leccion FROM leccion WHERE id_subtema = " . $subtemas["id"][$i] . " ORDER BY orden";
                     $stmt = $conn->query($stringQuery);
                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                        array_push($lecciones["tema"], $subtemas["tema"][$j]);
+                        array_push($lecciones["subtema"], $subtemas["nombre"][$j]);
                         array_push($lecciones["nombre"], $row[0]);
                         array_push($lecciones["id"], $row[1]);
-                        echo "<p>". $lecciones["tema"][$i] . " > " . $lecciones["subtema"][$i] . " > " . $row[0] . "__" . $row[1] . "</p><br>";
+                        echo "<p>". $lecciones["tema"][$j] . " > " . $lecciones["subtema"][$j] . " > " . $row[0] . "__" . $row[1] . "</p><br>";
                     }
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
