@@ -201,6 +201,7 @@ require '../../Servicios/DDBBVariables.php';
             $lecciones = array();
             $lecciones["nombre"] = array();
             $lecciones["id"] = array();
+            $lecciones["totalPreguntas"] = array();
             $lecciones["tema"] = array();
             $lecciones["subtema"] = array();
             //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
@@ -222,7 +223,7 @@ require '../../Servicios/DDBBVariables.php';
                 }
                 $conn = null;
             }
-
+            //SELECT COUNT(id_leccion) FROM pregunta WHERE id_leccion = 1 
             ?>
         </div>
     </div>
@@ -254,8 +255,23 @@ require '../../Servicios/DDBBVariables.php';
                         <td>.</td>
                         <td>.</td>
                         <?php
+                        //Este for lo aprovecharemos para obtener el total de preguntas de cada leccion
+                        //Ademas de imprmir las lecciones en la tabla
                         for ($k = 0; $k < count($lecciones["id"]); $k++) {
                             echo '<td>' . $lecciones["nombre"][$k] . '</td>';
+                            //Crear la lectura en base de datos
+                            try {
+                                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                $stringQuery = "SELECT COUNT(id_leccion) FROM pregunta WHERE id_leccion = " . $lecciones["id"][$k];
+                                $stmt = $conn->query($stringQuery);
+                                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                    array_push($lecciones["totalPreguntas"], $row[0]);
+                                }
+                            } catch (PDOException $e) {
+                                echo "Error: " . $e->getMessage();
+                            }
+                            $conn = null;
                         }
 
                         ?>
@@ -296,17 +312,18 @@ require '../../Servicios/DDBBVariables.php';
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
-                                    echo '<td>' . $row[0] . '</td>';
+                                    $calificacion = intval($row[0]/$lecciones["totalPreguntas"][$l]);
+                                    echo '<td>' . $calificacion . '</td>';
                                 }
                                 if ($entre == 0) {
-                                    echo '<td>NP</td>';
+                                    echo '<td style="color:red;">NP</td>';
                                 }
                             } catch (PDOException $e) {
                                 echo "Error: " . $e->getMessage();
                             }
                             $conn = null;
                         }
-                        echo'</tr>';
+                        echo '</tr>';
                     }
                     ?>
                 </tbody>
