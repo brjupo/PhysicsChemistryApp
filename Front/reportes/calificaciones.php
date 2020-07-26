@@ -120,6 +120,7 @@ require '../../Servicios/DDBBVariables.php';
     <div class="container">
         <div class="row">
             <p>INPUTS: id_grupo</p><br>
+            <p>INPUTS: id_grupo</p><br>
             <?php
             $id_asignatura = "1";
             //Crear la lectura en base de datos
@@ -200,6 +201,7 @@ require '../../Servicios/DDBBVariables.php';
             $lecciones = array();
             $lecciones["nombre"] = array();
             $lecciones["id"] = array();
+            $lecciones["totalPreguntas"] = array();
             $lecciones["tema"] = array();
             $lecciones["subtema"] = array();
             //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
@@ -221,7 +223,7 @@ require '../../Servicios/DDBBVariables.php';
                 }
                 $conn = null;
             }
-
+            //SELECT COUNT(id_leccion) FROM pregunta WHERE id_leccion = 1 
             ?>
         </div>
     </div>
@@ -229,9 +231,9 @@ require '../../Servicios/DDBBVariables.php';
     <!--IMRPIMIR LA LISTA DE LECCIONES EN ORDEN, DEL GRUPO 1-->
     <div class="container">
         <div class="row">
-            <table>
+            <table class="table table-striped">
                 <tbody>
-                    <tr class="table-info">
+                    <tr>
                         <td>.</td>
                         <td>.</td>
                         <?php
@@ -240,7 +242,7 @@ require '../../Servicios/DDBBVariables.php';
                             echo '<td>' . $lecciones["tema"][$k] . '</td>';
                         } ?>
                     </tr>
-                    <tr class="table-light">
+                    <tr>
                         <td>.</td>
                         <td>.</td>
                         <?php
@@ -249,31 +251,36 @@ require '../../Servicios/DDBBVariables.php';
                         }
                         ?>
                     </tr>
-                    <tr class="table-info">
+                    <tr>
                         <td>.</td>
                         <td>.</td>
                         <?php
+                        //Este for lo aprovecharemos para obtener el total de preguntas de cada leccion
+                        //Ademas de imprmir las lecciones en la tabla
                         for ($k = 0; $k < count($lecciones["id"]); $k++) {
                             echo '<td>' . $lecciones["nombre"][$k] . '</td>';
+                            //Crear la lectura en base de datos
+                            try {
+                                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                $stringQuery = "SELECT COUNT(id_leccion) FROM pregunta WHERE id_leccion = " . $lecciones["id"][$k];
+                                $stmt = $conn->query($stringQuery);
+                                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                    array_push($lecciones["totalPreguntas"], $row[0]);
+                                }
+                            } catch (PDOException $e) {
+                                echo "Error: " . $e->getMessage();
+                            }
+                            $conn = null;
                         }
 
                         ?>
                     </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <p>INPUTS: id_grupo</p><br>
-            <p>INPUTS dentro: tipo LIMIT 1</p><br>
-            <table class="table table-striped">
-                <tbody>
                     <?php
-                    $alumnos=array();
-                    $alumnos["matricula"]=array();
-                    $alumnos["id"]=array();
+                    $alumnos = array();
+                    $alumnos["matricula"] = array();
+                    $alumnos["id"] = array();
                     //Crear la lectura en base de datos
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -281,18 +288,43 @@ require '../../Servicios/DDBBVariables.php';
                         $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = 1 ";
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            echo '
-                            <tr>
-                                <td>'.$row[0].'</td>
-                                <td>'.$row[1].'</td>
-                            </tr>
-                            ';
+                            array_push($alumnos["matricula"], $row[0]);
+                            array_push($alumnos["id"], $row[1]);
                         }
                     } catch (PDOException $e) {
                         echo "Error: " . $e->getMessage();
                     }
                     $conn = null;
 
+                    ?>
+                    <?php
+                    for ($m = 0; $m < count($alumnos["id"]); $m++) {
+                        echo '<tr>';
+                        echo '<td>' . $alumnos["matricula"][$m] . '</td>';
+                        echo '<td>' . $alumnos["id"][$m] . '</td>';
+                        for ($l = 0; $l < count($lecciones["id"]); $l++) {
+                            $entre = 0;
+                            //Crear la lectura en base de datos
+                            try {
+                                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='PP' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
+                                $stmt = $conn->query($stringQuery);
+                                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                    $entre = 1;
+                                    $calificacion = intval($row[0]/$lecciones["totalPreguntas"][$l]);
+                                    echo '<td>' . $calificacion . '</td>';
+                                }
+                                if ($entre == 0) {
+                                    echo '<td style="color:red;">NP</td>';
+                                }
+                            } catch (PDOException $e) {
+                                echo "Error: " . $e->getMessage();
+                            }
+                            $conn = null;
+                        }
+                        echo '</tr>';
+                    }
                     ?>
                 </tbody>
             </table>
