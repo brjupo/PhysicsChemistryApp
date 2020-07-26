@@ -99,7 +99,7 @@ function printHead()
     />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
   </head>
   ';
 }

@@ -40,7 +40,7 @@ function printHead()
     />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
     <script src="elegirMyG3.js"></script>
   </head>
   ';
