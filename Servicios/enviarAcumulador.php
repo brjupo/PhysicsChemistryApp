@@ -36,6 +36,21 @@ if($flagTipo == 'acmlrSP' ){
   $response["response"] = 'exito';
 }
 
+//Tiempo examen
+if($flagTipo == 'acmlrE' ){
+  //Lanzar consulta para tener el acumulador E
+  $query2 = "SELECT acmlrE FROM alumno WHERE id_usuario = $id_usuario"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+  $result2 = mysqli_query($con, $query2);
+  $total = mysqli_fetch_row($result2);
+    
+  $acumulador = $acumulador/60;
+  $acmlrGral = $total[0] + $acumulador;
+
+  $sql = "UPDATE alumno SET acmlrE = $acmlrGral WHERE id_usuario = $id_usuario";
+  mysqli_query($con, $sql);
+  $response["response"] = 'exito';
+}
+
 echo json_encode($response);
 
 ?>
