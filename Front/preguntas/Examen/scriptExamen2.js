@@ -555,6 +555,7 @@ function motivationBadMessage(lastQuestion) {
 ////////////////77
 
 function finTiempo() {
+  enviarAcumulador();
   enviarCalificacion();
   var stringLiga =
     "examenFinalizado.php?subtema=" +
