@@ -132,7 +132,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT nombre FROM tema WHERE id_tema IN (SELECT id_tema FROM subtema WHERE id_subtema IN (SELECT id_subtema FROM leccion WHERE id_leccion = " . $_GET["leccion"] . "))";
+        $stringQuery = "SELECT nombre FROM tema WHERE id_tema IN (SELECT id_tema FROM subtema WHERE id_subtema IN (SELECT id_subtema FROM leccion WHERE id_leccion = " . $id_leccion . "))";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             $tema = $row[0];
@@ -145,7 +145,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT nombre FROM subtema WHERE id_subtema IN (SELECT id_subtema FROM leccion WHERE id_leccion = " . $_GET["leccion"] . ")";
+        $stringQuery = "SELECT nombre FROM subtema WHERE id_subtema IN (SELECT id_subtema FROM leccion WHERE id_leccion = " . $id_leccion . ")";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             $subtema = $row[0];
@@ -157,7 +157,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT nombre FROM leccion WHERE id_leccion = " . $_GET["leccion"] . ";";
+        $stringQuery = "SELECT nombre FROM leccion WHERE id_leccion = " . $id_leccion . ";";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             $leccion = $row[0];
@@ -174,15 +174,15 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                     <tbody>
                         <tr class="table-info">
                             <td>.</td>
-                            <td>' . $tema . '</td>
+                            <td><?php echo $tema; ?></td>
                         </tr>
                         <tr class="table-light">
                             <td>.</td>
-                            <td>' . $subtema . '</td>
+                            <td><?php echo $subtema; ?></td>
                         </tr>
                         <tr class="table-info">
                             <td>.</td>
-                            <td>' . $leccion . '</td>
+                            <td><?php echo $leccion; ?></td>
                         </tr>
                         <?php
                         //Crear la lectura en base de datos
