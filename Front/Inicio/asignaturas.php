@@ -191,7 +191,7 @@ require '../../Servicios/DDBBVariables.php';
                       alert("'.$total[0].'");
                       </script>'; */
 
-        if ($total[0] > 1) {
+        if ($total[0] > 1 OR $mostrarMenuprofesor != '') {
           imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor);
         } else {
           //Traeer asignatura
