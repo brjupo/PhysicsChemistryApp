@@ -203,7 +203,7 @@ if ($teacherID == "null") {
                             $stmt = $conn->query($stringQuery);
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 $totalPreguntas = $row[0];
-                                echo '<p>'.$totalPreguntas.'</p>',
+                                echo '<p>'.$totalPreguntas.'</p>';
                             }
                         } catch (PDOException $e) {
                             echo "Error: " . $e->getMessage();
