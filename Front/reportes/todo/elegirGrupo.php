@@ -97,7 +97,8 @@ if ($teacherID == "null") {
                     <option value="PP">Práctica</option>
                     <option value="SP">Sprint</option>
                     <option value="E">Examen</option>
-                    <option value="SS">Super Sprint</option>
+                    <!--option value="SS">Super Sprint</option-->
+                    <!--El superint no se rige por cada leccion, se debe hacer otra logica por cada subtema-->
                 </select>
 
             </div>
