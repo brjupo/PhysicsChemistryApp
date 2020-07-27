@@ -203,6 +203,7 @@ if ($teacherID == "null") {
                             $stmt = $conn->query($stringQuery);
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 $totalPreguntas = $row[0];
+                                echo '<p>'.$totalPreguntas.'</p>',
                             }
                         } catch (PDOException $e) {
                             echo "Error: " . $e->getMessage();
@@ -231,7 +232,7 @@ if ($teacherID == "null") {
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     if($alumnos["id"][$m]==$row[0]){
                                         $entre=1;
-                                        $calificacion = intval($row[1]/$totalPreguntas);
+                                        $calificacion = intval(100*$row[1]/$totalPreguntas);
                                         echo '<td>' . $calificacion . '</td>';
                                     }
                                 }
