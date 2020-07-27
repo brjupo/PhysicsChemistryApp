@@ -203,13 +203,11 @@ if ($teacherID == "null") {
                             try {
                                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                $stringQuery = "SELECT a.matricula, p.puntuacion 
-                                FROM puntuacion p JOIN usuario u JOIN alumno a 
-                                ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario 
-                                WHERE p.id_leccion = " . $id_leccion . " AND p.tipo = '" . $tipo . "' AND tiempo 
-                                BETWEEN '" . $desde_fecha . " " . $desde_tiempo . ":00' 
-                                AND '" . $hasta_fecha . " " . $hasta_tiempo . ":00' AND a.id_alumno 
-                                IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ");";
+                                $stringQuery = "SELECT alumno.id_alumno, puntuacion.puntuacion FROM puntuacion 
+                                INNER JOIN alumno ON alumno.id_usuario = puntuacion.id_usuario 
+                                WHERE id_leccion = " . $id_leccion . " AND tipo = '" . $tipo . "' AND tiempo 
+                                BETWEEN '" . $desde_fecha . " " . $desde_tiempo . ":00'  
+                                AND '" . $hasta_fecha . " " . $hasta_tiempo . ":00'";
                                 $stmt = $conn->query($stringQuery);
                                 echo "<p>" . $stringQuery . "</p>";
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
