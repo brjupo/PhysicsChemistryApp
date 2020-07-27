@@ -127,7 +127,7 @@ if ($teacherID == "null") {
 
       <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <label for="id_leccion">ID Lección</label>
-        <input type="text" id="id_leccion" name="id_leccion" class="form-control" form="groupForm" value="<?php echo $_GET["leccion"];?>" />
+        <input type="text" id="id_leccion" name="id_leccion" class="form-control" form="groupForm" value="<?php echo $_GET["ID_Leccion"];?>" />
       </div>
       <div class="textCenter col-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
         <label for="desde">Desde [Exclusivo]</label>

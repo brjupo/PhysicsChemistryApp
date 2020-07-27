@@ -192,7 +192,12 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                         try {
                             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = 1) GROUP BY a.matricula ORDER BY matricula ASC;";
+                            $stringQuery = "SELECT a.matricula, p.puntuacion 
+                            FROM puntuacion p JOIN usuario u JOIN alumno a 
+                            ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario 
+                            WHERE p.id_leccion = ".$id_leccion." AND p.tipo = '".$tipo."' AND tiempo 
+                            BETWEEN 'tiempo1' AND 'tiempo2' AND a.id_alumno 
+                            IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = ".$id_grupo.");";
                             $stmt = $conn->query($stringQuery);
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 //row [0] -> matricula, diamantes
