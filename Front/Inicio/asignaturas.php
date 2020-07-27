@@ -63,7 +63,7 @@ require '../../Servicios/DDBBVariables.php';
     //$total = mysqli_fetch_row($result2);
 
      //Consultar si es profe 
-     $mostrarMenuprofesor = '';
+     $mostrarMenuprofesor = $_SESSION["mostrarMenuprofesor"];
 
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
@@ -158,6 +158,8 @@ require '../../Servicios/DDBBVariables.php';
         $_SESSION["pswd"] = $temp_pswd;
         $_SESSION["tokenA"] = $temp_tokenA;
         $_SESSION["tokenSesion"] = $rand;
+        $_SESSION["mostrarMenuprofesor"] = $mostrarMenuprofesor;
+        
         //Imprimimos pantalla de asignaturas
         if($_SESSION["idioma"] == 'i'){
           $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
