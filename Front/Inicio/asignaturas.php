@@ -62,10 +62,12 @@ require '../../Servicios/DDBBVariables.php';
     //$result2 = mysqli_query($con, $query2);
     //$total = mysqli_fetch_row($result2);
 
+     //Consultar si es profe 
+     $mostrarMenuprofesor = $_SESSION["mostrarMenuprofesor"];
 
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
-    imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
+    imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor);
   } else {
     /* echo'<script type="text/javascript">
             alert("segundo caminio");
@@ -104,8 +106,6 @@ require '../../Servicios/DDBBVariables.php';
       mysqli_stmt_store_result($statement);
       mysqli_stmt_bind_result($statement, $id_usuario, $mail, $pswd, $tokenA, $tokenSesion, $idioma, $inicios);
 
-
-
       //Leemos datos del usuario
       while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
         $temp_inicios = $inicios;
@@ -124,8 +124,20 @@ require '../../Servicios/DDBBVariables.php';
 
       //Si el usuario EXISTE despliega el menú de las asignaturas
       if ($temp_id_usuario) {
-        //Conteo de inicios de sesión y fecha
+         //Consultar si es profesor
+        $statement = mysqli_prepare($con, "SELECT id_profesor FROM profesor WHERE id_usuario = ?");
+        mysqli_stmt_bind_param($statement, "s", $temp_id_usuario);
+        mysqli_stmt_execute($statement);
 
+        mysqli_stmt_store_result($statement);
+        mysqli_stmt_bind_result($statement, $idProfe);
+
+        while (mysqli_stmt_fetch($statement)) {
+          $existeProfe["profe"] = $idProfe;
+        }
+        $mostrarMenuprofesor = $existeProfe["profe"];
+
+        //Conteo de inicios de sesión y fecha
         $tiempo = getDatetimeNow();
     
         $temp_inicios = $temp_inicios+1;
@@ -146,6 +158,8 @@ require '../../Servicios/DDBBVariables.php';
         $_SESSION["pswd"] = $temp_pswd;
         $_SESSION["tokenA"] = $temp_tokenA;
         $_SESSION["tokenSesion"] = $rand;
+        $_SESSION["mostrarMenuprofesor"] = $mostrarMenuprofesor;
+        
         //Imprimimos pantalla de asignaturas
         if($_SESSION["idioma"] == 'i'){
           $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
@@ -177,8 +191,8 @@ require '../../Servicios/DDBBVariables.php';
                       alert("'.$total[0].'");
                       </script>'; */
 
-        if ($total[0] > 1) {
-          imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas);
+        if ($total[0] > 1 OR $mostrarMenuprofesor != '') {
+          imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor);
         } else {
           //Traeer asignatura
           $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser'";
@@ -260,12 +274,13 @@ require '../../Servicios/DDBBVariables.php';
     return $datetime->format('Y\-m\-d\ H:i:s');
 }
   //////////////////////
-  function imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas)
+  function imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor)
   {
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas);
     imprimirRelleno();
-    imprimirEspaciosProfesor();
+    if($mostrarMenuprofesor != ''){
+    imprimirEspaciosProfesor();}
     imprimirRelleno();
     imprimirFooter();
   }

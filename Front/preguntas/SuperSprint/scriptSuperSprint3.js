@@ -8,6 +8,7 @@ var timeIntervalX = setInterval(function () {
 }, 500);
 var segundos = 0;
 var segundosActuales = 0;
+var acumulador = 0;
 
 var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
@@ -15,8 +16,16 @@ var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 //RECUERDA, ANTES DE MOSTRAR, DEBERÁS LIMPIAR LO QUE EL ALUMNO ESCRIBIÓ ANTES
 
 window.onload = function () {
+  contarTiempo();
   segundos = getTimeForSprint();
 };
+
+function contarTiempo() {
+  window.setInterval(function(){
+    acumulador++;
+  },1000);
+}
+
 
 function getTimeForSprint() {
   subtema = document.getElementById("subtemaID").innerHTML.trim();
@@ -185,6 +194,8 @@ function seguroRegresar() {
       "Are you sure to return?\n If you return you will lose all your progress of this lesson"
     )
   ) {
+    var userID = document.getElementById("userID").innerHTML.trim();
+    enviarAcumulador(userID);
     var stringLiga = "../../Inicio/subtemas.php?tema=";
     window.location.href = stringLiga.concat(
       document.getElementById("temaPrevio").innerHTML.trim()
@@ -426,6 +437,7 @@ function nextQuestion(lastQuestion) {
 function enviarCalificacionRedirigir() {
   var userID = document.getElementById("userID").innerHTML.trim();
   var subtemaID = document.getElementById("subtemaID").innerHTML.trim();
+  enviarAcumulador(userID);
   $.ajax({
     type: "POST",
     url: "subirPuntosByType.php",
@@ -448,7 +460,6 @@ function enviarCalificacionRedirigir() {
       }
     },
   });
-  
 }
 
 function enviarCalificacion() {
@@ -471,6 +482,7 @@ function enviarCalificacion() {
       }
     },
   });
+  enviarAcumulador(userID);
 }
 
 //Cada vez que se escribe sobre un input
@@ -597,3 +609,20 @@ function incorrectByTime(questionNumber) {
     enviarCalificacionRedirigir();
   }
 }
+
+function enviarAcumulador(userID) {
+  $.ajax({
+    type: "POST",
+    url: "../../../Servicios/enviarAcumulador.php",
+    dataType: "json",
+    data: { id: userID, acmldr: acumulador, flagTipo: "acmlrSS" },
+    success: function (data) {
+      console.log(data.response);
+      if (data.response == "exito") {
+        console.log("Valores enviados correctamente");
+      } else {
+        console.log("Algo salio mal");
+      }
+    },
+  });
+  }
