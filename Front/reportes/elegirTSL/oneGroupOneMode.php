@@ -209,10 +209,10 @@ if ($teacherID == "null") {
                                 BETWEEN '" . $desde_fecha . " " . $desde_tiempo . ":00'  
                                 AND '" . $hasta_fecha . " " . $hasta_tiempo . ":00'";
                                 $stmt = $conn->query($stringQuery);
-                                echo "<p>" . $stringQuery . "</p>";
+                                echo '<p style="display:none">' . $stringQuery . "</p>";
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                    $entre=1;
                                     if($alumnos["id"][$m]==$row[0]){
+                                        $entre=1;
                                         echo '<td>' . $row[1] . '</td>';
                                     }
                                 }
