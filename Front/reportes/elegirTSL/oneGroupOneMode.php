@@ -181,16 +181,40 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                     <tbody>
                         <tr class="table-info">
                             <td>.</td>
+                            <td>.</td>
                             <td><?php echo $tema; ?></td>
                         </tr>
                         <tr class="table-light">
+                            <td>.</td>
                             <td>.</td>
                             <td><?php echo $subtema; ?></td>
                         </tr>
                         <tr class="table-info">
                             <td>.</td>
+                            <td>.</td>
                             <td><?php echo $leccion; ?></td>
                         </tr>
+                        <?php
+                        //--------------AQUI OBTIENES TODOS LOS ALUMNOS DEL GRUPO
+                        $alumnos = array();
+                        $alumnos["matricula"] = array();
+                        $alumnos["id"] = array();
+                        //Crear la lectura en base de datos
+                        try {
+                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = " . $id_grupo;
+                            $stmt = $conn->query($stringQuery);
+                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                array_push($alumnos["matricula"], $row[0]);
+                                array_push($alumnos["id"], $row[1]);
+                            }
+                        } catch (PDOException $e) {
+                            echo "Error: " . $e->getMessage();
+                        }
+                        $conn = null;
+
+                        ?>
                         <?php
                         //Crear la lectura en base de datos
                         try {

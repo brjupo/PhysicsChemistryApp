@@ -304,6 +304,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                     </tr>
 
                     <?php
+                    //--------------AQUI OBTIENES TODOS LOS ALUMNOS DEL GRUPO
                     $alumnos = array();
                     $alumnos["matricula"] = array();
                     $alumnos["id"] = array();
@@ -324,6 +325,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
 
                     ?>
                     <?php
+                    //-------------AQUI OBTIENES LA CALIFICACION DE LOS ALUMNOS, SI NO SE ENCUENTRA IMPRIME NP
                     for ($m = 0; $m < count($alumnos["id"]); $m++) {
                         echo '<tr>';
                         echo '<td>' . $alumnos["matricula"][$m] . '</td>';
