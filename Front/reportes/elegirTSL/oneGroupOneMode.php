@@ -34,6 +34,14 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     echo $_POST["grupo"];
     echo '<br>';
     echo $_POST["modalidad"];
+    echo '<br>';
+    echo $_POST["desde"];
+    echo '<br>';
+    echo $_POST["desde_tiempo"];
+    echo '<br>';
+    echo $_POST["hasta"];
+    echo '<br>';
+    echo $_POST["hasta_tiempo"];
     echo '</p>';
     ?>
     <style>

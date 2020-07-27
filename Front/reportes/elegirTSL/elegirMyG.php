@@ -88,6 +88,15 @@ if ($teacherID == "null") {
       </div>
     </div>
   </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row">
       <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -104,6 +113,46 @@ if ($teacherID == "null") {
       </div>
     </div>
   </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="textCenter col-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <label for="desde">Desde [Exclusivo]</label>
+        <input type="date" id="desde" name="desde" class="form-control" form="groupForm" />
+      </div>
+      <div class="textCenter col-12 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+        <label for="desde_tiempo">Hora</label>
+        <input type="time" value="07:00" id="desde_tiempo" name="desde_tiempo" class="form-control" form="groupForm" />
+      </div>
+      <div class="textCenter col-12 col-sm-2 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="textCenter col-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <label for="hasta">Hasta [Exclusivo]</label>
+        <input type="date" id="hasta" name="hasta" class="form-control" form="groupForm" />
+      </div>
+      <div class="textCenter col-12 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+        <label for="hasta_tiempo">Hora</label>
+        <input type="time" value="07:00" id="hasta_tiempo" name="hasta_tiempo" class="form-control" form="groupForm" />
+      </div>
+      <div class="textCenter col-12 col-sm-2 col-md-1 col-lg-1 col-xl-1"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row">
       <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
