@@ -6,13 +6,6 @@ if ($teacherID == "null") {
     header('Location: https://kaanbal.net/');
     exit;
 }
-if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
-    echo '<p>';
-    echo $_POST["grupo"];
-    echo '<br>';
-    echo $_POST["modalidad"];
-    echo '</p>';
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,21 +28,6 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     $desde_tiempo = $_POST["desde_tiempo"];
     $hasta_fecha = $_POST["hasta"];
     $hasta_tiempo = $_POST["hasta_tiempo"];
-    echo '<p>';
-    echo $_POST["grupo"];
-    echo '<br>';
-    echo $_POST["modalidad"];
-    echo '<br>';
-    echo $_POST["id_leccion"];
-    echo '<br>';
-    echo $_POST["desde"];
-    echo '<br>';
-    echo $_POST["desde_tiempo"];
-    echo '<br>';
-    echo $_POST["hasta"];
-    echo '<br>';
-    echo $_POST["hasta_tiempo"];
-    echo '</p>';
     ?>
     <style>
         table {
@@ -233,7 +211,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                                 AND '" . $hasta_fecha . " " . $hasta_tiempo . ":00' AND a.id_alumno 
                                 IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ");";
                                 $stmt = $conn->query($stringQuery);
-                                //echo "<p>" . $stringQuery . "</p>";
+                                echo "<p>" . $stringQuery . "</p>";
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre=1;
                                     echo '<td>' . $row[0] . '</td>';
