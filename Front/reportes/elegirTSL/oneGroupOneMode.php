@@ -194,6 +194,24 @@ if ($teacherID == "null") {
 
                         ?>
                         <?php
+                        //--------NECESITASMOS SABER EL NUMERO DE PREGUNTAS DE LA LECCION PARA OBTENER LA CALILIFACION
+                        $totalPreguntas=0;
+                        try {
+                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            $stringQuery = "SELECT COUNT(id_leccion) FROM pregunta WHERE id_leccion = " . $id_leccion;
+                            $stmt = $conn->query($stringQuery);
+                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                $totalPreguntas = $row[0];
+                            }
+                        } catch (PDOException $e) {
+                            echo "Error: " . $e->getMessage();
+                        }
+                        $conn = null;
+                        ?>
+                        <?php
+                        //---------IMPRIME MATRICULA Y ASOCIA EL ID ALUMNO CON LAS PUNTUACIONES EN PUNTUACION
+                        //---------ASI APARECE LA PUNUTACION DEL ALUMNO DE LA LECCION
                         for ($m = 0; $m < count($alumnos["id"]); $m++) {
                             echo '<tr>';
                             echo '<td>' . $alumnos["matricula"][$m] . '</td>';
@@ -213,7 +231,8 @@ if ($teacherID == "null") {
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     if($alumnos["id"][$m]==$row[0]){
                                         $entre=1;
-                                        echo '<td>' . $row[1] . '</td>';
+                                        $calificacion = intval($row[1]/$totalPreguntas);
+                                        echo '<td>' . $calificacion . '</td>';
                                     }
                                 }
                                 if ($entre == 0) {
