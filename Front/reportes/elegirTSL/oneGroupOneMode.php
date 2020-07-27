@@ -30,6 +30,11 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     <?php
     $id_grupo = $_POST["grupo"];
     $tipo = $_POST["modalidad"];
+    echo '<p>';
+    echo $_POST["grupo"];
+    echo '<br>';
+    echo $_POST["modalidad"];
+    echo '</p>';
     ?>
     <style>
         table {

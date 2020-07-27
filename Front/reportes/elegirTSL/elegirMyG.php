@@ -86,7 +86,10 @@ if ($teacherID == "null") {
           ?>
         </select>
       </div>
-
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
       <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="input-group-prepend">
           <label class="input-group-text" for="modalidad">Modalidad</label>
@@ -99,7 +102,10 @@ if ($teacherID == "null") {
           <!--option value="SS">Super Sprint</option-->
         </select>
       </div>
-
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
       <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <form action="oneGroupOneMode.php" id="groupForm" method="POST">
           <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte"><br>
