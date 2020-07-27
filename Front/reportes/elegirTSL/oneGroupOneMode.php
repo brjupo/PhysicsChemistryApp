@@ -30,10 +30,13 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     <?php
     $id_grupo = $_POST["grupo"];
     $tipo = $_POST["modalidad"];
+    $id_leccion = $POST["id_leccion"];
     echo '<p>';
     echo $_POST["grupo"];
     echo '<br>';
     echo $_POST["modalidad"];
+    echo '<br>';
+    echo $_POST["id_leccion"];
     echo '<br>';
     echo $_POST["desde"];
     echo '<br>';
