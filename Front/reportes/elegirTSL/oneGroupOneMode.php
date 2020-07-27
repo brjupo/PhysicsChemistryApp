@@ -30,7 +30,11 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     <?php
     $id_grupo = $_POST["grupo"];
     $tipo = $_POST["modalidad"];
-    $id_leccion = $POST["id_leccion"];
+    $id_leccion = $_POST["id_leccion"];
+    $desde_fecha = $_POST["desde"];
+    $desde_tiempo = $_POST["desde_tiempo"];
+    $hasta_fecha = $_POST["hasta"];
+    $hasta_tiempo = $_POST["hasta_tiempo"];
     echo '<p>';
     echo $_POST["grupo"];
     echo '<br>';
@@ -195,16 +199,18 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                             $stringQuery = "SELECT a.matricula, p.puntuacion 
                             FROM puntuacion p JOIN usuario u JOIN alumno a 
                             ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario 
-                            WHERE p.id_leccion = ".$id_leccion." AND p.tipo = '".$tipo."' AND tiempo 
-                            BETWEEN 'tiempo1' AND 'tiempo2' AND a.id_alumno 
-                            IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = ".$id_grupo.");";
+                            WHERE p.id_leccion = " . $id_leccion . " AND p.tipo = '" . $tipo . "' AND tiempo 
+                            BETWEEN '" . $desde_fecha . " " . $desde_tiempo . ":00' 
+                            AND '" . $hasta_fecha . " " . $hasta_tiempo . ":00' AND a.id_alumno 
+                            IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ");";
                             $stmt = $conn->query($stringQuery);
+                            echo "<p>" . $stringQuery . "</p>";
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 //row [0] -> matricula, diamantes
                                 echo '
                                 <tr class="table-light">
                                     <td>' . $row[0] . '</td>
-                                    <td></td>
+                                    <td>' . $row[1] . '</td>
                                 </tr>';
                             }
                         } catch (PDOException $e) {
