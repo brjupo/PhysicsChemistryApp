@@ -216,29 +216,35 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
 
                         ?>
                         <?php
-                        //Crear la lectura en base de datos
-                        try {
-                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = "SELECT a.matricula, p.puntuacion 
-                            FROM puntuacion p JOIN usuario u JOIN alumno a 
-                            ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario 
-                            WHERE p.id_leccion = " . $id_leccion . " AND p.tipo = '" . $tipo . "' AND tiempo 
-                            BETWEEN '" . $desde_fecha . " " . $desde_tiempo . ":00' 
-                            AND '" . $hasta_fecha . " " . $hasta_tiempo . ":00' AND a.id_alumno 
-                            IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ");";
-                            $stmt = $conn->query($stringQuery);
-                            echo "<p>" . $stringQuery . "</p>";
-                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                //row [0] -> matricula, diamantes
-                                echo '
-                                <tr class="table-light">
-                                    <td>' . $row[0] . '</td>
-                                    <td>' . $row[1] . '</td>
-                                </tr>';
+                        for ($m = 0; $m < count($alumnos["id"]); $m++) {
+                            echo '<tr>';
+                            echo '<td>' . $alumnos["matricula"][$m] . '</td>';
+                            echo '<td>' . $alumnos["id"][$m] . '</td>';
+                            //Crear la lectura en base de datos
+                            $entre=0;
+                            try {
+                                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                $stringQuery = "SELECT a.matricula, p.puntuacion 
+                                FROM puntuacion p JOIN usuario u JOIN alumno a 
+                                ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario 
+                                WHERE p.id_leccion = " . $id_leccion . " AND p.tipo = '" . $tipo . "' AND tiempo 
+                                BETWEEN '" . $desde_fecha . " " . $desde_tiempo . ":00' 
+                                AND '" . $hasta_fecha . " " . $hasta_tiempo . ":00' AND a.id_alumno 
+                                IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ");";
+                                $stmt = $conn->query($stringQuery);
+                                //echo "<p>" . $stringQuery . "</p>";
+                                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                    $entre=1;
+                                    echo '<td>' . $row[0] . '</td>';
+                                }
+                                if ($entre == 0) {
+                                    echo '<td style="color:red;">NP</td>';
+                                }
+                            } catch (PDOException $e) {
+                                echo "Error: " . $e->getMessage();
                             }
-                        } catch (PDOException $e) {
-                            echo "Error: " . $e->getMessage();
+                            echo '</tr>';
                         }
                         $conn = null;
                         ?>
