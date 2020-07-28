@@ -9,6 +9,7 @@ var timeIntervalX = setInterval(function () {
 var segundos = 0;
 var segundosActuales = 0;
 var acumulador = 0;
+var idioma = "e";
 
 var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
@@ -18,6 +19,7 @@ var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 window.onload = function () {
   contarTiempo();
   segundos = getTimeForSprint();
+  dioma = document.getElementById("idioma").innerHTML.trim();
 };
 
 function contarTiempo() {
@@ -189,10 +191,13 @@ document.addEventListener("click", function (evt) {
 });
 
 function seguroRegresar() {
+  if (idioma == "e"){
+    var texto = "¿Seguro que quieres regresar?\nPerderás todo tu progreso de esta lección.";
+  }else{
+    var texto = "Are you sure to return?\nIf you return you will lose all your progress of this lesson.";
+  }
   if (
-    confirm(
-      "Are you sure to return?\n If you return you will lose all your progress of this lesson"
-    )
+    confirm(texto)
   ) {
     var userID = document.getElementById("userID").innerHTML.trim();
     enviarAcumulador(userID);
