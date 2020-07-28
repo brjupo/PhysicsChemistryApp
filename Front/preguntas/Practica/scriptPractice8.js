@@ -164,7 +164,7 @@ document.addEventListener("click", function (evt) {
 });
 
 function seguroRegresar() {
-  if (idioma = "e"){
+  if (idioma == "e"){
     var texto = "¿Seguro que quieres regresar?\nPerderás todo tu progreso de esta lección.";
   }else{
     var texto = "Are you sure to return?\nIf you return you will lose all your progress of this lesson.";
