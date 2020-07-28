@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+s<!DOCTYPE html>
 <html>
 
 <head>
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="PRODUCCION/Front/CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="styleIndex.css" />
     <script src="PRODUCCION/Front/CSSsJSs/minAJAX.js"></script>
-    <script src="tester.js"></script>
+    <script src="tester2.js"></script>
 </head>
 
 <body>
