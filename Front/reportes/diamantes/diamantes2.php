@@ -28,6 +28,10 @@ if (!isset($_POST["grupo"])) {
 <body>
     <?php
     $id_grupo = $_POST["grupo"];
+    $desde_fecha = $_POST["desde"];
+    $desde_tiempo = $_POST["desde_tiempo"];
+    $hasta_fecha = $_POST["hasta"];
+    $hasta_tiempo = $_POST["hasta_tiempo"];
     ?>
     <style>
         table {
@@ -160,7 +164,11 @@ if (!isset($_POST["grupo"])) {
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY matricula ASC;";
+                        $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' 
+                        FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario 
+                        AND u.id_usuario = a.id_usuario WHERE p.tiempo BETWEEN '".$desde_fecha." ".$desde_tiempo.":00' 
+                        AND '".$hasta_fecha." ".$hasta_tiempo.":00' AND a.id_alumno IN (SELECT id_alumno FROM alumno_grupo 
+                        WHERE id_grupo = ".$id_grupo.") GROUP BY a.matricula ORDER BY matricula ASC";
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             for ($n = 0; $n < count($alumnos["matricula"]); $n++) {
