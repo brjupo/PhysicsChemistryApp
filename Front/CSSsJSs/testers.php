@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="PRODUCCION/Front/CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="styleIndex.css" />
     <script src="PRODUCCION/Front/CSSsJSs/minAJAX.js"></script>
-    <script src="tester.js"></script>
+    <script src="tester1.js"></script>
 </head>
 
 <body>
@@ -107,14 +107,14 @@
                 id="forma"
                 class="textCenter col-10 col-sm-10 col-md-4 col-lg-4 col-xl-4"
                 >
-                <p id="color" class="slogan">¡Have fun learning!</p>
+                <p id="slogan" class="slogan">¡Have fun learning!</p>
                 <p style="color: rgba(0, 0, 0, 0);">.</p>
                 <form
                     id="demo-form"
                     action="PRODUCCION/Front/Inicio/asignaturas.php"
                     method="POST"
                 >
-                    <label class="fuenteForma" for="validarUsuario">User</label><br />
+                    <label id="usuario" class="fuenteForma" for="validarUsuario">User</label><br />
                     <input
                     type="email"
                     name="validarUsuario"

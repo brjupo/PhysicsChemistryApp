@@ -15,7 +15,7 @@ document.addEventListener("click", function(evt) {
       }
       if (targetElement == spanish) {
         escribirEspanol();
-        cambiarColor()
+        cambiarEspanol()
         return;
       }
       if (targetElement == english) {
@@ -28,10 +28,11 @@ document.addEventListener("click", function(evt) {
   });
 
   
-            function cambiarColor() {
-                var color = document.getElementById("color");
-                var color2 = "amarillo";
-                color.innerHTML = color2;
+            function cambiarEspanol() {
+                var slogan = document.getElementById("slogan");
+                slogan.innerHTML = "!Diviértete Aprendiendo!";
+                var slogan = document.getElementById("usuario");
+                slogan.innerHTML = "Usuario";
             } 
 
   
