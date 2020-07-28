@@ -15,11 +15,12 @@ document.addEventListener("click", function(evt) {
       }
       if (targetElement == spanish) {
         escribirEspanol();
-        cambiarEspanol()
+        cambiarEspanol();
         return;
       }
       if (targetElement == english) {
         escribirIngles();
+        cambiarIngles();
         return;
       }
       // Go up the DOM
@@ -40,6 +41,19 @@ document.addEventListener("click", function(evt) {
                 var slogan = document.getElementById("contacto");
                 slogan.innerHTML = "Contáctanos";
             } 
+
+            function cambiarIngles() {
+              var slogan = document.getElementById("slogan");
+              slogan.innerHTML = "¡Have fun learning!";
+              var slogan = document.getElementById("usuario");
+              slogan.innerHTML = "User";
+              var slogan = document.getElementById("contrasena");
+              slogan.innerHTML = "Password";
+              var slogan = document.getElementById("contraOlvidada");
+              slogan.innerHTML = "Forgot password?";
+              var slogan = document.getElementById("contacto");
+              slogan.innerHTML = "Contact us";
+          } 
 
   
   function escribirEspanol(){
