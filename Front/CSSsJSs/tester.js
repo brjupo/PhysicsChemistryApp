@@ -33,6 +33,12 @@ document.addEventListener("click", function(evt) {
                 slogan.innerHTML = "!Diviértete Aprendiendo!";
                 var slogan = document.getElementById("usuario");
                 slogan.innerHTML = "Usuario";
+                var slogan = document.getElementById("contrasena");
+                slogan.innerHTML = "Contraseña";
+                var slogan = document.getElementById("contraOlvidada");
+                slogan.innerHTML = "Olvide mi contraseña";
+                var slogan = document.getElementById("contacto");
+                slogan.innerHTML = "Contáctanos";
             } 
 
   
