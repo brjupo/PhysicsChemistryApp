@@ -653,6 +653,7 @@ $.ajax({
 
 var registrarInactividad = function () {
   var t;
+  reiniciarTiempo();
   window.onload = reiniciarTiempo;
   // Eventos del DOM
   document.onmousemove = reiniciarTiempo;
@@ -672,7 +673,7 @@ var registrarInactividad = function () {
   function reiniciarTiempo() {
       acumulador = 0;
       clearTimeout(t);
-      t = setTimeout(tiempoExcedido, 5000)
+      t = setTimeout(tiempoExcedido, 3000)
       // 1000 milisegundos = 1 segundo
   }
 };
