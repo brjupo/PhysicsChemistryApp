@@ -673,7 +673,7 @@ var registrarInactividad = function () {
   function reiniciarTiempo() {
       acumulador = 0;
       clearTimeout(t);
-      t = setTimeout(tiempoExcedido, 3000)
+      t = setTimeout(tiempoExcedido, 600000)
       // 1000 milisegundos = 1 segundo
   }
 };
