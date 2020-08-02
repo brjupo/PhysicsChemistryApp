@@ -116,7 +116,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                                 <?php 
                                 if($modalidad=="PP"){$modalidad="Práctica";}
                                 if($modalidad=="SP"){$modalidad="Sprint";}
-                                if($modalidad=="SS"){$modalidad="Super Sprint";}
+                                if($modalidad=="SG"){$modalidad="Super Sprint";}
                                 if($modalidad=="E"){$modalidad="Examen";}
                                 echo $modalidad; 
                                 ?>
@@ -148,7 +148,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     <div class="container">
         <div class="row">
             <?php
-            $id_asignatura = "1";
+            $id_asignatura = "0";
             //Crear la lectura en base de datos
             try {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
