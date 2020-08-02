@@ -75,18 +75,16 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo 
+        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre
         FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u 
         JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor 
-        AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo . 
-        " AND pu.tipo = '" . $tipo . "';";
+        AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo . ";";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Materia, mail, grupo, modalidad
             $materia = $row[0];
             $correoProfesor = $row[1];
             $grupo = $row[2];
-            $modalidad = $row[3];
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -112,15 +110,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                         </tr>
                         <tr class="table-light">
                             <td>Modalidad</td>
-                            <td>
-                                <?php 
-                                if($modalidad=="PP"){$modalidad="Práctica";}
-                                if($modalidad=="SP"){$modalidad="Sprint";}
-                                if($modalidad=="SG"){$modalidad="Super Sprint";}
-                                if($modalidad=="E"){$modalidad="Examen";}
-                                echo $modalidad; 
-                                ?>
-                            </td>
+                            <td>Super Sprint</td>
                         </tr>
                     </tbody>
                 </table>
@@ -136,6 +126,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
             </div>
         </div>
     </div>
+
 
     <!--+++++++++++++++++++++++++++++++++++ Temas, Subtemas y Lecciones +++++++++++++++++++++++++++++++++++++-->
     <!--OBTENER EL ID DE ASIGNATURA DEL GRUPO -->
@@ -197,6 +188,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
             $subtemas["nombre"] = array();
             $subtemas["id"] = array();
             $subtemas["tema"] = array();
+            $subtemas["totalPreguntas"] = array();
             //Recorreremos todos los temas, y guardaremos en subtemas[nombre] el nombre de TODOS los subtemas por orden de usuario
             for ($i = 0; $i < count($temas["id"]); $i++) {
                 //Crear la lectura en base de datos
@@ -209,6 +201,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                         array_push($subtemas["tema"], $temas["nombre"][$i]);
                         array_push($subtemas["nombre"], $row[0]);
                         array_push($subtemas["id"], $row[1]);
+                        array_push($subtemas["totalPreguntas"], 0);
                     }
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
@@ -221,6 +214,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     </div>
 
     <!--OBTENER LA LISTA DE LECCIONES EN ORDEN, DE TODOS LOS SUBTEMAS-->
+    <!--LAS NECESITAS PARA SABER EL TOTAL DE PREGUNTAS POR SUBTEMA-->
     <div class="container">
         <div class="row">
             <?php
@@ -254,7 +248,28 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
         </div>
     </div>
 
-    <!--IMRPIMIR LA LISTA DE LECCIONES, SUBTEMA Y TEMAS-->
+
+    <!--OBTENER EL TOTAL DE PREGUNTAS DE CADA LECCION-->
+    <?php
+    //Este for lo aprovecharemos para obtener el total de preguntas de cada leccion
+    for ($k = 0; $k < count($lecciones["id"]); $k++) {
+        //Crear la lectura en base de datos
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stringQuery = "SELECT COUNT(id_leccion) FROM pregunta WHERE id_leccion = " . $lecciones["id"][$k];
+            $stmt = $conn->query($stringQuery);
+            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                $subtemas["totalPreguntas"][$lecciones["subtema"][$k]]+= $row[0];
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        $conn = null;
+    }
+    ?>
+
+    <!--IMRPIMIR LA LISTA DE SUBTEMAS Y TEMAS-->
     <div class="container">
         <div class="row">
             <table class="table table-striped">
@@ -263,43 +278,18 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                         <td>.</td>
                         <td>.</td>
                         <?php
-                        //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
-                        for ($k = 0; $k < count($lecciones["id"]); $k++) {
-                            echo '<td>' . $lecciones["tema"][$k] . '</td>';
+                        //Recorreremos todos los subtemas para imprimirlos con su respectivo tema
+                        for ($k = 0; $k < count($subtemas["id"]); $k++) {
+                            echo '<td>' . $subtemas["tema"][$k] . '</td>';
                         } ?>
-                    </tr>
-                    <tr>
-                        <td>.</td>
-                        <td>.</td>
-                        <?php
-                        for ($k = 0; $k < count($lecciones["id"]); $k++) {
-                            echo '<td>' . $lecciones["subtema"][$k] . '</td>';
-                        }
-                        ?>
                     </tr>
                     <tr>
                         <td>Matrícula</td>
                         <td>Diamantes</td>
                         <?php
-                        //Este for lo aprovecharemos para obtener el total de preguntas de cada leccion
-                        //Ademas de imprimir las lecciones en la tabla
-                        for ($k = 0; $k < count($lecciones["id"]); $k++) {
-                            echo '<td>' . $lecciones["nombre"][$k] . '</td>';
-                            //Crear la lectura en base de datos
-                            try {
-                                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                $stringQuery = "SELECT COUNT(id_leccion) FROM pregunta WHERE id_leccion = " . $lecciones["id"][$k];
-                                $stmt = $conn->query($stringQuery);
-                                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                    array_push($lecciones["totalPreguntas"], $row[0]);
-                                }
-                            } catch (PDOException $e) {
-                                echo "Error: " . $e->getMessage();
-                            }
-                            $conn = null;
+                        for ($k = 0; $k < count($subtemas["id"]); $k++) {
+                            echo '<td>' . $subtemas["nombre"][$k] . '</td>';
                         }
-
                         ?>
                     </tr>
 
@@ -351,21 +341,18 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                         echo '<tr>';
                         echo '<td>' . $alumnos["matricula"][$m] . '</td>';
                         echo '<td>' . $alumnos["diamantes"][$m] . '</td>';
-                        for ($l = 0; $l < count($lecciones["id"]); $l++) {
+                        for ($l = 0; $l < count($subtemas["id"]); $l++) {
                             $entre = 0;
                             //Crear la lectura en base de datos
                             try {
                                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='" . $tipo . "' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
+                                $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='SG' AND id_leccion=" . $subtemas["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
-                                    $calificacion = intval(100 * $row[0] / $lecciones["totalPreguntas"][$l]);
-                                    if ($tipo == "SP" || $tipo == "SG") {
-                                        $calificacion = $calificacion / 3;
-                                    }
-                                    echo '<td>' . $calificacion . '</td>';
+                                    $calificacion = intval(100 * $row[0] / $subtemas["totalPreguntas"][$l]);
+                                    echo '<td>' . $calificacion/3 . '</td>';
                                 }
                                 if ($entre == 0) {
                                     echo '<td style="color:red;">NP</td>';
