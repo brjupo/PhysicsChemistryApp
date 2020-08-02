@@ -138,7 +138,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     </div>
 
     <!--+++++++++++++++++++++++++++++++++++ Temas, Subtemas y Lecciones +++++++++++++++++++++++++++++++++++++-->
-    <!--OBTENER EL ID DE ASIGNATURA DEL GRUPO 1-->
+    <!--OBTENER EL ID DE ASIGNATURA DEL GRUPO -->
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -165,7 +165,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
             ?>
         </div>
     </div>
-    <!--OBTENER LA LISTA DE TEMAS EN ORDEN, DEL GRUPO 1-->
+    <!--OBTENER LA LISTA DE TEMAS EN ORDEN, DE LA ASIGNATURA-->
     <div class="container">
         <div class="row">
             <?php
@@ -189,7 +189,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
             ?>
         </div>
     </div>
-    <!--OBTENER LA LISTA DE SUBTEMAS EN ORDEN, DEL GRUPO 1-->
+    <!--OBTENER LA LISTA DE SUBTEMAS EN ORDEN, DE TODOS LOS TEMAS-->
     <div class="container">
         <div class="row">
             <?php
@@ -220,7 +220,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
         </div>
     </div>
 
-    <!--OBTENER LA LISTA DE LECCIONES EN ORDEN, DEL GRUPO 1-->
+    <!--OBTENER LA LISTA DE LECCIONES EN ORDEN, DE TODOS LOS SUBTEMAS-->
     <div class="container">
         <div class="row">
             <?php
@@ -254,7 +254,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
         </div>
     </div>
 
-    <!--IMRPIMIR LA LISTA DE LECCIONES EN ORDEN, DEL GRUPO 1-->
+    <!--IMRPIMIR LA LISTA DE LECCIONES, SUBTEMA Y TEMAS-->
     <div class="container">
         <div class="row">
             <table class="table table-striped">
@@ -282,7 +282,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                         <td>Diamantes</td>
                         <?php
                         //Este for lo aprovecharemos para obtener el total de preguntas de cada leccion
-                        //Ademas de imprmir las lecciones en la tabla
+                        //Ademas de imprimir las lecciones en la tabla
                         for ($k = 0; $k < count($lecciones["id"]); $k++) {
                             echo '<td>' . $lecciones["nombre"][$k] . '</td>';
                             //Crear la lectura en base de datos
@@ -362,7 +362,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
                                     $calificacion = intval(100 * $row[0] / $lecciones["totalPreguntas"][$l]);
-                                    if ($tipo == "SP" | $tipo == "SS") {
+                                    if ($tipo == "SP" || $tipo == "SG") {
                                         $calificacion = $calificacion / 3;
                                     }
                                     echo '<td>' . $calificacion . '</td>';
