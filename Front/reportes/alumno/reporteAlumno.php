@@ -354,18 +354,19 @@ if (!isset($_POST["grupo"])) {
                             echo '<td>' . $alumnos["matricula"][$m] . '</td>';
                             echo '<td>' . $alumnos["diamantes"][$m] . '</td>';
                             echo '<td>' . $modos["nombre"][$p] . '</td>';
+                            $tipo = $modos["acronimo"][$p];
                             for ($l = 0; $l < $size8; ++$l) {
                                 $entre = 0;
                                 //Crear la lectura en base de datos
                                 try {
                                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                    $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='" . $modos[$p] . "' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
+                                    $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='" . $tipo . "' AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario IN (SELECT id_usuario FROM alumno WHERE id_alumno=" . $alumnos["id"][$m] . ")";
                                     $stmt = $conn->query($stringQuery);
                                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                         $entre = 1;
                                         $calificacion = intval(100 * $row[0] / $lecciones["totalPreguntas"][$l]);
-                                        if ($modos[$p] == "SP" || $modos[$p] == "SG") {
+                                        if ($tipo == "SP" || $tipo == "SG") {
                                             $calificacion = $calificacion / 3;
                                         }
                                         echo '<td>' . $calificacion . '</td>';
