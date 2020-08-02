@@ -153,6 +153,25 @@ if ($teacherID == "null") {
         </div>
       </div>
   
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p style="color: rgba(0, 0, 0, 0);">.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <a href="tiempoProf/tiempoProfesores.php">
+              <button type="button" class="btn btn-dark">
+                Tiempo profesores
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
   
       <div class="container">
         <div class="row">

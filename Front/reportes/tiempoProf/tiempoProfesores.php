@@ -69,72 +69,20 @@ if (!isset($_POST["grupo"])) {
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p>Tiempo total invertido por el alumno en MINUTOS</p>
+                <p>Tiempo total invertido por los profesores en MINUTOS</p>
             </div>
         </div>
     </div>
 
-    <!--+++++++++++++++++++++++++++++++++++ CABECERA [Asignatura, Profesor, Grupo y Modalidad] +++++++++++++++++++++++++++++++++++++-->
-    <?php
-    //Crear la lectura en base de datos
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo 
-        FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u 
-        JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor 
-        AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo .
-            " AND pu.tipo = '" . $tipo . "';";
-        $stmt = $conn->query($stringQuery);
-        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            //row [0] -> Materia, mail, grupo, modalidad
-            $materia = $row[0];
-            $correoProfesor = $row[1];
-            $grupo = $row[2];
-        }
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-    $conn = null;
-    ?>
-    <div class="container">
-        <div class="row">
-            <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                <table style="width:100%">
-                    <tbody>
-                        <tr class="table-info">
-                            <td>Asignatura</td>
-                            <td><?php echo $materia; ?></td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>Profesor</td>
-                            <td><?php echo $correoProfesor; ?></td>
-                        </tr>
-                        <tr class="table-info">
-                            <td>Grupo</td>
-                            <td><?php echo $grupo; ?></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
-        </div>
-    </div>
+    
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p style="color:white">.</p>
-            </div>
-        </div>
-    </div>
 
     <div class="container">
         <div class="row">
             <table class="table table-striped">
                 <tbody>
                     <tr>
-                        <td>Matricula</td>
+                        <td>Correo Profesor</td>
                         <td>Total</td>
                         <td>Práctica</td>
                         <td>Sprint</td>
@@ -147,9 +95,8 @@ if (!isset($_POST["grupo"])) {
                             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                             $stringQuery = "SELECT alumno.matricula, alumno.acmlrPP, alumno.acmlrSP, 
-                            alumno.acmlrE, alumno.acmlrSS FROM alumno INNER JOIN alumno_grupo 
-                            ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = '".$id_grupo."' 
-                            ORDER BY alumno.matricula ";
+                            alumno.acmlrE, alumno.acmlrSS FROM alumno INNER JOIN profesor 
+                            ON alumno.id_usuario = profesor.id_usuario ORDER BY alumno.matricula";
                             $stmt = $conn->query($stringQuery);
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 echo '<tr>';
