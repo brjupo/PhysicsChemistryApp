@@ -349,7 +349,7 @@ if (!isset($_POST["grupo"])) {
                     $size8=count($lecciones["id"]);
                     for ($m = 0; $m < $size6; ++$m) {
                         //Ahora a rotar los modos
-                        for ($p = 0; $p < $size7; ++$p) {
+                        for ($p = 0; $p <= $size7; ++$p) {
                             echo '<tr>';
                             echo '<td>' . $alumnos["matricula"][$m] . '</td>';
                             echo '<td>' . $alumnos["diamantes"][$m] . '</td>';
