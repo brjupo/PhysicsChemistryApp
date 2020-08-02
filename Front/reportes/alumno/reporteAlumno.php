@@ -180,9 +180,9 @@ if (!isset($_POST["grupo"])) {
             $subtemas["id"] = array();
             $subtemas["tema"] = array();
             //Recorreremos todos los temas, y guardaremos en subtemas[nombre] el nombre de TODOS los subtemas por orden de usuario
-            //Eficientizando codigo -> for($i = 0, $size = count($people); $i <= $size; ++$i)
+            //Eficientizando codigo -> for($i = 0, $size = count($people); $i < $size; ++$i)
             $size = count($temas["id"]);
-            for ($i = 0; $i <= $size; ++$i) {
+            for ($i = 0; $i < $size; ++$i) {
                 //Crear la lectura en base de datos
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -216,7 +216,7 @@ if (!isset($_POST["grupo"])) {
             $lecciones["subtema"] = array();
             //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
             $size1 = count($subtemas["id"]);
-            for ($j = 0; $j <= $size1; ++$j) {
+            for ($j = 0; $j < $size1; ++$j) {
                 //Crear la lectura en base de datos
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -251,7 +251,7 @@ if (!isset($_POST["grupo"])) {
                         <?php
                         //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
                         $size2 = count($lecciones["id"]);
-                        for ($k = 0; $k <= $size2; ++$k) {
+                        for ($k = 0; $k < $size2; ++$k) {
                             echo '<td>' . $lecciones["tema"][$k] . '</td>';
                         } ?>
                     </tr>
@@ -261,7 +261,7 @@ if (!isset($_POST["grupo"])) {
                         <td style="color:rgba(0,0,0,0)">.</td>
                         <?php
                         $size3 = count($lecciones["id"]);
-                        for ($k = 0; $k <= $size3; ++$k) {
+                        for ($k = 0; $k < $size3; ++$k) {
                             echo '<td>' . $lecciones["subtema"][$k] . '</td>';
                         }
                         ?>
@@ -274,7 +274,7 @@ if (!isset($_POST["grupo"])) {
                         //Este for lo aprovecharemos para obtener el total de preguntas de cada leccion
                         //Ademas de imprimir las lecciones en la tabla
                         $size4 = count($lecciones["id"]);
-                        for ($k = 0; $k <= $size4; ++$k) {
+                        for ($k = 0; $k < $size4; ++$k) {
                             echo '<td>' . $lecciones["nombre"][$k] . '</td>';
                             //Crear la lectura en base de datos
                             try {
@@ -325,7 +325,7 @@ if (!isset($_POST["grupo"])) {
                         $stmt = $conn->query($stringQuery);
                         $size5 = count($alumnos["matricula"]);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            for ($n = 0; $n <= $size5; ++$n) {
+                            for ($n = 0; $n < $size5; ++$n) {
                                 if ($alumnos["matricula"][$n] == $row[0]) {
                                     $alumnos["diamantes"][$n] = $row[1];
                                 }
@@ -347,14 +347,14 @@ if (!isset($_POST["grupo"])) {
                     $size6=count($alumnos["id"]);
                     $size7=count($modos);
                     $size8=count($lecciones["id"]);
-                    for ($m = 0; $m <= $size6; ++$m) {
+                    for ($m = 0; $m < $size6; ++$m) {
                         //Ahora a rotar los modos
-                        for ($p = 0; $p <= $size7; ++$p) {
+                        for ($p = 0; $p < $size7; ++$p) {
                             echo '<tr>';
                             echo '<td>' . $alumnos["matricula"][$m] . '</td>';
                             echo '<td>' . $alumnos["diamantes"][$m] . '</td>';
                             echo '<td>' . $modos["nombre"][$p] . '</td>';
-                            for ($l = 0; $l <= $size8; ++$l) {
+                            for ($l = 0; $l < $size8; ++$l) {
                                 $entre = 0;
                                 //Crear la lectura en base de datos
                                 try {
