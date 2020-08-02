@@ -6,12 +6,9 @@ if ($teacherID == "null") {
     header('Location: https://kaanbal.net/');
     exit;
 }
-if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
-    echo '<p>';
-    echo $_POST["grupo"];
-    echo '<br>';
-    echo $_POST["modalidad"];
-    echo '</p>';
+if (!isset($_POST["grupo"])) {
+    header('Location: ../controlCalificaciones.php');
+    exit;
 }
 ?>
 
@@ -284,8 +281,8 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                         } ?>
                     </tr>
                     <tr>
-                        <td>Matrícula</td>
-                        <td>Diamantes</td>
+                        <td style="font-weight:600">Matrícula</td>
+                        <td style="font-weight:600">Diamantes</td>
                         <?php
                         for ($k = 0; $k < count($subtemas["id"]); $k++) {
                             echo '<td>' . $subtemas["nombre"][$k] . '</td>';
