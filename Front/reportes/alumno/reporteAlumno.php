@@ -180,7 +180,9 @@ if (!isset($_POST["grupo"])) {
             $subtemas["id"] = array();
             $subtemas["tema"] = array();
             //Recorreremos todos los temas, y guardaremos en subtemas[nombre] el nombre de TODOS los subtemas por orden de usuario
-            for ($i = 0; $i < count($temas["id"]); $i++) {
+            //Eficientizando codigo -> for($i = 0, $size = count($people); $i < $size; ++$i)
+            $size = count($temas["id"]);
+            for ($i = 0; $i < $size; ++$i) {
                 //Crear la lectura en base de datos
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -213,7 +215,8 @@ if (!isset($_POST["grupo"])) {
             $lecciones["tema"] = array();
             $lecciones["subtema"] = array();
             //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
-            for ($j = 0; $j < count($subtemas["id"]); $j++) {
+            $size1 = count($subtemas["id"]);
+            for ($j = 0; $j < $size1; ++$j) {
                 //Crear la lectura en base de datos
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -252,8 +255,9 @@ if (!isset($_POST["grupo"])) {
                         } ?>
                     </tr>
                     <tr>
-                        <td>.</td>
-                        <td>.</td>
+                        <td style="color:rgba(0,0,0,0)">.</td>
+                        <td style="color:rgba(0,0,0,0)">.</td>
+                        <td style="color:rgba(0,0,0,0)">.</td>
                         <?php
                         for ($k = 0; $k < count($lecciones["id"]); $k++) {
                             echo '<td>' . $lecciones["subtema"][$k] . '</td>';
@@ -261,8 +265,9 @@ if (!isset($_POST["grupo"])) {
                         ?>
                     </tr>
                     <tr>
-                        <td>Matrícula</td>
-                        <td>Diamantes</td>
+                        <td style="font-weight:600">Matrícula</td>
+                        <td style="font-weight:600">Diamantes</td>
+                        <td style="font-weight:600">Modalidad</td>
                         <?php
                         //Este for lo aprovecharemos para obtener el total de preguntas de cada leccion
                         //Ademas de imprimir las lecciones en la tabla
@@ -339,9 +344,9 @@ if (!isset($_POST["grupo"])) {
                         //Ahora a rotar los modos
                         for ($p = 0; $p < count($modos); $p++) {
                             echo '<tr>';
-                            echo '<td style="font-weight:600">' . $alumnos["matricula"][$m] . '</td>';
-                            echo '<td style="font-weight:600">' . $alumnos["diamantes"][$m] . '</td>';
-                            echo '<td style="font-weight:600">' . $modos["nombre"][$p] . '</td>';
+                            echo '<td>' . $alumnos["matricula"][$m] . '</td>';
+                            echo '<td>' . $alumnos["diamantes"][$m] . '</td>';
+                            echo '<td>' . $modos["nombre"][$p] . '</td>';
                             for ($l = 0; $l < count($lecciones["id"]); $l++) {
                                 $entre = 0;
                                 //Crear la lectura en base de datos
