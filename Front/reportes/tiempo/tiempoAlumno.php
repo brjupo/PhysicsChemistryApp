@@ -161,7 +161,6 @@ if (!isset($_POST["grupo"])) {
                         <td>Examen</td>
                         <td>Super Sprint</td>
                     </tr>
-                    <tr>
                         <?php
                         //Crear la lectura en base de datos
                         try {
@@ -173,17 +172,19 @@ if (!isset($_POST["grupo"])) {
                             ORDER BY alumno.matricula ";
                             $stmt = $conn->query($stringQuery);
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                echo '<tr>';
                                 echo '<td>'.$row[0].'</td>';
                                 echo '<td>'.$row[1].'</td>';
                                 echo '<td>'.$row[2].'</td>';
                                 echo '<td>'.$row[3].'</td>';
+                                echo '<td>'.$row[4].'</td>';
+                                echo '</tr>';
                             }
                         } catch (PDOException $e) {
                             echo "Error: " . $e->getMessage();
                         }
                         $conn = null;
                         ?>
-                    </tr>
                 </tbody>
             </table>
         </div>
