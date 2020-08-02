@@ -242,8 +242,9 @@ if (!isset($_POST["grupo"])) {
             <table class="table table-striped">
                 <tbody>
                     <tr>
-                        <td>.</td>
-                        <td>.</td>
+                        <td style="color:rgba(0,0,0,0)">.</td>
+                        <td style="color:rgba(0,0,0,0)">.</td>
+                        <td style="color:rgba(0,0,0,0)">.</td>
                         <?php
                         //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
                         for ($k = 0; $k < count($lecciones["id"]); $k++) {
@@ -330,14 +331,17 @@ if (!isset($_POST["grupo"])) {
                     <?php
                     //-------------AQUI OBTIENES LA CALIFICACION DE LOS ALUMNOS, SI NO SE ENCUENTRA IMPRIME NP
                     //Primero crearemos un arreglo con los modos que se quieren E, SP, PP
-                    $modos = ["E", "SP", "PP"];
+                    $modos=array();
+                    $modos["acronimo"] = ["E", "SP", "PP"];
+                    $modos["nombre"] = ["Examen","Sprint","Práctica"];
                     //Despues comenzamos a rotar los alumnos
                     for ($m = 0; $m < count($alumnos["id"]); $m++) {
                         //Ahora a rotar los modos
                         for ($p = 0; $p < count($modos); $p++) {
                             echo '<tr>';
-                            echo '<td>' . $alumnos["matricula"][$m] . '</td>';
-                            echo '<td>' . $alumnos["diamantes"][$m] . '</td>';
+                            echo '<td style="font-weight:600">' . $alumnos["matricula"][$m] . '</td>';
+                            echo '<td style="font-weight:600">' . $alumnos["diamantes"][$m] . '</td>';
+                            echo '<td style="font-weight:600">' . $modos["nombre"][$p] . '</td>';
                             for ($l = 0; $l < count($lecciones["id"]); $l++) {
                                 $entre = 0;
                                 //Crear la lectura en base de datos
