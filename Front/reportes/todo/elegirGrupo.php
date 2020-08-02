@@ -44,7 +44,7 @@ if ($teacherID == "null") {
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h1>Examen, Sprint o Pŕactica</h1>
+                <h3>Examen, Sprint o Pŕactica</h3>
                 <p>
                     - Elija un grupo y el modo.
                 </p>
@@ -137,7 +137,7 @@ if ($teacherID == "null") {
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h1>Super Sprint</h1>
+                <h3>Super Sprint</h3>
                 <p>
                     - Elija un grupo.
                 </p>
