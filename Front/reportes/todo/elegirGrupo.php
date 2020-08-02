@@ -161,7 +161,7 @@ if ($teacherID == "null") {
                     <label class="input-group-text" for="grupo">Grupo</label>
                 </div>
                 <label for="grupo" style="display:none;">grupo</label>
-                <select class="custom-select" id="grupo" name="grupo" form="groupForm">
+                <select class="custom-select" id="grupo" name="grupo" form="superSprintForm">
                     <option selected disabled value="0">Elegir</option>
                     <?php
                     global $servername, $username, $password, $dbname;
@@ -184,7 +184,7 @@ if ($teacherID == "null") {
 
 
             <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <form action="calificaciones2.php" id="groupForm" method="POST">
+                <form action="calificacionesSuperSprint.php" id="superSprintForm" method="POST">
                     <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte"><br>
                 </form>
             </div>
