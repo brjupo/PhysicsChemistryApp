@@ -250,7 +250,8 @@ if (!isset($_POST["grupo"])) {
                         <td style="color:rgba(0,0,0,0)">.</td>
                         <?php
                         //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
-                        for ($k = 0; $k < count($lecciones["id"]); $k++) {
+                        $size2 = count($lecciones["id"]);
+                        for ($k = 0; $k < $size2; ++$k) {
                             echo '<td>' . $lecciones["tema"][$k] . '</td>';
                         } ?>
                     </tr>
@@ -259,7 +260,8 @@ if (!isset($_POST["grupo"])) {
                         <td style="color:rgba(0,0,0,0)">.</td>
                         <td style="color:rgba(0,0,0,0)">.</td>
                         <?php
-                        for ($k = 0; $k < count($lecciones["id"]); $k++) {
+                        $size3 = count($lecciones["id"]);
+                        for ($k = 0; $k < $size3; ++$k) {
                             echo '<td>' . $lecciones["subtema"][$k] . '</td>';
                         }
                         ?>
@@ -271,7 +273,8 @@ if (!isset($_POST["grupo"])) {
                         <?php
                         //Este for lo aprovecharemos para obtener el total de preguntas de cada leccion
                         //Ademas de imprimir las lecciones en la tabla
-                        for ($k = 0; $k < count($lecciones["id"]); $k++) {
+                        $size4 = count($lecciones["id"]);
+                        for ($k = 0; $k < $size4; ++$k) {
                             echo '<td>' . $lecciones["nombre"][$k] . '</td>';
                             //Crear la lectura en base de datos
                             try {
@@ -320,8 +323,9 @@ if (!isset($_POST["grupo"])) {
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY matricula ASC;";
                         $stmt = $conn->query($stringQuery);
+                        $size5 = count($alumnos["matricula"]);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            for ($n = 0; $n < count($alumnos["matricula"]); $n++) {
+                            for ($n = 0; $n < $size5; ++$n) {
                                 if ($alumnos["matricula"][$n] == $row[0]) {
                                     $alumnos["diamantes"][$n] = $row[1];
                                 }
@@ -336,18 +340,21 @@ if (!isset($_POST["grupo"])) {
                     <?php
                     //-------------AQUI OBTIENES LA CALIFICACION DE LOS ALUMNOS, SI NO SE ENCUENTRA IMPRIME NP
                     //Primero crearemos un arreglo con los modos que se quieren E, SP, PP
-                    $modos=array();
+                    $modos = array();
                     $modos["acronimo"] = ["E", "SP", "PP"];
-                    $modos["nombre"] = ["Examen","Sprint","Práctica"];
+                    $modos["nombre"] = ["Examen", "Sprint", "Práctica"];
                     //Despues comenzamos a rotar los alumnos
-                    for ($m = 0; $m < count($alumnos["id"]); $m++) {
+                    $size6=count($alumnos["id"]);
+                    $size7=count($modos);
+                    $size8=count($lecciones["id"]);
+                    for ($m = 0; $m < $size6; ++$m) {
                         //Ahora a rotar los modos
-                        for ($p = 0; $p < count($modos); $p++) {
+                        for ($p = 0; $p < $size7; ++$p) {
                             echo '<tr>';
                             echo '<td>' . $alumnos["matricula"][$m] . '</td>';
                             echo '<td>' . $alumnos["diamantes"][$m] . '</td>';
                             echo '<td>' . $modos["nombre"][$p] . '</td>';
-                            for ($l = 0; $l < count($lecciones["id"]); $l++) {
+                            for ($l = 0; $l < $size8; ++$l) {
                                 $entre = 0;
                                 //Crear la lectura en base de datos
                                 try {
