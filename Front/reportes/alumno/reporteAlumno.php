@@ -7,9 +7,8 @@ if ($teacherID == "null") {
     exit;
 }
 if (!isset($_POST["grupo"])) {
-    echo '<p>';
-    echo $_POST["grupo"];
-    echo '</p>';
+    header('Location: ../controlCalificaciones.php');
+    exit;
 }
 ?>
 
