@@ -154,7 +154,8 @@ if (!isset($_POST["grupo"])) {
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 echo '<tr>';
                                 echo '<td>'.$row[0].'</td>';
-                                echo '<td>'.$row[1]+$row[2]+$row[3]+$row[4].'</td>';
+                                $sum = $row[1]+$row[2]+$row[3]+$row[4];
+                                echo '<td>'.$sum.'</td>';
                                 echo '<td>'.$row[1].'</td>';
                                 echo '<td>'.$row[2].'</td>';
                                 echo '<td>'.$row[3].'</td>';
