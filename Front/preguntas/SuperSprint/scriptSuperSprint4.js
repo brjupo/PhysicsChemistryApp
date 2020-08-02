@@ -9,6 +9,7 @@ var timeIntervalX = setInterval(function () {
 var segundos = 0;
 var segundosActuales = 0;
 var acumulador = 0;
+var idioma = "e";
 
 var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
@@ -18,21 +19,23 @@ var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 window.onload = function () {
   contarTiempo();
   segundos = getTimeForSprint();
+  dioma = document.getElementById("idioma").innerHTML.trim();
 };
 
 function contarTiempo() {
   window.setInterval(function(){
     acumulador++;
   },1000);
-  }
+}
+
 
 function getTimeForSprint() {
-  leccion = document.getElementById("leccionID").innerHTML.trim();
+  subtema = document.getElementById("subtemaID").innerHTML.trim();
   $.ajax({
     type: "POST",
-    url: "getTimeForSprint.php",
+    url: "getTimeForSuperSprint.php",
     dataType: "json",
-    data: { leccion : leccion},
+    data: { subtema : subtema},
     success: function(data) {
       console.log(data.seconds);
       console.log(data.response);
@@ -188,16 +191,19 @@ document.addEventListener("click", function (evt) {
 });
 
 function seguroRegresar() {
+  if (idioma == "e"){
+    var texto = "¿Seguro que quieres regresar?\nPerderás todo tu progreso de esta lección.";
+  }else{
+    var texto = "Are you sure to return?\nIf you return you will lose all your progress of this lesson.";
+  }
   if (
-    confirm(
-      "Are you sure to return?\n If you return you will lose all your progress of this lesson"
-    )
+    confirm(texto)
   ) {
     var userID = document.getElementById("userID").innerHTML.trim();
     enviarAcumulador(userID);
-    var stringLiga = "../../Inicio/lecciones.php?subtema=";
+    var stringLiga = "../../Inicio/subtemas.php?tema=";
     window.location.href = stringLiga.concat(
-      document.getElementById("subtemaPrevio").innerHTML.trim()
+      document.getElementById("temaPrevio").innerHTML.trim()
     );
   }
 }
@@ -421,8 +427,8 @@ function nextQuestion(lastQuestion) {
   }
   if (questionNumberArray.length == 0) {
     var stringLiga =
-      "sprintFinalizado.php?subtema=" +
-      document.getElementById("subtemaPrevio").innerHTML.trim() +
+      "sprintFinalizado.php?tema=" +
+      document.getElementById("temaPrevio").innerHTML.trim() +
       "&puntos=" +
       puntos +
       "&totalPreguntas=" +
@@ -435,19 +441,20 @@ function nextQuestion(lastQuestion) {
 
 function enviarCalificacionRedirigir() {
   var userID = document.getElementById("userID").innerHTML.trim();
-  var leccionID = document.getElementById("leccionID").innerHTML.trim();
+  var subtemaID = document.getElementById("subtemaID").innerHTML.trim();
+  enviarAcumulador(userID);
   $.ajax({
     type: "POST",
     url: "subirPuntosByType.php",
     dataType: "json",
-    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SP" },
+    data: { id: userID, leccion: subtemaID, puntos: puntos, flagTipo: "SG" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
         console.log("Valores enviados correctamente");
         var stringLiga =
-          "sprintFinalizado.php?subtema=" +
-          document.getElementById("subtemaPrevio").innerHTML.trim() +
+          "sprintFinalizado.php?tema=" +
+          document.getElementById("temaPrevio").innerHTML.trim() +
           "&puntos=" +
           puntos +
           "&totalPreguntas=" +
@@ -458,26 +465,22 @@ function enviarCalificacionRedirigir() {
       }
     },
   });
-  enviarAcumulador(userID);
 }
 
 function enviarCalificacion() {
   var userID = document.getElementById("userID").innerHTML.trim();
-  var leccionID = document.getElementById("leccionID").innerHTML.trim();
-  //alert(userID+ " "+ puntos+ " "+ leccionID);
+  var subtemaID = document.getElementById("subtemaID").innerHTML.trim();
 
   $.ajax({
     type: "POST",
     url: "subirPuntosByType.php",
     dataType: "json",
-    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SP" },
+    data: { id: userID, leccion: subtemaID, puntos: puntos, flagTipo: "SG" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
         //alert("Etcito");
         console.log("Valores enviados correctamente");
-        //var stringLiga =
-        //  "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
       } else {
         //alert(data.response);
         console.log("Algo salio mal");
@@ -617,7 +620,7 @@ function enviarAcumulador(userID) {
     type: "POST",
     url: "../../../Servicios/enviarAcumulador.php",
     dataType: "json",
-    data: { id: userID, acmldr: acumulador, flagTipo: "acmlrSP" },
+    data: { id: userID, acmldr: acumulador, flagTipo: "acmlrSS" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {

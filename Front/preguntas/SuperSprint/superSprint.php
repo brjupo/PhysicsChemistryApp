@@ -8,7 +8,7 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
-    <script src="scriptSuperSprint3.js"></script>
+    <script src="scriptSuperSprint4.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -106,7 +106,22 @@
             $arrayr[] = $row;
         }
 
+        ///VALIDAMOS EL IDIOMA PARA HACER CAMBIO EN EL NOMBRE DE LOS CAMPOS Y MOSTRAR LAS PREGUNTAS EN INGLES
+        if($_SESSION["idioma"] == 'i'){
+            for ($j = 0; $j < $total[0]; $j++) {
+            $array[$j]["pregunta"] = $array[$j]["question"];
+            $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];
+            $array[$j]["respuesta2"] = $array[$j]["answer2"];
+            $array[$j]["respuesta3"] = $array[$j]["answer3"];
+            $array[$j]["respuesta4"] = $array[$j]["answer4"];
 
+            $arrayr[$j]["pregunta"] = $arrayr[$j]["question"];
+            $arrayr[$j]["respuesta_correcta"] = $arrayr[$j]["correct_answer"];
+            $arrayr[$j]["respuesta2"] = $arrayr[$j]["answer2"];
+            $arrayr[$j]["respuesta3"] = $arrayr[$j]["answer3"];
+            $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
+            }
+        }
 
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
         ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
@@ -241,6 +256,7 @@
                     <img src="../../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                    <p id="idioma" style="display:none"/>'.$_SESSION["idioma"].'</p>
                     <p id="temaPrevio" style="display:none">' . $temaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
