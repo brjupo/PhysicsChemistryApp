@@ -45,7 +45,7 @@ if ($teacherID == "null") {
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p>
-                    - Elija el grupo y la modalidad, y de clic en "generar reporte".
+                    - Elija el grupo, y de clic en "generar reporte".
                 </p>
             </div>
         </div>
