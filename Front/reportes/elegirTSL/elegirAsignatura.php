@@ -65,7 +65,6 @@ if ($teacherID == "null") {
 
   <div class="container">
     <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <?php
         $con = mysqli_connect($servername, $username, $password, $dbname);
         $statement = mysqli_prepare($con, "SELECT id_asignatura, nombre FROM asignatura");
@@ -76,15 +75,16 @@ if ($teacherID == "null") {
         //Leemos datos del la leccion habilitadas
         while (mysqli_stmt_fetch($statement)) {
           echo '
-          <a href="elegirTema.php?ID_Asignatura=' . $id_asignatura . '">
-            <button type="button" class="btn btn-outline-dark">
-            ' . $nombre . '
-            </button>
-          </a>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <a href="elegirTema.php?ID_Asignatura=' . $id_asignatura . '">
+              <button type="button" class="btn btn-outline-dark">
+              ' . $nombre . '
+              </button>
+            </a>
+          </div>
           ';
         }
         ?>
-      </div>
     </div>
   </div>
 
