@@ -46,7 +46,6 @@ if ($teacherID == "null") {
         <p>
           - Elija el grupo y la modalidad, y de clic en "generar reporte".
         </p>
-        <p id="leccion"><?php echo $_GET["ID_Leccion"]; ?></p>
       </div>
     </div>
   </div>
