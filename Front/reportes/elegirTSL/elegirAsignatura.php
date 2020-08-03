@@ -83,9 +83,9 @@ if ($teacherID == "null") {
             </a>
           </div>
 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p style="color: rgba(0, 0, 0, 0);">.</p>
-        </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p style="color: rgba(0, 0, 0, 0);">.</p>
+          </div>
           ';
         }
         ?>

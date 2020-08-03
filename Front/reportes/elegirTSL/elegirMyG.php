@@ -17,8 +17,7 @@ if ($teacherID == "null") {
   <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
-  <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
-  <script src="elegirMyG3.js"></script>
+  <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials.css" />
 </head>
 
 <body>
