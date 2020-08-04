@@ -37,8 +37,8 @@
     $strqry = "SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma 
     FROM puntuacion WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema 
     IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))) 
-    GROUP BY id_usuario ORDER BY suma DESC LIMIT 10) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario 
-    IN (SELECT id_usuario FROM licencia WHERE estatus = 1) AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor)";
+    GROUP BY id_usuario) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario 
+    IN (SELECT id_usuario FROM licencia WHERE estatus = 1) AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) ORDER BY suma DESC LIMIT 10";
     $statement = mysqli_prepare($con, $strqry);
     //[ID DE LA ASIGNATURA ACTUAL]
     mysqli_stmt_bind_param($statement, "i", $idMateria);
