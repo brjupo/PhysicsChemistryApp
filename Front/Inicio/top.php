@@ -63,7 +63,7 @@
         imprimirTop();
         imprimirRelleno();
 
-        for($i = 0; $i < 5; $i++){
+        for($i = 0; $i < 10; $i++){
           $posicion = $i + 1;
           $diamantes = $arregloTopUsuarios[$i]["suma"];
           //$matricula = substr($arregloTopUsuarios[$i]["matricula"], 5, 4);
