@@ -2,7 +2,7 @@
 <html>
   <?php
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  //////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////TEST
   session_start();
   $tokenValidar = array();
   $idValidarprofe = array();
