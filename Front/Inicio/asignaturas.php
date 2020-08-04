@@ -20,7 +20,7 @@ require '../../Servicios/DDBBVariables.php';
   //////////////////////////////////////////////////////
   session_start();
   /////ESTABLECER UN TIME OUT DE SESION
- /*  $_SESSION["timeout"] = time();
+  /*  $_SESSION["timeout"] = time();
 
   session_start();
     // Establecer tiempo de vida de la sesión en segundos
@@ -38,9 +38,9 @@ require '../../Servicios/DDBBVariables.php';
   /////
   $tokenValidar = array();
 
-  if($_SESSION["idioma"] == 'i'){
+  if ($_SESSION["idioma"] == 'i') {
     $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
-  }else{
+  } else {
     $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
   }
   //Consultar si existe token de usuario
@@ -62,8 +62,8 @@ require '../../Servicios/DDBBVariables.php';
     //$result2 = mysqli_query($con, $query2);
     //$total = mysqli_fetch_row($result2);
 
-     //Consultar si es profe 
-     $mostrarMenuprofesor = $_SESSION["mostrarMenuprofesor"];
+    //Consultar si es profe 
+    $mostrarMenuprofesor = $_SESSION["mostrarMenuprofesor"];
 
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
@@ -75,7 +75,7 @@ require '../../Servicios/DDBBVariables.php';
 
     $correo = $_POST["validarUsuario"];
     $password = $_POST["validarPassword"];
-    $idiomas = $_POST["idioma"]; 
+    $idiomas = $_POST["idioma"];
 
     //Validamos que los campos correo y password no lleguen vacios
     if ($correo == "" or $password == "") {
@@ -86,10 +86,10 @@ require '../../Servicios/DDBBVariables.php';
     } else {
 
       //Actualizar el idioma que se eligío 
-      if($idiomas == 'e' OR $idiomas == 'i'){
+      if ($idiomas == 'e' or $idiomas == 'i') {
         $sql = "UPDATE usuario_prueba SET idioma = '$idiomas' WHERE mail = '$correo'";
-        mysqli_query($con,$sql);
-      }else{
+        mysqli_query($con, $sql);
+      } else {
         $query = "SELECT idioma FROM usuario_prueba WHERE mail = '$correo'";
         $result = mysqli_query($con, $query);
         while ($row = mysqli_fetch_assoc($result)) {
@@ -124,7 +124,7 @@ require '../../Servicios/DDBBVariables.php';
 
       //Si el usuario EXISTE despliega el menú de las asignaturas
       if ($temp_id_usuario) {
-         //Consultar si es profesor
+        //Consultar si es profesor
         $statement = mysqli_prepare($con, "SELECT id_profesor FROM profesor WHERE id_usuario = ?");
         mysqli_stmt_bind_param($statement, "s", $temp_id_usuario);
         mysqli_stmt_execute($statement);
@@ -139,10 +139,10 @@ require '../../Servicios/DDBBVariables.php';
 
         //Conteo de inicios de sesión y fecha
         $tiempo = getDatetimeNow();
-    
-        $temp_inicios = $temp_inicios+1;
+
+        $temp_inicios = $temp_inicios + 1;
         $sql = "UPDATE usuario_prueba SET inicios = $temp_inicios, tiempo = '$tiempo' WHERE mail = '$correo'";
-        mysqli_query($con,$sql);
+        mysqli_query($con, $sql);
 
         //Creamos token de sesión
         $rand = bin2hex(random_bytes(5));
@@ -159,11 +159,11 @@ require '../../Servicios/DDBBVariables.php';
         $_SESSION["tokenA"] = $temp_tokenA;
         $_SESSION["tokenSesion"] = $rand;
         $_SESSION["mostrarMenuprofesor"] = $mostrarMenuprofesor;
-        
+
         //Imprimimos pantalla de asignaturas
-        if($_SESSION["idioma"] == 'i'){
+        if ($_SESSION["idioma"] == 'i') {
           $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
-        }else{
+        } else {
           $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
         }
 
@@ -191,7 +191,7 @@ require '../../Servicios/DDBBVariables.php';
                       alert("'.$total[0].'");
                       </script>'; */
 
-        if ($total[0] > 1 OR $mostrarMenuprofesor != '') {
+        if ($total[0] > 1 or $mostrarMenuprofesor != '') {
           imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor);
         } else {
           //Traeer asignatura
@@ -236,9 +236,9 @@ require '../../Servicios/DDBBVariables.php';
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     /*----Paso 1 Obtener las asignaturas a las que se tienen permiso ----*/
     //////XXXX
-    if($_SESSION["idioma"] == 'i'){
+    if ($_SESSION["idioma"] == 'i') {
       $statement = mysqli_prepare($con, "SELECT id_asignatura, names, nivel, grado_academico, idioma FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
-    }else{
+    } else {
       $statement = mysqli_prepare($con, "SELECT id_asignatura, nombre, nivel, grado_academico, idioma FROM asignatura WHERE id_asignatura IN (SELECT id_asignatura FROM licencia WHERE id_usuario = ? AND vigencia > NOW())");
     }
     /////////xXXXX
@@ -265,22 +265,24 @@ require '../../Servicios/DDBBVariables.php';
     return ($arregloAsignaturas);
   }
 
-/////Establecer uso horario para el envio de fecha y hora
-  function getDatetimeNow() {
+  /////Establecer uso horario para el envio de fecha y hora
+  function getDatetimeNow()
+  {
     $tz_object = new DateTimeZone('America/Mexico_City');
 
     $datetime = new DateTime();
     $datetime->setTimezone($tz_object);
     return $datetime->format('Y\-m\-d\ H:i:s');
-}
+  }
   //////////////////////
   function imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor)
   {
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas);
     imprimirRelleno();
-    if($mostrarMenuprofesor != ''){
-    imprimirEspaciosProfesor();}
+    if ($mostrarMenuprofesor != '') {
+      imprimirEspaciosProfesor();
+    }
     imprimirRelleno();
     imprimirFooter();
   }
@@ -327,6 +329,7 @@ require '../../Servicios/DDBBVariables.php';
 
   function imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas)
   {
+    /*
     $tamanho = count($arregloAsignaturastodas);
     $esImpar = $tamanho % 2;
     $numeroDePares = intval($tamanho / 2);
@@ -361,6 +364,22 @@ require '../../Servicios/DDBBVariables.php';
         imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 1);
       } else {
         imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 0);
+      }
+    }
+    */
+    //$arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
+    //$arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
+    if (in_array("Matter and Environment", $arregloAsignaturas) || in_array("Materia y el entorno", $arregloAsignaturas)) {
+      if (in_array("Energy and transformation I", $arregloAsignaturas) || in_array("Energía y transformación I", $arregloAsignaturas)) {
+        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 1);
+      } else {
+        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 0);
+      }
+    } else if (in_array("Energy and transformation I", $arregloAsignaturas) || in_array("Energía y transformación I", $arregloAsignaturas)) {
+      if (in_array("Matter and Environment", $arregloAsignaturas) || in_array("Materia y el entorno", $arregloAsignaturas)) {
+        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 1);
+      } else {
+        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 0, 1);
       }
     }
   }
