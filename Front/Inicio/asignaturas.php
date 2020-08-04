@@ -252,11 +252,11 @@ require '../../Servicios/DDBBVariables.php';
 
     $i = 0;
     while (mysqli_stmt_fetch($statement)) {
-      $arregloAsignaturas[$i]["id_asignatura"] = $id_asignatura;
-      $arregloAsignaturas[$i]["nombre"] = $nombre;
-      $arregloAsignaturas[$i]["nivel"] = $nivel;
-      $arregloAsignaturas[$i]["grado_academico"] = $grado_academico;
-      $arregloAsignaturas[$i]["idioma"] = $idioma;
+      $arregloAsignaturas["id_asignatura"][$i] = $id_asignatura;
+      $arregloAsignaturas["nombre"][$i] = $nombre;
+      $arregloAsignaturas["nivel"][$i] = $nivel;
+      $arregloAsignaturas["grado_academico"][$i] = $grado_academico;
+      $arregloAsignaturas["idioma"][$i] = $idioma;
       $i = $i + 1;
     }
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -370,17 +370,17 @@ require '../../Servicios/DDBBVariables.php';
     //$arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
     //$arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
     print_r($arregloAsignaturas);
-    if (in_array("Matter and Environment", $arregloAsignaturas) || in_array("Materia y el entorno", $arregloAsignaturas)) {
-      if (in_array("Energy and transformation I", $arregloAsignaturas) || in_array("Energía y transformación I", $arregloAsignaturas)) {
-        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 1);
+    if (in_array("Matter and Environment", $arregloAsignaturas["nombre"]) || in_array("Materia y el entorno", $arregloAsignaturas["nombre"])) {
+      if (in_array("Energy and transformation I", $arregloAsignaturas["nombre"]) || in_array("Energía y transformación I", $arregloAsignaturas["nombre"])) {
+        imprimirAsignaturaPar($arregloAsignaturastodas["nombre"][0], $arregloAsignaturastodas["nombre"][1], 1, 1);
       } else {
-        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 0);
+        imprimirAsignaturaPar($arregloAsignaturastodas["nombre"][0], $arregloAsignaturastodas["nombre"][1], 1, 0);
       }
-    } else if (in_array("Energy and transformation I", $arregloAsignaturas) || in_array("Energía y transformación I", $arregloAsignaturas)) {
-      if (in_array("Matter and Environment", $arregloAsignaturas) || in_array("Materia y el entorno", $arregloAsignaturas)) {
-        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 1);
+    } else if (in_array("Energy and transformation I", $arregloAsignaturas["nombre"]) || in_array("Energía y transformación I", $arregloAsignaturas["nombre"])) {
+      if (in_array("Matter and Environment", $arregloAsignaturas["nombre"]) || in_array("Materia y el entorno", $arregloAsignaturas["nombre"])) {
+        imprimirAsignaturaPar($arregloAsignaturastodas["nombre"][0], $arregloAsignaturastodas["nombre"][1], 1, 1);
       } else {
-        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 0, 1);
+        imprimirAsignaturaPar($arregloAsignaturastodas["nombre"][0], $arregloAsignaturastodas["nombre"][1], 0, 1);
       }
     }
   }
