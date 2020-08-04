@@ -335,12 +335,14 @@ require '../../Servicios/DDBBVariables.php';
             </script>';
     */
     for ($i = 0; $i < $numeroDePares; $i++) {
-      if (in_array($arregloAsignaturas[2 * $i]["nombre"], $arregloAsignaturastodas)) {
+      //if (in_array($arregloAsignaturas[2 * $i]["nombre"], $arregloAsignaturastodas)) {
+      if ($arregloAsignaturas[2 * $i]["nombre"] == $arregloAsignaturastodas[2 * $i]) {
         $permiso1 = 1;
       } else {
         $permiso1 = 0;
       }
-      if (in_array($arregloAsignaturas[2 * $i + 1]["nombre"], $arregloAsignaturastodas)) {
+      ///if (in_array($arregloAsignaturas[2 * $i + 1]["nombre"], $arregloAsignaturastodas)) {
+        if ($arregloAsignaturas[2 * $i+1]["nombre"] == $arregloAsignaturastodas[2 * $i+1]) {
         $permiso2 = 1;
       } else {
         $permiso2 = 0;
@@ -349,7 +351,8 @@ require '../../Servicios/DDBBVariables.php';
     }
     //si es del 0 a 4, te regresa 5
     if ($esImpar) {
-      if (in_array($arregloAsignaturas[$tamanho - 1]["nombre"], $arregloAsignaturastodas)) {
+      //if (in_array($arregloAsignaturas[$tamanho - 1]["nombre"], $arregloAsignaturastodas)) {
+      if ($arregloAsignaturas[$tamanho - 1]["nombre"] == $arregloAsignaturastodas[$tamanho - 1]) {
         imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 1);
       } else {
         imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 0);
