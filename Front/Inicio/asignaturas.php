@@ -369,6 +369,7 @@ require '../../Servicios/DDBBVariables.php';
     */
     //$arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
     //$arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
+    print_r($arregloAsignaturas);
     if (in_array("Matter and Environment", $arregloAsignaturas) || in_array("Materia y el entorno", $arregloAsignaturas)) {
       if (in_array("Energy and transformation I", $arregloAsignaturas) || in_array("Energía y transformación I", $arregloAsignaturas)) {
         imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 1);
