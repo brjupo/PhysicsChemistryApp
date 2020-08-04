@@ -331,24 +331,33 @@ require '../../Servicios/DDBBVariables.php';
     $esImpar = $tamanho % 2;
     $numeroDePares = intval($tamanho / 2);
     for ($i = 0; $i < $numeroDePares; $i++) {
-      //if (in_array($arregloAsignaturas[2 * $i]["nombre"], $arregloAsignaturastodas)) {
-      if ($arregloAsignaturas[2 * $i]["nombre"] == $arregloAsignaturastodas[2 * $i]) {
+      if (in_array($arregloAsignaturas[2 * $i]["nombre"], $arregloAsignaturastodas)) {
+      //if ($arregloAsignaturas[2 * $i]["nombre"] == $arregloAsignaturastodas[2 * $i]) {
+        for($l=0; $l<count($arregloAsignaturastodas); $l++){
+          if ($arregloAsignaturas[2 * $i]["nombre"] == $arregloAsignaturastodas[$l]) {
+            $posicion1=$l;
+          }
+        }
         $permiso1 = 1;
       } else {
         $permiso1 = 0;
       }
-      ///if (in_array($arregloAsignaturas[2 * $i + 1]["nombre"], $arregloAsignaturastodas)) {
-        if ($arregloAsignaturas[2 * $i+1]["nombre"] == $arregloAsignaturastodas[2 * $i+1]) {
+      if (in_array($arregloAsignaturas[2 * $i + 1]["nombre"], $arregloAsignaturastodas)) {
+        for($l=0; $l<count($arregloAsignaturastodas); $l++){
+          if ($arregloAsignaturas[2 * $i+1]["nombre"] == $arregloAsignaturastodas[$l]) {
+            $posicion2=$l;
+          }
+        }
         $permiso2 = 1;
       } else {
         $permiso2 = 0;
       }
-      imprimirAsignaturaPar($arregloAsignaturastodas[2 * $i], $arregloAsignaturastodas[2 * $i + 1], $permiso1, $permiso2);
+      imprimirAsignaturaPar($arregloAsignaturastodas[$posicion1], $arregloAsignaturastodas[$posicion2], $permiso1, $permiso2);
     }
     //si es del 0 a 4, te regresa 5
     if ($esImpar) {
-      //if (in_array($arregloAsignaturas[$tamanho - 1]["nombre"], $arregloAsignaturastodas)) {
-      if ($arregloAsignaturas[$tamanho - 1]["nombre"] == $arregloAsignaturastodas[$tamanho - 1]) {
+      if (in_array($arregloAsignaturas[$tamanho - 1]["nombre"], $arregloAsignaturastodas)) {
+      //if ($arregloAsignaturas[$tamanho - 1]["nombre"] == $arregloAsignaturastodas[$tamanho - 1]) {
         imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 1);
       } else {
         imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 0);
