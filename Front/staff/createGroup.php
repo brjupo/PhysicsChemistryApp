@@ -97,7 +97,7 @@ if ($adminID == "null") {
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = 'SELECT id_profesor FROM profesor';
+                        $stringQuery = 'SELECT A.id_profesor, B.mail FROM profesor A INNER JOIN usuario_prueba B WHERE A.id_usuario = B.id_usuario';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             echo '<option value="' . $row[0] . '">' . $row[0] . '</option>';
