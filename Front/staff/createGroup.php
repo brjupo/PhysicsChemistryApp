@@ -138,7 +138,7 @@ if ($adminID == "null") {
                     <label class="input-group-text" for="grupo">Grupo</label>
                 </div>
                 <label for="grupo" style="display:none;">grupo</label>
-                <input type="text" id="grupo" name="grupo" class="form-control"><br>
+                <input type="text" id="grupo" name="grupo" class="form-control" form="groupForm"><br>
             </div>
             <div class="input-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <div class="input-group-prepend">
