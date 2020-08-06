@@ -30,7 +30,7 @@ try {
     '" . $_POST['profesor'] . "', '" . $_POST['asignatura'] . "')";
     // use exec() because no results are returned
     $conn->exec($sql);
-    echo 'EXITO';
+    header('Location: createGroup.php');
     //$response["response"] = $sql;
 } catch (PDOException $e) {
     echo  $sql . "<br>" . $e->getMessage();
