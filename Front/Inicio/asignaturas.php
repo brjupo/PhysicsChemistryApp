@@ -555,6 +555,51 @@ require '../../Servicios/DDBBVariables.php';
           </div>
           <!------------------------------------------------FIN RELLENO----------------------------------------------->
     ';
+    echo '
+        <div class="container">
+          <div class="row">
+            <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
+              <a href="../staff/controlStaff.php">     
+                <div
+                  class="asignaturaPrincipal col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                >
+                  <div>
+                    <img class="imagenAsignatura" src="../CSSsJSs/icons/personal.svg" />
+                  </div>
+                  <div class="tituloAsignaturas">
+                    Staff
+                  </div>
+                </div>
+              </a>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
+              <a href="">    
+                <div
+                  class="asignaturaPrincipal col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                >
+                  <div>
+                    <img class="imagenAsignatura" src="../CSSsJSs/icons/reportes.svg" />
+                  </div>
+                  <div class="tituloAsignaturas">
+                    --
+                  </div>
+                </div>
+              </a>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+            </div>
+          </div>
+
+          <!------------------------------------------------RELLENO----------------------------------------------->
+          <div class="container">
+            <div class="row">
+              <p class="relleno">.</p>
+            </div>
+            <div class="row">
+              <p class="relleno">.</p>
+            </div>
+          </div>
+          <!------------------------------------------------FIN RELLENO----------------------------------------------->
+    ';
   }
 
   function imprimirRelleno()
