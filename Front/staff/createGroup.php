@@ -78,10 +78,22 @@ if ($adminID == "null") {
                 <label for="campus" style="display:none;">campus</label>
                 <select class="custom-select" id="campus" name="campus" form="groupForm">
                     <option selected disabled value="0">Elegir</option>
-                    <option value="CEM">CEM</option>
-                    <option value="CSF">CSF</option>
-                    <option value="ESM">ESM</option>
-                    <option value="CCM">CCM</option>
+                    <?php
+                    global $servername, $username, $password, $dbname;
+                    //Crear la lectura en base de datos
+                    try {
+                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stringQuery = 'SELECT id_campus, nombre FROM campus';
+                        $stmt = $conn->query($stringQuery);
+                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                            echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                    }
+                    $conn = null;
+                    ?>
                 </select>
             </div>
             <div class="input-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -94,13 +106,14 @@ if ($adminID == "null") {
                     <?php
                     global $servername, $username, $password, $dbname;
                     //Crear la lectura en base de datos
+                    //De aqui obtenemos el id del profesor y el mail
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $stringQuery = 'SELECT A.id_profesor, B.mail FROM profesor A INNER JOIN usuario_prueba B WHERE A.id_usuario = B.id_usuario';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            echo '<option value="' . $row[0] . '">' . $row[0] . '</option>';
+                            echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
                         }
                     } catch (PDOException $e) {
                         echo "Error: " . $e->getMessage();
@@ -164,7 +177,7 @@ if ($adminID == "null") {
     <div class="container">
         <div class="row">
             <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <form action="reporteAlumno.php" id="groupForm" method="POST">
+                <form action="writeGroupOnDDBB.php" id="groupForm" method="POST">
                     <input type="submit" class="btn btn-primary btn-sm" value="Crear grupo"><br>
                 </form>
             </div>
