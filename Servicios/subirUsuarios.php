@@ -84,7 +84,7 @@ if (isset($_POST["Import"])) {
       $result = mysqli_query($con, $sql); 
 
       //tabla de alumno_grupo
-      $query2 = "SELECT id_grupo FROM grupo WHERE nombre = $getData[3]"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+      $query2 = "SELECT id_grupo FROM grupo WHERE nombre = $getData[4]"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
       $result2 = mysqli_query($con, $query2);
       $total = mysqli_fetch_row($result2);
 
