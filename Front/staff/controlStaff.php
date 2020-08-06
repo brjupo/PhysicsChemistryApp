@@ -105,7 +105,7 @@ if ($adminID == "null") {
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <a href="">
-              <button type="button" class="btn btn-secondary">
+              <button type="button" class="btn btn-success">
                 Ver todos los alumnos y su grupo
               </button>
             </a>
