@@ -1,3 +1,12 @@
+<?php
+require "../../Servicios/DDBBVariables.php";
+require "../../Servicios/isAdmin.php";
+$adminID = isAdmin();
+if ($adminID == "null") {
+  header('Location: https://kaanbal.net/');
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -59,9 +68,9 @@
         <p>.</p>
         <p>3.- Deberás llenarlo de manera cuidadosa.
           Un espacio antes o después de algún dato, causará un error</p>
-        <p style="font-size:small">3.1.- En el caso de Asignatura. 
-        En lugar del nombre deberás colocar el número 1, 
-        para aquellos que se inscriban en Materia y el entorno. Y 2 en lugar de Energía y transformación I</p>
+        <p style="font-size:small">3.1.- En el caso de Asignatura.
+          En lugar del nombre deberás colocar el número 1,
+          para aquellos que se inscriban en Materia y el entorno. Y 2 en lugar de Energía y transformación I</p>
         <p style="font-size:small">1 - Materia y el entorno</p>
         <p style="font-size:small">2 - Energía y transformación I</p>
         <p>.</p>
@@ -91,7 +100,7 @@
           <p>5.- Recuerda guardarlo en CSV, de lo contrario no se subirá</p>
           <p>6.- Da clic en el botón "Seleccionar archivo .csv", selecciona tu archivo</p>
           <p>7.- Da clic en subir</p>
-          <p>8.- Consulta en la sección "Ver todos los alumnos y su grupo", 
+          <p>8.- Consulta en la sección "Ver todos los alumnos y su grupo",
             para validar que los alumnos hayan sido registrados</p>
           <p>9.- Si en la sección "Ver todos los alumnos y su grupo", NO ESTÁN, reintenta sigueindo estos pasos</p>
         </table>

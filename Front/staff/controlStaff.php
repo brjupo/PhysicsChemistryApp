@@ -84,7 +84,7 @@ if ($adminID == "null") {
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <a href="">
+            <a href="uploadAlumniGroup.php">
               <button type="button" class="btn btn-secondary">
                 Subir archivo CSV de alumnos + password + grupo
               </button>
