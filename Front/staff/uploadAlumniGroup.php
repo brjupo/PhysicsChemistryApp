@@ -103,7 +103,7 @@ if ($adminID == "null") {
         <p>7.- Da clic en subir</p>
         <p>8.- Consulta en la sección "Ver todos los alumnos y su grupo",
           para validar que los alumnos hayan sido registrados</p>
-        <p>9.- Si en la sección "Ver todos los alumnos y su grupo", NO ESTÁN, reintenta sigueindo estos pasos</p>
+        <p>9.- Si en la sección "Ver todos los alumnos y su grupo", NO ESTÁN, reintenta siguiendo estos pasos</p>
       </div>
     </div>
   </div>
