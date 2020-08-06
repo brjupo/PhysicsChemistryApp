@@ -47,7 +47,8 @@ if ($adminID == "null") {
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p>
-                    - Elija el grupo, y de clic en "generar reporte".
+                    - Elija el campus, profesor y asignatura correcta.
+                    - Escriba el código del grupo. [Sin espacios ANTES, ni DESPUES]
                 </p>
             </div>
         </div>
@@ -157,7 +158,7 @@ if ($adminID == "null") {
         <div class="row">
             <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <form action="reporteAlumno.php" id="groupForm" method="POST">
-                    <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte"><br>
+                    <input type="submit" class="btn btn-primary btn-sm" value="Crear grupo"><br>
                 </form>
             </div>
         </div>
