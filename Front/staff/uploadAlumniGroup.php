@@ -47,7 +47,7 @@ if ($adminID == "null") {
     <div class="row">
       <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <h3>Instrucciones</h3>
-        <p>0.- <strong>Verifica que el grupo exista en la sección "Crear grupos"</strong></p>
+        <p>0.- <strong>Verifica que el grupo exista en la sección <a href="createGroup.php">"Crear grupos"</a></strong></p>
         <p>1.- Descarga la plantilla</p>
         <p>2.- Te encontrarás con algo similar a lo siguiente</p>
         <table class="table">
@@ -105,6 +105,19 @@ if ($adminID == "null") {
         <p>8.- Consulta en la sección "Ver todos los alumnos y su grupo",
           para validar que los alumnos hayan sido registrados</p>
         <p>9.- Si en la sección "Ver todos los alumnos y su grupo", NO ESTÁN, reintenta siguiendo estos pasos</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
       </div>
     </div>
   </div>
