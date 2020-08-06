@@ -97,13 +97,13 @@ if ($adminID == "null") {
             <td>asdf@tec.mx</td>
             <td>JDGH01.M02</td>
           </tr>
-          <p>5.- Recuerda guardarlo en CSV, de lo contrario no se subirá</p>
-          <p>6.- Da clic en el botón "Seleccionar archivo .csv", selecciona tu archivo</p>
-          <p>7.- Da clic en subir</p>
-          <p>8.- Consulta en la sección "Ver todos los alumnos y su grupo",
-            para validar que los alumnos hayan sido registrados</p>
-          <p>9.- Si en la sección "Ver todos los alumnos y su grupo", NO ESTÁN, reintenta sigueindo estos pasos</p>
         </table>
+        <p>5.- Recuerda guardarlo en CSV, de lo contrario no se subirá</p>
+        <p>6.- Da clic en el botón "Seleccionar archivo .csv", selecciona tu archivo</p>
+        <p>7.- Da clic en subir</p>
+        <p>8.- Consulta en la sección "Ver todos los alumnos y su grupo",
+          para validar que los alumnos hayan sido registrados</p>
+        <p>9.- Si en la sección "Ver todos los alumnos y su grupo", NO ESTÁN, reintenta sigueindo estos pasos</p>
       </div>
     </div>
   </div>
