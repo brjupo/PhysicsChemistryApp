@@ -143,7 +143,7 @@ if ($adminID == "null") {
                         $stringQuery = 'SELECT id_asignatura, nombre, names FROM asignatura';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            echo '<option value="' . $row[0] . '">' . $row[1] . '/'.$row[2].'</option>';
+                            echo '<option value="' . $row[0] . '">' . $row[1] . ' / ' . $row[2] . '</option>';
                         }
                     } catch (PDOException $e) {
                         echo "Error: " . $e->getMessage();
@@ -156,10 +156,63 @@ if ($adminID == "null") {
     </div>
     <div class="container">
         <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color: rgba(0, 0, 0, 0);">.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
             <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <form action="reporteAlumno.php" id="groupForm" method="POST">
                     <input type="submit" class="btn btn-primary btn-sm" value="Crear grupo"><br>
                 </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color: rgba(0, 0, 0, 0);">.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="border-top: 4px dotted #007bff;">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color: rgba(0, 0, 0, 0);">.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <?php
+                global $servername, $username, $password, $dbname;
+                //Crear la lectura en base de datos
+                try {
+                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $stringQuery = 'SELECT nombre, id_profesor, id_asignatura FROM grupo';
+                    $stmt = $conn->query($stringQuery);
+                    while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                        echo '<p>'.$row[0].'    |||    '.$row[1].'    |||    '.$row[2].'</p><br>';
+                    }
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                }
+                $conn = null;
+                ?>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color: rgba(0, 0, 0, 0);">.</p>
             </div>
         </div>
     </div>
