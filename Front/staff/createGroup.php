@@ -182,7 +182,7 @@ if ($adminID == "null") {
     <div class="container" style="border-top: 4px dotted #007bff;">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p style="color: rgba(0, 0, 0, 0);">.</p>
+                <h3>Grupos creados</h3>
             </div>
         </div>
     </div>
@@ -199,7 +199,7 @@ if ($adminID == "null") {
                     $stringQuery = 'SELECT nombre, id_profesor, id_asignatura FROM grupo';
                     $stmt = $conn->query($stringQuery);
                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                        echo '<p>'.$row[0].'    |||    '.$row[1].'    |||    '.$row[2].'</p><br>';
+                        echo '<p>' . $row[0] . '    |||    ' . $row[1] . '    |||    ' . $row[2] . '</p><br>';
                     }
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
