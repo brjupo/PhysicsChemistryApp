@@ -203,6 +203,7 @@ if ($adminID == "null") {
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <table class="table table-striped">
                 <?php
                 global $servername, $username, $password, $dbname;
                 //Crear la lectura en base de datos
@@ -212,13 +213,18 @@ if ($adminID == "null") {
                     $stringQuery = 'SELECT nombre, id_profesor, id_asignatura FROM grupo';
                     $stmt = $conn->query($stringQuery);
                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                        echo '<p>' . $row[0] . '    |||    ' . $row[1] . '    |||    ' . $row[2] . '</p><br>';
+                        echo '<tr>';
+                        echo '<td>'.$row[0].'</td>';
+                        echo '<td>'.$row[1].'</td>';
+                        echo '<td>'.$row[2].'</td>';
+                        echo '</tr>';
                     }
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
                 }
                 $conn = null;
                 ?>
+                </table>
             </div>
         </div>
     </div>
