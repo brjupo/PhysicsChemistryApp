@@ -87,10 +87,15 @@ if (isset($_POST["Import"])) {
       $query2 = "SELECT id_grupo FROM grupo WHERE nombre = '" . $getData[4] . "'"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
       $result2 = mysqli_query($con, $query2);
       $total = mysqli_fetch_row($result2);
-
       $total[0];
 
-      $sql = "INSERT INTO alumno_grupo (id_alumno,id_grupo) VALUES ($ultimoId,$total[0])";
+      //ID DE ALUMNO
+      $query2 = "SELECT id_alumno FROM alumno WHERE id_usuario = $ultimoId";
+      $result2 = mysqli_query($con, $query2);
+      $idalumno = mysqli_fetch_row($result2);
+      $idalumno[0];
+
+      $sql = "INSERT INTO alumno_grupo (id_alumno,id_grupo) VALUES ($idalumno[0],$total[0])";
       $result = mysqli_query($con, $sql); 
 
 
