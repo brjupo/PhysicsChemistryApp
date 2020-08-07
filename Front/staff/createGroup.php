@@ -204,26 +204,36 @@ if ($adminID == "null") {
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <table class="table table-striped">
-                <?php
-                global $servername, $username, $password, $dbname;
-                //Crear la lectura en base de datos
-                try {
-                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $stringQuery = 'SELECT nombre, id_profesor, id_asignatura FROM grupo';
-                    $stmt = $conn->query($stringQuery);
-                    while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                        echo '<tr>';
-                        echo '<td>'.$row[0].'</td>';
-                        echo '<td>'.$row[1].'</td>';
-                        echo '<td>'.$row[2].'</td>';
-                        echo '</tr>';
+                    <tr>
+                        <td>Grupo</td>
+                        <td>Profesor</td>
+                        <td>Asginatura</td>
+                        <td>Campus</td>
+                    </tr>
+                    <?php
+                    global $servername, $username, $password, $dbname;
+                    //Crear la lectura en base de datos
+                    try {
+                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stringQuery = 'SELECT g.nombre, u.mail, a.nombre, c.nombre 
+                    FROM grupo g JOIN profesor p JOIN usuario_prueba u JOIN asignatura a JOIN campus c 
+                    ON g.id_profesor = p.id_profesor AND p.id_usuario = u.id_usuario AND g.id_asignatura = a.id_asignatura AND g.id_campus = c.id_campus 
+                    ORDER BY u.mail ASC, g.nombre ASC;';
+                        $stmt = $conn->query($stringQuery);
+                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                            echo '<tr>';
+                            echo '<td>' . $row[0] . '</td>';
+                            echo '<td>' . $row[1] . '</td>';
+                            echo '<td>' . $row[2] . '</td>';
+                            echo '<td>' . $row[3] . '</td>';
+                            echo '</tr>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
                     }
-                } catch (PDOException $e) {
-                    echo "Error: " . $e->getMessage();
-                }
-                $conn = null;
-                ?>
+                    $conn = null;
+                    ?>
                 </table>
             </div>
         </div>
