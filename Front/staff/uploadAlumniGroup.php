@@ -49,7 +49,7 @@ if ($adminID == "null") {
         <h3>Instrucciones</h3>
         <p>0.- <strong>Verifica que el grupo exista en la sección <a href="createGroup.php">"Crear grupos"</a></strong></p>
         <p>1.- Descarga la plantilla</p>
-        <a href="usuario_prueba_grupo.csv"><img src="../CSSsJSs/icons/csv.svg"></a>
+        <a href="usuario_prueba_grupo.csv"><img width="50px" src="../CSSsJSs/icons/csv.svg"></a>
         <p>2.- Te encontrarás con algo similar a lo siguiente</p>
         <table class="table">
           <tr>
