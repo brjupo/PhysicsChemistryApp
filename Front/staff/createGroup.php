@@ -205,10 +205,10 @@ if ($adminID == "null") {
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <table class="table table-striped">
                     <tr>
-                        <td>Grupo</td>
-                        <td>Profesor</td>
-                        <td>Asginatura</td>
-                        <td>Campus</td>
+                        <th>Grupo</th>
+                        <th>Profesor</th>
+                        <th>Asginatura</th>
+                        <th>Campus</th>
                     </tr>
                     <?php
                     global $servername, $username, $password, $dbname;
