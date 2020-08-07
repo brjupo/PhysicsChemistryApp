@@ -47,6 +47,30 @@ if ($adminID == "null") {
 
     <div class="container">
         <div class="row">
+            <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p>Para buscar un alumno o grupo. Oprima Ctrl+F y aparecerá un buscador.</p><br>
+                <p>En firefox aparece del lado inferior izquierdo</p><br>
+                <p>En chrome aparece del lado superior derecho </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color: rgba(0, 0, 0, 0);">.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color: rgba(0, 0, 0, 0);">.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <table class="table table-striped">
                     <tr>
