@@ -56,7 +56,7 @@ if ($adminID == "null") {
             <td>Correo</td>
             <td>Password</td>
             <td>Asignatura</td>
-            <td>Profesor</td>
+            <td>¿Es profesor?</td>
             <td>Grupo</td>
           </tr>
           <tr>
@@ -75,8 +75,11 @@ if ($adminID == "null") {
           para aquellos que se inscriban en Materia y el entorno. Y 2 en lugar de Energía y transformación I</p>
         <p style="font-size:small">1 - Materia y el entorno</p>
         <p style="font-size:small">2 - Energía y transformación I</p>
+        <p style="font-size:small">3.2.- Para dar de alta a los alumnos, el campo profesor va vacio. </p>
+        <p style="font-size:small">3.3.- Para crear un profesor el campo profesor deberá contener una "p" y el campo grupo deberá ir vacio.</p>
         <p>.</p>
         <p>4.- A continuación se muestra un ejemplo</p>
+
         <table class="table">
           <tr>
             <td>Correo</td>
@@ -89,21 +92,28 @@ if ($adminID == "null") {
             <td>A01169493@itesm.mx</td>
             <td>A01169493@itesm.mx</td>
             <td>1</td>
-            <td>jehoyos@tec.mx</td>
+            <td></td>
             <td>HCS001.11M</td>
           </tr>
           <tr>
             <td>A01379493@itesm.mx</td>
             <td>A01379493@itesm.mx</td>
             <td>2</td>
-            <td>asdf@tec.mx</td>
+            <td></td>
             <td>JDGH01.M02</td>
+          </tr>
+          <tr>
+            <td>jehoyos@tec.mx</td>
+            <td>jehoyos@tec.mx</td>
+            <td>2</td>
+            <td>p</td>
+            <td></td>
           </tr>
         </table>
         <p>5.- Recuerda guardarlo en CSV, de lo contrario no se subirá</p>
         <p>6.- Da clic en el botón "browse...", selecciona tu archivo</p>
         <p>7.- Da clic en "subir"</p>
-        <p>8.- Consulta en la sección <a href="showAllAlumni.php">"Ver todos los alumnos y su grupo"</a>, 
+        <p>8.- Consulta en la sección <a href="showAllAlumni.php">"Ver todos los alumnos y su grupo"</a>,
           para validar que los alumnos hayan sido registrados</p>
         <p>9.- Si en la sección "Ver todos los alumnos y su grupo", NO ESTÁN, reintenta siguiendo estos pasos</p>
       </div>
