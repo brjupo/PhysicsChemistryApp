@@ -103,7 +103,7 @@ if ($adminID == "null") {
         <p>5.- Recuerda guardarlo en CSV, de lo contrario no se subirá</p>
         <p>6.- Da clic en el botón "browse...", selecciona tu archivo</p>
         <p>7.- Da clic en "subir"</p>
-        <p>8.- Consulta en la sección "Ver todos los alumnos y su grupo",
+        <p>8.- Consulta en la sección <a href="showAllAlumni.php">"Ver todos los alumnos y su grupo"</a>, 
           para validar que los alumnos hayan sido registrados</p>
         <p>9.- Si en la sección "Ver todos los alumnos y su grupo", NO ESTÁN, reintenta siguiendo estos pasos</p>
       </div>
