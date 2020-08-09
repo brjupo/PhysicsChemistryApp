@@ -15,7 +15,6 @@ function isStaff()
     global $servername, $username, $password, $dbname;
     $con = mysqli_connect($servername, $username, $password, $dbname);
     
-    print_r("staff");
     print_r($_SESSION["mail"]);
 
     //Consultar si existe token de usuario
@@ -31,8 +30,6 @@ function isStaff()
         $tokenValidar["tokenSesionp"] = $tokenSesionp;
     }
 
-    print_r($idValidarstaff["staff"]);
-
     //Consultar si es staff
     $statement = mysqli_prepare($con, "SELECT id_staff FROM staff WHERE id_usuario = ?");
     mysqli_stmt_bind_param($statement, "s", $idValidarstaff["staff"]);
@@ -45,10 +42,10 @@ function isStaff()
         $existestaff["staff"] = $idstaff;
     }
 
-    print_r($existestaff["staff"]);
 
     //if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existestaff["staff"] != "" and $tokenValidar["tokenSesionp"] != "") {
     if ($existestaff["staff"] != "") {
+        print_r("sIMONEXISTE");
         return $existestaff["staff"];
     } else {
         return "null";
