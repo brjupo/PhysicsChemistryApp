@@ -174,7 +174,11 @@ require "../../Servicios/isStaff.php";
         while (mysqli_stmt_fetch($statement)) {
             $existestaff["staff"] = $idstaff;
         }
-        $staffID = $existestaff["staff"];
+
+        if($existestaff["staff"] != ""){
+          $staffID = "null";
+        }else{
+          $staffID = $existestaff["staff"];}
         $_SESSION["siStaff"] = $staffID;
         
         //Imprimimos pantalla de asignaturas
