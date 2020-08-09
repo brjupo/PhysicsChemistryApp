@@ -103,11 +103,25 @@ if ($staffID == "null") {
             <td>04</td>
           </tr>
           <tr>
+            <td>SFM08@kaanbal.net</td>
+            <td>SFM08@kaanbal.net</td>
+            <td>1</td>
+            <td>p</td>
+            <td></td>
+          </tr>
+          <tr>
             <td>15SFM08@kaanbal.net</td>
             <td>15SFM08@kaanbal.net</td>
             <td>1</td>
             <td></td>
             <td>08</td>
+          </tr>
+          <tr>
+            <td>ESE08@kaanbal.net</td>
+            <td>ESE08@kaanbal.net</td>
+            <td>2</td>
+            <td>p</td>
+            <td></td>
           </tr>
         </table>
         <p>5.- Recuerda guardarlo en CSV, de lo contrario no se subirá</p>
