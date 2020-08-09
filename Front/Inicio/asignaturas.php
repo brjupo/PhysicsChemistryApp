@@ -1,5 +1,7 @@
 <?php
 require '../../Servicios/DDBBVariables.php';
+require "../../Servicios/isStaff.php";
+$staffID = isStaff();
 ?>
 <!DOCTYPE html>
 <html>
@@ -190,8 +192,8 @@ require '../../Servicios/DDBBVariables.php';
         /* echo '<script type="text/javascript">
                       alert("'.$total[0].'");
                       </script>'; */
-
-        if ($total[0] > 1 or $mostrarMenuprofesor != '') {
+        
+        if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {
           imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor);
         } else {
           //Traeer asignatura
@@ -280,8 +282,8 @@ require '../../Servicios/DDBBVariables.php';
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas);
     imprimirRelleno();
-    if ($mostrarMenuprofesor != '') {
-      imprimirEspaciosProfesor();
+    if ($mostrarMenuprofesor != '' or $staffID != 'null') {
+      imprimirEspaciosProfesor($mostrarMenuprofesor);
     }
     imprimirRelleno();
     imprimirFooter();
@@ -498,7 +500,7 @@ require '../../Servicios/DDBBVariables.php';
     ';
   }
 
-  function imprimirEspaciosProfesor()
+  function imprimirEspaciosProfesor($mostrarMenuprofesor)
   {
     echo '
       <div class="container">
@@ -510,6 +512,7 @@ require '../../Servicios/DDBBVariables.php';
       </div>
     ';
 
+    if($mostrarMenuprofesor != ''){
     echo '
         <div class="container">
           <div class="row">
@@ -555,6 +558,8 @@ require '../../Servicios/DDBBVariables.php';
           </div>
           <!------------------------------------------------FIN RELLENO----------------------------------------------->
     ';
+    }
+    if($staffID != 'null'){
     echo '
         <div class="container">
           <div class="row">
@@ -600,6 +605,7 @@ require '../../Servicios/DDBBVariables.php';
           </div>
           <!------------------------------------------------FIN RELLENO----------------------------------------------->
     ';
+    }
   }
 
   function imprimirRelleno()
