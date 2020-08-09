@@ -9,7 +9,7 @@ $idValidarstaff = array();
 $existestaff = array();
 
 $prueba = isStaff();
-$print_r("staff");
+print_r("staff");
 
 function isStaff()
 {   
