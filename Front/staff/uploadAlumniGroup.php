@@ -47,7 +47,7 @@ if ($adminID == "null") {
     <div class="row">
       <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <h3>Instrucciones</h3>
-        <p>0.- <strong>Verifica que el grupo exista en la sección <a href="createGroup.php">"Crear grupos"</a></strong></p>
+        <p>0.- Para subir a los alumnos <strong>verifica que el grupo exista en la sección <a href="createGroup.php">"Crear grupos"</a></strong></p>
         <p>1.- Descarga la plantilla y abrelo en Excel</p>
         <a href="usuario_prueba_grupo.csv" download="usuario_prueba_grupo.csv"><img width="50px" src="../CSSsJSs/icons/csv.svg"></a>
         <p>2.- Te encontrarás con algo similar a lo siguiente</p>
@@ -89,25 +89,25 @@ if ($adminID == "null") {
             <td>Grupo</td>
           </tr>
           <tr>
-            <td>A01169493@itesm.mx</td>
-            <td>A01169493@itesm.mx</td>
+            <td>05EMM25@kaanbal.net</td>
+            <td>05EMM25@kaanbal.net</td>
             <td>1</td>
             <td></td>
-            <td>HCS001.11M</td>
+            <td>25</td>
           </tr>
           <tr>
-            <td>A01379493@itesm.mx</td>
-            <td>A01379493@itesm.mx</td>
+            <td>15SFE04@kaanbal.net</td>
+            <td>15SFE04@kaanbal.net</td>
             <td>2</td>
             <td></td>
-            <td>JDGH01.M02</td>
+            <td>04</td>
           </tr>
           <tr>
-            <td>jehoyos@tec.mx</td>
-            <td>jehoyos@tec.mx</td>
-            <td>2</td>
-            <td>p</td>
+            <td>15SFM08@kaanbal.net</td>
+            <td>15SFM08@kaanbal.net</td>
+            <td>1</td>
             <td></td>
+            <td>08</td>
           </tr>
         </table>
         <p>5.- Recuerda guardarlo en CSV, de lo contrario no se subirá</p>
