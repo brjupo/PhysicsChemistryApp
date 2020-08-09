@@ -163,6 +163,9 @@ require "../../Servicios/isStaff.php";
         $_SESSION["mostrarMenuprofesor"] = $mostrarMenuprofesor;
 
         //consultar si es staff
+        echo '<script type="text/javascript">
+                      alert("'.$_SESSION["mail"].'");
+                      </script>'; 
         $staffID = isStaff();
         //Imprimimos pantalla de asignaturas
         if ($_SESSION["idioma"] == 'i') {
