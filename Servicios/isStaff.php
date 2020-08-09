@@ -40,7 +40,8 @@ function isStaff()
         $existestaff["staff"] = $idstaff;
     }
 
-    if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existestaff["staff"] != "" and $tokenValidar["tokenSesionp"] != "") {
+    //if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existestaff["staff"] != "" and $tokenValidar["tokenSesionp"] != "") {
+    if ($existestaff["staff"] != "") {
         return $existestaff["staff"];
     } else {
         return "null";
