@@ -9,11 +9,6 @@ $idValidarstaff = array();
 $existestaff = array();
 
 $prueba = isStaff();
-print_r("staff");
-
-echo '<script type="text/javascript">
-                      alert("'.$prueba.'");
-                      </script>'; 
 
 function isStaff()
 {   
