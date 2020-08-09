@@ -1,8 +1,8 @@
 <?php
 require "../../Servicios/DDBBVariables.php";
-require "../../Servicios/isAdmin.php";
-$adminID = isAdmin();
-if ($adminID == "null") {
+require "../../Servicios/isStaff.php";
+$staffID = isStaff();
+if ($staffID == "null") {
     header('Location: https://kaanbal.net/');
     exit;
 }

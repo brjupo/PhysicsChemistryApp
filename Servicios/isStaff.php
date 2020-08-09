@@ -8,7 +8,7 @@ session_start();
 $tokenValidar = array();
 $idValidarstaff = array();
 
-function isAdmin()
+function isStaff()
 {   
     global $servername, $username, $password, $dbname;
     $con = mysqli_connect($servername, $username, $password, $dbname);
