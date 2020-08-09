@@ -1,7 +1,6 @@
 <?php
 require '../../Servicios/DDBBVariables.php';
 require "../../Servicios/isStaff.php";
-$staffID = isStaff();
 ?>
 
 <!DOCTYPE html>
@@ -163,6 +162,8 @@ $staffID = isStaff();
         $_SESSION["tokenSesion"] = $rand;
         $_SESSION["mostrarMenuprofesor"] = $mostrarMenuprofesor;
 
+        //consultar si es staff
+        $staffID = isStaff();
         //Imprimimos pantalla de asignaturas
         if ($_SESSION["idioma"] == 'i') {
           $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
