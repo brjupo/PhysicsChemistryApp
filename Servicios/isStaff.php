@@ -28,6 +28,8 @@ function isStaff()
         $tokenValidar["tokenSesionp"] = $tokenSesionp;
     }
 
+    print_r($idValidarstaff["staff"]);
+
     //Consultar si es staff
     $statement = mysqli_prepare($con, "SELECT id_staff FROM staff WHERE id_usuario = ?");
     mysqli_stmt_bind_param($statement, "s", $idValidarstaff["staff"]);
@@ -40,11 +42,13 @@ function isStaff()
         $existestaff["staff"] = $idstaff;
     }
 
+    print_r($existestaff["staff"]);
+
     //if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existestaff["staff"] != "" and $tokenValidar["tokenSesionp"] != "") {
     if ($existestaff["staff"] != "") {
         return $existestaff["staff"];
     } else {
-        return "nuller";
+        return "null";
     }
 }
 
