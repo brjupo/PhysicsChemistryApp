@@ -2,6 +2,9 @@
 require '../../Servicios/DDBBVariables.php';
 require "../../Servicios/isStaff.php";
 $staffID = isStaff();
+echo '<script type="text/javascript">
+                      alert("'.$staffID.'");
+                      </script>'; 
 ?>
 <!DOCTYPE html>
 <html>
