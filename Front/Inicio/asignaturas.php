@@ -18,10 +18,7 @@ $staffID = isStaff();
 </head>
 
 <body>
-  <?php
-  echo '<script type="text/javascript">
-  alert("'.$staffID.'");
-  </script>'; 
+  <?php 
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
@@ -73,7 +70,7 @@ $staffID = isStaff();
 
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
-    imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor);
+    imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor,$staffID);
   } else {
     /* echo'<script type="text/javascript">
             alert("segundo caminio");
@@ -198,7 +195,7 @@ $staffID = isStaff();
                       </script>'; */
         
         if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {
-          imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor);
+          imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor,$staffID);
         } else {
           //Traeer asignatura
           $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser'";
@@ -281,13 +278,13 @@ $staffID = isStaff();
     return $datetime->format('Y\-m\-d\ H:i:s');
   }
   //////////////////////
-  function imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor)
+  function imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor,$staffID)
   {
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas);
     imprimirRelleno();
     if ($mostrarMenuprofesor != '' or $staffID != 'null') {
-      imprimirEspaciosProfesor($mostrarMenuprofesor);
+      imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID);
     }
     imprimirRelleno();
     imprimirFooter();
@@ -504,7 +501,7 @@ $staffID = isStaff();
     ';
   }
 
-  function imprimirEspaciosProfesor($mostrarMenuprofesor)
+  function imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID)
   {
     echo '
       <div class="container">
