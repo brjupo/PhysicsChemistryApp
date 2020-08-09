@@ -13,6 +13,8 @@ function isStaff()
     global $servername, $username, $password, $dbname;
     $con = mysqli_connect($servername, $username, $password, $dbname);
     
+    print_r("staff");
+    print_r($_SESSION["mail"]);
 
     //Consultar si existe token de usuario
     $statement = mysqli_prepare($con, "SELECT tokenSesion, id_usuario FROM usuario_prueba WHERE mail = ?");
