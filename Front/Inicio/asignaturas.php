@@ -163,7 +163,17 @@ require "../../Servicios/isStaff.php";
         $_SESSION["mostrarMenuprofesor"] = $mostrarMenuprofesor;
 
         //consultar si es staff
-        $staffID = isStaff();
+        $statement = mysqli_prepare($con, "SELECT id_staff FROM staff WHERE id_usuario = ?");
+        mysqli_stmt_bind_param($statement, "s", $_SESSION["id_usuario"]);
+        mysqli_stmt_execute($statement);
+
+        mysqli_stmt_store_result($statement);
+        mysqli_stmt_bind_result($statement, $idstaff);
+
+        while (mysqli_stmt_fetch($statement)) {
+            $existestaff["staff"] = $idstaff;
+        }
+        $staffID = $existestaff["staff"];
         echo '<script type="text/javascript">
                       alert("'.$staffID.'");
                       </script>'; 
