@@ -280,6 +280,11 @@ $staffID = isStaff();
   //////////////////////
   function imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor,$staffID)
   {
+    
+    echo '<script type="text/javascript">
+            alert("'.$staffID.'");
+            </script>';
+
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas);
     imprimirRelleno();
