@@ -2,10 +2,8 @@
 require '../../Servicios/DDBBVariables.php';
 require "../../Servicios/isStaff.php";
 $staffID = isStaff();
-echo '<script type="text/javascript">
-                      alert("'.$staffID.'");
-                      </script>'; 
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -21,6 +19,9 @@ echo '<script type="text/javascript">
 
 <body>
   <?php
+  echo '<script type="text/javascript">
+  alert("'.$staffID.'");
+  </script>'; 
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
