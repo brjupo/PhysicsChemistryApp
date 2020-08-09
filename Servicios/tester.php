@@ -46,7 +46,6 @@ function isStaff()
 
     //if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existestaff["staff"] != "" and $tokenValidar["tokenSesionp"] != "") {
     if ($existestaff["staff"] != "") {
-        print_r("sIMONEXISTE");
         return $existestaff["staff"];
     } else {
         return "null";
