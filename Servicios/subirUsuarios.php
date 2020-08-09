@@ -18,7 +18,7 @@ if (isset($_POST["Import"])) {
   if(!in_array($extension, $formatos_permitidos) ) {
             echo "<script type=\"text/javascript\">
             alert(\"Formato de archivo no permitido\");
-            window.location = \"../Front/errorInfoPages/uploadInfo.php\"
+            window.location = \"../Front/staff/uploadAlumniGroup.php\"
           </script>";
   }else{
  /*  echo '<script type="text/javascript">
@@ -52,7 +52,7 @@ if (isset($_POST["Import"])) {
         } else {} */
           echo "<script type=\"text/javascript\">
               alert(\"CSV File has been successfully Imported.\");
-              window.location = \"../Front/errorInfoPages/uploadInfo.php\"
+              window.location = \"../Front/staff/uploadAlumniGroup.php\"
             </script>";
         
 
@@ -102,12 +102,12 @@ if (isset($_POST["Import"])) {
       if (!isset($result)) {
         echo "<script type=\"text/javascript\">
               alert(\"Invalid File:Please Upload CSV File.\");
-              window.location = \"../Front/errorInfoPages/uploadInfo.php\"
+              window.location = \"../Front/staff/uploadAlumniGroup.php\"
               </script>";
       } else {
         echo "<script type=\"text/javascript\">
             alert(\"CSV File has been successfully Imported.\");
-            window.location = \"../Front/errorInfoPages/uploadInfo.php\"
+            window.location = \"../Front/staff/uploadAlumniGroup.php\"
           </script>";
       } 
 
