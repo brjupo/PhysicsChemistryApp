@@ -7,6 +7,7 @@ require "DDBBVariables.php";
 session_start();
 $tokenValidar = array();
 $idValidarstaff = array();
+$existestaff = array();
 
 function isStaff()
 {   
