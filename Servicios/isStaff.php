@@ -1,4 +1,3 @@
-
 <?php
 require "DDBBVariables.php";
 //---------------NO BORRAR
@@ -9,11 +8,12 @@ $tokenValidar = array();
 $idValidarstaff = array();
 $existestaff = array();
 
+
 function isStaff()
 {   
     global $servername, $username, $password, $dbname;
     $con = mysqli_connect($servername, $username, $password, $dbname);
-    
+
 
     //Consultar si existe token de usuario
     $statement = mysqli_prepare($con, "SELECT tokenSesion, id_usuario FROM usuario_prueba WHERE mail = ?");
@@ -28,8 +28,6 @@ function isStaff()
         $tokenValidar["tokenSesionp"] = $tokenSesionp;
     }
 
-    print_r($idValidarstaff["staff"]);
-
     //Consultar si es staff
     $statement = mysqli_prepare($con, "SELECT id_staff FROM staff WHERE id_usuario = ?");
     mysqli_stmt_bind_param($statement, "s", $idValidarstaff["staff"]);
@@ -42,7 +40,6 @@ function isStaff()
         $existestaff["staff"] = $idstaff;
     }
 
-    print_r($existestaff["staff"]);
 
     //if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existestaff["staff"] != "" and $tokenValidar["tokenSesionp"] != "") {
     if ($existestaff["staff"] != "") {
@@ -51,6 +48,9 @@ function isStaff()
         return "null";
     }
 }
+
+
+?>
 
 
 ?>
