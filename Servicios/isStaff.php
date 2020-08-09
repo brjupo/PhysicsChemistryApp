@@ -44,7 +44,7 @@ function isStaff()
     if ($existestaff["staff"] != "") {
         return $existestaff["staff"];
     } else {
-        return "null";
+        return "nuller";
     }
 }
 
