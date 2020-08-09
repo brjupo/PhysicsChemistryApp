@@ -8,6 +8,9 @@ $tokenValidar = array();
 $idValidarstaff = array();
 $existestaff = array();
 
+$prueba = isStaff();
+
+print_r($prueba);
 
 function isStaff()
 {   
