@@ -66,6 +66,7 @@ require "../../Servicios/isStaff.php";
 
     //Consultar si es profe 
     $mostrarMenuprofesor = $_SESSION["mostrarMenuprofesor"];
+    $staffID = $_SESSION["siStaff"];
 
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
@@ -174,9 +175,8 @@ require "../../Servicios/isStaff.php";
             $existestaff["staff"] = $idstaff;
         }
         $staffID = $existestaff["staff"];
-        echo '<script type="text/javascript">
-                      alert("'.$staffID.'");
-                      </script>'; 
+        $_SESSION["siStaff"] = $staffID;
+        
         //Imprimimos pantalla de asignaturas
         if ($_SESSION["idioma"] == 'i') {
           $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
@@ -294,10 +294,6 @@ require "../../Servicios/isStaff.php";
   //////////////////////
   function imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor,$staffID)
   {
-    
-    echo '<script type="text/javascript">
-            alert("'.$staffID.'");
-            </script>';
 
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas);
