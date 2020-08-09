@@ -175,7 +175,7 @@ require "../../Servicios/isStaff.php";
             $existestaff["staff"] = $idstaff;
         }
 
-        if($existestaff["staff"] != ""){
+        if($existestaff["staff"] == ""){
           $staffID = "null";
         }else{
           $staffID = $existestaff["staff"];}
