@@ -667,7 +667,7 @@ var registrarInactividad = function () {
   document.onkeypress = reiniciarTiempo;
 
   function tiempoExcedido() {
-      alert("Estuvo inactivo durante mucho tiempo.")
+      //alert("Estuvo inactivo durante mucho tiempo.")
   }
 
   function reiniciarTiempo() {
