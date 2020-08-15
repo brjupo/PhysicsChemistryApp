@@ -129,7 +129,7 @@
   $porcentajeAvance = strval($porcentaje) . "%";
 
   ////////////////////////////////////////////////////////////////////////////////////
-  $statement = mysqli_prepare($con, "SELECT SUM(puntuacion) FROM puntuacion WHERE id_usuario = ? AND tipo = 'PP'");
+  $statement = mysqli_prepare($con, "SELECT SUM(puntuacion) FROM puntuacion WHERE id_usuario = ?");
   mysqli_stmt_bind_param($statement, "i", $iduser);
   mysqli_stmt_execute($statement);
   mysqli_stmt_store_result($statement);
