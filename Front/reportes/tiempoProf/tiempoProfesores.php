@@ -1,7 +1,7 @@
 <?php
 require "../../../Servicios/DDBBVariables.php";
-require "../../../Servicios/isTeacher.php";
-$teacherID = isTeacher();
+require "../../../Servicios/isAdmin.php";
+$teacherID = isAdmin();
 if ($teacherID == "null") {
     header('Location: https://kaanbal.net/');
     exit;
