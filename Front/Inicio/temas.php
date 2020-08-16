@@ -174,13 +174,6 @@
           </div>
         </div>
       </div>
-      <div class="container">
-          <div class="row titulo">
-            <div class="textCenter col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <p></p>
-            </div>
-          </div>
-        </div>
       <!------------------------------------------------FIN TITULO----------------------------------------------->
     ';
   }
@@ -190,14 +183,13 @@
     echo '
       <!----------------------------------------------CITA--------------------------------------------->
       <div class="container">
-        <div class="row">
-          <div class="textCenter col-xs-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
-          <div class="textCenter col-xs-10 col-sm-8 col-md-6 col-lg-4 col-xl-4">
-            <p class="cita"></p>
+          <div class="row titulo">
+            <div class="textCenter col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <p class="cita">¡Activa tu acceso para este semestre! </p>
+              <p>Da click <a href="../../../contacto.html">aquí</a> para conocer cómo adquirir la plataforma. </p>
+            </div>
           </div>
-          <div class="textCenter col-xs-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
         </div>
-      </div>
       <!------------------------------------------------FIN CITA----------------------------------------------->
     ';
   }
