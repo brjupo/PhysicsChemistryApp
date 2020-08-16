@@ -265,7 +265,10 @@ function verifyIfCorrectOption(targetID, questionNumber) {
     lastQuestion = questionNumber;
     questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
+    puntos = puntos - 1;
     buenas0_malas1_alHilo[1] += 1;
+    document.getElementById("puntosBuenos").innerHTML = puntos;
+    barWidth(puntos);
     IncorrectAudio.play();
   }
 }
