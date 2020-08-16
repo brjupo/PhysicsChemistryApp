@@ -212,31 +212,6 @@ function colorAllButtonsToWhite(questionNumber) {
 }
 
 function verifyIfCorrectOption(targetID, questionNumber) {
-  //Debido a que
-  /*
-    ID Pregunta = 1000 + Número de pregunta         Ejemplo: Pregunta1 id="1001"
-    ID Respuesta = 2000 + Número de pregunta        Ejemplo: Respuesta1 id="2001"
-    ID Respuesta correcta = 3000 + Número de pregunta   Ejemplo: ResCorrecta1 id="3001"
-
-    ID Opción 4 = 10 * Número de pregunta           Ejemplo: class="Opcion4"  id="10"
-    Correcta = 3  idOprimido-(numPreg-1)*10-7 [numPreg=1] ---- numpreg=2 idOprimido=20 idOprimido-(numPreg-1)*10-7
-    ID Opción 3 = 10 * Número de pregunta - 1       Ejemplo: class="Opcion3"  id="9"
-    Correcta = 2  idOprimido-(numPreg-1)*10-7 [numPreg=1] ---- numpreg=2 idOprimido=19 idOprimido-(numPreg-1)*10-7
-    ID Opción 2 = 10 * Número de pregunta - 2       Ejemplo: class="Opcion2"  id="8"
-    Corecta = 1 
-    ID Opción 1 = 10 * Número de pregunta - 3       Ejemplo: class="Opcion4"  id="7"
-    Correcta = 0
-    ID Boton aceptar = 10 * Número de pregunta - 4  Ejemplo: class="miniBoton"  id="6"
-    ID Texto Escrito = 10 * Número de pregunta - 5  Ejemplo: <input>          id="5"
-
-    opcionCorrecta = idOprimido-(numPreg-1)*10-7
-    opcionCorrecta = idOprimido - numPreg*10 + 10 - 7
-    opcionCorrecta = idOprimido - numPreg*10 + 3
-    En realidad
-    opcionCorrecta = idBotonExistente - numPreg*10 + 3
-    opcionCorrecta + numPreg*10 - 3 = idBotonExistente
-    
-  */
   //La ecuación para obtener el valor [entre 0 y 3] de la pregunta seleccionada es: selectedAnswer0to3
   selectedAnswer0to3 = parseInt(targetID) - 10 * questionNumber + 3;
   //De inmediato pintamos de rojo la elegida. Si selecciono la correcta
@@ -262,7 +237,7 @@ function verifyIfCorrectOption(targetID, questionNumber) {
     CorrectAudio.play();
   } else {
     lastQuestion = questionNumber;
-    questionNumberArray.push(questionNumber);
+    //questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
     buenas0_malas1_alHilo[1] += 1;
     IncorrectAudio.play();
