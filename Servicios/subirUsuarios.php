@@ -64,12 +64,13 @@ if (isset($_POST["Import"])) {
       $sql = "INSERT into usuario_prueba (mail,pswd) 
                    values ('" . $getData[0] . "','" . $getData[1] . "')";
       $result = mysqli_query($con, $sql);
+
       //Si es profesor
       if($getData[3] == "P" OR $getData[3] == "p"){
         //tabla profesor (id_usuario,matricula(mail))
       $sql = "INSERT into profesor (id_usuario) 
       values ($ultimoId)";
-      mysqli_query($con, $sql);
+       $result = mysqli_query($con, $sql);
 
       }else{
         //tabla alumno (id_usuario,matricula(mail))
