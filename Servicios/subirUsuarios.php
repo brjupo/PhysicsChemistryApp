@@ -69,7 +69,7 @@ if (isset($_POST["Import"])) {
         //tabla profesor (id_usuario,matricula(mail))
       $sql = "INSERT into profesor (id_usuario) 
       values ($ultimoId)";
-      $result = mysqli_query($con, $sql);
+      mysqli_query($con, $sql);
 
       }else{
         //tabla alumno (id_usuario,matricula(mail))
