@@ -329,6 +329,7 @@ function verifyIfTextIsCorrect(questionNumber) {
     questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
     buenas0_malas1_alHilo[1] += 1;
+    puntos = puntos - 1;
     document.getElementById(10 * questionNumber - 5).style.color = "red";
     document.getElementById(
       10 * questionNumber - 5
