@@ -3,6 +3,8 @@
         header("Location: https://kaanbal.net");
     }
     $subtema= $_GET['subtema'];
+    $puntos=$_GET['puntos'];
+    $totalPreguntas=$_GET['totalPreguntas'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,7 +64,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
           <h3>¡You have completed this level!</h3>
           <h4>¡Congratulations!</h4>
-          <p id="numeroDiamantes" class="numeroDiamantes">100</p><p class="numeroDiamantes">%</p>
+          <p id="numeroDiamantes" class="numeroDiamantes"><?php echo intval($puntos);?></p><p class="numeroDiamantes">%</p>
           <img class="diamanteIcon" src="../../CSSsJSs/icons/diamante.svg" />
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
