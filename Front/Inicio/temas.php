@@ -165,32 +165,22 @@
       <div class="top">
         <div class="container">
           <div class="row titulo">
-            <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+            <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
               <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
             </div>
-            <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <div class="textCenter col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
               <p class="Ciencia fuenteTitulo" id="asignatura">' . $_GET['asignatura'] . '</p>
-            </div>
-            <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
-              <table class="table" style="display:none">
-                <tbody>
-                  <tr>
-                    <td width="60%">
-                      <img class="iconoDiamantes imgRight" src="../CSSsJSs/icons/diamante.svg" />
-                    </td>
-                    <td width="40%">
-                      <p class="diamantes textLeft">112</p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-              <p class="Materia fuenteTitulo"></p>
             </div>
           </div>
         </div>
       </div>
+      <div class="container">
+          <div class="row titulo">
+            <div class="textCenter col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <p></p>
+            </div>
+          </div>
+        </div>
       <!------------------------------------------------FIN TITULO----------------------------------------------->
     ';
   }
