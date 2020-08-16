@@ -268,7 +268,7 @@ function verifyIfCorrectOption(targetID, questionNumber) {
     puntos = puntos - 1;
     buenas0_malas1_alHilo[1] += 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
-    barWidth(puntos);
+    //barWidth(puntos);
     IncorrectAudio.play();
   }
 }
@@ -334,7 +334,7 @@ function verifyIfTextIsCorrect(questionNumber) {
     buenas0_malas1_alHilo[1] += 1;
     puntos = puntos - 1;
     document.getElementById("puntosBuenos").innerHTML = puntos;
-    barWidth(puntos);
+    //barWidth(puntos);
     document.getElementById(10 * questionNumber - 5).style.color = "red";
     document.getElementById(
       10 * questionNumber - 5
