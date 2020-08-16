@@ -322,6 +322,86 @@
                 </div>
               </div>
               <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar13.jpg" class="avatarOpciones" id="avatar13" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar14.jpg" class="avatarOpciones" id="avatar14" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar15.jpg" class="avatarOpciones" id="avatar15" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar16.jpg" class="avatarOpciones" id="avatar16" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar17.jpg" class="avatarOpciones" id="avatar17" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar18.jpg" class="avatarOpciones" id="avatar18" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar19.jpg" class="avatarOpciones" id="avatar19" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar20.jpg" class="avatarOpciones" id="avatar20" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar21.png" class="avatarOpciones" id="avatar21" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar22.jpg" class="avatarOpciones" id="avatar22" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar23.jpg" class="avatarOpciones" id="avatar23" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar24.jpg" class="avatarOpciones" id="avatar24" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar25.jpg" class="avatarOpciones" id="avatar25" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar26.jpg" class="avatarOpciones" id="avatar26" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar27.jpg" class="avatarOpciones" id="avatar27" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar28.jpg" class="avatarOpciones" id="avatar28" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar29.jpg" class="avatarOpciones" id="avatar29" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar30.jpg" class="avatarOpciones" id="avatar30" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar31.jpg" class="avatarOpciones" id="avatar31" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar32.png" class="avatarOpciones" id="avatar32" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar33.png" class="avatarOpciones" id="avatar33" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar34.jpg" class="avatarOpciones" id="avatar34" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar35.jpg" class="avatarOpciones" id="avatar35" />
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                  <img src="../CSSsJSs/images/avatar36.jpg" class="avatarOpciones" id="avatar36" />
+                </div>
+              </div>
+              <div class="row">
                 <button type="button" class="btn btn-success" id="guardarAvatar">
                   Guardar
                 </button>
