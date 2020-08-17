@@ -186,6 +186,9 @@
           <div class="row titulo">
             <div class="textCenter col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <p style="color:rgba(0,0,0,0)">.</p>
+              <p>Bienvenido a Kaanbal</p>
+              <p><a href="https://www.youtube.com/watch?v=1Lm6HpOzKOc">Tutorial</a></p>
+              <p style="color:rgba(0,0,0,0)">.</p>
               <p>¡Activa tu acceso para este semestre! </p>
               <p>Da click <a href="../../../contacto.html">aquí</a> para conocer cómo adquirir la plataforma. </p>
               <p style="color:rgba(0,0,0,0)">.</p>
