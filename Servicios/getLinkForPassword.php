@@ -83,6 +83,35 @@ if ($id_usuario === 0) {
 
             $conn = null;
         }
+        //Leer id usuario de kaanbal user
+        $id_kaanbalUser = 0;
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $kaanbalUser . "'  LIMIT 1;";
+            $stmt = $conn->query($stringQuery);
+            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                $id_kaanbalUser = intval($row[0]);
+            }
+        } catch (PDOException $e) {
+            $response["response"] = "Error: " . $e->getMessage();
+        }
+        $conn = null;
+
+        //Escribir 1 en la BBDD de que ya pagó
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "UPDATE licencia SET  pagado = 1 WHERE id_user = '$id_kaanbalUser'";
+            // use exec() because no results are returned
+            $conn->exec($sql);
+            $response["response"] = "Al usuario " . $kaanbalUser . " se le ha marcada como PAGADA la licencia ";
+        } catch (PDOException $e) {
+            $response["response"] = "<br>" . $e->getMessage();
+        }
+
+        $conn = null;
     }
 }
 
