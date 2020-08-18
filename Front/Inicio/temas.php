@@ -148,7 +148,7 @@
     $arrayr[] = $row;
   }
   //////////////////////
-  function imprimirPagina($arregloTemas,$pagado)
+  function imprimirPagina($arregloTemas)
   {
     imprimirTitulo();
     imprimirCita();
