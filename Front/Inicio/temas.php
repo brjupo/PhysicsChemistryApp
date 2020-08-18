@@ -42,7 +42,8 @@
     $arregloTemas = array();
     $arregloTemas = traerTemas();
     $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
-    imprimirPagina($arregloTemas);
+    $aux = 0;
+    imprimirPagina($arregloTemas,$aux);
   } else {
 
     /* echo'<script type="text/javascript">
@@ -63,7 +64,6 @@
       WHERE l.id_asignatura = 1 AND u.mail = ?");
       mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
       mysqli_stmt_execute($statement);
-
       mysqli_stmt_store_result($statement);
       mysqli_stmt_bind_result($statement, $pagado);
 
@@ -71,13 +71,13 @@
       while (mysqli_stmt_fetch($statement)) { 
         $arregloPagado["pagado"] = $pagado;
       }
-
+      $aux = $arregloPagado["pagado"];
       ////////////
 
       $arregloTemas = array();
       $arregloTemas = traerTemas();
       $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
-      imprimirPagina($arregloTemas);
+      imprimirPagina($arregloTemas,$aux);
     } else {
 
       echo '<script type="text/javascript">
@@ -148,11 +148,10 @@
     $arrayr[] = $row;
   }
   //////////////////////
-  function imprimirPagina($arregloTemas)
+  function imprimirPagina($arregloTemas,$aux)
   {
     imprimirTitulo();
     imprimirCita();
-
     //imprimirSiempreAparece();
     /* RECORDATORIO */
     imprimirTemas($arregloTemas);
