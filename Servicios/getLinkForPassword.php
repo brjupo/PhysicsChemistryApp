@@ -22,7 +22,7 @@ try {
         $id_usuario = intval($row[0]);
     }
 } catch (PDOException $e) {
-    $response["response"] ="Error: " . $e->getMessage();
+    $response["response"] = "Error: " . $e->getMessage();
 }
 $conn = null;
 
@@ -69,17 +69,20 @@ if ($id_usuario === 0) {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                 // set the PDO error mode to exception
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "UPDATE usuario_prueba SET  tokenA = '$rand' WHERE mail = '$kaanbalUser'";                
+                $sql = "UPDATE usuario_prueba SET  tokenA = '$rand' WHERE mail = '$kaanbalUser'";
                 // use exec() because no results are returned
                 $conn->exec($sql);
                 $response["response"] = "En la siguiente liga, el usuario podrá crear su contraseña
                  https://kaanbal.net/Front/errorInfoPages/password.php?token=" . $rand . "&correo=" . $kaanbalUser;
-                //$response["response"] = $sql;
             } catch (PDOException $e) {
                 $response["response"] = "<br>" . $e->getMessage();
             }
 
             $conn = null;
+        } else {
+            $response["response"] = "En la siguiente liga, el usuario podrá crear su contraseña
+                 https://kaanbal.net/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser;
+                
         }
     }
 }
