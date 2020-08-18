@@ -224,7 +224,7 @@ require "../../Servicios/DDBBVariables.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = "SELECT pagado FROM licencia WHERE id_usuario = " . $id_usuario . " AND id_aignatura = ".$_SESSION["idAsignatura"]. "";
+      $stringQuery = "SELECT pagado FROM licencia WHERE id_usuario = " . $id_usuario . " AND id_asignatura = " .$_SESSION["idAsignatura"] . "";
       //echo $stringQuery ;
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
