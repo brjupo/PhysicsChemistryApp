@@ -1,3 +1,6 @@
+<?php
+require "../../Servicios/DDBBVariables.php";
+?>
 <!DOCTYPE html>
 <html>
 
@@ -42,8 +45,7 @@
     $arregloTemas = array();
     $arregloTemas = traerTemas();
     $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
-    $aux = 0;
-    imprimirPagina($arregloTemas,$aux);
+    imprimirPagina($arregloTemas);
   } else {
 
     /* echo'<script type="text/javascript">
@@ -61,23 +63,28 @@
       //Validar Pago de licencia para mostrar mensaje
       $statement = mysqli_prepare($con, "SELECT l.pagado FROM alumno a JOIN usuario_prueba u JOIN licencia l 
       ON a.id_usuario = u.id_usuario AND u.id_usuario = l.id_usuario 
-      WHERE l.id_asignatura = 1 AND u.mail = ?");
+      WHERE l.id_asignatura = 1 AND u.mail = ?"); //WHERE mail = ? AND pswd = ?
       mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
       mysqli_stmt_execute($statement);
       mysqli_stmt_store_result($statement);
       mysqli_stmt_bind_result($statement, $pagado);
 
       $arregloPagado = array();
-      while (mysqli_stmt_fetch($statement)) { 
+      //Leemos datos del usuario
+      while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
         $arregloPagado["pagado"] = $pagado;
       }
-      $aux = $arregloPagado["pagado"];
+
+      if ($arregloPagado["pagado"] == 0) {
+        print_r("pagado");
+      }
+
       ////////////
 
       $arregloTemas = array();
       $arregloTemas = traerTemas();
       $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
-      imprimirPagina($arregloTemas,$aux);
+      imprimirPagina($arregloTemas);
     } else {
 
       echo '<script type="text/javascript">
@@ -97,9 +104,9 @@
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     /*----Paso 1 Obtener el ID de la asignatura----*/
-    if($_SESSION["idioma"] == 'i'){
+    if ($_SESSION["idioma"] == 'i') {
       $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE names = ?");
-    }else{
+    } else {
       $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE nombre = ?");
     }
     mysqli_stmt_bind_param($statement, "s", $asignatura);
@@ -117,9 +124,9 @@
 
     /*----Paso 2 Llamar a los temas de la asignatura-------*/
     //Verificamos el idioma//
-    if($_SESSION["idioma"] == 'i'){
+    if ($_SESSION["idioma"] == 'i') {
       $statement = mysqli_prepare($con, "SELECT id_tema, id_asignatura, names FROM tema WHERE id_asignatura = ? ORDER BY orden ASC"); //WHERE mail = ? AND pswd = ?
-    }else{
+    } else {
       $statement = mysqli_prepare($con, "SELECT id_tema, id_asignatura, nombre FROM tema WHERE id_asignatura = ? ORDER BY orden ASC"); //WHERE mail = ? AND pswd = ?
     }
     mysqli_stmt_bind_param($statement, "s", $arregloIdasignatura["id_asignatura"]);
@@ -148,11 +155,11 @@
     $arrayr[] = $row;
   }
   //////////////////////
-  function imprimirPagina($arregloTemas,$aux)
+  function imprimirPagina($arregloTemas)
   {
     imprimirTitulo();
-    if($aux == 0){
-    imprimirCita();}
+    imprimirCita();
+
     //imprimirSiempreAparece();
     /* RECORDATORIO */
     imprimirTemas($arregloTemas);
@@ -198,6 +205,40 @@
 
   function imprimirCita()
   {
+    global $servername, $dbname, $username, $password;
+    //Leer el valor del id_usuario
+    $correo = $_SESSION["mail"];
+    $id_usuario = 0;
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $correo . "' ";
+      //echo $stringQuery ;
+      $stmt = $conn->query($stringQuery);
+      while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+        $id_usuario = $row[0];
+      }
+    } catch (PDOException $e) {
+      echo $stringQuery . " Error: " . $e->getMessage();
+    }
+    $conn = null;
+
+    //Leer el valor de pagado
+    $pagado = 0;
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stringQuery = "SELECT pagado FROM licencia WHERE id_usuario = " . $id_usuario . " ";
+      //echo $stringQuery ;
+      $stmt = $conn->query($stringQuery);
+      while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+        $pagado = $row[0];
+      }
+    } catch (PDOException $e) {
+      echo $stringQuery . " Error: " . $e->getMessage();
+    }
+    $conn = null;
+    //echo $pagado;
     echo '
       <!----------------------------------------------CITA--------------------------------------------->
       <div class="container">
@@ -206,10 +247,14 @@
               <p style="color:rgba(0,0,0,0)">.</p>
               <p>Bienvenido a Kaanbal</p>
               <p><a href="https://www.youtube.com/watch?v=1Lm6HpOzKOc">Tutorial</a></p>
-              <p style="color:rgba(0,0,0,0)">.</p>
-              <p>¡Activa tu acceso para este semestre! </p>
-              <p>Da click <a href="../../../contacto.html">aquí</a> para conocer cómo adquirir la plataforma. </p>
-              <p style="color:rgba(0,0,0,0)">.</p>
+              <p style="color:rgba(0,0,0,0)">.</p>';
+    if ($pagado == 0) {
+      echo '
+                          <p>¡Activa tu acceso para este semestre! </p>
+                          <p>Da click <a href="../../../contacto.html">aquí</a> para conocer cómo adquirir la plataforma. </p>
+                          <p style="color:rgba(0,0,0,0)">.</p>';
+    }
+    echo '
             </div>
           </div>
         </div>
