@@ -134,7 +134,8 @@
   function imprimirPagina($arregloTemas)
   {
     imprimirTitulo();
-    /* //Validar Pago de licencia para mostrar mensaje
+    //Validar Pago de licencia para mostrar mensaje
+    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     $query = "SELECT pagado FROM usuario_prueba 
     WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' 
     AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
@@ -143,7 +144,7 @@
 
     echo'<script type="text/javascript">
             alert('".$pagado[0]."');
-            </script>'; */ 
+            </script>'; 
 
     imprimirCita();
 
