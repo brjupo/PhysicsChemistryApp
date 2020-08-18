@@ -212,13 +212,13 @@ require "../../Servicios/DDBBVariables.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = " . $correo . " ";
+      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $correo . "' ";
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $id_usuario = $row[0];
       }
     } catch (PDOException $e) {
-      echo "Error: " . $e->getMessage();
+      echo $stringQuery . " Error: " . $e->getMessage();
     }
     $conn = null;
 
@@ -233,7 +233,7 @@ require "../../Servicios/DDBBVariables.php";
         $pagado = $row[0];
       }
     } catch (PDOException $e) {
-      echo "Error: " . $e->getMessage();
+      echo $stringQuery . " Error: " . $e->getMessage();
     }
     $conn = null;
     echo '
