@@ -81,7 +81,7 @@ if ($id_usuario === 0) {
             $conn = null;
         } else {
             $response["response"] = "En la siguiente liga, el usuario podrá crear su contraseña
-                 https://kaanbal.net/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser;
+                 https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser;
                 
         }
     }
