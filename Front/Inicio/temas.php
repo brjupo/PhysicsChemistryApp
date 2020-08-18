@@ -75,6 +75,7 @@
 
       if($arregloPagado["pagado"] == 1){
       print_r("pagado");}
+      print_r("NOpagado");
 
       ////////////
 
