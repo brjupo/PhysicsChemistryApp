@@ -58,15 +58,23 @@
     //Validamos que los campos correo y password no lleguen vacios
     if ($rowp) {
       //Validar Pago de licencia para mostrar mensaje
-    $query = "SELECT pagado FROM usuario_prueba 
-    WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' 
-    AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
-    $result = mysqli_query($con, $query);
-    $pagado = mysqli_fetch_row($result);
+      $statement = mysqli_prepare($con, "SELECT id_usuario FROM usuario_prueba WHERE mail = ? "); //WHERE mail = ? AND pswd = ?
+      mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
+      mysqli_stmt_execute($statement);
+      mysqli_stmt_store_result($statement);
+      mysqli_stmt_bind_result($statement, $pagado);
 
-    echo '<script type="text/javascript">
-                alert("'.$pagado[0].'");
-                </script>';
+      $arregloPagado = array();
+      //Leemos datos del usuario
+      while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
+        $arregloPagado["pagado"] = $pagado;
+      }
+
+      echo'<script type="text/javascript">
+            alert("$pagado");
+            </script>'; 
+
+      ////////////
 
       $arregloTemas = array();
       $arregloTemas = traerTemas();
