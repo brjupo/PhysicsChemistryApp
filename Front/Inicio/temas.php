@@ -75,10 +75,6 @@ require "../../Servicios/DDBBVariables.php";
         $arregloPagado["pagado"] = $pagado;
       }
 
-      if ($arregloPagado["pagado"] == 0) {
-        print_r("pagado");
-      }
-
       ////////////
 
       $arregloTemas = array();
@@ -228,7 +224,7 @@ require "../../Servicios/DDBBVariables.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = "SELECT pagado FROM licencia WHERE id_usuario = " . $id_usuario . " ";
+      $stringQuery = "SELECT pagado FROM licencia WHERE id_usuario = " . $id_usuario . " AND id_aignatura = ".$_SESSION["idAsignatura"]. "";
       //echo $stringQuery ;
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
