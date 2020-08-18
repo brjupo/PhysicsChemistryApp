@@ -13,15 +13,15 @@ $rowp = mysqli_fetch_array($resultp);
 $findme   = '@';
 $pos = strpos($correo_e, $findme);
 
+$response = array();
 $response['response'] = 'Error desconocido';
 
 if ($correo_e == "" or $correo_e == NULL) {
-    $response = array();
     $response['response'] = 'Ingresa un correo!';
 } 
 else if ($pos === false) {
     //NO TIENE ARROBA - es alumno
-    $response['response'] = 'Escribenos un correo adjuntando tu pago a kaanbal@veks.mx';
+    $response['response'] = 'Usa la liga que te enviamos cuando realizaste el pago, sino funciona escribenos un correo adjuntando tu pago a kaanbal@veks.mx';
 }
 else {
     if ($rowp) {
@@ -36,15 +36,16 @@ else {
         $from = "no-reply@kaanbal.net";
         $to = $correo_e;
         $subject = "Kaanbal - Password";
-        $cuerpo = "Hola! En la siguiente liga podrás cambiar tu contraseña. https://kaanbal.net/Front/errorInfoPages/password.php?token=" . $rand . "&correo=" . $correo_e . " \n Recuerda esta liga es de un solo uso e instransferible. Si vuelves a olvidarla. Ingresa a https://kaanbal.net y elige la opción olvidé mi contraseña.";
+        $cuerpo = "Hola! En la siguiente liga podrás cambiar tu contraseña. 
+        https://kaanbal.net/Front/errorInfoPages/password.php?token=" . $rand . "&correo=" . $correo_e . " \n 
+        Recuerda esta liga es de un solo uso e instransferible. 
+        Si vuelves a olvidarla. Ingresa a https://kaanbal.net y elige la opción olvidé mi contraseña.";
         $headers = "From:" . $from;
         mail($to,$subject,$cuerpo,$headers);
         //Si no existe, regresar true
-        $response = array();
         $response['response'] = 'true';
     } else {
         //Si ya existe, regresar que ya existe.
-        $response = array();
         $response['response'] = 'Usuario NO existe';
     }
 }
