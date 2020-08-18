@@ -1,0 +1,469 @@
+/*Auto Indent Ctrl+Shift+I*/
+
+/*--------------------------------------------------FUENTES-----------------------------------------------------------*/
+
+/*
+@font-face {
+    font-family: "CustomFont";
+    src: url("CustomFont.eot");
+    src: url("CustomFont.woff") format("woff"),
+    url("CustomFont.otf") format("opentype"),
+    url('webfont.ttf')  format('truetype'), 
+    url("CustomFont.svg#filename") format("svg");
+    }
+*/
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../CSSsJSs/Fonts/open-sans/OpenSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../CSSsJSs/Fonts/roboto/RobotoCondensed-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Monse";
+  src: url("../CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "SSP";
+  src: url("../CSSsJSs/Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
+}
+
+/*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
+
+body {
+  background-color: white;
+}
+
+.iconoPrincipal {
+  padding: 10px 0px 10px 0px;
+  width: 6vw;
+}
+
+@media screen and (min-width: 768px) {
+  .iconoPrincipal {
+    width: 40px;
+  }
+}
+
+.top {
+  border: 1px solid #d6d6d6;
+}
+
+.titulo {
+  color: rgb(50, 50, 50);
+  background-color: white;
+  /*height: 50px;*/
+}
+
+.fuenteTitulo {
+  color: rgb(50, 50, 50);
+  font-family: "Monse";
+}
+
+.Ciencia {
+  font-size: 6vw;
+  text-align: left;
+  margin: 10px 0px 10px 0px;
+}
+
+@media screen and (min-width: 611px) {
+  .Ciencia {
+    font-size: 30px;
+  }
+}
+
+.Materia {
+  font-size: 3vw;
+  text-align: right;
+  margin: 10px 0px 10px 0px;
+}
+
+@media screen and (min-width: 611px) {
+  .Materia {
+    font-size: 15px;
+    margin: 20px 0px 10px 0px;
+  }
+}
+
+.iconoDiamantes {
+  padding: 10px 0px 10px 0px;
+  width: 3.5vw;
+}
+
+@media screen and (min-width: 768px) {
+  .iconoDiamantes {
+    width: 20px;
+  }
+}
+
+.diamantes {
+  font-size: 2vw;
+  text-align: right;
+  margin: 10px 0px 10px 0px;
+  color: rgb(15, 15, 168);
+  font-family: "Monse";
+}
+
+@media screen and (min-width: 611px) {
+  .diamantes {
+    font-size: 12px;
+  }
+}
+
+.cita {
+  font-size: 2.5vw;
+  font-style: italic;
+  text-align: center;
+}
+
+@media screen and (min-width: 611px) {
+  .cita {
+    font-size: 15px;
+  }
+}
+
+p {
+  color: rgb(15, 15, 15);
+  font-family: "Monse";
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.imgRight {
+  float: right;
+}
+
+.icons {
+  width: 8vw;
+}
+
+@media screen and (min-width: 768px) {
+  .icons {
+    width: 4vw;
+  }
+}
+
+/*---------------------------------------------------------TEMAS PRINCIPALES---------------------------------------*/
+
+.temaPrincipal1 {
+  color: #333333;
+  background-color: #fbfbfb;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  border-left: 6px solid rgb(100, 100, 100);
+  padding: 0px 0px 0px 6px;
+  margin: 0px 0px 3px 0px;
+  box-shadow: 0px 3px 0px #d6d6d6;
+  /*El tamaño de la sombra debe conincidir con el padding*/
+}
+
+.temaPrincipal1:hover,
+.temaPrincipal1:active {
+  color: #000000;
+  background-color: #f5f5f5;
+  border: 1px solid #a1a1a1;
+  /**/
+  border-radius: 10px;
+  border-left: 6px solid rgb(50, 50, 50);
+  padding: 1px 0px 2px 6px;
+  /*El tamaño de la sombra debe conincidir con el padding*/
+  margin: 0px 0px 0px 0px;
+  box-shadow: none;
+}
+
+.temaPrincipal2 {
+  color: #333333;
+  background-color: #fbfbfb;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  border-left: 6px solid rgb(100, 100, 255);
+  padding: 0px 0px 0px 6px;
+  margin: 0px 0px 3px 0px;
+  box-shadow: 0px 3px 0px #d6d6d6;
+}
+
+.temaPrincipal2:hover,
+.temaPrincipal2:active {
+  color: #000000;
+  background-color: #f5f5f5;
+  border: 1px solid #a1a1a1;
+  border-radius: 10px;
+  border-left: 6px solid rgb(50, 50, 205);
+  padding: 1px 0px 2px 6px;
+  margin: 0px 0px 0px 0px;
+  box-shadow: none;
+}
+
+.temaPrincipal3 {
+  color: #333333;
+  background-color: #fbfbfb;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  border-left: 6px solid rgb(255, 100, 100);
+  padding: 0px 0px 0px 6px;
+  margin: 0px 0px 3px 0px;
+  box-shadow: 0px 3px 0px #d6d6d6;
+}
+
+.temaPrincipal3:hover,
+.temaPrincipal3:active {
+  color: #000000;
+  background-color: #f5f5f5;
+  border: 1px solid #a1a1a1;
+  border-radius: 5px;
+  border-left: 6px solid rgb(205, 20, 20);
+  padding: 1px 0px 2px 6px;
+  margin: 0px 0px 0px 0px;
+  box-shadow: none;
+}
+
+.temaPrincipal4 {
+  color: #333333;
+  background-color: #fbfbfb;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  border-left: 6px solid rgb(255, 255, 100);
+  padding: 0px 0px 0px 6px;
+  margin: 0px 0px 3px 0px;
+  box-shadow: 0px 3px 0px #d6d6d6;
+}
+
+.temaPrincipal4:hover,
+.temaPrincipal4:active {
+  color: #000000;
+  background-color: #f5f5f5;
+  border: 1px solid #a1a1a1;
+  border-radius: 5px;
+  border-left: 6px solid rgb(195, 195, 0);
+  padding: 1px 0px 2px 6px;
+  margin: 0px 0px 0px 0px;
+  box-shadow: none;
+}
+
+.temaPrincipal5 {
+  color: #333333;
+  background-color: #fbfbfb;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  border-left: 6px solid rgb(100, 255, 100);
+  padding: 0px 0px 0px 6px;
+  margin: 0px 0px 3px 0px;
+  box-shadow: 0px 3px 0px #d6d6d6;
+}
+
+.temaPrincipal5:hover,
+.temaPrincipal5:active {
+  color: #000000;
+  background-color: #f5f5f5;
+  border: 1px solid #a1a1a1;
+  border-radius: 5px;
+  border-left: 6px solid rgb(0, 195, 0);
+  padding: 1px 0px 2px 6px;
+  margin: 0px 0px 0px 0px;
+  box-shadow: none;
+}
+
+.separadorTemasPrincipales {
+  font-size: 3em;
+  font-weight: 100;
+  padding: 0px !important;
+  color: rgba(150, 150, 150, 0.5);
+}
+
+.tituloTemasPrincipales {
+  margin: 2vw auto;
+  font-size: 4.5vw;
+  font-weight: 600;
+  text-align: left;
+}
+
+@media screen and (min-width: 768px) {
+  .tituloTemasPrincipales {
+    font-size: 25px;
+  }
+}
+
+/*--------------------------------------------------------- FIN TEMAS PRINCIPALES---------------------------------------*/
+
+/*--------------------------------------------------------- INICIA FOOTER ---------------------------------------*/
+
+.foot {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 1);
+  text-align: center;
+  margin: 2rem 0px 0px 0px;
+  border: 1px solid #d6d6d6;
+}
+
+.footIcon {
+  padding: 10px 0px 10px 0px;
+  width: 4vw;
+}
+
+@media screen and (max-width: 768px) {
+  .footIcon {
+    width: 40px;
+  }
+}
+
+.footIcon:hover,
+.footIcon:active {
+  padding: 0px 0px 0px 0px;
+  width: 5vw;
+}
+
+@media screen and (max-width: 768px) {
+  .footIcon:hover,
+  .footIcon:active {
+    width: 50px;
+  }
+}
+
+/*--------------------------------------------------------- FIN FOOTER ---------------------------------------*/
+
+.relleno {
+  color: white;
+}
+
+/*--------------------------------------------------------- PERFIL --------------------------------------------*/
+
+.avatarImg {
+  display: block;
+  border-radius: 50%;
+  margin: 0px auto;
+  height: 25vh;
+}
+
+@media screen and (min-width: 768px) {
+  .avatarImg {
+    display: block;
+    border-radius: 50%;
+    margin: 0px auto;
+    height: 250px;
+  }
+}
+
+.mostrarOpciones {
+  display: block;
+}
+.ocultarOpciones {
+  display: none;
+}
+
+.avatarOpciones {
+  display: block;
+  border-radius: 50%;
+  margin: 0px auto;
+  height: 10vh;
+}
+
+@media screen and (min-width: 768px) {
+  .avatarOpciones {
+    display: block;
+    border-radius: 50%;
+    margin: 0px auto;
+    height: 100px;
+  }
+}
+
+#avatarElegir {
+  background-color: rgb(240, 240, 240);
+  border-radius: 20px;
+}
+
+#guardarAvatar {
+  display: block;
+  margin: 3vh auto;
+  height: 6vh;
+}
+
+@media screen and (min-width: 768px) {
+  #guardarAvatar {
+    display: block;
+    margin: 30px auto 15px auto;
+    height: 50px;
+  }
+}
+
+.topNumber{
+  font-family: "Monse";
+  text-align: right;
+  font-weight: 700;
+  font-size: 5vh;
+  margin: 1vh 0px;
+}
+.avatarTop{
+  margin: 1vh 0px;
+  height: 6vh;
+  width: auto;
+  border-radius: 50%;
+}
+.ID3st{  
+  font-family: "Monse";
+  text-align: center;
+  margin: 2.5vh 0px;
+  font-size: 2vh;
+}
+.IDiamonds{
+  font-family: "Monse";
+  text-align: right;
+  margin: 3vh 0px;
+  font-size: 2vh;
+}
+.diamantesTop{  
+  margin: 3vh 0px;
+  height: 2vh;
+  width: auto;
+}
+
+
+@media screen and (min-width: 768px) {
+  .topNumber{
+    font-family: "Monse";
+    text-align: right;
+    font-weight: 700;
+    font-size: 10vh;
+    margin: 2vh 0px;
+  }
+  .avatarTop{
+    margin: 2vh 0px;
+    height: 10vh;
+    width: auto;
+    border-radius: 50%;
+  }
+  .ID3st{  
+    font-family: "Monse";
+    text-align: center;
+    margin: 3vh 0px;
+    font-size: 8vh;
+  }
+  .IDiamonds{
+    font-family: "Monse";
+    text-align: right;
+    margin: 4.5vh 0px;
+    font-size: 5vh;
+  }
+  .diamantesTop{  
+    margin: 4.5vh 0px;
+    height: 5vh;
+    width: auto;
+  }
+}

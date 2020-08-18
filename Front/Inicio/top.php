@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Top</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="Temas.css" />
+    <link rel="stylesheet" href="Top.css" />
     <script src="Top.js"></script>
 </head>
 
