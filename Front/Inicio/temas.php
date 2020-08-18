@@ -58,7 +58,9 @@
     //Validamos que los campos correo y password no lleguen vacios
     if ($rowp) {
       //Validar Pago de licencia para mostrar mensaje
-      $statement = mysqli_prepare($con, "SELECT id_usuario FROM usuario_prueba WHERE mail = ? "); //WHERE mail = ? AND pswd = ?
+      $statement = mysqli_prepare($con, "SELECT l.pagado FROM alumno a JOIN usuario_prueba u JOIN licencia l 
+      ON a.id_usuario = u.id_usuario AND u.id_usuario = l.id_usuario 
+      WHERE l.id_asignatura = 1 AND u.mail = ?"); //WHERE mail = ? AND pswd = ?
       mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
       mysqli_stmt_execute($statement);
       mysqli_stmt_store_result($statement);
@@ -70,7 +72,8 @@
         $arregloPagado["pagado"] = $pagado;
       }
 
-      print_r($arregloPagado["pagado"]);
+      if($arregloPagado["pagado"]== 0){
+      print_r("pagado");}
 
       ////////////
 
