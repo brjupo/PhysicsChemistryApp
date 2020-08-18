@@ -1,3 +1,11 @@
+<?php
+$tokenLink = htmlspecialchars($_GET['token']);
+$correo_e  = htmlspecialchars($_GET['correo']);
+if ($tokenLink == "" || $correo_e == "") {
+  header('Location: https://kaanbal.net/');
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -32,8 +40,6 @@
       <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         <form oninput='psw2.setCustomValidity(psw2.value != psw.value ? "\n Passwords do not match." : "")'>
           <?php
-          $tokenLink = htmlspecialchars($_GET['token']);
-          $correo_e  = htmlspecialchars($_GET['correo']);
           //echo "<p>" . $tokenLink . "  " . $correo_e . "   ";
           ?>
           <input type="text" id="token" value="<?php echo $tokenLink ?>" style="display:none;">
