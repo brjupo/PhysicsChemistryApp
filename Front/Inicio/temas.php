@@ -17,7 +17,6 @@
   //////////////////////////////////////////////////////
   session_start();
   $tokenValidar = array();
-  print_r("hola");
   /* echo'<script type="text/javascript">
             alert("$_SESSION["mail"]");
             </script>'; */
@@ -71,9 +70,7 @@
         $arregloPagado["pagado"] = $pagado;
       }
 
-      echo'<script type="text/javascript">
-          alert("'.$arregloPagado["pagado"].'");
-          </script>';  
+      print_r($arregloPagado["pagado"]);
 
       ////////////
 
