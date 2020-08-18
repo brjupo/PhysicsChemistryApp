@@ -213,6 +213,7 @@ require "../../Servicios/DDBBVariables.php";
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $correo . "' ";
+      echo $stringQuery ;
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $id_usuario = $row[0];
@@ -228,6 +229,7 @@ require "../../Servicios/DDBBVariables.php";
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $stringQuery = "SELECT pagado FROM licencia WHERE id_usuario = " . $id_usuario . " ";
+      echo $stringQuery ;
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $pagado = $row[0];
