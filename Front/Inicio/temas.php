@@ -71,8 +71,8 @@
       }
 
       echo'<script type="text/javascript">
-            alert("$arregloPagado["pagado"]");
-            </script>'; 
+          alert("'.$arregloPagado["pagado"].'");
+          </script>';  
 
       ////////////
 
