@@ -77,7 +77,7 @@
       $arregloTemas = array();
       $arregloTemas = traerTemas();
       $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
-      imprimirPagina($arregloTemas,$arregloPagado["pagado"]);
+      imprimirPagina($arregloTemas);
     } else {
 
       echo '<script type="text/javascript">
@@ -151,8 +151,7 @@
   function imprimirPagina($arregloTemas,$pagado)
   {
     imprimirTitulo();
-    if($pagado == 0){
-    imprimirCita();}
+    imprimirCita();
 
     //imprimirSiempreAparece();
     /* RECORDATORIO */
