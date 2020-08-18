@@ -76,7 +76,7 @@ if ($id_usuario === 0) {
                 // use exec() because no results are returned
                 $conn->exec($sql);
                 $response["response"] = "En la siguiente liga, el usuario podrá crear su contraseña
-                 https://kaanbal.net/Front/errorInfoPages/password.php?token=" . $rand . "&correo=" . $kaanbalUser;
+                 https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $rand . "&correo=" . $kaanbalUser;
             } catch (PDOException $e) {
                 $response["response"] = "<br>" . $e->getMessage();
             }
