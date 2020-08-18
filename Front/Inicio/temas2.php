@@ -213,7 +213,7 @@ require "../../Servicios/DDBBVariables.php";
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $correo . "' ";
-      echo $stringQuery ;
+      //echo $stringQuery ;
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $id_usuario = $row[0];
@@ -229,7 +229,7 @@ require "../../Servicios/DDBBVariables.php";
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $stringQuery = "SELECT pagado FROM licencia WHERE id_usuario = " . $id_usuario . " ";
-      echo $stringQuery ;
+      //echo $stringQuery ;
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $pagado = $row[0];
@@ -238,7 +238,7 @@ require "../../Servicios/DDBBVariables.php";
       echo $stringQuery . " Error: " . $e->getMessage();
     }
     $conn = null;
-    echo $pagado;
+    //echo $pagado;
     echo '
       <!----------------------------------------------CITA--------------------------------------------->
       <div class="container">
@@ -248,7 +248,7 @@ require "../../Servicios/DDBBVariables.php";
               <p>Bienvenido a Kaanbal</p>
               <p><a href="https://www.youtube.com/watch?v=1Lm6HpOzKOc">Tutorial</a></p>
               <p style="color:rgba(0,0,0,0)">.</p>';
-    if ($pagado == 1) {
+    if ($pagado == 0) {
       echo '
                           <p>¡Activa tu acceso para este semestre! </p>
                           <p>Da click <a href="../../../contacto.html">aquí</a> para conocer cómo adquirir la plataforma. </p>
