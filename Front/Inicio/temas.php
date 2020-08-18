@@ -64,9 +64,9 @@
     $result = mysqli_query($con, $query);
     $pagado = mysqli_fetch_row($result);
 
-    /* echo'<script type="text/javascript">
-            alert('".$pagado[0]."');
-            </script>';  */
+    echo'<script type="text/javascript">
+            alert("$pagado[0]");
+            </script>';  
 
       $arregloTemas = array();
       $arregloTemas = traerTemas();
