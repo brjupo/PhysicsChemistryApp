@@ -17,7 +17,6 @@
   //////////////////////////////////////////////////////
   session_start();
   $tokenValidar = array();
-  print_r("prueba");
   /* echo'<script type="text/javascript">
             alert("$_SESSION["mail"]");
             </script>'; */
