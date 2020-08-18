@@ -134,14 +134,14 @@
   function imprimirPagina($arregloTemas)
   {
     imprimirTitulo();
-    //Validar Pago de licencia para mostrar mensaje
+    /* //Validar Pago de licencia para mostrar mensaje
     $query = "SELECT pagado FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
     $result = mysqli_query($con, $query);
     $pagado = mysqli_fetch_row($result);
 
     echo'<script type="text/javascript">
             alert('".$pagado[0]."');
-            </script>'; 
+            </script>';  */
 
     imprimirCita();
 
