@@ -44,7 +44,7 @@
     ORDER BY suma DESC LIMIT 30";
     $statement = mysqli_prepare($con, $strqry);
     //[ID DE LA ASIGNATURA ACTUAL]
-    mysqli_stmt_bind_param($statement, "ii", $idMateria, $idMateria);
+    mysqli_stmt_bind_param($statement, "i", $idMateria);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $id_alumno, $id_usuario, $matricula, $avatar, $suma);
