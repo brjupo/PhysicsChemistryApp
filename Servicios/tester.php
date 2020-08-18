@@ -1,56 +1,24 @@
 <?php
-require "DDBBVariables.php";
-//---------------NO BORRAR
-//SI LO BORRAN, MUCHAS VISTAS DEJARÁN DE FUNCIONAR
-//////////////////////////////////////////////////////
-session_start();
-$tokenValidar = array();
-$idValidarstaff = array();
-$existestaff = array();
 
-$prueba = isStaff();
+    $user = 'cristian@c';
 
-print_r($prueba);
+    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
-function isStaff()
-{   
-    global $servername, $username, $password, $dbname;
-    $con = mysqli_connect($servername, $username, $password, $dbname);
+    $statement = mysqli_prepare($con, "SELECT l.pagado FROM alumno a JOIN usuario_prueba u JOIN licencia l 
+      ON a.id_usuario = u.id_usuario AND u.id_usuario = l.id_usuario 
+      WHERE l.id_asignatura = 1 AND u.mail = ?");
+      mysqli_stmt_bind_param($statement, "s", $user);
+      mysqli_stmt_execute($statement);
+      mysqli_stmt_store_result($statement);
+      mysqli_stmt_bind_result($statement, $pagado);
 
+      $arregloPagado = array();
+      while (mysqli_stmt_fetch($statement)) { 
+        $arregloPagado["pagado"] = $pagado;
+      }
+      $aux = $arregloPagado["pagado"];
 
-    //Consultar si existe token de usuario
-    $statement = mysqli_prepare($con, "SELECT tokenSesion, id_usuario FROM usuario_prueba WHERE mail = ?");
-    mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
-    mysqli_stmt_execute($statement);
-
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $tokenSesionp, $iduser);
-
-    while (mysqli_stmt_fetch($statement)) {
-        $idValidarstaff["staff"] = $iduser;
-        $tokenValidar["tokenSesionp"] = $tokenSesionp;
-    }
-
-    //Consultar si es staff
-    $statement = mysqli_prepare($con, "SELECT id_staff FROM staff WHERE id_usuario = ?");
-    mysqli_stmt_bind_param($statement, "s", $idValidarstaff["staff"]);
-    mysqli_stmt_execute($statement);
-
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $idstaff);
-
-    while (mysqli_stmt_fetch($statement)) {
-        $existestaff["staff"] = $idstaff;
-    }
-
-
-    //if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existestaff["staff"] != "" and $tokenValidar["tokenSesionp"] != "") {
-    if ($existestaff["staff"] != "") {
-        return $existestaff["staff"];
-    } else {
-        return "null";
-    }
-}
-
+ 
+     print_r($aux);
 
 ?>
