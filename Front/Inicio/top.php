@@ -40,11 +40,11 @@
     WHERE id_subtema IN (SELECT id_subtema FROM subtema 
     WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))) GROUP BY id_usuario) p 
     ON a.id_usuario = p.id_usuario 
-    WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1) AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) 
+    WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ?) AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) 
     ORDER BY suma DESC LIMIT 30";
     $statement = mysqli_prepare($con, $strqry);
     //[ID DE LA ASIGNATURA ACTUAL]
-    mysqli_stmt_bind_param($statement, "i", $idMateria);
+    mysqli_stmt_bind_param($statement, "i,i", $idMateria, $idMateria);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $id_alumno, $id_usuario, $matricula, $avatar, $suma);
