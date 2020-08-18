@@ -75,7 +75,7 @@ if ($id_usuario === 0) {
                 $sql = "UPDATE usuario_prueba SET  tokenA = '$rand' WHERE mail = '$kaanbalUser'";
                 // use exec() because no results are returned
                 $conn->exec($sql);
-                $response["response"] = "En la siguiente liga, el usuario podrá crear su contraseña
+                $response["URL"] = "En la siguiente liga, el usuario podrá crear su contraseña
                  https://kaanbal.net/Front/errorInfoPages/password.php?token=" . $rand . "&correo=" . $kaanbalUser;
             } catch (PDOException $e) {
                 $response["response"] = "<br>" . $e->getMessage();
@@ -103,7 +103,7 @@ if ($id_usuario === 0) {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE licencia SET  pagado = 1 WHERE id_user = '$id_kaanbalUser'";
+            $sql = "UPDATE licencia SET  pagado = 1 WHERE id_usuario = '$id_kaanbalUser'";
             // use exec() because no results are returned
             $conn->exec($sql);
             $response["response"] = "Al usuario " . $kaanbalUser . " se le ha marcada como PAGADA la licencia ";
