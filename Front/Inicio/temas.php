@@ -68,21 +68,16 @@
       mysqli_stmt_bind_result($statement, $pagado);
 
       $arregloPagado = array();
-      //Leemos datos del usuario
-      while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
+      while (mysqli_stmt_fetch($statement)) { 
         $arregloPagado["pagado"] = $pagado;
       }
-
-      if($arregloPagado["pagado"] == 1){
-      print_r("pagado");}
-      print_r("NOpagado");
 
       ////////////
 
       $arregloTemas = array();
       $arregloTemas = traerTemas();
       $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
-      imprimirPagina($arregloTemas);
+      imprimirPagina($arregloTemas,$arregloPagado["pagado"]);
     } else {
 
       echo '<script type="text/javascript">
@@ -153,10 +148,11 @@
     $arrayr[] = $row;
   }
   //////////////////////
-  function imprimirPagina($arregloTemas)
+  function imprimirPagina($arregloTemas,$pagado)
   {
     imprimirTitulo();
-    imprimirCita();
+    if($pagado == 0){
+    imprimirCita();}
 
     //imprimirSiempreAparece();
     /* RECORDATORIO */
