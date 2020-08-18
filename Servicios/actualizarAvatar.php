@@ -1,6 +1,7 @@
 <?php
-  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+require "DDBBVariables.php";
 
+$con = mysqli_connect($servername, $username, $password, $dbname);
   $matricula = $_POST["matricula"];
   $avatar = $_POST["avatar"];
 

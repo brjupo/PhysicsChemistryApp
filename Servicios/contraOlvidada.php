@@ -1,6 +1,7 @@
 <?php
-$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+require "DDBBVariables.php";
 
+$con = mysqli_connect($servername, $username, $password, $dbname);
 
 $correo_e = $_POST["correo_e"];
 
@@ -9,11 +10,20 @@ $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$correo_e'";
 $resultp = mysqli_query($con, $sql);
 $rowp = mysqli_fetch_array($resultp);
 
+$findme   = '@';
+$pos = strpos($correo_e, $findme);
+
+$response['response'] = 'Error desconocido';
+
 if ($correo_e == "" or $correo_e == NULL) {
     $response = array();
     $response['response'] = 'Ingresa un correo!';
-    echo json_encode($response);
-} else {
+} 
+else if ($pos === false) {
+    //NO TIENE ARROBA - es alumno
+    $response['response'] = 'Escribenos un correo adjuntando tu pago a kaanbal@veks.mx';
+}
+else {
     if ($rowp) {
         //Es hora de cambiar el token   |  Creamos un token random
         $rand = bin2hex(random_bytes(5));
@@ -32,11 +42,11 @@ if ($correo_e == "" or $correo_e == NULL) {
         //Si no existe, regresar true
         $response = array();
         $response['response'] = 'true';
-        echo json_encode($response);
     } else {
         //Si ya existe, regresar que ya existe.
         $response = array();
         $response['response'] = 'Usuario NO existe';
-        echo json_encode($response);
     }
 }
+
+echo json_encode($response);
