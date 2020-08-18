@@ -60,7 +60,7 @@ if ($id_usuario === 0) {
             echo "Error: " . $e->getMessage();
         }
         $conn = null;
-        if ($token != "0") {
+        if ($token != "0" || !empty($token) || !is_null($token)) {
             $response["response"] = "En la siguiente liga, el usuario podrá crear su contraseña
             https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser;
         } else {
