@@ -6,7 +6,7 @@
 
     $statement = mysqli_prepare($con, "SELECT l.pagado FROM alumno a JOIN usuario_prueba u JOIN licencia l 
       ON a.id_usuario = u.id_usuario AND u.id_usuario = l.id_usuario 
-      WHERE l.id_asignatura = 1 AND u.mail = ?");
+      WHERE l.id_asignatura = 2 AND u.mail = ?");
       mysqli_stmt_bind_param($statement, "s", $user);
       mysqli_stmt_execute($statement);
       mysqli_stmt_store_result($statement);
