@@ -47,20 +47,20 @@ if ($id_usuario === 0) {
         $response["response"] = 'El usuario NO existe en staff';
     } else {
         //Leemos si tiene un tokenA de contrasenia
-        $token = 0;
+        $token = "0";
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stringQuery = "SELECT tokenA FROM usuario_prueba WHERE mail = '" . $kaanbalUser . "' LIMIT 1;";
             $stmt = $conn->query($stringQuery);
             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                $token = intval($row[0]);
+                $token = $row[0];
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
         $conn = null;
-        if ($token === 0) {
+        if ($token == "0") {
             //Escribe en la base de datos un token aleatorio
             $rand = bin2hex(random_bytes(5));
             //Agregar a la base de datos
