@@ -54,7 +54,7 @@ if ($id_usuario === 0) {
             $stringQuery = "SELECT tokenA FROM usuario_prueba WHERE mail = '" . $kaanbalUser . "' LIMIT 1;";
             $stmt = $conn->query($stringQuery);
             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                $token = intval($row[0]);
+                $token = $row[0];
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
