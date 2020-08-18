@@ -75,7 +75,7 @@ if ($id_usuario === 0) {
                 $sql = "UPDATE usuario_prueba SET  tokenA = '$rand' WHERE mail = '$kaanbalUser'";
                 // use exec() because no results are returned
                 $conn->exec($sql);
-                $response["URL"] = "En la siguiente liga, el usuario podrá crear su contraseña
+                $response["response"] = "En la siguiente liga, el usuario podrá crear su contraseña
                  https://kaanbal.net/Front/errorInfoPages/password.php?token=" . $rand . "&correo=" . $kaanbalUser;
             } catch (PDOException $e) {
                 $response["response"] = "<br>" . $e->getMessage();
@@ -106,7 +106,7 @@ if ($id_usuario === 0) {
             $sql = "UPDATE licencia SET  pagado = 1 WHERE id_usuario = '$id_kaanbalUser'";
             // use exec() because no results are returned
             $conn->exec($sql);
-            $response["response"] = "Al usuario " . $kaanbalUser . " se le ha marcada como PAGADA la licencia ";
+            $response["usuario"] = "Al usuario " . $kaanbalUser . " se le ha marcada como PAGADA la licencia ";
         } catch (PDOException $e) {
             $response["response"] = "<br>" . $e->getMessage();
         }
