@@ -238,6 +238,7 @@ require "../../Servicios/DDBBVariables.php";
       echo $stringQuery . " Error: " . $e->getMessage();
     }
     $conn = null;
+    echo $pagado;
     echo '
       <!----------------------------------------------CITA--------------------------------------------->
       <div class="container">
