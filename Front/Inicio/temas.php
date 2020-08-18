@@ -151,7 +151,8 @@
   function imprimirPagina($arregloTemas,$aux)
   {
     imprimirTitulo();
-    imprimirCita();
+    if($aux == 0){
+    imprimirCita();}
     //imprimirSiempreAparece();
     /* RECORDATORIO */
     imprimirTemas($arregloTemas);
