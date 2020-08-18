@@ -57,6 +57,17 @@
 
     //Validamos que los campos correo y password no lleguen vacios
     if ($rowp) {
+      //Validar Pago de licencia para mostrar mensaje
+    $query = "SELECT pagado FROM usuario_prueba 
+    WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' 
+    AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
+    $result = mysqli_query($con, $query);
+    $pagado = mysqli_fetch_row($result);
+
+    /* echo'<script type="text/javascript">
+            alert('".$pagado[0]."');
+            </script>';  */
+
       $arregloTemas = array();
       $arregloTemas = traerTemas();
       $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
@@ -134,18 +145,6 @@
   function imprimirPagina($arregloTemas)
   {
     imprimirTitulo();
-    //Validar Pago de licencia para mostrar mensaje
-    $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    $query = "SELECT pagado FROM usuario_prueba 
-    WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' 
-    AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
-    $result = mysqli_query($con, $query);
-    $pagado = mysqli_fetch_row($result);
-
-    echo'<script type="text/javascript">
-            alert('".$pagado[0]."');
-            </script>'; 
-
     imprimirCita();
 
     //imprimirSiempreAparece();
