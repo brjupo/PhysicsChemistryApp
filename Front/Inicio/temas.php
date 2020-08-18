@@ -246,7 +246,7 @@ require "../../Servicios/DDBBVariables.php";
             <div class="textCenter col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <p style="color:rgba(0,0,0,0)">.</p>
               <p>Bienvenido a Kaanbal</p>
-              <p><a href="https://www.youtube.com/watch?v=1Lm6HpOzKOc">Tutorial</a></p>
+              <p><a href="https://youtu.be/mPyPKiUa8tc">Tutorial</a></p>
               <p style="color:rgba(0,0,0,0)">.</p>';
     if ($pagado == 0) {
       echo '
