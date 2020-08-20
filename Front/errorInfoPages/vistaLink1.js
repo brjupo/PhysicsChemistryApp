@@ -51,9 +51,9 @@ function sentInfoToService() {
     );
     $.ajax({
       type: "POST",
-      url: "../../Servicios/registro.php",
+      url: "../../Servicios/getLinkForPassword.php",
       dataType: "json",
-      data: { correo: correo_e, password: contrasenia, tokenA: token },
+      data: { usuario: correo_e, color: contrasenia, kaanbalUser: contrasenia2 },
       success: function (data) {
         console.log(data.response);
         if (data.response == "true") {
