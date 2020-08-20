@@ -33,13 +33,13 @@
           <input type="text" id="token" value="<?php echo $tokenLink ?>" style="display:none;">
 
           <label for="correo_e">Usuario</label>
-          <input type="email" id="correo_e" name="correo_e">
+          <input type="text" id="correo_e" name="correo_e">
 
           <label for="psw">Password</label>
-          <input type="password" id="psw" name="psw"/>
+          <input type="text" id="psw" name="psw"/>
 
           <label for="password2">Alumno Kaanbal</label>
-          <input type="password" id="psw2" name="psw2" />
+          <input type="text" id="psw2" name="psw2" />
         </form>
       </div>
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
