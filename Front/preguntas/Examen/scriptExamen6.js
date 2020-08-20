@@ -300,7 +300,7 @@ function verifyIfTextIsCorrect(questionNumber) {
     CorrectAudio.play();
   } else {
     lastQuestion = questionNumber;
-    questionNumberArray.push(questionNumber);
+    //questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
     buenas0_malas1_alHilo[1] += 1;
     document.getElementById(10 * questionNumber - 5).style.color = "red";
