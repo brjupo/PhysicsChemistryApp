@@ -40,6 +40,9 @@
 
           <label for="password2">Alumno Kaanbal</label>
           <input type="text" id="psw2" name="psw2" />
+
+          <label for="password2">Correo Alumno</label>
+          <input type="text" id="correoAlumno" name="psw2" />
         </form>
       </div>
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
