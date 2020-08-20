@@ -7,7 +7,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
-  <link rel="stylesheet" href="stylePassword1.css" />
+  <link rel="stylesheet" href="stylePassword2.css" />
   <script src="vistaLink3.js"></script>
   <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
