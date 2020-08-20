@@ -123,22 +123,24 @@ function sentInfoToService() {
       " token: ",
       token
     );
-    $.ajax({
-      type: "POST",
-      url: "../../Servicios/registro.php",
-      dataType: "json",
-      data: { correo: correo_e, password: contrasenia, tokenA: token },
-      success: function (data) {
-        console.log(data.response);
-        if (data.response == "true") {
-          alert("Contraseña registrada");
-          window.location.href = "https://kaanbal.net";
-          console.log("Registro exitoso");
-        } else {
-          alert("Algo fallo :/ ");
-          console.log("Registro no exitoso");
-        }
-      },
+    $(function () {
+      $.ajax({
+        type: "POST",
+        url: "../../Servicios/registro.php",
+        dataType: "json",
+        data: { correo: correo_e, password: contrasenia, tokenA: token },
+        success: function (data) {
+          console.log(data.response);
+          if (data.response == "true") {
+            alert("Contraseña registrada");
+            window.location.href = "https://kaanbal.net";
+            console.log("Registro exitoso");
+          } else {
+            alert("Algo fallo :/ ");
+            console.log("Registro no exitoso");
+          }
+        },
+      });
     });
   }
 }
