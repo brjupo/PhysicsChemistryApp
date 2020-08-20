@@ -150,7 +150,8 @@ function getCuerpo($token, $kaanbalUser)
 {
     $cuerpo = "
             <html>
-              <body style='background-color:rgb(35, 85, 145); color:white;'>
+              <body>
+                <h1 style='background-color:rgb(35, 85, 145); color:rgb(35, 85, 145);'>.</h1>
                 <h3>¡Bienvenida(o) a Kaanbal!</h3>
                 <h4>
                   Has hecho una excelente decisión al adquirir la licencia semestral de la
@@ -200,6 +201,7 @@ function getCuerpo($token, $kaanbalUser)
                   <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
                   VEKS Solutions México S.A. de C.V.
                 </p>
+                <h1 style='background-color:rgb(35, 85, 145); color:rgb(35, 85, 145);'>.</h1>
               </body>
             </html>
             ";
