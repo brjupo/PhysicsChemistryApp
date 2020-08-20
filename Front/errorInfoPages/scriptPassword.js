@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
   //var specialChars = "!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?`~";
   var myInput = document.getElementById("psw");
   var letter = document.getElementById("letter");
@@ -8,17 +8,17 @@ window.onload = function() {
   var symbol = document.getElementById("symbol");
 
   // When the user clicks on the password field, show the message box
-  myInput.onfocus = function() {
+  myInput.onfocus = function () {
     document.getElementById("message").style.display = "block";
   };
 
   // When the user clicks outside of the password field, hide the message box
-  myInput.onblur = function() {
+  myInput.onblur = function () {
     document.getElementById("message").style.display = "none";
   };
 
   // When the user starts to type something inside the password field
-  myInput.onkeyup = function() {
+  myInput.onkeyup = function () {
     // Validate lowercase letters
     var lowerCaseLetters = /[a-z]/g;
     if (myInput.value.match(lowerCaseLetters)) {
@@ -84,7 +84,7 @@ window.onload = function() {
   };
 };
 
-document.addEventListener("click", function(evt) {
+document.addEventListener("click", function (evt) {
   var mandarInfoAlServicio = document.getElementById("submit");
   var titulo = document.getElementById("titulo");
   targetElement = evt.target; // clicked element
@@ -108,24 +108,37 @@ function index() {
 }
 
 function sentInfoToService() {
-  var token = $("#token").val();
-  var correo_e = $("#correo_e").val();
-  var contrasenia = $("#psw").val();
-  console.log("Correo: ", correo_e, " Contras: ", contrasenia, " token: ", token);
-  $.ajax({
-    type: "POST",
-    url: "../../Servicios/registro.php",
-    dataType: "json",
-    data: { correo: correo_e, password: contrasenia, tokenA: token},
-    success: function(data) {
-      console.log(data.response);
-      if (data.response == "true") {
-        alert("Contraseña registrada");
-        console.log("Registro exitoso");
-      } else {
-        alert("Algo fallo :/ ");
-        console.log("Registro no exitoso");
-      }
-    }
-  });
+  var token = document.getElementById("token").value.trim();
+  var correo_e = document.getElementById("correo_e").value.trim();
+  var contrasenia = document.getElementById("psw").value.trim();
+  var contrasenia2 = document.getElementById("psw2").value.trim();
+  if (contrasenia != contrasenia2) {
+    alert("Por favor revisa los campos");
+  } else {
+    console.log(
+      "Correo: ",
+      correo_e,
+      " Contras: ",
+      contrasenia,
+      " token: ",
+      token
+    );
+    $.ajax({
+      type: "POST",
+      url: "../../Servicios/registro.php",
+      dataType: "json",
+      data: { correo: correo_e, password: contrasenia, tokenA: token },
+      success: function (data) {
+        console.log(data.response);
+        if (data.response == "true") {
+          //alert("Contraseña registrada");
+          window.location.href = "https://kaanbal.net";
+          console.log("Registro exitoso");
+        } else {
+          alert("Algo fallo :/ ");
+          console.log("Registro no exitoso");
+        }
+      },
+    });
+  }
 }

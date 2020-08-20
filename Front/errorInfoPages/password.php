@@ -15,8 +15,8 @@ if ($tokenLink == "" || $correo_e == "") {
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
-  <link rel="stylesheet" href="../CSSsJSs/stylePassword.css" />
-  <script src="../CSSsJSs/scriptPassword.js"></script>
+  <link rel="stylesheet" href="stylePassword.css" />
+  <script src="scriptPassword.js"></script>
   <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
