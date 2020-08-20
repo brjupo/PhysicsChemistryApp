@@ -38,7 +38,7 @@ function sentInfoToService() {
   var correo_e = document.getElementById("correo_e").value.trim();
   var contrasenia = document.getElementById("psw").value.trim();
   var contrasenia2 = document.getElementById("psw2").value.trim();
-  if (contrasenia != contrasenia2) {
+  if (contrasenia == contrasenia2) {
     alert("Por favor revisa los campos");
   } else {
     console.log(
