@@ -67,6 +67,10 @@ if ($id_usuario === 0) {
             //mail(correo,asunto,cuerpo);
             $from = "no-reply@kaanbal.net";
             $to = $emailCliente;
+            $to = $emailCliente . ', ';
+            $to .= 'kaanbal@veks.mx' . ', ';
+            $to .= 'licencias@kaanbal.net';
+
             $subject = "Kaanbal - Password";
             $cuerpo = getCuerpo($token, $kaanbalUser);
 
@@ -101,7 +105,10 @@ if ($id_usuario === 0) {
             //Enviar correo a usuario para que genere su contrasenia
             //mail(correo,asunto,cuerpo);
             $from = "no-reply@kaanbal.net";
-            $to = $emailCliente;
+            $to = $emailCliente . ', ';
+            $to .= 'kaanbal@veks.mx' . ', ';
+            $to .= 'licencias@kaanbal.net';
+
             $subject = "Kaanbal - Password";
             $cuerpo = getCuerpo($rand, $kaanbalUser);
 
