@@ -8,7 +8,7 @@
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
   <link rel="stylesheet" href="stylePassword2.css" />
-  <script src="vistaLink5.js"></script>
+  <script src="enviarLink.js"></script>
   <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
@@ -65,7 +65,7 @@
     <div class="row">
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-          <input type="text" id="respuesta" style = "height:50px">
+          <textarea type="text" id="respuesta" style = "height:50px; overflow:scroll"></textarea>
         </form>
       </div>
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
