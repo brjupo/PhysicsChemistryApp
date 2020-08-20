@@ -65,7 +65,7 @@ if ($id_usuario === 0) {
             https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser;
             //Enviar correo a usuario para que genere su contrasenia
             //mail(correo,asunto,cuerpo);
-            $from = "no-reply@kaanbal.net";
+            $from = "licencias@kaanbal.net";
             $to = $emailCliente;
             $to = $emailCliente . ', ';
             $to .= 'kaanbal@veks.mx' . ', ';
@@ -104,7 +104,7 @@ if ($id_usuario === 0) {
 
             //Enviar correo a usuario para que genere su contrasenia
             //mail(correo,asunto,cuerpo);
-            $from = "no-reply@kaanbal.net";
+            $from = "licencias@kaanbal.net";
             $to = $emailCliente . ', ';
             $to .= 'kaanbal@veks.mx' . ', ';
             $to .= 'licencias@kaanbal.net';
