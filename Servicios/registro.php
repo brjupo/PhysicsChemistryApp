@@ -13,8 +13,8 @@ $rowp = mysqli_fetch_array($resultp);
 
 if ($rowp) {
     //Si existe [mail y token] registrar contraseña en base de datos y responder true
-    //-------$sql = "UPDATE usuario_prueba SET pswd='$password' WHERE tokenA = '$token' AND mail = '$correo'";
-    //-------mysqli_query($con, $sql);
+    $sql = "UPDATE usuario_prueba SET pswd='$password' WHERE tokenA = '$token' AND mail = '$correo'";
+    mysqli_query($con, $sql);
 
     //Es hora de cambiar el token   |  Creamos un token random
     //-------$rand = bin2hex(random_bytes(5));
