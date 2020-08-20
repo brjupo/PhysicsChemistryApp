@@ -1,11 +1,3 @@
-<?php
-$tokenLink = htmlspecialchars($_GET['token']);
-$correo_e  = htmlspecialchars($_GET['correo']);
-if ($tokenLink == "" || $correo_e == "") {
-  header('Location: https://kaanbal.net/');
-  exit;
-}
-?>
 <!DOCTYPE html>
 <html>
 
