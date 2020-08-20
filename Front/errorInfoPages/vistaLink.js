@@ -8,19 +8,6 @@ window.onload = function () {
   var symbol = document.getElementById("symbol");
 
   
-
-  // When the user starts to type something inside the password field
-  myInput.onkeyup = function () {
-    // Validate lowercase letters
-    var lowerCaseLetters = /[a-z]/g;
-    if (myInput.value.match(lowerCaseLetters)) {
-      letter.classList.remove("invalid");
-      letter.classList.add("valid");
-    } else {
-      letter.classList.remove("valid");
-      letter.classList.add("invalid");
-    }
-
     // Validate capital letters
     var upperCaseLetters = /[A-Z]/g;
     if (myInput.value.match(upperCaseLetters)) {
