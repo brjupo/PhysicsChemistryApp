@@ -38,6 +38,7 @@ function sentInfoToService() {
   var correo_e = document.getElementById("correo_e").value.trim();
   var contrasenia = document.getElementById("psw").value.trim();
   var contrasenia2 = document.getElementById("psw2").value.trim();
+  var emailCliente = document.getElementById("correoAlumno").value.trim();
   if (contrasenia == contrasenia2) {
     alert("Por favor revisa los campos");
   } else {
@@ -51,15 +52,15 @@ function sentInfoToService() {
     );
     $.ajax({
       type: "POST",
-      url: "../../Servicios/getLinkForPassword.php",
+      url: "../../Servicios/passLink.php",
       dataType: "json",
-      data: { usuario: correo_e, color: contrasenia, kaanbalUser: contrasenia2 },
+      data: { usuario: correo_e, color: contrasenia, kaanbalUser: contrasenia2, emailCliente: emailCliente },
       success: function (data) {
         if (data.response != "true") {
           //alert("Contraseña registrada");
           //window.location.href = "https://kaanbal.net";
           console.log(data.response);
-          document.getElementById("respuesta").value = data.response;
+          document.getElementById("respuesta").innerHTML = data.response;
         } else {
           alert("Algo fallo :/ ");
           console.log("Registro no exitoso");
