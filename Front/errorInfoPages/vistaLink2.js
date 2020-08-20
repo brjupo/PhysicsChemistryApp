@@ -56,10 +56,10 @@ function sentInfoToService() {
       data: { usuario: correo_e, color: contrasenia, kaanbalUser: contrasenia2 },
       success: function (data) {
         console.log(data.response);
-        if (data.response == "true") {
-          alert("Contraseña registrada");
+        if (data.response != "true") {
+          //alert("Contraseña registrada");
           //window.location.href = "https://kaanbal.net";
-          console.log("Registro exitoso");
+          console.log(data.response);
         } else {
           alert("Algo fallo :/ ");
           console.log("Registro no exitoso");
