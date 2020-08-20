@@ -131,8 +131,8 @@ function sentInfoToService() {
       success: function (data) {
         console.log(data.response);
         if (data.response == "true") {
-          //alert("Contraseña registrada");
-          window.location.href = "https://kaanbal.net";
+          alert("Contraseña registrada");
+          //window.location.href = "https://kaanbal.net";
           console.log("Registro exitoso");
         } else {
           alert("Algo fallo :/ ");
