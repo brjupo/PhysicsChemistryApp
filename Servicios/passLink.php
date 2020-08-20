@@ -57,6 +57,7 @@ if ($id_usuario === 0) {
             echo "Error: " . $e->getMessage();
         }
         $conn = null;
+        //------------------Si tiene tokenA, solo renviale el correo
         if ($token != "") {
             $response["response"] = "En la siguiente liga, el usuario podrá crear su contraseña
             https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser;
@@ -71,6 +72,7 @@ if ($id_usuario === 0) {
             $headers = "From:" . $from;
             mail($to, $subject, $cuerpo, $headers);
             $response["mail"] = "Correo enviado al usuario";
+        //-----------------------Si no tiene tokenA crealo y enviale el correo
         } else {
             //Escribe en la base de datos un token aleatorio
             $rand = bin2hex(random_bytes(5));
@@ -90,7 +92,7 @@ if ($id_usuario === 0) {
             }
 
             $conn = null;
-            
+
             //Enviar correo a usuario para que genere su contrasenia
             //mail(correo,asunto,cuerpo);
             $from = "no-reply@kaanbal.net";
