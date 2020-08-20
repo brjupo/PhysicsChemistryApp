@@ -66,13 +66,25 @@ if ($id_usuario === 0) {
             $from = "no-reply@kaanbal.net";
             $to = $emailCliente;
             $subject = "Kaanbal - Password";
-            $cuerpo = "Hola! En la siguiente liga podrás cambiar tu contraseña. 
-        https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser . " \n 
-        Recuerda esta liga es instransferible. No la compartas.";
-            $headers = "From:" . $from;
+            $cuerpo = "<html>
+                    <head>
+                        <title>Recordatorio de cumpleaños para Agosto</title>
+                    </head>
+                    <body>
+                        <p>Hola! En la siguiente liga podrás cambiar tu contraseña</p>
+                        <p>https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser . "</p>
+                        <p>Recuerda esta liga es instransferible. No la compartas.</p>
+                    </body>
+                    </html>
+                    ";
+            // Para enviar un correo HTML, debe establecerse la cabecera Content-type
+            $headers  = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+            $headers .= "From:" . $from;
             mail($to, $subject, $cuerpo, $headers);
             $response["mail"] = "Correo enviado al usuario";
-        //-----------------------Si no tiene tokenA crealo y enviale el correo
+            //-----------------------Si no tiene tokenA crealo y enviale el correo
         } else {
             //Escribe en la base de datos un token aleatorio
             $rand = bin2hex(random_bytes(5));
@@ -98,10 +110,22 @@ if ($id_usuario === 0) {
             $from = "no-reply@kaanbal.net";
             $to = $emailCliente;
             $subject = "Kaanbal - Password";
-            $cuerpo = "Hola! En la siguiente liga podrás cambiar tu contraseña. 
-        https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $rand . "&correo=" . $kaanbalUser . " \n 
-        Recuerda esta liga es instransferible. No la compartas.";
-            $headers = "From:" . $from;
+            $cuerpo = "<html>
+                    <head>
+                        <title>Recordatorio de cumpleaños para Agosto</title>
+                    </head>
+                    <body>
+                        <p>Hola! En la siguiente liga podrás cambiar tu contraseña</p>
+                        <p>https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser . "</p>
+                        <p>Recuerda esta liga es instransferible. No la compartas.</p>
+                    </body>
+                    </html>
+                    ";
+            // Para enviar un correo HTML, debe establecerse la cabecera Content-type
+            $headers  = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+            $headers .= "From:" . $from;
             mail($to, $subject, $cuerpo, $headers);
             $response["mail"] = "Correo enviado al usuario";
         }
