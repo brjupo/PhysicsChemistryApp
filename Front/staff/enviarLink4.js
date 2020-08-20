@@ -64,8 +64,8 @@ function sentInfoToService() {
           //window.location.href = "https://kaanbal.net";
           console.log(data.response);
           document.getElementById("respuesta").innerHTML = JSON.parse(data);
-          contrasenia2.value = "";
-          emailCliente.value = "";
+          contrasenia2.innerHTML = "";
+          emailCliente.innerHTML = "";
         } else {
           alert("Algo fallo :/ ");
           console.log("Registro no exitoso");
