@@ -32,16 +32,16 @@
       <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
           <input type="text" id="token" value="<?php echo $tokenLink ?>" style="display:none;">
 
-          <label for="correo_e">Usuario</label>
+          <label for="correo_e">Ingresa tu usuario de staff</label>
           <input type="text" id="correo_e" name="correo_e">
 
-          <label for="psw">Password</label>
+          <label for="psw">Ingresa tu password de staff</label>
           <input type="text" id="psw" name="psw"/>
 
-          <label for="password2">Alumno Kaanbal</label>
+          <label for="password2">Ingresa alumno Kaanbal</label>
           <input type="text" id="psw2" name="psw2" />
 
-          <label for="password2">Correo Alumno</label>
+          <label for="password2">Correo de alumno a enviar contraseña</label>
           <input type="text" id="correoAlumno" name="psw2" />
         </form>
       </div>
