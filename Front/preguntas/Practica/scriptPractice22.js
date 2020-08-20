@@ -560,7 +560,7 @@ function motivationBadMessage(lastQuestion) {
     badJobMessages = [
       "Aunque falles, sigues aprendiendo",
       "Todo esfuerzo valdrá la pena",
-      "Yo confió en tí, sigue adelante",
+      "Yo confío en ti, sigue adelante",
       "Has podido con más, solo concentrate",
       "Todo se logra con un poco de esfuerzo",
       "¡Mantén tu entusiasmo!",
