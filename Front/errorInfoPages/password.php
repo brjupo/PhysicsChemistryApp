@@ -60,13 +60,13 @@ if ($tokenLink == "" || $correo_e == "") {
 
   <div class="container">
     <div class="row">
-      <div class="textCenter col-2 col-sm-2 col-md-5 col-lg-5 col-xl-5"></div>
-      <div class="textCenter col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+      <div class="textCenter col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
+      <div class="textCenter col-8 col-sm-8 col-md-6 col-lg-6 col-xl-6">
         <button class="boton2" id="submit">
           Submit
         </button>
       </div>
-      <div class="textCenter col-2 col-sm-2 col-md-5 col-lg-5 col-xl-5"></div>
+      <div class="textCenter col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
     </div>
   </div>
 
