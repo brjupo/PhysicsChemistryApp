@@ -60,7 +60,7 @@ function sentInfoToService() {
           //alert("Contraseña registrada");
           //window.location.href = "https://kaanbal.net";
           console.log(data.response);
-          document.getElementById("respuesta").innerHTML = data.response;
+          document.getElementById("respuesta").innerHTML = JSON.parse(data);
         } else {
           alert("Algo fallo :/ ");
           console.log("Registro no exitoso");
