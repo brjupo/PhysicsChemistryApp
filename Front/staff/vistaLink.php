@@ -8,7 +8,7 @@
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
   <link rel="stylesheet" href="stylePassword2.css" />
-  <script src="vistaLink3.js"></script>
+  <script src="vistaLink4.js"></script>
   <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
@@ -58,6 +58,17 @@
         </button>
       </div>
       <div class="textCenter col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+          <input type="text" id="respuesta" style = "height:50px">
+        </form>
+      </div>
+      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
 
