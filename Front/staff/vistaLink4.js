@@ -55,7 +55,6 @@ function sentInfoToService() {
       dataType: "json",
       data: { usuario: correo_e, color: contrasenia, kaanbalUser: contrasenia2 },
       success: function (data) {
-        console.log(data.response);
         if (data.response != "true") {
           //alert("Contraseña registrada");
           //window.location.href = "https://kaanbal.net";
