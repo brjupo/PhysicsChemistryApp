@@ -150,7 +150,7 @@ function getCuerpo($token, $kaanbalUser)
 {
     $cuerpo = "
             <html>
-              <body>
+              <body style='background-color:#006EE5;'>
                 <h3>¡Bienvenida(o) a Kaanbal!</h3>
                 <h4>
                   Has hecho una excelente decisión al adquirir la licencia semestral de la
