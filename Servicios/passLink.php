@@ -103,7 +103,7 @@ if ($id_usuario === 0) {
             $from = "no-reply@kaanbal.net";
             $to = $emailCliente;
             $subject = "Kaanbal - Password";
-            $cuerpo = getCuerpo($token, $kaanbalUser);
+            $cuerpo = getCuerpo($rand, $kaanbalUser);
 
             // Para enviar un correo HTML, debe establecerse la cabecera Content-type
             $headers  = 'MIME-Version: 1.0' . "\r\n";
