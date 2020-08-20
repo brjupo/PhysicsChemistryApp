@@ -16,7 +16,7 @@ if ($tokenLink == "" || $correo_e == "") {
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
   <link rel="stylesheet" href="stylePassword1.css" />
-  <script src="scriptPassword1v.js"></script>
+  <script src="scriptPasswordv.js"></script>
   <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
