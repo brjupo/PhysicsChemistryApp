@@ -6,6 +6,8 @@ $color = $_POST["color"];
 $kaanbalUser = $_POST["kaanbalUser"];
 $emailCliente = $_POST["emailCliente"];
 
+$cuerpo = "";
+
 //Crear la lectura en base de datos
 $id_usuario = 0;
 $response["response"] = 'Error desconocido';
@@ -66,17 +68,8 @@ if ($id_usuario === 0) {
             $from = "no-reply@kaanbal.net";
             $to = $emailCliente;
             $subject = "Kaanbal - Password";
-            $cuerpo = "<html>
-                    <head>
-                        <title>Recordatorio de cumpleaños para Agosto</title>
-                    </head>
-                    <body>
-                        <p>Hola! En la siguiente liga podrás cambiar tu contraseña</p>
-                        <p>https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser . "</p>
-                        <p>Recuerda esta liga es instransferible. No la compartas.</p>
-                    </body>
-                    </html>
-                    ";
+            $cuerpo = getCuerpo($token, $kaanbalUser);
+
             // Para enviar un correo HTML, debe establecerse la cabecera Content-type
             $headers  = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
@@ -110,17 +103,8 @@ if ($id_usuario === 0) {
             $from = "no-reply@kaanbal.net";
             $to = $emailCliente;
             $subject = "Kaanbal - Password";
-            $cuerpo = "<html>
-                    <head>
-                        <title>Recordatorio de cumpleaños para Agosto</title>
-                    </head>
-                    <body>
-                        <p>Hola! En la siguiente liga podrás cambiar tu contraseña</p>
-                        <p>https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser . "</p>
-                        <p>Recuerda esta liga es instransferible. No la compartas.</p>
-                    </body>
-                    </html>
-                    ";
+            $cuerpo = getCuerpo($token, $kaanbalUser);
+
             // Para enviar un correo HTML, debe establecerse la cabecera Content-type
             $headers  = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
@@ -159,6 +143,65 @@ if ($id_usuario === 0) {
 
         $conn = null;
     }
+}
+
+
+function getCuerpo($token, $kaanbalUser)
+{
+    $cuerpo = "
+            <html>
+              <body>
+                <h3>¡Bienvenida(o) a Kaanbal!</h3>
+                <h4>
+                  Has hecho una excelente decisión al adquirir la licencia semestral de la
+                  <strong>Plataforma educativa Kaanbal</strong>
+                </h4>
+                <p>
+                  Ahora podrás practicar, reforzar y consolidar los conceptos vistos en
+                  clase de forma interactiva y lúdica
+                </p>
+                <p>Tu <strong>usuario</strong> es el mismo que has utlizado hasta ahora:</p>
+                <p>" . $kaanbalUser . "</p>
+                <p>
+                  En la siguiente URL podrás cambiar tu <strong>contraseña</strong> a la que
+                  tu desees
+                </p>
+                <p>https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser . "</p>
+                <p>Recuerda esta liga es instransferible. No la compartas.</p>
+                <p>
+                  Algunos consejos que te pueden ayudar a sacar mejor provecho de la
+                  Plataforma Educativa Kaanbal, conoce las secciones de la plaforma y su
+                  objetivo:
+                </p>
+                <p>
+                   > Revisar la teoría te ayudará a reforzar tus conocimientos y tener mejores
+                  resultados.
+                </p>
+                <p>
+                   > Para reunir el mayor número de diamantes lo ideal es que utilices la menor
+                  cantidad de tiempo en responder.
+                </p>
+                <p>
+                   > Si requieres estudiar para un examen, esta sección te permitirá revisar
+                  los temas y subtemas de la lección.
+                </p>
+                <p>
+                  En caso de cualquier duda o comentario por favor envía un correo a la
+                  dirección: <strong>kaanbal@veks.mx</strong> en donde un miembro del equipo
+                  te estará apoyando con lo que requieras. Ponemos también a tu disposición
+                  las siguientes opciones de contacto, donde con gusto los atenderemos vía
+                  Whatsapp bussines: <strong>55 7923 5241</strong>.
+                </p>
+            
+                <p>Agradecemos tu confianza,</p>
+                <p>
+                  <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
+                  VEKS Solutions México S.A. de C.V.
+                </p>
+              </body>
+            </html>
+            ";
+    return $cuerpo;
 }
 
 ////////////////    
