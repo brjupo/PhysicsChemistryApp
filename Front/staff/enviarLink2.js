@@ -6,8 +6,6 @@ window.onload = function () {
   var number = document.getElementById("number");
   var length = document.getElementById("length");
   var symbol = document.getElementById("symbol");
-
-  
 };
 
 document.addEventListener("click", function (evt) {
@@ -54,13 +52,20 @@ function sentInfoToService() {
       type: "POST",
       url: "../../Servicios/passLink.php",
       dataType: "json",
-      data: { usuario: correo_e, color: contrasenia, kaanbalUser: contrasenia2, emailCliente: emailCliente },
+      data: {
+        usuario: correo_e,
+        color: contrasenia,
+        kaanbalUser: contrasenia2,
+        emailCliente: emailCliente,
+      },
       success: function (data) {
         if (data.response != "true") {
           //alert("Contraseña registrada");
           //window.location.href = "https://kaanbal.net";
           console.log(data.response);
           document.getElementById("respuesta").innerHTML = JSON.parse(data);
+          document.getElementById("psw2").value = "";
+          document.getElementById("correoAlumno").value = "";
         } else {
           alert("Algo fallo :/ ");
           console.log("Registro no exitoso");
@@ -68,6 +73,4 @@ function sentInfoToService() {
       },
     });
   }
-
-   
 }
