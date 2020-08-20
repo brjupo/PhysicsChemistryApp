@@ -65,7 +65,7 @@
     <div class="row">
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-          <input type="text" id="respuesta" style = "height:50px">
+          <input type="text" id="respuesta" style = "height:50px; overflow:scroll">
         </form>
       </div>
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
