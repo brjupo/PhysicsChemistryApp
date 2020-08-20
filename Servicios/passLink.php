@@ -151,7 +151,7 @@ function getCuerpo($token, $kaanbalUser)
     $cuerpo = "
             <html>
               <body>
-                <h1 style='background-color:rgb(35, 85, 145); color:rgb(35, 85, 145);'>.</h1>
+                <h4 style='background-color:rgb(35, 85, 145); color:rgb(35, 85, 145);'>.</h4>
                 <h3>¡Bienvenida(o) a Kaanbal!</h3>
                 <h4>
                   Has hecho una excelente decisión al adquirir la licencia semestral de la
@@ -171,6 +171,7 @@ function getCuerpo($token, $kaanbalUser)
                     <p>https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser . "</p>
                 </a>
                 <p>Recuerda esta liga es instransferible. No la compartas.</p>
+                <p style='color:white;'>.</p>
                 <p>
                   Algunos consejos que te pueden ayudar a sacar mejor provecho de la
                   Plataforma Educativa Kaanbal, conoce las secciones de la plaforma y su
@@ -188,6 +189,7 @@ function getCuerpo($token, $kaanbalUser)
                    > Si requieres estudiar para un examen, esta sección te permitirá revisar
                   los temas y subtemas de la lección.
                 </p>
+                <p style='color:white;'>.</p>
                 <p>
                   En caso de cualquier duda o comentario por favor envía un correo a la
                   dirección: <strong>kaanbal@veks.mx</strong> en donde un miembro del equipo
@@ -195,7 +197,7 @@ function getCuerpo($token, $kaanbalUser)
                   las siguientes opciones de contacto, donde con gusto los atenderemos vía
                   Whatsapp bussines: <strong>55 7923 5241</strong>.
                 </p>
-            
+                <p style='color:white;'>.</p>
                 <p>Agradecemos tu confianza,</p>
                 <p>
                   <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
