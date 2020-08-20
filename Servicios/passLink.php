@@ -166,7 +166,9 @@ function getCuerpo($token, $kaanbalUser)
                   En la siguiente URL podrás cambiar tu <strong>contraseña</strong> a la que
                   tu desees
                 </p>
-                <p>https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser . "</p>
+                <a href='https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser . "'>
+                    <p>https://kaanbal.net/PROD/Front/errorInfoPages/password.php?token=" . $token . "&correo=" . $kaanbalUser . "</p>
+                </a>
                 <p>Recuerda esta liga es instransferible. No la compartas.</p>
                 <p>
                   Algunos consejos que te pueden ayudar a sacar mejor provecho de la
