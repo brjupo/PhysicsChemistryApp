@@ -203,7 +203,7 @@ function getCuerpo($token, $kaanbalUser)
                   <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
                   VEKS Solutions México S.A. de C.V.
                 </p>
-                <h1 style='background-color:rgb(35, 85, 145); color:rgb(35, 85, 145);'>.</h1>
+                <h4 style='background-color:rgb(35, 85, 145); color:rgb(35, 85, 145);'>.</h4>
               </body>
             </html>
             ";
