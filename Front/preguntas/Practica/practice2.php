@@ -113,7 +113,7 @@
         $idAsignatura = $asignatura[0]["id_asignatura"];
 
          echo'<script type="text/javascript">
-          alert("$_SESSION["idAsignaturaValidar"] __ $idAsignatura");
+          alert("$_SESSION["idAsignaturaValidar"]__ $idAsignatura");
           </script>';
 
         if($_SESSION["idAsignaturaValidar"] != $idAsignatura )
