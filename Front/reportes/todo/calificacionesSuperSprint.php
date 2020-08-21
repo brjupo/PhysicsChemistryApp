@@ -257,8 +257,9 @@ if (!isset($_POST["grupo"])) {
             $stringQuery = "SELECT COUNT(id_leccion) FROM pregunta WHERE id_leccion = " . $lecciones["id"][$k];
             $stmt = $conn->query($stringQuery);
             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                $posicion = $lecciones["subtema"][$k];
-                $subtemas["totalPreguntas"][$posicion] = $subtemas["totalPreguntas"][$posicion] + intval($row[0]);
+                //$posicion = $lecciones["subtema"][$k];
+                //$subtemas["totalPreguntas"][$posicion] = $subtemas["totalPreguntas"][$posicion] + intval($row[0]);
+                $subtemas["totalPreguntas"][$k] = $subtemas["totalPreguntas"][$k] + intval($row[0]);
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
