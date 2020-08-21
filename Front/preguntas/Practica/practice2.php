@@ -92,9 +92,36 @@
         $query = "SELECT id_subtema FROM leccion WHERE id_leccion = $idL";
         $result = mysqli_query($con, $query);
         while ($row = mysqli_fetch_assoc($result)) {
-            $mailArray[] = $row;
+            $subtema[] = $row;
         }
-        $mail = $mailArray[0]["id_subtema"]; 
+        $idSubtema = $subtema[0]["id_subtema"]; 
+
+        /////////id_subtema trae id_tema
+        $query = "SELECT id_tema FROM subtema WHERE id_subtema = $idSubtema";
+        $result = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $tema[] = $row;
+        }
+        $idTema = $tema[0]["id_tema"]; 
+
+        /////////id_tema tra id_asignatura
+        $query = "SELECT id_asignatura FROM tema WHERE id_tema = $idTema";
+        $result = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $asignatura[] = $row;
+        }
+        $idAsignatura = $asignatura[0]["id_asignatura"];
+
+         echo'<script type="text/javascript">
+          alert("$_SESSION["idAsignaturaValidar"]__ $idAsignatura");
+          </script>';
+
+        if($_SESSION["idAsignaturaValidar"] != $idAsignatura )
+            {
+            echo '<script type="text/javascript">
+            alert("Trampas");
+            </script>';
+            } 
 
         //////////////////////
         //Traer todas las preguntas
