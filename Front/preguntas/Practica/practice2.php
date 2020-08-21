@@ -141,9 +141,10 @@
         //}
 
         if($flag == 0){
-            echo'<script type="text/javascript">
-                alert("Sin licencia");
-                </script>';
+            echo '<script type="text/javascript">
+            alert("No cuenta con licencia para acceder a esta página");
+            window.location.href="https://kaanbal.net";
+            </script>';
         }
          
 
