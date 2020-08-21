@@ -1,3 +1,6 @@
+<?php
+require "../../../Servicios/validarLicencia.php";
+?>
 <!DOCTYPE html>
 <html>
 
@@ -98,6 +101,16 @@
         $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
         */
         $idL = $leccion;
+        //Validacion de licencia
+        $flag = validarLicencia($idL);
+
+        if($flag == 0){
+            echo '<script type="text/javascript">
+            alert("No cuenta con licencia para acceder a esta página");
+            window.location.href="https://kaanbal.net";
+            </script>';
+        }
+        //////////////////////
         //Traer todas las preguntas
         $query = "SELECT * FROM pregunta WHERE id_leccion = $idL ORDER BY RAND()"; //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
         $result = mysqli_query($con, $query);

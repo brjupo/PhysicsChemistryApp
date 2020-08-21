@@ -79,9 +79,8 @@ require "../../../Servicios/validarLicencia.php";
         
         $idL = $leccion;
         
-
+        //Validacion de licencia
         $flag = validarLicencia($idL);
-
 
         if($flag == 0){
             echo '<script type="text/javascript">
@@ -89,9 +88,6 @@ require "../../../Servicios/validarLicencia.php";
             window.location.href="https://kaanbal.net";
             </script>';
         }
-         
-
-        
         //////////////////////
         //Traer todas las preguntas
         $query = "SELECT * FROM pregunta WHERE id_leccion = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
