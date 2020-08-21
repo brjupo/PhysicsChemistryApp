@@ -1,3 +1,6 @@
+<?php
+require "../../../Servicios/validarLicencia.php";
+?>
 <!DOCTYPE html>
 <html>
 
@@ -73,29 +76,22 @@
 
         $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
         /*----Paso 1 Obtener el ID del subtema----*/
-        /*
-        $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
-        mysqli_stmt_bind_param($statement, "s", $leccion);
-        mysqli_stmt_execute($statement);
-        mysqli_stmt_store_result($statement);
-        mysqli_stmt_bind_result($statement, $id_leccion);
-
-        $arregloIdleccion = array();
-        //Leemos datos ID de leccion
-        while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-        $arregloIdleccion["id_leccion"] = $id_leccion;
-        }
-        $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
-        */
+        
         $idL = $leccion;
-        /////////id_lecciones traer id subtema
-        $query = "SELECT id_subtema FROM leccion WHERE id_leccion = $idL";
-        $result = mysqli_query($con, $query);
-        while ($row = mysqli_fetch_assoc($result)) {
-            $mailArray[] = $row;
-        }
-        $mail = $mailArray[0]["id_subtema"]; 
+        
 
+        $flag = validarLicencia($idL);
+
+
+        if($flag == 0){
+            echo '<script type="text/javascript">
+            alert("No cuenta con licencia para acceder a esta página");
+            window.location.href="https://kaanbal.net";
+            </script>';
+        }
+         
+
+        
         //////////////////////
         //Traer todas las preguntas
         $query = "SELECT * FROM pregunta WHERE id_leccion = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
