@@ -120,7 +120,6 @@
             {
             echo '<script type="text/javascript">
             alert("Trampas");
-            window.location.href="https://kaanbal.net";
             </script>';
             } 
 
