@@ -1,3 +1,11 @@
+<?php
+require "../../../Servicios/ownsLicense.php";
+$license = ownsLicense();
+if (!in_array($_SESSION("idAsignatura"), $license)) {
+  header('Location: https://kaanbal.net/');
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +16,7 @@
     <title>Pregunta</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
-    <script src="scriptSprint5.js"></script>
+    <script src="scriptSuperSprint4.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -16,7 +24,7 @@
 
 
 <body>
-    <script>
+    <!--script>
         document.addEventListener("contextmenu", (event) => event.preventDefault());
         $(document).keydown(function(event) {
             if (event.keyCode == 123) {
@@ -33,7 +41,7 @@
                 return false;
             }
         });
-    </script>
+    </script-->
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
@@ -65,9 +73,9 @@
         //Si existe un token de sesion activo se mostraran las preguntas 
 
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-        $leccion = $_GET['leccion'];
+        $subtema = $_GET['subtema'];
         /*echo '<script type="text/javascript">
-                alert("'.$leccion.'");
+                alert("'.$subtema.'");
                 </script>';
         */
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -75,26 +83,28 @@
         $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
         /*----Paso 1 Obtener el ID del subtema----*/
         /*
-        $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
-        mysqli_stmt_bind_param($statement, "s", $leccion);
+        $statement = mysqli_prepare($con, "SELECT id_subtema FROM leccion WHERE nombre = ?");
+        mysqli_stmt_bind_param($statement, "s", $subtema);
         mysqli_stmt_execute($statement);
         mysqli_stmt_store_result($statement);
-        mysqli_stmt_bind_result($statement, $id_leccion);
+        mysqli_stmt_bind_result($statement, $id_subtema);
 
         $arregloIdleccion = array();
         //Leemos datos ID de leccion
         while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-        $arregloIdleccion["id_leccion"] = $id_leccion;
+        $arregloIdleccion["id_subtema"] = $id_subtema;
         }
 
-        $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
+        $idSubtema = $arregloIdleccion["id_subtema"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
         */
-        $idL = $leccion;
+        $idSubtema = $subtema;
         //Traer todas las preguntas
-        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL ORDER BY RAND()"; //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
+        $query = "SELECT * FROM pregunta WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema = $idSubtema) ORDER BY RAND();";
+        //$query = "SELECT * FROM pregunta WHERE id_subtema = $idSubtema ORDER BY RAND()"; //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
         $result = mysqli_query($con, $query);
         //contar Numero de elementos
-        $query2 = "SELECT count(*) FROM pregunta WHERE id_leccion = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
+        
+        $query2 = "SELECT count(*) FROM pregunta WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema = $idSubtema); "; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
         $result2 = mysqli_query($con, $query2);
         $total = mysqli_fetch_row($result2);
         //$total = 10;
@@ -103,6 +113,7 @@
             $array[] = $row;
             $arrayr[] = $row;
         }
+
         ///VALIDAMOS EL IDIOMA PARA HACER CAMBIO EN EL NOMBRE DE LOS CAMPOS Y MOSTRAR LAS PREGUNTAS EN INGLES
         if($_SESSION["idioma"] == 'i'){
             for ($j = 0; $j < $total[0]; $j++) {
@@ -119,6 +130,7 @@
             $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
             }
         }
+
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
         ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
         for ($j = 0; $j < $total[0]; $j++) {
@@ -170,13 +182,13 @@
     }
 
 
-    imprimirPreguntas($arrayr, $array, $total, $idL);
+    imprimirPreguntas($arrayr, $array, $total, $idSubtema);
     ?>
 
     <?php
-    function imprimirPreguntas($arrayr, $array, $total, $idL)
+    function imprimirPreguntas($arrayr, $array, $total, $idSubtema)
     {
-        imprimirBarraProgresoCruz($total[0], $idL);
+        imprimirBarraProgresoCruz($total[0], $idSubtema);
         imprimirContador($total[0]);
         imprimirPreguntasRespuestas($arrayr, $array, $total);
         imprimirFooter();
@@ -242,9 +254,9 @@
 
     <?php
 
-    function imprimirBarraProgresoCruz($totalPreguntas, $idL)
+    function imprimirBarraProgresoCruz($totalPreguntas, $idSubtema)
     {
-        $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
+        $temaNavegacion = $_SESSION["temaNavegacion"];
         echo '
             <div class="container">
                 <div class="row topMargin">
@@ -253,10 +265,10 @@
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                     <p id="idioma" style="display:none"/>'.$_SESSION["idioma"].'</p>
-                    <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
+                    <p id="temaPrevio" style="display:none">' . $temaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
-                    <p id="leccionID" style="display:none">' . $idL . '</p>
+                    <p id="subtemaID" style="display:none">' . $idSubtema . '</p>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
                             class="progress-bar progress-bar-striped" 
