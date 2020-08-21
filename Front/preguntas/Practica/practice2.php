@@ -89,6 +89,27 @@
         */
         $idL = $leccion;
         /////////id_lecciones traer id subtema
+        $statement = mysqli_prepare($con, "SELECT id_asignatura FROM licencia WHERE id_usuario = ?");
+        mysqli_stmt_bind_param($statement, "s", $_SESSION["id_usuario"]);
+        mysqli_stmt_execute($statement);
+        mysqli_stmt_store_result($statement);
+        mysqli_stmt_bind_result($statement, $id_asignatura);
+
+        $arregloAsignaturas = array();
+
+        $i = 0;
+        while (mysqli_stmt_fetch($statement)) {
+        $arregloAsignaturas[$i]["id_asignatura"] = $id_asignatura;
+        $i = $i + 1;
+        }
+
+        $tamanhoArray = count($arregloAsignaturas);
+
+         echo'<script type="text/javascript">
+        alert("'.$tamanhoArray.'");
+        </script>'; 
+
+    /////////////////
         $query = "SELECT id_subtema FROM leccion WHERE id_leccion = $idL";
         $result = mysqli_query($con, $query);
         while ($row = mysqli_fetch_assoc($result)) {
