@@ -117,13 +117,13 @@ require "../../Servicios/DDBBVariables.php";
     }
     //id de asignatura usado en top.php
     $_SESSION["idAsignatura"] = $arregloIdasignatura["id_asignatura"];
-    if($_SESSION["idAsignaturaValidar"] != $_SESSION["idAsignatura"] )
+    /* if($_SESSION["idAsignaturaValidar"] != $_SESSION["idAsignatura"] )
     {
       echo '<script type="text/javascript">
-      alert("Trampass");
+      alert("Trampas");
       window.location.href="https://kaanbal.net";
       </script>';
-    }
+    } */
 
     /*----Paso 2 Llamar a los temas de la asignatura-------*/
     //Verificamos el idioma//
