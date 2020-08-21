@@ -1,3 +1,7 @@
+<?php
+require "../../../Servicios/validarLicencia.php";
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -88,7 +92,7 @@
         $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
         */
         $idL = $leccion;
-        /////////id_lecciones traer id subtema
+        /////////id_lecciones traer id asignaturas licencias
         $statement = mysqli_prepare($con, "SELECT id_asignatura FROM licencia WHERE id_usuario = ?");
         mysqli_stmt_bind_param($statement, "s", $_SESSION["id_usuario"]);
         mysqli_stmt_execute($statement);
@@ -133,11 +137,11 @@
         }
         $idAsignatura = $asignatura[0]["id_asignatura"];
 
-        $flag = 0;
+        $flag = validarLicencia($idL);
 
         //for ($j = 0; $j < $tamanhoArray; $j++){ 
-            if(in_array($idAsignatura,array_column($arregloAsignaturas, 'id_asignatura')))
-            {$flag = 1;} 
+            //if(in_array($idAsignatura,array_column($arregloAsignaturas, 'id_asignatura')))
+            //{$flag = 1;} 
         //}
 
         if($flag == 0){
