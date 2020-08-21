@@ -112,14 +112,15 @@
         }
         $idAsignatura = $asignatura[0]["id_asignatura"];
 
-        echo'<script type="text/javascript">
+        /* echo'<script type="text/javascript">
         alert("'.$_SESSION["idAsignaturaValidar"]."____".$idAsignatura.'");
-        </script>';
+        </script>'; */
 
         if($_SESSION["idAsignaturaValidar"] != $idAsignatura )
             {
             echo '<script type="text/javascript">
             alert("Trampas");
+            window.location.href="https://kaanbal.net";
             </script>';
             } 
 
