@@ -257,7 +257,7 @@ if (!isset($_POST["grupo"])) {
             $stringQuery = "SELECT COUNT(id_leccion) FROM pregunta WHERE id_leccion = " . $lecciones["id"][$k];
             $stmt = $conn->query($stringQuery);
             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                $subtemas["totalPreguntas"][$lecciones["subtema"][$k]]+= $row[0];
+                $subtemas["totalPreguntas"][$lecciones["subtema"][$k]] += $row[0];
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
@@ -348,8 +348,12 @@ if (!isset($_POST["grupo"])) {
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
-                                    $calificacion = intval(100 * $row[0] / $subtemas["totalPreguntas"][$l]);
-                                    echo '<td>' . $calificacion/3 . '</td>';
+                                    $preguntasLeccion = intval($subtemas["totalPreguntas"][$l]);
+                                    $puntuacion = intval($row[0]);
+                                    $calificacion = $puntuacion * 100;
+                                    $calificacion = $calificacion / $preguntasLeccion;
+                                    $calificacion = $calificacion / 3;
+                                    echo '<td>' . $calificacion . '</td>';
                                 }
                                 if ($entre == 0) {
                                     echo '<td style="color:red;">NP</td>';
