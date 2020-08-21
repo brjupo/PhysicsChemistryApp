@@ -1,8 +1,7 @@
 <?php
 require "../../../Servicios/ownsLicense.php";
 $license = ownsLicense();
-$idAsignatura = $_SESSION["idAsignatura"];
-if (!in_array($idAsignatura, $license)) {
+if (!in_array($_SESSION["idAsignatura"], $license)) {
   header('Location: https://kaanbal.net/');
   exit;
 }
