@@ -92,9 +92,13 @@
         $query = "SELECT id_subtema FROM leccion WHERE id_leccion = $idL";
         $result = mysqli_query($con, $query);
         while ($row = mysqli_fetch_assoc($result)) {
-            $mailArray[] = $row;
+            $subtema[] = $row;
         }
-        $mail = $mailArray[0]["id_subtema"]; 
+        $idSubtema = $subtema[0]["id_subtema"]; 
+
+         echo '<script type="text/javascript">
+                      alert("'.$idSubtema.'");
+                      </script>';  
 
         //////////////////////
         //Traer todas las preguntas
