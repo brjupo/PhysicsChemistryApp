@@ -356,7 +356,7 @@ if (!isset($_POST["grupo"])) {
                                     $calificacion = $puntuacion * 100;
                                     //$calificacion = $calificacion / $preguntasLeccion;
                                     //$calificacion = $calificacion / 3;
-                                    echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$l] . ' </td>';
+                                    echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$subtemas["nombre"][$l]] . ' </td>';
                                 }
                                 if ($entre == 0) {
                                     echo '<td style="color:red;">NP</td>';
