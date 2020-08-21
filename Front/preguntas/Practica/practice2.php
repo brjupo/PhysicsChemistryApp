@@ -136,13 +136,14 @@
         $flag = 0;
 
         for ($j = 0; $j < $tamanhoArray; $j++){ 
-            if($arregloAsignaturas[$j]["id_asignatura"] != $idAsignatura )
-            {$flag = 1;} 
+            if(inArray($arregloAsignaturas[$j]["id_asignatura"]), $idAsignatura )
+            {$flag = 1;
+                echo'<script type="text/javascript">
+                alert("Tiene licencia");
+                </script>';} 
         }
 
-         echo'<script type="text/javascript">
-        alert("'.$flag.'");
-        </script>';
+         
 
         
 
