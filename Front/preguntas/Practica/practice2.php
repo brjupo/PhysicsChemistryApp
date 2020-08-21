@@ -105,9 +105,9 @@
 
         $tamanhoArray = count($arregloAsignaturas);
 
-         echo'<script type="text/javascript">
+         /* echo'<script type="text/javascript">
         alert("'.$tamanhoArray.'");
-        </script>'; 
+        </script>';  */
 
     /////////////////
         $query = "SELECT id_subtema FROM leccion WHERE id_leccion = $idL";
@@ -133,17 +133,18 @@
         }
         $idAsignatura = $asignatura[0]["id_asignatura"];
 
-        /* echo'<script type="text/javascript">
-        alert("'.$_SESSION["idAsignaturaValidar"]."____".$idAsignatura.'");
-        </script>'; */
+        $flag = 0;
 
-        if($_SESSION["idAsignaturaValidar"] != $idAsignatura )
-            {
-            echo '<script type="text/javascript">
-            alert("Trampas");
-            window.location.href="https://kaanbal.net";
-            </script>';
-            } 
+        for ($j = 0; $j < $tamanhoArray; $j++){ 
+            if($arregloAsignaturas[$j]["id_asignatura"] != $idAsignatura )
+            {$flag = 1;} 
+        }
+
+         echo'<script type="text/javascript">
+        alert("'.$flag.'");
+        </script>';
+
+        
 
         //////////////////////
         //Traer todas las preguntas
