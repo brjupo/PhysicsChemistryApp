@@ -348,11 +348,11 @@ if (!isset($_POST["grupo"])) {
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
-                                    $preguntasLeccion = intval($subtemas["totalPreguntas"][$l]);
+                                    //$preguntasLeccion = intval($subtemas["totalPreguntas"][$l]);
                                     $puntuacion = intval($row[0]);
                                     $calificacion = $puntuacion * 100;
-                                    $calificacion = $calificacion / $preguntasLeccion;
-                                    $calificacion = $calificacion / 3;
+                                    //$calificacion = $calificacion / $preguntasLeccion;
+                                    //$calificacion = $calificacion / 3;
                                     echo '<td>' . $calificacion . '</td>';
                                 }
                                 if ($entre == 0) {
