@@ -96,9 +96,30 @@
         }
         $idSubtema = $subtema[0]["id_subtema"]; 
 
-         echo '<script type="text/javascript">
-                      alert("'.$idSubtema.'");
-                      </script>';  
+        /////////id_subtema trae id_tema
+        $query = "SELECT id_tema FROM subtema WHERE id_subtema = $idSubtema";
+        $result = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $tema[] = $row;
+        }
+        $idTema = $tema[0]["id_tema"]; 
+
+        /////////id_tema tra id_asignatura
+        $query = "SELECT id_asignatura FROM tema WHERE id_tema = $idTema";
+        $result = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $asignatura[] = $row;
+        }
+        $idAsignatura = $asignatura[0]["id_asignatura"];
+
+
+        if($_SESSION["idAsignaturaValidar"] != $idAsignatura )
+            {
+            echo '<script type="text/javascript">
+            alert("Trampas");
+            window.location.href="https://kaanbal.net";
+            </script>';
+            } 
 
         //////////////////////
         //Traer todas las preguntas
