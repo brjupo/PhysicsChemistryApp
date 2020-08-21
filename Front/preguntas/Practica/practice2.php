@@ -135,10 +135,10 @@
 
         $flag = 0;
 
-        for ($j = 0; $j < $tamanhoArray; $j++){ 
-            if(in_array($arregloAsignaturas[$j]["id_asignatura"], $idAsignatura))
+        //for ($j = 0; $j < $tamanhoArray; $j++){ 
+            if(in_array($idAsignatura,$arregloAsignaturas))
             {$flag = 1;} 
-        }
+        //}
 
         if($flag == 0){
             echo'<script type="text/javascript">
