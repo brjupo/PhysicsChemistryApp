@@ -1,6 +1,6 @@
 <?php
 require "../../../Servicios/validarLicencia.php";
-}
+
 ?>
 <!DOCTYPE html>
 <html>
