@@ -1,6 +1,5 @@
 <?php
 require "../../../Servicios/validarLicencia.php";
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,7 +91,8 @@ require "../../../Servicios/validarLicencia.php";
         $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
         */
         $idL = $leccion;
-        /////////id_lecciones traer id asignaturas licencias
+        /*
+         /////////id_lecciones traer id asignaturas licencias
         $statement = mysqli_prepare($con, "SELECT id_asignatura FROM licencia WHERE id_usuario = ?");
         mysqli_stmt_bind_param($statement, "s", $_SESSION["id_usuario"]);
         mysqli_stmt_execute($statement);
@@ -111,7 +111,7 @@ require "../../../Servicios/validarLicencia.php";
 
          /* echo'<script type="text/javascript">
         alert("'.$tamanhoArray.'");
-        </script>';  */
+        </script>';  
 
     /////////////////
         $query = "SELECT id_subtema FROM leccion WHERE id_leccion = $idL";
@@ -135,7 +135,7 @@ require "../../../Servicios/validarLicencia.php";
         while ($row = mysqli_fetch_assoc($result)) {
             $asignatura[] = $row;
         }
-        $idAsignatura = $asignatura[0]["id_asignatura"];
+        $idAsignatura = $asignatura[0]["id_asignatura"]; */
 
         $flag = validarLicencia($idL);
 
