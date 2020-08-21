@@ -136,7 +136,7 @@
         $flag = 0;
 
         for ($j = 0; $j < $tamanhoArray; $j++){ 
-            if(inArray($arregloAsignaturas[$j]["id_asignatura"]), $idAsignatura )
+            if(in_array($arregloAsignaturas[$j]["id_asignatura"]), $idAsignatura )
             {$flag = 1;} 
         }
 
