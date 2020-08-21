@@ -225,7 +225,6 @@ require "../../Servicios/isStaff.php";
           $materia = $arregloAsignaturastodas[$idMateria];
           $_SESSION["asignaturaNavegacion"] = $materia;
           $_SESSION["idAsignatura"] = $idMateria;
-          $_SESSION["idAsignaturaValidar"] = $idMateria;
           echo '<script type="text/javascript">
                           window.location.href="temas.php?asignatura=' . $materia . '";
                           </script>';
