@@ -367,7 +367,8 @@ if (!isset($_POST["grupo"])) {
                                         $entre = 1;
                                         $calificacion = intval(100 * $row[0] / $lecciones["totalPreguntas"][$l]);
                                         if ($tipo == "SP" || $tipo == "SG") {
-                                            $calificacion = $calificacion / 3;
+                                            //$calificacion = $calificacion / 3;
+                                            $calificacion = intval(100 * $row[0] / ($lecciones["totalPreguntas"][$l]*3));
                                         }
                                         echo '<td>' . $calificacion . '</td>';
                                     }
