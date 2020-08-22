@@ -365,10 +365,10 @@ if (!isset($_POST["grupo"])) {
                                     $stmt = $conn->query($stringQuery);
                                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                         $entre = 1;
-                                        $calificacion = intval(100 * $row[0] / $lecciones["totalPreguntas"][$l]);
+                                        $calificacion = intval(100 * $row[0][0] / $lecciones["totalPreguntas"][$l]);
                                         if ($tipo == "SP" || $tipo == "SG") {
                                             ///$calificacion = $calificacion / 3;
-                                            $calificacion = intval(100 * $row[0] / ($lecciones["totalPreguntas"][$l]*3));
+                                            $calificacion = intval(100 * $row[0][0]  / ($lecciones["totalPreguntas"][$l]*3));
                                         }
                                         echo '<td>' . $calificacion . '</td>';
                                     }
