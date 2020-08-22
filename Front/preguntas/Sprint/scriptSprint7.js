@@ -421,19 +421,18 @@ function nextQuestion(lastQuestion) {
     document.getElementById("totalPreguntas").innerHTML.trim()
   );
   if (lastQuestion == totalPreguntas && firstTimeToSaveGrade == 0) {
-    //enviarCalificacion();
+    enviarCalificacionRedirigir();
     firstTimeToSaveGrade = 1;
   }
   if (questionNumberArray.length == 0) {
-    enviarCalificacion();
-    var stringLiga =
+    /* var stringLiga =
       "sprintFinalizado.php?subtema=" +
       document.getElementById("subtemaPrevio").innerHTML.trim() +
       "&puntos=" +
       puntos +
       "&totalPreguntas=" +
       document.getElementById("totalPreguntas").innerHTML.trim();
-    window.location.replace(stringLiga);
+    window.location.replace(stringLiga); */
   } else {
     loadNewQuestion(questionNumberArray[0]);
   }
