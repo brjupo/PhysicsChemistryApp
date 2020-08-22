@@ -421,10 +421,11 @@ function nextQuestion(lastQuestion) {
     document.getElementById("totalPreguntas").innerHTML.trim()
   );
   if (lastQuestion == totalPreguntas && firstTimeToSaveGrade == 0) {
-    enviarCalificacion();
+    //enviarCalificacion();
     firstTimeToSaveGrade = 1;
   }
   if (questionNumberArray.length == 0) {
+    enviarCalificacion();
     var stringLiga =
       "sprintFinalizado.php?subtema=" +
       document.getElementById("subtemaPrevio").innerHTML.trim() +
