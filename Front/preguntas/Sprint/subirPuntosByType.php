@@ -10,6 +10,19 @@ $leccion = $_POST["leccion"];
 $puntosNuevos = $_POST["puntos"];
 $flagTipo = $_POST["flagTipo"];
 
+$tiempo = getDatetimeNow();
+
+/////Establecer uso horario para el envio de fecha y hora
+function getDatetimeNow() {
+  $tz_object = new DateTimeZone('America/Mexico_City');
+
+  $datetime = new DateTime();
+  $datetime->setTimezone($tz_object);
+  return $datetime->format('Y\-m\-d\ H:i:s');
+}
+//////////////////////
+
+
 //Lanzar consulta para saber si existe calificacion y la trae
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -33,7 +46,7 @@ if (is_null($puntosActuales)) {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo) VALUES ($id_usuario, $leccion, $puntosNuevos,'$flagTipo')";
+    $sql = "INSERT INTO puntuacion(id_usuario, id_leccion, puntuacion, tipo, tiempo) VALUES ($id_usuario, $leccion, $puntosNuevos,'$flagTipo', '$tiempo')";
     // use exec() because no results are returned
     $conn->exec($sql);
     $response["response"] = 'exito';
@@ -49,7 +62,7 @@ if (is_null($puntosActuales)) {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos WHERE id_leccion = $leccion AND id_usuario = $id_usuario AND tipo = '$flagTipo'";
+    $sql = "UPDATE puntuacion SET puntuacion = $puntosNuevos , tiempo = '$tiempo' WHERE id_leccion = $leccion AND id_usuario = $id_usuario AND tipo = '$flagTipo'";
     // use exec() because no results are returned
     $conn->exec($sql);
     $response["response"] = 'exito';
