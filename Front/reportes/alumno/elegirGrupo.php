@@ -89,7 +89,7 @@ if ($teacherID == "null") {
             </div>
 
             <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <form action="reporteAlumno1.php" id="groupForm" method="POST">
+                <form action="reporteAlumno.php" id="groupForm" method="POST">
                     <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte"><br>
                 </form>
             </div>
