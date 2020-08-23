@@ -267,15 +267,15 @@ if (!isset($_POST["grupo"])) {
                         ?>
                     </tr>
                     <tr>
-                        <td style="font-weight:600">Matrícula</td>
-                        <td style="font-weight:600">Diamantes</td>
-                        <td style="font-weight:600">Modalidad</td>
+                        <th style="font-weight:600">Matrícula</th>
+                        <th style="font-weight:600">Diamantes</th>
+                        <th style="font-weight:600">Modalidad</th>
                         <?php
                         //Este for lo aprovecharemos para obtener el total de preguntas de cada leccion
                         //Ademas de imprimir las lecciones en la tabla
                         $size4 = count($lecciones["id"]);
                         for ($k = 0; $k < $size4; ++$k) {
-                            echo '<td>' . $lecciones["nombre"][$k] . '</td>';
+                            echo '<th>' . $lecciones["nombre"][$k] . '</th>';
                             //Crear la lectura en base de datos
                             try {
                                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
