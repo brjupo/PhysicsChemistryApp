@@ -267,9 +267,11 @@ if (!isset($_POST["grupo"])) {
                         ?>
                     </tr>
                     <tr>
+                    <thead>
                         <th style="font-weight:600">Matrícula</th>
                         <th style="font-weight:600">Diamantes</th>
                         <th style="font-weight:600">Modalidad</th>
+                        </thead>	
                         <?php
                         //Este for lo aprovecharemos para obtener el total de preguntas de cada leccion
                         //Ademas de imprimir las lecciones en la tabla
