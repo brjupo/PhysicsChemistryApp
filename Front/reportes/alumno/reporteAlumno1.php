@@ -240,7 +240,7 @@ if (!isset($_POST["grupo"])) {
     </div>
 
     <!--IMRPIMIR LA LISTA DE LECCIONES, SUBTEMA Y TEMAS-->
-    <div class="container">
+    <div class="containerr">
         <div class="row">
             <table class="table table-striped">
                 <tbody>
