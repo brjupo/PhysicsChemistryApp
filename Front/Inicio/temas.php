@@ -168,7 +168,6 @@ require "../../Servicios/DDBBVariables.php";
     imprimirTemas($arregloTemas);
     imprimirRelleno();
     imprimirFooter();
-    echo '<p> sesion='.$_SESSION["mail"].'</p>';
   }
 
   function imprimirTemas($arregloTemas)
