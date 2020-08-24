@@ -85,7 +85,7 @@ if (!isset($_POST["mail"])) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE '" . $mailAlumno . "' LIMIT 1";
+        $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $mailAlumno . "' ";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             array_push($alumnos["id"], $row[0]);
