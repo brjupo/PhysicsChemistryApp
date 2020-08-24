@@ -257,15 +257,16 @@ function verifyIfCorrectOption(targetID, questionNumber) {
     lastQuestion = questionNumber;
     questionNumberArray.shift();
     puntos = puntos + 1;
+    puntosaux = puntosaux + 1;
     buenas0_malas1_alHilo[0] += 1;
-    document.getElementById("puntosBuenos").innerHTML = puntos;
-    barWidth(puntos);
+    document.getElementById("puntosBuenos").innerHTML = puntosaux;
+    barWidth(puntosaux);
     CorrectAudio.play();
   } else {
     lastQuestion = questionNumber;
     questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
-    //puntos = puntos - 1;
+    puntosaux = puntosaux - 1;
     buenas0_malas1_alHilo[1] += 1;
     //document.getElementById("puntosBuenos").innerHTML = puntos;
     //barWidth(puntos);
@@ -324,15 +325,16 @@ function verifyIfTextIsCorrect(questionNumber) {
       .getElementById(10 * questionNumber - 5)
       .value.toLowerCase();
     puntos = puntos + 1;
-    document.getElementById("puntosBuenos").innerHTML = puntos;
-    barWidth(puntos);
+    puntosaux = puntosaux + 1;
+    document.getElementById("puntosBuenos").innerHTML = puntosaux;
+    barWidth(puntosaux);
     CorrectAudio.play();
   } else {
     lastQuestion = questionNumber;
     questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
     buenas0_malas1_alHilo[1] += 1;
-   //puntos = puntos - 1;
+    puntosaux = puntosaux - 1;
     //document.getElementById("puntosBuenos").innerHTML = puntos;
     //barWidth(puntos);
     document.getElementById(10 * questionNumber - 5).style.color = "red";
@@ -425,7 +427,7 @@ function nextQuestion(lastQuestion) {
           "nivelCompletado.php?subtema=" +
           document.getElementById("subtemaPrevio").innerHTML.trim() +
           "&puntos=" +
-          puntos +
+          puntosaux +
           "&totalPreguntas=" +
           document.getElementById("totalPreguntas").innerHTML.trim();
           window.location.replace(stringLiga);
