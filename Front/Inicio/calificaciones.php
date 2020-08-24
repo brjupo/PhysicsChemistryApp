@@ -7,16 +7,13 @@ if (!isset($_POST["mail"])) {
     exit;
 }
 
-echo'<script type="text/javascript">
-          alert("'.$_SESSION["mail"].'");
-          </script>';
-/*
+
 if ($_SESSION["mail"] != $_POST["mail"]) {
-    echo '<p> Sesion'.$_SESSION["mail"].'  mail ='.$_POST["mail"].'</p>';
-    //header('Location: perfil.php');
+    //echo '<p> Sesion'.$_SESSION["mail"].'  mail ='.$_POST["mail"].'</p>';
+    header('Location: perfil.php');
     exit;
 }
-*/
+
 //ESTO ESTÁ DLV, SOLO APLICA PARA ALUMNOS CON UNA SOLA LICENCIA
 //REPETIRLO SI LLEGA A APLICAR QUE SE TIENE MAS DE UNA LICENCIA
 
