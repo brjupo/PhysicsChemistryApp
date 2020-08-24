@@ -1,16 +1,19 @@
 <?php
+session_start();
+
 require "../../Servicios/DDBBVariables.php";
 if (!isset($_POST["mail"])) {
     header('Location: perfil.php');
     exit;
 }
-/*
+
+
 if ($_SESSION["mail"] != $_POST["mail"]) {
-    echo '<p> Sesion'.$_SESSION["mail"].'  mail ='.$_POST["mail"].'</p>';
-    //header('Location: perfil.php');
+    //echo '<p> Sesion'.$_SESSION["mail"].'  mail ='.$_POST["mail"].'</p>';
+    header('Location: perfil.php');
     exit;
 }
-*/
+
 //ESTO ESTÁ DLV, SOLO APLICA PARA ALUMNOS CON UNA SOLA LICENCIA
 //REPETIRLO SI LLEGA A APLICAR QUE SE TIENE MAS DE UNA LICENCIA
 
