@@ -1,5 +1,5 @@
 <?php
-require "../../../Servicios/DDBBVariables.php";
+require "../../Servicios/DDBBVariables.php";
 if (!isset($_POST["mail"])) {
     header('Location: perfil.php');
     exit;
