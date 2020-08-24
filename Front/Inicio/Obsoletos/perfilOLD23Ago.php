@@ -449,19 +449,6 @@ require "../../Servicios/DDBBVariables.php";
                 </div>
             </div>
           </div>';
-    //SUPER SPRINT
-    echo '<div class="container">
-            <div class="row">
-                <div class="icol-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <form action="calificacionesSS.php" id="groupSS" method="POST">
-                      <label for="mail" style="display:none;">Mail</label>
-                      <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
-
-                      <input type="submit" class="btn btn-primary btn-sm" value="Calificaciones [Super Sprint]" style="display:block; margin:0px auto;"><br>
-                    </form>
-                </div>
-            </div>
-          </div>';
   }
 
 
