@@ -4,6 +4,10 @@ if (!isset($_POST["mail"])) {
     header('Location: perfil.php');
     exit;
 }
+
+echo'<script type="text/javascript">
+          alert("'.$_SESSION["mail"].'");
+          </script>';
 /*
 if ($_SESSION["mail"] != $_POST["mail"]) {
     echo '<p> Sesion'.$_SESSION["mail"].'  mail ='.$_POST["mail"].'</p>';
