@@ -1,3 +1,6 @@
+<?php
+require "../../Servicios/DDBBVariables.php";
+?>
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +46,7 @@
   }
   $idMateria =  $arrayidMateria[0]["id_asignatura"]; //De aqui se obtendra el id de asignatura
 
-  if(is_null($idMateria)){
+  if (is_null($idMateria)) {
     $query = "SELECT id_asignatura FROM asignatura WHERE names = '$materia'";
     $result = mysqli_query($con, $query);
     while ($row = mysqli_fetch_assoc($result)) {
@@ -93,12 +96,12 @@
 */
 
   $porcentajeAvance = "";
-  echo "<!--".$iduser." y ".$idMateria."-->";
+  echo "<!--" . $iduser . " y " . $idMateria . "-->";
   //Total de lecciones de la asignatura = 100%
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ".$idMateria."))";
+    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = " . $idMateria . "))";
     $stmt = $conn->query($stringQuery);
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
       $totalLeccionesAsignatura = $row[0];
@@ -112,7 +115,7 @@
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_leccion IN (SELECT id_leccion FROM puntuacion WHERE tipo = 'PP' AND id_usuario = ".$iduser." AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ".$idMateria."))))";
+    $stringQuery = "SELECT COUNT(*) FROM leccion WHERE id_leccion IN (SELECT id_leccion FROM puntuacion WHERE tipo = 'PP' AND id_usuario = " . $iduser . " AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = " . $idMateria . "))))";
     $stmt = $conn->query($stringQuery);
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
       $totalLeccionesJugadas = $row[0];
@@ -125,7 +128,9 @@
   $porcentaje = (int)$totalLeccionesJugadas / (int)$totalLeccionesAsignatura;
   $porcentaje = 100 * (float)$porcentaje;
   $porcentaje = round($porcentaje);
-  if($porcentaje>100){$porcentaje = 100;}
+  if ($porcentaje > 100) {
+    $porcentaje = 100;
+  }
   $porcentajeAvance = strval($porcentaje) . "%";
 
   ////////////////////////////////////////////////////////////////////////////////////
@@ -164,6 +169,8 @@
     imprimirComboAvatars();
     imprimirRelleno();
     imprimirDiamantes($diamantes);
+    imprimirRelleno();
+    imprimirCalificacion($matricula);
     imprimirRelleno();
     imprimirCreditos();
     imprimirRelleno();
@@ -428,7 +435,25 @@
     ';
   }
 
-  function imprimirCreditos(){
+  function imprimirCalificacion($matricula)
+  {
+    echo '<div class="container">
+            <div class="row">
+                <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <form action="calificaciones.php" id="groupForm" method="POST">
+                      <label for="mail">Mail</label>
+                      <input type="text" id="mail" name="mail" value="'.$matricula.'"><br><br>
+
+                      <input type="submit" class="btn btn-primary btn-sm" value="Calificaciones"><br>
+                    </form>
+                </div>
+            </div>
+          </div>';
+  }
+
+
+  function imprimirCreditos()
+  {
     echo '
           <div class="container">
             <div class="row">
