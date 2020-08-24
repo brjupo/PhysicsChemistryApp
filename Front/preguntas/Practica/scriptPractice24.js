@@ -422,7 +422,7 @@ function nextQuestion(lastQuestion) {
   }
   if (questionNumberArray.length == 0) {
 
-    var delayInMilliseconds = 1000; //2 second
+    var delayInMilliseconds = 500; //2 second
     setTimeout(function() {
       //your code to be executed after 1 second
     var userID = document.getElementById("userID").innerHTML.trim();
