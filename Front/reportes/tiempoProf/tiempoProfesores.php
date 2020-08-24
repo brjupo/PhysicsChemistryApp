@@ -6,10 +6,6 @@ if ($teacherID == "null") {
     header('Location: https://kaanbal.net/');
     exit;
 }
-if (!isset($_POST["grupo"])) {
-    header('Location: ../controlCalificaciones.php');
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
