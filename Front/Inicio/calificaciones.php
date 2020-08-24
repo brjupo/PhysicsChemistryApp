@@ -4,8 +4,8 @@ if (!isset($_POST["mail"])) {
     header('Location: perfil.php');
     exit;
 }
-if ($_SESSION['mail'] != $_POST["mail"]) {
-    echo '<p> Sesion'.$_SESSION['mail'].'  mail ='.$_POST["mail"].'</p>';
+if ($_SESSION["mail"] != $_POST["mail"]) {
+    echo '<p> Sesion'.$_SESSION["mail"].'  mail ='.$_POST["mail"].'</p>';
     //header('Location: perfil.php');
     exit;
 }
