@@ -279,7 +279,7 @@ if (!isset($_POST["mail"])) {
                                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                     $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='" . $tipo . "' 
-                                    AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario =" . $alumnos["id"][$m] . ")";
+                                    AND id_leccion=" . $lecciones["id"][$l] . " AND id_usuario =" . $alumnos["id"][$m] . ";";
                                     $stmt = $conn->query($stringQuery);
                                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                         $entre = 1;
