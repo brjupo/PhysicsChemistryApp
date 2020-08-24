@@ -5,7 +5,8 @@ if (!isset($_POST["mail"])) {
     exit;
 }
 if ($_SESSION['mail'] != $_POST["mail"]) {
-    header('Location: perfil.php');
+    echo '<p>'.$_SESSION['mail'].'  '.$_POST["mail"].'</p>';
+    //header('Location: perfil.php');
     exit;
 }
 //ESTO ESTÁ DLV, SOLO APLICA PARA ALUMNOS CON UNA SOLA LICENCIA
