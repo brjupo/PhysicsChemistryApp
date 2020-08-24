@@ -98,6 +98,7 @@ if (!isset($_POST["mail"])) {
     ?>
     <?php
     $id_alumno = $alumnos["id"][0];
+    $id_asignatura = "0";
     //Crear la lectura en base de datos
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -106,6 +107,7 @@ if (!isset($_POST["mail"])) {
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             $id_asignatura = $row[0];
+            echo $id_asignatura;
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
