@@ -107,7 +107,6 @@ if (!isset($_POST["mail"])) {
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             $id_asignatura = $row[0];
-            echo $id_asignatura;
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
