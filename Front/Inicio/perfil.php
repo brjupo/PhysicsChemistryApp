@@ -439,12 +439,12 @@ require "../../Servicios/DDBBVariables.php";
   {
     echo '<div class="container">
             <div class="row">
-                <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="icol-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <form action="calificaciones.php" id="groupForm" method="POST">
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-primary btn-sm" value="Calificaciones" style="display:block; margin:0px auto;"><br>
+                      <input type="submit" class="btn btn-primary btn-sm" value="Calificaciones [Práctica, Sprint y Examen]" style="display:block; margin:0px auto;"><br>
                     </form>
                 </div>
             </div>
