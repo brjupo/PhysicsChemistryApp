@@ -355,7 +355,7 @@ if (!isset($_POST["grupo"])) {
                                     $puntuacion = intval($row[0]);
                                     $calificacion = $puntuacion * 100;
                                     $calificacion = $calificacion / $preguntasLeccion;
-                                    $calificacion = $calificacion / 3;
+                                    $calificacion = intval($calificacion / 3);
                                     //echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$subtemas["nombre"][$l]] . ' </td>';
                                     echo '<td> ' . $calificacion . ' </td>';
                                 }

@@ -421,6 +421,10 @@ function nextQuestion(lastQuestion) {
     enviarAcumulador(userID);
   }
   if (questionNumberArray.length == 0) {
+
+    var delayInMilliseconds = 500; //2 second
+    setTimeout(function() {
+      //your code to be executed after 1 second
     var userID = document.getElementById("userID").innerHTML.trim();
     var leccionID = document.getElementById("leccionID").innerHTML.trim();
     //alert(userID+ " "+ puntos+ " "+ leccionID);
@@ -451,6 +455,8 @@ function nextQuestion(lastQuestion) {
       },
     });
     enviarAcumulador(userID);
+  }, delayInMilliseconds);
+  
   } else {
     loadNewQuestion(questionNumberArray[0]);
   }
