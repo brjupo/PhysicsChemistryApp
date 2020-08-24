@@ -421,6 +421,14 @@ function nextQuestion(lastQuestion) {
     enviarAcumulador(userID);
   }
   if (questionNumberArray.length == 0) {
+    var stringLiga =
+          "nivelCompletado.php?subtema=" +
+          document.getElementById("subtemaPrevio").innerHTML.trim() +
+          "&puntos=" +
+          puntos +
+          "&totalPreguntas=" +
+          document.getElementById("totalPreguntas").innerHTML.trim();
+          window.location.replace(stringLiga);
   
   } else {
     loadNewQuestion(questionNumberArray[0]);
