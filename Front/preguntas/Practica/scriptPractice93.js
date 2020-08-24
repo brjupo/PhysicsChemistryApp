@@ -399,6 +399,11 @@ function nextQuestion(lastQuestion) {
   if (lastQuestion == totalPreguntas && firstTimeToSaveGrade == 0) {
     //enviarCalificacion();
     //function enviarCalificacion() {
+    //}
+    firstTimeToSaveGrade = 1;
+    enviarAcumulador(userID);
+  }
+  if (questionNumberArray.length == 0) {
     var userID = document.getElementById("userID").innerHTML.trim();
     var leccionID = document.getElementById("leccionID").innerHTML.trim();
     //alert(userID+ " "+ puntos+ " "+ leccionID);
@@ -413,18 +418,7 @@ function nextQuestion(lastQuestion) {
         if (data.response == "exito") {
           //alert("Etcito");
           console.log("Valores enviados correctamente");
-        } else {
-          //alert(data.response);
-          console.log("Algo salio mal");
-        }
-      },
-    });
-    //}
-    firstTimeToSaveGrade = 1;
-    enviarAcumulador(userID);
-  }
-  if (questionNumberArray.length == 0) {
-    var stringLiga =
+          var stringLiga =
           "nivelCompletado.php?subtema=" +
           document.getElementById("subtemaPrevio").innerHTML.trim() +
           "&puntos=" +
@@ -432,6 +426,12 @@ function nextQuestion(lastQuestion) {
           "&totalPreguntas=" +
           document.getElementById("totalPreguntas").innerHTML.trim();
           window.location.replace(stringLiga);
+        } else {
+          //alert(data.response);
+          console.log("Algo salio mal");
+        }
+      },
+    });
   
   } else {
     loadNewQuestion(questionNumberArray[0]);
