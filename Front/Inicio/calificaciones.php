@@ -5,7 +5,7 @@ if (!isset($_POST["mail"])) {
     exit;
 }
 if ($_SESSION['mail'] != $_POST["mail"]) {
-    echo '<p>'.$_SESSION['mail'].'  '.$_POST["mail"].'</p>';
+    echo '<p> Sesion'.$_SESSION['mail'].'  mail ='.$_POST["mail"].'</p>';
     //header('Location: perfil.php');
     exit;
 }
