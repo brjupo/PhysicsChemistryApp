@@ -95,8 +95,8 @@ if ($teacherID == "null") {
                             $stmt = $conn->query($stringQuery);
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 echo '<tr>';
-                                echo '<td>'.$row[0].'</td>';
-                                $suma = $row[1]+$row[2]+$row[3]+$row[4];
+                                echo '<td>'.intval($row[0]).'</td>';
+                                $suma = intval($row[1]+$row[2]+$row[3]+$row[4]);
                                 echo '<td>'.$suma.'</td>';
                                 echo '<td>'.$row[1].'</td>';
                                 echo '<td>'.$row[2].'</td>';
