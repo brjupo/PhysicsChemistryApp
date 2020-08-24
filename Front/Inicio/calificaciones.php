@@ -2,12 +2,12 @@
 require "../../Servicios/DDBBVariables.php";
 if (!isset($_POST["mail"])) {
     header('Location: perfil.php');
-    if($_SESSION['mail']!=$_POST["mail"]){
-        header('Location: perfil.php');
-    }
     exit;
 }
-
+if ($_SESSION['mail'] != $_POST["mail"]) {
+    header('Location: perfil.php');
+    exit;
+}
 //ESTO ESTÁ DLV, SOLO APLICA PARA ALUMNOS CON UNA SOLA LICENCIA
 //REPETIRLO SI LLEGA A APLICAR QUE SE TIENE MAS DE UNA LICENCIA
 
@@ -106,7 +106,7 @@ if (!isset($_POST["mail"])) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT id_asignatura FROM licencia WHERE id_usuario = '".$id_alumno."' LIMIT 1";
+        $stringQuery = "SELECT id_asignatura FROM licencia WHERE id_usuario = '" . $id_alumno . "' LIMIT 1";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             $id_asignatura = $row[0];
