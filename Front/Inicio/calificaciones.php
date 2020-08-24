@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require "../../Servicios/DDBBVariables.php";
 if (!isset($_POST["mail"])) {
     header('Location: perfil.php');
