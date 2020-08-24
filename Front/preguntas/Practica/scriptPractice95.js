@@ -1,6 +1,7 @@
 var lastQuestion = 0;
 var questionNumberArray = [];
 var puntos = 0;
+var puntosaux = 0;
 var buenas0_malas1_alHilo = [0, 0];
 var firstTimeToSaveGrade = 0;
 var idioma = "e";
