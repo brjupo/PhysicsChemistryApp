@@ -22,6 +22,9 @@ function getDatetimeNow() {
 }
 //////////////////////
 
+  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+  $sql = "INSERT INTO puntuacion_historico(id_usuario, id_leccion, puntuacion, tipo, tiempo) VALUES ('$id_usuario', '$leccion', '$puntosNuevos','$flagTipo','$tiempo')";
+  mysqli_query($con, $sql);
 
 //Lanzar consulta para saber si existe calificacion y la trae
 try {
