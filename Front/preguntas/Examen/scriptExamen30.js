@@ -392,6 +392,8 @@ function nextQuestion(lastQuestion) {
     //var delayInMilliseconds = 1000; //2 second
     //setTimeout(function() {
       //your code to be executed after 1 second
+      document.getElementById("botonSiguientePregunta").disabled=true;
+      
       var userID = document.getElementById("userID").innerHTML.trim();
     var leccionID = document.getElementById("leccionID").innerHTML.trim();
     //alert(userID+ " "+ puntos+ " "+ leccionID);
