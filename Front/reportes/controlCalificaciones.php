@@ -60,6 +60,23 @@ if ($teacherID == "null") {
           </div>
         </div>
       </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p>El día 25 de agosto del 2020 se detectó un error en los diamantes, en la sección "Solo diamantes"</p>
+            <p>Se observó que las lecciones realizadas por el alumno en modo Sprint y Super sprint, no se guardaban con la fecha, por lo que se inserto una fecha simulada 19 de agosto del 2020 a las 7:00</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p style="color: rgba(0, 0, 0, 0);">.</p>
+          </div>
+        </div>
+      </div>
   
       <div class="container">
         <div class="row">
