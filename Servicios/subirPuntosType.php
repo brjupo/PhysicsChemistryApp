@@ -8,6 +8,9 @@ $flagTipo = $_POST["flagTipo"];
 
 $tiempo = getDatetimeNow();
 
+if($puntosNuevos < 0){
+  $puntosNuevos = 0;}
+  
 /////Establecer uso horario para el envio de fecha y hora
 function getDatetimeNow() {
   $tz_object = new DateTimeZone('America/Mexico_City');
