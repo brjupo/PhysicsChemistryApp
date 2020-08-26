@@ -237,9 +237,7 @@ if ($teacherID == "null") {
                                     }
                                     echo '<td> id=' . $row[0] . ' alum= '.$alumnos["id"][$m].' pts= '.$row[1].' </td>';
                                 }
-                                if ($entre == 0) {
-                                    echo '<td style="color:red;">NP</td>';
-                                }
+                                //if ($entre == 0) { echo '<td style="color:red;">NP</td>'; }
                             } catch (PDOException $e) {
                                 echo "Error: " . $e->getMessage();
                             }
