@@ -60,6 +60,28 @@ if ($teacherID == "null") {
           </div>
         </div>
       </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p>El día 25 de agosto del 2020 se detectó un error en los diamantes, en la sección "Solo diamantes"</p>
+            <p>Se observó que las lecciones realizadas por el alumno en modo Sprint y Super sprint, no se guardaban con la fecha [en la primera semana], por lo que se inserto una fecha simulada 19 de agosto del 2020 a las 7:00</p>
+            <p>.</p>
+            <p>Durante el 25 de agosto se aplicó una nueva regla</p>
+            <p>Regla anterior "Guardar la calificación más alta, en caso de que exista una calificación previa inferior, SOBREESCIRBIR [puntuación y fecha]"</p>
+            <p>Regla nueva "Guardar TODOS los intentos del usuario, para que la actividad quede registrada en todo momento y no SOBREESCRIBIR"</p>
+            <p>Objetivo: "En un periodo de tiempo". Se mostrará la última calificación registrada en ese periodo de tiempo</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p style="color: rgba(0, 0, 0, 0);">.</p>
+          </div>
+        </div>
+      </div>
   
       <div class="container">
         <div class="row">
