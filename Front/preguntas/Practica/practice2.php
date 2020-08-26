@@ -11,7 +11,7 @@ require "../../../Servicios/validarLicencia.php";
     <title>Pregunta</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
-    <script src="scriptPractice22.js"></script>
+    <script src="scriptPractice93.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -76,73 +76,11 @@ require "../../../Servicios/validarLicencia.php";
 
         $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
         /*----Paso 1 Obtener el ID del subtema----*/
-        /*
-        $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
-        mysqli_stmt_bind_param($statement, "s", $leccion);
-        mysqli_stmt_execute($statement);
-        mysqli_stmt_store_result($statement);
-        mysqli_stmt_bind_result($statement, $id_leccion);
-
-        $arregloIdleccion = array();
-        //Leemos datos ID de leccion
-        while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-        $arregloIdleccion["id_leccion"] = $id_leccion;
-        }
-        $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
-        */
+        
         $idL = $leccion;
-        /*
-         /////////id_lecciones traer id asignaturas licencias
-        $statement = mysqli_prepare($con, "SELECT id_asignatura FROM licencia WHERE id_usuario = ?");
-        mysqli_stmt_bind_param($statement, "s", $_SESSION["id_usuario"]);
-        mysqli_stmt_execute($statement);
-        mysqli_stmt_store_result($statement);
-        mysqli_stmt_bind_result($statement, $id_asignatura);
-
-        $arregloAsignaturas = array();
-
-        $i = 0;
-        while (mysqli_stmt_fetch($statement)) {
-        $arregloAsignaturas[$i]["id_asignatura"] = $id_asignatura;
-        $i = $i + 1;
-        }
-
-        $tamanhoArray = count($arregloAsignaturas);
-
-         /* echo'<script type="text/javascript">
-        alert("'.$tamanhoArray.'");
-        </script>';  
-
-    /////////////////
-        $query = "SELECT id_subtema FROM leccion WHERE id_leccion = $idL";
-        $result = mysqli_query($con, $query);
-        while ($row = mysqli_fetch_assoc($result)) {
-            $subtema[] = $row;
-        }
-        $idSubtema = $subtema[0]["id_subtema"]; 
-
-        /////////id_subtema trae id_tema
-        $query = "SELECT id_tema FROM subtema WHERE id_subtema = $idSubtema";
-        $result = mysqli_query($con, $query);
-        while ($row = mysqli_fetch_assoc($result)) {
-            $tema[] = $row;
-        }
-        $idTema = $tema[0]["id_tema"]; 
-
-        /////////id_tema tra id_asignatura
-        $query = "SELECT id_asignatura FROM tema WHERE id_tema = $idTema";
-        $result = mysqli_query($con, $query);
-        while ($row = mysqli_fetch_assoc($result)) {
-            $asignatura[] = $row;
-        }
-        $idAsignatura = $asignatura[0]["id_asignatura"]; */
-
+        
+        //Validacion de licencia
         $flag = validarLicencia($idL);
-
-        //for ($j = 0; $j < $tamanhoArray; $j++){ 
-            //if(in_array($idAsignatura,array_column($arregloAsignaturas, 'id_asignatura')))
-            //{$flag = 1;} 
-        //}
 
         if($flag == 0){
             echo '<script type="text/javascript">
@@ -150,10 +88,6 @@ require "../../../Servicios/validarLicencia.php";
             window.location.href="https://kaanbal.net";
             </script>';
         }
-         
-
-        
-
         //////////////////////
         //Traer todas las preguntas
         $query = "SELECT * FROM pregunta WHERE id_leccion = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     

@@ -35,6 +35,9 @@ while (mysqli_stmt_fetch($statement)) { //si si existe
 
 //print_r($puntosActuales);
 
+  $sql = "INSERT INTO puntuacion_historico(id_usuario, id_leccion, puntuacion, tipo, tiempo) VALUES ('$id_usuario', '$leccion', '$puntosNuevos','$flagTipo','$tiempo')";
+  mysqli_query($con, $sql);
+
 if ($puntosActuales != 'xxx' OR $puntosActuales == NULL) { // validamos que exista una calificacion $puntosActuales != NULL or $puntosActuales == 0  
   if ($puntosNuevos > $puntosActuales) {
     //Lanzar consulta para actualizar calificacion solo si es mayor

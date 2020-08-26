@@ -10,13 +10,12 @@ require "../../../Servicios/validarLicencia.php";
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Pregunta</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
-    <script src="scriptPractice30.js"></script>
+    <link rel="stylesheet" href="styleExamen.css" />
+    <script src="scriptExamen99.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-
 
 <body>
     <script>
@@ -37,6 +36,7 @@ require "../../../Servicios/validarLicencia.php";
             }
         });
     </script>
+
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
@@ -71,14 +71,36 @@ require "../../../Servicios/validarLicencia.php";
         $leccion = $_GET['leccion'];
         /*echo '<script type="text/javascript">
                 alert("'.$leccion.'");
-                </script>';*/
+                </script>';
+        */
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
         $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+
+        //Traer tiempo para el examen
+        $query2 = "SELECT tiempo_examen FROM leccion WHERE id_leccion = $leccion"; 
+        $result2 = mysqli_query($con, $query2);
+        $tiempoa = mysqli_fetch_row($result2);
+        $tiempo = $tiempoa[0];
+           
+        
+        
         /*----Paso 1 Obtener el ID del subtema----*/
-        
+        /*
+        $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
+        mysqli_stmt_bind_param($statement, "s", $leccion);
+        mysqli_stmt_execute($statement);
+        mysqli_stmt_store_result($statement);
+        mysqli_stmt_bind_result($statement, $id_leccion);
+
+        $arregloIdleccion = array();
+        //Leemos datos ID de leccion
+        while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
+        $arregloIdleccion["id_leccion"] = $id_leccion;
+        }
+        $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
+        */
         $idL = $leccion;
-        
         //Validacion de licencia
         $flag = validarLicencia($idL);
 
@@ -90,7 +112,7 @@ require "../../../Servicios/validarLicencia.php";
         }
         //////////////////////
         //Traer todas las preguntas
-        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
+        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL ORDER BY RAND()"; //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
         $result = mysqli_query($con, $query);
         //contar Numero de elementos
         $query2 = "SELECT count(*) FROM pregunta WHERE id_leccion = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
@@ -118,6 +140,7 @@ require "../../../Servicios/validarLicencia.php";
             $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
             }
         }
+
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
         ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
         for ($j = 0; $j < $total[0]; $j++) {
@@ -169,13 +192,14 @@ require "../../../Servicios/validarLicencia.php";
     }
 
 
-    imprimirPreguntas($arrayr, $array, $total, $idL);
+    imprimirPreguntas($arrayr, $array, $total, $idL, $tiempo);
     ?>
 
     <?php
-    function imprimirPreguntas($arrayr, $array, $total, $idL)
+    function imprimirPreguntas($arrayr, $array, $total, $idL, $tiempo)
     {
         imprimirBarraProgresoCruz($total[0], $idL);
+        imprimirTiempoexamen($tiempo);
         imprimirContador();
         imprimirMotivador();
         imprimirPreguntasRespuestas($arrayr, $array, $total);
@@ -256,7 +280,7 @@ require "../../../Servicios/validarLicencia.php";
                     <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
-                    <p id="leccionID">' . $idL . '</p>
+                    <p id="leccionID" style="display:none">' . $idL . '</p>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
                             class="progress-bar progress-bar-striped" 
@@ -271,6 +295,34 @@ require "../../../Servicios/validarLicencia.php";
             </div>
             ';
     }
+
+    function imprimirTiempoexamen($tiempo)
+    {//border="4px" color="black"  
+        echo '
+                <div class="container">
+                <div class="row">
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                <table class="table fixed">
+                <tbody>
+                  <tr>
+                    <td style="text-align: left" width="50%">
+                      <p id="number">10:00</p>
+                      <p id="tiempo" style="display:none"/>'.$tiempo.'</p>
+                    </td>
+                    <td style="text-align: right" width="50%">
+                      <img class="icons" width="50" height="30" src="../../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                </div>
+            </div>
+            ';
+    }
+
     function imprimirContador()
     {
         echo '
@@ -310,20 +362,6 @@ require "../../../Servicios/validarLicencia.php";
         ';
     }
 
-    /*
-    Mis nacadas
-    ID Pregunta = 1000 + Número de pregunta         Ejemplo: Pregunta1 id="1001"
-    ID Respuesta = 2000 + Número de pregunta        Ejemplo: Respuesta1 id="2001"
-    ID Respuesta correcta = 3000 + Número de pregunta   Ejemplo: ResCorrecta1 id="3001"
-
-    Opción 4 = 10 * Número de pregunta              Ejemplo: class="Opcion4"id="10"
-    Opción 3 = 10 * Número de pregunta - 1          Ejemplo: class="Opcion3"id="9"
-    Opción 2 = 10 * Número de pregunta - 2          Ejemplo: class="Opcion2"id="8"
-    Opción 1 = 10 * Número de pregunta - 3          Ejemplo: class="Opcion1"id="7"
-    ID Boton aceptar = 10 * Número de pregunta - 4  Ejemplo: id="6"
-    Texto Escrito = 10 * Número de pregunta - 5     Ejempo: id="5"
-
-    */
     function imprimirPreguntaTipo1(int $preguntaNumero, $preguntaTexto)
     {
         $preguntaNumero = 1000 + $preguntaNumero;
@@ -333,7 +371,7 @@ require "../../../Servicios/validarLicencia.php";
             <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">' . $preguntaNumero . '</p>
+                <p id="preguntaNumero" style="display:none">' . $preguntaNumero . '</p>
                 <p class="formatoPreguntas">'
             . $preguntaTexto .
             '  
@@ -354,34 +392,46 @@ require "../../../Servicios/validarLicencia.php";
         $IDvalorCorrecto = 3000 + $respuestas;
         $imgjpg = $imagen . ".jpg";
         $pathjpg = "../../../../IMAGENES/" . $imgjpg;
+
         $imgJPG = $imagen . ".JPG";
         $pathJPG = "../../../../IMAGENES/" . $imgJPG;
-        $imgpng = $imagen . ".png";
-        $pathpng = "../../../../IMAGENES/" . $imgpng;
-        $imgPNG = $imagen . ".PNG";
-        $pathPNG = "../../../../IMAGENES/" . $imgPNG;
-        //echo '<p>'.$path.'</p>';
-        $ext=NULL;
         if (file_exists($pathjpg)) {
-            $ext = ".jpg";
-        }
-        else if (file_exists($pathJPG)) {
-            $ext = ".JPG";
-        }
-        else if (file_exists($pathpng)) {
-            $ext = ".png";
-        }
-        else if (file_exists($pathPNG)) {
-            $ext = ".PNG";
-        }
-
-        if ($ext!=NULL) {
             echo '
             <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../../../../IMAGENES/' . $imagen . $ext .'" class="imagenPregunta" />
+                <img src="../../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
+                <p id="' . $IDvalorCorrecto . '" style="display:none">
+                    ' . $respCorrecta . '
+                </p>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <button class="Opcion1" id="' . $uno . '">
+                    ' . $r1 . '
+                </button><br>
+                <button class="Opcion3" id="' . $tres . '">
+                    ' . $r3 . '
+                </button>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                <button class="Opcion2" id="' . $dos . '">
+                    ' . $r2 . '
+                </button><br>
+                <button class="Opcion4" id="' . $cuatro . '">
+                    ' . $r4 . '
+                </button>
+                </div>
+            </div>
+            </div>
+        ';
+        } else if (file_exists($pathJPG)) {
+            echo '
+            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+            <div class="container" style="display:none" id ="' . $respuestaNumero . '">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <img src="../../../../IMAGENES/' . $imagen . '.JPG" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '" style="display:none">
                     ' . $respCorrecta . '
                 </p>
@@ -440,20 +490,7 @@ require "../../../Servicios/validarLicencia.php";
         ';
         }
     }
-    /*
-    Mis nacadas
-    ID Pregunta = 1000 + Número de pregunta
-    ID Respuesta = 2000 + Número de pregunta
-    ID Respuesta correcta = 3000 + Número de pregunta
-
-    Opción 4 = 10 * Número de pregunta
-    Opción 3 = 10 * Número de pregunta - 1
-    Opción 2 = 10 * Número de pregunta - 2
-    Opción 1 = 10 * Número de pregunta - 3
-    ID Boton aceptar = 10 * Número de pregunta - 4
-    Texto Escrito = 10 * Número de pregunta - 5
-
-    */
+    
     function imprimirPreguntaTipo2(int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
     {
         $IDTextoEscrito = 10 * $preguntaNumero - 5;
@@ -464,7 +501,7 @@ require "../../../Servicios/validarLicencia.php";
                 <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                    <p id="preguntaNumero">' . $preguntaNumero . '</p>
+                    <p id="preguntaNumero" style="display:none">' . $preguntaNumero . '</p>
                     <p class="formatoPreguntas">'
             . $preguntaTexto .
             ' 
@@ -513,7 +550,7 @@ require "../../../Servicios/validarLicencia.php";
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
+                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Acepto</button>
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
