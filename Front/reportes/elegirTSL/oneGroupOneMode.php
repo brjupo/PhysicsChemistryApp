@@ -64,7 +64,7 @@ if ($teacherID == "null") {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo . " AND pu.tipo = '" . $tipo . "';";
+        $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u JOIN puntuacion_historico pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo . " AND pu.tipo = '" . $tipo . "';";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Materia, mail, grupo, modalidad
@@ -222,8 +222,8 @@ if ($teacherID == "null") {
                             try {
                                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                $stringQuery = "SELECT alumno.id_alumno, puntuacion.puntuacion FROM puntuacion 
-                                INNER JOIN alumno ON alumno.id_usuario = puntuacion.id_usuario 
+                                $stringQuery = "SELECT alumno.id_alumno, puntuacion_historico.puntuacion FROM puntuacion_historico 
+                                INNER JOIN alumno ON alumno.id_usuario = puntuacion_historico.id_usuario 
                                 WHERE id_leccion = " . $id_leccion . " AND tipo = '" . $tipo . "' AND tiempo 
                                 BETWEEN '" . $desde_fecha . " " . $desde_tiempo . ":00'  
                                 AND '" . $hasta_fecha . " " . $hasta_tiempo . ":00'";
