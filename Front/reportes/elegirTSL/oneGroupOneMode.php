@@ -233,11 +233,11 @@ if ($teacherID == "null") {
                                     if($alumnos["id"][$m]==$row[0]){
                                         $entre=1;
                                         $calificacion = intval(100*$row[1]/$totalPreguntas);
-                                        //echo '<td>' . $calificacion . '</td>';
+                                        echo '<td>' . $calificacion . '</td>';
                                     }
-                                    echo '<td> id=' . $row[0] . ' alum= '.$alumnos["id"][$m].' pts= '.$row[1].' </td>';
+                                    //echo '<td> id=' . $row[0] . ' alum= '.$alumnos["id"][$m].' pts= '.$row[1].' </td>';
                                 }
-                                //if ($entre == 0) { echo '<td style="color:red;">NP</td>'; }
+                                if ($entre == 0) { echo '<td style="color:red;">NP</td>'; }
                             } catch (PDOException $e) {
                                 echo "Error: " . $e->getMessage();
                             }
