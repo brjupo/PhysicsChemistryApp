@@ -22,7 +22,6 @@ if ($teacherID == "null") {
 
 <body>
     <?php
-    $id_grupo = $_POST["grupo"];
     ?>
     <style>
         table {
@@ -69,35 +68,75 @@ if ($teacherID == "null") {
         </div>
     </div>
 
-    
 
+    <?php
+    //--------------------------------OBTENER TODOS LOS GRUPOS [ID Y NOMBRE]
+    $grupos = array();
+    $grupos["id"] = array();
+    $grupos["nombre"] = array();
+    $grupos["profe"] = array();
+
+    //Crear la lectura en base de datos
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stringQuery = "SELECT g.id_grupo, g.nombre, u.mail 
+        FROM grupo g JOIN profesor p JOIN usuario_prueba u 
+        ON g.id_profesor = p.id_profesor AND p.id_usuario = u.id_usuario;";
+        $stmt = $conn->query($stringQuery);
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            array_push($grupos["id"], $row[0]);
+            array_push($grupos["nombre"], $row[1]);
+            array_push($grupos["profe"], $row[2]);
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
+    //SELECT a.id_alumno FROM alumno a JOIN alumno_grupo ag ON a.id_alumno = ag.id_alumno WHERE ag.id_grupo = 10 
+    ?>
 
     <div class="container">
         <div class="row">
             <table class="table table-striped">
                 <tbody>
                     <tr>
+                        <td>Profesor</td>
                         <td>Grupo</td>
                         <td>Total tiempo</td>
                     </tr>
-                        <?php
+                    <?php
+                    $size0 = count($grupos["id"]);
+                    for ($m = 0; $m < $size0; ++$m) {
+                        $total=0;
+                        echo '<tr>';
+                        echo '<td>' . $grupos["profe"][$m] . '</td>';
+                        echo '<td>' . $grupos["nombre"][$m] . '</td>';
+                        $id_grupos = $grupos["id"][$m];
                         //Crear la lectura en base de datos
                         try {
                             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = "";
+                            $stringQuery = "SELECT a.id_alumno, ROUND(a.acmlrPP + a.acmlrSP + a.acmlrE + a.acmlrSS) as 'acumulado' 
+                            FROM alumno a JOIN alumno_grupo ag 
+                            ON a.id_alumno = ag.id_alumno 
+                            WHERE ag.id_grupo = ".$id_grupos.";";
                             $stmt = $conn->query($stringQuery);
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                echo '<tr>';
-                                echo '<td>'.$row[0].'</td>';
-                                echo '<td>'.$row[1].'</td>';
-                                echo '</tr>';
+                                $total = $total + $row[1];
                             }
                         } catch (PDOException $e) {
                             echo "Error: " . $e->getMessage();
                         }
                         $conn = null;
-                        ?>
+
+                        echo '<td>' . $total. '</td>';
+                        echo '</tr>';
+                    }
+
+                    //SELECT a.id_alumno FROM alumno a JOIN alumno_grupo ag ON a.id_alumno = ag.id_alumno WHERE ag.id_grupo = 10 
+
+                    ?>
                 </tbody>
             </table>
         </div>

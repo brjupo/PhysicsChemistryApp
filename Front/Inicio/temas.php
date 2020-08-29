@@ -231,7 +231,7 @@ require "../../Servicios/DDBBVariables.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = "SELECT pagado FROM licencia WHERE id_usuario = " . $id_usuario . " AND id_asignatura = " .$_SESSION["idAsignatura"] . "";
+      $stringQuery = "SELECT pagado FROM licencia WHERE id_usuario = " . $id_usuario . " AND id_asignatura = " . $_SESSION["idAsignatura"] . "";
       //echo $stringQuery ;
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -254,8 +254,7 @@ require "../../Servicios/DDBBVariables.php";
               <p style="color:rgba(0,0,0,0)">.</p>';
     if ($pagado == 0) {
       echo '
-                          <p>¡Activa tu acceso para este semestre! </p>
-                          <p>Da click <a href="../../../contacto.html">aquí</a> para conocer cómo adquirir la plataforma. </p>
+                          <p>¡Sigue acumulando diamantes! Recuerda <a href="../../../contacto.html">adquirir</a> tu licencia antes del 4 de septiembre.  Seguiremos aquí cuando más nos necesites. </p>
                           <p style="color:rgba(0,0,0,0)">.</p>';
     }
     echo '
