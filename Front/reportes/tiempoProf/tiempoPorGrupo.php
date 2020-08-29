@@ -74,16 +74,20 @@ if ($teacherID == "null") {
     $grupos = array();
     $grupos["id"] = array();
     $grupos["nombre"] = array();
+    $grupos["profe"] = array();
 
     //Crear la lectura en base de datos
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT nombre, id_grupo FROM grupo";
+        $stringQuery = "SELECT g.id_grupo, g.nombre, u.mail 
+        FROM grupo g JOIN profesor p JOIN usuario_prueba u 
+        ON g.id_profesor = p.id_profesor AND p.id_usuario = u.id_usuario;";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            array_push($grupos["nombre"], $row[0]);
-            array_push($grupos["id"], $row[1]);
+            array_push($grupos["id"], $row[0]);
+            array_push($grupos["nombre"], $row[1]);
+            array_push($grupos["profe"], $row[2]);
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -97,6 +101,7 @@ if ($teacherID == "null") {
             <table class="table table-striped">
                 <tbody>
                     <tr>
+                        <td>Profesor</td>
                         <td>Grupo</td>
                         <td>Total tiempo</td>
                     </tr>
@@ -105,6 +110,7 @@ if ($teacherID == "null") {
                     for ($m = 0; $m < $size0; ++$m) {
                         $total=0;
                         echo '<tr>';
+                        echo '<td>' . $grupos["profe"][$m] . '</td>';
                         echo '<td>' . $grupos["nombre"][$m] . '</td>';
                         $id_grupos = $grupos["id"][$m];
                         //Crear la lectura en base de datos
