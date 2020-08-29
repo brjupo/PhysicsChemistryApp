@@ -22,7 +22,6 @@ if ($teacherID == "null") {
 
 <body>
     <?php
-    $id_grupo = $_POST["grupo"];
     ?>
     <style>
         table {
