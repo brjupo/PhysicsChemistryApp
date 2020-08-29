@@ -101,31 +101,35 @@ if ($teacherID == "null") {
                         <td>Total tiempo</td>
                     </tr>
                     <?php
-                    //Crear la lectura en base de datos
-                    /*
-                    try {
-                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT nombre, id_grupo FROM grupo";
-                        $stmt = $conn->query($stringQuery);
-                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            //echo '<tr>';
-                            echo '<td>' . $row[0] . '</td>';
-                            //echo '<td>'.$row[1].'</td>';
-                            echo '</tr>';
-                        }
-                    } catch (PDOException $e) {
-                        echo "Error: " . $e->getMessage();
-                    }
-                    $conn = null;
-                    */
-                    //SELECT a.id_alumno FROM alumno a JOIN alumno_grupo ag ON a.id_alumno = ag.id_alumno WHERE ag.id_grupo = 10 
                     $size0 = count($grupos["id"]);
                     for ($m = 0; $m < $size0; ++$m) {
+                        $total=0;
                         echo '<tr>';
                         echo '<td>' . $grupos["nombre"][$m] . '</td>';
+                        $id_grupos = $grupos["id"][$m];
+                        //Crear la lectura en base de datos
+                        try {
+                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            $stringQuery = "SELECT a.id_alumno, ROUND(a.acmlrPP + a.acmlrSP + a.acmlrE + a.acmlrSS) as 'acumulado' 
+                            FROM alumno a JOIN alumno_grupo ag 
+                            ON a.id_alumno = ag.id_alumno 
+                            WHERE ag.id_grupo = ".$id_grupos.";";
+                            $stmt = $conn->query($stringQuery);
+                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                $total = $total + $row[1];
+                            }
+                        } catch (PDOException $e) {
+                            echo "Error: " . $e->getMessage();
+                        }
+                        $conn = null;
+
+                        echo '<td>' . $total. '</td>';
                         echo '</tr>';
                     }
+
+                    //SELECT a.id_alumno FROM alumno a JOIN alumno_grupo ag ON a.id_alumno = ag.id_alumno WHERE ag.id_grupo = 10 
+
                     ?>
                 </tbody>
             </table>
