@@ -68,8 +68,29 @@ if ($teacherID == "null") {
         </div>
     </div>
 
-    
 
+    <?php
+    //--------------------------------OBTENER TODOS LOS GRUPOS [ID Y NOMBRE]
+    $grupos = array();
+    $grupos["id"] = array();
+    $grupos["nombre"] = array();
+
+    //Crear la lectura en base de datos
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stringQuery = "SELECT nombre, id_grupo FROM grupo";
+        $stmt = $conn->query($stringQuery);
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            array_push($grupos["nombre"], $row[0]);
+            array_push($grupos["id"], $row[1]);
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
+    //SELECT a.id_alumno FROM alumno a JOIN alumno_grupo ag ON a.id_alumno = ag.id_alumno WHERE ag.id_grupo = 10 
+    ?>
 
     <div class="container">
         <div class="row">
@@ -79,24 +100,33 @@ if ($teacherID == "null") {
                         <td>Grupo</td>
                         <td>Total tiempo</td>
                     </tr>
-                        <?php
-                        //Crear la lectura en base de datos
-                        try {
-                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = "SELECT nombre FROM grupo";
-                            $stmt = $conn->query($stringQuery);
-                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                echo '<tr>';
-                                echo '<td>'.$row[0].'</td>';
-                                //echo '<td>'.$row[1].'</td>';
-                                echo '</tr>';
-                            }
-                        } catch (PDOException $e) {
-                            echo "Error: " . $e->getMessage();
+                    <?php
+                    //Crear la lectura en base de datos
+                    /*
+                    try {
+                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stringQuery = "SELECT nombre, id_grupo FROM grupo";
+                        $stmt = $conn->query($stringQuery);
+                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                            //echo '<tr>';
+                            echo '<td>' . $row[0] . '</td>';
+                            //echo '<td>'.$row[1].'</td>';
+                            echo '</tr>';
                         }
-                        $conn = null;
-                        ?>
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                    }
+                    $conn = null;
+                    */
+                    //SELECT a.id_alumno FROM alumno a JOIN alumno_grupo ag ON a.id_alumno = ag.id_alumno WHERE ag.id_grupo = 10 
+                    $size0 = count($grupos["id"]);
+                    for ($m = 0; $m < $size0; ++$m) {
+                        echo '<tr>';
+                        echo '<td>' . $grupos["nombre"][$m] . '</td>';
+                        echo '</tr>';
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
