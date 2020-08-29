@@ -85,12 +85,12 @@ if ($teacherID == "null") {
                         try {
                             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = "";
+                            $stringQuery = "SELECT nombre FROM grupo";
                             $stmt = $conn->query($stringQuery);
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 echo '<tr>';
                                 echo '<td>'.$row[0].'</td>';
-                                echo '<td>'.$row[1].'</td>';
+                                //echo '<td>'.$row[1].'</td>';
                                 echo '</tr>';
                             }
                         } catch (PDOException $e) {
