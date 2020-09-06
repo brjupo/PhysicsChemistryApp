@@ -30,7 +30,7 @@ window.onload = function () {
     const anchorElement = document.createElement("a");
 
     anchorElement.href = blobUrl;
-    anchorElement.download = "table-export.csv";
+    anchorElement.download = document.getElementById("fileName").value.trim()+ ".csv";
     anchorElement.click();
 
     setTimeout(() => {

@@ -255,6 +255,18 @@ if (!isset($_POST["grupo"])) {
         </div>
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">File name:</span>
+                </div>
+                <?php
+                    date_default_timezone_set("America/Mexico_City");
+                    $fileName = "alumno" . $materia . "_" . $grupo . "_" . date("Y/m/d");
+                ?>
+                <input id="fileName" type="text" class="form-control" value="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p style="color:white">.</p>
             </div>
         </div>
@@ -277,9 +289,6 @@ if (!isset($_POST["grupo"])) {
                         } ?>
                     </tr>
                     <tr>
-                        <?php
-                        date_default_timezone_set("America/Mexico_City");
-                        ?>
                         <td style="color:rgba(50,50,255,1)"><?php echo $materia; ?></td>
                         <td style="color:rgba(50,50,255,1)"><?php echo $grupo; ?></td>
                         <td style="color:rgba(50,50,255,1)"><?php echo date("Y/m/d H:m:s"); ?></td>
