@@ -6,7 +6,7 @@ var firstTimeToSaveGrade = 0;
 var timeIntervalX = setInterval(function () {
   var i = 1;
 }, 500);
-var segundos = 0;
+var segundosTotales = 0;
 var idioma = "e";
 var segundosActuales = 0;
 var acumulador = 0;
@@ -18,15 +18,15 @@ var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 
 window.onload = function () {
   contarTiempo();
-  segundos = getTimeForSprint();
+  segundosTotales = getTimeForSprint();
   idioma = document.getElementById("idioma").innerHTML.trim();
 };
 
 function contarTiempo() {
-  window.setInterval(function(){
+  window.setInterval(function () {
     acumulador++;
-  },1000);
-  }
+  }, 1000);
+}
 
 function getTimeForSprint() {
   leccion = document.getElementById("leccionID").innerHTML.trim();
@@ -34,22 +34,20 @@ function getTimeForSprint() {
     type: "POST",
     url: "getTimeForSprint.php",
     dataType: "json",
-    data: { leccion : leccion},
-    success: function(data) {
+    data: { leccion: leccion },
+    success: function (data) {
       console.log(data.seconds);
       console.log(data.response);
       if (data.response == "true") {
-        segundos = parseInt(data.seconds);
+        segundosTotales = parseInt(data.seconds);
         createArrayWithQuestions();
-      }
-      else{
+      } else {
         alert("Error en el tiempo.");
       }
-    }
+    },
   });
-  return segundos;
+  return segundosTotales;
 }
-
 
 function createArrayWithQuestions() {
   for (var i = 1001; i <= 1100; i++) {
@@ -190,14 +188,14 @@ document.addEventListener("click", function (evt) {
 });
 
 function seguroRegresar() {
-  if (idioma == "e"){
-    var texto = "¿Seguro que quieres regresar?\nPerderás todo tu progreso de esta lección.";
-  }else{
-    var texto = "Are you sure to return?\nIf you return you will lose all your progress of this lesson.";
+  if (idioma == "e") {
+    var texto =
+      "¿Seguro que quieres regresar?\nPerderás todo tu progreso de esta lección.";
+  } else {
+    var texto =
+      "Are you sure to return?\nIf you return you will lose all your progress of this lesson.";
   }
-  if (
-    confirm(texto)
-  ) {
+  if (confirm(texto)) {
     var userID = document.getElementById("userID").innerHTML.trim();
     enviarAcumulador(userID);
     var stringLiga = "../../Inicio/lecciones.php?subtema=";
@@ -281,9 +279,9 @@ function verifyIfCorrectOption(targetID, questionNumber) {
   if (selectedAnswer0to3 == correctOption) {
     lastQuestion = questionNumber;
     questionNumberArray.shift();
-    if (segundosActuales > segundos*2/3) {
+    if (segundosActuales > (segundosTotales * 2) / 3) {
       puntos = puntos + 3;
-    } else if (segundosActuales > segundos/3) {
+    } else if (segundosActuales > segundosTotales / 3) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
@@ -338,9 +336,7 @@ function verifyIfTextIsCorrect(questionNumber) {
     .normalize();
   respuestaEscritaUpper = respuestaEscritaNormalizada.toUpperCase();
   //Muestras la respuesta correcta en el Boton
-  document.getElementById(
-    10 * questionNumber - 4
-  ).innerHTML = correctText;
+  document.getElementById(10 * questionNumber - 4).innerHTML = correctText;
   //Se valida si la respuesta es correcta
   if (respuestaEscritaUpper == respuestaCorrectaUpper) {
     lastQuestion = questionNumber;
@@ -351,9 +347,9 @@ function verifyIfTextIsCorrect(questionNumber) {
     ).value = document
       .getElementById(10 * questionNumber - 5)
       .value.toLowerCase();
-    if (segundosActuales > segundos*2/3) {
+    if (segundosActuales > (segundosTotales * 2) / 3) {
       puntos = puntos + 3;
-    } else if (segundosActuales > segundos/3) {
+    } else if (segundosActuales > segundosTotales / 3) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
@@ -514,7 +510,7 @@ function startClock() {
   var segundos = 30;
   var milisegundos = segundos * 1000 + minutos * 60 * 1000;
   */
-  var milisegundos = segundos * 1000;
+  var milisegundos = segundosTotales * 1000;
   var countDownDate = new Date(milisegundos).getTime();
   var unSegundo = new Date(1000).getTime();
   var sumaSegundos = new Date(1000).getTime();
@@ -525,16 +521,20 @@ function startClock() {
     var actual = countDownDate - sumaSegundos;
     var later = countDownDate - sumaSegundos + unSegundo;
     //----------------------------ACTUAL-----------------------------------
+    segundosActuales = actual; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
     // Time calculations for days, hours, minutes and seconds
     var minutes = Math.floor((actual % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((actual % (1000 * 60)) / 1000);
-    segundosActuales = seconds; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
+
     // Output the result in an element with id="demo"
     //document.getElementById("actual").innerHTML = seconds + "";
-    if(seconds <= 9){
-      document.getElementById('actual').innerHTML = "00:0" + seconds;}
-    else{
-      document.getElementById("actual").innerHTML = "00:" + seconds;}
+    if (seconds <= 9) {
+      document.getElementById("actual").innerHTML =
+        "0" + minutes + ":0" + seconds;
+    } else {
+      document.getElementById("actual").innerHTML =
+        "0" + minutes + ":" + seconds;
+    }
     //minutes + "m " + seconds + "s ";
 
     //----------------------------PREVIO-----------------------------------
@@ -632,4 +632,4 @@ function enviarAcumulador(userID) {
       }
     },
   });
-  }
+}
