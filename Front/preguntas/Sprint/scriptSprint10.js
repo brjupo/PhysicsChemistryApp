@@ -526,7 +526,7 @@ function startClock() {
     var actual = countDownDate - sumaSegundos;
     var later = countDownDate - sumaSegundos + unSegundo;
     //----------------------------ACTUAL-----------------------------------
-    segundosActuales = actual; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
+    segundosActuales = actual/1000; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
     // Time calculations for days, hours, minutes and seconds
     var minutes = Math.floor((actual % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((actual % (1000 * 60)) / 1000);

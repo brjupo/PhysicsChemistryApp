@@ -11,7 +11,7 @@ require "../../../Servicios/validarLicencia.php";
     <title>Pregunta</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
-    <script src="scriptSprint9.js"></script>
+    <script src="scriptSprint10.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -19,7 +19,7 @@ require "../../../Servicios/validarLicencia.php";
 
 
 <body>
-    <script>
+    <!--script>
         document.addEventListener("contextmenu", (event) => event.preventDefault());
         $(document).keydown(function(event) {
             if (event.keyCode == 123) {
@@ -36,7 +36,7 @@ require "../../../Servicios/validarLicencia.php";
                 return false;
             }
         });
-    </script>
+    </script-->
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
