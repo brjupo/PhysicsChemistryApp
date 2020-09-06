@@ -255,14 +255,14 @@ if (!isset($_POST["grupo"])) {
         </div>
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">File name:</span>
-                </div>
                 <?php
                 date_default_timezone_set("America/Mexico_City");
                 $fileName = "alumno_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
                 ?>
-                <input id="fileName" type="text" class="form-control" value="<?php echo $fileName; ?>">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">File name:</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="<?php echo $fileName; ?>">
             </div>
         </div>
         <div class="row">
