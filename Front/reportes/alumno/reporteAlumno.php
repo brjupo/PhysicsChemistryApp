@@ -22,7 +22,7 @@ if (!isset($_POST["grupo"])) {
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
-    <script src="../TableCSVExporter2.js"></script>
+    <script src="../TableCSVExporter3.js"></script>
 </head>
 
 <body>
@@ -260,7 +260,7 @@ if (!isset($_POST["grupo"])) {
                 </div>
                 <?php
                 date_default_timezone_set("America/Mexico_City");
-                $fileName = "alumno" . $materia . "_" . $grupo . "_" . date("Y/m/d");
+                $fileName = "alumno_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
                 ?>
                 <input id="fileName" type="text" class="form-control" value="<?php echo $fileName; ?>">
             </div>
