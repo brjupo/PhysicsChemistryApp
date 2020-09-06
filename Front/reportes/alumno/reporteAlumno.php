@@ -262,7 +262,7 @@ if (!isset($_POST["grupo"])) {
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">File name:</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="<?php echo $fileName; ?>">
+                <input type="text" id="fileName" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="<?php echo $fileName; ?>">
             </div>
         </div>
         <div class="row">
