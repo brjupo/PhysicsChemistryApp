@@ -22,6 +22,7 @@ if (!isset($_POST["grupo"])) {
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
+    <script src="../TableCSVExporter.js"></script>
 </head>
 
 <body>
@@ -238,6 +239,15 @@ if (!isset($_POST["grupo"])) {
             ?>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-2 col-sm-2 col-md-4 col-lg-4 col-xl-4"></div>
+            <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4">
+                <button id="btnExportToCsv" type="button" class="button">Export to CSV</button>
+            </div>
+            <div class="col-2 col-sm-2 col-md-4 col-lg-4 col-xl-4"></div>
+        </div>
+    </div>
 
     <!--IMRPIMIR LA LISTA DE LECCIONES, SUBTEMA Y TEMAS-->
     <div class="container">
@@ -344,9 +354,9 @@ if (!isset($_POST["grupo"])) {
                     $modos["acronimo"] = ["E", "SP", "PP"];
                     $modos["nombre"] = ["Examen", "Sprint", "Práctica"];
                     //Despues comenzamos a rotar los alumnos
-                    $size6=count($alumnos["id"]);
-                    $size7=count($modos);
-                    $size8=count($lecciones["id"]);
+                    $size6 = count($alumnos["id"]);
+                    $size7 = count($modos);
+                    $size8 = count($lecciones["id"]);
                     for ($m = 0; $m < $size6; ++$m) {
                         //Ahora a rotar los modos
                         for ($p = 0; $p <= $size7; ++$p) {
@@ -368,7 +378,7 @@ if (!isset($_POST["grupo"])) {
                                         $calificacion = intval(100 * $row[0] / $lecciones["totalPreguntas"][$l]);
                                         if ($tipo == "SP" || $tipo == "SG") {
                                             ///$calificacion = $calificacion / 3;
-                                            $calificacion = intval(100 * $row[0]  / ($lecciones["totalPreguntas"][$l]*3));
+                                            $calificacion = intval(100 * $row[0]  / ($lecciones["totalPreguntas"][$l] * 3));
                                         }
                                         echo '<td>' . $calificacion . '</td>';
                                     }
