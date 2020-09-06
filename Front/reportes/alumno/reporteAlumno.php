@@ -252,7 +252,7 @@ if (!isset($_POST["grupo"])) {
     <!--IMRPIMIR LA LISTA DE LECCIONES, SUBTEMA Y TEMAS-->
     <div class="container">
         <div class="row">
-            <table class="table table-striped">
+            <table  id="dataTable" class="table table-striped">
                 <tbody>
                     <tr>
                         <td style="color:rgba(0,0,0,0)">.</td>
