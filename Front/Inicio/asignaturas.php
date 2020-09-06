@@ -257,7 +257,7 @@ require "../../Servicios/isStaff.php";
       //Si el usuario NO EXISTE mensaje de error y retorna a inicio
       else {
         echo '<script type="text/javascript">
-            alert("Usuario y/o contraseña incorrectos\nAdquiere tu licencia aqui");
+            alert("Usuario y/o contraseña incorrectos\nTienes alguna pregunta consulta nuestras FAQs");
             window.location.href="https://kaanbal.net/contacto.html";
             </script>';
       }
