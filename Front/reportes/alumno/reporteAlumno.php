@@ -254,7 +254,7 @@ if (!isset($_POST["grupo"])) {
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="input-group input-group-sm col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <?php
                 date_default_timezone_set("America/Mexico_City");
                 $fileName = "alumno_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
