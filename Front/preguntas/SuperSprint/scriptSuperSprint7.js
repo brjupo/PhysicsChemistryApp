@@ -7,6 +7,8 @@ var timeIntervalX = setInterval(function () {
   var i = 1;
 }, 500);
 var segundosTotales= 0;
+var segundosTotales_2_3 = 0;
+var segundosTotales_1_3 =0;
 var segundosActuales = 0;
 var acumulador = 0;
 var idioma = "e";
