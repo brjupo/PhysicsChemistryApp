@@ -241,18 +241,29 @@ if (!isset($_POST["grupo"])) {
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-2 col-sm-2 col-md-4 col-lg-4 col-xl-4"></div>
-            <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-4">
-                <button id="btnExportToCsv" type="button" class="button">Export to CSV</button>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color:white">.</p>
             </div>
-            <div class="col-2 col-sm-2 col-md-4 col-lg-4 col-xl-4"></div>
+        </div>
+        <div class="row">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <p>Espera a que el reporte termine de crearse para descargarlo</p>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <button id="btnExportToCsv" type="button" class="btn btn-primary">Export to CSV</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color:white">.</p>
+            </div>
         </div>
     </div>
 
     <!--IMRPIMIR LA LISTA DE LECCIONES, SUBTEMA Y TEMAS-->
     <div class="container">
         <div class="row">
-            <table  id="dataTable" class="table table-striped">
+            <table id="dataTable" class="table table-striped">
                 <tbody>
                     <tr>
                         <td style="color:rgba(0,0,0,0)">.</td>
