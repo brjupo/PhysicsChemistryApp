@@ -246,10 +246,10 @@ if (!isset($_POST["grupo"])) {
             </div>
         </div>
         <div class="row">
-        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <p>Espera a que el reporte termine de crearse para descargarlo</p>
-        </div>
-        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <p>Espera a que el reporte termine de crearse para descargarlo</p>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <button id="btnExportToCsv" type="button" class="btn btn-primary">Export to CSV</button>
             </div>
         </div>
@@ -266,9 +266,9 @@ if (!isset($_POST["grupo"])) {
             <table id="dataTable" class="table table-striped">
                 <tbody>
                     <tr>
-                        <td style="color:rgba(0,0,0,0)">.</td>
-                        <td style="color:rgba(0,0,0,0)">.</td>
-                        <td style="color:rgba(0,0,0,0)">.</td>
+                        <td style="color:rgba(0,0,0,0)">Materia</td>
+                        <td style="color:rgba(0,0,0,0)">Grupo</td>
+                        <td style="color:rgba(0,0,0,0)">Fecha y Hora</td>
                         <?php
                         //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
                         $size2 = count($lecciones["id"]);
@@ -277,9 +277,13 @@ if (!isset($_POST["grupo"])) {
                         } ?>
                     </tr>
                     <tr>
-                        <td style="color:rgba(0,0,0,0)">.</td>
-                        <td style="color:rgba(0,0,0,0)">.</td>
-                        <td style="color:rgba(0,0,0,0)">.</td>
+                        <?php
+                            date_default_timezone_set("America/Mexico_City");
+                            echo "Today is " . date("Y/m/d H:m:s") . "<br>";
+                        ?>
+                        <td style="color:rgba(0,0,0,0)"><?php echo $materia; ?></td>
+                        <td style="color:rgba(0,0,0,0)"><?php echo $grupo; ?></td>
+                        <td style="color:rgba(0,0,0,0)"><?php echo date("Y/m/d H:m:s");?></td>
                         <?php
                         $size3 = count($lecciones["id"]);
                         for ($k = 0; $k < $size3; ++$k) {
