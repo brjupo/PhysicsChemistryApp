@@ -258,7 +258,7 @@ require "../../Servicios/isStaff.php";
       else {
         echo '<script type="text/javascript">
             alert("Usuario y/o contraseña incorrectos\nTienes alguna pregunta consulta nuestras FAQs");
-            window.location.href="https://kaanbal.net/contacto.html";
+            window.location.href="https://kaanbal.net/FAQs.html";
             </script>';
       }
     }
