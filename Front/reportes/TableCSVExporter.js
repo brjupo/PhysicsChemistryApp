@@ -1,21 +1,43 @@
-const dataTable = document.getElementById("dataTable");
-const btnExportToCsv = document.getElementById("btnExportToCsv");
+/*
+object.onload = function () {
+  myScript;
+};
 
-btnExportToCsv.addEventListener("click", () => {
-  const exporter = new TableCSVExporter(dataTable);
-  const csvOutput = exporter.convertToCSV();
-  const csvBlob = new Blob([csvOutput], { type: "text/csv" });
-  const blobUrl = URL.createObjectURL(csvBlob);
-  const anchorElement = document.createElement("a");
-
-  anchorElement.href = blobUrl;
-  anchorElement.download = "table-export.csv";
-  anchorElement.click();
-
-  setTimeout(() => {
-    URL.revokeObjectURL(blobUrl);
-  }, 500);
+document.addEventListener("click", function (evt) {
+  var cruzCerrar = document.getElementById("cruzCerrar");
+  targetElement = evt.target; // clicked element
+  do {
+    if (targetElement == cruzCerrar) {
+      seguroRegresar();
+      return;
+    }
+    // Go up the DOM
+    targetElement = targetElement.parentNode;
+  } while (targetElement);
 });
+*/
+
+
+window.onload = function () {
+  const dataTable = document.getElementById("dataTable");
+  const btnExportToCsv = document.getElementById("btnExportToCsv");
+
+  btnExportToCsv.addEventListener("click", () => {
+    const exporter = new TableCSVExporter(dataTable);
+    const csvOutput = exporter.convertToCSV();
+    const csvBlob = new Blob([csvOutput], { type: "text/csv" });
+    const blobUrl = URL.createObjectURL(csvBlob);
+    const anchorElement = document.createElement("a");
+
+    anchorElement.href = blobUrl;
+    anchorElement.download = "table-export.csv";
+    anchorElement.click();
+
+    setTimeout(() => {
+      URL.revokeObjectURL(blobUrl);
+    }, 500);
+  });
+};
 
 class TableCSVExporter {
   constructor(table, includeHeaders = true) {
