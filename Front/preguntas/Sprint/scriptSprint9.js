@@ -7,6 +7,8 @@ var timeIntervalX = setInterval(function () {
   var i = 1;
 }, 500);
 var segundosTotales = 0;
+var segundosTotales_2_3 = 0;
+var segundosTotales_1_3 = 0;
 var idioma = "e";
 var segundosActuales = 0;
 var acumulador = 0;
@@ -19,6 +21,8 @@ var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 window.onload = function () {
   contarTiempo();
   segundosTotales = getTimeForSprint();
+  segundosTotales_2_3 = parseInt(segundosTotales * 2 / 3);
+  segundosTotales_1_3 = parseInt(segundosTotales / 3);
   idioma = document.getElementById("idioma").innerHTML.trim();
 };
 
@@ -279,9 +283,9 @@ function verifyIfCorrectOption(targetID, questionNumber) {
   if (selectedAnswer0to3 == correctOption) {
     lastQuestion = questionNumber;
     questionNumberArray.shift();
-    if (segundosActuales > (segundosTotales * 2) / 3) {
+    if (segundosActuales > segundosTotales_2_3)  {
       puntos = puntos + 3;
-    } else if (segundosActuales > segundosTotales / 3) {
+    } else if (segundosActuales > segundosTotales_1_3) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
@@ -347,9 +351,10 @@ function verifyIfTextIsCorrect(questionNumber) {
     ).value = document
       .getElementById(10 * questionNumber - 5)
       .value.toLowerCase();
-    if (segundosActuales > (segundosTotales * 2) / 3) {
+    //segundosTotales_2_3 Significa la variable segundosTotales * 2 / 3
+    if (segundosActuales > segundosTotales_2_3) {
       puntos = puntos + 3;
-    } else if (segundosActuales > segundosTotales / 3) {
+    } else if (segundosActuales > segundosTotales_1_3) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
