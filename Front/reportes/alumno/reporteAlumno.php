@@ -259,10 +259,10 @@ if (!isset($_POST["grupo"])) {
                     <span class="input-group-text" id="basic-addon1">File name:</span>
                 </div>
                 <?php
-                    date_default_timezone_set("America/Mexico_City");
-                    $fileName = "alumno" . $materia . "_" . $grupo . "_" . date("Y/m/d");
+                date_default_timezone_set("America/Mexico_City");
+                $fileName = "alumno" . $materia . "_" . $grupo . "_" . date("Y/m/d");
                 ?>
-                <input id="fileName" type="text" class="form-control" value="">
+                <input id="fileName" type="text" class="form-control" value="<?php echo $fileName; ?>">
             </div>
         </div>
         <div class="row">
