@@ -266,9 +266,9 @@ if (!isset($_POST["grupo"])) {
             <table id="dataTable" class="table table-striped">
                 <tbody>
                     <tr>
-                        <td style="color:rgba(0,0,0,0)">Materia</td>
-                        <td style="color:rgba(0,0,0,0)">Grupo</td>
-                        <td style="color:rgba(0,0,0,0)">Fecha y Hora</td>
+                        <td style="color:rgba(50,50,255,1)">Materia</td>
+                        <td style="color:rgba(50,50,255,1)">Grupo</td>
+                        <td style="color:rgba(50,50,255,1)">Fecha y Hora</td>
                         <?php
                         //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
                         $size2 = count($lecciones["id"]);
