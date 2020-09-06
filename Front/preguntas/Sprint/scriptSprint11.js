@@ -20,10 +20,8 @@ var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 
 window.onload = function () {
   contarTiempo();
-  segundosTotales = getTimeForSprint();
-  segundosTotales_2_3 = parseInt(segundosTotales * 2 / 3);
-  segundosTotales_1_3 = parseInt(segundosTotales / 3);
   idioma = document.getElementById("idioma").innerHTML.trim();
+  segundosTotales = getTimeForSprint();
 };
 
 function contarTiempo() {
@@ -44,6 +42,8 @@ function getTimeForSprint() {
       console.log(data.response);
       if (data.response == "true") {
         segundosTotales = parseInt(data.seconds);
+        segundosTotales_2_3 = parseInt((segundosTotales * 2) / 3);
+        segundosTotales_1_3 = parseInt(segundosTotales / 3);
         createArrayWithQuestions();
       } else {
         alert("Error en el tiempo.");
@@ -283,7 +283,7 @@ function verifyIfCorrectOption(targetID, questionNumber) {
   if (selectedAnswer0to3 == correctOption) {
     lastQuestion = questionNumber;
     questionNumberArray.shift();
-    if (segundosActuales > segundosTotales_2_3)  {
+    if (segundosActuales > segundosTotales_2_3) {
       puntos = puntos + 3;
     } else if (segundosActuales > segundosTotales_1_3) {
       puntos = puntos + 2;
@@ -526,7 +526,7 @@ function startClock() {
     var actual = countDownDate - sumaSegundos;
     var later = countDownDate - sumaSegundos + unSegundo;
     //----------------------------ACTUAL-----------------------------------
-    segundosActuales = actual/1000; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
+    segundosActuales = actual / 1000; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
     // Time calculations for days, hours, minutes and seconds
     var minutes = Math.floor((actual % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((actual % (1000 * 60)) / 1000);
