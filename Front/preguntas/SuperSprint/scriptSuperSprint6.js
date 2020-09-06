@@ -6,7 +6,7 @@ var firstTimeToSaveGrade = 0;
 var timeIntervalX = setInterval(function () {
   var i = 1;
 }, 500);
-var segundos = 0;
+var segundosTotales= 0;
 var segundosActuales = 0;
 var acumulador = 0;
 var idioma = "e";
@@ -18,8 +18,8 @@ var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 
 window.onload = function () {
   contarTiempo();
-  segundos = getTimeForSprint();
-  dioma = document.getElementById("idioma").innerHTML.trim();
+  idioma = document.getElementById("idioma").innerHTML.trim();
+  getTimeForSprint();
 };
 
 function contarTiempo() {
@@ -40,7 +40,9 @@ function getTimeForSprint() {
       console.log(data.seconds);
       console.log(data.response);
       if (data.response == "true") {
-        segundos = parseInt(data.seconds);
+        segundosTotales= parseInt(data.seconds);
+        segundosTotales_2_3 = parseInt((segundosTotales * 2) / 3);
+        segundosTotales_1_3 = parseInt(segundosTotales / 3);
         createArrayWithQuestions();
       }
       else{
@@ -48,7 +50,7 @@ function getTimeForSprint() {
       }
     }
   });
-  return segundos;
+  //return segundos;
 }
 
 
@@ -282,9 +284,10 @@ function verifyIfCorrectOption(targetID, questionNumber) {
   if (selectedAnswer0to3 == correctOption) {
     lastQuestion = questionNumber;
     questionNumberArray.shift();
-    if (segundosActuales > segundos*2/3) {
+    //segundosTotales_2_3 Significa la variable segundosTotales * 2 / 3
+    if (segundosActuales > segundosTotales_2_3) {
       puntos = puntos + 3;
-    } else if (segundosActuales > segundos/3) {
+    } else if (segundosActuales > segundosTotales_1_3) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
@@ -352,9 +355,10 @@ function verifyIfTextIsCorrect(questionNumber) {
     ).value = document
       .getElementById(10 * questionNumber - 5)
       .value.toLowerCase();
-    if (segundosActuales > segundos*2/3) {
+    //segundosTotales_2_3 Significa la variable segundosTotales * 2 / 3
+    if (segundosActuales > segundosTotales_2_3) {
       puntos = puntos + 3;
-    } else if (segundosActuales > segundos/3) {
+    } else if (segundosActuales > segundosTotales_1_3) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
@@ -512,7 +516,7 @@ function startClock() {
   var segundos = 30;
   var milisegundos = segundos * 1000 + minutos * 60 * 1000;
   */
-  var milisegundos = segundos * 1000;
+  var milisegundos = segundosTotales* 1000;
   var countDownDate = new Date(milisegundos).getTime();
   var unSegundo = new Date(1000).getTime();
   var sumaSegundos = new Date(1000).getTime();
@@ -523,17 +527,19 @@ function startClock() {
     var actual = countDownDate - sumaSegundos;
     var later = countDownDate - sumaSegundos + unSegundo;
     //----------------------------ACTUAL-----------------------------------
+    segundosActuales =  actual/1000; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
     // Time calculations for days, hours, minutes and seconds
     var minutes = Math.floor((actual % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((actual % (1000 * 60)) / 1000);
-    segundosActuales = seconds; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
     // Output the result in an element with id="demo"
     //document.getElementById("actual").innerHTML = seconds + "";
-    if(seconds <= 9){
-      document.getElementById('actual').innerHTML = "00:0" + seconds;}
-    else{
-      document.getElementById("actual").innerHTML = "00:" + seconds;}
-    //minutes + "m " + seconds + "s ";
+    if (seconds <= 9) {
+      document.getElementById("actual").innerHTML =
+        "0" + minutes + ":0" + seconds;
+    } else {
+      document.getElementById("actual").innerHTML =
+        "0" + minutes + ":" + seconds;
+    }//minutes + "m " + seconds + "s ";
 
     //----------------------------PREVIO-----------------------------------
     minutes = Math.floor(((actual - 1000) % (1000 * 60 * 60)) / (1000 * 60));
