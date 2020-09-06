@@ -21,7 +21,7 @@ var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 window.onload = function () {
   contarTiempo();
   idioma = document.getElementById("idioma").innerHTML.trim();
-  segundosTotales = getTimeForSprint();
+  getTimeForSprint();
 };
 
 function contarTiempo() {
@@ -50,7 +50,7 @@ function getTimeForSprint() {
       }
     },
   });
-  return segundosTotales;
+  //return segundosTotales;
 }
 
 function createArrayWithQuestions() {
