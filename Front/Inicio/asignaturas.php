@@ -36,8 +36,6 @@ require "../../Servicios/isStaff.php";
             //header("Location: /logout.php");
         }
     } */
-
-  /////
   $tokenValidar = array();
 
   if ($_SESSION["idioma"] == 'i') {
@@ -127,6 +125,27 @@ require "../../Servicios/isStaff.php";
 
       //Si el usuario EXISTE despliega el menú de las asignaturas
       if ($temp_id_usuario) {
+
+        /* /////Usuario sin licencia
+        $statement = mysqli_prepare($con, "SELECT pagado FROM licencia WHERE id_usuario = ? AND id_asignatura = ?");
+        mysqli_stmt_bind_param($statement, "ss", $temp_id_usuario, $_SESSION["idAsignaturaValidar"]);
+        mysqli_stmt_execute($statement);
+
+        mysqli_stmt_store_result($statement);
+        mysqli_stmt_bind_result($statement, $pagado);
+
+        while (mysqli_stmt_fetch($statement)) {
+          $pago["pago"] = $pagado;
+        }
+
+        if($pago["pago"] = 0){
+          echo '<script type="text/javascript">
+          alert("Adquiere tu licencia aqui");
+          window.location.href="https://kaanbal.net/contacto.html";
+          </script>';
+        }
+      /////////////////// */
+
         //Consultar si es profesor
         $statement = mysqli_prepare($con, "SELECT id_profesor FROM profesor WHERE id_usuario = ?");
         mysqli_stmt_bind_param($statement, "s", $temp_id_usuario);
@@ -238,8 +257,8 @@ require "../../Servicios/isStaff.php";
       //Si el usuario NO EXISTE mensaje de error y retorna a inicio
       else {
         echo '<script type="text/javascript">
-            alert("Usuario y/o contraseña incorrectos");
-            window.location.href="https://kaanbal.net";
+            alert("Usuario y/o contraseña incorrectos\nAdquiere tu licencia aqui");
+            window.location.href="https://kaanbal.net/contacto.html";
             </script>';
       }
     }
