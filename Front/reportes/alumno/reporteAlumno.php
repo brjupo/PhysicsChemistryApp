@@ -278,12 +278,11 @@ if (!isset($_POST["grupo"])) {
                     </tr>
                     <tr>
                         <?php
-                            date_default_timezone_set("America/Mexico_City");
-                            echo "Today is " . date("Y/m/d H:m:s") . "<br>";
+                        date_default_timezone_set("America/Mexico_City");
                         ?>
-                        <td style="color:rgba(0,0,0,0)"><?php echo $materia; ?></td>
-                        <td style="color:rgba(0,0,0,0)"><?php echo $grupo; ?></td>
-                        <td style="color:rgba(0,0,0,0)"><?php echo date("Y/m/d H:m:s");?></td>
+                        <td style="color:rgba(200,200,255,1)"><?php echo $materia; ?></td>
+                        <td style="color:rgba(200,200,255,1)"><?php echo $grupo; ?></td>
+                        <td style="color:rgba(200,200,255,1)"><?php echo date("Y/m/d H:m:s"); ?></td>
                         <?php
                         $size3 = count($lecciones["id"]);
                         for ($k = 0; $k < $size3; ++$k) {
