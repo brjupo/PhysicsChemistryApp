@@ -1,4 +1,5 @@
 window.onload = function () {
+  document.getElementById("myBtn").disabled = false; 
   const dataTable = document.getElementById("dataTable");
   const btnExportToCsv = document.getElementById("btnExportToCsv");
 
