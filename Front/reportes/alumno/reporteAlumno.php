@@ -22,7 +22,7 @@ if (!isset($_POST["grupo"])) {
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
-    <script src="../TableCSVExporter3.js"></script>
+    <script src="../TableCSVExporter5.js"></script>
 </head>
 
 <body>
@@ -250,7 +250,7 @@ if (!isset($_POST["grupo"])) {
                 <p>Espera a que el reporte termine de crearse para descargarlo</p>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <button id="btnExportToCsv" type="button" class="btn btn-primary">Export to CSV</button>
+                <button id="btnExportToCsv" type="button" class="btn btn-primary" disabled>Export to CSV</button>
             </div>
         </div>
         <div class="row">
