@@ -6,10 +6,12 @@ var firstTimeToSaveGrade = 0;
 var timeIntervalX = setInterval(function () {
   var i = 1;
 }, 500);
-var segundos = 0;
+var segundosTotales = 0;
+var segundosTotales_2_3 = 0;
+var segundosTotales_1_3 = 0;
+var idioma = "e";
 var segundosActuales = 0;
 var acumulador = 0;
-var idioma = "e";
 
 var CorrectAudio = new Audio("../../CSSsJSs/sounds/Incorrect.mp3");
 var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
@@ -18,39 +20,38 @@ var IncorrectAudio = new Audio("../../CSSsJSs/sounds/Correct.mp3");
 
 window.onload = function () {
   contarTiempo();
-  segundos = getTimeForSprint();
-  dioma = document.getElementById("idioma").innerHTML.trim();
+  idioma = document.getElementById("idioma").innerHTML.trim();
+  getTimeForSprint();
 };
 
 function contarTiempo() {
-  window.setInterval(function(){
+  window.setInterval(function () {
     acumulador++;
-  },1000);
+  }, 1000);
 }
 
-
 function getTimeForSprint() {
-  subtema = document.getElementById("subtemaID").innerHTML.trim();
+  leccion = document.getElementById("leccionID").innerHTML.trim();
   $.ajax({
     type: "POST",
-    url: "getTimeForSuperSprint.php",
+    url: "getTimeForSprint.php",
     dataType: "json",
-    data: { subtema : subtema},
-    success: function(data) {
+    data: { leccion: leccion },
+    success: function (data) {
       console.log(data.seconds);
       console.log(data.response);
       if (data.response == "true") {
-        segundos = parseInt(data.seconds);
+        segundosTotales = parseInt(data.seconds);
+        segundosTotales_2_3 = parseInt((segundosTotales * 2) / 3);
+        segundosTotales_1_3 = parseInt(segundosTotales / 3);
         createArrayWithQuestions();
-      }
-      else{
+      } else {
         alert("Error en el tiempo.");
       }
-    }
+    },
   });
-  return segundos;
+  //return segundosTotales;
 }
-
 
 function createArrayWithQuestions() {
   for (var i = 1001; i <= 1100; i++) {
@@ -191,19 +192,19 @@ document.addEventListener("click", function (evt) {
 });
 
 function seguroRegresar() {
-  if (idioma == "e"){
-    var texto = "¿Seguro que quieres regresar?\nPerderás todo tu progreso de esta lección.";
-  }else{
-    var texto = "Are you sure to return?\nIf you return you will lose all your progress of this lesson.";
+  if (idioma == "e") {
+    var texto =
+      "¿Seguro que quieres regresar?\nPerderás todo tu progreso de esta lección.";
+  } else {
+    var texto =
+      "Are you sure to return?\nIf you return you will lose all your progress of this lesson.";
   }
-  if (
-    confirm(texto)
-  ) {
+  if (confirm(texto)) {
     var userID = document.getElementById("userID").innerHTML.trim();
     enviarAcumulador(userID);
-    var stringLiga = "../../Inicio/subtemas.php?tema=";
+    var stringLiga = "../../Inicio/lecciones.php?subtema=";
     window.location.href = stringLiga.concat(
-      document.getElementById("temaPrevio").innerHTML.trim()
+      document.getElementById("subtemaPrevio").innerHTML.trim()
     );
   }
 }
@@ -282,9 +283,9 @@ function verifyIfCorrectOption(targetID, questionNumber) {
   if (selectedAnswer0to3 == correctOption) {
     lastQuestion = questionNumber;
     questionNumberArray.shift();
-    if (segundosActuales > segundos*2/3) {
+    if (segundosActuales > segundosTotales_2_3) {
       puntos = puntos + 3;
-    } else if (segundosActuales > segundos/3) {
+    } else if (segundosActuales > segundosTotales_1_3) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
@@ -339,9 +340,7 @@ function verifyIfTextIsCorrect(questionNumber) {
     .normalize();
   respuestaEscritaUpper = respuestaEscritaNormalizada.toUpperCase();
   //Muestras la respuesta correcta en el Boton
-  document.getElementById(
-    10 * questionNumber - 4
-  ).innerHTML = correctText;
+  document.getElementById(10 * questionNumber - 4).innerHTML = correctText;
   //Se valida si la respuesta es correcta
   if (respuestaEscritaUpper == respuestaCorrectaUpper) {
     lastQuestion = questionNumber;
@@ -352,9 +351,10 @@ function verifyIfTextIsCorrect(questionNumber) {
     ).value = document
       .getElementById(10 * questionNumber - 5)
       .value.toLowerCase();
-    if (segundosActuales > segundos*2/3) {
+    //segundosTotales_2_3 Significa la variable segundosTotales * 2 / 3
+    if (segundosActuales > segundosTotales_2_3) {
       puntos = puntos + 3;
-    } else if (segundosActuales > segundos/3) {
+    } else if (segundosActuales > segundosTotales_1_3) {
       puntos = puntos + 2;
     } else {
       puntos = puntos + 1;
@@ -427,8 +427,8 @@ function nextQuestion(lastQuestion) {
   }
   if (questionNumberArray.length == 0) {
     /* var stringLiga =
-      "sprintFinalizado.php?tema=" +
-      document.getElementById("temaPrevio").innerHTML.trim() +
+      "sprintFinalizado.php?subtema=" +
+      document.getElementById("subtemaPrevio").innerHTML.trim() +
       "&puntos=" +
       puntos +
       "&totalPreguntas=" +
@@ -441,20 +441,19 @@ function nextQuestion(lastQuestion) {
 
 function enviarCalificacionRedirigir() {
   var userID = document.getElementById("userID").innerHTML.trim();
-  var subtemaID = document.getElementById("subtemaID").innerHTML.trim();
-  enviarAcumulador(userID);
+  var leccionID = document.getElementById("leccionID").innerHTML.trim();
   $.ajax({
     type: "POST",
     url: "subirPuntosByType.php",
     dataType: "json",
-    data: { id: userID, leccion: subtemaID, puntos: puntos, flagTipo: "SG" },
+    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SP" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
         console.log("Valores enviados correctamente");
         var stringLiga =
-          "sprintFinalizado.php?tema=" +
-          document.getElementById("temaPrevio").innerHTML.trim() +
+          "sprintFinalizado.php?subtema=" +
+          document.getElementById("subtemaPrevio").innerHTML.trim() +
           "&puntos=" +
           puntos +
           "&totalPreguntas=" +
@@ -465,22 +464,26 @@ function enviarCalificacionRedirigir() {
       }
     },
   });
+  enviarAcumulador(userID);
 }
 
 function enviarCalificacion() {
   var userID = document.getElementById("userID").innerHTML.trim();
-  var subtemaID = document.getElementById("subtemaID").innerHTML.trim();
+  var leccionID = document.getElementById("leccionID").innerHTML.trim();
+  //alert(userID+ " "+ puntos+ " "+ leccionID);
 
   $.ajax({
     type: "POST",
     url: "subirPuntosByType.php",
     dataType: "json",
-    data: { id: userID, leccion: subtemaID, puntos: puntos, flagTipo: "SG" },
+    data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SP" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
         //alert("Etcito");
         console.log("Valores enviados correctamente");
+        //var stringLiga =
+        //  "https://kaanbal.net/Front/Inicio/lecciones.php?subtema=";
       } else {
         //alert(data.response);
         console.log("Algo salio mal");
@@ -512,7 +515,7 @@ function startClock() {
   var segundos = 30;
   var milisegundos = segundos * 1000 + minutos * 60 * 1000;
   */
-  var milisegundos = segundos * 1000;
+  var milisegundos = segundosTotales * 1000;
   var countDownDate = new Date(milisegundos).getTime();
   var unSegundo = new Date(1000).getTime();
   var sumaSegundos = new Date(1000).getTime();
@@ -523,16 +526,20 @@ function startClock() {
     var actual = countDownDate - sumaSegundos;
     var later = countDownDate - sumaSegundos + unSegundo;
     //----------------------------ACTUAL-----------------------------------
+    segundosActuales = actual / 1000; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
     // Time calculations for days, hours, minutes and seconds
     var minutes = Math.floor((actual % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((actual % (1000 * 60)) / 1000);
-    segundosActuales = seconds; //Con el objetivo de subir mas puntos en el SPRINT, en función del tiempo
+
     // Output the result in an element with id="demo"
     //document.getElementById("actual").innerHTML = seconds + "";
-    if(seconds <= 9){
-      document.getElementById('actual').innerHTML = "00:0" + seconds;}
-    else{
-      document.getElementById("actual").innerHTML = "00:" + seconds;}
+    if (seconds <= 9) {
+      document.getElementById("actual").innerHTML =
+        "0" + minutes + ":0" + seconds;
+    } else {
+      document.getElementById("actual").innerHTML =
+        "0" + minutes + ":" + seconds;
+    }
     //minutes + "m " + seconds + "s ";
 
     //----------------------------PREVIO-----------------------------------
@@ -620,7 +627,7 @@ function enviarAcumulador(userID) {
     type: "POST",
     url: "../../../Servicios/enviarAcumulador.php",
     dataType: "json",
-    data: { id: userID, acmldr: acumulador, flagTipo: "acmlrSS" },
+    data: { id: userID, acmldr: acumulador, flagTipo: "acmlrSP" },
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
@@ -630,4 +637,4 @@ function enviarAcumulador(userID) {
       }
     },
   });
-  }
+}

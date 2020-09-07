@@ -22,6 +22,7 @@ if (!isset($_POST["grupo"])) {
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
+    <script src="../TableCSVExporter3.js"></script>
 </head>
 
 <body>
@@ -238,16 +239,48 @@ if (!isset($_POST["grupo"])) {
             ?>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color:white">.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <p>Espera a que el reporte termine de crearse para descargarlo</p>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <button id="btnExportToCsv" type="button" class="btn btn-primary">Export to CSV</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-group input-group-sm col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <?php
+                date_default_timezone_set("America/Mexico_City");
+                $fileName = "alumno_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
+                ?>
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">File name:</span>
+                </div>
+                <input type="text" id="fileName" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="<?php echo $fileName; ?>">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color:white">.</p>
+            </div>
+        </div>
+    </div>
 
     <!--IMRPIMIR LA LISTA DE LECCIONES, SUBTEMA Y TEMAS-->
     <div class="container">
         <div class="row">
-            <table class="table table-striped">
+            <table id="dataTable" class="table table-striped">
                 <tbody>
                     <tr>
-                        <td style="color:rgba(0,0,0,0)">.</td>
-                        <td style="color:rgba(0,0,0,0)">.</td>
-                        <td style="color:rgba(0,0,0,0)">.</td>
+                        <td style="color:rgba(50,50,255,1)">Materia</td>
+                        <td style="color:rgba(50,50,255,1)">Grupo</td>
+                        <td style="color:rgba(50,50,255,1)">Fecha y Hora</td>
                         <?php
                         //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
                         $size2 = count($lecciones["id"]);
@@ -256,9 +289,9 @@ if (!isset($_POST["grupo"])) {
                         } ?>
                     </tr>
                     <tr>
-                        <td style="color:rgba(0,0,0,0)">.</td>
-                        <td style="color:rgba(0,0,0,0)">.</td>
-                        <td style="color:rgba(0,0,0,0)">.</td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $materia; ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo; ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo date("Y/m/d H:m:s"); ?></td>
                         <?php
                         $size3 = count($lecciones["id"]);
                         for ($k = 0; $k < $size3; ++$k) {
@@ -344,9 +377,9 @@ if (!isset($_POST["grupo"])) {
                     $modos["acronimo"] = ["E", "SP", "PP"];
                     $modos["nombre"] = ["Examen", "Sprint", "Práctica"];
                     //Despues comenzamos a rotar los alumnos
-                    $size6=count($alumnos["id"]);
-                    $size7=count($modos);
-                    $size8=count($lecciones["id"]);
+                    $size6 = count($alumnos["id"]);
+                    $size7 = count($modos);
+                    $size8 = count($lecciones["id"]);
                     for ($m = 0; $m < $size6; ++$m) {
                         //Ahora a rotar los modos
                         for ($p = 0; $p <= $size7; ++$p) {
@@ -368,7 +401,7 @@ if (!isset($_POST["grupo"])) {
                                         $calificacion = intval(100 * $row[0] / $lecciones["totalPreguntas"][$l]);
                                         if ($tipo == "SP" || $tipo == "SG") {
                                             ///$calificacion = $calificacion / 3;
-                                            $calificacion = intval(100 * $row[0]  / ($lecciones["totalPreguntas"][$l]*3));
+                                            $calificacion = intval(100 * $row[0]  / ($lecciones["totalPreguntas"][$l] * 3));
                                         }
                                         echo '<td>' . $calificacion . '</td>';
                                     }
