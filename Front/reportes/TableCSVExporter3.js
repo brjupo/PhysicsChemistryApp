@@ -1,23 +1,3 @@
-/*
-object.onload = function () {
-  myScript;
-};
-
-document.addEventListener("click", function (evt) {
-  var cruzCerrar = document.getElementById("cruzCerrar");
-  targetElement = evt.target; // clicked element
-  do {
-    if (targetElement == cruzCerrar) {
-      seguroRegresar();
-      return;
-    }
-    // Go up the DOM
-    targetElement = targetElement.parentNode;
-  } while (targetElement);
-});
-*/
-
-
 window.onload = function () {
   const dataTable = document.getElementById("dataTable");
   const btnExportToCsv = document.getElementById("btnExportToCsv");
