@@ -22,7 +22,7 @@ if (!isset($_POST["grupo"])) {
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
-    <script src="../TableCSVExporter4.js"></script>
+    <script src="../TableCSVExporter5.js"></script>
 </head>
 
 <body>
