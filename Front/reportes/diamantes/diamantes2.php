@@ -22,6 +22,7 @@ if (!isset($_POST["grupo"])) {
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
+    <script src="../TableCSVExporter5.js"></script>
 </head>
 
 <body>
@@ -147,12 +148,55 @@ if (!isset($_POST["grupo"])) {
     $conn = null;
 
     ?>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color:white">.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <p>Espera a que el reporte termine de crearse para descargarlo</p>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <button id="btnExportToCsv" type="button" class="btn btn-primary" disabled>Export to CSV</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-group input-group-sm col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <?php
+                date_default_timezone_set("America/Mexico_City");
+                $fileName = "alumno_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
+                ?>
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">File name:</span>
+                </div>
+                <input type="text" id="fileName" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="<?php echo $fileName; ?>">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color:white">.</p>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
-            <table class="table table-striped">
+            <table id="dataTable" class="table table-striped">
                 <tbody>
+                    <tr>
+                        <td style="color:rgba(50,50,255,1)">Materia</td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $materia; ?></td>
+                    </tr>
+                    <tr>
+                        <td style="color:rgba(50,50,255,1)">Grupo</td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo; ?></td>
+                    </tr>
+                    <tr>
+                        <td style="color:rgba(50,50,255,1)">Fecha y Hora</td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo date("Y/m/d H:m:s"); ?></td>
+                    </tr>
                     <tr>
                         <td>Matricula</td>
                         <td>Diamantes</td>
