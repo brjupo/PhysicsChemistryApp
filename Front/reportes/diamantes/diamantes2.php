@@ -166,7 +166,7 @@ if (!isset($_POST["grupo"])) {
             <div class="input-group input-group-sm col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <?php
                 date_default_timezone_set("America/Mexico_City");
-                $fileName = "alumno_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
+                $fileName = "diamantes_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
                 ?>
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">File name:</span>

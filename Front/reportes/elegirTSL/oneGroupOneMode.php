@@ -17,6 +17,7 @@ if ($teacherID == "null") {
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
+    <script src="../TableCSVExporter5.js"></script>
 </head>
 
 <body>
@@ -152,104 +153,140 @@ if ($teacherID == "null") {
     }
     $conn = null;
     ?>
+    <!--+++++++++++++++++++++++++++++++++++ IMPRIMIR PARA DESCARGAR ARCHIVO ++++++++++++-->
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <table style="width:100%">
-                    <tbody>
-                        <tr class="table-info">
-                            <td>.</td>
-                            <td>.</td>
-                            <td><?php echo $tema; ?></td>
-                        </tr>
-                        <tr class="table-light">
-                            <td>.</td>
-                            <td>.</td>
-                            <td><?php echo $subtema; ?></td>
-                        </tr>
-                        <tr class="table-info">
-                            <td>.</td>
-                            <td>.</td>
-                            <td><?php echo $leccion; ?></td>
-                        </tr>
-                        <?php
-                        //--------------AQUI OBTIENES TODOS LOS ALUMNOS DEL GRUPO
-                        $alumnos = array();
-                        $alumnos["matricula"] = array();
-                        $alumnos["id"] = array();
-                        //Crear la lectura en base de datos
-                        try {
-                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = " . $id_grupo;
-                            $stmt = $conn->query($stringQuery);
-                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                array_push($alumnos["matricula"], $row[0]);
-                                array_push($alumnos["id"], $row[1]);
-                            }
-                        } catch (PDOException $e) {
-                            echo "Error: " . $e->getMessage();
-                        }
-                        $conn = null;
+                <p style="color:white">.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <p>Espera a que el reporte termine de crearse para descargarlo</p>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <button id="btnExportToCsv" type="button" class="btn btn-primary" disabled>Export to CSV</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-group input-group-sm col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <?php
+                date_default_timezone_set("America/Mexico_City");
+                $fileName = "periodo_" . $materia . "_" . $grupo . "_" . $desde_fecha . "_" . $desde_tiempo;
+                ?>
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">File name:</span>
+                </div>
+                <input type="text" id="fileName" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="<?php echo $fileName; ?>">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color:white">.</p>
+            </div>
+        </div>
+    </div>
 
-                        ?>
-                        <?php
-                        //--------NECESITASMOS SABER EL NUMERO DE PREGUNTAS DE LA LECCION PARA OBTENER LA CALILIFACION
-                        $totalPreguntas=0;
+    <!--+++++++++++++++++++++++++++++++++++ IMPRIMIR TABLA | UN MODO | UN GRUPO | ++++++++++++-->
+    <div class="container">
+        <div class="row">
+            <table id="dataTable" style="width:100%">
+                <tbody>
+                    <tr class="table-info">
+                        <td style="color:rgba(50,50,255,1)">Materia</td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $materia; ?></td>
+                        <td><?php echo $tema; ?></td>
+                    </tr>
+                    <tr class="table-light">
+                        <td style="color:rgba(50,50,255,1)">Grupo</td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo; ?></td>
+                        <td><?php echo $subtema; ?></td>
+                    </tr>
+                    <tr class="table-info">
+                        <td style="color:rgba(50,50,255,1)">Fecha y Hora del periodo</td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $desde_fecha . "_" . $desde_tiempo; ?></td>
+                        <td><?php echo $leccion; ?></td>
+                    </tr>
+                    <?php
+                    //--------------AQUI OBTIENES TODOS LOS ALUMNOS DEL GRUPO
+                    $alumnos = array();
+                    $alumnos["matricula"] = array();
+                    $alumnos["id"] = array();
+                    //Crear la lectura en base de datos
+                    try {
+                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = " . $id_grupo;
+                        $stmt = $conn->query($stringQuery);
+                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                            array_push($alumnos["matricula"], $row[0]);
+                            array_push($alumnos["id"], $row[1]);
+                        }
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                    }
+                    $conn = null;
+
+                    ?>
+                    <?php
+                    //--------NECESITASMOS SABER EL NUMERO DE PREGUNTAS DE LA LECCION PARA OBTENER LA CALILIFACION
+                    $totalPreguntas = 0;
+                    try {
+                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stringQuery = "SELECT COUNT(id_leccion) FROM pregunta WHERE id_leccion = " . $id_leccion;
+                        $stmt = $conn->query($stringQuery);
+                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                            $totalPreguntas = $row[0];
+                            echo '<p> Total de preguntas de esta lección = ' . $totalPreguntas . '</p>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                    }
+                    $conn = null;
+                    ?>
+                    <?php
+                    //---------IMPRIME MATRICULA Y ASOCIA EL ID ALUMNO CON LAS PUNTUACIONES EN PUNTUACION
+                    //---------ASI APARECE LA PUNUTACION DEL ALUMNO DE LA LECCION
+                    for ($m = 0; $m < count($alumnos["id"]); $m++) {
+                        echo '<tr>';
+                        echo '<td>' . $alumnos["matricula"][$m] . '</td>';
+                        echo '<td>' . $alumnos["id"][$m] . '</td>';
+                        //Crear la lectura en base de datos
+                        $entre = 0;
                         try {
                             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = "SELECT COUNT(id_leccion) FROM pregunta WHERE id_leccion = " . $id_leccion;
-                            $stmt = $conn->query($stringQuery);
-                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                $totalPreguntas = $row[0];
-                                echo '<p> Total de preguntas de esta lección = '.$totalPreguntas.'</p>';
-                            }
-                        } catch (PDOException $e) {
-                            echo "Error: " . $e->getMessage();
-                        }
-                        $conn = null;
-                        ?>
-                        <?php
-                        //---------IMPRIME MATRICULA Y ASOCIA EL ID ALUMNO CON LAS PUNTUACIONES EN PUNTUACION
-                        //---------ASI APARECE LA PUNUTACION DEL ALUMNO DE LA LECCION
-                        for ($m = 0; $m < count($alumnos["id"]); $m++) {
-                            echo '<tr>';
-                            echo '<td>' . $alumnos["matricula"][$m] . '</td>';
-                            echo '<td>' . $alumnos["id"][$m] . '</td>';
-                            //Crear la lectura en base de datos
-                            $entre=0;
-                            try {
-                                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                $stringQuery = "SELECT alumno.id_alumno, puntuacion_historico.puntuacion FROM puntuacion_historico 
+                            $stringQuery = "SELECT alumno.id_alumno, puntuacion_historico.puntuacion FROM puntuacion_historico 
                                 INNER JOIN alumno ON alumno.id_usuario = puntuacion_historico.id_usuario 
                                 WHERE id_leccion = " . $id_leccion . " AND tipo = '" . $tipo . "' AND tiempo 
                                 BETWEEN '" . $desde_fecha . " " . $desde_tiempo . ":00'  
                                 AND '" . $hasta_fecha . " " . $hasta_tiempo . ":00'";
-                                $stmt = $conn->query($stringQuery);
-                                echo '<p style="display:none">' . $stringQuery . "</p>";
-                                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                    if($alumnos["id"][$m]==$row[0]){
-                                        $entre=1;
-                                        $calificacion = intval(100*$row[1]/$totalPreguntas);
-                                        //----Si se quieren tomar las N calificaciones, descomentar la sigueinte linea, pero la tabla NO será uniforma
-                                        //echo '<td>' . $calificacion . '</td>';
-                                    }
-                                    //echo '<td> id=' . $row[0] . ' alum= '.$alumnos["id"][$m].' pts= '.$row[1].' </td>';
+                            $stmt = $conn->query($stringQuery);
+                            echo '<p style="display:none">' . $stringQuery . "</p>";
+                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                if ($alumnos["id"][$m] == $row[0]) {
+                                    $entre = 1;
+                                    $calificacion = intval(100 * $row[1] / $totalPreguntas);
+                                    //----Si se quieren tomar las N calificaciones, descomentar la sigueinte linea, pero la tabla NO será uniforma
+                                    //echo '<td>' . $calificacion . '</td>';
                                 }
-                                if ($entre == 0) { echo '<td style="color:red;">NP</td>'; }
-                                else {echo '<td>' . $calificacion . '</td>';}
-                            } catch (PDOException $e) {
-                                echo "Error: " . $e->getMessage();
+                                //echo '<td> id=' . $row[0] . ' alum= '.$alumnos["id"][$m].' pts= '.$row[1].' </td>';
                             }
-                            echo '</tr>';
+                            if ($entre == 0) {
+                                echo '<td style="color:red;">NP</td>';
+                            } else {
+                                echo '<td>' . $calificacion . '</td>';
+                            }
+                        } catch (PDOException $e) {
+                            echo "Error: " . $e->getMessage();
                         }
-                        $conn = null;
-                        ?>
-                    </tbody>
-                </table>
-            </div>
+                        echo '</tr>';
+                    }
+                    $conn = null;
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
