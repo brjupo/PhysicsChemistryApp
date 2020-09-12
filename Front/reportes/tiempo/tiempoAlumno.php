@@ -152,13 +152,13 @@ if (!isset($_POST["grupo"])) {
                             $stmt = $conn->query($stringQuery);
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 echo '<tr>';
-                                echo '<td>'.intval($row[0]).'</td>';
+                                echo '<td>'.$row[0].'</td>';
                                 $sum = intval($row[1]+$row[2]+$row[3]+$row[4]);
                                 echo '<td>'.$sum.'</td>';
-                                echo '<td>'.$row[1].'</td>';
-                                echo '<td>'.$row[2].'</td>';
-                                echo '<td>'.$row[3].'</td>';
-                                echo '<td>'.$row[4].'</td>';
+                                echo '<td>'.intval($row[1]).'</td>';
+                                echo '<td>'.intval($row[2]).'</td>';
+                                echo '<td>'.intval($row[3]).'</td>';
+                                echo '<td>'.intval($row[4]).'</td>';
                                 echo '</tr>';
                             }
                         } catch (PDOException $e) {
