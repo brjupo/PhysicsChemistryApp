@@ -204,7 +204,7 @@ if ($teacherID == "null") {
                     </tr>
                     <tr class="table-info">
                         <td style="color:rgba(50,50,255,1)">Fecha y Hora del periodo</td>
-                        <td style="color:rgba(50,50,255,1)"><?php echo $desde_fecha . "_" . $desde_tiempo; ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $desde_fecha . "_" . $desde_tiempo . " a " . $hasta_fecha . "_" . $hasta_tiempo; ?></td>
                         <td><?php echo $leccion; ?></td>
                     </tr>
                     <?php
