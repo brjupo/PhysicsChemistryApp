@@ -274,7 +274,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
             <div class="input-group input-group-sm col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <?php
                 date_default_timezone_set("America/Mexico_City");
-                $fileName = $tipo . "_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
+                $fileName = $modalidad . "_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
                 ?>
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">File name:</span>
@@ -298,7 +298,7 @@ if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
                 <tbody>
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Grupo | Tipo</td>
-                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | " . $tipo; ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | " . $modalidad; ?></td>
                         <?php
                         //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
                         for ($k = 0; $k < count($lecciones["id"]); $k++) {

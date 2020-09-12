@@ -310,7 +310,7 @@ if (!isset($_POST["grupo"])) {
                 <tbody>
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Grupo | Tipo | Fecha </td>
-                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | " . $tipo . " | " . date("Y/m/d H:m:s"); ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | " . $modalidad . " | " . date("Y/m/d H:m:s"); ?></td>
                         <?php
                         //Recorreremos todos los subtemas para imprimirlos con su respectivo tema
                         for ($k = 0; $k < count($subtemas["id"]); $k++) {
