@@ -22,6 +22,7 @@ if (!isset($_POST["grupo"])) {
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
+    <script src="../TableCSVExporter5.js"></script>
 </head>
 
 <body>
@@ -269,14 +270,48 @@ if (!isset($_POST["grupo"])) {
     }
     ?>
 
+    <!--++++++++++IMPRIMIR SECCION PARA DESCARGAR EL ARCHIVO+++++++++++++++-->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color:white">.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <p>Espera a que el reporte termine de crearse para descargarlo</p>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <button id="btnExportToCsv" type="button" class="btn btn-primary" disabled>Export to CSV</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-group input-group-sm col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <?php
+                date_default_timezone_set("America/Mexico_City");
+                $fileName = $tipo . "_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
+                ?>
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">File name:</span>
+                </div>
+                <input type="text" id="fileName" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="<?php echo $fileName; ?>">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color:white">.</p>
+            </div>
+        </div>
+    </div>
+
     <!--IMRPIMIR LA LISTA DE SUBTEMAS Y TEMAS-->
     <div class="container">
         <div class="row">
-            <table class="table table-striped">
+            <table id="dataTable" class="table table-striped">
                 <tbody>
                     <tr>
-                        <td>.</td>
-                        <td>.</td>
+                        <td style="color:rgba(50,50,255,1)">Grupo | Tipo | Fecha </td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | Super sprint | " . date("Y/m/d H:m:s"); ?></td>
                         <?php
                         //Recorreremos todos los subtemas para imprimirlos con su respectivo tema
                         for ($k = 0; $k < count($subtemas["id"]); $k++) {
