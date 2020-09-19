@@ -27,7 +27,7 @@ function printSubtopics()
 {
   $idTema = $_GET['ID_Tema'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre, tiempo_super_sprint FROM subtema WHERE id_tema = ?");
+  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre, tiempo_super_sprint FROM subtema WHERE id_tema = ? ORDER BY orden");
   mysqli_stmt_bind_param($statement, "i", $idTema);
   mysqli_stmt_execute($statement);
 
