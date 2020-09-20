@@ -1,5 +1,6 @@
 <?php
 require "../../../Servicios/validarLicencia.php";
+require "../../../Servicios/DDBBVariables.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,7 @@ require "../../../Servicios/validarLicencia.php";
     <title>Pregunta</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
-    <script src="scriptPractice30.js"></script>
+    <script src="practice.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -76,13 +77,13 @@ require "../../../Servicios/validarLicencia.php";
 
         $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
         /*----Paso 1 Obtener el ID del subtema----*/
-        
+
         $idL = $leccion;
-        
+
         //Validacion de licencia
         $flag = validarLicencia($idL);
 
-        if($flag == 0){
+        if ($flag == 0) {
             echo '<script type="text/javascript">
             alert("No cuenta con licencia para acceder a esta página");
             window.location.href="https://kaanbal.net";
@@ -103,19 +104,19 @@ require "../../../Servicios/validarLicencia.php";
             $arrayr[] = $row;
         }
         ///VALIDAMOS EL IDIOMA PARA HACER CAMBIO EN EL NOMBRE DE LOS CAMPOS Y MOSTRAR LAS PREGUNTAS EN INGLES
-        if($_SESSION["idioma"] == 'i'){
+        if ($_SESSION["idioma"] == 'i') {
             for ($j = 0; $j < $total[0]; $j++) {
-            $array[$j]["pregunta"] = $array[$j]["question"];
-            $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];
-            $array[$j]["respuesta2"] = $array[$j]["answer2"];
-            $array[$j]["respuesta3"] = $array[$j]["answer3"];
-            $array[$j]["respuesta4"] = $array[$j]["answer4"];
+                $array[$j]["pregunta"] = $array[$j]["question"];
+                $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];
+                $array[$j]["respuesta2"] = $array[$j]["answer2"];
+                $array[$j]["respuesta3"] = $array[$j]["answer3"];
+                $array[$j]["respuesta4"] = $array[$j]["answer4"];
 
-            $arrayr[$j]["pregunta"] = $arrayr[$j]["question"];
-            $arrayr[$j]["respuesta_correcta"] = $arrayr[$j]["correct_answer"];
-            $arrayr[$j]["respuesta2"] = $arrayr[$j]["answer2"];
-            $arrayr[$j]["respuesta3"] = $arrayr[$j]["answer3"];
-            $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
+                $arrayr[$j]["pregunta"] = $arrayr[$j]["question"];
+                $arrayr[$j]["respuesta_correcta"] = $arrayr[$j]["correct_answer"];
+                $arrayr[$j]["respuesta2"] = $arrayr[$j]["answer2"];
+                $arrayr[$j]["respuesta3"] = $arrayr[$j]["answer3"];
+                $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
             }
         }
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
@@ -252,7 +253,7 @@ require "../../../Servicios/validarLicencia.php";
                     <img src="../../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p id="idioma" style="display:none"/>'.$_SESSION["idioma"].'</p>
+                    <p id="idioma" style="display:none"/>' . $_SESSION["idioma"] . '</p>
                     <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
@@ -344,7 +345,7 @@ require "../../../Servicios/validarLicencia.php";
             </div>
         ';
     }
-    function imprimirImagenRespuestasTipo1(int $respuestas, $r1, $r2, $r3, $r4, $respCorrecta, $imagen)
+    function imprimirImagenRespuestasTipo1(int $respuestas, $r1, $r2, $r3, $r4, $respCorrecta, $idPregunta)
     {
         $uno = 10 * $respuestas - 3;
         $dos = 10 * $respuestas - 2;
@@ -352,36 +353,35 @@ require "../../../Servicios/validarLicencia.php";
         $cuatro = 10 * $respuestas;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
-        $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../../../../IMAGENES/" . $imgjpg;
-        $imgJPG = $imagen . ".JPG";
-        $pathJPG = "../../../../IMAGENES/" . $imgJPG;
-        $imgpng = $imagen . ".png";
-        $pathpng = "../../../../IMAGENES/" . $imgpng;
-        $imgPNG = $imagen . ".PNG";
-        $pathPNG = "../../../../IMAGENES/" . $imgPNG;
-        //echo '<p>'.$path.'</p>';
-        $ext=NULL;
-        if (file_exists($pathjpg)) {
-            $ext = ".jpg";
-        }
-        else if (file_exists($pathJPG)) {
-            $ext = ".JPG";
-        }
-        else if (file_exists($pathpng)) {
-            $ext = ".png";
-        }
-        else if (file_exists($pathPNG)) {
-            $ext = ".PNG";
-        }
 
-        if ($ext!=NULL) {
+        global $servername, $username, $password, $dbname;
+        //Crear la lectura en base de datos
+        //Leer el nombre de las imagenes
+        $nombreImagen = NULL;
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stringQuery = "SELECT id_pregunta FROM pregunta WHERE id_pregunta = " . $idPregunta;
+            $stmt = $conn->query($stringQuery);
+            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                $pathToImage = "../../../../IMAGENES/" . $row[0];
+                if (file_exists($pathToImage)) {
+                    $nombreImagen = $row[0];
+                }
+            }
+        } catch (PDOException $e) {
+            echo "Error al " . $stringQuery . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+        
+
+        if ($nombreImagen != NULL) {
             echo '
             <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../../../../IMAGENES/' . $imagen . $ext .'" class="imagenPregunta" />
+                <img src="../../../../IMAGENES/' . $nombreImagen . '" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '" style="display:none">
                     ' . $respCorrecta . '
                 </p>
@@ -479,16 +479,35 @@ require "../../../Servicios/validarLicencia.php";
             </div>
             ';
     }
-    function imprimirImagenRespuestasTipo2(int $respuestas, $respCorrecta, $imagen)
+    function imprimirImagenRespuestasTipo2(int $respuestas, $respCorrecta, $idPregunta)
     {
 
         $IDBotonAceptar = 10 * $respuestas - 4;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
-        $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../../../../IMAGENES/" . $imgjpg;
-        //echo '<p>'.$path.'</p>';
-        if (file_exists($pathjpg)) {
+
+        global $servername, $username, $password, $dbname;
+        //Crear la lectura en base de datos
+        //Leer el nombre de las imagenes
+        $nombreImagen = NULL;
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stringQuery = "SELECT id_pregunta FROM pregunta WHERE id_pregunta = " . $idPregunta;
+            $stmt = $conn->query($stringQuery);
+            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                $pathToImage = "../../../../IMAGENES/" . $row[0];
+                if (file_exists($pathToImage)) {
+                    $nombreImagen = $row[0];
+                }
+            }
+        } catch (PDOException $e) {
+            echo "Error al " . $stringQuery . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+        
+
+        if ($nombreImagen != NULL) {
             echo '
                 <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
                 <div class="container" style="display:none" id ="' . $respuestaNumero . '">
@@ -498,7 +517,7 @@ require "../../../Servicios/validarLicencia.php";
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
+                            <img src="../../../../IMAGENES/' . $nombreImagen . '" class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
