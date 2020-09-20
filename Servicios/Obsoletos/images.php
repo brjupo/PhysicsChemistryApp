@@ -57,7 +57,7 @@ function setIDinDDBB($IDPregunta, $imageName)
         $conn2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
         //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
-        $sql2 = "UPDATE pregunta SET idImagen = " . $imageName . " WHERE id_pregunta = " . $IDPregunta;
+        $sql2 = "UPDATE pregunta SET idImagen = '" . $imageName . "' WHERE id_pregunta = " . $IDPregunta;
         // use exec() because no results are returned
         $conn2->exec($sql2);
         //$response["response"] = 'exito';
