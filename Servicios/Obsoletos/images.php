@@ -1,11 +1,10 @@
 <?php
-require "DDBBVariables.php";
-echo "Hi";
+require "../DDBBVariables.php";
+
 //Leer las variables del POST
 $inicio = $_POST['inicio'];
 $fin = $_POST['fin'];
 
-echo "Keep going";
 //Crear la lectura en base de datos
 //Leer los IDs de las preguntas [inicio a fin]
 try {
