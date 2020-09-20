@@ -15,7 +15,7 @@ try {
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         //$row[0];
         $idPregunta = $row[0];
-        echo $idPregunta . " \n";
+        echo $idPregunta . " - ";
         findImage($idPregunta);
     }
 } catch (PDOException $e) {
@@ -30,6 +30,8 @@ function findImage($IDPregunta)
     $pathpng = "../../../IMAGENES/" . $IDPregunta . ".png";
     $pathJPG = "../../../IMAGENES/" . $IDPregunta . ".JPG";
     $pathPNG = "../../../IMAGENES/" . $IDPregunta . ".PNG";
+    $pathjpeg = "../../../IMAGENES/" . $IDPregunta . ".jpeg";
+    $pathJPEG = "../../../IMAGENES/" . $IDPregunta . ".JPEG";
     $imageName = NULL;
     if (file_exists($pathjpg)) {
         $imageName = $IDPregunta . ".jpg";
@@ -39,9 +41,9 @@ function findImage($IDPregunta)
         $imageName = $IDPregunta . ".png";
     } else if (file_exists($pathPNG)) {
         $imageName = $IDPregunta . ".PNG";
-    } else if (file_exists($pathpng)) {
+    } else if (file_exists($pathjpeg)) {
         $imageName = $IDPregunta . ".jpeg";
-    } else if (file_exists($pathPNG)) {
+    } else if (file_exists($pathJPEG)) {
         $imageName = $IDPregunta . ".JPEG";
     }
 
