@@ -15,7 +15,7 @@ try {
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         //$row[0];
         $idPregunta = $row[0];
-        echo $idPregunta;
+        echo $idPregunta . " \n";
         findImage($idPregunta);
     }
 } catch (PDOException $e) {
@@ -41,12 +41,13 @@ function findImage($IDPregunta)
         $imageName = $IDPregunta . ".PNG";
     }
 
+    echo "El nombre de la imagen es " . $imageName . ". \n";
     if(!is_null($imageName)){
-        setIDinDDBB($imageName);
+        setIDinDDBB($IDPregunta, $imageName);
     }
 }
 
-function setIDinDDBB($imageName)
+function setIDinDDBB($IDPregunta, $imageName)
 {
     global $servername, $username, $password, $dbname;
     //Crear la escritura en base de datos
@@ -56,7 +57,7 @@ function setIDinDDBB($imageName)
         $conn2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
         //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
-        $sql2 = "UPDATE pregunta SET idImagen = " . $imageName;
+        $sql2 = "UPDATE pregunta SET idImagen = " . $imageName . " WHERE id_pregunta = " . $IDPregunta;
         // use exec() because no results are returned
         $conn2->exec($sql2);
         //$response["response"] = 'exito';
