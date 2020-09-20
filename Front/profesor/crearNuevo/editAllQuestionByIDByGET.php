@@ -18,7 +18,7 @@ if ($adminID == "null") {
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/styleUploadInfo.css" />
-    <script src="scriptEditQ_ID_GET.js"></script>
+    <script src="editQuestion.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 

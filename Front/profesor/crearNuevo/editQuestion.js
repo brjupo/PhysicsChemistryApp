@@ -163,7 +163,7 @@ function saveInDDBB(informacion) {
 function loadInformation() {
   $.ajax({
     type: "POST",
-    url: "../SERVICIOS/getFullQuestionInfoByID.php",
+    url: "../SERVICIOS/getQuestionInfo.php",
     dataType: "json",
     data: {
       IDPregunta: document.getElementById("IDPregunta").value,
@@ -196,13 +196,13 @@ function showData(data) {
   document.getElementById("answer4").value = data.answer4;
   document.getElementById("tipo").value = data.tipo;
   //Traer si tiene imagen, si tiene, que me regrese la extension, sino tiene que me regrese null
-  if (data.image == null) {
+  if (data.idImagen == null) {
     document.getElementById("imagenPregunta").src =
       "../../../../IMAGENES/sinImagen.jpg";
       console.log("sin imagen");
   } else {
     document.getElementById("imagenPregunta").src =
-      "../../../../IMAGENES/" + data.image;
+      "../../../../IMAGENES/" + data.idImagen;
       console.log("mostrando imagen");
   }
 }
