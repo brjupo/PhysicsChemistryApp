@@ -56,10 +56,10 @@ function uploadImage() {
 
     data.append("fileToUpload", files[0]);
     data.append("path", path);
-    data.append("name", document.getElementById("IDPregunta").value);
+    data.append("idPregunta", document.getElementById("IDPregunta").value);
 
     $.ajax({
-      url: "../SERVICIOS/uploadOneFile.php",
+      url: "../SERVICIOS/uploadOneImage.php",
       type: "post",
       dataType: "json",
       data: data,
@@ -71,7 +71,7 @@ function uploadImage() {
           getDataToSaveInDDBB();
         } else {
           //alert(data.response);
-          console.log("ve el post");
+          console.log("Problema con la carga de la imagen");
         }
       },
     });

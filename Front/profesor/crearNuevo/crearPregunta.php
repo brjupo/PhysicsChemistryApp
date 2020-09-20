@@ -179,12 +179,7 @@ function printInstructions()
         </p>
         <p>
           - Recuerde, aquí solo se crea la pregunta en español, para crear las respuestas, el tipo de 
-          pregunta y su traducción, utilice la sección "Editar preguntas por ID", ubicada en el panel 
-          de profesores
-        </p>
-        <p>
-          - Por el momento, falta la carga de imagen. Nombre de la imagen == al ID mostrado en esta 
-          pantalla 
+          pregunta y su traducción, de clic en "Editar la pregunta"
         </p>
       </div>
     </div>
