@@ -64,6 +64,13 @@ function printTopic($ID_Question, $questionName)
             <span class="input-group-text">' . $ID_Question . '</span>
           </div>
           <input type="text" class="form-control" id="' . $ID_Question . '" value="' . $questionName . '" />
+          <div class="input-group-append">
+            <a href="editAllQuestionByIDByGET.php?ID_Pregunta='.$ID_Question .'" target="_blank">
+              <button class="btn btn-outline-secondary" type="button">
+                Editar la pregunta
+              </button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
