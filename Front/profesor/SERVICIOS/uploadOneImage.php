@@ -1,5 +1,10 @@
 <?php
-require "../../../Servcios/DDBBVariables.php";
+//require "../../../Servcios/DDBBVariables.php";
+    //Informacion de la BBDD
+    $servername = "localhost";
+    $username = "u526597556_dev";
+    $password = "1BLeeAgwq1*isgm&jBJe";
+    $dbname = "u526597556_kaanbal";
 
 function get_extension($file) {
     $tmp =explode(".", $file);
