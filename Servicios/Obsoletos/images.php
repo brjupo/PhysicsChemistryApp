@@ -39,6 +39,10 @@ function findImage($IDPregunta)
         $imageName = $IDPregunta . ".png";
     } else if (file_exists($pathPNG)) {
         $imageName = $IDPregunta . ".PNG";
+    } else if (file_exists($pathpng)) {
+        $imageName = $IDPregunta . ".jpeg";
+    } else if (file_exists($pathPNG)) {
+        $imageName = $IDPregunta . ".JPEG";
     }
 
     echo "El nombre de la imagen es " . $imageName . ". \n";
