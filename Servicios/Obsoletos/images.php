@@ -26,10 +26,10 @@ $conn = null;
 
 function findImage($IDPregunta)
 {
-    $pathjpg = "../../../../IMAGENES/" . $IDPregunta . ".jpg";
-    $pathpng = "../../../../IMAGENES/" . $IDPregunta . ".png";
-    $pathJPG = "../../../../IMAGENES/" . $IDPregunta . ".JPG";
-    $pathPNG = "../../../../IMAGENES/" . $IDPregunta . ".PNG";
+    $pathjpg = "../../../IMAGENES/" . $IDPregunta . ".jpg";
+    $pathpng = "../../../IMAGENES/" . $IDPregunta . ".png";
+    $pathJPG = "../../../IMAGENES/" . $IDPregunta . ".JPG";
+    $pathPNG = "../../../IMAGENES/" . $IDPregunta . ".PNG";
     $imageName = NULL;
     if (file_exists($pathjpg)) {
         $imageName = $IDPregunta . ".jpg";
