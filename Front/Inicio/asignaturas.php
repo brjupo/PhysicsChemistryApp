@@ -39,9 +39,9 @@ require "../../Servicios/isStaff.php";
   $tokenValidar = array();
 
   if ($_SESSION["idioma"] == 'i') {
-    $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
+    $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", "Testing");
   } else {
-    $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
+    $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", "Pruebas");
   }
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
@@ -202,9 +202,9 @@ require "../../Servicios/isStaff.php";
         
         //Imprimimos pantalla de asignaturas
         if ($_SESSION["idioma"] == 'i') {
-          $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
+          $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", "Testing");
         } else {
-          $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
+          $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", "Pruebas");
         }
 
         $arregloAsignaturas = array();
@@ -425,7 +425,11 @@ require "../../Servicios/isStaff.php";
         imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 0, 1);
       }
     }
+
+    imprimirAsignaturaImpar("Prueba", "1");
   }
+
+  
 
   function imprimirAsignaturaPar($nombreAsignatura1, $nombreAsignatura2, $siTienePermiso1, $siTienePermiso2)
   {
