@@ -423,8 +423,8 @@ require "../../Servicios/isStaff.php";
                   </div>
                 </div>
               </a> 
-            </div>
-          </div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
     ';
   }
 
@@ -436,7 +436,7 @@ require "../../Servicios/isStaff.php";
     $imagen = "imagenAsignatura";
 
     echo '
-              <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
+               
                 <a href="' . $link . '">      
                   <div
                     class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
@@ -449,7 +449,9 @@ require "../../Servicios/isStaff.php";
         '</div>
                   </div>              
                 </a>
-                <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+            </div>
+          </div>
              
 
             <!------------------------------------------------RELLENO----------------------------------------------->
