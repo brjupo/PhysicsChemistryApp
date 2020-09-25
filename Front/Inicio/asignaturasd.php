@@ -383,6 +383,7 @@ require "../../Servicios/isStaff.php";
         alert("es par");
         </script>'; 
       }else{
+        imprimirAsignaturaImpar($arregloAsignaturas["nombre"][$i]);
         echo'<script type="text/javascript">
         alert("no es par");
         </script>'; 
@@ -402,7 +403,7 @@ require "../../Servicios/isStaff.php";
   {
     $link = "temas.php?asignatura=";
     $claseBloque = "asignaturaPrincipal";
-    $link = $link . $nombreAsignatura1;
+    $link = $link . $nombreAsignatura;
     $imagen = "imagenAsignatura";
    
 
@@ -421,8 +422,7 @@ require "../../Servicios/isStaff.php";
                     ' . $nombreAsignatura . '
                   </div>
                 </div>
-              </a>
-              
+              </a> 
             </div>
           </div>
 
@@ -439,37 +439,30 @@ require "../../Servicios/isStaff.php";
     ';
   }
 
-  function imprimirAsignaturaImpar($nombreAsignatura, $siTienePermiso)
+  function imprimirAsignaturaImpar($nombreAsignatura)
   {
     $link = "temas.php?asignatura=";
-    if ($siTienePermiso == 1) {
-      $claseBloque = "asignaturaPrincipal";
-      $link .= $nombreAsignatura;
-      $imagen = "imagenAsignatura";
-    } else {
-      $claseBloque = "asignaturaDesactivada";
-      $link = "";
-      $imagen = "imagenDesactivada";
-    }
+    $claseBloque = "asignaturaPrincipal";
+    $link = $link . $nombreAsignatura;
+    $imagen = "imagenAsignatura";
+
     echo '
-        <div class="container">
-          <div class="row">
-            <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
-              <a href="' . $link . '">      
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
+              <a href="' . $link . '">    
                 <div
                   class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
-                    <img class="' . $imagen . '" src="../CSSsJSs/icons/star.svg" />
+                    <img class="' . $imagen . '" src="../CSSsJSs/icons/physics.svg" />
                   </div>
-                  <div class="tituloAsignaturas">'
-      . $nombreAsignatura .
-      '</div>
-                </div>              
+                  <div class="tituloAsignaturas">
+                  ' . $nombreAsignatura. '
+                  </div>
+                </div>
               </a>
-              <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
-            </div>
-          </div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
 
           <!------------------------------------------------RELLENO----------------------------------------------->
           <div class="container">
