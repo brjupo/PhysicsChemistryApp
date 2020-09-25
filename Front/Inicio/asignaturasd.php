@@ -381,6 +381,10 @@ require "../../Servicios/isStaff.php";
         echo'<script type="text/javascript">
         alert("es par");
         </script>'; 
+      }else{
+        echo'<script type="text/javascript">
+        alert("no es par");
+        </script>'; 
       }
 
       $i = $i +1;
