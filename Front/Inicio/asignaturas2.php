@@ -374,7 +374,7 @@ require "../../Servicios/isStaff.php";
     $tamanho = count($arregloAsignaturas);
 
     echo'<script type="text/javascript">
-            alert("$tamanho");
+            alert("'.$tamanho.'");
             </script>'; 
     
 
