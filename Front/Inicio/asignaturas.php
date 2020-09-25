@@ -228,7 +228,7 @@ require "../../Servicios/isStaff.php";
         $total = mysqli_fetch_row($result2);
 
         /* echo '<script type="text/javascript">
-                      alert("'.$total[0].'");
+                      alert("'.$total[0].  '");
                       </script>'; */
         
         if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {
