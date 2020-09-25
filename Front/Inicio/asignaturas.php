@@ -414,6 +414,7 @@ require "../../Servicios/isStaff.php";
 
     if (in_array("Matter and Environment", $arregloAsignaturas["nombre"]) || in_array("Materia y el entorno", $arregloAsignaturas["nombre"])) {
       if (in_array("Energy and transformation I", $arregloAsignaturas["nombre"]) || in_array("Energía y transformación I", $arregloAsignaturas["nombre"])) {
+        if (in_array("Testing", $arregloAsignaturas["nombre"]) || in_array("Pruebas", $arregloAsignaturas["nombre"])) {
         imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 1);
       } else {
         imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 0);
@@ -426,7 +427,6 @@ require "../../Servicios/isStaff.php";
       }
     }
 
-    imprimirAsignaturaImpar("Prueba", "1");
   }
 
   
