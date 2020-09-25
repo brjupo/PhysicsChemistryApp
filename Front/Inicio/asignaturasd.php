@@ -447,8 +447,6 @@ require "../../Servicios/isStaff.php";
     $imagen = "imagenAsignatura";
 
     echo '
-            <div class="container">
-            <div class="row">
               <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
                 <a href="' . $link . '">      
                   <div
@@ -463,8 +461,7 @@ require "../../Servicios/isStaff.php";
                   </div>              
                 </a>
                 <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
-              </div>
-            </div>
+             
 
             <!------------------------------------------------RELLENO----------------------------------------------->
             <div class="container">
