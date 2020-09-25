@@ -373,9 +373,21 @@ require "../../Servicios/isStaff.php";
   {
     $tamanho = count($arregloAsignaturas["nombre"]);
 
-    echo'<script type="text/javascript">
-            alert("'.$tamanho.'");
-            </script>'; 
+    $i = 0;
+
+    while($i < $tamanho){
+      $residuo = $i % 2;
+      if($residuo == 0){
+        echo'<script type="text/javascript">
+        alert("es par");
+        </script>'; 
+      }
+
+      $i = $i +1;
+
+    }
+
+    
     
   }
 
