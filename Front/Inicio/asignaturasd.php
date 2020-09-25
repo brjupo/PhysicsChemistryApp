@@ -442,7 +442,7 @@ require "../../Servicios/isStaff.php";
                     class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                   >
                     <div>
-                      <img class="' . $imagen . '" src="../CSSsJSs/icons/physics.svg.svg" />
+                      <img class="' . $imagen . '" src="../CSSsJSs/icons/physics.svg" />
                     </div>
                     <div class="tituloAsignaturas">'
         . $nombreAsignatura .
