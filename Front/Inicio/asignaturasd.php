@@ -425,33 +425,6 @@ require "../../Servicios/isStaff.php";
               </a> 
             </div>
           </div>
-    ';
-  }
-
-  function imprimirAsignaturaImpar($nombreAsignatura)
-  {
-    $link = "temas.php?asignatura=";
-    $claseBloque = "asignaturaPrincipal";
-    $link = $link . $nombreAsignatura;
-    $imagen = "imagenAsignatura";
-
-    echo '
-        <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
-              <a href="' . $link . '">    
-                <div
-                  class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
-                >
-                  <div>
-                    <img class="' . $imagen . '" src="../CSSsJSs/icons/physics.svg" />
-                  </div>
-                  <div class="tituloAsignaturas">
-                  ' . $nombreAsignatura. '
-                  </div>
-                </div>
-              </a>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
 
           <!------------------------------------------------RELLENO----------------------------------------------->
           <div class="container">
@@ -463,6 +436,46 @@ require "../../Servicios/isStaff.php";
             </div>
           </div>
           <!------------------------------------------------FIN RELLENO----------------------------------------------->
+    ';
+  }
+
+  function imprimirAsignaturaImpar($nombreAsignatura)
+  {
+    $link = "temas.php?asignatura=";
+    $claseBloque = "asignaturaPrincipal";
+    $link = $link . $nombreAsignatura;
+    $imagen = "imagenAsignatura";
+
+    echo '
+            <div class="container">
+            <div class="row">
+              <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
+                <a href="' . $link . '">      
+                  <div
+                    class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                  >
+                    <div>
+                      <img class="' . $imagen . '" src="../CSSsJSs/icons/star.svg" />
+                    </div>
+                    <div class="tituloAsignaturas">'
+        . $nombreAsignatura .
+        '</div>
+                  </div>              
+                </a>
+                <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
+              </div>
+            </div>
+
+            <!------------------------------------------------RELLENO----------------------------------------------->
+            <div class="container">
+              <div class="row">
+                <p class="relleno">.</p>
+              </div>
+              <div class="row">
+                <p class="relleno">.</p>
+              </div>
+            </div>
+            <!------------------------------------------------FIN RELLENO----------------------------------------------->
     ';
   }
 
