@@ -425,17 +425,6 @@ require "../../Servicios/isStaff.php";
               </a> 
             </div>
           </div>
-
-          <!------------------------------------------------RELLENO----------------------------------------------->
-          <div class="container">
-            <div class="row">
-              <p class="relleno">.</p>
-            </div>
-            <div class="row">
-              <p class="relleno">.</p>
-            </div>
-          </div>
-          <!------------------------------------------------FIN RELLENO----------------------------------------------->
     ';
   }
 
