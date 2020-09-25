@@ -379,14 +379,14 @@ require "../../Servicios/isStaff.php";
       $residuo = $i % 2;
       if($residuo == 0){
         imprimirAsignaturaPar($arregloAsignaturas["nombre"][$i]);
-        echo'<script type="text/javascript">
+        /* echo'<script type="text/javascript">
         alert("es par");
-        </script>'; 
+        </script>';  */
       }else{
         imprimirAsignaturaImpar($arregloAsignaturas["nombre"][$i]);
-        echo'<script type="text/javascript">
+        /* echo'<script type="text/javascript">
         alert("no es par");
-        </script>'; 
+        </script>';  */
       }
 
       $i = $i +1;
@@ -425,17 +425,6 @@ require "../../Servicios/isStaff.php";
               </a> 
             </div>
           </div>
-
-          <!------------------------------------------------RELLENO----------------------------------------------->
-          <div class="container">
-            <div class="row">
-              <p class="relleno">.</p>
-            </div>
-            <div class="row">
-              <p class="relleno">.</p>
-            </div>
-          </div>
-          <!------------------------------------------------FIN RELLENO----------------------------------------------->
     ';
   }
 
