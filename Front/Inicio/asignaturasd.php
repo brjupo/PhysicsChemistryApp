@@ -378,6 +378,7 @@ require "../../Servicios/isStaff.php";
     while($i < $tamanho){
       $residuo = $i % 2;
       if($residuo == 0){
+        imprimirAsignaturaPar($arregloAsignaturas["nombre"][$i]);
         echo'<script type="text/javascript">
         alert("es par");
         </script>'; 
@@ -397,58 +398,31 @@ require "../../Servicios/isStaff.php";
 
   
 
-  function imprimirAsignaturaPar($nombreAsignatura1, $nombreAsignatura2, $siTienePermiso1, $siTienePermiso2)
+  function imprimirAsignaturaPar($nombreAsignatura)
   {
     $link = "temas.php?asignatura=";
-    if ($siTienePermiso1 == 1) {
-      $claseBloque1 = "asignaturaPrincipal";
-      $link1 = $link . $nombreAsignatura1;
-      $imagen1 = "imagenAsignatura";
-    } else {
-      $claseBloque1 = "asignaturaDesactivada";
-      $link1 = "";
-      $imagen1 = "imagenDesactivada";
-    }
-    if ($siTienePermiso2 == 1) {
-      $claseBloque2 = "asignaturaPrincipal";
-      $link2 = $link . $nombreAsignatura2;
-      $imagen2 = "imagenAsignatura";
-    } else {
-      $claseBloque2 = "asignaturaDesactivada";
-      $link2 = "";
-      $imagen2 = "imagenDesactivada";
-    }
+    $claseBloque = "asignaturaPrincipal";
+    $link = $link . $nombreAsignatura1;
+    $imagen = "imagenAsignatura";
+   
+
     echo '
         <div class="container">
           <div class="row">
             <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
-              <a href="' . $link1 . '">     
+              <a href="' . $link . '">     
                 <div
-                  class="' . $claseBloque1 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                  class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
-                    <img class="' . $imagen1 . '" src="../CSSsJSs/icons/star.svg" />
+                    <img class="' . $imagen . '" src="../CSSsJSs/icons/star.svg" />
                   </div>
                   <div class="tituloAsignaturas">
-                    ' . $nombreAsignatura1 . '
+                    ' . $nombreAsignatura . '
                   </div>
                 </div>
               </a>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
-              <a href="' . $link2 . '">    
-                <div
-                  class="' . $claseBloque2 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
-                >
-                  <div>
-                    <img class="' . $imagen2 . '" src="../CSSsJSs/icons/physics.svg" />
-                  </div>
-                  <div class="tituloAsignaturas">
-                  ' . $nombreAsignatura2 . '
-                  </div>
-                </div>
-              </a>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              
             </div>
           </div>
 
