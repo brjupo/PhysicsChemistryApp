@@ -371,13 +371,11 @@ require "../../Servicios/isStaff.php";
 
   function imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas)
   {
-    $tamanho = count($arregloAsignaturas);
+    $tamanho = count($arregloAsignaturas["nombre"]);
 
     echo'<script type="text/javascript">
             alert("'.$tamanho.'");
             </script>'; 
-    
-
     
   }
 
