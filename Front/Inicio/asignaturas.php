@@ -301,7 +301,7 @@ require "../../Servicios/isStaff.php";
       $i = $i + 1;
     }
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    //DETECTAR DONDE DA CLIC A LA ASIGNATURA PARA GUARDAR LA VARIABLE DE SESION DEL ID DE LA ASIGNATURA
+    //DETECTAR DONDE DA CLIC A LA ASIGNATURA PARA GUARDAR LA VARIABLE DE SESION DEL ID DE LA ASIGNATUR A
 
     return ($arregloAsignaturas);
   }
