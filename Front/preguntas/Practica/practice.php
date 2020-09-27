@@ -20,7 +20,7 @@ require "../../../Servicios/DDBBVariables.php";
 
 
 <body>
-    <script>
+    <!--script>
         document.addEventListener("contextmenu", (event) => event.preventDefault());
         $(document).keydown(function(event) {
             if (event.keyCode == 123) {
@@ -37,7 +37,7 @@ require "../../../Servicios/DDBBVariables.php";
                 return false;
             }
         });
-    </script>
+    </script-->
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
