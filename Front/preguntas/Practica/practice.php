@@ -195,11 +195,14 @@ require "../../../Servicios/DDBBVariables.php";
         $r4 = "10,000";
         $rc = "10,000,000";
         $imagen = 1;
+        $idPregunta = 0;
 
 
 
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
+            $idPregunta = $array[$x]["id_pregunta"];
+
             if ($arrayr[$x]["tipo"] == "1") {
                 //encontrar id´s de las respuestas correctas
                 $rcorrecta = $array[$x]["respuesta_correcta"];
@@ -214,7 +217,7 @@ require "../../../Servicios/DDBBVariables.php";
 
 
                 //////////////
-                imprimirPreguntaTipo1($x + 1, $arrayr[$x]["pregunta"]);
+                imprimirPreguntaTipo1($idPregunta,$x + 1, $arrayr[$x]["pregunta"]);
                 imprimirImagenRespuestasTipo1(
                     $x + 1,
                     $arrayr[$x]["respuesta_correcta"],
@@ -222,10 +225,11 @@ require "../../../Servicios/DDBBVariables.php";
                     $arrayr[$x]["respuesta3"],
                     $arrayr[$x]["respuesta4"],
                     $posicion, //aqui mandar posicion de respuesta correcta
-                    $array[$x]["id_pregunta"]
+                    $idPregunta
                 );
             } else {
                 imprimirPreguntaTipo2(
+                    $idPregunta,
                     $x + 1,
                     $arrayr[$x]["preguntaParte1"],
                     $arrayr[$x]["preguntaParte2"]
@@ -233,7 +237,7 @@ require "../../../Servicios/DDBBVariables.php";
                 imprimirImagenRespuestasTipo2(
                     $x + 1,
                     $array[$x]["respuesta_correcta"],
-                    $array[$x]["id_pregunta"]
+                    $idPregunta
                 );
             }
         }
@@ -243,9 +247,8 @@ require "../../../Servicios/DDBBVariables.php";
 
     <?php
 
-    function imprimirBarraProgresoCruz($totalPreguntas, $idL)
+    function imprimirBarraProgresoCruz($totalPreguntas)
     {
-        $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
         echo '
             <div class="container">
                 <div class="row topMargin">
@@ -254,10 +257,8 @@ require "../../../Servicios/DDBBVariables.php";
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                     <p id="idioma" style="display:none"/>' . $_SESSION["idioma"] . '</p>
-                    <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
-                    <p id="leccionID">' . $idL . '</p>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
                             class="progress-bar progress-bar-striped" 
@@ -325,7 +326,7 @@ require "../../../Servicios/DDBBVariables.php";
     Texto Escrito = 10 * Número de pregunta - 5     Ejempo: id="5"
 
     */
-    function imprimirPreguntaTipo1(int $preguntaNumero, $preguntaTexto)
+    function imprimirPreguntaTipo1(int $idPregunta, int $preguntaNumero, $preguntaTexto)
     {
         $preguntaNumero = 1000 + $preguntaNumero;
         echo '
@@ -334,7 +335,7 @@ require "../../../Servicios/DDBBVariables.php";
             <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">' . $preguntaNumero . '</p>
+                <p id="preguntaNumero">' . $idPregunta . '</p>
                 <p class="formatoPreguntas">'
             . $preguntaTexto .
             '  
@@ -454,7 +455,7 @@ require "../../../Servicios/DDBBVariables.php";
     Texto Escrito = 10 * Número de pregunta - 5
 
     */
-    function imprimirPreguntaTipo2(int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
+    function imprimirPreguntaTipo2(int $idPregunta,int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
     {
         $IDTextoEscrito = 10 * $preguntaNumero - 5;
         $preguntaNumero = 1000 + $preguntaNumero;
@@ -464,7 +465,7 @@ require "../../../Servicios/DDBBVariables.php";
                 <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                    <p id="preguntaNumero">' . $preguntaNumero . '</p>
+                    <p id="preguntaNumero">' . $idPregunta . '</p>
                     <p class="formatoPreguntas">'
             . $preguntaTexto .
             ' 

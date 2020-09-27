@@ -60,7 +60,7 @@ if ($teacherID == "null") {
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <a href="editarPreguntas/editAllQuestionByIDByGET?ID_Pregunta=1.php">
+        <a href="editarPreguntas/editAllQuestionByIDByGET.php?ID_Pregunta=1">
           <button type="button" class="btn btn-info">
             Editar preguntas por ID. Con boton de "siguiente"
           </button>
