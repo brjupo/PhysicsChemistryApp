@@ -247,7 +247,7 @@ require "../../../Servicios/DDBBVariables.php";
 
     <?php
 
-    function imprimirBarraProgresoCruz($totalPreguntas)
+    function imprimirBarraProgresoCruz($totalPreguntas, $idL)
     {
         echo '
             <div class="container">
@@ -256,8 +256,9 @@ require "../../../Servicios/DDBBVariables.php";
                     <img src="../../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p id="idioma" style="display:none"/>' . $_SESSION["idioma"] . '</p>
+                    <p id="idioma" style="display:none">' . $_SESSION["idioma"] . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
+                    <p id="leccionID">'.$idL.'</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
