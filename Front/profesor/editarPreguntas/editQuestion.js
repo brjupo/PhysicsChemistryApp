@@ -1,3 +1,13 @@
+window.onload = function() {
+  var number = parseInt(document.getElementById("IDPregunta").value.trim());
+  loadInformation();
+  if (Number.isInteger(number)) {
+    loadInformation();
+  } else {
+    alert("ERROR!. Verifique ID pregunta");
+  }
+};
+
 document.addEventListener("click", function (evt) {
   var cargarInformacion = document.getElementById("cargarInformacion");
   var siguientePregunta = document.getElementById("siguientePregunta");
@@ -24,14 +34,53 @@ document.addEventListener("click", function (evt) {
       return;
     }
     if (targetElement == guardarEnBBDD) {
-      getDataToSaveInDDBB();
-      //saveInDDBB();//Llamada al finalizar la funcion previa. Ya que se necesitan multiples ocnversiones de info
+      //Por ser un proceso dependiente y quieren que todo se suba con un boton
+      //Primero subiremos la imagen
+      uploadImage();
+      //Luego preparamos la informacion
+      //getDataToSaveInDDBB();
+      //Al final subiremos la informacion
+      //saveInDDBB();
       return;
     }
     // Go up the DOM
     targetElement = targetElement.parentNode;
   } while (targetElement);
 });
+
+function uploadImage() {
+  if (document.getElementById("nuevaImagen").files.length != 0) {
+    var data = new FormData(),
+      files = document.getElementById("nuevaImagen").files;
+    path = "../../../../IMAGENES/";
+
+    data.append("fileToUpload", files[0]);
+    data.append("path", path);
+    data.append("idPregunta", document.getElementById("IDPregunta").value);
+
+    $.ajax({
+      url: "../SERVICIOS/uploadOneImage.php",
+      type: "post",
+      dataType: "json",
+      data: data,
+      processData: false,
+      contentType: false,
+      success: function (data) {
+        if (data.response == "exito") {
+          console.log("Segun se subió la imagen");
+          getDataToSaveInDDBB();
+        } else {
+          //alert(data.response);
+          console.log("Problema con la carga de la imagen");
+        }
+      },
+    });
+  }
+  else{
+    console.log("No subió una nueva imagen");
+    getDataToSaveInDDBB();
+  }
+}
 
 function getDataToSaveInDDBB() {
   //Crear objeto informacion
@@ -60,19 +109,6 @@ function getDataToSaveInDDBB() {
     answer4: document.getElementById("answer4").value.replace(/\\/g, "\\\\"),
     tipo: document.getElementById("tipo").value,
   };
-  // En casos se debe transformar la informacion más de una vez
-  //Curiosamente existe problema con los campos en objetos que tienen el guion bajo
-  /*
-  tempCorrecta = document
-  .getElementById("respuesta_correcta")
-  .value.replace(/\\/g, "\\\\");
-  tempCorrecta = tempCorrecta.replace(/'/g, "''");
-
-  tempCorrect = document
-  .getElementById("correct_answer")
-  .value.replace(/\\/g, "\\\\");
-  tempCorrect = tempCorrect.replace(/'/g, "''");
-  */
 
   informacion = {
     IDPregunta: informacion.IDPregunta,
@@ -127,7 +163,7 @@ function saveInDDBB(informacion) {
 function loadInformation() {
   $.ajax({
     type: "POST",
-    url: "../SERVICIOS/getFullQuestionInfoByID.php",
+    url: "../SERVICIOS/getQuestionInfo.php",
     dataType: "json",
     data: {
       IDPregunta: document.getElementById("IDPregunta").value,
@@ -159,4 +195,14 @@ function showData(data) {
   document.getElementById("answer3").value = data.answer3;
   document.getElementById("answer4").value = data.answer4;
   document.getElementById("tipo").value = data.tipo;
+  //Traer si tiene imagen, si tiene, que me regrese la extension, sino tiene que me regrese null
+  if (data.idImagen == null) {
+    document.getElementById("imagenPregunta").src =
+      "../../../../IMAGENES/sinImagen.jpg";
+      console.log("sin imagen");
+  } else {
+    document.getElementById("imagenPregunta").src =
+      "../../../../IMAGENES/" + data.idImagen;
+      console.log("mostrando imagen");
+  }
 }

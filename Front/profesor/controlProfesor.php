@@ -60,7 +60,7 @@ if ($teacherID == "null") {
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <a href="editarPreguntas/editAllQuestionByID.php">
+        <a href="editarPreguntas/editAllQuestionByIDByGET?ID_Pregunta=1.php">
           <button type="button" class="btn btn-info">
             Editar preguntas por ID. Con boton de "siguiente"
           </button>
@@ -69,7 +69,7 @@ if ($teacherID == "null") {
     </div>
   </div>
 
-  <div class="container">
+  <!--div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p style="color: rgba(0, 0, 0, 0);">.</p>
@@ -87,7 +87,7 @@ if ($teacherID == "null") {
         </a>
       </div>
     </div>
-  </div>
+  </div-->
 
   <div class="container">
     <div class="row">
