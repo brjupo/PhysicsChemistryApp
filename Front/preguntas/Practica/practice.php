@@ -249,6 +249,7 @@ require "../../../Servicios/DDBBVariables.php";
 
     function imprimirBarraProgresoCruz($totalPreguntas, $idL)
     {
+        $subtemaNavegacion = $_SESSION["subtemaNavegacion"];
         echo '
             <div class="container">
                 <div class="row topMargin">
@@ -257,8 +258,9 @@ require "../../../Servicios/DDBBVariables.php";
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                     <p id="idioma" style="display:none">' . $_SESSION["idioma"] . '</p>
+                    <p id="subtemaPrevio" style="display:none">'.$subtemaNavegacion.'</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
-                    <p id="leccionID">'.$idL.'</p>
+                    <p id="leccionID" style="display:none">'.$idL.'</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
