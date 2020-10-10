@@ -14,23 +14,23 @@
 
 @font-face {
   font-family: "ubuntu";
-  src: url("../CSSsJSs/Fonts/ubuntu/ubuntu.ttf") format("truetype");
+  src: url("CSSsJSs/Fonts/ubuntu/ubuntu.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Open Sans";
-  src: url("../CSSsJSs/Fonts/open-sans/OpenSans-Regular.ttf") format("truetype");
+  src: url("CSSsJSs/Fonts/open-sans/OpenSans-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Roboto";
-  src: url("../CSSsJSs/Fonts/roboto/RobotoCondensed-Light.ttf")
+  src: url("CSSsJSs/Fonts/roboto/RobotoCondensed-Light.ttf")
     format("truetype");
 }
 
 @font-face {
   font-family: "Monse";
-  src: url("../CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf")
+  src: url("CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf")
     format("opentype");
 }
 
@@ -66,7 +66,7 @@ body {
   margin-top: 0.5vh;
   font-size: 5vh;
   line-height: 50px;
-  font-family: "ubuntu";
+  font-family: "Monse";
 }
 @media screen and (min-width: 611px) {
   .iconoPrincipal {
