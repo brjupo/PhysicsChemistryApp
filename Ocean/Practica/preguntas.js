@@ -166,20 +166,12 @@ document.addEventListener("click", function (evt) {
 });
 
 function seguroRegresar() {
-  if (idioma == "e"){
     var texto = "¿Seguro que quieres regresar?\nPerderás todo tu progreso de esta lección.";
-  }else{
-    var texto = "Are you sure to return?\nIf you return you will lose all your progress of this lesson.";
-  }
   if (
     confirm(texto)
   ) {
-    var userID = document.getElementById("userID").innerHTML.trim();
-    enviarAcumulador(userID);
-    var stringLiga = "../../Inicio/lecciones.php?subtema=";
-    window.location.href = stringLiga.concat(
-      document.getElementById("subtemaPrevio").innerHTML.trim()
-    );
+    var stringLiga = "https://kaanbal.net/DEV/Ocean/index.html";
+    window.location.href = stringLiga;
   }
 }
 
