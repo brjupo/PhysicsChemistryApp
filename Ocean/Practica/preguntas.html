@@ -16,1003 +16,985 @@
 
 
 <body>
-    <script>
-        document.addEventListener("contextmenu", (event) => event.preventDefault());
-        $(document).keydown(function(event) {
-            if (event.keyCode == 123) {
-                // Prevent F12
-                return false;
-            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
-                // Prevent Ctrl+Shift+I
-                return false;
-            } else if (event.ctrlKey && event.keyCode == 85) {
-                // Prevent Ctrl+U
-                return false;
-            } else if (event.ctrlKey && event.keyCode == 67) {
-                // Prevent Ctrl+C
-                return false;
-            }
-        });
-    </script>
+
+<div class="container">
+    <div class="row topMargin">
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <img src="../../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
+    </div>
+    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+        <p id="idioma" style="display:none"/>e</p>
+        <p id="subtemaPrevio" style="display:none">15</p>
+        <p id="totalPreguntas" style="display:none">22</p>
+        <p id="userID" style="display:none">4</p>
+        <p id="leccionID">61</p>
+        <div class="progress progressMargin">
+        <div    id="barraAvance"
+                class="progress-bar progress-bar-striped" 
+                role="progressbar" 
+                aria-valuenow="40" 
+                aria-valuemin="0" 
+                aria-valuemax="100" 
+                style="width: 0%;"></div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+        <p style="display:none" class="slide-bottom" id="previous">0m 10s</p>
+        <p style="display:none" class="slide-bottom" id="actual">0m 10s</p>
+        <p style="display:none" class="slide-bottom" id="later">0m 10s</p>
+        <p style="display:none" id="puntosBuenos"></p>
+    </div>
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+    </div>
+</div>
+
+    <div id="motivationMessage" class="container noPaddingMargin" style="display: none;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 noPaddingMargin">
+                <!--div class="imagenEdu">
+                    <p id="dialogo" class="dialogoInsp">Aunque falles, sigues aprendiendo!</p>
+                </div-->
+                <div>
+                    <p id="dialogo" class="dialogoNoInsp">Aunque falles, sigues aprendiendo!</p>
+                </div>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-6 col-lg-6 col-xl-6">
+                <p  style="color:rgba(0,0,0,0);">.</p>
+            </div>
+        </div>
+    </div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1001">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1001</p>
+    <p class="formatoPreguntas">Los números en la columna izquierda están expresados en:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2001">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+    <img src="../../../../IMAGENES/4601.jpg" class="imagenPregunta" />
+    <p id="3001" style="display:none">
+        1
+    </p>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+    <button class="Opcion1" id="7">
+        Notación decimal
+    </button><br>
+    <button class="Opcion3" id="9">
+        Notación estándar
+    </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+    <button class="Opcion2" id="8">
+        Potencias de 10
+    </button><br>
+    <button class="Opcion4" id="10">
+        Notación binaria
+    </button>
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1002">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1002</p>
+    <p class="formatoPreguntas">Los números en la columna derecha están expresados en:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2002">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+    <img src="../../../../IMAGENES/4602.jpg" class="imagenPregunta" />
+    <p id="3002" style="display:none">
+        3
+    </p>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+    <button class="Opcion1" id="17">
+        Notación binaria
+    </button><br>
+    <button class="Opcion3" id="19">
+        Potencias de 10
+    </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+    <button class="Opcion2" id="18">
+        Notación exponencial
+    </button><br>
+    <button class="Opcion4" id="20">
+        Notación estándar
+    </button>
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1003">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1003</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\) en notación estándar equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2003">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3003" style="display:none">
+        2
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="27">
+            1,000
+        </button><br>
+        <button class="Opcion3" id="29">
+            100
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="28">
+            20
+        </button><br>
+        <button class="Opcion4" id="30">
+            0.01
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1004">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1004</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\times10\) en notación estándar equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2004">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3004" style="display:none">
+        1
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="37">
+            0.001
+        </button><br>
+        <button class="Opcion3" id="39">
+            30
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="38">
+            1,000
+        </button><br>
+        <button class="Opcion4" id="40">
+            100
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1005">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1005</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\) en notación estándar equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2005">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3005" style="display:none">
+        2
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="47">
+            40
+        </button><br>
+        <button class="Opcion3" id="49">
+            10,000
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="48">
+            1,000
+        </button><br>
+        <button class="Opcion4" id="50">
+            0.0001
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1006">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1006</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\) en notación estándar equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2006">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3006" style="display:none">
+        0
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="57">
+            100,000
+        </button><br>
+        <button class="Opcion3" id="59">
+            50
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="58">
+            0.00001
+        </button><br>
+        <button class="Opcion4" id="60">
+            10,000
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1007">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1007</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\times10\) en notación estándar  equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2007">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3007" style="display:none">
+        2
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="67">
+            0.000001
+        </button><br>
+        <button class="Opcion3" id="69">
+            1,000,000
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="68">
+            100,000
+        </button><br>
+        <button class="Opcion4" id="70">
+            60
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1008">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1008</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\times10\times10\times10\times10\) en notación estándar  equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2008">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3008" style="display:none">
+        0
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="77">
+            1,000,000,000
+        </button><br>
+        <button class="Opcion3" id="79">
+            0.000000001
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="78">
+            100,000,000
+        </button><br>
+        <button class="Opcion4" id="80">
+            90
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1009">
+    <div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+        <p id="preguntaNumero">1009</p>
+        <p class="formatoPreguntas">El producto  \(10\times10\times10\) en notación estándar equivale a (utiliza una coma ',' cada 3 dígitos de derecha a izquierda): 
+        <input type="text" id="85">
+            
+        </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    </div>
+</div>
+
+    <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="container" style="display:none" id ="2009">
+        <div class="row">
+            <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <button id="86" class="miniBoton">Ok</button>
+                <p id="3009" style="display:none">
+                1,000
+                </p>
+            </div>
+        </div>
+    </div>
     
-            <div class="container">
-                <div class="row topMargin">
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <img src="../../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
-                </div>
-                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p id="idioma" style="display:none"/>e</p>
-                    <p id="subtemaPrevio" style="display:none">15</p>
-                    <p id="totalPreguntas" style="display:none">22</p>
-                    <p id="userID" style="display:none">4</p>
-                    <p id="leccionID">61</p>
-                    <div class="progress progressMargin">
-                    <div    id="barraAvance"
-                            class="progress-bar progress-bar-striped" 
-                            role="progressbar" 
-                            aria-valuenow="40" 
-                            aria-valuemin="0" 
-                            aria-valuemax="100" 
-                            style="width: 0%;"></div>
-                    </div>
-                </div>
-                </div>
-            </div>
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1010">
+    <div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+        <p id="preguntaNumero">1010</p>
+        <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\) en notación estándar equivale a (utiliza una coma ',' cada 3 dígitos de derecha a izquierda): 
+        <input type="text" id="95">
             
-            <div class="container">
-                <div class="row">
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p style="display:none" class="slide-bottom" id="previous">0m 10s</p>
-                    <p style="display:none" class="slide-bottom" id="actual">0m 10s</p>
-                    <p style="display:none" class="slide-bottom" id="later">0m 10s</p>
-                    <p style="display:none" id="puntosBuenos"></p>
-                </div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-                </div>
+        </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    </div>
+</div>
+
+    <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="container" style="display:none" id ="2010">
+        <div class="row">
+            <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <button id="96" class="miniBoton">Ok</button>
+                <p id="3010" style="display:none">
+                10,000
+                </p>
             </div>
+        </div>
+    </div>
+    
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1011">
+    <div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+        <p id="preguntaNumero">1011</p>
+        <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\times10\) en notación estándar equivale a (utiliza una coma ',' cada 3 dígitos de derecha a izquierda): 
+        <input type="text" id="105">
             
-                <div id="motivationMessage" class="container noPaddingMargin" style="display: none;">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 noPaddingMargin">
-                            <!--div class="imagenEdu">
-                                <p id="dialogo" class="dialogoInsp">Aunque falles, sigues aprendiendo!</p>
-                            </div-->
-                            <div>
-                                <p id="dialogo" class="dialogoNoInsp">Aunque falles, sigues aprendiendo!</p>
-                            </div>
-                        </div>
-                        <div class="hidden-xs hidden-sm col-md-6 col-lg-6 col-xl-6">
-                            <p  style="color:rgba(0,0,0,0);">.</p>
-                        </div>
-                    </div>
-                </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1001">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1001</p>
-                <p class="formatoPreguntas">Los números en la columna izquierda están expresados en:  
+        </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    </div>
+</div>
+
+    <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="container" style="display:none" id ="2011">
+        <div class="row">
+            <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <button id="106" class="miniBoton">Ok</button>
+                <p id="3011" style="display:none">
+                1,000,000
                 </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
             </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2001">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../../../../IMAGENES/4601.jpg" class="imagenPregunta" />
-                <p id="3001" style="display:none">
-                    1
-                </p>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                <button class="Opcion1" id="7">
-                    Notación decimal
-                </button><br>
-                <button class="Opcion3" id="9">
-                    Notación estándar
-                </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                <button class="Opcion2" id="8">
-                    Potencias de 10
-                </button><br>
-                <button class="Opcion4" id="10">
-                    Notación binaria
-                </button>
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1002">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1002</p>
-                <p class="formatoPreguntas">Los números en la columna derecha están expresados en:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2002">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../../../../IMAGENES/4602.jpg" class="imagenPregunta" />
-                <p id="3002" style="display:none">
-                    3
-                </p>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                <button class="Opcion1" id="17">
-                    Notación binaria
-                </button><br>
-                <button class="Opcion3" id="19">
-                    Potencias de 10
-                </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                <button class="Opcion2" id="18">
-                    Notación exponencial
-                </button><br>
-                <button class="Opcion4" id="20">
-                    Notación estándar
-                </button>
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1003">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1003</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\) en notación estándar equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2003">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3003" style="display:none">
-                    2
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="27">
-                        1,000
-                    </button><br>
-                    <button class="Opcion3" id="29">
-                        100
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="28">
-                        20
-                    </button><br>
-                    <button class="Opcion4" id="30">
-                        0.01
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1004">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1004</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\times10\) en notación estándar equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2004">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3004" style="display:none">
-                    1
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="37">
-                        0.001
-                    </button><br>
-                    <button class="Opcion3" id="39">
-                        30
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="38">
-                        1,000
-                    </button><br>
-                    <button class="Opcion4" id="40">
-                        100
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1005">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1005</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\) en notación estándar equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2005">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3005" style="display:none">
-                    2
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="47">
-                        40
-                    </button><br>
-                    <button class="Opcion3" id="49">
-                        10,000
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="48">
-                        1,000
-                    </button><br>
-                    <button class="Opcion4" id="50">
-                        0.0001
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1006">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1006</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\) en notación estándar equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2006">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3006" style="display:none">
-                    0
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="57">
-                        100,000
-                    </button><br>
-                    <button class="Opcion3" id="59">
-                        50
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="58">
-                        0.00001
-                    </button><br>
-                    <button class="Opcion4" id="60">
-                        10,000
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1007">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1007</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\times10\) en notación estándar  equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2007">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3007" style="display:none">
-                    2
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="67">
-                        0.000001
-                    </button><br>
-                    <button class="Opcion3" id="69">
-                        1,000,000
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="68">
-                        100,000
-                    </button><br>
-                    <button class="Opcion4" id="70">
-                        60
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1008">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1008</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\times10\times10\times10\times10\) en notación estándar  equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2008">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3008" style="display:none">
-                    0
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="77">
-                        1,000,000,000
-                    </button><br>
-                    <button class="Opcion3" id="79">
-                        0.000000001
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="78">
-                        100,000,000
-                    </button><br>
-                    <button class="Opcion4" id="80">
-                        90
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1009">
-                <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                    <p id="preguntaNumero">1009</p>
-                    <p class="formatoPreguntas">El producto  \(10\times10\times10\) en notación estándar equivale a (utiliza una coma ',' cada 3 dígitos de derecha a izquierda): 
-                    <input type="text" id="85">
-                      
-                    </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                </div>
-            </div>
-            
-                <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-                <div class="container" style="display:none" id ="2009">
-                    <div class="row">
-                        <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <button id="86" class="miniBoton">Ok</button>
-                            <p id="3009" style="display:none">
-                            1,000
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1010">
-                <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                    <p id="preguntaNumero">1010</p>
-                    <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\) en notación estándar equivale a (utiliza una coma ',' cada 3 dígitos de derecha a izquierda): 
-                    <input type="text" id="95">
-                      
-                    </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                </div>
-            </div>
-            
-                <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-                <div class="container" style="display:none" id ="2010">
-                    <div class="row">
-                        <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <button id="96" class="miniBoton">Ok</button>
-                            <p id="3010" style="display:none">
-                            10,000
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1011">
-                <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                    <p id="preguntaNumero">1011</p>
-                    <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\times10\) en notación estándar equivale a (utiliza una coma ',' cada 3 dígitos de derecha a izquierda): 
-                    <input type="text" id="105">
-                      
-                    </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                </div>
-            </div>
-            
-                <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-                <div class="container" style="display:none" id ="2011">
-                    <div class="row">
-                        <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <button id="106" class="miniBoton">Ok</button>
-                            <p id="3011" style="display:none">
-                            1,000,000
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1012">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1012</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\) equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2012">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3012" style="display:none">
-                    0
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="117">
-                        \({10}^2\)
-                    </button><br>
-                    <button class="Opcion3" id="119">
-                        \({10}^5\)
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="118">
-                        \({10}^4\)
-                    </button><br>
-                    <button class="Opcion4" id="120">
-                        \({10}^3\)
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1013">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1013</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\times10\) equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2013">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3013" style="display:none">
-                    1
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="127">
-                        \({10}^4\)
-                    </button><br>
-                    <button class="Opcion3" id="129">
-                        \({10}^5\)
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="128">
-                        \({10}^3\)
-                    </button><br>
-                    <button class="Opcion4" id="130">
-                        \({10}^2\)
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1014">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1014</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\) equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2014">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3014" style="display:none">
-                    3
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="137">
-                        \({10}^5\)
-                    </button><br>
-                    <button class="Opcion3" id="139">
-                        \({10}^6\)
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="138">
-                        \({10}^3\)
-                    </button><br>
-                    <button class="Opcion4" id="140">
-                        \({10}^4\)
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1015">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1015</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\) equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2015">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3015" style="display:none">
-                    0
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="147">
-                        \({10}^5\)
-                    </button><br>
-                    <button class="Opcion3" id="149">
-                        \({10}^6\)
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="148">
-                        \({10}^7\)
-                    </button><br>
-                    <button class="Opcion4" id="150">
-                        \({10}^4\)
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1016">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1016</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\times10\) equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2016">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3016" style="display:none">
-                    3
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="157">
-                        \({10}^5\)
-                    </button><br>
-                    <button class="Opcion3" id="159">
-                        \({10}^8\)
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="158">
-                        \({10}^7\)
-                    </button><br>
-                    <button class="Opcion4" id="160">
-                        \({10}^6\)
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1017">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1017</p>
-                <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\times10\times10\times10\times10\) equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2017">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3017" style="display:none">
-                    3
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="167">
-                        \({10}^7\)
-                    </button><br>
-                    <button class="Opcion3" id="169">
-                        \({10}^{10}\)
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="168">
-                        \({10}^8\)
-                    </button><br>
-                    <button class="Opcion4" id="170">
-                        \({10}^9\)
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1018">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1018</p>
-                <p class="formatoPreguntas">\({10}^3\) equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2018">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3018" style="display:none">
-                    3
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="177">
-                        10,000
-                    </button><br>
-                    <button class="Opcion3" id="179">
-                        100
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="178">
-                        10
-                    </button><br>
-                    <button class="Opcion4" id="180">
-                        1,000
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1019">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1019</p>
-                <p class="formatoPreguntas">\({10}^5\) equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2019">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3019" style="display:none">
-                    3
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="187">
-                        1,000
-                    </button><br>
-                    <button class="Opcion3" id="189">
-                        10,000
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="188">
-                        1,000,000
-                    </button><br>
-                    <button class="Opcion4" id="190">
-                        100,000
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1020">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1020</p>
-                <p class="formatoPreguntas">\({10}^2\) equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2020">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3020" style="display:none">
-                    0
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="197">
-                        100
-                    </button><br>
-                    <button class="Opcion3" id="199">
-                        1,000
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="198">
-                        10,000
-                    </button><br>
-                    <button class="Opcion4" id="200">
-                        10
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1021">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1021</p>
-                <p class="formatoPreguntas">\({10}^0\) equivale a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2021">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3021" style="display:none">
-                    0
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="207">
-                        1
-                    </button><br>
-                    <button class="Opcion3" id="209">
-                        0.1
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="208">
-                        0.01
-                    </button><br>
-                    <button class="Opcion4" id="210">
-                        10
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id="1022">
-            <div class="row">
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero">1022</p>
-                <p class="formatoPreguntas">1 es esquivalente a:  
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-            </div>
-        
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="2022">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p id="3022" style="display:none">
-                    1
-                </p>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion1" id="217">
-                        \({10}^1\)
-                    </button><br>
-                    <button class="Opcion3" id="219">
-                        \({10}^3\)
-                    </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <button class="Opcion2" id="218">
-                        \({10}^0\)
-                    </button><br>
-                    <button class="Opcion4" id="220">
-                        \({10}^2\)
-                    </button>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
-                </div>
-            </div>
-            </div>
-        
-            <div class="popUp animated bounceInUp" id="botonSiguientePregunta" style="display: none;">
-                <div class="container">
-                <div class="row text-center">
-                    <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                    <button class="botonContinuar">Continue</button>
-                    </div>
-                    <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
-                </div>
-                </div>
-            </div>
+        </div>
+    </div>
+    
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1012">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1012</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\) equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2012">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3012" style="display:none">
+        0
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="117">
+            \({10}^2\)
+        </button><br>
+        <button class="Opcion3" id="119">
+            \({10}^5\)
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="118">
+            \({10}^4\)
+        </button><br>
+        <button class="Opcion4" id="120">
+            \({10}^3\)
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1013">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1013</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\times10\) equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2013">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3013" style="display:none">
+        1
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="127">
+            \({10}^4\)
+        </button><br>
+        <button class="Opcion3" id="129">
+            \({10}^5\)
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="128">
+            \({10}^3\)
+        </button><br>
+        <button class="Opcion4" id="130">
+            \({10}^2\)
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1014">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1014</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\) equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2014">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3014" style="display:none">
+        3
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="137">
+            \({10}^5\)
+        </button><br>
+        <button class="Opcion3" id="139">
+            \({10}^6\)
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="138">
+            \({10}^3\)
+        </button><br>
+        <button class="Opcion4" id="140">
+            \({10}^4\)
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1015">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1015</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\) equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2015">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3015" style="display:none">
+        0
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="147">
+            \({10}^5\)
+        </button><br>
+        <button class="Opcion3" id="149">
+            \({10}^6\)
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="148">
+            \({10}^7\)
+        </button><br>
+        <button class="Opcion4" id="150">
+            \({10}^4\)
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1016">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1016</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\times10\) equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2016">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3016" style="display:none">
+        3
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="157">
+            \({10}^5\)
+        </button><br>
+        <button class="Opcion3" id="159">
+            \({10}^8\)
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="158">
+            \({10}^7\)
+        </button><br>
+        <button class="Opcion4" id="160">
+            \({10}^6\)
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1017">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1017</p>
+    <p class="formatoPreguntas">El producto  \(10\times10\times10\times10\times10\times10\times10\times10\times10\) equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2017">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3017" style="display:none">
+        3
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="167">
+            \({10}^7\)
+        </button><br>
+        <button class="Opcion3" id="169">
+            \({10}^{10}\)
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="168">
+            \({10}^8\)
+        </button><br>
+        <button class="Opcion4" id="170">
+            \({10}^9\)
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1018">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1018</p>
+    <p class="formatoPreguntas">\({10}^3\) equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2018">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3018" style="display:none">
+        3
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="177">
+            10,000
+        </button><br>
+        <button class="Opcion3" id="179">
+            100
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="178">
+            10
+        </button><br>
+        <button class="Opcion4" id="180">
+            1,000
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1019">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1019</p>
+    <p class="formatoPreguntas">\({10}^5\) equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2019">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3019" style="display:none">
+        3
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="187">
+            1,000
+        </button><br>
+        <button class="Opcion3" id="189">
+            10,000
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="188">
+            1,000,000
+        </button><br>
+        <button class="Opcion4" id="190">
+            100,000
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1020">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1020</p>
+    <p class="formatoPreguntas">\({10}^2\) equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2020">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3020" style="display:none">
+        0
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="197">
+            100
+        </button><br>
+        <button class="Opcion3" id="199">
+            1,000
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="198">
+            10,000
+        </button><br>
+        <button class="Opcion4" id="200">
+            10
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1021">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1021</p>
+    <p class="formatoPreguntas">\({10}^0\) equivale a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2021">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3021" style="display:none">
+        0
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="207">
+            1
+        </button><br>
+        <button class="Opcion3" id="209">
+            0.1
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="208">
+            0.01
+        </button><br>
+        <button class="Opcion4" id="210">
+            10
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++PREGUNTA++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id="1022">
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <p id="preguntaNumero">1022</p>
+    <p class="formatoPreguntas">1 es esquivalente a:  
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+</div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container" style="display:none" id ="2022">
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <p id="3022" style="display:none">
+        1
+    </p>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion1" id="217">
+            \({10}^1\)
+        </button><br>
+        <button class="Opcion3" id="219">
+            \({10}^3\)
+        </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+        <button class="Opcion2" id="218">
+            \({10}^0\)
+        </button><br>
+        <button class="Opcion4" id="220">
+            \({10}^2\)
+        </button>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3">
+    </div>
+</div>
+</div>
+
+<div class="popUp animated bounceInUp" id="botonSiguientePregunta" style="display: none;">
+    <div class="container">
+    <div class="row text-center">
+        <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <button class="botonContinuar">Continue</button>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>
+    </div>
+    </div>
+</div>
 </body>
 
 </html>
