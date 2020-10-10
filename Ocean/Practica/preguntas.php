@@ -12,7 +12,7 @@ require "../../../Servicios/DDBBVariables.php";
     <title>Pregunta</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
-    <script src="preguntas.js"></script>
+    <script src="practice.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
