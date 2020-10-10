@@ -2,7 +2,7 @@
 
 /*--------------------------------------------------FUENTES-----------------------------------------------------------*/
 
-/*
+
 @font-face {
     font-family: "CustomFont";
     src: url("CustomFont.eot");
@@ -38,7 +38,7 @@
   font-family: "SSP";
   src: url("../CSSsJSs/Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
 }
-*/
+
 /*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
 
 body {
@@ -57,7 +57,7 @@ body {
   left: 0;
   top: 0;
   width: 100%;
-  height: 7vh;
+  height: 15vh;
   z-index: 1;
 }
 
