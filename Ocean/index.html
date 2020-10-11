@@ -16,7 +16,6 @@
     <script src="CSSsJSs/index.js"></script>
   </head>
   <body>
-
     <style>
       .relleno {
         color: rgba(0, 0, 0, 0);
@@ -27,29 +26,29 @@
       }
     </style>
 
-<script>
-  document.addEventListener("click", function (evt) {
-    var cancun = document.getElementById("cancun");
-    var carmen = document.getElementById("carmen");
-    var tulum = document.getElementById("tulum");
-    var subir = document.getElementById("subir");
+    <script>
+      document.addEventListener("click", function (evt) {
+        var cancun = document.getElementById("cancun");
+        var carmen = document.getElementById("carmen");
+        var tulum = document.getElementById("tulum");
+        var subir = document.getElementById("subir");
 
-    targetElement = evt.target; // clicked element
+        targetElement = evt.target; // clicked element
 
-    do {
-      if (targetElement == per) {
-        location.href = "precep.html";
-        return;
-      }
-      if (targetElement == fotos) {
-        location.href = "fotos.html";
-        return;
-      }
-      // Go up the DOM
-      targetElement = targetElement.parentNode;
-    } while (targetElement);
-  });
-</script>
+        do {
+          if (targetElement == per) {
+            location.href = "precep.html";
+            return;
+          }
+          if (targetElement == fotos) {
+            location.href = "fotos.html";
+            return;
+          }
+          // Go up the DOM
+          targetElement = targetElement.parentNode;
+        } while (targetElement);
+      });
+    </script>
     <div class="container">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -107,10 +106,14 @@
     <div class="container">
       <div class="row">
         <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-          <button type="button" class="btn btn-primary" id="per">Indicadores de riesgo social</button>
+          <button type="button" class="btn btn-primary" id="per">
+            Indicadores de riesgo social
+          </button>
         </div>
         <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-          <button type="button" class="btn btn-success" id="fotos">Sube tus fotos del coral</button>
+          <button type="button" class="btn btn-success" id="fotos">
+            Sube tus fotos del coral
+          </button>
         </div>
       </div>
     </div>
@@ -163,7 +166,7 @@
             />
             Your browser does not support HTML video.
           </video>
-          <p style="font-size: small;">
+          <p style="font-size: small">
             Elaboración propia con datos disponibles en NOAA: Jiang, L.-Q., B.
             R. Carter, R. A. Feely, S. Lauvset, and A. Olsen (2019), Surface
             ocean pH and buffer capacity: past, present and future, Nature
@@ -303,7 +306,6 @@
       </div>
     </div>
 
-
     <!-- ++++++++++++++++++++++++++++++++++++++++++ cris +++++++++++++++++++++++++++++++++++++++++++ -->
     <div class="container">
       <div class="row">
@@ -370,8 +372,6 @@
         </a>
       </div>
     </div>
-
-
 
     <!--div class="container">
       <div class="row">
