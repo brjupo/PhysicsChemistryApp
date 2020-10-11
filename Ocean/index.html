@@ -31,9 +31,8 @@
         var per = document.getElementById("per");
         var fotos = document.getElementById("fotos");
         var guia = document.getElementById("guia");
-
+        var hotel = document.getElementById("hotel");
         targetElement = evt.target; // clicked element
-
         do {
           if (targetElement == per) {
             location.href = "precep.html";
@@ -45,6 +44,10 @@
           }
           if (targetElement == guia) {
             location.href = "guia.html";
+            return;
+          }
+          if (targetElement == hotel) {
+            location.href = "hotel.html";
             return;
           }
           // Go up the DOM
@@ -105,19 +108,24 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
           <button type="button" class="btn btn-primary" id="per">
             Indicadores de riesgo social
           </button>
         </div>
-        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-          <button type="button" class="btn btn-success" id="fotos">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <button type="button" class="btn btn-light" id="fotos">
             Sube tus fotos del coral
           </button>
         </div>
-        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
           <button type="button" class="btn btn-warning" id="guia">
             Guía de campo
+          </button>
+        </div>
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <button type="button" class="btn btn-success" id="hotel">
+            Hoteles ecológicos
           </button>
         </div>
       </div>
