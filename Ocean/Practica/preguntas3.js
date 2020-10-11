@@ -400,6 +400,7 @@ function nextQuestion(lastQuestion) {
     document.getElementById("botonSiguientePregunta").disabled=true;
     
     var userID = document.getElementById("userID").innerHTML.trim();
+    /*
     var leccionID = document.getElementById("leccionID").innerHTML.trim();
     //alert(userID+ " "+ puntos+ " "+ leccionID);
 
@@ -427,6 +428,7 @@ function nextQuestion(lastQuestion) {
         }
       },
     });
+    */
   
   } else {
     loadNewQuestion(questionNumberArray[0]);
@@ -621,6 +623,7 @@ function limpiarInputs(cantidadIDs) {
 }
 
 function enviarAcumulador(userID) {
+  /*
 $.ajax({
   type: "POST",
   url: "../../../Servicios/enviarAcumulador.php",
@@ -635,6 +638,7 @@ $.ajax({
     }
   },
 });
+*/
 }
 
 var registrarInactividad = function () {
