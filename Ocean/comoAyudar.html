@@ -468,7 +468,7 @@
         <p class="relleno">.</p>
       </div>
       <div class="row">
-        <div class="col-8 col-sm-9 col-md-8 col-lg-8 col-xl-8"></div>
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8"></div>
         <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
           <button id="validar" class="btn btn-primary">Validar</button>
         </div>
@@ -480,7 +480,7 @@
       </div>
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p id="msg" style="display:none;">
+          <p id="msg" style="display: none">
             Estamos procesando tu petición en cuanto terminemos, te enviaremos
             el cartel a tu correo
           </p>
@@ -501,6 +501,42 @@
       </div>
     </div>
     <!-- ++++++++++++++++++++++++++++++++++++++++++ RELLENO +++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8"></div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <form
+            action="https://www.paypal.com/cgi-bin/webscr"
+            method="post"
+            target="_top"
+          >
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input
+              type="hidden"
+              name="hosted_button_id"
+              value="XBBSRN82UWD3J"
+            />
+            <input
+              type="image"
+              src="https://www.paypalobjects.com/es_XC/MX/i/btn/btn_donateCC_LG.gif"
+              border="0"
+              name="submit"
+              title="PayPal - The safer, easier way to pay online!"
+              alt="Donate with PayPal button"
+            />
+            <img
+              alt=""
+              border="0"
+              src="https://www.paypal.com/es_MX/i/scr/pixel.gif"
+              width="1"
+              height="1"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- ++++++++++++++++++++++++++++++++++++++++++ RELLENO +++++++++++++++++++++++++++++++++++++++++++ -->
     <div class="container">
       <div class="row">
