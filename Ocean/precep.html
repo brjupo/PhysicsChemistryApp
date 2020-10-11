@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="CSSsJSs/icons/coral.ico"
+    />
+    <title>Arrecife de coral</title>
+    <link rel="stylesheet" href="CSSsJSs/bootstrap441.css" />
+  </head>
+  <body>
+    <style>
+      .peninsula {
+        background-image: url("CSSsJSs/icons/cct.png");
+        background-repeat: no-repeat;
+      }
+      .transparente {
+        color: rgba(0, 0, 0, 0);
+        width: 200vw;
+        height: 100px;
+      }
+      .relleno {
+        color: rgba(0, 0, 0, 0);
+      }
+      .centrarElemento {
+        display: block;
+        margin: auto;
+      }
+    </style>
+    <script>
+      document.addEventListener("click", function (evt) {
+        var cancun = document.getElementById("cancun");
+        var carmen = document.getElementById("carmen");
+        var tulum = document.getElementById("tulum");
+        var subir = document.getElementById("subir");
+
+        targetElement = evt.target; // clicked element
+
+        do {
+          if (targetElement == cancun) {
+            document.getElementById("fotosCancun").style.display = "block";
+            document.getElementById("fotosCarmen").style.display = "none";
+            document.getElementById("fotosTulum").style.display = "none";
+            //location.href = "#fotosCancun";
+            return;
+          }
+          if (targetElement == carmen) {
+            document.getElementById("fotosCancun").style.display = "none";
+            document.getElementById("fotosCarmen").style.display = "block";
+            document.getElementById("fotosTulum").style.display = "none";
+            //location.href = "#fotosCarmen";
+            return;
+          }
+          if (targetElement == tulum) {
+            document.getElementById("fotosCancun").style.display = "none";
+            document.getElementById("fotosCarmen").style.display = "none";
+            document.getElementById("fotosTulum").style.display = "block";
+            //location.href = "#fotosTulum";
+            return;
+          }
+          if (targetElement == subir) {
+            document.getElementById("ex1").value = "";
+            document.getElementById("tulum5").style.display = "block";
+            return;
+          }
+          // Go up the DOM
+          targetElement = targetElement.parentNode;
+        } while (targetElement);
+      });
+    </script>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h1 style="color: rgba(0, 0, 0, 0)">.</h1>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h1 style="color: rgba(0, 0, 0, 0)">.</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+          <h1>
+            Selecciona el destino a donde vas para subir fotos sobre fauna o
+            acceder a bancos de imágenes de ese lugar
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+      </div>
+    </div>
+    <!-- +++++++++++++++++++++++++ MAPA PENINSULA ++++++++++++++++++++++++-->
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
+          <!--img src="CSSsJSs/icons/Ciudades.png" width="100%" /-->
+          <table class="peninsula">
+            <tr>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+            </tr>
+            <tr id="cancun">
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+            </tr>
+            <tr id="carmen">
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+            </tr>
+            <tr id="tulum">
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
+          <h4>Cancun</h4>
+          <h5>Turista</h5>
+          <p style="color: rgb(50, 180, 50)">Percepción: 90%</p>
+          <p style="color: rgb(180, 50, 50)">Conocimiento: 53%</p>
+          <p class="relleno"></p>
+          <h5>Local</h5>
+          <p style="color: rgb(50, 180, 50)">Percepción: 90%</p>
+          <p style="color: rgb(180, 50, 50)">Conocimiento: 53%</p>
+          <p class="relleno">.</p>
+          <h5>Empresario</h5>
+          <p style="color: rgb(220, 100, 50)">Percepción: 70%</p>
+          <p style="color: rgb(220, 220, 50)">Conocimiento: 85%</p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h1 style="color: rgba(0, 0, 0, 0)">.</h1>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h1 style="color: rgba(0, 0, 0, 0)">.</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- ++++++++++++++++++++++++++++++++ FIN +++++++++++++++++++++++++++++++ -->
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h1 style="color: rgba(0, 0, 0, 0)">.</h1>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h1 style="color: rgba(0, 0, 0, 0)">.</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11"></div>
+        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"></div>
+        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"></div>
+        <div class="col-8 col-sm-9 col-md-8 col-lg-8 col-xl-8"></div>
+        <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7"></div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"></div>
+        <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+        <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+      </div>
+    </div>
+  </body>
+</html>
