@@ -28,10 +28,9 @@
 
     <script>
       document.addEventListener("click", function (evt) {
-        var cancun = document.getElementById("cancun");
-        var carmen = document.getElementById("carmen");
-        var tulum = document.getElementById("tulum");
-        var subir = document.getElementById("subir");
+        var per = document.getElementById("per");
+        var fotos = document.getElementById("fotos");
+        var guia = document.getElementById("guia");
 
         targetElement = evt.target; // clicked element
 
@@ -42,6 +41,10 @@
           }
           if (targetElement == fotos) {
             location.href = "fotos.html";
+            return;
+          }
+          if (targetElement == guia) {
+            location.href = "guia.html";
             return;
           }
           // Go up the DOM
@@ -102,14 +105,19 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
           <button type="button" class="btn btn-primary" id="per">
             Indicadores de riesgo social
           </button>
         </div>
-        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
           <button type="button" class="btn btn-success" id="fotos">
             Sube tus fotos del coral
+          </button>
+        </div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <button type="button" class="btn btn-warning" id="guia">
+            Guía de campo
           </button>
         </div>
       </div>
