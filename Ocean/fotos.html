@@ -16,8 +16,39 @@
     <style>
       .peninsula {
         background-image: url("CSSsJSs/icons/Ciudades.png");
+        background-repeat: no-repeat;
+      }
+      .transparente {
+        color: rgba(0, 0, 0, 0);
+        width: 200vw;
+        height: 100px;
       }
     </style>
+    <script>
+      document.addEventListener("click", function (evt) {
+        var cancun = document.getElementById("cancun");
+        var carmen = document.getElementById("carmen");
+        var tulum = document.getElementById("tulum");
+        targetElement = evt.target; // clicked element
+
+        do {
+          if (targetElement == cancun) {
+            location.href = "#fotosCancun";
+            return;
+          }
+          if (targetElement == carmen) {
+            location.href = "#fotosCarmen";
+            return;
+          }
+          if (targetElement == tulum) {
+            location.href = "#fotosTulum";
+            return;
+          }
+          // Go up the DOM
+          targetElement = targetElement.parentNode;
+        } while (targetElement);
+      });
+    </script>
     <div class="container">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -52,28 +83,52 @@
           <!--img src="CSSsJSs/icons/Ciudades.png" width="100%" /-->
           <table class="peninsula">
             <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-              <td>6</td>
-              <td>7</td>
-              <td>8</td>
-              <td>9</td>
-              <td>10</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-              <td>6</td>
-              <td>7</td>
-              <td>8</td>
-              <td>9</td>
-              <td>10</td>
+            <tr id="cancun">
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+            </tr>
+            <tr id="carmen">
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+            </tr>
+            <tr id="tulum">
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
+              <td class="transparente">1</td>
             </tr>
           </table>
         </div>
@@ -165,10 +220,10 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="fotosCancun">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <h2>Causas</h2>
+          <h2>CANCUN</h2>
         </div>
       </div>
     </div>
@@ -204,13 +259,13 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="fotosCarmen">
       <div class="row">
         <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
           <img src="CSSsJSs/icons/muerto.svg" width="80%" />
         </div>
         <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-          <h2 class="text-right">Consecuencias</h2>
+          <h2 class="text-right">CARMEN</h2>
           <p>
             La pérdida de los arrecifes coralinos puede ocasionar diversas
             situaciones desde la erosión de las playas hasta la pérdida masiva
@@ -232,10 +287,10 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="fotosTulum">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <h2>¿Qué debo hacer?</h2>
+          <h2>TULUM</h2>
         </div>
       </div>
     </div>
