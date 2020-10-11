@@ -257,7 +257,7 @@ function verifyIfCorrectOption(targetID, questionNumber) {
     CorrectAudio.play();
   } else {
     lastQuestion = questionNumber;
-    questionNumberArray.push(questionNumber);
+    //questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
     puntos = puntos - 1;
     buenas0_malas1_alHilo[1] += 1;
@@ -324,7 +324,7 @@ function verifyIfTextIsCorrect(questionNumber) {
     CorrectAudio.play();
   } else {
     lastQuestion = questionNumber;
-    questionNumberArray.push(questionNumber);
+    //questionNumberArray.push(questionNumber);
     questionNumberArray.shift();
     buenas0_malas1_alHilo[1] += 1;
     puntos = puntos - 1;
