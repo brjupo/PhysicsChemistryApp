@@ -400,6 +400,8 @@ function nextQuestion(lastQuestion) {
     document.getElementById("botonSiguientePregunta").disabled=true;
     
     var userID = document.getElementById("userID").innerHTML.trim();
+
+    window.location.replace("nivelCompletado.html");
     /*
     var leccionID = document.getElementById("leccionID").innerHTML.trim();
     //alert(userID+ " "+ puntos+ " "+ leccionID);
