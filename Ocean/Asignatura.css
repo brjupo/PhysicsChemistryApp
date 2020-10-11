@@ -264,6 +264,10 @@ p {
   width: 100%;
 }
 
+.relleno{
+  color:white;
+}
+
 /*para compus*/
 @media screen and (min-width: 768px) {
   .cartel {
