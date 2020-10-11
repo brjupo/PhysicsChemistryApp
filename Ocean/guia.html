@@ -33,22 +33,19 @@
     </style>
     <script>
       document.addEventListener("click", function (evt) {
-        /*var cancun = document.getElementById("cancun");
+        var subir = document.getElementById("subir");
 
         targetElement = evt.target; // clicked element
 
         do {
-          if (targetElement == cancun) {
-            document.getElementById("porCancun").style.display = "block";
-            document.getElementById("porCarmen").style.display = "none";
-            document.getElementById("porTulum").style.display = "none";
+          if (targetElement == subir) {
+            document.getElementById("msg").style.display = "block";
             //location.href = "#porCancun";
             return;
           }
           // Go up the DOM
           targetElement = targetElement.parentNode;
         } while (targetElement);
-        */
       });
     </script>
     <div class="container">
@@ -135,6 +132,10 @@
             Lionfish
           </label>
         </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h1 style="color: rgba(0, 0, 0, 0)">.</h1>
+        </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <button type="" id="subir" class="btn btn-primary">Submit</button>
         </div>
@@ -145,7 +146,9 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <h1 style="color: rgba(0, 0, 0, 0)">.</h1>
+          <p id="msg">
+            Has aportado información valiosa. Muchas gracias por tu cooperación
+          </p>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <h1 style="color: rgba(0, 0, 0, 0)">.</h1>
