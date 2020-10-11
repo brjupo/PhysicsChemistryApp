@@ -403,7 +403,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Frase impactante</span>
           </div>
-          <input id="frase" type="text" class="form-control" form="cartel"/>
+          <input id="frase" type="text" class="form-control" form="cartel" />
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2"></div>
       </div>
@@ -416,7 +416,12 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Descuento</span>
           </div>
-          <input id="descuento" type="text" class="form-control" form="cartel"/>
+          <input
+            id="descuento"
+            type="text"
+            class="form-control"
+            form="cartel"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
       </div>
@@ -429,7 +434,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Clave descuento</span>
           </div>
-          <input id="clave" type="text" class="form-control" form="cartel"/>
+          <input id="clave" type="text" class="form-control" form="cartel" />
         </div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
       </div>
@@ -442,7 +447,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Descuento valido hasta:</span>
           </div>
-          <input id="fecha" type="date" form="cartel"/>
+          <input id="fecha" type="date" form="cartel" />
         </div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
       </div>
@@ -455,18 +460,32 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Correo:</span>
           </div>
-          <input id="correo" type="text" class="form-control" form="cartel"/>
+          <input id="correo" type="text" class="form-control" form="cartel" />
         </div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
       </div>
       <div class="row">
-        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
-        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                <button id="validar" class="btn btn-primary">Validar</button>
-        </div>
-        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+        <p class="relleno">.</p>
       </div>
-
+      <div class="row">
+        <div class="col-8 col-sm-9 col-md-8 col-lg-8 col-xl-8"></div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <button id="validar" class="btn btn-primary">Validar</button>
+        </div>
+        <script>
+          document.getElementById("validar").onclick = function () {
+            document.getElementById("msg").style.display = "block";
+          };
+        </script>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p id="msg" style="display:none;">
+            Estamos procesando tu petición en cuanto terminemos, te enviaremos
+            el cartelm a tu correo
+          </p>
+        </div>
+      </div>
     </div>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++ RELLENO +++++++++++++++++++++++++++++++++++++++++++ -->
