@@ -1,27 +1,3 @@
-<?php
-try {
-    // SDK de Mercado Pago
-    require __DIR__ .  '/vendor/autoload.php';
-    
-    // Agrega credenciales
-    MercadoPago\SDK::setAccessToken('PROD_ACCESS_TOKEN');
-    
-    // Crea un objeto de preferencia
-    $preference = new MercadoPago\Preference();
-    
-    // Crea un ítem en la preferencia
-    $item = new MercadoPago\Item();
-    $item->title = 'Licencia semestral Kaanbal [1 materia]';
-    $item->quantity = 1;
-    $item->unit_price = 10;
-    $preference->items = array($item);
-    $preference->save();
-} catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
-}
-
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -35,6 +11,40 @@ try {
 </head>
 
 <body>
+
+    <?php
+    /*
+    try {
+        // SDK de Mercado Pago
+        require __DIR__ .  '/vendor/autoload.php';
+
+        // Agrega credenciales
+        MercadoPago\SDK::setAccessToken('PROD_ACCESS_TOKEN');
+
+        // Crea un objeto de preferencia
+        $preference = new MercadoPago\Preference();
+
+        // Crea un ítem en la preferencia
+        $item = new MercadoPago\Item();
+        $item->title = 'Licencia semestral Kaanbal [1 materia]';
+        $item->quantity = 1;
+        $item->unit_price = 10;
+        $preference->items = array($item);
+        $preference->save();
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+    */
+    ?>
+
+<div class="container">
+        <div class="row">
+            <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p><?php echo __DIR__; ?></p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
@@ -45,8 +55,6 @@ try {
             <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
         </div>
     </div>
-
-
 
     <div class="container">
         <div class="row">
