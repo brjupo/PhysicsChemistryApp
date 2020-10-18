@@ -13,11 +13,11 @@
 <body>
 
     <?php
-    /*
+    
     try {
         // SDK de Mercado Pago
-        require __DIR__ .  '/vendor/autoload.php';
-
+        //require '../../../../../../../vendor/autoload.php';
+        include '../../../../../../../vendor/autoload.php';
         // Agrega credenciales
         MercadoPago\SDK::setAccessToken('PROD_ACCESS_TOKEN');
 
@@ -34,7 +34,7 @@
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
-    */
+    
     ?>
 
 <div class="container">
