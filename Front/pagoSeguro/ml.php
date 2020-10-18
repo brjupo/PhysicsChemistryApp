@@ -1,20 +1,25 @@
 <?php
-// SDK de Mercado Pago
-require __DIR__ .  '/vendor/autoload.php';
+try {
+    // SDK de Mercado Pago
+    require __DIR__ .  '/vendor/autoload.php';
+    
+    // Agrega credenciales
+    MercadoPago\SDK::setAccessToken('PROD_ACCESS_TOKEN');
+    
+    // Crea un objeto de preferencia
+    $preference = new MercadoPago\Preference();
+    
+    // Crea un ítem en la preferencia
+    $item = new MercadoPago\Item();
+    $item->title = 'Licencia semestral Kaanbal [1 materia]';
+    $item->quantity = 1;
+    $item->unit_price = 10;
+    $preference->items = array($item);
+    $preference->save();
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
 
-// Agrega credenciales
-MercadoPago\SDK::setAccessToken('PROD_ACCESS_TOKEN');
-
-// Crea un objeto de preferencia
-$preference = new MercadoPago\Preference();
-
-// Crea un ítem en la preferencia
-$item = new MercadoPago\Item();
-$item->title = 'Licencia semestral Kaanbal [1 materia]';
-$item->quantity = 1;
-$item->unit_price = 10;
-$preference->items = array($item);
-$preference->save();
 ?>
 
 <!DOCTYPE html>
