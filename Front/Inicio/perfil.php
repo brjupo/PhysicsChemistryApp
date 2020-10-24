@@ -446,7 +446,7 @@ require "../../Servicios/DDBBVariables.php";
     echo '
           <div class="container">
             <div class="row">
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+              <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
                 <h2 style="text-align:center;">Calificaciones</h2>
             </div>
           </div>
@@ -500,6 +500,18 @@ require "../../Servicios/DDBBVariables.php";
           </div>
     ';
   }
+
+  function imprimirPagos(){
+    echo '
+          <div class="container">
+            <div class="row">
+              <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+                <h2 style="text-align:center;">Comprar</h2>
+            </div>
+          </div>
+    ';
+  }
+
   function imprimirSinFactura()
   {
     echo '
