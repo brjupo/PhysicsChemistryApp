@@ -172,6 +172,8 @@ require "../../Servicios/DDBBVariables.php";
     imprimirRelleno();
     imprimirCalificacion($matricula);
     imprimirRelleno();
+    imprimirSinFactura();
+    imprimirRelleno();
     imprimirCreditos();
     imprimirRelleno();
     imprimirRelleno();
@@ -491,6 +493,180 @@ require "../../Servicios/DDBBVariables.php";
           </div>
     ';
   }
+  function imprimirSinFactura()
+  {
+    echo '
+          <div class="container">
+            <div class="row">
+              <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
+              <div
+                class="col-6 col-sm-6 col-md-5 col-lg-5 col-xl-5"
+                id="sinFactura1"
+                style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
+              >
+                <h4>Sin factura</h4>
+              </div>
+              <div
+                class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
+                id="sinFactura2"
+                style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
+              >
+                <img
+                  src="../CSSsJSs/icons/FlechaIzq.svg"
+                  width="20px"
+                  style="
+                    transform: rotate(270deg);
+                    display: block;
+                    margin: 0px 0px 0px auto;
+                  "
+                />
+              </div>
+              <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
+            </div>
+          </div>
+
+          <div id="sinFactura" class="ocultarOpciones">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <p class="transparente">.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row">
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">ID/Matrícula</span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="A1234567890"
+                    name="matricula"
+                    form="datosSinFactura"
+                  />
+                </div>
+                <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+
+                <div class="col-12 col-sm-12 col-md-12 d-lg-none">
+                  <p class="transparente">.</p>
+                </div>
+
+                <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+                <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Nombre</span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="JESSICA GARCIA PEREZ"
+                    name="nombre"
+                    form="datosSinFactura"
+                  />
+                </div>
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <p class="transparente">.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row">
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Correo</span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="mail@school.dom"
+                    name="matricula"
+                    form="datosSinFactura"
+                  />
+                </div>
+                <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+
+                <div class="col-12 col-sm-12 col-md-12 d-lg-none">
+                  <p class="transparente">.</p>
+                </div>
+
+                <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+                <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+                  <p
+                    style="
+                      font-size: x-small;
+                      text-align: center;
+                      display: block;
+                      margin: auto auto 0px auto;
+                    "
+                  >
+                    En este correo te enviaremos el link para cambiar la contraseña
+                  </p>
+                </div>
+                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <p class="transparente">.</p>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <p class="transparente">.</p>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <p class="transparente">.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row">
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                  <img
+                    src="../CSSsJSs/images/mercadoPagoLogo.png"
+                    width="120px"
+                    style="display: block; margin: auto 0px auto auto"
+                  />
+                </div>
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                  <form
+                    id="datosSinFactura"
+                    action="/action_page.php"
+                    method="POST"
+                    enctype="application/x-www-form-urlencoded"
+                  >
+                    <button type="submit" class="btn btn-primary centrarObjeto">
+                      Pagar
+                    </button>
+                  </form>
+                </div>
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                  <img
+                    src="../CSSsJSs/images/paypalLogo.png"
+                    width="120px"
+                    style="display: block; margin: auto auto auto 0px"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+    ';
+  }
+
+
   function imprimirFooter()
   {
     echo '
@@ -514,8 +690,9 @@ require "../../Servicios/DDBBVariables.php";
         </div>
     ';
   }
-
   ?>
+
+
 
 
 

@@ -9,6 +9,10 @@ document.addEventListener("click", function (evt) {
   var logout = document.getElementById("botonLogout");
   var editarAvatar = document.getElementById("editarAvatar");
   var botonGuardar = document.getElementById("guardarAvatar");
+  var conFactura1 = document.getElementById("conFactura1");
+  var conFactura2 = document.getElementById("conFactura2");
+  var sinFactura1 = document.getElementById("sinFactura1");
+  var sinFactura2 = document.getElementById("sinFactura2");
   targetElement = evt.target; // clicked element
   elID = targetElement.id;
 
@@ -27,6 +31,14 @@ document.addEventListener("click", function (evt) {
     }
     if (targetElement == editarAvatar) {
       toggleAvatar();
+      return;
+    }
+    if (targetElement == conFactura1 || targetElement == conFactura2) {
+      toggleConFactura();
+      return;
+    }
+    if (targetElement == sinFactura1 || targetElement == sinFactura2) {
+      toggleSinFactura();
       return;
     }
     if (elID.startsWith("avatar")) {
@@ -71,6 +83,16 @@ function topv() {
 function toggleAvatar() {
   document.getElementById("avatarElegir").classList.toggle("mostrarOpciones");
   document.getElementById("avatarElegir").classList.toggle("ocultarOpciones");
+}
+
+function toggleConFactura() {
+  document.getElementById("conFactura").classList.toggle("mostrarOpciones");
+  document.getElementById("conFactura").classList.toggle("ocultarOpciones");
+  console.log("toggleando con factura");
+}
+function toggleSinFactura() {
+  document.getElementById("sinFactura").classList.toggle("mostrarOpciones");
+  document.getElementById("sinFactura").classList.toggle("ocultarOpciones");
 }
 
 function do_logout() {
