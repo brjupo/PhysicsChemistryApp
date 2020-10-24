@@ -174,6 +174,9 @@ require "../../Servicios/DDBBVariables.php";
     imprimirCalificacion($matricula);
     imprimirRelleno();
     imprimirRelleno();
+    imprimirPagos();
+    imprimirConFactura();
+    imprimirRelleno();
     imprimirSinFactura();
     imprimirRelleno();
     imprimirRelleno();
@@ -509,6 +512,457 @@ require "../../Servicios/DDBBVariables.php";
                 <h2 style="text-align:center;">Comprar</h2>
             </div>
           </div>
+    ';
+  }
+
+  function imprimirConFactura(){
+    echo '
+    <div class="container">
+      <div class="row">
+        <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
+        <div
+          class="col-6 col-sm-6 col-md-5 col-lg-5 col-xl-5"
+          id="conFactura1"
+          style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
+        >
+          <h4>Con factura</h4>
+        </div>
+        <div
+          class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
+          id="conFactura2"
+          style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
+        >
+          <img
+            src="../CSSsJSs/icons/FlechaIzq.svg"
+            width="20px"
+            style="
+              transform: rotate(270deg);
+              display: block;
+              margin: 0px 0px 0px auto;
+            "
+          />
+        </div>
+        <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
+      </div>
+    </div>
+
+    <div id="conFactura" class="ocultarOpciones">
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--RFC y Razon Social-->
+      <div class="container">
+        <div class="row">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">RFC</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="XXXX900101ABC"
+              name="rfc"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+
+          <div class="col-12 col-sm-12 col-md-12 d-lg-none">
+            <p class="transparente">.</p>
+          </div>
+
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Razón Social</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="JUAN GARCIA RODRIGUEZ"
+              name="razonSocial"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        </div>
+      </div>
+
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--Matricula y Nombre-->
+      <div class="container">
+        <div class="row">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">ID/Matrícula</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="A1234567890"
+              name="matricula"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+
+          <div class="col-12 col-sm-12 col-md-12 d-lg-none">
+            <p class="transparente">.</p>
+          </div>
+
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Nombre</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="JESSICA GARCIA PEREZ"
+              name="nombre"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        </div>
+      </div>
+
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--Correo-->
+      <div class="container">
+        <div class="row">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Correo</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="mail@school.dom"
+              name="matricula"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+
+          <div class="col-12 col-sm-12 col-md-12 d-lg-none">
+            <p class="transparente">.</p>
+          </div>
+
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <p
+              style="
+                font-size: x-small;
+                text-align: center;
+                display: block;
+                margin: auto auto 0px auto;
+              "
+            >
+              En este correo te enviaremos el link para cambiar la contraseña
+            </p>
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        </div>
+      </div>
+
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--DIRECCION-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p
+              style="
+                text-align: center;
+                display: block;
+                margin: auto auto 0px auto;
+              "
+            >
+              Dirección [Opcional]
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--Numero exterior e interior-->
+      <div class="container">
+        <div class="row">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Número Exterior</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="14"
+              name="numeroExterior"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+
+          <div class="col-12 col-sm-12 col-md-12 d-lg-none">
+            <p class="transparente">.</p>
+          </div>
+
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Número Interior</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="B"
+              name="numeroInterior"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        </div>
+      </div>
+
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--Calle y Colonia-->
+      <div class="container">
+        <div class="row">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Calle</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="BOSQUES"
+              name="calle"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+
+          <div class="col-12 col-sm-12 col-md-12 d-lg-none">
+            <p class="transparente">.</p>
+          </div>
+
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Colonia</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="HACIENDA SAN JUAN"
+              name="colonia"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        </div>
+      </div>
+
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--Delegación o Municipio-->
+      <div class="container">
+        <div class="row">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div
+            class="input-group col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"
+          >
+            <div class="input-group-prepend">
+              <span class="input-group-text">Delegación/Municipio</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="ALVARO OBREGON"
+              name="delegacionMunicipio"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        </div>
+      </div>
+
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--Estado y Código Postal-->
+      <div class="container">
+        <div class="row">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Estado</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="CDMX"
+              name="estado"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+
+          <div class="col-12 col-sm-12 col-md-12 d-lg-none">
+            <p class="transparente">.</p>
+          </div>
+
+          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Código postal</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="52812"
+              name="codigoPostal"
+              form="datosConFactura"
+            />
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        </div>
+      </div>
+
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--Mensaje sobre la factura-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p
+              style="
+                font-size: x-small;
+                text-align: center;
+                display: block;
+                margin: auto auto 0px auto;
+              "
+            >
+              La factura la encontrarás en el portal del SAT, en 5 días hábiles.
+              Cualquier duda o aclaracion estamos a tus órdenes kaanbal@veks.mx
+              o 55 4871 4593
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--Boton Pagar-->
+      <div class="container">
+        <div class="row">
+          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <img
+              src="../CSSsJSs/images/mercadoPagoLogo.png"
+              width="120px"
+              style="display: block; margin: auto 0px auto auto"
+            />
+          </div>
+          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <form
+              id="datosConFactura"
+              action="/action_page.php"
+              method="POST"
+              enctype="application/x-www-form-urlencoded"
+            >
+              <button type="submit" class="btn btn-primary centrarObjeto">
+                Pagar
+              </button>
+            </form>
+          </div>
+          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <img
+              src="../CSSsJSs/images/paypalLogo.png"
+              width="120px"
+              style="display: block; margin: auto auto auto 0px"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
     ';
   }
 
