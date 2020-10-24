@@ -9,7 +9,7 @@ require "../../Servicios/DDBBVariables.php";
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Perfil</title>
-  <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
+  <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
   <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials.css" />
   <link rel="stylesheet" href="Temas.css" />
   <script src="Perfil.js"></script>
@@ -170,9 +170,13 @@ require "../../Servicios/DDBBVariables.php";
     imprimirRelleno();
     imprimirDiamantes($diamantes);
     imprimirRelleno();
+    imprimirRelleno();
     imprimirCalificacion($matricula);
     imprimirRelleno();
+    imprimirRelleno();
     imprimirSinFactura();
+    imprimirRelleno();
+    imprimirRelleno();
     imprimirRelleno();
     imprimirCreditos();
     imprimirRelleno();
@@ -188,13 +192,13 @@ require "../../Servicios/DDBBVariables.php";
           <div class="top">
             <div class="container">
               <div class="row titulo">
-                <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+                <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
                   <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
                 </div>
-                <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                <div class="textCenter col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                   <p class="Ciencia fuenteTitulo" id="asignatura">' . $_GET['asignatura'] . '</p>
                 </div>
-                <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
+                <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
                   <table class="table" style="display:none">
                     <tbody>
                       <tr>
@@ -211,7 +215,7 @@ require "../../Servicios/DDBBVariables.php";
                     </tbody>
                   </table>
                 </div>
-                <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                <div class="textCenter col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                   <p class="Materia fuenteTitulo"></p>
                 </div>
               </div>
@@ -226,11 +230,11 @@ require "../../Servicios/DDBBVariables.php";
     echo '
           <div class="container">
             <div class="row">
-              <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-              <div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+              <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+              <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
                 <p class="tituloTemasPrincipales textCenter" id="matricula">' . $matricula . '</p>
               </div>
-              <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+              <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
           </div>
     ';
@@ -241,13 +245,13 @@ require "../../Servicios/DDBBVariables.php";
     echo '
           <div class="container">
             <div class="row">
-              <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-              <div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+              <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+              <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
                 <p class="tituloTemasPrincipales textCenter">
                   ' . $materia . '   ' . $porcentajeAvance . '
                 </p>
               </div>
-              <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+              <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
           </div>
     ';
@@ -261,11 +265,11 @@ require "../../Servicios/DDBBVariables.php";
       echo '
           <div class="container" id="avatarActual">
             <div class="row">
-              <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-              <div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+              <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+              <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
                 <img src="../CSSsJSs/images/' . $avatarActual . '" class="avatarImg" id="editarAvatar" />
               </div>
-              <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+              <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
           </div>
       ';
@@ -273,11 +277,11 @@ require "../../Servicios/DDBBVariables.php";
       echo '
           <div class="container" id="avatarActual">
             <div class="row">
-              <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
-              <div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+              <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+              <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
                 <img src="../CSSsJSs/images/' . $avatarActual . '" class="avatarImg" id="editarAvatar" />
               </div>
-              <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+              <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
           </div>
       ';
@@ -291,122 +295,122 @@ require "../../Servicios/DDBBVariables.php";
     echo '
             <div class="container ocultarOpciones" id="avatarElegir">
               <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar.jpg" class="avatarOpciones" id="avatar1" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar2.jpg" class="avatarOpciones" id="avatar2" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar3.jpg" class="avatarOpciones" id="avatar3" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar4.jpg" class="avatarOpciones" id="avatar4" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar5.png" class="avatarOpciones" id="avatar5" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar6.png" class="avatarOpciones" id="avatar6" />
                 </div>
               </div>
               <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar7.jpg" class="avatarOpciones" id="avatar7" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar8.jpg" class="avatarOpciones" id="avatar8" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar9.jpg" class="avatarOpciones" id="avatar9" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar10.jpg" class="avatarOpciones" id="avatar10" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar11.jpg" class="avatarOpciones" id="avatar11" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar12.png" class="avatarOpciones" id="avatar12" />
                 </div>
               </div>
               <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar13.jpg" class="avatarOpciones" id="avatar13" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar14.jpg" class="avatarOpciones" id="avatar14" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar15.jpg" class="avatarOpciones" id="avatar15" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar16.jpg" class="avatarOpciones" id="avatar16" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar17.jpg" class="avatarOpciones" id="avatar17" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar18.jpg" class="avatarOpciones" id="avatar18" />
                 </div>
               </div>
               <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar19.jpg" class="avatarOpciones" id="avatar19" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar20.jpg" class="avatarOpciones" id="avatar20" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar21.png" class="avatarOpciones" id="avatar21" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar22.jpg" class="avatarOpciones" id="avatar22" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar23.jpg" class="avatarOpciones" id="avatar23" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar24.jpg" class="avatarOpciones" id="avatar24" />
                 </div>
               </div>
               <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar25.jpg" class="avatarOpciones" id="avatar25" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar26.jpg" class="avatarOpciones" id="avatar26" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar27.jpg" class="avatarOpciones" id="avatar27" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar28.jpg" class="avatarOpciones" id="avatar28" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar29.jpg" class="avatarOpciones" id="avatar29" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar30.jpg" class="avatarOpciones" id="avatar30" />
                 </div>
               </div>
               <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar31.jpg" class="avatarOpciones" id="avatar31" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar32.png" class="avatarOpciones" id="avatar32" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar33.png" class="avatarOpciones" id="avatar33" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar34.jpg" class="avatarOpciones" id="avatar34" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar35.jpg" class="avatarOpciones" id="avatar35" />
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
                   <img src="../CSSsJSs/images/avatar36.jpg" class="avatarOpciones" id="avatar36" />
                 </div>
               </div>
@@ -424,14 +428,14 @@ require "../../Servicios/DDBBVariables.php";
     echo '
           <div class="container">
             <div class="row">
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+              <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+              <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <img class="icons imgRight" src="../CSSsJSs/icons/diamante.svg" />
               </div>
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+              <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <p class="tituloTemasPrincipales textLeft">' . $diamantes . '</p>
               </div>
-              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+              <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
             </div>
           </div>
     ';
@@ -439,14 +443,22 @@ require "../../Servicios/DDBBVariables.php";
 
   function imprimirCalificacion($matricula)
   {
+    echo '
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+          <h2 style="text-align:center;">Calificaciones</h2>
+      </div>
+    </div>
+    ';
     echo '<div class="container">
             <div class="row">
-                <div class="icol-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <form action="calificaciones.php" id="groupForm" method="POST">
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-primary" value="Calificaciones [Práctica, Sprint y Examen]" style="display:block; margin:0px auto;"><br>
+                      <input type="submit" class="btn btn-primary" value="Práctica, Sprint y Examen" style="display:block; margin:0px auto;"><br>
                     </form>
                 </div>
             </div>
@@ -454,12 +466,12 @@ require "../../Servicios/DDBBVariables.php";
     //SUPER SPRINT
     echo '<div class="container">
             <div class="row">
-                <div class="icol-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <form action="calificacionesSS.php" id="groupSS" method="POST">
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-primary" value="Calificaciones [Super Sprint]" style="display:block; margin:0px auto;"><br>
+                      <input type="submit" class="btn btn-primary" value="Super Sprint" style="display:block; margin:0px auto;"><br>
                     </form>
                 </div>
             </div>
@@ -472,7 +484,7 @@ require "../../Servicios/DDBBVariables.php";
     echo '
           <div class="container">
             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <a href="creditos.html"><h1 class="textCenter titulo">Créditos</h1></a>
               </div>
             </div>
@@ -673,16 +685,16 @@ require "../../Servicios/DDBBVariables.php";
         <div class="foot">
           <div class="container">
             <div class="row text-center">
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+              <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
               </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+              <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
                 <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
               </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+              <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
               </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+              <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
               </div>
             </div>
@@ -700,18 +712,18 @@ require "../../Servicios/DDBBVariables.php";
 
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
-      <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11"></div>
-      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"></div>
-      <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"></div>
-      <div class="col-xs-8 col-sm-9 col-md-8 col-lg-8 col-xl-8"></div>
-      <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7"></div>
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"></div>
-      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
-      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
-      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
-      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11"></div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"></div>
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"></div>
+      <div class="col-8 col-sm-9 col-md-8 col-lg-8 col-xl-8"></div>
+      <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7"></div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"></div>
+      <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+      <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+      <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
 
