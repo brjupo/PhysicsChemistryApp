@@ -444,16 +444,16 @@ require "../../Servicios/DDBBVariables.php";
   function imprimirCalificacion($matricula)
   {
     echo '
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
-          <h2 style="text-align:center;">Calificaciones</h2>
-      </div>
-    </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+                <h2 style="text-align:center;">Calificaciones</h2>
+            </div>
+          </div>
     ';
     echo '<div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <form action="calificaciones.php" id="groupForm" method="POST">
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
@@ -461,17 +461,12 @@ require "../../Servicios/DDBBVariables.php";
                       <input type="submit" class="btn btn-primary" value="Práctica, Sprint y Examen" style="display:block; margin:0px auto;"><br>
                     </form>
                 </div>
-            </div>
-          </div>';
-    //SUPER SPRINT
-    echo '<div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <form action="calificacionesSS.php" id="groupSS" method="POST">
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-primary" value="Super Sprint" style="display:block; margin:0px auto;"><br>
+                      <input type="submit" class="btn btn-success" value="Super Sprint" style="display:block; margin:0px auto;"><br>
                     </form>
                 </div>
             </div>
