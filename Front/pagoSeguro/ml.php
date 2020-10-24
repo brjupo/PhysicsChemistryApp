@@ -23,6 +23,7 @@
         //include '../../../../../../vendor/autoload.php';
         // Agrega credenciales
         MercadoPago\SDK::setAccessToken('TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800');
+        //APP_USR-4457437456033668-102416-52e1c1283a32efa3b897bd5659fc0fbf-662924265
 
         // Crea un objeto de preferencia
         $preference = new MercadoPago\Preference();
@@ -37,6 +38,7 @@
         $item->unit_price = 10;
 
         // Crear el comprador
+        /*
         $payer = new MercadoPago\Payer();
         $payer->name = "Charles";                     //RFC | Razon social
         $payer->surname = "Luevano";                  //Matricula | Nombre real
@@ -50,19 +52,21 @@
             "street_number" => 1004,                        //Numero
             "zip_code" => "11020"                           //Codigo Postal
         );
+        */
 
         //Redireccionamientos 
-
+        /*
         $preference->back_urls = array(
             "success" => "https://www.kaanbal.net/success",
             "failure" => "https://www.kaanbal.net/failure",
             "pending" => "https://www.kaanbal.net/pending"
         );
         $preference->auto_return = "approved";
+        */
 
         // Guardar la preferencia con el item y el comprador
         $preference->items = array($item);
-        $preference->payer = $payer;
+        //$preference->payer = $payer;
         $preference->save();
 
     } catch (Exception $e) {
