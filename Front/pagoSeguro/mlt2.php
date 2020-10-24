@@ -22,8 +22,8 @@
         require '../../../../../../vendor/autoload.php';
         //include '../../../../../../vendor/autoload.php';
         // Agrega credenciales
-        MercadoPago\SDK::setAccessToken('APP_USR-4457437456033668-102416-52e1c1283a32efa3b897bd5659fc0fbf-662924265');
-        //TEST-4457437456033668-102416-5463173dd19ef4325d7560da899d4a00-662924265
+        MercadoPago\SDK::setAccessToken('TEST-4457437456033668-102416-5463173dd19ef4325d7560da899d4a00-662924265');
+        //
         // Crea un objeto de preferencia
         $preference = new MercadoPago\Preference();
 

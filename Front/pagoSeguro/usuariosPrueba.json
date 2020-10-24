@@ -13,5 +13,12 @@
         "password": "qatest619",
         "site_status": "active",
         "email": "test_user_98910939@testuser.com"
+    },
+    "comprador2":{
+        "id": 662955654,
+        "nickname": "TESTZPZBXSMN",
+        "password": "qatest6022",
+        "site_status": "active",
+        "email": "test_user_29424575@testuser.com"
     }
 }
