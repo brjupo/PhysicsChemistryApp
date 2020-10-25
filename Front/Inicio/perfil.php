@@ -10,11 +10,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Perfil</title>
-  <link rel="stylesheet" href=<?php echo $bootstrap441; ?> />
-  <link rel="stylesheet" href=<?php echo $kaanbalEssentials; ?> />
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="Temas.css" />
   <script src="Perfil.js"></script>
-  <script src=<?php echo $minAJAX; ?> ></script>
+  <script src="../CSSsJSs/<?php echo $minAJAX; ?>" ></script>
 </head>
 
 <body>
