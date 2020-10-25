@@ -1,5 +1,6 @@
 <?php
 require "../../Servicios/DDBBVariables.php";
+require "../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,11 +10,11 @@ require "../../Servicios/DDBBVariables.php";
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Perfil</title>
-  <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
-  <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials.css" />
+  <link rel="stylesheet" href=<?php echo $bootstrap441; ?> />
+  <link rel="stylesheet" href=<?php echo $kaanbalEssentials; ?> />
   <link rel="stylesheet" href="Temas.css" />
   <script src="Perfil.js"></script>
-  <script src="../CSSsJSs/minAJAX.js"></script>
+  <script src=<?php echo $minAJAX; ?> ></script>
 </head>
 
 <body>
