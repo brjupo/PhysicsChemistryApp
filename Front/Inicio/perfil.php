@@ -196,31 +196,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
           <div class="top">
             <div class="container">
               <div class="row titulo">
-                <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+                <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
                   <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
                 </div>
-                <div class="textCenter col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-9 col-xl-9">
                   <p class="Ciencia fuenteTitulo" id="asignatura">' . $_GET['asignatura'] . '</p>
-                </div>
-                <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
-                  <table class="table" style="display:none">
-                    <tbody>
-                      <tr>
-                        <td width="60%">
-                          <img
-                            class="iconoDiamantes imgRight"
-                            src="../CSSsJSs/icons/diamante.svg"
-                          />
-                        </td>
-                        <td width="40%">
-                          <p class="diamantes textLeft">112</p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="textCenter col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                  <p class="Materia fuenteTitulo"></p>
                 </div>
               </div>
             </div>
@@ -450,8 +430,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '
           <div class="container">
             <div class="row">
-              <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+              <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h2 style="text-align:center;">Calificaciones</h2>
+              </div>
             </div>
           </div>
     ';
@@ -462,7 +443,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-primary" value="Práctica, Sprint y Examen" style="display:block; margin:0px auto;"><br>
+                      <input type="submit" class="btn btn-primary" value="Práctica, Sprint y Examen" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
                     </form>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -470,7 +451,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-success" value="Super Sprint" style="display:block; margin:0px auto;"><br>
+                      <input type="submit" class="btn btn-success" value="Super Sprint" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
                     </form>
                 </div>
             </div>
@@ -509,8 +490,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '
           <div class="container">
             <div class="row">
-              <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+              <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h2 style="text-align:center;">Comprar</h2>
+              </div>
             </div>
           </div>
     ';
@@ -938,8 +920,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
           <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
             <img
               src="../CSSsJSs/images/mercadoPagoLogo.png"
-              width="120px"
-              style="display: block; margin: auto 0px auto auto"
+              class="logoPagos"
+              style="margin: auto 0px auto auto;"
             />
           </div>
           <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
@@ -957,8 +939,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
           <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
             <img
               src="../CSSsJSs/images/paypalLogo.png"
-              width="120px"
-              style="display: block; margin: auto auto auto 0px"
+              class="logoPagos"
+              style="margin: auto auto auto 0px;"
             />
           </div>
         </div>
@@ -1111,8 +1093,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
                 <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                   <img
                     src="../CSSsJSs/images/mercadoPagoLogo.png"
-                    width="120px"
-                    style="display: block; margin: auto 0px auto auto"
+                    class="logoPagos"
+                    style="margin: auto 0px auto auto;"
                   />
                 </div>
                 <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
@@ -1130,8 +1112,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
                 <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                   <img
                     src="../CSSsJSs/images/paypalLogo.png"
-                    width="120px"
-                    style="display: block; margin: auto auto auto 0px"
+                    class="logoPagos"
+                    style="margin: auto auto auto 0px;"
                   />
                 </div>
               </div>
