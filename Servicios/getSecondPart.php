@@ -5,12 +5,12 @@ require "DDBBVariables.php";
 $tokenHora = $_POST['tokenHora'];
 
 $hexTokenHora = bin2hex($tokenHora);
-if ($hexTokenHora == "6e6461303931336654593637336f38344b4a") {
+if ($hexTokenHora == "4b6e3139614165363372665375765479333166") {
     //Crear la lectura en base de datos
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stringQuery = "SELECT VALUEX FROM hash262 WHERE GPG = 'I';";
+        $stringQuery = "SELECT VALUEX FROM hash262 WHERE GPG = 'J';";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             $response["pregunta"] = $row[0];
