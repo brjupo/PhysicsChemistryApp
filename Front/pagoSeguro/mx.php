@@ -3,7 +3,7 @@
 <body>
     <?php
     $url = 'https://kaanbal.net/DEV/Servicios/getFirstPart.php';
-    $data = array('tokenHora' => 'nda0913fTY673o84KJ');
+    $data = array('tokenHora' => 'nda0913fTY673o84K');
 
     // use key 'http' even if you send the request to https://...
     $options = array(
@@ -15,8 +15,10 @@
     );
     $context  = stream_context_create($options);
     $json = file_get_contents($url, false, $context);
-
     $result = json_decode($json, TRUE);
+    if(is_null($result["value"])){
+        echo "<p>Error</p>";
+    }
     ?>
 
 
