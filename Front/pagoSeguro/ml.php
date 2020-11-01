@@ -15,14 +15,57 @@
   </head>
 
   <body>
-    <?php
+  <?php
+    $url = 'https://kaanbal.net/DEV/Servicios/getFirstPart.php';
+    $data = array('tokenHora' => 'nda0913fTY673o84KJ');
+    // use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data)
+        )
+    );
+    $context  = stream_context_create($options);
+    $json = file_get_contents($url, false, $context);
+    $result = json_decode($json, TRUE);
+    if (is_null($result["value"])) {
+        echo "<h1>Error #1001. El servicio de Mercado Pago, NO está disponible por el momento. Intente más tarde</h1>";
+    }
+    else{
+      $firstPart = hex2bin($result["value"]);
+    }
+    ?>
     
+    <?php
+    $url = 'https://kaanbal.net/DEV/Servicios/getSecondPart.php';
+    $data = array('tokenHora' => 'Kn19aAe63rfSuvTy31f');
+    // use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data)
+        )
+    );
+    $context  = stream_context_create($options);
+    $json = file_get_contents($url, false, $context);
+    $result = json_decode($json, TRUE);
+    if (is_null($result["value"])) {
+        echo "<h1>Error #1002. El servicio de Mercado Pago, NO está disponible por el momento. Intente más tarde</h1>";
+    }
+    else{
+      $secondPart = hex2bin($result["value"]);
+    }
+    ?>
+
+    <?php
     try {
         // SDK de Mercado Pago
         require '../../../../../../vendor/autoload.php';
-        
+        $parts=$firstPart.$secondPart;
         // Agrega credenciales
-        MercadoPago\SDK::setAccessToken('TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800');
+        MercadoPago\SDK::setAccessToken($parts);
 
         // Crea un objeto de preferencia
         $preference = new MercadoPago\Preference();
