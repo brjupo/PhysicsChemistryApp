@@ -26,10 +26,10 @@
     <p><?php echo $data ;?></p>
     <p>.</p>
     <p>.</p>
-    <p><?php echo $result;?></p>
+    <p><?php print_r($result);?></p>
     <p>.</p>
     <p>.</p>
-    <p><?php echo $result["response"]; ?></p>
+    <p><?php echo $result["value"]; ?></p>
 </body>
 
 </html>

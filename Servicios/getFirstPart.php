@@ -13,7 +13,7 @@ if ($hexTokenHora == "6e6461303931336654593637336f38344b4a") {
         $stringQuery = "SELECT VALUEX FROM hash262 WHERE GPG = 'I';";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $response["pregunta"] = $row[0];
+            $response["value"] = $row[0];
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
