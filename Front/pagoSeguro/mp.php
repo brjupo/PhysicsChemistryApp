@@ -47,7 +47,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             "number" => "55 1234 5678"
         );
         $payer->address = array(
-            "street_name" => "Calle | Colonia | Delegacion/municipio | Estado | MEX",    //Calle | Colonia | Delegacion/municipio | Estado | Pais==MEX
+            "street_name" => "Calle | Colonia | Delegacion/municipio | Estado",    //Calle | Colonia | Delegacion/municipio | Estado | Pais==MEX
             "street_number" => 1234,                        //Numero
             "zip_code" => "05200"                           //Codigo Postal
         );
