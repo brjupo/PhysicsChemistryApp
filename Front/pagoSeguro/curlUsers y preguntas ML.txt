@@ -1,0 +1,11 @@
+curl -X POST -H "Content-Type: application/json" -H 'Authorization: Bearer PROD_ACCESS_TOKEN' "https://api.mercadopago.com/users/test_user" -d '{"site_id":"MLM"}' 
+
+Curiosamente se, mercado pago, regresa a kaanbal.net/procesar-pago
+
+1.- 
+Cuando recibes un pago, se observa un número de pago. Ejemplo 12345678901
+Cuando regresa el pago a success.php aparecen 2 valores similares a dicho número de pago
+//collection_id=1230886475&
+//payment_id=1230886475& 
+¿Cuál es el valor que se verá en el panel de mercado pago?
+
