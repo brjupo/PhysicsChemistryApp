@@ -21,8 +21,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
   // use key 'http' even if you send the request to https://...
   $options = array(
     'http' => array(
-      'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-      'method'  => 'POST',
+      'header' => array(
+        "Content-type: application/x-www-form-urlencoded\r\n",
+        "Authorization: Bearer " . $bearerToken
+      ),
+      'method'  => 'GET',
       'content' => http_build_query($data)
     )
   );
@@ -86,7 +89,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   } else {
     $secondPart = hex2bin($result["value"]);
   }
-  echo "<p>" .$secondPart."</p>";
+  echo "<p>" . $secondPart . "</p>";
   echo '<p> print_r options =  ';
   print_r($options);
   echo '</p>';
