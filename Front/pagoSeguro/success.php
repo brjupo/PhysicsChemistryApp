@@ -18,11 +18,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //header('Access-Control-Allow-Origin: *');
   //$url = 'https://api.mercadopago.com/v1/payments/search';
   $url = 'https://kaanbal.net/DEV/Servicios/getSecondPart.php';
-  $bearerToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
-  $data = array('id' => '1230976483');
+  $data = array('tokenHora' => 'Kn19aAe63rfSuvTy31f');
   // use key 'http' even if you send the request to https://...
   $options = array(
     'http' => array(
+      'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
       'method'  => 'GET',
       'content' => http_build_query($data)
     )
