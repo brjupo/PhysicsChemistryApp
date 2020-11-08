@@ -87,6 +87,21 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $secondPart = hex2bin($result["value"]);
   }
   echo "<p>" .$secondPart."</p>";
+  echo '<p> print_r options =  ';
+  print_r($options);
+  echo '</p>';
+
+  echo '<p> print_r context =  ';
+  print_r($context);
+  echo '</p>';
+
+  echo '<p> print_r json =  ';
+  print_r($json);
+  echo '</p>';
+
+  echo '<p> print_r result =  ';
+  print_r($result);
+  echo '</p>';
   ?>
 
   <?php
