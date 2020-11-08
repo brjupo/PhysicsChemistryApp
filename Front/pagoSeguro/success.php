@@ -25,19 +25,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   $response = curl_exec($curl);
   curl_close($curl);
   echo $response . PHP_EOL;
-
-
-  echo '<p> print_r options =  ';
-  print_r($options);
-  echo '</p>';
-
-  echo '<p> print_r context =  ';
-  print_r($context);
-  echo '</p>';
-
-  echo '<p> print_r json =  ';
-  print_r($json);
-  echo '</p>';
+  $result = json_decode($response, TRUE);
 
   echo '<p> print_r result =  ';
   print_r($result);
