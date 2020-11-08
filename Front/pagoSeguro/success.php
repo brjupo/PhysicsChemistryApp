@@ -15,21 +15,17 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
 <body>
   <?php
-  //header('Access-Control-Allow-Origin: *');
-  //$url = 'https://api.mercadopago.com/v1/payments/search';
-  $url = 'https://kaanbal.net/DEV/Servicios/getSecondPart.php';
-  $data = array('tokenHora' => 'Kn19aAe63rfSuvTy31f');
-  // use key 'http' even if you send the request to https://...
-  $options = array(
-    'http' => array(
-      'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-      'method'  => 'GET',
-      'content' => http_build_query($data)
-    )
-  );
-  $context  = stream_context_create($options);
-  $json = file_get_contents($url, false, $context);
-  $result = json_decode($json, TRUE);
+  $url = 'https://api.mercadopago.com/v1/payments/search?id=1230976483';
+  $curl = curl_init($request_url);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_HTTPHEADER, [
+    'Authorization: Bearer TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800',
+    'Content-Type: application/json'
+  ]);
+  $response = curl_exec($curl);
+  curl_close($curl);
+  echo $response . PHP_EOL;
+
 
   echo '<p> print_r options =  ';
   print_r($options);
@@ -71,7 +67,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   $options = array(
     'http' => array(
       'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-      'method'  => 'GET',
+      'method'  => 'POST',
       'content' => http_build_query($data)
     )
   );

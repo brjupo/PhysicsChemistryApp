@@ -9,3 +9,9 @@ Cuando regresa el pago a success.php aparecen 2 valores similares a dicho númer
 //payment_id=1230886475& 
 ¿Cuál es el valor que se verá en el panel de mercado pago?
 
+
+
+
+curl -X GET \
+  'https://api.mercadopago.com/v1/payments/search?id=1230976483' \
+   -H 'Authorization: Bearer TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800'
