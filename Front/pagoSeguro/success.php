@@ -32,9 +32,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
   $context  = stream_context_create($options);
   $json = file_get_contents($url, false, $context);
   $result = json_decode($json, TRUE);
-  if (is_null($result["results"])) {
-    echo "<h1>Error #1001. El servicio de Mercado Pago, NO está disponible por el momento. Intente más tarde</h1>";
-  } else {
+  //if (is_null($result["results"])) {
+  //  echo "<h1>Error #1001. El servicio de Mercado Pago, NO está disponible por el momento. Intente más tarde</h1>";
+  //} else {
     echo '<p> print_r result =  ';
     print_r($result);
     echo '</p>';
@@ -54,7 +54,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '<p> echo result["results"][0]["payer"]["email"] =  ';
     echo $result["results"][0]["payer"]["email"];
     echo '</p>';
-  }
+  //}
 
 
 
