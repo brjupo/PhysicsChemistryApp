@@ -21,10 +21,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
   // use key 'http' even if you send the request to https://...
   $options = array(
     'http' => array(
-      'header' => array(
+      'header'  => "Authorization: Bearer " . $bearerToken . "\r\n",
+      /*'header' => array(
         "Content-type: application/x-www-form-urlencoded",
         "Authorization: Bearer " . $bearerToken
-      ),
+      ),*/
       'method'  => 'POST',
       'content' => http_build_query($data)
     )
