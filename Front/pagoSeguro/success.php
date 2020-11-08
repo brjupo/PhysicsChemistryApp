@@ -15,6 +15,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
 <body>
   <?php
+  header('Access-Control-Allow-Origin: *');
   $url = 'https://api.mercadopago.com/v1/payments/search';
   $bearerToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
   $data = array('id' => '1230976483');
