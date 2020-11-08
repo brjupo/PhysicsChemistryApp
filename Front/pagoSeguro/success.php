@@ -16,7 +16,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 <body>
   <?php
   $url = 'https://api.mercadopago.com/v1/payments/search?id=1230976483';
-  $curl = curl_init($request_url);
+  $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($curl, CURLOPT_HTTPHEADER, [
     'Authorization: Bearer TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800',
