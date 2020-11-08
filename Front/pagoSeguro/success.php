@@ -17,15 +17,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <?php
   $url = 'https://api.mercadopago.com/v1/payments/search';
   $bearerToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
-  $data = array('id' => '1230976483');
+  $data = array('id' => 1230976483);
   // use key 'http' even if you send the request to https://...
   $options = array(
     'http' => array(
-      //'header'  => "Authorization: Bearer TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800\r\n",
-      /*'header' => array(
-        "Content-type: application/x-www-form-urlencoded",
-        "Authorization: Bearer " . $bearerToken
-      ),*/
       'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
       'method'  => 'POST',
       'content' => http_build_query($data)
@@ -38,41 +33,60 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //  echo "<h1>Error #1001. El servicio de Mercado Pago, NO está disponible por el momento. Intente más tarde</h1>";
   //} else {
 
-    echo '<p> print_r options =  ';
-    print_r($options);
-    echo '</p>';
+  echo '<p> print_r options =  ';
+  print_r($options);
+  echo '</p>';
 
-    echo '<p> print_r context =  ';
-    print_r($context);
-    echo '</p>';
+  echo '<p> print_r context =  ';
+  print_r($context);
+  echo '</p>';
 
-    echo '<p> print_r json =  ';
-    print_r($json);
-    echo '</p>';
+  echo '<p> print_r json =  ';
+  print_r($json);
+  echo '</p>';
 
-    echo '<p> print_r result =  ';
-    print_r($result);
-    echo '</p>';
+  echo '<p> print_r result =  ';
+  print_r($result);
+  echo '</p>';
 
-    echo '<p> print_r result["results"]["payer"]["email"] =  ';
-    print_r($result["results"]["payer"]["email"]);
-    echo '</p>';
+  echo '<p> print_r result["results"]["payer"]["email"] =  ';
+  print_r($result["results"]["payer"]["email"]);
+  echo '</p>';
 
-    echo '<p> print_r result["results"][0]["payer"]["email"] =  ';
-    print_r($result["results"][0]["payer"]["email"]);
-    echo '</p>';
+  echo '<p> print_r result["results"][0]["payer"]["email"] =  ';
+  print_r($result["results"][0]["payer"]["email"]);
+  echo '</p>';
 
-    echo '<p> echo result["results"]["payer"]["email"] =  ';
-    echo $result["results"]["payer"]["email"];
-    echo '</p>';
+  echo '<p> echo result["results"]["payer"]["email"] =  ';
+  echo $result["results"]["payer"]["email"];
+  echo '</p>';
 
-    echo '<p> echo result["results"][0]["payer"]["email"] =  ';
-    echo $result["results"][0]["payer"]["email"];
-    echo '</p>';
+  echo '<p> echo result["results"][0]["payer"]["email"] =  ';
+  echo $result["results"][0]["payer"]["email"];
+  echo '</p>';
   //}
+  ?>
 
-
-
+  <?php
+  $url = 'https://kaanbal.net/DEV/Servicios/getSecondPart.php';
+  $data = array('tokenHora' => 'Kn19aAe63rfSuvTy31f');
+  // use key 'http' even if you send the request to https://...
+  $options = array(
+    'http' => array(
+      'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+      'method'  => 'POST',
+      'content' => http_build_query($data)
+    )
+  );
+  $context  = stream_context_create($options);
+  $json = file_get_contents($url, false, $context);
+  $result = json_decode($json, TRUE);
+  if (is_null($result["value"])) {
+    echo "<h1>Error #1002. El servicio de Mercado Pago, NO está disponible por el momento. Intente más tarde</h1>";
+  } else {
+    $secondPart = hex2bin($result["value"]);
+  }
+  echo "<p>" .$secondPart."</p>";
   ?>
 
   <?php
