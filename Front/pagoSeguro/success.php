@@ -21,7 +21,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   // use key 'http' even if you send the request to https://...
   $options = array(
     'http' => array(
-      'header'  => "Authorization: Bearer " . $bearerToken . "\r\n",
+      'header'  => "Authorization: Bearer TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800\r\n",
       /*'header' => array(
         "Content-type: application/x-www-form-urlencoded",
         "Authorization: Bearer " . $bearerToken
@@ -36,6 +36,19 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //if (is_null($result["results"])) {
   //  echo "<h1>Error #1001. El servicio de Mercado Pago, NO está disponible por el momento. Intente más tarde</h1>";
   //} else {
+
+    echo '<p> print_r options =  ';
+    print_r($options);
+    echo '</p>';
+
+    echo '<p> print_r context =  ';
+    print_r($context);
+    echo '</p>';
+
+    echo '<p> print_r json =  ';
+    print_r($json);
+    echo '</p>';
+
     echo '<p> print_r result =  ';
     print_r($result);
     echo '</p>';
