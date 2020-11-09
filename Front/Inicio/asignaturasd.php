@@ -360,7 +360,7 @@ require "../../Servicios/isStaff.php";
     ';
   }
 
-  function imprimirAsignaturas($arregloAsignaturas)//091120 AQUI DEBO TRAER LOS ID EN LUGAR DE LOS NOBRES DE LAS MATERIAS
+  function imprimirAsignaturas($arregloAsignaturas)//AQUI DEBO TRAER LOS ID EN LUGAR DE LOS NOBRES DE LAS MATERIAS
   {
     $tamanho = count($arregloAsignaturas["id_asignatura"]);
 
@@ -369,12 +369,12 @@ require "../../Servicios/isStaff.php";
     while($i < $tamanho){
       $residuo = $i % 2;
       if($residuo == 0){
-        imprimirAsignaturaPar($arregloAsignaturas["id_asignatura"][$i]);//0911SE DEBERA PASAR ID DE ASIGNATURA EN LUGAR DE NOMBRE
+        imprimirAsignaturaPar($arregloAsignaturas["id_asignatura"][$i],$arregloAsignaturas["nombre"][$i]);//0911SE DEBERA PASAR ID DE ASIGNATURA EN LUGAR DE NOMBRE
         /* echo'<script type="text/javascript">
         alert("es par");
         </script>';  */
       }else{
-        imprimirAsignaturaImpar($arregloAsignaturas["id_asignatura"][$i]);
+        imprimirAsignaturaImpar($arregloAsignaturas["id_asignatura"][$i],$arregloAsignaturas["nombre"][$i]);
         /* echo'<script type="text/javascript">
         alert("no es par");
         </script>';  */
@@ -388,7 +388,7 @@ require "../../Servicios/isStaff.php";
 
   
 
-  function imprimirAsignaturaPar($idAsignatura)//091120 SE RECIBE AQUI ID DE ASIGNATURA
+  function imprimirAsignaturaPar($idAsignatura,$nombreAsignatura)//091120 SE RECIBE AQUI ID DE ASIGNATURA
   {
     $link = "temas.php?asignatura=";
     $claseBloque = "asignaturaPrincipal";
@@ -408,7 +408,7 @@ require "../../Servicios/isStaff.php";
                     <img class="' . $imagen . '" src="../CSSsJSs/icons/star.svg" />
                   </div>
                   <div class="tituloAsignaturas">
-                    ' . $idAsignatura . '
+                    ' . $nombreAsignatura . '
                   </div>
                 </div>
               </a> 
@@ -417,7 +417,7 @@ require "../../Servicios/isStaff.php";
     ';
   }
 
-  function imprimirAsignaturaImpar($idAsignatura)
+  function imprimirAsignaturaImpar($idAsignatura,$nombreAsignatura)
   {
     $link = "temas.php?asignatura=";
     $claseBloque = "asignaturaPrincipal";
@@ -434,7 +434,7 @@ require "../../Servicios/isStaff.php";
                       <img class="' . $imagen . '" src="../CSSsJSs/icons/physics.svg" />
                     </div>
                     <div class="tituloAsignaturas">'
-        . $idAsignatura .
+        . $nombreAsignatura .
         '</div>
                   </div>              
                 </a>
