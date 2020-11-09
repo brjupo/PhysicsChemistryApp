@@ -100,15 +100,21 @@ require "../../Servicios/DDBBVariables.php";
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     
+    if ($_SESSION["idioma"] == 'i') {
+        $query = "SELECT names FROM asignatura WHERE id_asignatura = $idAsignatura";
+    } else{
+        $query = "SELECT nombre FROM asignatura WHERE id_asignatura = $idAsignatura";
+    }
+    $result = mysqli_query($con, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
+      $arrayMateria[] = $row;
+    }
+    $materia =  $arrayMateria[0]["nombre"]; //De aqui se obtendra el id de asignatura
+
     //id de asignatura usado en top.php
     $_SESSION["idAsignatura"] = $idAsignatura;
-    /* if($_SESSION["idAsignaturaValidar"] != $_SESSION["idAsignatura"] )
-    {
-      echo '<script type="text/javascript">
-      alert("Trampas");
-      window.location.href="https://kaanbal.net";
-      </script>';
-    } */
+    $_SESSION["asignaturaNavegacion"] = $materia;
+    
 
     /*----Paso 2 Llamar a los temas de la asignatura-------*/
     //Verificamos el idioma//
@@ -182,7 +188,7 @@ require "../../Servicios/DDBBVariables.php";
               <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
             </div>
             <div class="textCenter col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-              <p class="Ciencia fuenteTitulo" id="asignatura">' . $_GET['asignatura'] . '</p>
+              <p class="Ciencia fuenteTitulo" id="asignatura">' . $_SESSION["asignaturaNavegacion"] . '</p>
             </div>
           </div>
         </div>

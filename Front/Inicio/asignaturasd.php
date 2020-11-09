@@ -216,9 +216,9 @@ require "../../Servicios/isStaff.php";
                       alert("'.$total[0].'");
                       </script>'; */
         
-        if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {//PARA SALTAR A LA PAGINA DE TEMAS CUANDO NO TIENE MAS DE DOS MATERIAS
+        if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {
           imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID);//09111
-        } else {
+        } else {//PARA SALTAR A LA PAGINA DE TEMAS CUANDO NO TIENE MAS DE DOS MATERIAS
           //Traeer asignatura
           $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser'";
           $result = mysqli_query($con, $query);
