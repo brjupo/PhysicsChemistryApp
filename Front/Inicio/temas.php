@@ -99,22 +99,7 @@ require "../../Servicios/DDBBVariables.php";
     */
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    /* ----Paso 1 Obtener el ID de la asignatura----*/
-    /*if ($_SESSION["idioma"] == 'i') {
-      $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE names = ?");
-    } else {
-      $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE nombre = ?");
-    }
-    mysqli_stmt_bind_param($statement, "s", $asignatura);
-    mysqli_stmt_execute($statement);
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_asignatura);
-
-    $arregloIdasignatura = array();
-    //Leemos datos del usuario
-    while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
-      $arregloIdasignatura["id_asignatura"] = $id_asignatura;
-    } */
+    
     //id de asignatura usado en top.php
     $_SESSION["idAsignatura"] = $idAsignatura;
     /* if($_SESSION["idAsignaturaValidar"] != $_SESSION["idAsignatura"] )

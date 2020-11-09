@@ -191,12 +191,6 @@ require "../../Servicios/isStaff.php";
           $staffID = $existestaff["staff"];}
         $_SESSION["siStaff"] = $staffID;
         
-      /*   //Imprimimos pantalla de asignaturas
-        if ($_SESSION["idioma"] == 'i') {
-          $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", "Testing");
-        } else {
-          $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", "Pruebas");
-        } 09/11 */
 
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
@@ -222,7 +216,7 @@ require "../../Servicios/isStaff.php";
                       alert("'.$total[0].'");
                       </script>'; */
         
-        if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {//ERA PARA SALTAR A LA PAGINA DE TEMAS CUANDO NO TIENE MAS DE DOS MATERIAS
+        if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {//PARA SALTAR A LA PAGINA DE TEMAS CUANDO NO TIENE MAS DE DOS MATERIAS
           imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID);//09111
         } else {
           //Traeer asignatura
@@ -231,13 +225,13 @@ require "../../Servicios/isStaff.php";
           while ($row = mysqli_fetch_assoc($result)) {
             $idasignatura[] = $row;
           }
-          $idMateria = $idasignatura[0]["id_asignatura"] - 1;
+          $idMateria = $idasignatura[0]["id_asignatura"];
           $materia = $arregloAsignaturastodas[$idMateria];
           $_SESSION["asignaturaNavegacion"] = $materia;
           $_SESSION["idAsignatura"] = $idMateria;
           $_SESSION["idAsignaturaValidar"] = $idMateria + 1;//ABAJO CAMBIAR $materia POR $idMateria
           echo '<script type="text/javascript">
-                          window.location.href="temas.php?asignatura=' . $materia . '"; 
+                          window.location.href="temas.php?asignatura=' . $idMateria . '"; 
                           </script>';
         }
 
