@@ -38,11 +38,12 @@ require "../../Servicios/isStaff.php";
     } */
   $tokenValidar = array();
 
-  if ($_SESSION["idioma"] == 'i') {
+/*   if ($_SESSION["idioma"] == 'i') {
     $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", "Testing");
   } else {
     $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", "Pruebas");
-  }
+  } 09/11*/ 
+
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
   mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
@@ -63,7 +64,7 @@ require "../../Servicios/isStaff.php";
 
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
-    imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor,$staffID);
+    imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID);//0911 
   } else {
     /* echo'<script type="text/javascript">
             alert("segundo caminio");
@@ -111,11 +112,6 @@ require "../../Servicios/isStaff.php";
         $temp_tokenA = $tokenA;
         $temp_tokenSesion = $tokenSesion;
         $temp_idioma = $idioma;
-        //$response["token"] = $token;
-        //$response["token_a"] = $token_a;
-        //$response["tokenp"] = $tokenp;
-        //$response["tokenpp"] = $tokenpp;
-        //$response["flag"] = $flag;
       }
 
       //Si el usuario EXISTE despliega el menú de las asignaturas
@@ -195,12 +191,12 @@ require "../../Servicios/isStaff.php";
           $staffID = $existestaff["staff"];}
         $_SESSION["siStaff"] = $staffID;
         
-        //Imprimimos pantalla de asignaturas
+      /*   //Imprimimos pantalla de asignaturas
         if ($_SESSION["idioma"] == 'i') {
           $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", "Testing");
         } else {
           $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", "Pruebas");
-        }
+        } 09/11 */
 
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
@@ -226,8 +222,8 @@ require "../../Servicios/isStaff.php";
                       alert("'.$total[0].'");
                       </script>'; */
         
-        if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {
-          imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor,$staffID);
+        if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {//ERA PARA SALTAR A LA PAGINA DE TEMAS CUANDO NO TIENE MAS DE DOS MATERIAS
+          imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID);//09111
         } else {
           //Traeer asignatura
           $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser'";
@@ -239,9 +235,9 @@ require "../../Servicios/isStaff.php";
           $materia = $arregloAsignaturastodas[$idMateria];
           $_SESSION["asignaturaNavegacion"] = $materia;
           $_SESSION["idAsignatura"] = $idMateria;
-          $_SESSION["idAsignaturaValidar"] = $idMateria + 1;
+          $_SESSION["idAsignaturaValidar"] = $idMateria + 1;//ABAJO CAMBIAR $materia POR $idMateria
           echo '<script type="text/javascript">
-                          window.location.href="temas.php?asignatura=' . $materia . '";
+                          window.location.href="temas.php?asignatura=' . $materia . '"; 
                           </script>';
         }
 
@@ -311,11 +307,11 @@ require "../../Servicios/isStaff.php";
     return $datetime->format('Y\-m\-d\ H:i:s');
   }
   //////////////////////
-  function imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor,$staffID)
+  function imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID)
   {
 
     imprimirTitulo();
-    imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas);
+    imprimirAsignaturas($arregloAsignaturas);
     imprimirRelleno();
     if ($mostrarMenuprofesor != '' or $staffID != 'null') {
       imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID);
@@ -364,7 +360,7 @@ require "../../Servicios/isStaff.php";
     ';
   }
 
-  function imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas)
+  function imprimirAsignaturas($arregloAsignaturas)//AQUI DEBO TRAER LOS ID EN LUGAR DE LOS NOBRES DE LAS MATERIAS
   {
     $tamanho = count($arregloAsignaturas["nombre"]);
 
@@ -387,8 +383,6 @@ require "../../Servicios/isStaff.php";
       $i = $i +1;
 
     }
-
-    
     
   }
 
