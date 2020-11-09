@@ -360,21 +360,21 @@ require "../../Servicios/isStaff.php";
     ';
   }
 
-  function imprimirAsignaturas($arregloAsignaturas)//AQUI DEBO TRAER LOS ID EN LUGAR DE LOS NOBRES DE LAS MATERIAS
+  function imprimirAsignaturas($arregloAsignaturas)//091120 AQUI DEBO TRAER LOS ID EN LUGAR DE LOS NOBRES DE LAS MATERIAS
   {
-    $tamanho = count($arregloAsignaturas["nombre"]);
+    $tamanho = count($arregloAsignaturas["id_asignatura"]);
 
     $i = 0;
 
     while($i < $tamanho){
       $residuo = $i % 2;
       if($residuo == 0){
-        imprimirAsignaturaPar($arregloAsignaturas["nombre"][$i]);
+        imprimirAsignaturaPar($arregloAsignaturas["id_asignatura"][$i]);//0911SE DEBERA PASAR ID DE ASIGNATURA EN LUGAR DE NOMBRE
         /* echo'<script type="text/javascript">
         alert("es par");
         </script>';  */
       }else{
-        imprimirAsignaturaImpar($arregloAsignaturas["nombre"][$i]);
+        imprimirAsignaturaImpar($arregloAsignaturas["id_asignatura"][$i]);
         /* echo'<script type="text/javascript">
         alert("no es par");
         </script>';  */
@@ -388,11 +388,11 @@ require "../../Servicios/isStaff.php";
 
   
 
-  function imprimirAsignaturaPar($nombreAsignatura)
+  function imprimirAsignaturaPar($idAsignatura)//091120 SE RECIBE AQUI ID DE ASIGNATURA
   {
     $link = "temas.php?asignatura=";
     $claseBloque = "asignaturaPrincipal";
-    $link = $link . $nombreAsignatura;
+    $link = $link . $idAsignatura;
     $imagen = "imagenAsignatura";
    
 
@@ -408,7 +408,7 @@ require "../../Servicios/isStaff.php";
                     <img class="' . $imagen . '" src="../CSSsJSs/icons/star.svg" />
                   </div>
                   <div class="tituloAsignaturas">
-                    ' . $nombreAsignatura . '
+                    ' . $idAsignatura . '
                   </div>
                 </div>
               </a> 
@@ -417,11 +417,11 @@ require "../../Servicios/isStaff.php";
     ';
   }
 
-  function imprimirAsignaturaImpar($nombreAsignatura)
+  function imprimirAsignaturaImpar($idAsignatura)
   {
     $link = "temas.php?asignatura=";
     $claseBloque = "asignaturaPrincipal";
-    $link = $link . $nombreAsignatura;
+    $link = $link . $idAsignatura;
     $imagen = "imagenAsignatura";
 
     echo '
@@ -434,7 +434,7 @@ require "../../Servicios/isStaff.php";
                       <img class="' . $imagen . '" src="../CSSsJSs/icons/physics.svg" />
                     </div>
                     <div class="tituloAsignaturas">'
-        . $nombreAsignatura .
+        . $idAsignatura .
         '</div>
                   </div>              
                 </a>
