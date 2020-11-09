@@ -44,7 +44,7 @@ require "../../Servicios/DDBBVariables.php";
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloTemas = array();
     $arregloTemas = traerTemas();
-    $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
+    $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];//091120 AQUI DEBE DE TRAER EL ID DE MATERIA ESTE ES EL CASO EN QUE SOLO HAY UNA SOLA LICENCIA ASIGNADA
     imprimirPagina($arregloTemas);
   } else {
 
@@ -92,15 +92,15 @@ require "../../Servicios/DDBBVariables.php";
   function traerTemas()
   {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    $asignatura = $_GET['asignatura'];
+    $idAsignatura = $_GET['asignatura'];//091120 ESTO LO RECIBE DIRECTO DE LA URL, AQUI RECIBIRA ID DE ASIGNATURA
     /*echo '<script type="text/javascript">
             alert("'.$asignatura.'");
             </script>';
     */
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    /*----Paso 1 Obtener el ID de la asignatura----*/
-    if ($_SESSION["idioma"] == 'i') {
+    /* ----Paso 1 Obtener el ID de la asignatura----*/
+    /*if ($_SESSION["idioma"] == 'i') {
       $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE names = ?");
     } else {
       $statement = mysqli_prepare($con, "SELECT id_asignatura FROM asignatura WHERE nombre = ?");
@@ -114,9 +114,9 @@ require "../../Servicios/DDBBVariables.php";
     //Leemos datos del usuario
     while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
       $arregloIdasignatura["id_asignatura"] = $id_asignatura;
-    }
+    } */
     //id de asignatura usado en top.php
-    $_SESSION["idAsignatura"] = $arregloIdasignatura["id_asignatura"];
+    $_SESSION["idAsignatura"] = $idAsignatura;
     /* if($_SESSION["idAsignaturaValidar"] != $_SESSION["idAsignatura"] )
     {
       echo '<script type="text/javascript">
@@ -132,7 +132,7 @@ require "../../Servicios/DDBBVariables.php";
     } else {
       $statement = mysqli_prepare($con, "SELECT id_tema, id_asignatura, nombre FROM tema WHERE id_asignatura = ? ORDER BY orden ASC"); //WHERE mail = ? AND pswd = ?
     }
-    mysqli_stmt_bind_param($statement, "s", $arregloIdasignatura["id_asignatura"]);
+    mysqli_stmt_bind_param($statement, "s", $idAsignatura);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $id_tema, $id_asignatura, $nombre);
