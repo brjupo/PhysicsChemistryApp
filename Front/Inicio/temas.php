@@ -102,18 +102,28 @@ require "../../Servicios/DDBBVariables.php";
     
     if ($_SESSION["idioma"] == 'i') {
         $query = "SELECT names FROM asignatura WHERE id_asignatura = $idAsignatura";
+        $result = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+          $arrayMateria[] = $row;
+        }
+        $materia =  $arrayMateria[0]["names"]; //De aqui se obtendra el nombre de asignatura
     } else{
         $query = "SELECT nombre FROM asignatura WHERE id_asignatura = $idAsignatura";
+        $result = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+          $arrayMateria[] = $row;
+        }
+        $materia =  $arrayMateria[0]["nombre"]; //De aqui se obtendra el nombre de asignatura
     }
-    $result = mysqli_query($con, $query);
-    while ($row = mysqli_fetch_assoc($result)) {
-      $arrayMateria[0]["nombre"] = $row;
-    }
-    $materia =  $arrayMateria[0]["nombre"]; //De aqui se obtendra el id de asignatura
+   
 
     //id de asignatura usado en top.php
     $_SESSION["idAsignatura"] = $idAsignatura;
     $_SESSION["asignaturaNavegacion"] = $materia;
+
+    echo '<script type="text/javascript">
+            alert("'.$asignatura.'");
+            </script>';
     
 
     /*----Paso 2 Llamar a los temas de la asignatura-------*/
