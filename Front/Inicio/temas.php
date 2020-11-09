@@ -44,7 +44,7 @@ require "../../Servicios/DDBBVariables.php";
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloTemas = array();
     $arregloTemas = traerTemas();
-    $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];//091120 AQUI DEBE DE TRAER EL ID DE MATERIA ESTE ES EL CASO EN QUE SOLO HAY UNA SOLA LICENCIA ASIGNADA
+    //$_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];//091120 AQUI DEBE DE TRAER EL ID DE MATERIA ESTE ES EL CASO EN QUE SOLO HAY UNA SOLA LICENCIA ASIGNADA
     imprimirPagina($arregloTemas);
   } else {
 
@@ -79,7 +79,7 @@ require "../../Servicios/DDBBVariables.php";
 
       $arregloTemas = array();
       $arregloTemas = traerTemas();
-      $_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
+      //$_SESSION["asignaturaNavegacion"] = $_GET['asignatura'];
       imprimirPagina($arregloTemas);
     } else {
 
