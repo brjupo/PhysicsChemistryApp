@@ -57,11 +57,6 @@ require "../../Servicios/isStaff.php";
 
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
 
-    //Comprobar que tiene más de una licencia para no mostrar pantalla de materias
-    //$query2 = "SELECT count(*) FROM pregunta WHERE id_leccion = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
-    //$result2 = mysqli_query($con, $query2);
-    //$total = mysqli_fetch_row($result2);
-
     //Consultar si es profe 
     $mostrarMenuprofesor = $_SESSION["mostrarMenuprofesor"];
     $staffID = $_SESSION["siStaff"];
@@ -268,7 +263,7 @@ require "../../Servicios/isStaff.php";
   function traerAsignaturas()
   {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    $asignatura = $_GET['asignatura'];
+    //$asignatura = $_GET['asignatura'];
     /*echo '<script type="text/javascript">
             alert("'.$asignatura.'");
             </script>';
