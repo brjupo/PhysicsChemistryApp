@@ -49,7 +49,7 @@
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloSubtemas = array();
     $arregloSubtemas = traerSubtemas();
-    $_SESSION["temaNavegacion"] = $_GET['tema'];
+    //$_SESSION["temaNavegacion"] = $_GET['tema'];
     imprimirPaginaSubtemas($arregloSubtemas);
   } else {
 
