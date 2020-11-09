@@ -122,7 +122,7 @@ require "../../Servicios/DDBBVariables.php";
     $_SESSION["asignaturaNavegacion"] = $materia;
 
     echo '<script type="text/javascript">
-            alert("'.$asignatura.'");
+            alert("'.$materia.'");
             </script>';
     
 
