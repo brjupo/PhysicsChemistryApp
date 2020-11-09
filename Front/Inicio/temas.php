@@ -107,7 +107,7 @@ require "../../Servicios/DDBBVariables.php";
     }
     $result = mysqli_query($con, $query);
     while ($row = mysqli_fetch_assoc($result)) {
-      $arrayMateria[] = $row;
+      $arrayMateria[0]["nombre"] = $row;
     }
     $materia =  $arrayMateria[0]["nombre"]; //De aqui se obtendra el id de asignatura
 
