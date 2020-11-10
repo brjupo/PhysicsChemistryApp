@@ -1,5 +1,5 @@
 <?php
-require "../../Servicios/DDBBVariables.php";
+require "../../servicios/DDBBVariables.php";
 require "../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>

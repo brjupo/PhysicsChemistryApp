@@ -1,6 +1,6 @@
 <?php
-require '../../Servicios/DDBBVariables.php';
-require "../../Servicios/isStaff.php";
+require '../../servicios/DDBBVariables.php';
+require "../../servicios/isStaff.php";
 ?>
 
 <!DOCTYPE html>
@@ -709,7 +709,5 @@ require "../../Servicios/isStaff.php";
   }
 
   ?>
-
 </body>
-
 </html>
