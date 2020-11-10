@@ -33,11 +33,11 @@ try {
     $conn->exec($sql);
     $response["response"] = 'exito';
     //$response["response"] = $sql;
-    header("HTTP/1.1 201 CREATED");
+    header("HTTP/1.2 201 CREATED");
 } catch (PDOException $e) {
     $response["response"] = $sql . "<br>" . $e->getMessage();
     $response["error"] = "User, session token and/or CST are not correct or up to date";
-    header("HTTP/1.1 401 Unathorized");
+    header("HTTP/1.2 401 Unathorized");
 }
 
 $conn = null;
