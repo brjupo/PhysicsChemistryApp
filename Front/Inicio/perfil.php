@@ -200,7 +200,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
                   <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
                 </div>
                 <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-9 col-xl-9">
-                  <p class="Ciencia fuenteTitulo" id="asignatura">' . $_SESSION["idAsignatura"] . '</p>
+                  <p class="Ciencia fuenteTitulo" id="asignaturad">' . $_SESSION["asignaturaNavegacion"] . '</p>
+                  <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none">' . $_SESSION["idAsignatura"] . '</p>
                 </div>
               </div>
             </div>
