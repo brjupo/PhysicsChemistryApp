@@ -38,11 +38,12 @@ require "../../servicios/isStaff.php";
     } */
   $tokenValidar = array();
 
-  if ($_SESSION["idioma"] == 'i') {
+/*   if ($_SESSION["idioma"] == 'i') {
     $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", "Testing");
   } else {
     $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", "Pruebas");
-  }
+  } 09/11*/ 
+
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
   mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
@@ -57,18 +58,13 @@ require "../../servicios/isStaff.php";
 
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
 
-    //Comprobar que tiene más de una licencia para no mostrar pantalla de materias
-    //$query2 = "SELECT count(*) FROM pregunta WHERE id_leccion = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
-    //$result2 = mysqli_query($con, $query2);
-    //$total = mysqli_fetch_row($result2);
-
     //Consultar si es profe 
     $mostrarMenuprofesor = $_SESSION["mostrarMenuprofesor"];
     $staffID = $_SESSION["siStaff"];
 
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
-    imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor,$staffID);
+    imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID);//0911 
   } else {
     /* echo'<script type="text/javascript">
             alert("segundo caminio");
@@ -116,11 +112,6 @@ require "../../servicios/isStaff.php";
         $temp_tokenA = $tokenA;
         $temp_tokenSesion = $tokenSesion;
         $temp_idioma = $idioma;
-        //$response["token"] = $token;
-        //$response["token_a"] = $token_a;
-        //$response["tokenp"] = $tokenp;
-        //$response["tokenpp"] = $tokenpp;
-        //$response["flag"] = $flag;
       }
 
       //Si el usuario EXISTE despliega el menú de las asignaturas
@@ -200,12 +191,6 @@ require "../../servicios/isStaff.php";
           $staffID = $existestaff["staff"];}
         $_SESSION["siStaff"] = $staffID;
         
-        //Imprimimos pantalla de asignaturas
-        if ($_SESSION["idioma"] == 'i') {
-          $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", "Testing");
-        } else {
-          $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", "Pruebas");
-        }
 
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
@@ -228,25 +213,25 @@ require "../../servicios/isStaff.php";
         $total = mysqli_fetch_row($result2);
 
         /* echo '<script type="text/javascript">
-                      alert("'.$total[0].  '");
+                      alert("'.$total[0].'");
                       </script>'; */
         
         if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {
-          imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor,$staffID);
-        } else {
+          imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID);//09111
+        } else {//PARA SALTAR A LA PAGINA DE TEMAS CUANDO NO TIENE MAS DE DOS MATERIAS
           //Traeer asignatura
           $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser'";
           $result = mysqli_query($con, $query);
           while ($row = mysqli_fetch_assoc($result)) {
             $idasignatura[] = $row;
           }
-          $idMateria = $idasignatura[0]["id_asignatura"] - 1;
+          $idMateria = $idasignatura[0]["id_asignatura"];
           $materia = $arregloAsignaturastodas[$idMateria];
           $_SESSION["asignaturaNavegacion"] = $materia;
           $_SESSION["idAsignatura"] = $idMateria;
-          $_SESSION["idAsignaturaValidar"] = $idMateria + 1;
+          $_SESSION["idAsignaturaValidar"] = $idMateria + 1;//ABAJO CAMBIAR $materia POR $idMateria
           echo '<script type="text/javascript">
-                          window.location.href="temas.php?asignatura=' . $materia . '";
+                          window.location.href="temas.php?asignatura=' . $idMateria . '"; 
                           </script>';
         }
 
@@ -268,7 +253,7 @@ require "../../servicios/isStaff.php";
   function traerAsignaturas()
   {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    $asignatura = $_GET['asignatura'];
+    //$asignatura = $_GET['asignatura'];
     /*echo '<script type="text/javascript">
             alert("'.$asignatura.'");
             </script>';
@@ -301,7 +286,7 @@ require "../../servicios/isStaff.php";
       $i = $i + 1;
     }
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    //DETECTAR DONDE DA CLIC A LA ASIGNATURA PARA GUARDAR LA VARIABLE DE SESION DEL ID DE LA ASIGNATUR A
+    //DETECTAR DONDE DA CLIC A LA ASIGNATURA PARA GUARDAR LA VARIABLE DE SESION DEL ID DE LA ASIGNATURA
 
     return ($arregloAsignaturas);
   }
@@ -316,11 +301,11 @@ require "../../servicios/isStaff.php";
     return $datetime->format('Y\-m\-d\ H:i:s');
   }
   //////////////////////
-  function imprimirPagina($arregloAsignaturas, $arregloAsignaturastodas, $mostrarMenuprofesor,$staffID)
+  function imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID)
   {
 
     imprimirTitulo();
-    imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas);
+    imprimirAsignaturas($arregloAsignaturas);
     imprimirRelleno();
     if ($mostrarMenuprofesor != '' or $staffID != 'null') {
       imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID);
@@ -369,178 +354,99 @@ require "../../servicios/isStaff.php";
     ';
   }
 
-  function imprimirAsignaturas($arregloAsignaturas, $arregloAsignaturastodas)
+  function imprimirAsignaturas($arregloAsignaturas)//AQUI DEBO TRAER LOS ID EN LUGAR DE LOS NOBRES DE LAS MATERIAS
   {
-    /*
-    $tamanho = count($arregloAsignaturastodas);
-    $esImpar = $tamanho % 2;
-    $numeroDePares = intval($tamanho / 2);
-    for ($i = 0; $i < $numeroDePares; $i++) {
-      if (in_array($arregloAsignaturas[2 * $i]["nombre"], $arregloAsignaturastodas)) {
-      //if ($arregloAsignaturas[2 * $i]["nombre"] == $arregloAsignaturastodas[2 * $i]) {
-        for($l=0; $l<count($arregloAsignaturastodas); $l++){
-          if ($arregloAsignaturas[2 * $i]["nombre"] == $arregloAsignaturastodas[$l]) {
-            $posicion1=$l;
-          }
-        }
-        $permiso1 = 1;
-      } else {
-        $permiso1 = 0;
-      }
-      if (in_array($arregloAsignaturas[2 * $i + 1]["nombre"], $arregloAsignaturastodas)) {
-        for($l=0; $l<count($arregloAsignaturastodas); $l++){
-          if ($arregloAsignaturas[2 * $i+1]["nombre"] == $arregloAsignaturastodas[$l]) {
-            $posicion2=$l;
-          }
-        }
-        $permiso2 = 1;
-      } else {
-        $permiso2 = 0;
-      }
-      imprimirAsignaturaPar($arregloAsignaturastodas[$posicion1], $arregloAsignaturastodas[$posicion2], $permiso1, $permiso2);
-    }
-    //si es del 0 a 4, te regresa 5
-    if ($esImpar) {
-      if (in_array($arregloAsignaturas[$tamanho - 1]["nombre"], $arregloAsignaturastodas)) {
-      //if ($arregloAsignaturas[$tamanho - 1]["nombre"] == $arregloAsignaturastodas[$tamanho - 1]) {
-        imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 1);
-      } else {
-        imprimirAsignaturaImpar($arregloAsignaturastodas[$tamanho - 1], 0);
-      }
-    }
-    */
-    //$arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", ".");
-    //$arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", ".");
+    $tamanho = count($arregloAsignaturas["id_asignatura"]);
 
-    if (in_array("Matter and Environment", $arregloAsignaturas["nombre"]) || in_array("Materia y el entorno", $arregloAsignaturas["nombre"])) {
-      if (in_array("Energy and transformation I", $arregloAsignaturas["nombre"]) || in_array("Energía y transformación I", $arregloAsignaturas["nombre"])) {
-        if (in_array("Testing", $arregloAsignaturas["nombre"]) || in_array("Pruebas", $arregloAsignaturas["nombre"])) {
-        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 1);
-      } else {
-        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 0);
-      }
-    } else if (in_array("Energy and transformation I", $arregloAsignaturas["nombre"]) || in_array("Energía y transformación I", $arregloAsignaturas["nombre"])) {
-      if (in_array("Matter and Environment", $arregloAsignaturas["nombre"]) || in_array("Materia y el entorno", $arregloAsignaturas["nombre"])) {
-        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 1, 1);
-      } else {
-        imprimirAsignaturaPar($arregloAsignaturastodas[0], $arregloAsignaturastodas[1], 0, 1);
-      }
-    }
+    $i = 0;
 
+    while($i < $tamanho){
+      $residuo = $i % 2;
+      if($residuo == 0){
+        imprimirAsignaturaPar($arregloAsignaturas["id_asignatura"][$i],$arregloAsignaturas["nombre"][$i]);//0911SE DEBERA PASAR ID DE ASIGNATURA EN LUGAR DE NOMBRE
+        /* echo'<script type="text/javascript">
+        alert("es par");
+        </script>';  */
+      }else{
+        imprimirAsignaturaImpar($arregloAsignaturas["id_asignatura"][$i],$arregloAsignaturas["nombre"][$i]);
+        /* echo'<script type="text/javascript">
+        alert("no es par");
+        </script>';  */
+      }
+
+      $i = $i +1;
+
+    }
+    
   }
 
   
 
-  function imprimirAsignaturaPar($nombreAsignatura1, $nombreAsignatura2, $siTienePermiso1, $siTienePermiso2)
+  function imprimirAsignaturaPar($idAsignatura,$nombreAsignatura)//091120 SE RECIBE AQUI ID DE ASIGNATURA
   {
     $link = "temas.php?asignatura=";
-    if ($siTienePermiso1 == 1) {
-      $claseBloque1 = "asignaturaPrincipal";
-      $link1 = $link . $nombreAsignatura1;
-      $imagen1 = "imagenAsignatura";
-    } else {
-      $claseBloque1 = "asignaturaDesactivada";
-      $link1 = "";
-      $imagen1 = "imagenDesactivada";
-    }
-    if ($siTienePermiso2 == 1) {
-      $claseBloque2 = "asignaturaPrincipal";
-      $link2 = $link . $nombreAsignatura2;
-      $imagen2 = "imagenAsignatura";
-    } else {
-      $claseBloque2 = "asignaturaDesactivada";
-      $link2 = "";
-      $imagen2 = "imagenDesactivada";
-    }
+    $claseBloque = "asignaturaPrincipal";
+    $link = $link . $idAsignatura;
+    $imagen = "imagenAsignatura";
+   
+
     echo '
         <div class="container">
           <div class="row">
             <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
-              <a href="' . $link1 . '">     
-                <div
-                  class="' . $claseBloque1 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
-                >
-                  <div>
-                    <img class="' . $imagen1 . '" src="../CSSsJSs/icons/star.svg" />
-                  </div>
-                  <div class="tituloAsignaturas">
-                    ' . $nombreAsignatura1 . '
-                  </div>
-                </div>
-              </a>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
-              <a href="' . $link2 . '">    
-                <div
-                  class="' . $claseBloque2 . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
-                >
-                  <div>
-                    <img class="' . $imagen2 . '" src="../CSSsJSs/icons/physics.svg" />
-                  </div>
-                  <div class="tituloAsignaturas">
-                  ' . $nombreAsignatura2 . '
-                  </div>
-                </div>
-              </a>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-            </div>
-          </div>
-
-          <!------------------------------------------------RELLENO----------------------------------------------->
-          <div class="container">
-            <div class="row">
-              <p class="relleno">.</p>
-            </div>
-            <div class="row">
-              <p class="relleno">.</p>
-            </div>
-          </div>
-          <!------------------------------------------------FIN RELLENO----------------------------------------------->
-    ';
-  }
-
-  function imprimirAsignaturaImpar($nombreAsignatura, $siTienePermiso)
-  {
-    $link = "temas.php?asignatura=";
-    if ($siTienePermiso == 1) {
-      $claseBloque = "asignaturaPrincipal";
-      $link .= $nombreAsignatura;
-      $imagen = "imagenAsignatura";
-    } else {
-      $claseBloque = "asignaturaDesactivada";
-      $link = "";
-      $imagen = "imagenDesactivada";
-    }
-    echo '
-        <div class="container">
-          <div class="row">
-            <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
-              <a href="' . $link . '">      
+              <a href="' . $link . '">     
                 <div
                   class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
                     <img class="' . $imagen . '" src="../CSSsJSs/icons/star.svg" />
                   </div>
-                  <div class="tituloAsignaturas">'
-      . $nombreAsignatura .
-      '</div>
-                </div>              
-              </a>
-              <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4"></div>  
-            </div>
-          </div>
+                  <div class="tituloAsignaturas">
+                    ' . $nombreAsignatura . '
+                  </div>
+                </div>
+              </a> 
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
+    ';
+  }
 
-          <!------------------------------------------------RELLENO----------------------------------------------->
-          <div class="container">
-            <div class="row">
-              <p class="relleno">.</p>
-            </div>
-            <div class="row">
-              <p class="relleno">.</p>
+  function imprimirAsignaturaImpar($idAsignatura,$nombreAsignatura)
+  {
+    $link = "temas.php?asignatura=";
+    $claseBloque = "asignaturaPrincipal";
+    $link = $link . $idAsignatura;
+    $imagen = "imagenAsignatura";
+
+    echo '
+               
+                <a href="' . $link . '">      
+                  <div
+                    class="' . $claseBloque . ' col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+                  >
+                    <div>
+                      <img class="' . $imagen . '" src="../CSSsJSs/icons/physics.svg" />
+                    </div>
+                    <div class="tituloAsignaturas">'
+        . $nombreAsignatura .
+        '</div>
+                  </div>              
+                </a>
+              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
             </div>
           </div>
-          <!------------------------------------------------FIN RELLENO----------------------------------------------->
+             
+
+            <!------------------------------------------------RELLENO----------------------------------------------->
+            <div class="container">
+              <div class="row">
+                <p class="relleno">.</p>
+              </div>
+              <div class="row">
+                <p class="relleno">.</p>
+              </div>
+            </div>
+            <!------------------------------------------------FIN RELLENO----------------------------------------------->
     ';
   }
 
@@ -709,5 +615,7 @@ require "../../servicios/isStaff.php";
   }
 
   ?>
+
 </body>
+
 </html>

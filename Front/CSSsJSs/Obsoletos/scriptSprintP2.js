@@ -418,7 +418,7 @@ function enviarCalificacion() {
 
   $.ajax({
     type: "POST",
-    url: "../../Servicios/subirPuntosType.php",
+    url: "../../servicios/subirPuntosType.php",
     dataType: "json",
     data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "SP" },
     success: function (data) {

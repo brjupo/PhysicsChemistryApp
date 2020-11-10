@@ -53,7 +53,7 @@ function saveInDB() {
     tempName = document.getElementById(allIdsTemp[0]).value.trim();
     $.ajax({
         type: "POST",
-        url: "../SERVICIOS/setEnglishSubtopicName.php",
+        url: "../servicios/setEnglishSubtopicName.php",
         dataType: "json",
         data: {
           id_subtema: allIdsTemp[0],

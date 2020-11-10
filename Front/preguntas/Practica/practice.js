@@ -413,7 +413,7 @@ function nextQuestion(lastQuestion) {
 
     $.ajax({
       type: "POST",
-      url: "../../../Servicios/subirPuntosType.php",
+      url: "../../../servicios/subirPuntosType.php",
       dataType: "json",
       data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "PP" },
       success: function (data) {
@@ -631,7 +631,7 @@ function limpiarInputs(cantidadIDs) {
 function enviarAcumulador(userID) {
 $.ajax({
   type: "POST",
-  url: "../../../Servicios/enviarAcumulador.php",
+  url: "../../../servicios/enviarAcumulador.php",
   dataType: "json",
   data: { id: userID, acmldr: acumulador, flagTipo: "acmlrPP" },
   success: function (data) {

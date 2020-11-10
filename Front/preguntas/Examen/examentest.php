@@ -1,5 +1,5 @@
 <?php
-require "../../../Servicios/validarLicencia.php";
+require "../../../servicios/validarLicencia.php";
 ?>
 <!DOCTYPE html>
 <html>

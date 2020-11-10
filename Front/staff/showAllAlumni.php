@@ -1,6 +1,6 @@
 <?php
-require "../../Servicios/DDBBVariables.php";
-require "../../Servicios/isStaff.php";
+require "../../servicios/DDBBVariables.php";
+require "../../servicios/isStaff.php";
 $staffID = isStaff();
 if ($staffID == "null") {
     header('Location: https://kaanbal.net/');

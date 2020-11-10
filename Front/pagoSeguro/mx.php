@@ -2,7 +2,7 @@
 
 <body>
     <?php
-    $url = 'https://kaanbal.net/DEV/Servicios/getFirstPart.php';
+    $url = 'https://kaanbal.net/dev/servicios/getFirstPart.php';
     $data = array('tokenHora' => 'nda0913fTY673o84KJ');
     // use key 'http' even if you send the request to https://...
     $options = array(

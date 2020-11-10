@@ -105,7 +105,7 @@ function guardarAvatarEnBBDD(nombreImagen) {
   nombreImagen = res[res.length - 1];
   $.ajax({
     type: "POST",
-    url: "../../Servicios/actualizarAvatar.php",
+    url: "../../servicios/actualizarAvatar.php",
     dataType: "json",
     data: { matricula: userID, avatar: nombreImagen },
     success: function (data) {

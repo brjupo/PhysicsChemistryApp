@@ -35,7 +35,7 @@ document.addEventListener("click", function (evt) {
 function saveInDDBB() {
   $.ajax({
     type: "POST",
-    url: "../../Servicios/updateFullQuestionInfoByID.php",
+    url: "../../servicios/updateFullQuestionInfoByID.php",
     dataType: "json",
     data: {
       IDPregunta: document.getElementById("IDPregunta").value,
@@ -82,7 +82,7 @@ function saveInDDBB() {
 function loadInformation() {
   $.ajax({
     type: "POST",
-    url: "../../Servicios/getFullQuestionInfoByID.php",
+    url: "../../servicios/getFullQuestionInfoByID.php",
     dataType: "json",
     data: {
       IDPregunta: document.getElementById("IDPregunta").value,

@@ -31,7 +31,7 @@ function sentInfoToService() {
     console.log("Matricula: ", matricula, " Contras: ", contrasenia);
     $.ajax({
       type: "POST",
-      url: "../../Servicios/subirUno.php",
+      url: "../../servicios/subirUno.php",
       dataType: "json",
       data: { studentID: matricula, password: contrasenia },
       success: function(data) {

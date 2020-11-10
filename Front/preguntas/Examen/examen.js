@@ -370,7 +370,7 @@ function nextQuestion(lastQuestion) {
 
     $.ajax({
       type: "POST",
-      url: "../../../Servicios/subirPuntosType.php",
+      url: "../../../servicios/subirPuntosType.php",
       dataType: "json",
       data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "E" },
       success: function (data) {
@@ -400,7 +400,7 @@ function nextQuestion(lastQuestion) {
 
     $.ajax({
       type: "POST",
-      url: "../../../Servicios/subirPuntosType.php",
+      url: "../../../servicios/subirPuntosType.php",
       dataType: "json",
       data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "E" },
       success: function (data) {
@@ -625,7 +625,7 @@ function enviarCalificacion() {
 
   $.ajax({
     type: "POST",
-    url: "../../../Servicios/subirPuntosType.php",
+    url: "../../../servicios/subirPuntosType.php",
     dataType: "json",
     data: { id: userID, leccion: leccionID, puntos: puntos, flagTipo: "E" },
     success: function (data) {
@@ -644,7 +644,7 @@ function enviarCalificacion() {
 function enviarAcumulador(userID) {
   $.ajax({
     type: "POST",
-    url: "../../../Servicios/enviarAcumulador.php",
+    url: "../../../servicios/enviarAcumulador.php",
     dataType: "json",
     data: { id: userID, acmldr: acumulador, flagTipo: "acmlrE" },
     success: function (data) {

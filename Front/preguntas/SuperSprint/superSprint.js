@@ -626,7 +626,7 @@ function incorrectByTime(questionNumber) {
 function enviarAcumulador(userID) {
   $.ajax({
     type: "POST",
-    url: "../../../Servicios/enviarAcumulador.php",
+    url: "../../../servicios/enviarAcumulador.php",
     dataType: "json",
     data: { id: userID, acmldr: acumulador, flagTipo: "acmlrSS" },
     success: function (data) {

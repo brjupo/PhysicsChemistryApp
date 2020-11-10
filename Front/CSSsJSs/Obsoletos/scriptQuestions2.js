@@ -366,7 +366,7 @@ function enviarCalificacion() {
 
   $.ajax({
     type: "POST",
-    url: "../../Servicios/subirPuntos.php",
+    url: "../../servicios/subirPuntos.php",
     dataType: "json",
     data: { id: userID, leccion: leccionID, puntos: puntos },
     success: function (data) {

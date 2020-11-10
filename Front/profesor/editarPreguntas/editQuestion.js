@@ -59,7 +59,7 @@ function uploadImage() {
     data.append("idPregunta", document.getElementById("IDPregunta").value);
 
     $.ajax({
-      url: "../SERVICIOS/uploadOneImage.php",
+      url: "../servicios/uploadOneImage.php",
       type: "post",
       dataType: "json",
       data: data,
@@ -130,7 +130,7 @@ function getDataToSaveInDDBB() {
 function saveInDDBB(informacion) {
   $.ajax({
     type: "POST",
-    url: "../SERVICIOS/updateFullQuestionInfoByID.php",
+    url: "../servicios/updateFullQuestionInfoByID.php",
     dataType: "json",
     data: {
       IDPregunta: informacion.IDPregunta,
@@ -163,7 +163,7 @@ function saveInDDBB(informacion) {
 function loadInformation() {
   $.ajax({
     type: "POST",
-    url: "../SERVICIOS/getQuestionInfo.php",
+    url: "../servicios/getQuestionInfo.php",
     dataType: "json",
     data: {
       IDPregunta: document.getElementById("IDPregunta").value,

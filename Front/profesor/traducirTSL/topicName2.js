@@ -53,7 +53,7 @@ function saveInDB() {
     tempName = document.getElementById(allIdsTemp[0]).value.trim();
     $.ajax({
         type: "POST",
-        url: "../SERVICIOS/setEnglishTopicName.php",
+        url: "../servicios/setEnglishTopicName.php",
         dataType: "json",
         data: {
           id_tema: allIdsTemp[0],

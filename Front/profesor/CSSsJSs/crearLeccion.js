@@ -17,7 +17,7 @@ document.addEventListener("click", function (evt) {
 function saveInDB() {
     $.ajax({
         type: "POST",
-        url: "../SERVICIOS/crearLeccion.php",
+        url: "../servicios/crearLeccion.php",
         dataType: "json",
         data: {
           id_subtema: document.getElementById("id_subtema").innerHTML.trim(),

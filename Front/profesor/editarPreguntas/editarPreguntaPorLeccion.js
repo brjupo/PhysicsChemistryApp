@@ -82,7 +82,7 @@ function getDataToSaveInDDBB() {
 function saveInDDBB(informacion) {
   $.ajax({
     type: "POST",
-    url: "../SERVICIOS/updateFullQuestionInfo.php",
+    url: "../servicios/updateFullQuestionInfo.php",
     dataType: "json",
     data: {
       leccion: informacion.leccion,
@@ -116,7 +116,7 @@ function saveInDDBB(informacion) {
 function loadInformation() {
   $.ajax({
     type: "POST",
-    url: "../SERVICIOS/getFullQuestionInfo.php",
+    url: "../servicios/getFullQuestionInfo.php",
     dataType: "json",
     data: {
       leccion: document.getElementById("idLeccion").value,

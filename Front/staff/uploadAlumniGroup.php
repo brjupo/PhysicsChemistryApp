@@ -1,6 +1,6 @@
 <?php
-require "../../Servicios/DDBBVariables.php";
-require "../../Servicios/isStaff.php";
+require "../../servicios/DDBBVariables.php";
+require "../../servicios/isStaff.php";
 $staffID = isStaff();
 if ($staffID == "null") {
     header('Location: https://kaanbal.net/');
@@ -150,7 +150,7 @@ if ($staffID == "null") {
   <div class="container">
     <div class="row">
       <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <form class="form-horizontal" action="../../Servicios/subirUsuarios.php" method="post" name="upload_excel" enctype="multipart/form-data">
+        <form class="form-horizontal" action="../../servicios/subirUsuarios.php" method="post" name="upload_excel" enctype="multipart/form-data">
           <fieldset>
             <!-- Form Name -->
             <legend>Subir Información de Alumnos</legend>

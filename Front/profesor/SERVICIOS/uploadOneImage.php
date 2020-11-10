@@ -1,5 +1,5 @@
 <?php
-require "../../../Servicios/DDBBVariables.php";
+require "../../../servicios/DDBBVariables.php";
 
 
 function get_extension($file) {

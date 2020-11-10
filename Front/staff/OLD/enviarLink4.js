@@ -50,7 +50,7 @@ function sentInfoToService() {
     );
     $.ajax({
       type: "POST",
-      url: "../../Servicios/passLink.php",
+      url: "../../servicios/passLink.php",
       dataType: "json",
       data: {
         usuario: correo_e,

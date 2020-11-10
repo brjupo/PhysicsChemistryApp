@@ -1,6 +1,6 @@
 <?php
-require "../../../Servicios/validarLicencia.php";
-require "../../../Servicios/DDBBVariables.php";
+require "../../../servicios/validarLicencia.php";
+require "../../../servicios/DDBBVariables.php";
 ?>
 <!DOCTYPE html>
 <html>

@@ -52,7 +52,7 @@ function saveInDB() {
     }
     $.ajax({
         type: "POST",
-        url: "../SERVICIOS/nombreTema.php",
+        url: "../servicios/nombreTema.php",
         dataType: "json",
         data: {
           id_tema: allIdsTemp[0],
