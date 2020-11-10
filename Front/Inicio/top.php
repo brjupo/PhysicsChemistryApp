@@ -99,7 +99,7 @@
                      <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
                    </div>
                    <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                     <p class="Ciencia fuenteTitulo" id="asignatura">' . $_GET['asignatura'] . '</p>
+                     <p class="Ciencia fuenteTitulo" id="asignatura">' . $_SESSION["idAsignatura"] . '</p>
                    </div>
                    <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
                      <table class="table" style="display:none">
