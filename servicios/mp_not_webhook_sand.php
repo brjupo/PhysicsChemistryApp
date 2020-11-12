@@ -14,7 +14,7 @@ function getDatetimeNow()
 }
 $tiempo = getDatetimeNow();
 //$id_mp = $_POST["id"];
-$body_json = $result;
+$body_json = $entityBody;
 $id_mp = $result["id"];
 //Crear la escritura en base de datos
 try {
