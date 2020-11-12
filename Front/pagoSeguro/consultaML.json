@@ -1,122 +1,219 @@
-{   
-    "idPagoPanelML___estoNoVieneEnEstaRespuestaJSON_delServicioDeML_soloEsParaGuardaloAqui":12130752292,
-    "paging": {
-        "total": 1,
-        "limit": 30,
-        "offset": 0
-    },
-    "results": [
+{
+  "idPagoPanelML___estoNoVieneEnEstaRespuestaJSON_delServicioDeML_soloEsParaGuardaloAqui": 12130752292,
+  "paging": {
+    "total": 1,
+    "limit": 30,
+    "offset": 0
+  },
+  "results": [
+    {
+      "acquirer_reconciliation": [],
+      "additional_info": {
+        "available_balance": null,
+        "ip_address": "187.208.77.57",
+        "nsu_processadora": null
+      },
+      "authorization_code": "026043",
+      "binary_mode": false,
+      "brand_id": null,
+      "call_for_authorize_id": null,
+      "captured": true,
+      "card": {
+        "cardholder": {
+          "identification": {
+            "number": null,
+            "type": null
+          },
+          "name": "BRANDON JUAREZ PONCE"
+        },
+        "date_created": "2020-10-31T23:57:27.000-04:00",
+        "date_last_updated": "2020-10-31T23:57:27.000-04:00",
+        "expiration_month": 11,
+        "expiration_year": 2024,
+        "first_six_digits": "520416",
+        "id": null,
+        "last_four_digits": "4593"
+      },
+      "charges_details": [],
+      "collector_id": 653962800,
+      "corporation_id": null,
+      "counter_currency": null,
+      "coupon_amount": 0,
+      "currency_id": "MXN",
+      "date_approved": "2020-10-31T23:57:29.000-04:00",
+      "date_created": "2020-10-31T23:57:27.000-04:00",
+      "date_last_updated": "2020-10-31T23:57:29.000-04:00",
+      "date_of_expiration": null,
+      "deduction_schema": null,
+      "description": "Licencia semestral Kaanbal - Materia y el entorno",
+      "differential_pricing_id": null,
+      "external_reference": null,
+      "fee_details": [
         {
-            "acquirer_reconciliation": [],
-            "additional_info": {
-                "available_balance": null,
-                "ip_address": "187.208.77.57",
-                "nsu_processadora": null
-            },
-            "authorization_code": "026043",
-            "binary_mode": false,
-            "brand_id": null,
-            "call_for_authorize_id": null,
-            "captured": true,
-            "card": {
-                "cardholder": {
-                    "identification": {
-                        "number": null,
-                        "type": null
-                    },
-                    "name": "BRANDON JUAREZ PONCE"
-                },
-                "date_created": "2020-10-31T23:57:27.000-04:00",
-                "date_last_updated": "2020-10-31T23:57:27.000-04:00",
-                "expiration_month": 11,
-                "expiration_year": 2024,
-                "first_six_digits": "520416",
-                "id": null,
-                "last_four_digits": "4593"
-            },
-            "charges_details": [],
-            "collector_id": 653962800,
-            "corporation_id": null,
-            "counter_currency": null,
-            "coupon_amount": 0,
-            "currency_id": "MXN",
-            "date_approved": "2020-10-31T23:57:29.000-04:00",
-            "date_created": "2020-10-31T23:57:27.000-04:00",
-            "date_last_updated": "2020-10-31T23:57:29.000-04:00",
-            "date_of_expiration": null,
-            "deduction_schema": null,
-            "description": "Licencia semestral Kaanbal - Materia y el entorno",
-            "differential_pricing_id": null,
-            "external_reference": null,
-            "fee_details": [
-                {
-                    "amount": 4.98,
-                    "fee_payer": "collector",
-                    "type": "mercadopago_fee"
-                }
-            ],
-            "id": 12130752292,
-            "installments": 1,
-            "integrator_id": null,
-            "issuer_id": "159",
-            "live_mode": true,
-            "marketplace_owner": null,
-            "merchant_account_id": null,
-            "merchant_number": null,
-            "metadata": {},
-            "money_release_date": "2020-11-30T23:57:29.000-04:00",
-            "money_release_schema": null,
-            "notification_url": null,
-            "operation_type": "regular_payment",
-            "order": {
-                "id": "1933389442",
-                "type": "mercadopago"
-            },
-            "payer": {
-                "email": "brjupo@outlook.com",
-                "entity_type": null,
-                "first_name": null,
-                "id": "662929086",
-                "identification": {
-                    "number": null,
-                    "type": null
-                },
-                "last_name": "brjupo",
-                "operator_id": null,
-                "phone": {
-                    "area_code": null,
-                    "extension": null,
-                    "number": null
-                },
-                "type": "guest"
-            },
-            "payment_method_id": "debmaster",
-            "payment_type_id": "debit_card",
-            "platform_id": null,
-            "pos_id": null,
-            "processing_mode": "aggregator",
-            "refunds": [],
-            "shipping_amount": 0,
-            "sponsor_id": null,
-            "statement_descriptor": "MERCADOPAGO",
-            "status": "approved",
-            "status_detail": "accredited",
-            "store_id": null,
-            "taxes_amount": 0,
-            "transaction_amount": 10,
-            "transaction_amount_refunded": 0,
-            "transaction_details": {
-                "acquirer_reference": null,
-                "external_resource_url": null,
-                "financial_institution": null,
-                "installment_amount": 10,
-                "net_received_amount": 5.02,
-                "overpaid_amount": 0,
-                "payable_deferral_period": null,
-                "payment_method_reference_id": null,
-                "total_paid_amount": 10
-            },
-            "shipping_cost": 0
+          "amount": 4.98,
+          "fee_payer": "collector",
+          "type": "mercadopago_fee"
         }
-    ]
+      ],
+      "id": 12130752292,
+      "installments": 1,
+      "integrator_id": null,
+      "issuer_id": "159",
+      "live_mode": true,
+      "marketplace_owner": null,
+      "merchant_account_id": null,
+      "merchant_number": null,
+      "metadata": {},
+      "money_release_date": "2020-11-30T23:57:29.000-04:00",
+      "money_release_schema": null,
+      "notification_url": null,
+      "operation_type": "regular_payment",
+      "order": {
+        "id": "1933389442",
+        "type": "mercadopago"
+      },
+      "payer": {
+        "email": "brjupo@outlook.com",
+        "entity_type": null,
+        "first_name": null,
+        "id": "662929086",
+        "identification": {
+          "number": null,
+          "type": null
+        },
+        "last_name": "brjupo",
+        "operator_id": null,
+        "phone": {
+          "area_code": null,
+          "extension": null,
+          "number": null
+        },
+        "type": "guest"
+      },
+      "payment_method_id": "debmaster",
+      "payment_type_id": "debit_card",
+      "platform_id": null,
+      "pos_id": null,
+      "processing_mode": "aggregator",
+      "refunds": [],
+      "shipping_amount": 0,
+      "sponsor_id": null,
+      "statement_descriptor": "MERCADOPAGO",
+      "status": "approved",
+      "status_detail": "accredited",
+      "store_id": null,
+      "taxes_amount": 0,
+      "transaction_amount": 10,
+      "transaction_amount_refunded": 0,
+      "transaction_details": {
+        "acquirer_reference": null,
+        "external_resource_url": null,
+        "financial_institution": null,
+        "installment_amount": 10,
+        "net_received_amount": 5.02,
+        "overpaid_amount": 0,
+        "payable_deferral_period": null,
+        "payment_method_reference_id": null,
+        "total_paid_amount": 10
+      },
+      "shipping_cost": 0
+    }
+  ],
+  "paging": { "total": 1, "limit": 30, "offset": 0 },
+  "results": [
+    {
+      "acquirer_reconciliation": [],
+      "additional_info": {
+        "available_balance": null,
+        "ip_address": "187.208.36.54",
+        "nsu_processadora": null
+      },
+      "authorization_code": null,
+      "binary_mode": false,
+      "brand_id": null,
+      "call_for_authorize_id": null,
+      "captured": true,
+      "card": {
+        "cardholder": {
+          "identification": { "number": null, "type": null },
+          "name": "PEDRO PEREZ"
+        },
+        "date_created": "2020-11-12T01:17:48.000-04:00",
+        "date_last_updated": "2020-11-12T01:17:48.000-04:00",
+        "expiration_month": 11,
+        "expiration_year": 2025,
+        "first_six_digits": "547492",
+        "id": null,
+        "last_four_digits": "0366"
+      },
+      "charges_details": [],
+      "collector_id": 653962800,
+      "corporation_id": null,
+      "counter_currency": null,
+      "coupon_amount": 0,
+      "currency_id": "MXN",
+      "date_approved": "2020-11-12T01:17:48.000-04:00",
+      "date_created": "2020-11-12T01:17:48.000-04:00",
+      "date_last_updated": "2020-11-12T01:17:48.000-04:00",
+      "date_of_expiration": null,
+      "deduction_schema": null,
+      "description": "Licencia semestral Kaanbal - Materia y el entorno",
+      "differential_pricing_id": null,
+      "external_reference": null,
+      "fee_details": [
+        { "amount": 4.98, "fee_payer": "collector", "type": "mercadopago_fee" }
+      ],
+      "id": 1231079006,
+      "installments": 1,
+      "integrator_id": null,
+      "issuer_id": "158",
+      "live_mode": false,
+      "marketplace_owner": null,
+      "merchant_account_id": null,
+      "merchant_number": null,
+      "metadata": {},
+      "money_release_date": "2020-12-12T01:17:48.000-04:00",
+      "money_release_schema": null,
+      "notification_url": null,
+      "operation_type": "regular_payment",
+      "order": { "id": "1974739317", "type": "mercadopago" },
+      "payer": {
+        "first_name": "Test",
+        "last_name": "Test",
+        "email": "test_user_80507629@testuser.com",
+        "identification": { "number": "32659430", "type": "DNI" },
+        "phone": { "area_code": "01", "number": "1111-1111", "extension": "" },
+        "type": "registered",
+        "entity_type": null,
+        "id": "662929086"
+      },
+      "payment_method_id": "master",
+      "payment_type_id": "credit_card",
+      "platform_id": null,
+      "pos_id": null,
+      "processing_mode": "aggregator",
+      "refunds": [],
+      "shipping_amount": 0,
+      "sponsor_id": null,
+      "statement_descriptor": "BISOFTWARE",
+      "status": "approved",
+      "status_detail": "accredited",
+      "store_id": null,
+      "taxes_amount": 0,
+      "transaction_amount": 10,
+      "transaction_amount_refunded": 0,
+      "transaction_details": {
+        "acquirer_reference": null,
+        "external_resource_url": null,
+        "financial_institution": null,
+        "installment_amount": 10,
+        "net_received_amount": 5.02,
+        "overpaid_amount": 0,
+        "payable_deferral_period": null,
+        "payment_method_reference_id": null,
+        "total_paid_amount": 10
+      },
+      "shipping_cost": 0
+    }
+  ]
 }
