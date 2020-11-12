@@ -16,7 +16,7 @@ function getDatetimeNow()
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*++++++++++++++++++++  VARIABLES PARA EL QUERY  ++++++++++++++++++++*/
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-$id_mp = $result["date"]["id"];
+$id_mp = $result["data"]["id"];
 //Si llega del boton "probar" de mercado pago, no exite data id, solo id
 if(is_null($id_mp)){
     $id_mp = $result["id"];
