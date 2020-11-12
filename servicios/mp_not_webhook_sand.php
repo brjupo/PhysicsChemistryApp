@@ -1,25 +1,6 @@
 <?php
 require "DDBBVariables.php";
 
-require '../../../../../vendor/autoload.php';
-MercadoPago\SDK::setAccessToken("TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800");
-
-
-//Leer las variables del POST
-switch ($_POST["type"]) {
-    case "payment":
-        $payment = MercadoPago\Payment . find_by_id($_POST["id"]);
-        break;
-    case "plan":
-        $plan = MercadoPago\Plan . find_by_id($_POST["id"]);
-        break;
-    case "subscription":
-        $plan = MercadoPago\Subscription . find_by_id($_POST["id"]);
-        break;
-    case "invoice":
-        $plan = MercadoPago\Invoice . find_by_id($_POST["id"]);
-        break;
-}
 $entityBody = file_get_contents('php://input');
 //$entityBody = stream_get_contents(STDIN);
 $result = json_decode($entityBody, TRUE);
@@ -33,7 +14,7 @@ function getDatetimeNow()
 }
 $tiempo = getDatetimeNow();
 //$id_mp = $_POST["id"];
-$id_mp = $result["data"]["id"];
+$id_mp = $result["id"];
 //Crear la escritura en base de datos
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
