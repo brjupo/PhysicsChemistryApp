@@ -55,9 +55,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
         //Redireccionamientos 
         $preference->back_urls = array(
-            "success" => "https://www.kaanbal.net/DEV/Front/pagoSeguro/success.php",
-            "failure" => "https://www.kaanbal.net/DEV/Front/pagoSeguro/failure.php",
-            "pending" => "https://www.kaanbal.net/DEV/Front/pagoSeguro/pending.php"
+            "success" => "https://www.kaanbal.net/dev/Front/pagoSeguro/success.php",
+            "failure" => "https://www.kaanbal.net/dev/Front/pagoSeguro/failure.php",
+            "pending" => "https://www.kaanbal.net/dev/Front/pagoSeguro/pending.php"
         );
         $preference->auto_return = "approved";
         
