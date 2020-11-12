@@ -20,8 +20,8 @@ switch ($_POST["type"]) {
         $plan = MercadoPago\Invoice . find_by_id($_POST["id"]);
         break;
 }
-
-$entityBody = stream_get_contents(STDIN);
+$entityBody = file_get_contents('php://input');
+//$entityBody = stream_get_contents(STDIN);
 $result = json_decode($entityBody, TRUE);
 //Establecer uso horario para el envio de fecha y hora
 function getDatetimeNow()
