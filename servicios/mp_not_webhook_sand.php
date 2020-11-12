@@ -21,6 +21,8 @@ switch ($_POST["type"]) {
         break;
 }
 
+$entityBody = stream_get_contents(STDIN);
+$result = json_decode($entityBody, TRUE);
 //Establecer uso horario para el envio de fecha y hora
 function getDatetimeNow()
 {
@@ -30,7 +32,8 @@ function getDatetimeNow()
     return $datetime->format('Y\-m\-d\ H:i:s');
 }
 $tiempo = getDatetimeNow();
-$id_mp = $_POST["id"];
+//$id_mp = $_POST["id"];
+$id_mp = $result["data"]["id"];
 //Crear la escritura en base de datos
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
