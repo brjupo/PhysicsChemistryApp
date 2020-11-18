@@ -43,8 +43,11 @@ require "../../servicios/isStaff.php";
   } else {
     $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", "Pruebas");
   } 09/11*/ 
-
-  //Consultar si existe token de usuario
+  //-------------------------------------------------//
+  //-------------------------------------------------//
+  //-------Consultar si existe token de usuario------//
+  //-------------------------------------------------//
+  //-------------------------------------------------//
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
   mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
   mysqli_stmt_execute($statement);

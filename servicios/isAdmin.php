@@ -9,10 +9,10 @@ $tokenValidar = array();
 $idValidarprofe = array();
 
 function isAdmin()
-{   
+{
     global $servername, $username, $password, $dbname;
     $con = mysqli_connect($servername, $username, $password, $dbname);
-    
+
 
     //Consultar si existe token de usuario
     $statement = mysqli_prepare($con, "SELECT tokenSesion, id_usuario FROM usuario_prueba WHERE mail = ?");
@@ -42,7 +42,7 @@ function isAdmin()
     if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["profe"] != "" and $tokenValidar["tokenSesionp"] != "") {
         return $existeProfe["profe"];
     } else {
-        return "null";
+        header('Location: https://kaanbal.net/');
     }
 }
 
