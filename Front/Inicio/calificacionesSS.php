@@ -263,7 +263,7 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
                                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                 $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='SG' 
-                                AND id_leccion=" . $subtemas["id"][$l] . " AND id_usuario =" . $alumnos["id"][$m] . ";";
+                                AND id_leccion=" . $subtemas["id"][$l] . " AND id_usuario =" . $alumnos["id"][$m] . "LIMIT 1;";
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
