@@ -272,8 +272,10 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
                                     $calificacion = $puntuacion * 100;
                                     $calificacion = $calificacion / $preguntasLeccion;
                                     $calificacion = intval($calificacion / 3);
-                                    echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$subtemas["nombre"][$l]] . ' </td>';
-                                    echo '<td> ' . $calificacion . ' </td>';
+                                    //echo '<td>';
+                                    echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$subtemas["nombre"][$l]];
+                                    echo '</td><td>';
+                                    echo $calificacion . ' </td>';
                                 }
                                 if ($entre == 0) {
                                     echo '<td style="color:red;">NP</td>';
