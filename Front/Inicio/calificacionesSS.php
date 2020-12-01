@@ -245,7 +245,7 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
                         <td style="font-weight:600">Matrícula</td>
                         <?php
                         for ($k = 0; $k < count($subtemas["id"]); $k++) {
-                            echo '<td>' . $subtemas["nombre"][$k] . '</td>';
+                            echo '<td>' . $subtemas["nombre"][$k] . ' id: '. $subtemas["id"][$k] . '</td>';
                         }
                         ?>
                     </tr>
@@ -272,7 +272,7 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
                                     $calificacion = $puntuacion * 100;
                                     $calificacion = $calificacion / $preguntasLeccion;
                                     $calificacion = intval($calificacion / 3);
-                                    //echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$subtemas["nombre"][$l]] . ' </td>';
+                                    echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$subtemas["nombre"][$l]] . ' </td>';
                                     echo '<td> ' . $calificacion . ' </td>';
                                 }
                                 if ($entre == 0) {
