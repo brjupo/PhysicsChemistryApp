@@ -149,7 +149,8 @@ function saveInDDBB(informacion) {
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
-        alert("Pregunta actualizada en Base de datos");
+        //alert("Pregunta actualizada en Base de datos");
+        location.reload();
       } else {
         alert("Error: " + data.response);
       }
@@ -171,7 +172,7 @@ function loadInformation() {
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
-        alert("Información mostrada");
+        console.log("Información mostrada");
         showData(data);
       } else {
         alert("Error: " + data.response);
