@@ -236,7 +236,7 @@ if ($adminID == "null") {
             <div class="input-group input-group-sm col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">
-                        Answer 2
+                        Option 2
                     </span>
                 </div>
                 <input id="answer2" type="text" class="form-control" />
@@ -257,7 +257,7 @@ if ($adminID == "null") {
             <div class="input-group input-group-sm col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">
-                        Answer 3
+                        Option 3
                     </span>
                 </div>
                 <input id="answer3" type="text" class="form-control" />
@@ -285,12 +285,12 @@ if ($adminID == "null") {
         <div class="row">
             <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p>Insertar/actualizar imagen</p>
-                <p style="font-size: small;">
+                <!--p style="font-size: small;">
                     Solo se permiten imágenes <strong>jpg</strong>
                 </p>
                 <p style="font-size: small;">
                     <strong>Puede tomar hasta 30 minutos actualizarse la imagen</strong>
-                </p>
+                </p-->
             </div>
         </div>
     </div>
@@ -298,7 +298,7 @@ if ($adminID == "null") {
     <div class="container">
         <div class="row">
             <div class="textCenter col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
-                <input id="nuevaImagen" type="file" name="myImage" accept=".jpg" />
+                <input id="nuevaImagen" type="file" name="myImage" accept="image" />
             </div>
             <div class="textCenter col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
                 <img id="imagenPregunta" src="../../../../IMAGENES/sinImagen.jpg" width="100%" />
