@@ -77,7 +77,7 @@ require "../../servicios/isAdmin.php";
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <a href="editarBuscarPreguntas/buscarAsignatura.php">
           <button type="button" class="btn btn-info">
-            Buscar preguntas pora editarlas
+            Buscar preguntas para editarlas
           </button>
         </a>
       </div>

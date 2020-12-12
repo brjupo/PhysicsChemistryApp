@@ -6,6 +6,7 @@ window.onload = function() {
   } else {
     alert("ERROR!. Verifique ID pregunta");
   }
+  document.getElementById("imgLoadingPage").style.display = "none";
 };
 
 document.addEventListener("click", function (evt) {

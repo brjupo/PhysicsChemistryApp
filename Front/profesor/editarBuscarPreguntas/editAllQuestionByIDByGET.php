@@ -13,7 +13,7 @@ require "../../../servicios/isAdmin.php";
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/styleUploadInfo.css" />
-    <script src="editQuestionByIDL.js"></script>
+    <script src="editQuestionID.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
@@ -29,18 +29,10 @@ require "../../../servicios/isAdmin.php";
         </div>
     </div>
 
-    <!--div class="container">
-        <div class="row">
-            <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p><a href="instrucciones.html">Instrucciones</a></p>
-            </div>
-        </div>
-    </div-->
-
     <div class="container">
         <div class="row">
             <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p style="color: rgba(0, 0, 0, 0);">.</p>
+                <img src="../../../../IMAGENES/loading.gif" id="imgLoadingPage" height="50px" style="display:block; margin: auto;">
             </div>
         </div>
     </div>
@@ -48,7 +40,7 @@ require "../../../servicios/isAdmin.php";
     <div class="container">
         <div class="row">
             <div class="textCenter col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <p>El ID de las preguntas lo puedes observar en la sección de "<a href="">crear temas, subtemas, lecciones y preguntas</a>" </p>
+                <p> Actualmente se muestra la información de la pregunta <strong><?php echo $_GET["ID_Pregunta"];?></strong></p>
             </div>
             <div class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <button id="siguientePregunta" type="button" class="btn btn-primary btn-sm">
