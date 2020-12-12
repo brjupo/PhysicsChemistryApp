@@ -18,7 +18,7 @@ if ($adminID == "null") {
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/styleUploadInfo.css" />
-    <script src="editQuestionByID.js"></script>
+    <script src="editQuestionByIDL.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
@@ -191,6 +191,7 @@ if ($adminID == "null") {
                 <button id="guardarEnBBDD" type="button" class="btn btn-primary btn-sm">
                     Guardar en base de datos
                 </button>
+                <img src="../../../../IMAGENES/loading.gif" id="imgLoading" height="20px" style="display:none;">
             </div>
         </div>
     </div>
