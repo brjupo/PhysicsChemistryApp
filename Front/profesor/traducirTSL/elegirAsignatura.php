@@ -1,11 +1,6 @@
 <?php
 require "../../../servicios/DDBBVariables.php";
 require "../../../servicios/isAdmin.php";
-$adminID = isAdmin();
-if ($adminID == "null") {
-  header('Location: https://kaanbal.net/');
-  exit;
-}
 ?>
 
 <!DOCTYPE html>

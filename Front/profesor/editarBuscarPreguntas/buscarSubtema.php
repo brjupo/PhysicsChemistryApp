@@ -5,25 +5,26 @@ require "../../../servicios/isAdmin.php";
 
 <!DOCTYPE html>
 <html>
+
 <?php
-printEditSubtopic();
-function printEditSubtopic()
+printEditTopic();
+function printEditTopic()
 {
   printHead();
   echo '<body>';
   printTitle();
   printInstructions();
-  printSubtopics();
-  //printButtons();
-  echo '</body>';
+  printTopics();
+  printNewTopic();
+  printButtons();
+  echo '</body>';  
 }
 
-function printSubtopics()
-{
+function printTopics(){
   $idTema = $_GET['ID_Tema'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   $statement = mysqli_prepare($con, "SELECT id_subtema, nombre FROM subtema WHERE id_tema = ? ORDER BY orden");
-  mysqli_stmt_bind_param($statement, "i", $idTema);
+  mysqli_stmt_bind_param($statement,"i", $idTema);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
@@ -43,29 +44,23 @@ function printSubtopics()
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printSubtopic($arregloTemas[$i]["id_subtema"], $arregloTemas[$i]["nombre"]);
+    printTopic($arregloTemas[$i]["id_subtema"],$arregloTemas[$i]["nombre"]);
   }
 }
 
-function printSubtopic($ID_Subtopic, $subtopicName)
-{
+function printTopic($ID_Subtopic, $subtopicName){
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="input-group-prepend">
-            <span class="input-group-text">' . $ID_Subtopic . '</span>
+            <span class="input-group-text">'.$ID_Subtopic.'</span>
           </div>
-          <input type="text" class="form-control" id="' . $ID_Subtopic . '" value="' . $subtopicName . '" disabled />
+          <input type="text" class="form-control" id="'.$ID_Subtopic.'" value="'.$subtopicName.'" />
           <div class="input-group-append">
-            <a href="tiempoSprintLeccion.php?ID_Subtema=' . $ID_Subtopic . '">
+            <a href="buscarLeccion.php?ID_Subtema='.$ID_Subtopic.'">
               <button class="btn btn-outline-secondary" type="button">
-                Sprint
-              </button>
-            </a>
-            <a href="tiempoExamenLeccion.php?ID_Subtema=' . $ID_Subtopic . '">
-              <button class="btn btn-outline-secondary" type="button">
-                Examen
+                Buscar sus lecciones
               </button>
             </a>
           </div>
@@ -84,9 +79,45 @@ function printSubtopic($ID_Subtopic, $subtopicName)
   ';
 }
 
-function printHead()
-{
-  echo '
+function printNewTopic(){
+  echo'
+  <div class="container" style="border-top: 4px dotted #007bff;">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <input
+          id="nuevoSubtema"
+          type="text"
+          class="form-control"
+          placeholder="Escribe AQUI el nombre del nuevo subtema"
+        />
+        <div class="input-group-append">
+          <span class="input-group-text">ID Tema = </span>
+          <span class="input-group-text" id="id_tema">'.$_GET['ID_Tema'].'</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+  ';
+}
+
+function printHead(){
+  echo'
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -102,8 +133,7 @@ function printHead()
   </head>
   ';
 }
-function printTitle()
-{
+function printTitle(){
   echo '
   <div class="container">
     <div class="row">
@@ -126,20 +156,18 @@ function printTitle()
   ';
 }
 
-function printInstructions()
-{
+function printInstructions(){
   echo '
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Ubique el <strong>subtema</strong> correspondiente.
+          - Para crear un nuevo <strong>subtema</strong>, inserte el nombre en la última sección y de clic en
+          "Guardar en base de datos"
         </p>
         <p>
-          - Si desea cambiar el tiempo de cada pregunta del sprint, de clic en SPRINT
-        </p>
-        <p>
-          - Si desea cambiar el tiempo total del examen, de clic en EXAMEN
+          - Para crear lecciones o preguntas, ubique el <strong>subtema</strong>
+          correspondiente y de clic en "Buscar sus lecciones"
         </p>
       </div>
     </div>
@@ -155,33 +183,6 @@ function printInstructions()
   ';
 }
 
-function printButtons()
-{
-  echo '
-  <div class="container">
-    <div class="row">
-      <div
-        class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
-      >
-        <button
-          id="guardarEnBBDD"
-          type="button"
-          class="btn btn-primary btn-sm"
-        >
-          Guardar en base de datos
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-  </div>
-  ';
-}
 
 ?>
 

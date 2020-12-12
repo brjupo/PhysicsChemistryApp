@@ -1,11 +1,6 @@
 <?php
 require "../../../servicios/DDBBVariables.php";
 require "../../../servicios/isAdmin.php";
-$teacherID = isAdmin();
-if ($teacherID == "null") {
-    header('Location: https://kaanbal.net/');
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +60,7 @@ function printTopic($ID_Question, $questionName)
           </div>
           <input type="text" class="form-control" id="' . $ID_Question . '" value="' . $questionName . '" />
           <div class="input-group-append">
-            <a href="editAllQuestionByIDByGET.php?ID_Pregunta='.$ID_Question .'" target="_blank">
+            <a href="../editarBuscarPreguntas/editAllQuestionByIDByGET.php?ID_Pregunta='.$ID_Question .'" target="_blank">
               <button class="btn btn-outline-secondary" type="button">
                 Editar la pregunta
               </button>

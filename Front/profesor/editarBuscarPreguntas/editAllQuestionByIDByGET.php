@@ -1,11 +1,6 @@
 <?php
 require "../../../servicios/DDBBVariables.php";
 require "../../../servicios/isAdmin.php";
-$adminID = isAdmin();
-if ($adminID == "null") {
-    header('Location: https://kaanbal.net/');
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +13,7 @@ if ($adminID == "null") {
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/styleUploadInfo.css" />
-    <script src="editQuestion.js"></script>
+    <script src="editQuestionByIDL.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
@@ -53,7 +48,7 @@ if ($adminID == "null") {
     <div class="container">
         <div class="row">
             <div class="textCenter col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <p>El ID de las preguntas lo puedes observar en la sección de "crear temas, subtemas, lecciones y preguntas" </p>
+                <p>El ID de las preguntas lo puedes observar en la sección de "<a href="">crear temas, subtemas, lecciones y preguntas</a>" </p>
             </div>
             <div class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <button id="siguientePregunta" type="button" class="btn btn-primary btn-sm">
@@ -191,6 +186,7 @@ if ($adminID == "null") {
                 <button id="guardarEnBBDD" type="button" class="btn btn-primary btn-sm">
                     Guardar en base de datos
                 </button>
+                <img src="../../../../IMAGENES/loading.gif" id="imgLoading" height="30px" style="display:none; margin: auto auto auto 10px;">
             </div>
         </div>
     </div>
@@ -236,7 +232,7 @@ if ($adminID == "null") {
             <div class="input-group input-group-sm col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">
-                        Answer 2
+                        Option 2
                     </span>
                 </div>
                 <input id="answer2" type="text" class="form-control" />
@@ -257,7 +253,7 @@ if ($adminID == "null") {
             <div class="input-group input-group-sm col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">
-                        Answer 3
+                        Option 3
                     </span>
                 </div>
                 <input id="answer3" type="text" class="form-control" />
@@ -285,12 +281,12 @@ if ($adminID == "null") {
         <div class="row">
             <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p>Insertar/actualizar imagen</p>
-                <p style="font-size: small;">
+                <!--p style="font-size: small;">
                     Solo se permiten imágenes <strong>jpg</strong>
                 </p>
                 <p style="font-size: small;">
                     <strong>Puede tomar hasta 30 minutos actualizarse la imagen</strong>
-                </p>
+                </p-->
             </div>
         </div>
     </div>
@@ -298,7 +294,7 @@ if ($adminID == "null") {
     <div class="container">
         <div class="row">
             <div class="textCenter col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
-                <input id="nuevaImagen" type="file" name="myImage" accept=".jpg" />
+                <input id="nuevaImagen" type="file" name="myImage" accept="image/*" />
             </div>
             <div class="textCenter col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
                 <img id="imagenPregunta" src="../../../../IMAGENES/sinImagen.jpg" width="100%" />

@@ -5,36 +5,38 @@ require "../../../servicios/isAdmin.php";
 
 <!DOCTYPE html>
 <html>
+
 <?php
-printEditSubtopic();
-function printEditSubtopic()
+printEditTopic();
+function printEditTopic()
 {
   printHead();
   echo '<body>';
   printTitle();
   printInstructions();
-  printSubtopics();
-  //printButtons();
+  printTopics();
+  printNewTopic();
+  printButtons();
   echo '</body>';
 }
 
-function printSubtopics()
+function printTopics()
 {
-  $idTema = $_GET['ID_Tema'];
+  $idLeccion = $_GET['ID_Leccion'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_subtema, nombre FROM subtema WHERE id_tema = ? ORDER BY orden");
-  mysqli_stmt_bind_param($statement, "i", $idTema);
+  $statement = mysqli_prepare($con, "SELECT id_pregunta, pregunta FROM pregunta WHERE id_leccion = ? ORDER BY orden");
+  mysqli_stmt_bind_param($statement, "i", $idLeccion);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_subtema, $nombre);
+  mysqli_stmt_bind_result($statement, $id_pregunta, $pregunta);
 
   $arregloTemas = array();
   $i = 0;
   //Leemos datos del la leccion habilitadas
   while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-    $arregloTemas[$i]["id_subtema"] = $id_subtema;
-    $arregloTemas[$i]["nombre"] = $nombre;
+    $arregloTemas[$i]["id_pregunta"] = $id_pregunta;
+    $arregloTemas[$i]["pregunta"] = $pregunta;
     $i = $i + 1;
   }
 
@@ -43,29 +45,24 @@ function printSubtopics()
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printSubtopic($arregloTemas[$i]["id_subtema"], $arregloTemas[$i]["nombre"]);
+    printTopic($arregloTemas[$i]["id_pregunta"], $arregloTemas[$i]["pregunta"]);
   }
 }
 
-function printSubtopic($ID_Subtopic, $subtopicName)
+function printTopic($ID_Question, $questionName)
 {
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="input-group-prepend">
-            <span class="input-group-text">' . $ID_Subtopic . '</span>
+            <span class="input-group-text">' . $ID_Question . '</span>
           </div>
-          <input type="text" class="form-control" id="' . $ID_Subtopic . '" value="' . $subtopicName . '" disabled />
+          <input type="text" class="form-control" id="' . $ID_Question . '" value="' . $questionName . '" />
           <div class="input-group-append">
-            <a href="tiempoSprintLeccion.php?ID_Subtema=' . $ID_Subtopic . '">
+            <a href="editAllQuestionByIDByGET.php?ID_Pregunta='.$ID_Question .'" target="_blank">
               <button class="btn btn-outline-secondary" type="button">
-                Sprint
-              </button>
-            </a>
-            <a href="tiempoExamenLeccion.php?ID_Subtema=' . $ID_Subtopic . '">
-              <button class="btn btn-outline-secondary" type="button">
-                Examen
+                Editar la pregunta
               </button>
             </a>
           </div>
@@ -84,6 +81,44 @@ function printSubtopic($ID_Subtopic, $subtopicName)
   ';
 }
 
+function printNewTopic()
+{
+  echo '
+  <div class="container" style="border-top: 4px dotted #007bff;">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <input
+          id="nuevaPregunta"
+          type="text"
+          class="form-control"
+          placeholder="Escribe AQUI la nueva pregunta"
+        />
+        <div class="input-group-append">
+          <span class="input-group-text">ID Lección = </span>
+          <span class="input-group-text" id="id_leccion">' . $_GET['ID_Leccion'] . '</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+  ';
+}
+
 function printHead()
 {
   echo '
@@ -99,6 +134,7 @@ function printHead()
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
+    <script src="../CSSsJSs/crearPregunta.js"></script>
   </head>
   ';
 }
@@ -133,13 +169,12 @@ function printInstructions()
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Ubique el <strong>subtema</strong> correspondiente.
+          - Para crear una nueva <strong>pregunta</strong>, inserte la pregunta en la última sección 
+          y de clic en "Guardar en base de datos"
         </p>
         <p>
-          - Si desea cambiar el tiempo de cada pregunta del sprint, de clic en SPRINT
-        </p>
-        <p>
-          - Si desea cambiar el tiempo total del examen, de clic en EXAMEN
+          - Recuerde, aquí solo se crea la pregunta en español, para crear las respuestas, el tipo de 
+          pregunta y su traducción, de clic en "Editar la pregunta"
         </p>
       </div>
     </div>
