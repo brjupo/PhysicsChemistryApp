@@ -13,7 +13,7 @@ require "../../../servicios/isAdmin.php";
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/styleUploadInfo.css" />
-    <script src="editQuestionID.js"></script>
+    <script src="editQuestion10.js"></script>
     <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 

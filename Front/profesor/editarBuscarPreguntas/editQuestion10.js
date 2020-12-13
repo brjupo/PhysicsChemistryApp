@@ -164,6 +164,7 @@ function saveInDDBB(informacion) {
 }
 
 function loadInformation() {
+  document.getElementById("imgLoadingPage").style.display = "block";
   $.ajax({
     type: "POST",
     url: "../servicios/getQuestionInfo.php",
@@ -208,4 +209,5 @@ function showData(data) {
       "../../../../IMAGENES/" + data.idImagen;
       console.log("mostrando imagen");
   }
+  document.getElementById("imgLoadingPage").style.display = "none";
 }
