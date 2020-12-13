@@ -32,7 +32,7 @@ require "../../../servicios/isAdmin.php";
     <div class="container">
         <div class="row">
             <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <img src="../../../../IMAGENES/loading.gif" id="imgLoadingPage" height="50px" style="display:block; margin: auto;">
+                <img src="../../../../IMAGENES/loading.gif" id="imgLoadingPage" height="30px" style="display:block; margin: auto;">
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@ require "../../../servicios/isAdmin.php";
     <div class="container">
         <div class="row">
             <div class="textCenter col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <p> Actualmente se muestra la información de la pregunta <strong><?php echo $_GET["ID_Pregunta"];?></strong></p>
+                <p> Panel de edición de preguntas </p>
             </div>
             <div class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <button id="siguientePregunta" type="button" class="btn btn-primary btn-sm">

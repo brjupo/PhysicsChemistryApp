@@ -15,8 +15,6 @@ function printEditTopic()
   printTitle();
   printInstructions();
   printTopics();
-  printNewTopic();
-  printButtons();
   echo '</body>';
 }
 
@@ -81,43 +79,6 @@ function printTopic($ID_Question, $questionName)
   ';
 }
 
-function printNewTopic()
-{
-  echo '
-  <div class="container" style="border-top: 4px dotted #007bff;">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <input
-          id="nuevaPregunta"
-          type="text"
-          class="form-control"
-          placeholder="Escribe AQUI la nueva pregunta"
-        />
-        <div class="input-group-append">
-          <span class="input-group-text">ID Lección = </span>
-          <span class="input-group-text" id="id_leccion">' . $_GET['ID_Leccion'] . '</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-  </div>
-  ';
-}
 
 function printHead()
 {
@@ -169,12 +130,7 @@ function printInstructions()
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para crear una nueva <strong>pregunta</strong>, inserte la pregunta en la última sección 
-          y de clic en "Guardar en base de datos"
-        </p>
-        <p>
-          - Recuerde, aquí solo se crea la pregunta en español, para crear las respuestas, el tipo de 
-          pregunta y su traducción, de clic en "Editar la pregunta"
+          - Elige pregunta
         </p>
       </div>
     </div>
@@ -190,33 +146,7 @@ function printInstructions()
   ';
 }
 
-function printButtons()
-{
-  echo '
-  <div class="container">
-    <div class="row">
-      <div
-        class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
-      >
-        <button
-          id="guardarEnBBDD"
-          type="button"
-          class="btn btn-primary btn-sm"
-        >
-          Guardar en base de datos
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-  </div>
-  ';
-}
+
 
 ?>
 

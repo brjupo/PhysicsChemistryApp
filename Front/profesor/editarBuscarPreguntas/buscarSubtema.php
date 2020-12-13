@@ -15,8 +15,6 @@ function printEditTopic()
   printTitle();
   printInstructions();
   printTopics();
-  printNewTopic();
-  printButtons();
   echo '</body>';  
 }
 
@@ -79,43 +77,6 @@ function printTopic($ID_Subtopic, $subtopicName){
   ';
 }
 
-function printNewTopic(){
-  echo'
-  <div class="container" style="border-top: 4px dotted #007bff;">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <input
-          id="nuevoSubtema"
-          type="text"
-          class="form-control"
-          placeholder="Escribe AQUI el nombre del nuevo subtema"
-        />
-        <div class="input-group-append">
-          <span class="input-group-text">ID Tema = </span>
-          <span class="input-group-text" id="id_tema">'.$_GET['ID_Tema'].'</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-  </div>
-  ';
-}
-
 function printHead(){
   echo'
   <head>
@@ -162,12 +123,7 @@ function printInstructions(){
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para crear un nuevo <strong>subtema</strong>, inserte el nombre en la última sección y de clic en
-          "Guardar en base de datos"
-        </p>
-        <p>
-          - Para crear lecciones o preguntas, ubique el <strong>subtema</strong>
-          correspondiente y de clic en "Buscar sus lecciones"
+          - Elige el subtema
         </p>
       </div>
     </div>

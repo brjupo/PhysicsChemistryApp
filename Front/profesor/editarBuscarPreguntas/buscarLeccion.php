@@ -15,8 +15,6 @@ function printEditTopic()
   printTitle();
   printInstructions();
   printTopics();
-  printNewTopic();
-  printButtons();
   echo '</body>';  
 }
 
@@ -79,42 +77,6 @@ function printTopic($ID_Lection, $lectionName){
   ';
 }
 
-function printNewTopic(){
-  echo'
-  <div class="container" style="border-top: 4px dotted #007bff;">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <input
-          id="nuevaLeccion"
-          type="text"
-          class="form-control"
-          placeholder="Escribe AQUI el nombre de la nueva Lección"
-        />
-        <div class="input-group-append">
-          <span class="input-group-text">ID Subtema = </span>
-          <span class="input-group-text" id="id_subtema">'.$_GET['ID_Subtema'].'</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-  </div>
-  ';
-}
 
 function printHead(){
   echo'
@@ -163,12 +125,7 @@ function printInstructions(){
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Para crear una nueva <strong>lección</strong>, inserte el nombre en la última sección y de clic en
-          "Guardar en base de datos"
-        </p>
-        <p>
-          - Para crear preguntas, ubique la <strong>lección</strong>
-          correspondiente y de clic en "Buscar sus preguntas"
+          - Elige lección
         </p>
       </div>
     </div>
