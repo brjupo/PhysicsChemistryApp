@@ -20,9 +20,9 @@ require "../../servicios/DDBBVariables.php";
   //////////////////////////////////////////////////////
   session_start();
   $tokenValidar = array();
-  /* echo'<script type="text/javascript">
-            alert("$_SESSION["mail"]");
-            </script>'; */
+echo'<script type="text/javascript">
+            alert(" $_SESSION["idAsignatura"]");
+            </script>'; 
 
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");

@@ -191,7 +191,6 @@ require "../../servicios/isStaff.php";
           }
           $idMateria = $idasignatura[0]["id_asignatura"];
           $_SESSION["idAsignatura"] = $idMateria;
-          $_SESSION["idAsignaturaValidar"] = $idMateria + 1;
           echo '<script type="text/javascript">
                           window.location.href="temas.php?asignatura=' . $idMateria . '"; 
                           </script>';
