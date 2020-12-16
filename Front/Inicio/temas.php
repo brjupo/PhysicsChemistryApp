@@ -21,7 +21,7 @@ require "../../servicios/DDBBVariables.php";
   session_start();
   $tokenValidar = array();
 echo'<script type="text/javascript">
-            alert(" $_SESSION["idAsignatura"]");
+            alert(" '.$_SESSION["idAsignatura"].'");
             </script>'; 
 
   //Consultar si existe token de usuario
