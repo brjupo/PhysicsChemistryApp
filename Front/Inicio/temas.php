@@ -93,8 +93,8 @@ require "../../servicios/DDBBVariables.php";
   {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $idAsignatura = $_GET['asignatura'];//091120 ESTO LO RECIBE DIRECTO DE LA URL, AQUI RECIBIRA ID DE ASIGNATURA
-    echo '<script type="text/javascript">
-            alert("'.$_SESSION["idAsignatura"].'");
+    /*echo '<script type="text/javascript">
+            alert("'.$asignatura.'");
             </script>';
     
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
