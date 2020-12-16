@@ -21,9 +21,28 @@ require "../../servicios/isStaff.php";
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
-  
+  /////ESTABLECER UN TIME OUT DE SESION
+  /*  $_SESSION["timeout"] = time();
+
+  session_start();
+    // Establecer tiempo de vida de la sesión en segundos
+    $inactividad = 6000;
+    // Comprobar si $_SESSION["timeout"] está establecida
+    if(isset($_SESSION["timeout"])){
+        // Calcular el tiempo de vida de la sesión (TTL = Time To Live)
+        $sessionTTL = time() - $_SESSION["timeout"];
+        if($sessionTTL > $inactividad){
+            session_destroy();
+            //header("Location: /logout.php");
+        }
+    } */
   $tokenValidar = array();
 
+/*   if ($_SESSION["idioma"] == 'i') {
+    $arregloAsignaturastodas = array("Matter and Environment", "Energy and transformation I", "Testing");
+  } else {
+    $arregloAsignaturastodas = array("Materia y el entorno", "Energía y transformación I", "Pruebas");
+  } 09/11*/ 
   //-------------------------------------------------//
   //-------------------------------------------------//
   //-------Consultar si existe token de usuario------//
@@ -100,6 +119,26 @@ require "../../servicios/isStaff.php";
 
       //Si el usuario EXISTE despliega el menú de las asignaturas
       if ($temp_id_usuario) {
+
+        /* /////Usuario sin licencia
+        $statement = mysqli_prepare($con, "SELECT pagado FROM licencia WHERE id_usuario = ? AND id_asignatura = ?");
+        mysqli_stmt_bind_param($statement, "ss", $temp_id_usuario, $_SESSION["idAsignaturaValidar"]);
+        mysqli_stmt_execute($statement);
+
+        mysqli_stmt_store_result($statement);
+        mysqli_stmt_bind_result($statement, $pagado);
+
+        while (mysqli_stmt_fetch($statement)) {
+          $pago["pago"] = $pagado;
+        }
+
+        if($pago["pago"] = 0){
+          echo '<script type="text/javascript">
+          alert("Adquiere tu licencia aqui");
+          window.location.href="https://kaanbal.net/contacto.html";
+          </script>';
+        }
+      /////////////////// */
 
         //Consultar si es profesor
         $statement = mysqli_prepare($con, "SELECT id_profesor FROM profesor WHERE id_usuario = ?");
@@ -190,8 +229,10 @@ require "../../servicios/isStaff.php";
             $idasignatura[] = $row;
           }
           $idMateria = $idasignatura[0]["id_asignatura"];
+          $materia = $arregloAsignaturastodas[$idMateria];
+          $_SESSION["asignaturaNavegacion"] = $materia;
           $_SESSION["idAsignatura"] = $idMateria;
-          $_SESSION["idAsignaturaValidar"] = $idMateria + 1;
+          $_SESSION["idAsignaturaValidar"] = $idMateria + 1;//ABAJO CAMBIAR $materia POR $idMateria
           echo '<script type="text/javascript">
                           window.location.href="temas.php?asignatura=' . $idMateria . '"; 
                           </script>';
