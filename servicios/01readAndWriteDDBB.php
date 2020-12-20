@@ -17,6 +17,7 @@ class queryToDDBB
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmt = $conn->query($this->stringQuery);
+            $this->response = "null";
             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                 $this->response = $row[0];
             }
