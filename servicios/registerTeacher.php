@@ -1,4 +1,5 @@
 <?php
+require "01readAndWriteDDBB.php";
 
 //Leer las variables del POST
 $teacherMail = $_POST["teacherMail"];
