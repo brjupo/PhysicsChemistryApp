@@ -18,7 +18,7 @@ if (strpos($lowerTeacherMail, '@tec.mx') === false) {
         $response["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde." . $teacherMail->read();
     } else {
         //enviar correo
-        $response["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.";
+        $response["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.Recibi  " . $teacherMail . " y la lectura fue: " . $teacherMail->read();
     }
 }
 
