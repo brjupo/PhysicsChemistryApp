@@ -5,7 +5,7 @@ $teacherMail = $_POST['teacherMail'];
 $lowerTeacherMail = strtolower($teacherMail);
 
 if (strpos($lowerTeacherMail, '@tec.mx') === false) {
-    $response["response"] = "¿Quieres obtener tu acceso a Kaanbal? <a href='https://kaanbal.net/contacto.html'>Contáctanos!</a>. Podemos ofrecer a su institución un periodo de prueba GRATUITO.";
+    $response["response"] = "¿Quieres obtener tu acceso a Kaanbal? <a href='https://kaanbal.net/contacto.html'>Contáctanos!</a>. Podemos ofrecer a su institución un periodo de prueba GRATUITO. Recibi  " . $teacherMail;
 } else {
     $teacherMail = new queryToDDBB("SELECT mail FROM usuario_prueba WHERE mail = " . $teacherMail . " ;");
     if (
