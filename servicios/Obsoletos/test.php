@@ -1,8 +1,15 @@
 <?php
 require "../01readAndWriteDDBB.php";
 $teacherMail = new queryToDDBB("SELECT mail FROM usuario_prueba WHERE mail = 'jehoyos@tec.mx' ;");
-
-$response["response"] = $teacherMail->read();
+if (
+    $teacherMail ==
+    $teacherMail->read()
+) {
+    $response["response"] = "true " . $teacherMail->read();
+}
+else{
+    $response["response"] = $teacherMail->read();
+}
 /*
 //Leer las variables del POST
 $teacherMail = $_POST["teacherMail"];
