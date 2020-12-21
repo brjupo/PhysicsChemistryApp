@@ -2,6 +2,7 @@
 
 $destinatario = 'cmendez222@gmail.com';
 $asunto = 'Este es un mail de prueba';
+$cuerpo = 'htmlContraOlvidada.html';
 
     use PHPMailer\PHPMailer\PHPMailer;
     require '../../vendor/autoload.php';
@@ -17,7 +18,7 @@ $asunto = 'Este es un mail de prueba';
     $mail->setFrom('licencias@kaanbal.net');
     $mail->addAddress($destinatario);
     $mail->Subject = $asunto;
-    $mail->msgHTML(file_get_contents('htmlContraOlvidada.html'));
+    $mail->msgHTML(file_get_contents($cuerpo));
     //$mail->Body = 'This is a plain text message body';
     //$mail->addAttachment('test.txt');
     if (!$mail->send()) {
