@@ -16,7 +16,7 @@ $asunto = 'Este es un mail de prueba';
     $mail->setFrom('licencias@kaanbal.net');
     $mail->addAddress($destinatario);
     $mail->Subject = $asunto;
-    $mail->msgHTML(file_get_contents('message.html'), __DIR__);
+    $mail->msgHTML(file_get_contents('htmlContraOlvidada.html'));
     $mail->Body = 'This is a plain text message body';
     //$mail->addAttachment('test.txt');
     if (!$mail->send()) {
