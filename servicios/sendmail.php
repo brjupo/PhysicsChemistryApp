@@ -1,5 +1,8 @@
 <?php
 
+$destinatario = 'cmendez222@gmail.com';
+$asunto = 'Este es un mail de prueba';
+
     use PHPMailer\PHPMailer\PHPMailer;
     require '../../vendor/autoload.php';
     $mail = new PHPMailer;
@@ -11,8 +14,8 @@
     $mail->Username = 'licencias@kaanbal.net';
     $mail->Password = 'BraEduCri567';
     $mail->setFrom('licencias@kaanbal.net');
-    $mail->addAddress('cmendez222@gmail.com');
-    $mail->Subject = 'Testing PHPMailer';
+    $mail->addAddress($destinatario);
+    $mail->Subject = $asunto;
     $mail->msgHTML(file_get_contents('message.html'), __DIR__);
     $mail->Body = 'This is a plain text message body';
     //$mail->addAttachment('test.txt');
