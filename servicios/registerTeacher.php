@@ -22,7 +22,7 @@ if (strpos($lowerTeacherMail, '@itesm.mx') === false) {
             $response["response"] = "Error al escribir el nuevo usuario";
         } else {
             //obtener el ID del usuario
-            $getTeacherID = new queryToDDBB("SELECT id_usuario WHERE mail= '" . $lowerTeacherMail . "';");
+            $getTeacherID = new queryToDDBB("SELECT id_usuario FROM usuario_prueba WHERE mail= '" . $lowerTeacherMail . "';");
             $gettedTeacherID = $getTeacherID->read();
             if (!is_numeric($gettedTeacherID)) {
                 $response["response"] = "Error en el ID del nuevo usuario. " . $gettedTeacherID;
