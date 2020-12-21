@@ -1,8 +1,7 @@
 <?php
 
-function sendMail(){
     use PHPMailer\PHPMailer\PHPMailer;
-    require '../../vendor/autoload.php';
+    require 'vendor/autoload.php';
     $mail = new PHPMailer;
     $mail->isSMTP();
     $mail->SMTPDebug = 2;
@@ -22,5 +21,5 @@ function sendMail(){
     } else {
         echo 'The email message was sent.';
     }
-}
+
 ?>
