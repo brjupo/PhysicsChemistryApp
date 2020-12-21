@@ -1,5 +1,5 @@
 <?php
-require "../../../servicios/DDBBVariables.php";
+require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
 
 $teacherID = isTeacher();

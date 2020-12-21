@@ -1,5 +1,5 @@
 <?php
-require "../../../servicios/DDBBVariables.php";
+require "../../../servicios/00DDBBVariables.php";
 
 //Leer las variables del POST
 $IDPregunta = $_POST['IDPregunta'];

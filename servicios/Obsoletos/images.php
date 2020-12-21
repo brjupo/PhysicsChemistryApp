@@ -1,5 +1,5 @@
 <?php
-require "../DDBBVariables.php";
+require "../00DDBBVariables.php";
 
 //Leer las variables del POST
 $inicio = $_POST['inicio'];
