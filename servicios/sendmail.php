@@ -7,6 +7,7 @@ $asunto = 'Este es un mail de prueba';
     require '../../vendor/autoload.php';
     $mail = new PHPMailer;
     $mail->isSMTP();
+    $mail->IsHTML(true);
     $mail->SMTPDebug = 2;
     $mail->Host = 'smtp.hostinger.com';
     $mail->Port = 587;
@@ -17,7 +18,7 @@ $asunto = 'Este es un mail de prueba';
     $mail->addAddress($destinatario);
     $mail->Subject = $asunto;
     $mail->msgHTML(file_get_contents('htmlContraOlvidada.html'));
-    $mail->Body = 'This is a plain text message body';
+    //$mail->Body = 'This is a plain text message body';
     //$mail->addAttachment('test.txt');
     if (!$mail->send()) {
         echo 'Mailer Error: ' . $mail->ErrorInfo;
