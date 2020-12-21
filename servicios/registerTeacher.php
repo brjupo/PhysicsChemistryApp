@@ -1,24 +1,41 @@
 <?php
 require "01readAndWriteDDBB.php";
 
+
 //Leer las variables del POST
 $teacherMail = $_POST["teacherMail"];
 $lowerTeacherMail = strtolower($teacherMail);
 
-if (strpos($lowerTeacherMail, '@tec.mx') === false) {
-    $response["response"] = "¿Quieres obtener tu acceso a Kaanbal? <a href='https://kaanbal.net/contacto.html'>Contáctanos!</a>. Podemos ofrecer a su institución un periodo de prueba GRATUITO. Recibi  " . $teacherMail;
+if (strpos($lowerTeacherMail, '@itesm.mx') === false) {
+    $response["response"] = "¿Quieres obtener tu acceso a Kaanbal? <a href='https://kaanbal.net/contacto.html'>Contáctanos!</a>. Podemos ofrecer a su institución un periodo de prueba GRATUITO.";
 } else {
-    $teacherMail = new queryToDDBB("SELECT mail FROM usuario_prueba WHERE mail = '" . $teacherMail . "' ;");
-    if (
-        $teacherMail ==
-        $teacherMail->read()
-    ) {
+    $getTeacherMail = new queryToDDBB("SELECT mail FROM usuario_prueba WHERE mail = '" . $teacherMail . "' ;");
+    $gettedMail = $getTeacherMail->read();
+    if ($teacherMail == $gettedMail) {
         $response["response"] = "El usuario ya existe.";
-    } else if (strpos($teacherMail->read(), "failed") !== false) {
-        $response["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde." . $teacherMail->read();
+    } else if (strpos($gettedMail, "failed") !== false) {
+        $response["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde.";
     } else {
-        //enviar correo
-        $response["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.Recibi  " . $teacherMail . " y la lectura fue: " . $teacherMail->read();
+        //agregarProfesor a usuario_prueba con password correoCorreo
+        $addTeacher = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerTeacherMail . "', '" . $lowerTeacherMail . $lowerTeacherMail . "');");
+        if ($addTeacher->write() != "success") {
+            $response["response"] = "Error al escribir el nuevo usuario";
+        } else {
+            //obtener el ID del usuario
+            $getTeacherID = new queryToDDBB("SELECT id_usuario WHERE mail= '" . $lowerTeacherMail . "';");
+            if (!is_numeric($getTeacherID->read())) {
+                $response["response"] = "Error en el ID del nuevo usuario";
+            } else {
+                //agregar ID profesor a profesor
+                $addTeacherInTeacher = new queryToDDBB("INSERT INTO profesor (id_usuario) VALUES (" . intval($getTeacherID->read()) . ") ;");
+                if ($addTeacherInTeacher->write() != "success") {
+                    $response["response"] = "Error al escribir el profesor";
+                } else {
+                    //enviar correo
+                    $response["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.";
+                }
+            }
+        }
     }
 }
 

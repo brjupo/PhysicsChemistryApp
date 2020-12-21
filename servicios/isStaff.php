@@ -1,5 +1,5 @@
 <?php
-require "DDBBVariables.php";
+require "00DDBBVariables.php";
 //---------------NO BORRAR
 //SI LO BORRAN, MUCHAS VISTAS DEJARÁN DE FUNCIONAR
 //////////////////////////////////////////////////////

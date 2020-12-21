@@ -1,5 +1,5 @@
 <?php
-require "DDBBVariables.php";
+require "00DDBBVariables.php";
 
 $con = mysqli_connect($servername, $username, $password, $dbname);
   $matricula = $_POST["matricula"];

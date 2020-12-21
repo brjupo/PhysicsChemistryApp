@@ -1,5 +1,5 @@
 <?php
-require "DDBBVariables.php";
+require "00DDBBVariables.php";
 //Leer el body tipo JSON que trae la consulta de mp
 $entityBody = file_get_contents('php://input');
 $result = json_decode($entityBody, TRUE);

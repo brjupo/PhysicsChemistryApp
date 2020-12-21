@@ -1,5 +1,5 @@
 <?php
-require "DDBBVariables.php";
+require "00DDBBVariables.php";
 
 $usuario = $_POST["usuario"];
 $color = $_POST["color"];
