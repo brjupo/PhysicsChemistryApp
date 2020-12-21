@@ -23,11 +23,12 @@ if (strpos($lowerTeacherMail, '@itesm.mx') === false) {
         } else {
             //obtener el ID del usuario
             $getTeacherID = new queryToDDBB("SELECT id_usuario WHERE mail= '" . $lowerTeacherMail . "';");
-            if (!is_numeric($getTeacherID->read())) {
-                $response["response"] = "Error en el ID del nuevo usuario";
+            $gettedTeacherID = $getTeacherID->read();
+            if (!is_numeric($gettedTeacherID)) {
+                $response["response"] = "Error en el ID del nuevo usuario. " . $gettedTeacherID;
             } else {
                 //agregar ID profesor a profesor
-                $addTeacherInTeacher = new queryToDDBB("INSERT INTO profesor (id_usuario) VALUES (" . intval($getTeacherID->read()) . ") ;");
+                $addTeacherInTeacher = new queryToDDBB("INSERT INTO profesor (id_usuario) VALUES (" . intval($gettedTeacherID) . ") ;");
                 if ($addTeacherInTeacher->write() != "success") {
                     $response["response"] = "Error al escribir el profesor";
                 } else {
