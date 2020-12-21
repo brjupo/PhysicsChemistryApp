@@ -1,7 +1,7 @@
 <?php
 
 $destinatario = 'cmendez222@gmail.com';
-$asunto = 'Este es un mail de prueba';
+$asunto = 'Este es un test';
 $cuerpo = 'htmlContraOlvidada.html';
 
     use PHPMailer\PHPMailer\PHPMailer;
