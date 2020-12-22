@@ -1,5 +1,4 @@
 <?php
-require "00DDBBVariables.php";
 require "01readAndWriteDDBB.php";
 require "02sendMail.php";
 
@@ -41,18 +40,13 @@ if (false) {
                     $response["response"] = "Error en el ID del nuevo usuario.";
                 } else {
                     //agregar ID profesor a profesor
-                    //$addTeacherInTeacher = new queryToDDBB("INSERT INTO profesor (id_usuario) VALUES (" . intval($gettedTeacherID) . ") ;");
-                    //$addedTeacherInTeacher = $addTeacherInTeacher->write();
-                    //if ($addedTeacherInTeacher != "success") {
-                    try {
-                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $conn->exec("INSERT INTO profesor (id_usuario) VALUES (" . intval($gettedTeacherID) . ") ;");
+                    $addTeacherInTeacher = new queryToDDBB("INSERT INTO profesor (id_usuario) VALUES (" . intval($gettedTeacherID) . ") ;");
+                    $addedTeacherInTeacher = $addTeacherInTeacher->write();
+                    if ($addedTeacherInTeacher != "success") {
+                        $response["response"] = "Error al escribir el profesor";
+                    } else {
                         $response["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.";
-                    } catch (PDOException $e) {
-                        $response["response"] = "Error al escribir el profesor.". "failed:" . "INSERT INTO profesor (id_usuario) VALUES (" . intval($gettedTeacherID) . ") ;". "<br>" . $e->getMessage();;
                     }
-                    $conn = null;
                 }
             }
         }
