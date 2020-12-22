@@ -3,7 +3,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 require '../../vendor/autoload.php';
     
-$destinatario = 'cmendez222@gmail.com';
+$destinatario = 'brjupo@gmail.com';
 $asunto = 'Esta es una prueba de mail con función';
 $cuerpo = 'htmlContraOlvidada.html';
 
