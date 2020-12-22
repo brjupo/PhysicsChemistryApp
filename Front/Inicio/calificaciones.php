@@ -14,7 +14,7 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
     exit;
 }
 $mailUsuario = $_SESSION["mail"];
-$idAsigntura = $_SESSION["idAsignatura"];
+$idAsignatura = $_SESSION["idAsignatura"];
 
 //ESTO ESTÁ DLV, SOLO APLICA PARA ALUMNOS CON UNA SOLA LICENCIA
 //REPETIRLO SI LLEGA A APLICAR QUE SE TIENE MAS DE UNA LICENCIA
@@ -69,7 +69,9 @@ $idAsigntura = $_SESSION["idAsignatura"];
             <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
             <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
                 <p class="titulo">Kaanbal</p>
-                <p><? echo $idAsignatura;?></p>
+                <p>
+                    <? echo $idAsignatura;?>
+                </p>
             </div>
             <div class="textCenter col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"></div>
         </div>
