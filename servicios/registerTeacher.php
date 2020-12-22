@@ -11,6 +11,7 @@ $lowerTeacherMail = strtolower($teacherMail);
 //if (strpos($variable, 'palabra') !== false)
 
 
+$response["response"] = "No quedamos en la línea 14a";
 //if (strpos($lowerTeacherMail, '@itesm.mx') === false) {
 if (false) {
     $response["response"] = "¿Quieres obtener tu acceso a Kaanbal? <a href='https://kaanbal.net/contacto.html'>Contáctanos!</a>. Podemos ofrecer a su institución un periodo de prueba GRATUITO.";

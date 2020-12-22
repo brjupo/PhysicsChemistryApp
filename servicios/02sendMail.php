@@ -19,18 +19,8 @@ function enviarMail($destinatario, $asunto, $cuerpo)
     $mail->addAddress($destinatario);
     $mail->Subject = $asunto;
     //$mail->msgHTML(file_get_contents($cuerpo));
-
-    // Para enviar un correo HTML, debe establecerse la cabecera Content-type
-    //$headers  = 'MIME-Version: 1.0' . "\r\n";
-    //$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-    //$MIMEHeader : string
-    //$mail->MIMEHeader='1.0';
-    //$CharSet : string
-    //$mail->Charset = 'utf-8';
-    //$ContentType : string
-    //$mail->ContentType = 'text/html';
     $mail->addCustomHeader('MIME-Version', '1.0');
-    $mail->addCustomHeader('Content-Type: text/html; charset=utf-8');
+    $mail->addCustomHeader('Content-Type: text/html; charset=ISO-8859-1');
 
     $mail->Body = $cuerpo;
     //$mail->addAttachment('test.txt');
