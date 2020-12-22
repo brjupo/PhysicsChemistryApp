@@ -119,6 +119,7 @@ $idAsigntura = $_SESSION["idAsignatura"]
                                     <td>" . $row[3] . "</td>";
                             //Crear la lectura en base de datos, para obtener calificación de práctica
                             try {
+                                $entre = 0;
                                 $conn2 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                 $stringQuery2 = "SELECT p.puntuacion 
@@ -127,7 +128,11 @@ $idAsigntura = $_SESSION["idAsignatura"]
                                 WHERE p.id_leccion = " . $row[3] . " AND u.mail = " . $mailUsuario . " AND p.tipo = 'PP' ORDER BY p.puntuacion DESC LIMIT 1;";
                                 $stmt2 = $conn2->query($stringQuery2);
                                 while ($row2 = $stmt2->fetch(PDO::FETCH_NUM)) {
+                                    $entre = 1;
                                     echo "<td>" . $row2[0] . "</td>";
+                                }
+                                if ($entre == 0) {
+                                    echo '<td style="color:red;">NP</td>';
                                 }
                             } catch (PDOException $e2) {
                                 echo "Error: " . $e2->getMessage();
@@ -135,15 +140,20 @@ $idAsigntura = $_SESSION["idAsignatura"]
                             $conn2 = null;
                             //Crear la lectura en base de datos, para obtener calificación de SPRINT
                             try {
+                                $entre = 0;
                                 $conn3 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn3->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                 $stringQuery3 = "SELECT p.puntuacion 
                                 FROM puntuacion p JOIN usuario_prueba u 
                                 ON p.id_usuario = u.id_usuario 
-                                WHERE p.id_leccion = ".$row[3]." AND u.mail = ".$mailUsuario ." AND p.tipo = 'SP' ORDER BY p.puntuacion DESC LIMIT 1;";
+                                WHERE p.id_leccion = " . $row[3] . " AND u.mail = " . $mailUsuario . " AND p.tipo = 'SP' ORDER BY p.puntuacion DESC LIMIT 1;";
                                 $stmt3 = $conn3->query($stringQuery3);
                                 while ($row3 = $stmt3->fetch(PDO::FETCH_NUM)) {
+                                    $entre = 1;
                                     echo "<td>" . $row3[0] . "</td>";
+                                }
+                                if ($entre == 0) {
+                                    echo '<td style="color:red;">NP</td>';
                                 }
                             } catch (PDOException $e3) {
                                 echo "Error: " . $e3->getMessage();
@@ -151,15 +161,20 @@ $idAsigntura = $_SESSION["idAsignatura"]
                             $conn3 = null;
                             //Crear la lectura en base de datos, para obtener calificación de EXAMEN
                             try {
+                                $entre = 0;
                                 $conn4 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn4->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                 $stringQuery4 = "SELECT p.puntuacion 
                                 FROM puntuacion p JOIN usuario_prueba u 
                                 ON p.id_usuario = u.id_usuario 
-                                WHERE p.id_leccion = ".$row[3]." AND u.mail = ".$mailUsuario ." AND p.tipo = 'E' ORDER BY p.puntuacion DESC LIMIT 1;";
+                                WHERE p.id_leccion = " . $row[3] . " AND u.mail = " . $mailUsuario . " AND p.tipo = 'E' ORDER BY p.puntuacion DESC LIMIT 1;";
                                 $stmt4 = $conn4->query($stringQuery2);
                                 while ($row4 = $stmt4->fetch(PDO::FETCH_NUM)) {
+                                    $entre = 1;
                                     echo "<td>" . $row4[0] . "</td>";
+                                }
+                                if ($entre == 0) {
+                                    echo '<td style="color:red;">NP</td>';
                                 }
                             } catch (PDOException $e4) {
                                 echo "Error: " . $e4->getMessage();
