@@ -2,14 +2,9 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 require '../../vendor/autoload.php';
-    
-$destinatario = 'brjupo@gmail.com';
-$asunto = 'Esta es una prueba de mail con función';
-$cuerpo = 'htmlContraOlvidada.html';
 
 function enviarMail($destinatario, $asunto, $cuerpo)
 {
-    
     $mail = new PHPMailer;
     $mail->isSMTP();
     $mail->IsHTML(true);
@@ -26,13 +21,10 @@ function enviarMail($destinatario, $asunto, $cuerpo)
     //$mail->Body = 'This is a plain text message body';
     //$mail->addAttachment('test.txt');
     if (!$mail->send()) {
-        echo 'Mailer Error: ' . $mail->ErrorInfo;
+        return 'failed: ' . $mail->ErrorInfo;
     } else {
-        echo 'The email message was sent.';
+        return 'The email message was sent.';
     }
 }
-
-
-enviarMail($destinatario, $asunto, $cuerpo);
 
 ?>

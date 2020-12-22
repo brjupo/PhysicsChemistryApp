@@ -45,9 +45,3 @@ class queryToDDBB
         return $this->response;
     }
 }
-/*
-$apple = new Fruit("Apple", "red");
-echo $apple->get_name();
-echo "<br>";
-echo $apple->get_color();
-*/
