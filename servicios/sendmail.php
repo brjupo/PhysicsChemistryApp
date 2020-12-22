@@ -1,9 +1,12 @@
 <?php
 
 $destinatario = 'cmendez222@gmail.com';
-$asunto = 'Este es un test';
+$asunto = 'Esta es una prueba de mail con función';
 $cuerpo = 'htmlContraOlvidada.html';
 
+enviarMail($destinatario, $asunto, $cuerpo);
+
+function enviarMail($destinatario, $asunto, $cuerpo){
     use PHPMailer\PHPMailer\PHPMailer;
     require '../../vendor/autoload.php';
     $mail = new PHPMailer;
@@ -26,5 +29,5 @@ $cuerpo = 'htmlContraOlvidada.html';
     } else {
         echo 'The email message was sent.';
     }
-
+}
 ?>
