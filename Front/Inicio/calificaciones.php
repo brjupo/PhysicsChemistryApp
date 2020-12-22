@@ -127,7 +127,7 @@ $idAsignatura = $_SESSION["idAsignatura"];
                                 $stringQuery2 = "SELECT p.puntuacion 
                                 FROM puntuacion p JOIN usuario_prueba u 
                                 ON p.id_usuario = u.id_usuario 
-                                WHERE p.id_leccion = " . $row[3] . " AND u.mail = " . $mailUsuario . " AND p.tipo = 'PP' ORDER BY p.puntuacion DESC LIMIT 1;";
+                                WHERE p.id_leccion = " . $row[3] . " AND u.mail = '" . $mailUsuario . "' AND p.tipo = 'PP' ORDER BY p.puntuacion DESC LIMIT 1;";
                                 $stmt2 = $conn2->query($stringQuery2);
                                 while ($row2 = $stmt2->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
@@ -148,7 +148,7 @@ $idAsignatura = $_SESSION["idAsignatura"];
                                 $stringQuery3 = "SELECT p.puntuacion 
                                 FROM puntuacion p JOIN usuario_prueba u 
                                 ON p.id_usuario = u.id_usuario 
-                                WHERE p.id_leccion = " . $row[3] . " AND u.mail = " . $mailUsuario . " AND p.tipo = 'SP' ORDER BY p.puntuacion DESC LIMIT 1;";
+                                WHERE p.id_leccion = " . $row[3] . " AND u.mail = '" . $mailUsuario . "' AND p.tipo = 'SP' ORDER BY p.puntuacion DESC LIMIT 1;";
                                 $stmt3 = $conn3->query($stringQuery3);
                                 while ($row3 = $stmt3->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
@@ -169,7 +169,7 @@ $idAsignatura = $_SESSION["idAsignatura"];
                                 $stringQuery4 = "SELECT p.puntuacion 
                                 FROM puntuacion p JOIN usuario_prueba u 
                                 ON p.id_usuario = u.id_usuario 
-                                WHERE p.id_leccion = " . $row[3] . " AND u.mail = " . $mailUsuario . " AND p.tipo = 'E' ORDER BY p.puntuacion DESC LIMIT 1;";
+                                WHERE p.id_leccion = " . $row[3] . " AND u.mail = '" . $mailUsuario . "' AND p.tipo = 'E' ORDER BY p.puntuacion DESC LIMIT 1;";
                                 $stmt4 = $conn4->query($stringQuery2);
                                 while ($row4 = $stmt4->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
