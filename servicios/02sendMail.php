@@ -30,8 +30,7 @@ function enviarMail($destinatario, $asunto, $cuerpo)
     //$ContentType : string
     //$mail->ContentType = 'text/html';
     $mail->addCustomHeader('MIME-Version', '1.0');
-    $mail->addCustomHeader('Content-type', 'text/html');
-    $mail->addCustomHeader('charset','utf-8');
+    $mail->addCustomHeader('Content-Type: text/html; charset=utf-8');
 
     $mail->Body = $cuerpo;
     //$mail->addAttachment('test.txt');
