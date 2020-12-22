@@ -1,14 +1,15 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+require '../../vendor/autoload.php';
+    
 $destinatario = 'cmendez222@gmail.com';
 $asunto = 'Esta es una prueba de mail con función';
 $cuerpo = 'htmlContraOlvidada.html';
 
-enviarMail($destinatario, $asunto, $cuerpo);
-
-function enviarMail($destinatario, $asunto, $cuerpo){
-    use PHPMailer\PHPMailer\PHPMailer;
-    require '../../vendor/autoload.php';
+function enviarMail($destinatario, $asunto, $cuerpo)
+{
+    
     $mail = new PHPMailer;
     $mail->isSMTP();
     $mail->IsHTML(true);
@@ -30,4 +31,8 @@ function enviarMail($destinatario, $asunto, $cuerpo){
         echo 'The email message was sent.';
     }
 }
+
+
+enviarMail($destinatario, $asunto, $cuerpo);
+
 ?>
