@@ -47,7 +47,8 @@ if (false) {
                     $response["response"] = "No quedamos en la línea 47";
                     //agregar ID profesor a profesor
                     $addTeacherInTeacher = new queryToDDBB("INSERT INTO profesor (id_usuario) VALUES (" . intval($gettedTeacherID) . ") ;");
-                    if ($addTeacherInTeacher->write() != "success") {
+                    $addedTeacherInTeacher = $addTeacherInTeacher->write();
+                    if ($addedTeacherInTeacher != "success") {
                         $response["response"] = "Error al escribir el profesor";
                     } else {
                         $response["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.";

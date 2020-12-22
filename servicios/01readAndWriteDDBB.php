@@ -36,6 +36,7 @@ class queryToDDBB
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // use exec() because no results are returned
+            $this->response = "failed: algo se rompió al ejecutar la escritura";
             $conn->exec($this->stringQuery);
             $this->response = "success";
         } catch (PDOException $e) {
