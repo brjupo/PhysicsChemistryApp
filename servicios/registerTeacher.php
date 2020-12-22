@@ -74,12 +74,12 @@ function cuerpoCorreoNuevoProfesor()
     <style>
       @font-face {
         font-family: "Monse";
-        src: url("https://kaanbal.net/dev/Front/CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf")
+        src: url("https://www.kaanbal.net/dev/Front/CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf")
           format("opentype");
       }
       @font-face {
         font-family: "ubuntu";
-        src: url("https://kaanbal.net/dev/Front/CSSsJSs/Fonts/ubuntu/ubuntu.ttf")
+        src: url("kaanbal.net/dev/Front/CSSsJSs/Fonts/ubuntu/ubuntu.ttf")
           format("truetype");
       }
       body {
@@ -129,14 +129,14 @@ function cuerpoCorreoNuevoProfesor()
     <p style="color: white">.</p>
     <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
     <img
-      src="https://kaanbal.net/IMAGENES/email.svg"
+      src="kaanbal.net/IMAGENES/email.svg"
       height="40px"
       style="display: block"
     />
     <p><a href="aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
 
     <img
-      src="https://kaanbal.net/IMAGENES/whatsapp.svg"
+      src="https://www.kaanbal.net/IMAGENES/whatsapp.svg"
       height="40px"
       style="display: block"
     />
