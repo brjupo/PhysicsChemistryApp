@@ -48,7 +48,8 @@ if (false) {
                     //agregar ID profesor a profesor
                     $addTeacherInTeacher = new queryToDDBB("INSERT INTO profesor (id_usuario) VALUES (" . intval($gettedTeacherID) . ") ;");
                     $addedTeacherInTeacher = $addTeacherInTeacher->write();
-                    if ($addedTeacherInTeacher != "success") {
+                    //if ($addedTeacherInTeacher != "success") {
+                    if(true){
                         $response["response"] = "Error al escribir el profesor";
                     } else {
                         $response["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.";
@@ -79,7 +80,7 @@ function cuerpoCorreoNuevoProfesor()
       }
       @font-face {
         font-family: "ubuntu";
-        src: url("kaanbal.net/dev/Front/CSSsJSs/Fonts/ubuntu/ubuntu.ttf")
+        src: url("https://www.kaanbal.net/dev/Front/CSSsJSs/Fonts/ubuntu/ubuntu.ttf")
           format("truetype");
       }
       body {
@@ -122,14 +123,14 @@ function cuerpoCorreoNuevoProfesor()
     <p>
       Pasos a seguir:
     </p>
-    <p>1.- Usando el link previo, crea tu contraseña e ingresa a <a href="https://kaanbal.net"> Kaanbal </a> con tu correo y contraseña</p>
+    <p>1.- Usando el link previo, crea tu contraseña e ingresa a <a href="https://www.kaanbal.net"> Kaanbal </a> con tu correo y contraseña</p>
     <p>2.- Da clic en la sección "Crear grupos".</p>
     <p>3.- Comparte con tus alumnos el código de grupo.</p>
     <p>Listo! en cuanto tus alumnos se registren podrás observar su avance en la sección de "Reportes"</p>
     <p style="color: white">.</p>
     <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
     <img
-      src="kaanbal.net/IMAGENES/email.svg"
+      src="https://www.kaanbal.net/IMAGENES/email.svg"
       height="40px"
       style="display: block"
     />
