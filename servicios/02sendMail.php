@@ -24,14 +24,14 @@ function enviarMail($destinatario, $asunto, $cuerpo)
     //$headers  = 'MIME-Version: 1.0' . "\r\n";
     //$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
     //$MIMEHeader : string
-    $mail->MIMEHeader='1.0';
+    //$mail->MIMEHeader='1.0';
     //$CharSet : string
-    $mail->Charset = 'utf-8';
+    //$mail->Charset = 'utf-8';
     //$ContentType : string
-    $mail->ContentType = 'text/html';
-    //$mail->addCustomHeader('MIME-Version', '1.0');
-    //$mail->addCustomHeader('Content-type', 'text/html');
-    //$mail->addCustomHeader('charset','utf-8');
+    //$mail->ContentType = 'text/html';
+    $mail->addCustomHeader('MIME-Version', '1.0');
+    $mail->addCustomHeader('Content-type', 'text/html');
+    $mail->addCustomHeader('charset','utf-8');
 
     $mail->Body = $cuerpo;
     //$mail->addAttachment('test.txt');
