@@ -14,7 +14,7 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
     exit;
 }
 $mailUsuario = $_SESSION["mail"];
-$idAsigntura = $_SESSION["idAsignatura"]
+$idAsigntura = $_SESSION["idAsignatura"];
 
 //ESTO ESTÁ DLV, SOLO APLICA PARA ALUMNOS CON UNA SOLA LICENCIA
 //REPETIRLO SI LLEGA A APLICAR QUE SE TIENE MAS DE UNA LICENCIA
@@ -108,8 +108,7 @@ $idAsigntura = $_SESSION["idAsignatura"]
                         $stringQuery = "SELECT t.nombre, s.nombre, l.nombre, l.id_leccion 
                         FROM leccion l JOIN subtema s JOIN tema t 
                         ON l.id_subtema = s.id_subtema AND s.id_tema = t.id_tema 
-                        WHERE t.id_asignatura = " . $idAsignatura . " 
-                        ORDER BY t.orden, s.orden, l.orden;";
+                        WHERE t.id_asignatura = " . $idAsignatura . " ORDER BY t.orden, s.orden, l.orden;";
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             echo "<tr>
