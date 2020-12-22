@@ -9,7 +9,10 @@ $lowerTeacherMail = strtolower($teacherMail);
 
 //Si contiene "palabra". ES IDENTICO A PREGUNTAR
 //if (strpos($variable, 'palabra') !== false)
-if (strpos($lowerTeacherMail, '@itesm.mx') === false) {
+
+
+//if (strpos($lowerTeacherMail, '@itesm.mx') === false) {
+if (false) {
     $response["response"] = "¿Quieres obtener tu acceso a Kaanbal? <a href='https://kaanbal.net/contacto.html'>Contáctanos!</a>. Podemos ofrecer a su institución un periodo de prueba GRATUITO.";
 } else {
     $getTeacherMail = new queryToDDBB("SELECT mail FROM usuario_prueba WHERE mail = '" . $lowerTeacherMail . "' ;");

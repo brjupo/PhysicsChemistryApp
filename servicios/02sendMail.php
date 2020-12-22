@@ -7,7 +7,7 @@ function enviarMail($destinatario, $asunto, $cuerpo)
 {
     $mail = new PHPMailer;
     $mail->isSMTP();
-    $mail->IsHTML(true);
+    //$mail->IsHTML(true);
     $mail->SMTPDebug = 2;
     $mail->Host = 'smtp.hostinger.com';
     $mail->Port = 587;
@@ -17,8 +17,8 @@ function enviarMail($destinatario, $asunto, $cuerpo)
     $mail->setFrom('licencias@kaanbal.net');
     $mail->addAddress($destinatario);
     $mail->Subject = $asunto;
-    $mail->msgHTML(file_get_contents($cuerpo));
-    //$mail->Body = 'This is a plain text message body';
+    //$mail->msgHTML(file_get_contents($cuerpo));
+    $mail->Body = $cuerpo;
     //$mail->addAttachment('test.txt');
     if (!$mail->send()) {
         return 'failed: ' . $mail->ErrorInfo;
