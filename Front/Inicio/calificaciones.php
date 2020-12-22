@@ -14,6 +14,8 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
     exit;
 }
 
+//$_SESSION["idAsignatura"]
+
 //ESTO ESTÁ DLV, SOLO APLICA PARA ALUMNOS CON UNA SOLA LICENCIA
 //REPETIRLO SI LLEGA A APLICAR QUE SE TIENE MAS DE UNA LICENCIA
 
@@ -84,6 +86,58 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
     </div>
 
 
+
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td>Tema</td>
+                        <td>Subtema</td>
+                        <td>Lección</td>
+                        <td>ID Lección</td>
+                    </tr>
+                    <?php
+                    //Crear la lectura en base de datos
+                    try {
+                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stringQuery = "SELECT t.nombre, s.nombre, l.nombre, l.id_leccion 
+                        FROM leccion l JOIN subtema s JOIN tema t 
+                        ON l.id_subtema = s.id_subtema AND s.id_tema = t.id_tema 
+                        WHERE t.id_asignatura = 1 
+                        ORDER BY t.orden, s.orden, l.orden;";
+                        $stmt = $conn->query($stringQuery);
+                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                            echo "
+                            <tr>
+                                <td>".$row[0]."</td>
+                                <td>".$row[1]."</td>
+                                <td>".$row[2]."</td>
+                                <td>".$row[3]."</td>
+                            </tr>
+                            ";
+                        }
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                    }
+                    $conn = null;
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+    <?php
+    //----------------------------------------------------------
+    //----------------------------------------------------------
+    //------------------VERSION OBSOLETA------------------------
+    //----------------------------------------------------------
+    //----------------------------------------------------------
+    ?>
     <?php
     //--------------AQUI OBTIENES EL ID DE ||USUARIO|| DEL ALUMNO
     $alumnos = array();
