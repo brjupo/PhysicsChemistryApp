@@ -440,8 +440,6 @@ require "../../servicios/isStaff.php";
                   </div>
                 </div>
               </a>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
-              <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
             </div>
           </div>
 
