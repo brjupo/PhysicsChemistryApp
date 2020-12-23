@@ -498,7 +498,7 @@ require "../../servicios/isStaff.php";
                     <img class="imagenAsignatura" src="../CSSsJSs/icons/design.svg" />
                   </div>
                   <div class="tituloAsignaturas">
-                    --
+                    Editar
                   </div>
                 </div>
               </a>
