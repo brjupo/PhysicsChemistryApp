@@ -428,7 +428,7 @@ require "../../servicios/isStaff.php";
         <div class="container">
           <div class="row">
             <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
-              <a href="../reportes/controlCalificaciones.php">     
+              <a href="">     
                 <div
                   class="asignaturaPrincipal col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
