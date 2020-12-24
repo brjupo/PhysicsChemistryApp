@@ -127,12 +127,9 @@ require "../../servicios/isStaff.php";
           while (mysqli_stmt_fetch($statement)) {
             $existeGrupo["profe"] = $idGrupo;
           }
-          $tieneGrupos = $existeProfe["profe"];
+          $tieneGrupos = $existeGrupo["profe"];
         }
 
-        echo'<script type="text/javascript">
-            alert("'.$tieneGrupos.'");
-            </script>'; 
 
         //Conteo de inicios de sesión y fecha
         $tiempo = getDatetimeNow();
