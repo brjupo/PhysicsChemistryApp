@@ -28,12 +28,12 @@ if (false) {
       $response["response"] = "Error al escribir el nuevo usuario";
     } else {
       //crear token
-      $token = crearTokenDDBB($mail);
+      $token = crearTokenDDBB($lowerTeacherMail);
       if ($token == "error") {
         $response["response"] = "Ha ocurrido un error al crear token ";
       } else {
         //enviar correo
-        $respuestaAlEnviarElMail =  enviarMail($lowerTeacherMail, "Registro profesor. Kaanbal", cuerpoCorreoNuevoProfesor($mail, $token));
+        $respuestaAlEnviarElMail =  enviarMail($lowerTeacherMail, "Registro profesor. Kaanbal", cuerpoCorreoNuevoProfesor($lowerTeacherMail, $token));
         if (strpos($respuestaAlEnviarElMail, "failed") !== false) {
           $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
         } else {
