@@ -134,7 +134,7 @@ $teacherUserID = $_SESSION["id_usuario"];
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $stringQuery = 'SELECT codigo FROM asignatura WHERE codigo = "' . $codigoTemp . '";';
+                    $stringQuery = 'SELECT codigo FROM grupo WHERE codigo = "' . $codigoTemp . '";';
                     $stmt = $conn->query($stringQuery);
                     $existe = 0;
                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
