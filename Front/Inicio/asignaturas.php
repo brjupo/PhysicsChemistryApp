@@ -116,18 +116,18 @@ require "../../servicios/isStaff.php";
         $mostrarMenuprofesor = $existeProfe["profe"];
 
         //Consultar si tiene grupos creados
-        if($mostrarMenuprofesor){
-        $statement = mysqli_prepare($con, "SELECT id_grupo FROM grupo WHERE id_profesor = ? LIMIT 1");
-        mysqli_stmt_bind_param($statement, "s", $mostrarMenuprofesor);
-        mysqli_stmt_execute($statement);
+        if($mostrarMenuprofesor != ''){
+          $statement = mysqli_prepare($con, "SELECT id_grupo FROM grupo WHERE id_profesor = ? LIMIT 1");
+          mysqli_stmt_bind_param($statement, "s", $mostrarMenuprofesor);
+          mysqli_stmt_execute($statement);
 
-        mysqli_stmt_store_result($statement);
-        mysqli_stmt_bind_result($statement, $idGrupo);
+          mysqli_stmt_store_result($statement);
+          mysqli_stmt_bind_result($statement, $idGrupo);
 
-        while (mysqli_stmt_fetch($statement)) {
-          $existeGrupo["profe"] = $idGrupo;
-        }
-        $tieneGrupos = $existeProfe["profe"];
+          while (mysqli_stmt_fetch($statement)) {
+            $existeGrupo["profe"] = $idGrupo;
+          }
+          $tieneGrupos = $existeProfe["profe"];
         }
 
         //Conteo de inicios de sesión y fecha
