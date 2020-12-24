@@ -268,6 +268,7 @@ require "../../servicios/isStaff.php";
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas);
     imprimirRelleno();
+    sinGrupos();
     if ($mostrarMenuprofesor != '' or $staffID != 'null') {
       imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID);
     }
@@ -411,6 +412,20 @@ require "../../servicios/isStaff.php";
     ';
   }
 
+  function sinGrupos()
+  {
+    echo '
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h1>Hemos detectado que no tienes grupos aún\n</h1>
+            <h1>Para iniciar, da click en el boton crear grupo</h1>
+          </div> 
+        </div>
+      </div>
+    ';
+  }
+
   function imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID)
   {
     echo '
@@ -422,6 +437,7 @@ require "../../servicios/isStaff.php";
         </div>
       </div>
     ';
+
 
     if($mostrarMenuprofesor != ''){
     echo '
