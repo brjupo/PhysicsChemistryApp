@@ -428,15 +428,15 @@ require "../../servicios/isStaff.php";
         <div class="container">
           <div class="row">
             <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
-              <a href="../profesor/controlProfesor.php">     
+              <a href="">     
                 <div
                   class="asignaturaPrincipal col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
-                    <img class="imagenAsignatura" src="../CSSsJSs/icons/design.svg" />
+                    <img class="imagenAsignatura" src="../CSSsJSs/icons/grupo.svg" />
                   </div>
                   <div class="tituloAsignaturas">
-                    Editar
+                    Crear Grupo
                   </div>
                 </div>
               </a>
@@ -490,15 +490,15 @@ require "../../servicios/isStaff.php";
               </a>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
-              <a href="">    
+              <a href="../profesor/controlProfesor.php">    
                 <div
                   class="asignaturaPrincipal col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
                 >
                   <div>
-                    <img class="imagenDesactivada" src="../CSSsJSs/icons/reportes.svg" />
+                    <img class="imagenAsignatura" src="../CSSsJSs/icons/design.svg" />
                   </div>
                   <div class="tituloAsignaturas">
-                    --
+                    Editar
                   </div>
                 </div>
               </a>

@@ -156,9 +156,6 @@ require "../../servicios/00DDBBVariables.php";
   function imprimirPagina($arregloTemas)
   {
 
-    echo'<script type="text/javascript">
-            alert(" '.$_SESSION["idAsignatura"].'");
-            </script>'; 
             
     imprimirTitulo();
     imprimirCita();
