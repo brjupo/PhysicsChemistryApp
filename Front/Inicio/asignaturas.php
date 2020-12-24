@@ -152,7 +152,7 @@ require "../../servicios/isStaff.php";
         $_SESSION["tokenA"] = $temp_tokenA;
         $_SESSION["tokenSesion"] = $rand;
         $_SESSION["mostrarMenuprofesor"] = $mostrarMenuprofesor;
-        $_SESSION["tieneGrupos"] = $tieneGrupos
+        $_SESSION["tieneGrupos"] = $tieneGrupos;
 
         //consultar si es staff
         $statement = mysqli_prepare($con, "SELECT id_staff FROM staff WHERE id_usuario = ?");
@@ -285,7 +285,7 @@ require "../../servicios/isStaff.php";
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas);
     imprimirRelleno();
-    if($tieneGrupos ==""){
+    if($tieneGrupos == ""){
     sinGrupos();}
     if ($mostrarMenuprofesor != '' or $staffID != 'null') {
       imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID);
