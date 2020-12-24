@@ -418,7 +418,8 @@ require "../../servicios/isStaff.php";
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <h2>Da click en el boton crear grupo</h2>
+            <h1>Hemos detectado que no tienes grupos aún\n</h1>
+            <h1>Para iniciar, da click en el boton crear grupo</h1>
           </div> 
         </div>
       </div>
