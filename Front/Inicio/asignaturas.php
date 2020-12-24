@@ -13,7 +13,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Asignaturas</title>
-  <link rel="stylesheet" href="../<?= $bootstrap341 ?>" />     
+  <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap341 ?>" />   
+  <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />  
   <link rel="stylesheet" href="Asignaturas.css" />
   <script src="Asignaturas2.js"></script>
 </head>
