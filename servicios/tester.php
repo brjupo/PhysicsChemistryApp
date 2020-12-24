@@ -72,7 +72,9 @@ if (false) {
   } else {
     //enviar correo
     //function enviarMail($destinatario, $asunto, $cuerpo)
-    $respuestaAlEnviarElMail =  enviarMail($lowerTeacherMail, "Registro profesor. Kaanbal", cuerpoCorreoNuevoProfesor());
+    
+    //$respuestaAlEnviarElMail =  enviarMail($lowerTeacherMail, "Registro profesor. Kaanbal", cuerpoCorreoNuevoProfesor());
+    $respuestaAlEnviarElMail = "Message sent";
     if (strpos($respuestaAlEnviarElMail, "failed") !== false) {
       $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
     } else {
