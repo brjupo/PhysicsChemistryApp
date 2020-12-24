@@ -22,36 +22,41 @@ if (false) {
   } else if (strpos($gettedMail, "failed") !== false) {
     $response["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde.";
   } else {
-    //enviar correo
-    //function enviarMail($destinatario, $asunto, $cuerpo)
-    $respuestaAlEnviarElMail =  enviarMail($lowerTeacherMail, "Registro profesor. Kaanbal", cuerpoCorreoNuevoProfesor());
-    if (strpos($respuestaAlEnviarElMail, "failed") !== false) {
-      $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
+    //agregarProfesor a usuario_prueba con password correoCorreo
+    $addTeacher = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerTeacherMail . "', '" . $lowerTeacherMail . $lowerTeacherMail . "');");
+    if ($addTeacher->write() != "success") {
+      $response["response"] = "Error al escribir el nuevo usuario";
     } else {
-      //agregarProfesor a usuario_prueba con password correoCorreo
-      $addTeacher = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerTeacherMail . "', '" . $lowerTeacherMail . $lowerTeacherMail . "');");
-      if ($addTeacher->write() != "success") {
-        $response["response"] = "Error al escribir el nuevo usuario";
+      //crear token
+      $token = crearTokenDDBB($lowerTeacherMail);
+      if ($token == "error") {
+        $response["response"] = "Ha ocurrido un error al crear token ";
       } else {
-        //obtener el ID del usuario
-        $getTeacherID = new queryToDDBB("SELECT id_usuario FROM usuario_prueba WHERE mail= '" . $lowerTeacherMail . "';");
-        $gettedTeacherID = $getTeacherID->read();
-        if (!is_numeric($gettedTeacherID)) {
-          $response["response"] = "Error en el ID del nuevo usuario.";
+        //enviar correo
+        $respuestaAlEnviarElMail =  enviarMail($lowerTeacherMail, "Registro profesor. Kaanbal", cuerpoCorreoNuevoProfesor($lowerTeacherMail, $token));
+        if (strpos($respuestaAlEnviarElMail, "failed") !== false) {
+          $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
         } else {
-          //agregar ID profesor a profesor
-          $addTeacherInTeacher = new queryToDDBB("INSERT INTO profesor (id_usuario) VALUES (" . intval($gettedTeacherID) . ") ;");
-          $addedTeacherInTeacher = $addTeacherInTeacher->write();
-          if ($addedTeacherInTeacher != "success") {
-            $response["response"] = "Error al escribir el profesor";
+          //obtener el ID del usuario
+          $getTeacherID = new queryToDDBB("SELECT id_usuario FROM usuario_prueba WHERE mail= '" . $lowerTeacherMail . "';");
+          $gettedTeacherID = $getTeacherID->read();
+          if (!is_numeric($gettedTeacherID)) {
+            $response["response"] = "Error en el ID del nuevo usuario.";
           } else {
-            //agregar ID profesor a licencias
-            $addTeacherInLicenses = new queryToDDBB("INSERT INTO profesor (id_usuario) VALUES (" . intval($gettedTeacherID) . ") ;");
-            $addedTeacherInLicenses = $addTeacherInLicenses->write();
-            if ($addedTeacherInLicenses != "success") {
-              $response["response"] = "Error al escribir el profesor en licencias";
+            //agregar ID profesor a profesor
+            $addTeacherInTeacher = new queryToDDBB("INSERT INTO profesor (id_usuario) VALUES (" . intval($gettedTeacherID) . ") ;");
+            $addedTeacherInTeacher = $addTeacherInTeacher->write();
+            if ($addedTeacherInTeacher != "success") {
+              $response["response"] = "Error al escribir el profesor";
             } else {
-              $response["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.";
+              //agregar ID profesor a licencias
+              $addTeacherInLicenses = new queryToDDBB("INSERT INTO licencia (" . intval($gettedTeacherID) . ", id_asignatura, vigencia) VALUES (" . intval($gettedTeacherID) . ", 1, '2021-12-31 23:59:59');INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (id_usuario, 2, '2021-12-31 23:59:59');");
+              $addedTeacherInLicenses = $addTeacherInLicenses->write();
+              if ($addedTeacherInLicenses != "success") {
+                $response["response"] = "Error al escribir el profesor en licencias";
+              } else {
+                $response["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.";
+              }
             }
           }
         }
@@ -65,8 +70,20 @@ if (false) {
 header('Content-Type: application/json');
 echo json_encode($response);
 
+function crearTokenDDBB($mail)
+{
+  //Es hora de cambiar el token   |  Creamos un token random
+  $token = bin2hex(random_bytes(5));
+  //Agregar a la base de datos
+  $addTeacherToken = new queryToDDBB("UPDATE usuario_prueba SET  tokenA = '" . $token . "' WHERE mail = '" . $mail . "';");
+  if ($addTeacherToken->write() != "success") {
+    return "error";
+  } else {
+    return $token;
+  }
+}
 
-function cuerpoCorreoNuevoProfesor()
+function cuerpoCorreoNuevoProfesor($mail, $token)
 {
   return '
 <html>
@@ -111,10 +128,10 @@ function cuerpoCorreoNuevoProfesor()
       clase de forma interactiva y lúdica
     </p>
     <p>Tu <strong>usuario</strong> es el correo:</p>
-    <p>mail</p>
+    <p>' . $mail . '</p>
     <p>En la siguiente URL podrás crear tu <strong>contraseña</strong></p>
-    <a href="">
-      <p>link</p>
+    <a href="https://kaanbal.net/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
+      <p>https://kaanbal.net/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</p>
     </a>
     <p>
       Recuerda esta liga es instransferible y de un solo uso. No la compartas.
