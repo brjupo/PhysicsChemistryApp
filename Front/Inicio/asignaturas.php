@@ -433,7 +433,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   function sinGrupos()
   {
-    echo '
+
+    echo'<script type="text/javascript">
+            alert("Hemos detectado que no tienes grupos aún
+            Para iniciar, da click en el boton crear grupo");
+            </script>'; */
+    /* echo '
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -442,7 +447,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           </div> 
         </div>
       </div>
-    ';
+    '; */
   }
 
   function imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID)
