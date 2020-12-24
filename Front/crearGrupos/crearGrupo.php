@@ -189,35 +189,35 @@ $teacherUserID = $_SESSION["id_usuario"];
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <?php
-            try {
-                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stringQuery = 'SELECT g.id_grupo, a.nombre, g.nombre, g.codigo  FROM grupo g JOIN asignatura a  ON g.id_asignatura = a.id_asignatura  WHERE g.id_profesor = (SELECT id_profesor FROM profesor WHERE id_usuario = "' . $teacherUserID . '");';
-                $stmt = $conn->query($stringQuery);
-                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                    echo '
-                            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">ID: ' . $row[0] . '</span>
-                                    <span class="input-group-text">Materia: ' . $row[1] . '</span>
-                                </div>
-                                <input type="text" class="form-control" value="' . $row[2] . '" />
-                                <div class="input-group-append">
-                                    <span class="input-group-text">Código: ' . $row[3] . '</span>
+    <?php
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stringQuery = 'SELECT g.id_grupo, a.nombre, g.nombre, g.codigo  FROM grupo g JOIN asignatura a  ON g.id_asignatura = a.id_asignatura  WHERE g.id_profesor = (SELECT id_profesor FROM profesor WHERE id_usuario = "' . $teacherUserID . '");';
+            $stmt = $conn->query($stringQuery);
+            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                echo '
+                        <div class="container">
+                            <div class="row">
+                                <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">ID: ' . $row[0] . '</span>
+                                        <span class="input-group-text">Materia: ' . $row[1] . '</span>
+                                    </div>
+                                    <input type="text" class="form-control" value="' . $row[2] . '" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Código: ' . $row[3] . '</span>
+                                    </div>
                                 </div>
                             </div>
-                                ';
-                }
-            } catch (PDOException $e) {
-                echo "failed: " . $stringQuery . $e->getMessage();
+                        </div>
+                    ';
             }
-            $conn = null;
-            ?>
-        </div>
-    </div>
+        } catch (PDOException $e) {
+            echo "failed: " . $stringQuery . $e->getMessage();
+        }
+        $conn = null;
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
