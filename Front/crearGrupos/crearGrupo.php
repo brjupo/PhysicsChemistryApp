@@ -23,7 +23,7 @@ $teacherUserID = $_SESSION["id_usuario"];
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap441 ?>" />
     <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
-    <script src="../<?= $minAJAX ?>"></script>
+    <script src="../CSSsJSs/<?= $minAJAX ?>"></script>
     <script src="CSSsJSs/crearGrupo02.js"></script>
 </head>
 
