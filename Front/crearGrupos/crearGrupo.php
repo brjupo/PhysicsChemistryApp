@@ -8,6 +8,8 @@ if ($teacherID == "null") {
     header('Location: https://kaanbal.net/');
     exit;
 }
+
+$teacherUserID = $_SESSION["id_usuario"];
 ?>
 
 
@@ -22,7 +24,7 @@ if ($teacherID == "null") {
     <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap441 ?>" />
     <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
     <script src="../<?= $minAJAX ?>"></script>
-    <script src="CSSsJSs/crearGrupo.js"></script>
+    <script src="CSSsJSs/crearGrupo01.js"></script>
 </head>
 
 <body>
@@ -76,7 +78,7 @@ if ($teacherID == "null") {
                 <div class="input-group-prepend">
                     <div class="input-group-text">Elija la materia:</div>
                 </div>
-                <select class="custom-select" id="idMateria">
+                <select class="custom-select" id="id_asignatura">
                     <option value="0" selected disabled>Elige...</option>
                     <?php
                     try {
@@ -110,9 +112,46 @@ if ($teacherID == "null") {
         <div class="row">
             <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="input-group-prepend">
+                    <div class="input-group-text">ID usuario prof</div>
+                </div>
+                <input id="id_usuario" type="text" class="form-control" value="<?= $teacherUserID ?>" />
+            </div>
+            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="input-group-prepend">
                     <div class="input-group-text">Nombre del grupo:</div>
                 </div>
-                <input id="nombreGrupo" type="text" class="form-control" placeholder="Escribe AQUI el nombre del grupo" />
+                <input id="nombre_grupo" type="text" class="form-control" placeholder="Escribe AQUI el nombre del grupo" />
+            </div>
+            <?php
+            //Crear un código de grupo único
+            $existe = 1;
+            while ($existe == 1) {
+                //Crearlo
+                $rand = bin2hex(random_bytes(5));
+                $rand2 = bin2hex(random_bytes(5));
+                $codigoTemp = $rand . "-" . $rand2;
+                //Consulta en BBDD si ya existe
+                try {
+                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $stringQuery = 'SELECT codigo FROM asignatura WHERE codigo = "' . $codigoTemp . '";';
+                    $stmt = $conn->query($stringQuery);
+                    $existe = 0;
+                    while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                        $existe = 1;
+                    }
+                } catch (PDOException $e) {
+                    echo "failed: " . $stringQuery . $e->getMessage();
+                }
+                $conn = null;
+                //  Si existe regresa a crearlo
+            }
+            ?>
+            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Código grupo</div>
+                </div>
+                <input id="codigo_grupo" type="text" class="form-control" value="<?= $codigoTemp ?>" />
             </div>
         </div>
     </div>
@@ -127,7 +166,7 @@ if ($teacherID == "null") {
     <div class="container">
         <div class="row">
             <div class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <button id="crearNuevoGrupo" type="button" class="btn btn-primary btn-sm">
+                <button id="guardarEnBBDD" type="button" class="btn btn-primary btn-sm">
                     Crear nuevo grupo
                 </button>
             </div>
@@ -156,7 +195,7 @@ if ($teacherID == "null") {
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $stringQuery = "SELECT id_grupo, id_asignatura, nombre, codigo FROM grupo WHERE id_profesor = 1;";
+                    $stringQuery = 'SELECT g.id_grupo, a.nombre, g.nombre, g.codigo  FROM grupo g JOIN asignatura a  ON g.id_asignatura = a.id_asignatura  WHERE g.id_profesor = (SELECT id_profesor FROM profesor WHERE id_usuario = "' . $teacherUserID . '");';
                     $stmt = $conn->query($stringQuery);
                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                         echo '
@@ -204,39 +243,3 @@ if ($teacherID == "null") {
 </body>
 
 </html>
-
-<!--
-<?php
-function printTopic($ID_Topic, $topicName)
-{
-    echo '
-    <div class="container">
-      <div class="row">
-        <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <div class="input-group-prepend">
-            <span class="input-group-text">' . $ID_Topic . '</span>
-          </div>
-          <input type="text" class="form-control" id="' . $ID_Topic . '" value="' . $topicName . '" />
-          <div class="input-group-append">
-            <a href="crearSubtema.php?ID_Tema=' . $ID_Topic . '">
-              <button class="btn btn-outline-secondary" type="button">
-                Buscar sus subtemas
-              </button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p style="color: rgba(0, 0, 0, 0);">.</p>
-        </div>
-      </div>
-    </div>
-  ';
-}
-?>
-
--->
