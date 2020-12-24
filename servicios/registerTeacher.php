@@ -130,8 +130,8 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
     <p>Tu <strong>usuario</strong> es el correo:</p>
     <p>' . $mail . '</p>
     <p>En la siguiente URL podrás crear tu <strong>contraseña</strong></p>
-    <a href="https://kaanbal.net/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
-      <p>https://kaanbal.net/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</p>
+    <a href="https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
+      <p>https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</p>
     </a>
     <p>
       Recuerda esta liga es instransferible y de un solo uso. No la compartas.
