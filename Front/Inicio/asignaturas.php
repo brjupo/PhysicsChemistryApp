@@ -412,19 +412,6 @@ require "../../servicios/isStaff.php";
     ';
   }
 
-  function imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID)
-  {
-    echo '
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <h1>Profesores</h1>
-          </div> 
-        </div>
-      </div>
-    ';
-
-
   function sinGrupos()
   {
     echo '
@@ -437,6 +424,18 @@ require "../../servicios/isStaff.php";
       </div>
     ';
   }
+
+  function imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID)
+  {
+    echo '
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h1>Profesores</h1>
+          </div> 
+        </div>
+      </div>
+    ';
 
 
     if($mostrarMenuprofesor != ''){
