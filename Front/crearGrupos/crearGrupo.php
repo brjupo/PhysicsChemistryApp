@@ -142,6 +142,7 @@ $teacherUserID = $_SESSION["id_usuario"];
                     }
                 } catch (PDOException $e) {
                     echo "failed: " . $stringQuery . $e->getMessage();
+                    $existe = 0;
                 }
                 $conn = null;
                 //  Si existe regresa a crearlo
