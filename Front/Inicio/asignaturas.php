@@ -44,11 +44,12 @@ require "../../servicios/isStaff.php";
 
     //Consultar si es profe 
     $mostrarMenuprofesor = $_SESSION["mostrarMenuprofesor"];
+    $tieneGrupos = $_SESSION["tieneGrupos"];
     $staffID = $_SESSION["siStaff"];
 
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
-    imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID);//0911 
+    imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID,$tieneGrupos);//0911 
   } else {
     /* echo'<script type="text/javascript">
             alert("segundo caminio");
@@ -114,6 +115,21 @@ require "../../servicios/isStaff.php";
         }
         $mostrarMenuprofesor = $existeProfe["profe"];
 
+        //Consultar si tiene grupos creados
+        if($mostrarMenuprofesor){
+        $statement = mysqli_prepare($con, "SELECT id_grupo FROM grupo WHERE id_profesor = ? LIMIT 1");
+        mysqli_stmt_bind_param($statement, "s", $mostrarMenuprofesor);
+        mysqli_stmt_execute($statement);
+
+        mysqli_stmt_store_result($statement);
+        mysqli_stmt_bind_result($statement, $idGrupo);
+
+        while (mysqli_stmt_fetch($statement)) {
+          $existeGrupo["profe"] = $idGrupo;
+        }
+        $tieneGrupos = $existeProfe["profe"];
+        }
+
         //Conteo de inicios de sesión y fecha
         $tiempo = getDatetimeNow();
 
@@ -136,6 +152,7 @@ require "../../servicios/isStaff.php";
         $_SESSION["tokenA"] = $temp_tokenA;
         $_SESSION["tokenSesion"] = $rand;
         $_SESSION["mostrarMenuprofesor"] = $mostrarMenuprofesor;
+        $_SESSION["tieneGrupos"] = $tieneGrupos
 
         //consultar si es staff
         $statement = mysqli_prepare($con, "SELECT id_staff FROM staff WHERE id_usuario = ?");
@@ -181,7 +198,7 @@ require "../../servicios/isStaff.php";
                       </script>'; */
         
         if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {
-          imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID);//09111
+          imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID,$tieneGrupos);//09111
         } else {//PARA SALTAR A LA PAGINA DE TEMAS CUANDO NO TIENE MAS DE DOS MATERIAS
           //Traeer asignatura
           $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser'";
@@ -262,13 +279,14 @@ require "../../servicios/isStaff.php";
     return $datetime->format('Y\-m\-d\ H:i:s');
   }
   //////////////////////
-  function imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID)
+  function imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID,$tieneGrupos)
   {
 
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas);
     imprimirRelleno();
-    sinGrupos();
+    if($tieneGrupos ==""){
+    sinGrupos();}
     if ($mostrarMenuprofesor != '' or $staffID != 'null') {
       imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID);
     }
@@ -341,8 +359,6 @@ require "../../servicios/isStaff.php";
     }
     
   }
-
-  
 
   function imprimirAsignaturaPar($idAsignatura,$nombreAsignatura)//091120 SE RECIBE AQUI ID DE ASIGNATURA
   {
@@ -418,7 +434,7 @@ require "../../servicios/isStaff.php";
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <h1>Hemos detectado que no tienes grupos aún\n</h1>
+            <h1>Hemos detectado que no tienes grupos aún</h1>
             <h1>Para iniciar, da click en el boton crear grupo</h1>
           </div> 
         </div>
