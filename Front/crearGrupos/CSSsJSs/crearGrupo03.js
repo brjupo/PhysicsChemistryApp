@@ -33,7 +33,7 @@ function validateData() {
 function saveInDB() {
   $.ajax({
     type: "POST",
-    url: "../servicios/createGrupo.php",
+    url: "servicios/createGrupo.php",
     dataType: "json",
     data: {
       id_asignatura: document.getElementById("id_asignatura").value,
