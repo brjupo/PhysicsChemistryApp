@@ -24,11 +24,13 @@ body {
   font-size: 6vw;
   line-height: 30px;
   font-family: "ubuntu";
+  margin:2vw auto 2vw 2vw;
 }
 @media screen and (min-width: 611px) {
   .titulo {
-    font-size: 45px;
-    line-height: 50px;
+    font-size: 4vw;
+    line-height: 5vw;
+    margin:1.5vw auto 1.5vw 1.5vw;
   }
 }
   
