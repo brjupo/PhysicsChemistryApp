@@ -288,6 +288,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas);
+    imprimirRelleno();
     if($tieneGrupos == ""){
     sinGrupos();}
     if ($mostrarMenuprofesor != '' or $staffID != 'null') {
@@ -435,8 +436,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   {
 
     echo'<script type="text/javascript">
-            alert("Hemos detectado que no tienes grupos aún
-            Para iniciar, da click en el boton crear grupo");
+            alert("Hemos detectado que no tienes grupos aún Para iniciar, da click en el boton crear grupo");
             </script>'; 
     /* echo '
       <div class="container">
