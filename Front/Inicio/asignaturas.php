@@ -437,7 +437,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo'<script type="text/javascript">
             alert("Hemos detectado que no tienes grupos aún
             Para iniciar, da click en el boton crear grupo");
-            </script>'; */
+            </script>'; 
     /* echo '
       <div class="container">
         <div class="row">
