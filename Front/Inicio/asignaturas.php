@@ -285,7 +285,6 @@ require "../../servicios/isStaff.php";
 
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas);
-    imprimirRelleno();
     if($tieneGrupos == ""){
     sinGrupos();}
     if ($mostrarMenuprofesor != '' or $staffID != 'null') {
