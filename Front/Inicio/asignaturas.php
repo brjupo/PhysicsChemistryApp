@@ -114,10 +114,7 @@ require "../../servicios/isStaff.php";
           $existeProfe["profe"] = $idProfe;
         }
         $mostrarMenuprofesor = $existeProfe["profe"];
-
-        echo'<script type="text/javascript">
-            alert("'.$mostrarMenuprofesor.'");
-            </script>'; 
+            
         //Consultar si tiene grupos creados
         if($mostrarMenuprofesor != ''){
           $statement = mysqli_prepare($con, "SELECT id_grupo FROM grupo WHERE id_profesor = ? LIMIT 1");
@@ -132,6 +129,10 @@ require "../../servicios/isStaff.php";
           }
           $tieneGrupos = $existeProfe["profe"];
         }
+
+        echo'<script type="text/javascript">
+            alert("'.$tieneGrupos.'");
+            </script>'; 
 
         //Conteo de inicios de sesión y fecha
         $tiempo = getDatetimeNow();
