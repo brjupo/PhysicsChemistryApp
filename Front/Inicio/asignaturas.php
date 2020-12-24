@@ -115,6 +115,9 @@ require "../../servicios/isStaff.php";
         }
         $mostrarMenuprofesor = $existeProfe["profe"];
 
+        echo'<script type="text/javascript">
+            alert("'.$mostrarMenuprofesor.'");
+            </script>'; 
         //Consultar si tiene grupos creados
         if($mostrarMenuprofesor != ''){
           $statement = mysqli_prepare($con, "SELECT id_grupo FROM grupo WHERE id_profesor = ? LIMIT 1");
