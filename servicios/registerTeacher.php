@@ -27,11 +27,12 @@ if (false) {
     if ($addTeacher->write() != "success") {
       $response["response"] = "Error al escribir el nuevo usuario";
     } else {
-      //enviar correo
+      //crear token
       $token = crearTokenDDBB($mail);
       if ($token == "error") {
         $response["response"] = "Ha ocurrido un error al crear token ";
       } else {
+        //enviar correo
         $respuestaAlEnviarElMail =  enviarMail($lowerTeacherMail, "Registro profesor. Kaanbal", cuerpoCorreoNuevoProfesor($mail, $token));
         if (strpos($respuestaAlEnviarElMail, "failed") !== false) {
           $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
@@ -129,7 +130,7 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
     <p>Tu <strong>usuario</strong> es el correo:</p>
     <p>' . $mail . '</p>
     <p>En la siguiente URL podrás crear tu <strong>contraseña</strong></p>
-    <a href="">
+    <a href="https://kaanbal.net/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
       <p>https://kaanbal.net/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</p>
     </a>
     <p>
