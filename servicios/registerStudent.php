@@ -3,6 +3,8 @@ require "01readAndWriteDDBB.php";
 require "02sendMail.php";
 
 
+//OJO ¬¬ FATA METER LA ASOCIACION DEL CODIGO DE GRUPO EN LA TABLA ALUMNO
+
 //Leer las variables del POST
 $studentMail = $_POST["studentMail"];
 $lowerStudentMail = strtolower($studentMail);
@@ -50,7 +52,7 @@ if (false) {
               $response["response"] = "Error al escribir el alumno";
             } else {
               //agregar ID alumno a licencias
-              $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (" . intval($gettedStudentID) . ", id_asignatura, vigencia) VALUES (" . intval($gettedStudentID) . ", 1, '2021-12-31 23:59:59');");
+              $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedTeacherID) . ", 1, '2021-12-31 23:59:59');INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedTeacherID) . ", 2, '2021-12-31 23:59:59');");
               $addedStudentInLicenses = $addStudentInLicenses->write();
               if ($addedStudentInLicenses != "success") {
                 $response["response"] = "Error al escribir el alumno en licencias";
@@ -64,7 +66,6 @@ if (false) {
     }
   }
 }
-INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (id_usuario, 2, '2021-12-31 23:59:59');
 
 ////////////////
 header('Content-Type: application/json');
