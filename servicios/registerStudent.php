@@ -36,7 +36,7 @@ if (false) {
         $response["response"] = "Ha ocurrido un error al crear token ";
       } else {
         //enviar correo
-        $respuestaAlEnviarElMail =  enviarMail($lowerStudentMail, "Registro alumno. Kaanbal", cuerpoCorreoNuevoStudent($lowerStudentMail, $token));
+        $respuestaAlEnviarElMail =  enviarMail($lowerStudentMail, "Registro alumno. Kaanbal", cuerpoCorreoNuevoStudent($lowerStudentMail, $token, $studentCode));
         if (strpos($respuestaAlEnviarElMail, "failed") !== false) {
           $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
         } else {
@@ -85,7 +85,7 @@ function crearTokenDDBB($mail)
   }
 }
 
-function cuerpoCorreoNuevoStudent($mail, $token)
+function cuerpoCorreoNuevoStudent($mail, $token, $studentCode)
 {
   return '
 <html>
@@ -132,21 +132,10 @@ function cuerpoCorreoNuevoStudent($mail, $token)
     <p>Tu <strong>usuario</strong> es el correo:</p>
     <p>' . $mail . '</p>
     <p>En la siguiente URL podrás crear tu <strong>contraseña</strong></p>
-    <a href="https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
-      <p>https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</p>
+    <a href="https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '&grupo=' . $studentCode .'">
+      <p>https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '&grupo=' . $studentCode .'</p>
     </a>
-    <p>
-      Recuerda esta liga es instransferible y de un solo uso. No la compartas.
-    </p>
-    <p style="color: white">.</p>
-    <p>
-      Pasos a seguir:
-    </p>
-    <p>1.- Usando el link previo, crea tu contraseña e ingresa a <a href="https://www.kaanbal.net"> Kaanbal </a> con tu correo y contraseña</p>
-    <p>2.- Da clic en la sección "Crear grupos".</p>
-    <p>3.- Comparte con tus alumnos el código de grupo.</p>
-    <p>Listo! en cuanto tus alumnos se registren podrás observar su avance en la sección de "Reportes"</p>
-    <p style="color: white">.</p>
+    
     <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
     <img
       src="https://www.kaanbal.net/IMAGENES/email.svg"
