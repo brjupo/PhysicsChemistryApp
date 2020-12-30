@@ -7,6 +7,7 @@ require "02sendMail.php";
 
 //Leer las variables del POST
 $studentMail = $_POST["studentMail"];
+$studentCode = $_POST["studentCode"];
 $lowerStudentMail = strtolower($studentMail);
 
 //Si contiene "palabra". ES IDENTICO A PREGUNTAR
@@ -35,7 +36,7 @@ if (false) {
         $response["response"] = "Ha ocurrido un error al crear token ";
       } else {
         //enviar correo
-        $respuestaAlEnviarElMail =  enviarMail($lowerStudentMail, "Registro alumno. Kaanbal", cuerpoCorreoNuevoProfesor($lowerStudentMail, $token));
+        $respuestaAlEnviarElMail =  enviarMail($lowerStudentMail, "Registro alumno. Kaanbal", cuerpoCorreoNuevoStudent($lowerStudentMail, $token));
         if (strpos($respuestaAlEnviarElMail, "failed") !== false) {
           $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
         } else {
@@ -84,7 +85,7 @@ function crearTokenDDBB($mail)
   }
 }
 
-function cuerpoCorreoNuevoProfesor($mail, $token)
+function cuerpoCorreoNuevoStudent($mail, $token)
 {
   return '
 <html>
