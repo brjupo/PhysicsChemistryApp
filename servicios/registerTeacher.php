@@ -50,7 +50,7 @@ if (false) {
               $response["response"] = "Error al escribir el profesor";
             } else {
               //agregar ID profesor a licencias
-              $addTeacherInLicenses = new queryToDDBB("INSERT INTO licencia (" . intval($gettedTeacherID) . ", id_asignatura, vigencia) VALUES (" . intval($gettedTeacherID) . ", 1, '2021-12-31 23:59:59');");
+              $addTeacherInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedTeacherID) . ", 1, '2021-12-31 23:59:59');");
               $addedTeacherInLicenses = $addTeacherInLicenses->write();
               if ($addedTeacherInLicenses != "success") {
                 $response["response"] = "Error al escribir el profesor en licencias";
