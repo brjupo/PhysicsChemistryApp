@@ -1214,14 +1214,16 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $conn = null;
 
     echo '    </select>
-              <p style="font-size:x-small; display:block; margin:auto; ">If your name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
-            </div>';
+            </div>
+            <p style="font-size:x-small; display:block; margin:auto; ">If your name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+          ';
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group input-group-sm">
               <button id="updateStudentInfo" type="button" class="btn btn-primary btn-sm" style="display:block;margin:auto;">
                   Update information
               </button>
-            </div>';
+            </div>
+          ';
     echo '
           </div>
           <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
