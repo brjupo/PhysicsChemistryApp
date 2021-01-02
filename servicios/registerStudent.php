@@ -67,7 +67,11 @@ if (false) {
                       $addAlumnogrupo = new queryToDDBB("INSERT INTO alumno_grupo (id_alumno, id_grupo) VALUES (".intval($gettedAlumnoID).",".intval($gettedGroup).");");
                       $addedAlumnoGrupo = $addAlumnogrupo->write();
 
-                      $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedStudentID) . ", 1, '2021-12-31 23:59:59');INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedStudentID) . ", 2, '2021-12-31 23:59:59');");
+                      //Traer materia de acuerdo al grupo
+                      $getAsignaturaID = new queryToDDBB("SELECT id_asignatura FROM grupo WHERE id_grupo= '" .$gettedGroup. "';");
+                      $gettedAsignaturaID = $getAsignaturaID->read();
+
+                      $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedStudentID) . "," . intval($gettedAsignaturaID) . " , '2021-12-31 23:59:59');");
                       $addedStudentInLicenses = $addStudentInLicenses->write();
                       if ($addedAlumnoGrupot != "success") {
                         $response["response"] = "Error al asociar grupo";
