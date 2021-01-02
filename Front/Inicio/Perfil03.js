@@ -135,7 +135,7 @@ function updateStudentInfo() {
     url: "../../servicios/updateStudentInfo.php",
     dataType: "json",
     data: {
-      isUser: isUser,
+      idUser: idUser,
       idGroupCode: idGroupCode,
       listNumber: listNumber,
       idFirstName: idFirstName,
