@@ -23,7 +23,7 @@ if (false) {
   //Validar que exista GRUPO
   $getGrupoCode = new queryToDDBB("SELECT id_grupo FROM grupo WHERE codigo = '" . $studentCode . "' ;");
   $gettedGroup = $getGrupoCode->read();
-  if($gettedGroup != ""){
+  if(!is_numeric($gettedGroup)){
         //Validar que no exusta Mail
         if ($lowerStudentMail == $gettedMail) {
           $response["response"] = "El usuario ya existe.";
