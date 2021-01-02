@@ -1214,7 +1214,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $conn = null;
 
     echo '    </select>
-              <p style="font-size:small">Si no encuentras tu nombre, envianos un correo a: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+              <p style="font-size:x-small; display:block; margin:auto; ">If your name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
             </div>';
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group input-group-sm">
