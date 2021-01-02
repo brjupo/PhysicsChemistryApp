@@ -89,28 +89,11 @@ function cuerpoCorreoNuevoStudent($mail, $token, $studentCode)
 {
   return '
 <html>
-  <meta charset="utf-8" />
   <body>
-    <style>
-      @font-face {
-        font-family: "Monse";
-        src: url("https://www.kaanbal.net/dev/Front/CSSsJSs/Fonts/montserrat/Montserrat-Regular.otf")
-          format("opentype");
-      }
-      @font-face {
-        font-family: "ubuntu";
-        src: url("https://www.kaanbal.net/dev/Front/CSSsJSs/Fonts/ubuntu/ubuntu.ttf")
-          format("truetype");
-      }
-      body {
-        font-family: "Monse";
-      }
-    </style>
     <div style="background-color: rgb(35, 85, 145)" height="30px">
       <h4
         style="
           color: rgb(250, 250, 250);
-          font-family: "ubuntu";
           font-size: xx-large;
           margin: 20px auto 20px 10px;
           padding: 20px 10px 20px 10px;
@@ -142,7 +125,7 @@ function cuerpoCorreoNuevoStudent($mail, $token, $studentCode)
       height="40px"
       style="display: block"
     />
-    <p><a href="aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+    <p><a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
 
     <img
       src="https://www.kaanbal.net/IMAGENES/whatsapp.svg"

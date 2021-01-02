@@ -134,7 +134,7 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
       height="40px"
       style="display: block"
     />
-    <p><a href="aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+    <p><a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
 
     <img
       src="https://www.kaanbal.net/IMAGENES/whatsapp.png"
