@@ -159,13 +159,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
     imprimirCalificacion($matricula);
     imprimirRelleno();
     imprimirRelleno();
-    imprimirPagos();
+    /*imprimirPagos();
     imprimirConFactura();
     imprimirRelleno();
     imprimirSinFactura();
     imprimirRelleno();
     imprimirRelleno();
-    imprimirRelleno();
+    imprimirRelleno();*/
     imprimirInfoEstudiante();
     imprimirRelleno();
     imprimirRelleno();
@@ -1121,8 +1121,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
           </div>
           <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
     ';
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+    //+++++++++++++++++++++++++++ Codigo de grupo ++++++++++++++++++++++++++//
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     //Crear la lectura en base de datos
-    //Codigo de grupo
     global $servername, $dbname, $username, $password;
     global $iduser;
     try {
@@ -1145,8 +1148,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
     }
     $conn = null;
 
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+    //+++++++++++++++++++++++++++ Numero de lista ++++++++++++++++++++++++++//
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     //Crear la lectura en base de datos
-    //Numero de lista
     echo '  <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Número de lista</span>
@@ -1171,8 +1177,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '    </select>
             </div>';
 
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+    //+++++++++++++++++++++++++++ Primer nombre ++++++++++++++++++++++++++++//
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     //Crear la lectura en base de datos
-    //Primer nombre
     echo '  <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Número de lista</span>
