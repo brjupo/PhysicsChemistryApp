@@ -14,7 +14,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="Temas.css" />
   <script src="Perfil.js"></script>
-  <script src="../CSSsJSs/<?php echo $minAJAX; ?>" ></script>
+  <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 </head>
 
 <body>
@@ -31,15 +31,17 @@ require "../CSSsJSs/mainCSSsJSs.php";
   $avatarActual = "avatar.jpg";
   $diamantes = "25,25";
 
-  /////////////////////////////////////////////////////////////////////////////////
-
-  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+  //+++++++++++++++++++++++++ Variables de sesion ++++++++++++++++++++++++//
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   session_start();
 
   $iduser = $_SESSION["id_usuario"];
   $materia = $_SESSION["asignaturaNavegacion"];
 
+
+
+  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   $query = "SELECT id_asignatura FROM asignatura WHERE nombre = '$materia'";
   $result = mysqli_query($con, $query);
   while ($row = mysqli_fetch_assoc($result)) {
@@ -76,25 +78,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   }
   $avatarActual = $avatarArray[0]["avatar"]; //De aqui se obtendra el avatar del usuario
 
-  /*
-    //Obtener el porcentaje completado total de la asignatura de práctica particular(PP) de la lección:
-    $statement = mysqli_prepare($con, "SELECT ((SELECT COUNT(*) FROM puntuacion WHERE id_usuario = ? AND id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?))) AND tipo = 'PP' * 100) / (SELECT COUNT(*) FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema WHERE id_asignatura = ?)))) * 100");
-    //[ID DEL USUARIO QUE INICIO SESIÓN]
-    //[ID DE LA ASIGNATURA ACTUAL]
-    //[ID DE LA ASIGNATURA ACTUAL]
-    mysqli_stmt_bind_param($statement, "iii", $iduser, $idMateria, $idMateria);
-    mysqli_stmt_execute($statement);
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $porcentajePP);
 
-    $arregloPP = array();
-
-    while (mysqli_stmt_fetch($statement)) {
-      $arregloPP[0]["porcentajePP"] = $porcentajePP;
-    }
-    $porcentajeAvance = round($arregloPP[0]["porcentajePP"]);
-    $porcentajeAvance .= '%';
-*/
 
   $porcentajeAvance = "";
   echo "<!--" . $iduser . " y " . $idMateria . "-->";
@@ -180,6 +164,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     imprimirRelleno();
     imprimirSinFactura();
     imprimirRelleno();
+    imprimirRelleno();
+    imprimirRelleno();
+    imprimirInfoEstudiante();
     imprimirRelleno();
     imprimirRelleno();
     imprimirCreditos();
@@ -487,7 +474,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
     ';
   }
 
-  function imprimirPagos(){
+  function imprimirPagos()
+  {
     echo '
           <div class="container">
             <div class="row">
@@ -499,7 +487,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
     ';
   }
 
-  function imprimirConFactura(){
+  function imprimirConFactura()
+  {
     echo '
     <div class="container">
       <div class="row">
@@ -1123,6 +1112,108 @@ require "../CSSsJSs/mainCSSsJSs.php";
     ';
   }
 
+  function imprimirInfoEstudiante()
+  {
+    echo '
+      <div class="container">
+        <div class="row">
+          <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+          </div>
+          <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+    ';
+    //Crear la lectura en base de datos
+    //Codigo de grupo
+    global $servername, $dbname, $username, $password;
+    global $iduser;
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stringQuery = 'SELECT id_nombre FROM alumno WHERE id_usuario = ' . $iduser . ' LIMIT 1;';
+      $stmt = $conn->query($stringQuery);
+      while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+        echo '
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Código de grupo</span>
+              </div>
+              <input type="text" class="form-control" id="groupCode" value="' . $row[0] . '" >
+            </div>
+            ';
+      }
+    } catch (PDOException $e) {
+      echo "failed: " . $stringQuery . $e->getMessage();
+    }
+    $conn = null;
+
+    //Crear la lectura en base de datos
+    //Numero de lista
+    echo '  <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Número de lista</span>
+              </div>
+              <select class="custom-select" id="listNumber"';
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stringQuery = 'SELECT numero_lista FROM alumno WHERE id_usuario = ' . $iduser . ' LIMIT 1;';
+      $stmt = $conn->query($stringQuery);
+      while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+        echo '<option value="' . $row[0] . '">' . $row[0] . '</option>';
+      }
+    } catch (PDOException $e) {
+      echo "failed: " . $stringQuery . $e->getMessage();
+    }
+    $conn = null;
+    for ($i = 0; $i < 50; $i++) {
+      echo '<option value="' . $i . '">' . $i . '</option>';
+    }
+
+    echo '    </select>
+            </div>';
+
+    //Crear la lectura en base de datos
+    //Primer nombre
+    echo '  <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Número de lista</span>
+              </div>
+              <select class="custom-select" id="firstName"';
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stringQuery = 'SELECT numero_lista FROM alumno WHERE id_usuario = ' . $iduser . ' LIMIT 1;';
+      $stmt = $conn->query($stringQuery);
+      while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+        echo '<option value="' . $row[0] . '">' . $row[0] . '</option>';
+      }
+    } catch (PDOException $e) {
+      echo "failed: " . $stringQuery . $e->getMessage();
+    }
+    $conn = null;
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stringQuery = 'SELECT id_nombre, nombre FROM nombre ORDER BY ASC;';
+      $stmt = $conn->query($stringQuery);
+      while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+        echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
+      }
+    } catch (PDOException $e) {
+      echo "failed: " . $stringQuery . $e->getMessage();
+    }
+    $conn = null;
+
+    echo '    </select>
+            </div>';
+
+    echo '
+          </div>
+          <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+          </div>
+        </div>
+      </div>
+    ';
+  }
 
   function imprimirFooter()
   {
