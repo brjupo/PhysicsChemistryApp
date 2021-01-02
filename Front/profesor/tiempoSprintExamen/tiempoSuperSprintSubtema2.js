@@ -52,7 +52,7 @@ function saveInDB() {
     }
     $.ajax({
         type: "POST",
-        url: "../SERVICIOS/tiempoSuperSprintSubtema.php",
+        url: "../servicios/tiempoSuperSprintSubtema.php",
         dataType: "json",
         data: {
           id_subtema: allIdsTemp[0],

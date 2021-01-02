@@ -125,7 +125,7 @@ function sentInfoToService() {
     );
     $.ajax({
       type: "POST",
-      url: "../../Servicios/registro.php",
+      url: "../../servicios/registro.php",
       dataType: "json",
       data: { correo: correo_e, password: contrasenia, tokenA: token },
       success: function (data) {

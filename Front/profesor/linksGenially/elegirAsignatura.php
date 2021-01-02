@@ -1,11 +1,6 @@
 <?php
-require "../../../Servicios/DDBBVariables.php";
-require "../../../Servicios/isAdmin.php";
-$teacherID = isAdmin();
-if ($teacherID == "null") {
-  header('Location: https://kaanbal.net/');
-  exit;
-}
+require "../../../servicios/00DDBBVariables.php";
+require "../../../servicios/isAdmin.php";
 ?>
 
 <!DOCTYPE html>

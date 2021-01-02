@@ -20,7 +20,7 @@ document.addEventListener("click", function (evt) {
 function saveInDDBB() {
   $.ajax({
     type: "POST",
-    url: "../../Servicios/updateFullQuestionInfo.php",
+    url: "../../servicios/updateFullQuestionInfo.php",
     dataType: "json",
     data: {
       leccion: document.getElementById("idLeccion").value,
@@ -54,7 +54,7 @@ function saveInDDBB() {
 function loadInformation() {
   $.ajax({
     type: "POST",
-    url: "../../Servicios/getFullQuestionInfo.php",
+    url: "../../servicios/getFullQuestionInfo.php",
     dataType: "json",
     data: {
       leccion: document.getElementById("idLeccion").value,

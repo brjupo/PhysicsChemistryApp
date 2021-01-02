@@ -1,11 +1,6 @@
 <?php
-require "../../Servicios/DDBBVariables.php";
-require "../../Servicios/isAdmin.php";
-$teacherID = isAdmin();
-if ($teacherID == "null") {
-  header('Location: https://kaanbal.net/');
-  exit;
-}
+require "../../servicios/00DDBBVariables.php";
+require "../../servicios/isAdmin.php";
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +55,7 @@ if ($teacherID == "null") {
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <a href="editarPreguntas/editAllQuestionByID.php">
+        <a href="editarBuscarPreguntas/editAllQuestionByIDByGET.php?ID_Pregunta=1">
           <button type="button" class="btn btn-info">
             Editar preguntas por ID. Con boton de "siguiente"
           </button>
@@ -80,9 +75,9 @@ if ($teacherID == "null") {
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <a href="editarPreguntas/editAllQuestion.php">
+        <a href="editarBuscarPreguntas/buscarAsignatura.php">
           <button type="button" class="btn btn-info">
-            Editar preguntas por leccion y número de pregunta"
+            Buscar preguntas para editarlas
           </button>
         </a>
       </div>

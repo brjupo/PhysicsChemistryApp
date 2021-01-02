@@ -17,7 +17,7 @@ document.addEventListener("click", function (evt) {
 function saveInDB() {
     $.ajax({
         type: "POST",
-        url: "../SERVICIOS/crearPregunta.php",
+        url: "../servicios/crearPregunta.php",
         dataType: "json",
         data: {
           id_leccion: document.getElementById("id_leccion").innerHTML.trim(),

@@ -1,11 +1,6 @@
 <?php
-require "../../../Servicios/DDBBVariables.php";
-require "../../../Servicios/isAdmin.php";
-$teacherID = isAdmin();
-if ($teacherID == "null") {
-    header('Location: https://kaanbal.net/');
-    exit;
-}
+require "../../../servicios/00DDBBVariables.php";
+require "../../../servicios/isAdmin.php";
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +24,7 @@ function printTopics()
 {
   $idLeccion = $_GET['ID_Leccion'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_pregunta, pregunta FROM pregunta WHERE id_leccion = ?");
+  $statement = mysqli_prepare($con, "SELECT id_pregunta, pregunta FROM pregunta WHERE id_leccion = ? ORDER BY orden");
   mysqli_stmt_bind_param($statement, "i", $idLeccion);
   mysqli_stmt_execute($statement);
 
@@ -64,6 +59,13 @@ function printTopic($ID_Question, $questionName)
             <span class="input-group-text">' . $ID_Question . '</span>
           </div>
           <input type="text" class="form-control" id="' . $ID_Question . '" value="' . $questionName . '" />
+          <div class="input-group-append">
+            <a href="../editarBuscarPreguntas/editAllQuestionByIDByGET.php?ID_Pregunta='.$ID_Question .'" target="_blank">
+              <button class="btn btn-outline-secondary" type="button">
+                Editar la pregunta
+              </button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -172,12 +174,7 @@ function printInstructions()
         </p>
         <p>
           - Recuerde, aquí solo se crea la pregunta en español, para crear las respuestas, el tipo de 
-          pregunta y su traducción, utilice la sección "Editar preguntas por ID", ubicada en el panel 
-          de profesores
-        </p>
-        <p>
-          - Por el momento, falta la carga de imagen. Nombre de la imagen == al ID mostrado en esta 
-          pantalla 
+          pregunta y su traducción, de clic en "Editar la pregunta"
         </p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../../Servicios/DDBBVariables.php";
+require "../../servicios/00DDBBVariables.php";
 if (!isset($_POST["mail"])) {
     header('Location: perfil.php');
     exit;
@@ -245,7 +245,7 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
                         <td style="font-weight:600">Matrícula</td>
                         <?php
                         for ($k = 0; $k < count($subtemas["id"]); $k++) {
-                            echo '<td>' . $subtemas["nombre"][$k] . '</td>';
+                            echo '<td>' . $subtemas["nombre"][$k] . ' id: '. $subtemas["id"][$k] . '</td>';
                         }
                         ?>
                     </tr>
@@ -263,7 +263,7 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
                                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                 $stringQuery = "SELECT puntuacion FROM puntuacion WHERE tipo ='SG' 
-                                AND id_leccion=" . $subtemas["id"][$l] . " AND id_usuario =" . $alumnos["id"][$m] . ";";
+                                AND id_leccion=" . $subtemas["id"][$l] . " AND id_usuario =" . $alumnos["id"][$m] . " LIMIT 1;";
                                 $stmt = $conn->query($stringQuery);
                                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
@@ -272,8 +272,9 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
                                     $calificacion = $puntuacion * 100;
                                     $calificacion = $calificacion / $preguntasLeccion;
                                     $calificacion = intval($calificacion / 3);
-                                    //echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$subtemas["nombre"][$l]] . ' </td>';
-                                    echo '<td> ' . $calificacion . ' </td>';
+                                    //echo '<td>';
+                                    echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$subtemas["nombre"][$l]];
+                                    echo $calificacion . ' idSub:' . $subtemas["id"][$l] . ' </td>';
                                 }
                                 if ($entre == 0) {
                                     echo '<td style="color:red;">NP</td>';

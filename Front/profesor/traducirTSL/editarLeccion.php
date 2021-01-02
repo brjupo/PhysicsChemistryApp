@@ -1,11 +1,6 @@
 <?php
-require "../../../Servicios/DDBBVariables.php";
-require "../../../Servicios/isAdmin.php";
-$adminID = isAdmin();
-if ($adminID == "null") {
-  header('Location: https://kaanbal.net/');
-  exit;
-}
+require "../../../servicios/00DDBBVariables.php";
+require "../../../servicios/isAdmin.php";
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +22,7 @@ function printSubtopics()
 {
   $idSubtema = $_GET['ID_Subtema'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $statement = mysqli_prepare($con, "SELECT id_leccion, nombre, names FROM leccion WHERE id_subtema = ?");
+  $statement = mysqli_prepare($con, "SELECT id_leccion, nombre, names FROM leccion WHERE id_subtema = ? ORDER BY orden");
   mysqli_stmt_bind_param($statement, "i", $idSubtema);
   mysqli_stmt_execute($statement);
 

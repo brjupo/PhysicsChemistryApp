@@ -1,5 +1,6 @@
 <?php
-require "../../../Servicios/validarLicencia.php";
+require "../../../servicios/validarLicencia.php";
+require "../../../servicios/00DDBBVariables.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,7 @@ require "../../../Servicios/validarLicencia.php";
     <title>Pregunta</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="styleExamen.css" />
-    <script src="scriptExamen30.js"></script>
+    <script src="examen.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -382,7 +383,7 @@ require "../../../Servicios/validarLicencia.php";
             </div>
         ';
     }
-    function imprimirImagenRespuestasTipo1(int $respuestas, $r1, $r2, $r3, $r4, $respCorrecta, $imagen)
+    function imprimirImagenRespuestasTipo1(int $respuestas, $r1, $r2, $r3, $r4, $respCorrecta, $idPregunta)
     {
         $uno = 10 * $respuestas - 3;
         $dos = 10 * $respuestas - 2;
@@ -390,48 +391,35 @@ require "../../../Servicios/validarLicencia.php";
         $cuatro = 10 * $respuestas;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
-        $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../../../../IMAGENES/" . $imgjpg;
+        
+        global $servername, $username, $password, $dbname;
+        //Crear la lectura en base de datos
+        //Leer el nombre de las imagenes
+        $nombreImagen = NULL;
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stringQuery = "SELECT idImagen FROM pregunta WHERE id_pregunta = " . $idPregunta;
+            $stmt = $conn->query($stringQuery);
+            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                $pathToImage = "../../../../IMAGENES/" . $row[0];
+                if (file_exists($pathToImage)) {
+                    $nombreImagen = $row[0];
+                }
+            }
+        } catch (PDOException $e) {
+            echo "Error al " . $stringQuery . "<br>" . $e->getMessage();
+        }
+        $conn = null;
 
-        $imgJPG = $imagen . ".JPG";
-        $pathJPG = "../../../../IMAGENES/" . $imgJPG;
-        if (file_exists($pathjpg)) {
+
+        if ($nombreImagen != NULL) {
             echo '
             <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
-                <p id="' . $IDvalorCorrecto . '" style="display:none">
-                    ' . $respCorrecta . '
-                </p>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                <button class="Opcion1" id="' . $uno . '">
-                    ' . $r1 . '
-                </button><br>
-                <button class="Opcion3" id="' . $tres . '">
-                    ' . $r3 . '
-                </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                <button class="Opcion2" id="' . $dos . '">
-                    ' . $r2 . '
-                </button><br>
-                <button class="Opcion4" id="' . $cuatro . '">
-                    ' . $r4 . '
-                </button>
-                </div>
-            </div>
-            </div>
-        ';
-        } else if (file_exists($pathJPG)) {
-            echo '
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="' . $respuestaNumero . '">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../../../../IMAGENES/' . $imagen . '.JPG" class="imagenPregunta" />
+                <img src="../../../../IMAGENES/' . $nombreImagen . '" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '" style="display:none">
                     ' . $respCorrecta . '
                 </p>
@@ -516,16 +504,35 @@ require "../../../Servicios/validarLicencia.php";
             </div>
             ';
     }
-    function imprimirImagenRespuestasTipo2(int $respuestas, $respCorrecta, $imagen)
+    function imprimirImagenRespuestasTipo2(int $respuestas, $respCorrecta, $idPregunta)
     {
 
         $IDBotonAceptar = 10 * $respuestas - 4;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
-        $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../../../../IMAGENES/" . $imgjpg;
-        //echo '<p>'.$path.'</p>';
-        if (file_exists($pathjpg)) {
+        
+        global $servername, $username, $password, $dbname;
+        //Crear la lectura en base de datos
+        //Leer el nombre de las imagenes
+        $nombreImagen = NULL;
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stringQuery = "SELECT idImagen FROM pregunta WHERE id_pregunta = " . $idPregunta;
+            $stmt = $conn->query($stringQuery);
+            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                $pathToImage = "../../../../IMAGENES/" . $row[0];
+                if (file_exists($pathToImage)) {
+                    $nombreImagen = $row[0];
+                }
+            }
+        } catch (PDOException $e) {
+            echo "Error al " . $stringQuery . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+
+
+        if ($nombreImagen != NULL) {
             echo '
                 <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
                 <div class="container" style="display:none" id ="' . $respuestaNumero . '">
@@ -535,7 +542,7 @@ require "../../../Servicios/validarLicencia.php";
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
+                            <img src="../../../../IMAGENES/' . $nombreImagen . '" class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>

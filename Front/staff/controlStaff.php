@@ -1,13 +1,12 @@
 <?php
-require "../../Servicios/DDBBVariables.php";
-require "../../Servicios/isStaff.php";
+require "../../servicios/00DDBBVariables.php";
+require "../../servicios/isStaff.php";
 $staffID = isStaff();
 if ($staffID == "null") {
   header('Location: https://kaanbal.net/');
   exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -21,7 +20,6 @@ if ($staffID == "null") {
 </head>
 
 <body>
-
   <div class="container">
     <div class="row">
       <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>

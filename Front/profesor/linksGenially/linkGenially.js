@@ -52,7 +52,7 @@ function saveInDB() {
     }
     $.ajax({
         type: "POST",
-        url: "../SERVICIOS/setGeniallyLink.php",
+        url: "../servicios/setGeniallyLink.php",
         dataType: "json",
         data: {
           id_subtema: allIdsTemp[0],
