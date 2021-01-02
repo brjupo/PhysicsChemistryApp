@@ -52,7 +52,7 @@ if (false) {
                   $response["response"] = "Error en el ID del nuevo usuario.";
                 } else {
                   //agregar ID usuario a alumno
-                  $addStudentInStudent = new queryToDDBB("INSERT INTO alumno (id_usuario, matricula) VALUES (".intval($gettedStudentID).",'99et12kem');");
+                  $addStudentInStudent = new queryToDDBB("INSERT INTO alumno (id_usuario, matricula) VALUES (".intval($gettedStudentID).",'99et12rem');");
                   $addedStudentInStudent = $addStudentInStudent->write();
                   if ($addedStudentInStudent != "success") {
                     $response["response"] = "Error al escribir el alumno";
@@ -66,12 +66,14 @@ if (false) {
                       //agregar ID de grupo y de alumno a alumno_grupo
                       $addAlumnogrupo = new queryToDDBB("INSERT INTO alumno_grupo (id_alumno, id_grupo) VALUES (".intval($gettedAlumnoID).",".intval($gettedGroup).");");
                       $addedAlumnoGrupo = $addAlumnogrupo->write();
+
+                      $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedStudentID) . ", 1, '2021-12-31 23:59:59');");
+                      $addedStudentInLicenses = $addStudentInLicenses->write();
                       if ($addedAlumnoGrupot != "success") {
                         $response["response"] = "Error al asociar grupo";
                       } else {
                         //agregar ID alumno a licencias
-                        $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . $gettedStudentID. ", 1, '2021-12-31 23:59:59');");
-                        $addedStudentInLicenses = $addStudentInLicenses->write();
+    
                         if ($addedStudentInLicenses != "success") {
                           $response["response"] = "Error al escribir el alumno en licencias";
                     } else {
