@@ -22,23 +22,9 @@
         <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
           <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
         </div>
-        <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <div class="textCenter col-xs-6 col-sm-6 col-md-6 col-lg-7 col-xl-7">
           <p class="Ciencia fuenteTitulo" id="asignaturad"><?= $_SESSION["asignaturaNavegacion"] ?></p>
           <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none"><?= $_SESSION["idAsignatura"] ?></p>
-        </div>
-        <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
-          <table class="table" style="display:none">
-            <tbody>
-              <tr>
-                <td width="60%">
-                  <img class="iconoDiamantes imgRight" src="../CSSsJSs/icons/diamante.svg" />
-                </td>
-                <td width="40%">
-                  <p class="diamantes textLeft">112</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
         </div>
         <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
           <p class="Materia fuenteTitulo"></p>
@@ -49,7 +35,7 @@
 
 
   <?php
-  imprimirVistaTopNacional();
+  imprimirVistaTopNacional($idMateria);
   ?>
 
 
@@ -93,7 +79,7 @@
 </html>
 
 <?php
-function imprimirVistaTopNacional()
+function imprimirVistaTopNacional($idMateria)
 {
   $posicion = 0;
   $avatar = 0;
