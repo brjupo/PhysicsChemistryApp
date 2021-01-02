@@ -120,3 +120,30 @@ function guardarAvatarEnBBDD(nombreImagen) {
     },
   });
 }
+function updateStudentInfo() {
+  var idUser = document.getElementById("idUser").value.trim();
+  var idGroupCode = document.getElementById("idGroupCode").value.trim();
+  var listNumber = document.getElementById("listNumber").value.trim();
+  var idFirstName = document.getElementById("idFirstName").value.trim();
+  $.ajax({
+    type: "POST",
+    url: "../../servicios/updateStudentInfo.php",
+    dataType: "json",
+    data: {
+      isUser: isUser,
+      idGroupCode: idGroupCode,
+      listNumber: listNumber,
+      idFirstName: idFirstName,
+    },
+    success: function (data) {
+      console.log(data.response);
+      if (data.response == "exito") {
+        //alert("Etcito");
+        console.log("Valores enviados correctamente");
+      } else {
+        alert("Algo salió mal, reintenta. Error details: "+data.response);
+        console.log("Algo salio mal");
+      }
+    },
+  });
+}

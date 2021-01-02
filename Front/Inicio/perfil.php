@@ -13,7 +13,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="Temas.css" />
-  <script src="Perfil.js"></script>
+  <script src="Perfil01.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 </head>
 
@@ -1113,20 +1113,26 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   function imprimirInfoEstudiante()
   {
+    global $iduser;
+    //$iduser = $_SESSION["id_usuario"];
     echo '
       <div class="container">
         <div class="row">
           <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
           </div>
           <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">User ID</span>
+              </div>
+              <input type="text" class="form-control" id="idUser" value="' . $iduser . '" >
+            </div>
     ';
-
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     //+++++++++++++++++++++++++++ Codigo de grupo ++++++++++++++++++++++++++//
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     //Crear la lectura en base de datos
     global $servername, $dbname, $username, $password;
-    global $iduser;
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -1138,7 +1144,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               <div class="input-group-prepend">
                 <span class="input-group-text">Group code</span>
               </div>
-              <input type="text" class="form-control" id="groupCode" value="' . $row[0] . '" >
+              <input type="text" class="form-control" id="idGroupCode" value="' . $row[0] . '" >
             </div>
             ';
       }
@@ -1187,7 +1193,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               <div class="input-group-prepend">
                 <span class="input-group-text">First name</span>
               </div>
-              <select class="custom-select" id="firstName"';
+              <select class="custom-select" id="idFirstName"';
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
