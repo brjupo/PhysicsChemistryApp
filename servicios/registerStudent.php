@@ -52,7 +52,7 @@ if (false) {
                   $response["response"] = "Error en el ID del nuevo usuario.";
                 } else {
                   //agregar ID usuario a alumno
-                  $addStudentInStudent = new queryToDDBB("INSERT INTO alumno (id_usuario, matricula) VALUES (".intval($gettedStudentID).","'123456'");");
+                  $addStudentInStudent = new queryToDDBB("INSERT INTO alumno (id_usuario, matricula) VALUES (".intval($gettedStudentID).",'99et12tem');");
                   $addedStudentInStudent = $addStudentInStudent->write();
                   if ($addedStudentInStudent != "success") {
                     $response["response"] = "Error al escribir el alumno";
