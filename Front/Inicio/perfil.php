@@ -1164,14 +1164,14 @@ require "../CSSsJSs/mainCSSsJSs.php";
               <div class="input-group-prepend">
                 <span class="input-group-text">List number</span>
               </div>
-              <select class="custom-select" id="listNumber"';
+              <select class="custom-select" id="listNumber">';
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $stringQuery = 'SELECT numero_lista FROM alumno WHERE id_usuario = ' . $iduser . ' LIMIT 1;';
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-        echo '<option value="' . $row[0] . '">' . $row[0] . '</option>';
+        echo '<option value="' . $row[0] . '" selected>' . $row[0] . '</option>';
       }
     } catch (PDOException $e) {
       echo "failed: " . $stringQuery . $e->getMessage();
@@ -1194,14 +1194,14 @@ require "../CSSsJSs/mainCSSsJSs.php";
               <div class="input-group-prepend">
                 <span class="input-group-text">First name</span>
               </div>
-              <select class="custom-select" id="idFirstName"';
+              <select class="custom-select" id="idFirstName">';
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = 'SELECT numero_lista FROM alumno WHERE id_usuario = ' . $iduser . ' LIMIT 1;';
+      $stringQuery = 'SELECT id_nombre FROM alumno WHERE id_usuario = ' . $iduser . ' LIMIT 1;';
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-        echo '<option value="' . $row[0] . '">' . $row[0] . '</option>';
+        echo '<option value="' . $row[0] . '" selected>' . $row[0] . '</option>';
       }
     } catch (PDOException $e) {
       echo "failed: " . $stringQuery . $e->getMessage();
