@@ -13,7 +13,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="Temas.css" />
-  <script src="Perfil04.js"></script>
+  <script src="Perfil05.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 </head>
 
@@ -1136,7 +1136,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = 'SELECT codigo FROM grupo WHERE id_asignatura = '.$idMateria.' AND id_grupo IN (SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN (SELECT id_alumno FROM alumno WHERE id_usuario = ' . $iduser . ') ) LIMIT 1';
+      $stringQuery = 'SELECT id_grupo, codigo FROM grupo WHERE id_asignatura = '.$idMateria.' AND id_grupo IN (SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN (SELECT id_alumno FROM alumno WHERE id_usuario = ' . $iduser . ') ) LIMIT 1';
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         echo '
@@ -1144,8 +1144,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Group code</span>
+                <span class="input-group-text" id="idGroupCode">' . $row[0] . '</span>
               </div>
-              <input type="text" class="form-control" id="idGroupCode" value="' . $row[0] . '" >
+              <input type="text" class="form-control" id="groupCode" value="' . $row[1] . '" >
             </div>
             ';
       }

@@ -18,7 +18,7 @@ if (false) {
   $getTeacherMail = new queryToDDBB("SELECT mail FROM usuario_prueba WHERE mail = '" . $lowerTeacherMail . "' ;");
   $gettedMail = $getTeacherMail->read();
   if ($lowerTeacherMail == $gettedMail) {
-    $response["response"] = "El usuario ya existe.";
+    $response["response"] = "El usuario ya existe. Si existe algún problema, con gusto te ayudamos, envianos un correo a <strong>aclaraciones@kaanbal.net</strong>";
   } else if (strpos($gettedMail, "failed") !== false) {
     $response["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde.";
   } else {

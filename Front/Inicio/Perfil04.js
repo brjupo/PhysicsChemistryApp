@@ -13,7 +13,9 @@ document.addEventListener("click", function (evt) {
   var conFactura2 = document.getElementById("conFactura2");
   var sinFactura1 = document.getElementById("sinFactura1");
   var sinFactura2 = document.getElementById("sinFactura2");
-  var updateStudentInfoButton = document.getElementById("updateStudentInfoButton");
+  var updateStudentInfoButton = document.getElementById(
+    "updateStudentInfoButton"
+  );
   targetElement = evt.target; // clicked element
   elID = targetElement.id;
 
@@ -59,7 +61,7 @@ document.addEventListener("click", function (evt) {
       guardarAvatarEnBBDD(nombreImagen);
       return;
     }
-    if(targetElement == updateStudentInfoButton){
+    if (targetElement == updateStudentInfoButton) {
       updateStudentInfo();
       return;
     }
@@ -127,7 +129,8 @@ function guardarAvatarEnBBDD(nombreImagen) {
 }
 function updateStudentInfo() {
   var idUser = document.getElementById("idUser").value.trim();
-  var idGroupCode = document.getElementById("idGroupCode").value.trim();
+  var idGroupCode = document.getElementById("idGroupCode").innerHTML.trim();
+  var groupCode = document.getElementById("groupCode").value.trim();
   var listNumber = document.getElementById("listNumber").value.trim();
   var idFirstName = document.getElementById("idFirstName").value.trim();
   $.ajax({
@@ -137,18 +140,17 @@ function updateStudentInfo() {
     data: {
       idUser: idUser,
       idGroupCode: idGroupCode,
+      groupCode: groupCode,
       listNumber: listNumber,
       idFirstName: idFirstName,
     },
     success: function (data) {
       console.log(data.response);
-      if (data.response == "exito") {
-        alert("Información actualizada");
-        //console.log("Valores enviados correctamente");
-      } else {
-        alert("Algo salió mal, reintenta. Error details: "+data.response);
-        //console.log("Algo salio mal");
-      }
+      alert("Información actualizada");
+    },
+    error: function (data) {
+      console.log(data.response);
+      alert("Algo salió mal, reintenta.");
     },
   });
 }
