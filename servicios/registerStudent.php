@@ -85,6 +85,8 @@ if (false) {
         }
       }
     }
+  }else{
+    $response["response"] = "Codigo de grupo inválido";
   }
 }
 ////////////////
