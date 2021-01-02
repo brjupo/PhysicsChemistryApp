@@ -156,6 +156,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     imprimirDiamantes($diamantes);
     imprimirRelleno();
     imprimirRelleno();
+    imprimirInfoEstudiante();
+    imprimirRelleno();
+    imprimirRelleno();
     imprimirCalificacion($matricula);
     imprimirRelleno();
     imprimirRelleno();
@@ -419,7 +422,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           <div class="container">
             <div class="row">
               <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h2 style="text-align:center;">Calificaciones</h2>
+                <h2 style="text-align:center;">Grades</h2>
               </div>
             </div>
           </div>
@@ -431,7 +434,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-primary" value="Práctica, Sprint y Examen" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
+                      <input type="submit" class="btn btn-primary" value="Practice, Sprint y Exam" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
                     </form>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -1153,7 +1156,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
     //+++++++++++++++++++++++++++ Numero de lista ++++++++++++++++++++++++++//
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     //Crear la lectura en base de datos
-    echo '  <div class="input-group">
+    echo '  <p style="color:rgba(0,0,0,0)">.</p>
+            <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Número de lista</span>
               </div>
@@ -1182,7 +1186,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
     //+++++++++++++++++++++++++++ Primer nombre ++++++++++++++++++++++++++++//
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     //Crear la lectura en base de datos
-    echo '  <div class="input-group">
+    echo '  <p style="color:rgba(0,0,0,0)">.</p>
+            <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Primer Nombre</span>
               </div>
@@ -1214,7 +1219,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
     echo '    </select>
             </div>';
-
+    echo '
+            <div class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+              <button id="updateStudentInfo" type="button" class="btn btn-primary btn-sm">
+                  Actualizar información
+              </button>
+            </div>';
     echo '
           </div>
           <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
