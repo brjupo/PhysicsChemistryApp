@@ -1211,7 +1211,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = 'SELECT id_nombre, nombre FROM nombre WHERE nombre NOT LIKE %" "% ORDER BY nombre ASC;';
+      $stringQuery = 'SELECT id_nombre, nombre FROM nombre WHERE nombre NOT LIKE "% %" ORDER BY nombre ASC;';
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
