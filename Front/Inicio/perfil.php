@@ -155,7 +155,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
     imprimirRelleno();
     imprimirDiamantes($diamantes);
     imprimirRelleno();
-    imprimirRelleno();
     imprimirInfoEstudiante();
     imprimirRelleno();
     imprimirRelleno();
@@ -169,9 +168,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
     imprimirRelleno();
     imprimirRelleno();
     imprimirRelleno();*/
-    imprimirInfoEstudiante();
-    imprimirRelleno();
-    imprimirRelleno();
     imprimirCreditos();
     imprimirRelleno();
     imprimirRelleno();
@@ -1140,7 +1136,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
         echo '
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Código de grupo</span>
+                <span class="input-group-text">Group code</span>
               </div>
               <input type="text" class="form-control" id="groupCode" value="' . $row[0] . '" >
             </div>
@@ -1159,7 +1155,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Número de lista</span>
+                <span class="input-group-text">List number</span>
               </div>
               <select class="custom-select" id="listNumber"';
     try {
@@ -1189,7 +1185,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Primer Nombre</span>
+                <span class="input-group-text">First name</span>
               </div>
               <select class="custom-select" id="firstName"';
     try {
@@ -1219,9 +1215,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
     echo '    </select>
             </div>';
-    echo '
-            <div class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-              <button id="updateStudentInfo" type="button" class="btn btn-primary btn-sm">
+    echo '  <p style="color:rgba(0,0,0,0)">.</p>
+            <div class="input-group input-group-sm">
+              <button id="updateStudentInfo" type="button" class="btn btn-primary btn-sm" style="display:block;margin:auto;">
                   Actualizar información
               </button>
             </div>';
