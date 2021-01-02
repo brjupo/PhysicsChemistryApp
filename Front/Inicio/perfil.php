@@ -13,7 +13,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="Temas.css" />
-  <script src="Perfil03.js"></script>
+  <script src="Perfil04.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 </head>
 
@@ -38,7 +38,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   $iduser = $_SESSION["id_usuario"];
   $materia = $_SESSION["asignaturaNavegacion"];
-
+  //$idMateria = $_GET["asignatura"];
 
 
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
@@ -1113,7 +1113,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   function imprimirInfoEstudiante()
   {
-    global $iduser;
+    global $iduser, $idMateria;
+    global $servername, $dbname, $username, $password;
     //$iduser = $_SESSION["id_usuario"];
     echo '
       <div class="container">
@@ -1132,11 +1133,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
     //+++++++++++++++++++++++++++ Codigo de grupo ++++++++++++++++++++++++++//
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     //Crear la lectura en base de datos
-    global $servername, $dbname, $username, $password;
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = 'SELECT id_nombre FROM alumno WHERE id_usuario = ' . $iduser . ' LIMIT 1;';
+      $stringQuery = 'SELECT codigo FROM grupo WHERE id_asignatura = '.$idMateria.' AND id_grupo IN (SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN (SELECT id_alumno FROM alumno WHERE id_usuario = ' . $iduser . ') ) LIMIT 1';
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         echo '
@@ -1158,13 +1158,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     //+++++++++++++++++++++++++++ Numero de lista ++++++++++++++++++++++++++//
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-    //Crear la lectura en base de datos
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">List number</span>
               </div>
               <select class="custom-select" id="listNumber">';
+    //Crear la lectura en base de datos
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -1198,10 +1198,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = 'SELECT id_nombre FROM alumno WHERE id_usuario = ' . $iduser . ' LIMIT 1;';
+      $stringQuery = 'SELECT id_nombre, nombre FROM nombre WHERE id_nombre IN (SELECT id_nombre FROM alumno WHERE id_usuario = ' . $iduser . ') LIMIT 1;';
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-        echo '<option value="' . $row[0] . '" selected>' . $row[0] . '</option>';
+        echo '<option value="' . $row[0] . '" selected>' . $row[1] . '</option>';
       }
     } catch (PDOException $e) {
       echo "failed: " . $stringQuery . $e->getMessage();
