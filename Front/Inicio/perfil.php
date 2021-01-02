@@ -1184,7 +1184,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     //Crear la lectura en base de datos
     echo '  <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Número de lista</span>
+                <span class="input-group-text">Primer Nombre</span>
               </div>
               <select class="custom-select" id="firstName"';
     try {
@@ -1202,7 +1202,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = 'SELECT id_nombre, nombre FROM nombre ORDER BY ASC;';
+      $stringQuery = 'SELECT id_nombre, nombre FROM nombre ORDER BY nombre ASC;';
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
