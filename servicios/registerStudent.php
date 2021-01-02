@@ -32,7 +32,7 @@ if (false) {
         } else {
           //agregarStudent a usuario_prueba con password correoCorreo
           $addStudent = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerStudentMail . "', '" . $lowerStudentMail . $lowerStudentMail . "');");
-          if ($addStudent->write() != "success") {SSSS
+          if ($addStudent->write() != "success") {
             $response["response"] = "Error al escribir el nuevo usuario";
           } else {
             //crear token
