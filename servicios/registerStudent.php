@@ -23,7 +23,7 @@ if (false) {
   //Validar que exista GRUPO
   $getGrupoCode = new queryToDDBB("SELECT id_grupo FROM grupo WHERE codigo = '" . $studentCode . "' ;");
   $gettedGroup = $getGrupoCode->read();
-  if($gettedGroup != ""){
+  if($gettedGroup != NULL){
         //Validar que no exusta Mail
         if ($lowerStudentMail == $gettedMail) {
           $response["response"] = "El usuario ya existe.";
@@ -32,7 +32,7 @@ if (false) {
         } else {
           //agregarStudent a usuario_prueba con password correoCorreo
           $addStudent = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerStudentMail . "', '" . $lowerStudentMail . $lowerStudentMail . "');");
-          if ($addStudent->write() != "success") {
+          if ($addStudent->write() != "success") {SSSS
             $response["response"] = "Error al escribir el nuevo usuario";
           } else {
             //crear token
