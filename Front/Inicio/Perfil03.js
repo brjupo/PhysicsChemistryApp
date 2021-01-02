@@ -143,11 +143,11 @@ function updateStudentInfo() {
     success: function (data) {
       console.log(data.response);
       if (data.response == "exito") {
-        //alert("Etcito");
-        console.log("Valores enviados correctamente");
+        alert("Información actualizada");
+        //console.log("Valores enviados correctamente");
       } else {
         alert("Algo salió mal, reintenta. Error details: "+data.response);
-        console.log("Algo salio mal");
+        //console.log("Algo salio mal");
       }
     },
   });
