@@ -70,7 +70,7 @@ if (false) {
                         $response["response"] = "Error al asociar grupo";
                       } else {
                         //agregar ID alumno a licencias
-                        $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedStudentID) . ", 1, '2021-12-31 23:59:59');INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedStudentID) . ", 2, '2021-12-31 23:59:59');");
+                        $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . $gettedStudentID. ", 1, '2021-12-31 23:59:59');");
                         $addedStudentInLicenses = $addStudentInLicenses->write();
                         if ($addedStudentInLicenses != "success") {
                           $response["response"] = "Error al escribir el alumno en licencias";
