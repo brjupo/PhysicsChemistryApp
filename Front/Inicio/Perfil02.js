@@ -13,6 +13,7 @@ document.addEventListener("click", function (evt) {
   var conFactura2 = document.getElementById("conFactura2");
   var sinFactura1 = document.getElementById("sinFactura1");
   var sinFactura2 = document.getElementById("sinFactura2");
+  var updateStudentInfoButton = document.getElementById("updateStudentInfoButton");
   targetElement = evt.target; // clicked element
   elID = targetElement.id;
 
@@ -56,6 +57,10 @@ document.addEventListener("click", function (evt) {
       console.log("save");
       document.getElementById("editarAvatar").src = nombreImagen;
       guardarAvatarEnBBDD(nombreImagen);
+      return;
+    }
+    if(targetElement == updateStudentInfoButton){
+      updateStudentInfo();
       return;
     }
     // Go up the DOM

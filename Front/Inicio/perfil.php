@@ -13,7 +13,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="Temas.css" />
-  <script src="Perfil01.js"></script>
+  <script src="Perfil02.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 </head>
 
@@ -1140,6 +1140,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         echo '
+            <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">Group code</span>
@@ -1225,7 +1226,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           ';
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group input-group-sm">
-              <button id="updateStudentInfo" type="button" class="btn btn-primary btn-sm" style="display:block;margin:auto;">
+              <button id="updateStudentInfoButton" type="button" class="btn btn-primary btn-sm" style="display:block;margin:auto;">
                   Update information
               </button>
             </div>
