@@ -1214,11 +1214,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $conn = null;
 
     echo '    </select>
+              <p style="font-size:small">Si no encuentras tu nombre, envianos un correo a: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
             </div>';
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group input-group-sm">
               <button id="updateStudentInfo" type="button" class="btn btn-primary btn-sm" style="display:block;margin:auto;">
-                  Actualizar información
+                  Update information
               </button>
             </div>';
     echo '
