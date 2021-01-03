@@ -31,15 +31,15 @@
   </div>
 
   <div class="container">
-    <div class="row">
+    <div class="row" style="margin:10vw;">
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topGrupalButton">Top grupal</button>
+        <button type="button" class="btn btn-primary" id="topGrupalButton" style="display:block; margin:auto;">Top grupal</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light" id="topSemestralButton">Top semestral</button>
+        <button type="button" class="btn btn-light" id="topSemestralButton" style="display:block; margin:auto;">Top semestral</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light" id="topNacionalButton">Top nacional</button>
+        <button type="button" class="btn btn-light" id="topNacionalButton" style="display:block; margin:auto;">Top nacional</button>
       </div>
     </div>
   </div>

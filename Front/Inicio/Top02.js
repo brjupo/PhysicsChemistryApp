@@ -67,9 +67,12 @@ function hideAllTops() {
   document.getElementById("topNacional").style.display = "none";
 }
 function blueAllButtons() {
-  document.getElementById("topGrupalButton").classList.remove('btn-primary');
-  document.getElementById("topSemestralButton").classList.remove('btn-primary');
-  document.getElementById("topNacionalButton").classList.remove('btn-primary');
+  document.getElementById("topGrupalButton").classList.remove('btn-light');
+  document.getElementById("topSemestralButton").classList.remove('btn-light');
+  document.getElementById("topNacionalButton").classList.remove('btn-light');
+  document.getElementById("topGrupalButton").classList.add('btn-primary');
+  document.getElementById("topSemestralButton").classList.add('btn-primary');
+  document.getElementById("topNacionalButton").classList.add('btn-primary');
 }
 function showTopGrupal() {
   hideAllTops();
