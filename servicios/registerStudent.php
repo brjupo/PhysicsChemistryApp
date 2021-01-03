@@ -23,63 +23,63 @@ if (false) {
   //Validar que exista GRUPO
   $getGrupoCode = new queryToDDBB("SELECT id_grupo FROM grupo WHERE codigo = '" . $studentCode . "' ;");
   $gettedGroup = $getGrupoCode->read();
-  if($gettedGroup != "null"){
-        //Validar que no exusta Mail
-        if ($lowerStudentMail == $gettedMail) {
-          $response["response"] = "El usuario ya existe.";
-        } else if (strpos($gettedMail, "failed") !== false) {
-          $response["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde.";
+  if ($gettedGroup != "null") {
+    //Validar que no exusta Mail
+    if ($lowerStudentMail == $gettedMail) {
+      $response["response"] = "El usuario ya existe.";
+    } else if (strpos($gettedMail, "failed") !== false) {
+      $response["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde.";
+    } else {
+      //agregarStudent a usuario_prueba con password correoCorreo
+      $addStudent = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerStudentMail . "', '" . $lowerStudentMail . $lowerStudentMail . "');");
+      if ($addStudent->write() != "success") {
+        $response["response"] = "Error al escribir el nuevo usuario";
+      } else {
+        //crear token
+        $token = crearTokenDDBB($lowerStudentMail);
+        if ($token == "error") {
+          $response["response"] = "Ha ocurrido un error al crear token ";
         } else {
-          //agregarStudent a usuario_prueba con password correoCorreo
-          $addStudent = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerStudentMail . "', '" . $lowerStudentMail . $lowerStudentMail . "');");
-          if ($addStudent->write() != "success") {
-            $response["response"] = "Error al escribir el nuevo usuario";
+          //enviar correo
+          $respuestaAlEnviarElMail =  enviarMail($lowerStudentMail, "Registro alumno. Kaanbal", cuerpoCorreoNuevoStudent($lowerStudentMail, $token, $studentCode));
+          if (strpos($respuestaAlEnviarElMail, "failed") !== false) {
+            $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
           } else {
-            //crear token
-            $token = crearTokenDDBB($lowerStudentMail);
-            if ($token == "error") {
-              $response["response"] = "Ha ocurrido un error al crear token ";
+            //obtener el ID del usuario
+            $getStudentID = new queryToDDBB("SELECT id_usuario FROM usuario_prueba WHERE mail= '" . $lowerStudentMail . "';");
+            $gettedStudentID = $getStudentID->read();
+            if (!is_numeric($gettedStudentID)) {
+              $response["response"] = "Error en el ID del nuevo usuario.";
             } else {
-              //enviar correo
-              $respuestaAlEnviarElMail =  enviarMail($lowerStudentMail, "Registro alumno. Kaanbal", cuerpoCorreoNuevoStudent($lowerStudentMail, $token, $studentCode));
-              if (strpos($respuestaAlEnviarElMail, "failed") !== false) {
-                $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
+              //agregar ID usuario a alumno
+              $addStudentInStudent = new queryToDDBB("INSERT INTO alumno (id_usuario, matricula) VALUES (" . intval($gettedStudentID) . ",'" . $lowerStudentMail . "');");
+              $addedStudentInStudent = $addStudentInStudent->write();
+              if ($addedStudentInStudent != "success") {
+                $response["response"] = "Error al escribir el alumno";
               } else {
-                //obtener el ID del usuario
-                $getStudentID = new queryToDDBB("SELECT id_usuario FROM usuario_prueba WHERE mail= '" . $lowerStudentMail . "';");
-                $gettedStudentID = $getStudentID->read();
-                if (!is_numeric($gettedStudentID)) {
-                  $response["response"] = "Error en el ID del nuevo usuario.";
+                //obtener el ID del alumno y id de grupo
+                $getAlumnoID = new queryToDDBB("SELECT id_alumno FROM alumno WHERE id_usuario= '" . $gettedStudentID . "';");
+                $gettedAlumnoID = $getAlumnoID->read();
+                if (!is_numeric($gettedAlumnoID)) {
+                  $response["response"] = "Error en el ID del grupo.";
                 } else {
-                  //agregar ID usuario a alumno
-                  $addStudentInStudent = new queryToDDBB("INSERT INTO alumno (id_usuario, matricula) VALUES (".intval($gettedStudentID).",'" . $lowerStudentMail . "');");
-                  $addedStudentInStudent = $addStudentInStudent->write();
-                  if ($addedStudentInStudent != "success") {
-                    $response["response"] = "Error al escribir el alumno";
+                  //agregar ID de grupo y de alumno a alumno_grupo
+                  $addAlumnogrupo = new queryToDDBB("INSERT INTO alumno_grupo (id_alumno, id_grupo) VALUES (" . intval($gettedAlumnoID) . "," . intval($gettedGroup) . ");");
+                  $addedAlumnoGrupo = $addAlumnogrupo->write();
+
+                  //Traer materia de acuerdo al grupo
+                  $getAsignaturaID = new queryToDDBB("SELECT id_asignatura FROM grupo WHERE id_grupo= '" . $gettedGroup . "';");
+                  $gettedAsignaturaID = $getAsignaturaID->read();
+
+                  $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedStudentID) . "," . intval($gettedAsignaturaID) . " , '2021-12-31 23:59:59');");
+                  $addedStudentInLicenses = $addStudentInLicenses->write();
+                  if ($addedAlumnoGrupot != "success") {
+                    $response["response"] = "Error al asociar grupo";
                   } else {
-                    //obtener el ID del alumno y id de grupo
-                    $getAlumnoID = new queryToDDBB("SELECT id_alumno FROM alumno WHERE id_usuario= '" . $gettedStudentID . "';");
-                    $gettedAlumnoID = $getAlumnoID->read();
-                    if (!is_numeric($gettedAlumnoID)) {
-                      $response["response"] = "Error en el ID del grupo.";
-                    } else {
-                      //agregar ID de grupo y de alumno a alumno_grupo
-                      $addAlumnogrupo = new queryToDDBB("INSERT INTO alumno_grupo (id_alumno, id_grupo) VALUES (".intval($gettedAlumnoID).",".intval($gettedGroup).");");
-                      $addedAlumnoGrupo = $addAlumnogrupo->write();
+                    //agregar ID alumno a licencias
 
-                      //Traer materia de acuerdo al grupo
-                      $getAsignaturaID = new queryToDDBB("SELECT id_asignatura FROM grupo WHERE id_grupo= '" .$gettedGroup. "';");
-                      $gettedAsignaturaID = $getAsignaturaID->read();
-
-                      $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedStudentID) . "," . intval($gettedAsignaturaID) . " , '2021-12-31 23:59:59');");
-                      $addedStudentInLicenses = $addStudentInLicenses->write();
-                      if ($addedAlumnoGrupot != "success") {
-                        $response["response"] = "Error al asociar grupo";
-                      } else {
-                        //agregar ID alumno a licencias
-    
-                        if ($addedStudentInLicenses != "success") {
-                          $response["response"] = "Error al escribir el alumno en licencias";
+                    if ($addedStudentInLicenses != "success") {
+                      $response["response"] = "Error al escribir el alumno en licencias";
                     } else {
                       $response["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.";
                     }
@@ -91,7 +91,7 @@ if (false) {
         }
       }
     }
-  }else{
+  } else {
     $response["response"] = "Código de grupo inválido";
   }
 }
@@ -112,7 +112,7 @@ function crearTokenDDBB($mail)
   }
 }
 
-function cuerpoCorreoNuevoStudent($mail, $token, $studentCode)
+function cuerpoCorreoNuevoStudent($mail, $token)
 {
   return '
 <html>
@@ -136,26 +136,56 @@ function cuerpoCorreoNuevoStudent($mail, $token, $studentCode)
       <strong>Plataforma educativa Kaanbal</strong>
     </h4>
     <p>
-      Ahora tus alumnos podrán practicar, reforzar y consolidar los conceptos vistos en
+      Ahora podrás practicar, reforzar y consolidar los conceptos vistos en
       clase de forma interactiva y lúdica
     </p>
     <p>Tu <strong>usuario</strong> es el correo:</p>
     <p>' . $mail . '</p>
     <p>En la siguiente URL podrás crear tu <strong>contraseña</strong></p>
-    <a href="https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '&grupo=' . $studentCode .'">
-      <p>https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '&grupo=' . $studentCode .'</p>
+    <a href="https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
+      <p>https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</p>
     </a>
-    
+    <p>
+      Recuerda esta liga es instransferible y de un solo uso. No la compartas.
+    </p>
+    <p style="color: white">.</p>
+    <p>
+      Una vez dentro de tu cuenta, actualiza tu número de lista, nombre y personaliza tu
+      avatar en:
+    </p>
+    <p>
+      <a
+        href="
+      https://kaanbal.net/dev/Front/Inicio/perfil.php"
+      ></a>
+      https://kaanbal.net/dev/Front/Inicio/perfil.php
+    </p>
+    <p>Si no actualizas tu información el profesor NO observará tus calificaciones</p>
+    <p style="color: white">.</p>
+    <p>
+      Algunos consejos que te pueden ayudar a sacar mejor provecho de la
+      Plataforma Educativa Kaanbal, conoce las secciones de la plaforma y su
+      objetivo:
+    </p>
+    <p>
+      > Revisar la teoría te ayudará a reforzar tus conocimientos y tener
+      mejores resultados.
+    </p>
+    <p>
+      > Para reunir el mayor número de diamantes lo ideal es que utilices la
+      menor cantidad de tiempo en responder.
+    </p>
+    <p style="color: white">.</p>
     <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
     <img
-      src="https://www.kaanbal.net/IMAGENES/email.svg"
+      src="https://kaanbal.net/IMAGENES/email.png"
       height="40px"
       style="display: block"
     />
     <p><a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
 
     <img
-      src="https://www.kaanbal.net/IMAGENES/whatsapp.svg"
+      src="https://kaanbal.net/IMAGENES/whatsapp.png"
       height="40px"
       style="display: block"
     />
@@ -171,6 +201,5 @@ function cuerpoCorreoNuevoStudent($mail, $token, $studentCode)
     </h4>
   </body>
 </html>
-
     ';
 }

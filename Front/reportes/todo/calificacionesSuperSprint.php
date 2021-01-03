@@ -1,7 +1,7 @@
 <?php
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
-$teacherID=isTeacher();
+$teacherID = isTeacher();
 if (!isset($_POST["grupo"])) {
     header('Location: ../controlCalificaciones.php');
     exit;
@@ -17,8 +17,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../../CSSsJSs/<?=$bootstrap441?>" />
-    <link rel="stylesheet" href="../../CSSsJSs/<?=$kaanbalEssentials?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?= $bootstrap441 ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?= $kaanbalEssentials ?>" />
     <script src="../TableCSVExporter5.js"></script>
 </head>
 
@@ -308,7 +308,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                 <tbody>
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Grupo | Tipo | Fecha </td>
-                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | Super sprint | "?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | Super sprint | " ?></td>
                         <td style="color:rgba(50,50,255,1)"><?php date("l jS \of F Y H:m:s"); ?></td>
                         <?php
                         //Recorreremos todos los subtemas para imprimirlos con su respectivo tema
@@ -339,10 +339,23 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT 
-                        DISTINCT alumno.numero_lista, alumno.id_nombre, alumno_grupo.id_alumno 
-                        FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno 
-                        WHERE alumno_grupo.id_grupo = " . $id_grupo;
+                        $stringQuery = 'SELECT DISTINCT
+                                        alumno.numero_lista,
+                                        nombre.nombre,
+                                        alumno_grupo.id_alumno
+                                        FROM
+                                            (
+                                                (
+                                                    alumno_grupo
+                                                INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno
+                                                )
+                                            INNER JOIN nombre ON alumno.id_nombre = nombre.id_nombre
+                                            )
+                                        WHERE
+                                            alumno_grupo.id_grupo = ' . $id_grupo . '
+                                        ORDER BY
+                                            alumno.numero_lista;
+                                        ';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             array_push($alumnos["numeroLista"], $row[0]);

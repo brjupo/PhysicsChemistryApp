@@ -1,7 +1,7 @@
 <?php
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
-$teacherID=isTeacher();
+$teacherID = isTeacher();
 if (!isset($_POST["grupo"])) {
     header('Location: ../controlCalificaciones.php');
     exit;
@@ -339,11 +339,23 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = 'SELECT 
-                        DISTINCT alumno.numero_lista, alumno.id_nombre, alumno_grupo.id_alumno 
-                        FROM alumno_grupo INNER JOIN alumno 
-                        ON alumno.id_alumno = alumno_grupo.id_alumno 
-                        WHERE alumno_grupo.id_grupo = ' . $id_grupo . ' ORDER BY alumno.numero_lista; ';
+                        $stringQuery = 'SELECT DISTINCT
+                                        alumno.numero_lista,
+                                        nombre.nombre,
+                                        alumno_grupo.id_alumno
+                                        FROM
+                                            (
+                                                (
+                                                    alumno_grupo
+                                                INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno
+                                                )
+                                            INNER JOIN nombre ON alumno.id_nombre = nombre.id_nombre
+                                            )
+                                        WHERE
+                                            alumno_grupo.id_grupo = ' . $id_grupo . '
+                                        ORDER BY
+                                            alumno.numero_lista;
+                                        ';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             array_push($alumnos["numeroLista"], $row[0]);
