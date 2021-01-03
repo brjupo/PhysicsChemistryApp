@@ -1,23 +1,19 @@
 <?php
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
-$teacherID = isTeacher();
-if ($teacherID == "null") {
-  header('Location: https://kaanbal.net/');
-  exit;
-}
+require "../../CSSsJSs/mainCSSsJSs.php";
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
-  <title>Kaanbal</title>
-  <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
-  <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
+    <title>Kaanbal</title>
+    <link rel="stylesheet" href="../../CSSsJSs/<?=$bootstrap441?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?=$kaanbalEssentials?>" />
 </head>
 
 <body>

@@ -1,15 +1,11 @@
 <?php
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
-$teacherID = isTeacher();
-if ($teacherID == "null") {
-    header('Location: https://kaanbal.net/');
-    exit;
-}
 if (!isset($_POST["grupo"])) {
     header('Location: ../controlCalificaciones.php');
     exit;
 }
+require "../../CSSsJSs/mainCSSsJSs.php";
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +16,8 @@ if (!isset($_POST["grupo"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?= $bootstrap441 ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?= $kaanbalEssentials ?>" />
     <script src="../TableCSVExporter5.js"></script>
 </head>
 
@@ -300,7 +296,8 @@ if (!isset($_POST["grupo"])) {
                         ?>
                     </tr>
                     <tr>
-                        <td style="font-weight:600">Matrícula</td>
+                        <td style="font-weight:600">Número de lista</td>
+                        <td style="font-weight:600">Primer nombre</td>
                         <td style="font-weight:600">Diamantes</td>
                         <td style="font-weight:600">Modalidad</td>
                         <?php
@@ -330,18 +327,25 @@ if (!isset($_POST["grupo"])) {
                     <?php
                     //--------------AQUI OBTIENES TODOS LOS ALUMNOS DEL GRUPO
                     $alumnos = array();
-                    $alumnos["matricula"] = array();
+                    //$alumnos["matricula"] = array();
+                    $alumnos["numeroLista"] = array();
+                    $alumnos["primerNombre"] = array();
                     $alumnos["id"] = array();
                     $alumnos["diamantes"] = array();
                     //Crear la lectura en base de datos
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = " . $id_grupo;
+                        $stringQuery = 'SELECT 
+                        DISTINCT alumno.numero_lista, alumno.id_nombre, alumno_grupo.id_alumno 
+                        FROM alumno_grupo INNER JOIN alumno 
+                        ON alumno.id_alumno = alumno_grupo.id_alumno 
+                        WHERE alumno_grupo.id_grupo = ' . $id_grupo . ' ORDER BY alumno.numero_lista; ';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            array_push($alumnos["matricula"], $row[0]);
-                            array_push($alumnos["id"], $row[1]);
+                            array_push($alumnos["numeroLista"], $row[0]);
+                            array_push($alumnos["primerNombre"], $row[1]);
+                            array_push($alumnos["id"], $row[2]);
                             array_push($alumnos["diamantes"], 0);
                         }
                     } catch (PDOException $e) {
@@ -354,12 +358,12 @@ if (!isset($_POST["grupo"])) {
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY matricula ASC;";
+                        $stringQuery = "SELECT a.id_alumno, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY matricula ASC;";
                         $stmt = $conn->query($stringQuery);
-                        $size5 = count($alumnos["matricula"]);
+                        $size5 = count($alumnos["id"]);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             for ($n = 0; $n < $size5; ++$n) {
-                                if ($alumnos["matricula"][$n] == $row[0]) {
+                                if ($alumnos["id"][$n] == $row[0]) {
                                     $alumnos["diamantes"][$n] = $row[1];
                                 }
                             }
@@ -384,7 +388,8 @@ if (!isset($_POST["grupo"])) {
                         //Ahora a rotar los modos
                         for ($p = 0; $p <= $size7; ++$p) {
                             echo '<tr>';
-                            echo '<td>' . $alumnos["matricula"][$m] . '</td>';
+                            echo '<td>' . $alumnos["numeroLista"][$m] . '</td>';
+                            echo '<td>' . $alumnos["primerNombre"][$m] . '</td>';
                             echo '<td>' . $alumnos["diamantes"][$m] . '</td>';
                             echo '<td>' . $modos["nombre"][$p] . '</td>';
                             $tipo = $modos["acronimo"][$p];
