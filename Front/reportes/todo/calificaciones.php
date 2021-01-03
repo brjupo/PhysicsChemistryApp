@@ -279,7 +279,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             <div class="input-group input-group-sm col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <?php
                 date_default_timezone_set("America/Mexico_City");
-                $fileName = $modalidad . "_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
+                $fileName = $modalidad . "_" . $materia . "_" . $grupo . "_" . date("l jS \of F Y");
                 ?>
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">File name:</span>
@@ -303,7 +303,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                 <tbody>
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Grupo | Tipo</td>
-                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | " . $modalidad; ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | " ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $modalidad; ?></td>
                         <?php
                         //Recorreremos todos los subtemas, y guardaremos en leccion[nombre] el nombre de TODOS los subtemas por orden de usuario
                         for ($k = 0; $k < count($lecciones["id"]); $k++) {
@@ -312,7 +313,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     </tr>
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Fecha y Hora</td>
-                        <td style="color:rgba(50,50,255,1)"><?php echo date("Y/m/d H:m:s"); ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo date("l jS \of F Y"); ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo date("H:m:s"); ?></td>
                         <?php
                         for ($k = 0; $k < count($lecciones["id"]); $k++) {
                             echo '<td>' . $lecciones["subtema"][$k] . '</td>';

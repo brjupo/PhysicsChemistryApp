@@ -130,7 +130,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             <table class="table table-striped">
                 <tbody>
                     <tr>
-                        <td>Matricula</td>
+                        <td>Número de lista</td>
+                        <td>Primer nombre</td>
                         <td>Total</td>
                         <td>Práctica</td>
                         <td>Sprint</td>
@@ -142,7 +143,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         try {
                             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = "SELECT alumno.matricula, alumno.acmlrPP, alumno.acmlrSP, 
+                            $stringQuery = "SELECT alumno.numero_lista, alumno.id_nombre, alumno.acmlrPP, alumno.acmlrSP, 
                             alumno.acmlrE, alumno.acmlrSS FROM alumno INNER JOIN alumno_grupo 
                             ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = '".$id_grupo."' 
                             ORDER BY alumno.matricula ";
@@ -150,12 +151,13 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 echo '<tr>';
                                 echo '<td>'.$row[0].'</td>';
-                                $sum = intval($row[1]+$row[2]+$row[3]+$row[4]);
+                                echo '<td>'.$row[1].'</td>';
+                                $sum = intval($row[2]+$row[3]+$row[4]+$row[5]);
                                 echo '<td>'.$sum.'</td>';
-                                echo '<td>'.intval($row[1]).'</td>';
                                 echo '<td>'.intval($row[2]).'</td>';
                                 echo '<td>'.intval($row[3]).'</td>';
                                 echo '<td>'.intval($row[4]).'</td>';
+                                echo '<td>'.intval($row[5]).'</td>';
                                 echo '</tr>';
                             }
                         } catch (PDOException $e) {

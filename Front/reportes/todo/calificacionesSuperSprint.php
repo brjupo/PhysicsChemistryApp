@@ -286,7 +286,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             <div class="input-group input-group-sm col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <?php
                 date_default_timezone_set("America/Mexico_City");
-                $fileName = $tipo . "_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
+                $fileName = $tipo . "_" . $materia . "_" . $grupo . "_" . date("l jS \of F Y");
                 ?>
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">File name:</span>
@@ -308,7 +308,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                 <tbody>
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Grupo | Tipo | Fecha </td>
-                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | Super sprint | " . date("Y/m/d H:m:s"); ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | Super sprint | "?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php date("l jS \of F Y H:m:s"); ?></td>
                         <?php
                         //Recorreremos todos los subtemas para imprimirlos con su respectivo tema
                         for ($k = 0; $k < count($subtemas["id"]); $k++) {

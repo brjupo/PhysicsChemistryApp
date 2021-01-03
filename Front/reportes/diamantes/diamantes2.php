@@ -190,18 +190,22 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Materia</td>
                         <td style="color:rgba(50,50,255,1)"><?php echo $materia; ?></td>
+                        <td style="color:rgba(50,50,255,1)">.</td>
                     </tr>
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Grupo</td>
                         <td style="color:rgba(50,50,255,1)"><?php echo $grupo; ?></td>
+                        <td style="color:rgba(50,50,255,1)">.</td>
                     </tr>
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Fecha</td>
                         <td style="color:rgba(50,50,255,1)"><?php echo date("l jS \of F Y"); ?></td>
+                        <td style="color:rgba(50,50,255,1)">.</td>
                     </tr>
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Hora</td>
                         <td style="color:rgba(50,50,255,1)"><?php echo date("H:m:s"); ?></td>
+                        <td style="color:rgba(50,50,255,1)">.</td>
                     </tr>
                     <tr>
                         <td>Número de lista</td>
