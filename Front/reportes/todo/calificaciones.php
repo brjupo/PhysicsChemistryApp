@@ -1,6 +1,7 @@
 <?php
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
+$teacherID=isTeacher();
 if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     echo '<p>';
     echo $_POST["grupo"];

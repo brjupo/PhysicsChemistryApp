@@ -1,6 +1,7 @@
 <?php
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
+$teacherID=isTeacher();
 if (!isset($_POST["grupo"])) {
     header('Location: ../controlCalificaciones.php');
     exit;

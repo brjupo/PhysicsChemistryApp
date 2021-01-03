@@ -1,6 +1,7 @@
 <?php
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
+$teacherID=isTeacher();
 require "../../CSSsJSs/mainCSSsJSs.php";
 ?>
 
