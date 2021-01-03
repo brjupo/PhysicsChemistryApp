@@ -8,7 +8,7 @@
   <title>Top</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
   <link rel="stylesheet" href="Top.css" />
-  <script src="Top.js"></script>
+  <script src="Top01.js"></script>
 </head>
 
 <body>
@@ -18,25 +18,48 @@
   ?>
   <div class="top">
     <div class="container">
-      <div class="row titulo">
+      <div class="row">
         <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
           <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
         </div>
-        <div class="textCenter col-xs-6 col-sm-6 col-md-6 col-lg-7 col-xl-7">
+        <div class="textCenter col-xs-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
           <p class="Ciencia fuenteTitulo" id="asignaturad"><?= $_SESSION["asignaturaNavegacion"] ?></p>
           <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none"><?= $_SESSION["idAsignatura"] ?></p>
-        </div>
-        <div class="textCenter col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-          <p class="Materia fuenteTitulo"></p>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <button type="button" class="btn btn-primary" id="topGrupalButton">Top grupal</button>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <button type="button" class="btn btn-light" id="topSemestralButton">Top semestral</button>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <button type="button" class="btn btn-light" id="topNacionalButton">Top nacional</button>
+      </div>
+    </div>
+  </div>
 
-  <?php
-  imprimirVistaTopNacional($idMateria);
-  ?>
+  <div id="topGrupal">
+    <?php
+    imprimirVistaTopGrupal($idMateria);
+    ?>
+  </div>
+  <div id="topSemestral" style="display:none;">
+    <?php
+    imprimirVistaTopSemestral($idMateria);
+    ?>
+  </div>
+  <div id="topNacional" style="display:none;">
+    <?php
+    imprimirVistaTopNacional($idMateria);
+    ?>
+  </div>
+
 
 
 
@@ -79,7 +102,7 @@
 </html>
 
 <?php
-function imprimirVistaTopNacional($idMateria)
+function imprimirVistaTopGrupal($idMateria)
 {
   $posicion = 0;
   $avatar = 0;
@@ -87,18 +110,57 @@ function imprimirVistaTopNacional($idMateria)
   //////////////////////////////////////////////CRISTIAN/////////////////////////////////////////////////////////////
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
-  //Obtener el top 5 de alumnos con mayor puntuación
-  /*
-  $strqry = "SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma 
-    FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion 
-    WHERE id_leccion IN (SELECT id_leccion FROM leccion 
-    WHERE id_subtema IN (SELECT id_subtema FROM subtema 
-    WHERE id_tema IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p 
-    ON a.id_usuario = p.id_usuario 
-    WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ?) AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) 
-    ORDER BY suma DESC LIMIT 30";
-    */
-  $strqry='SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma FROM alumno a 
+  //Obtener el top 30 de alumnos con mayor puntuación
+  $strqry = 'SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma FROM alumno a 
+  INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion 
+  WHERE tiempo BETWEEN "2021-01-01" AND "2021-05-31" AND id_leccion 
+  IN (SELECT id_leccion FROM leccion WHERE id_subtema 
+  IN (SELECT id_subtema FROM subtema WHERE id_tema 
+  IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p 
+  ON a.id_usuario = p.id_usuario WHERE a.id_usuario 
+  IN (SELECT id_usuario FROM licencia 
+  WHERE estatus = 1 AND vigencia BETWEEN "2021-01-01" AND "2021-05-31" AND id_asignatura = ?) 
+  AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) ORDER BY suma DESC LIMIT 5;';
+  $statement = mysqli_prepare($con, $strqry);
+  //[ID DE LA ASIGNATURA ACTUAL]
+  mysqli_stmt_bind_param($statement, "i", $idMateria);
+  mysqli_stmt_execute($statement);
+  mysqli_stmt_store_result($statement);
+  mysqli_stmt_bind_result($statement, $id_alumno, $id_usuario, $matricula, $avatar, $suma);
+
+  $arregloTopUsuarios = array();
+
+  $i = 0;
+  while (mysqli_stmt_fetch($statement)) {
+    $arregloTopUsuarios[$i]["id_alumno"] = $id_alumno;
+    $arregloTopUsuarios[$i]["id_usuario"] = $id_usuario;
+    $arregloTopUsuarios[$i]["matricula"] = $matricula;
+    $arregloTopUsuarios[$i]["avatar"] = $avatar;
+    $arregloTopUsuarios[$i]["suma"] = $suma;
+    $i = $i + 1;
+  }
+  for ($i = 0; $i < 5; $i++) {
+    $posicion = $i + 1;
+    $diamantes = $arregloTopUsuarios[$i]["suma"];
+    $matricula = $arregloTopUsuarios[$i]["matricula"];
+    if ($arregloTopUsuarios[$i]["avatar"] == NULL) {
+      $avatar = "avatar.jpg";
+    } else {
+      $avatar = $arregloTopUsuarios[$i]["avatar"];
+    }
+    imprimirPersonaTop($posicion, $avatar, $matricula, $diamantes);
+  }
+}
+function imprimirVistaTopSemestral($idMateria)
+{
+  $posicion = 0;
+  $avatar = 0;
+  $diamantes = 0;
+  //////////////////////////////////////////////CRISTIAN/////////////////////////////////////////////////////////////
+  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+
+  //Obtener el top 30 de alumnos con mayor puntuación
+  $strqry = 'SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma FROM alumno a 
   INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion 
   WHERE tiempo BETWEEN "2021-01-01" AND "2021-05-31" AND id_leccion 
   IN (SELECT id_leccion FROM leccion WHERE id_subtema 
@@ -108,6 +170,54 @@ function imprimirVistaTopNacional($idMateria)
   IN (SELECT id_usuario FROM licencia 
   WHERE estatus = 1 AND vigencia BETWEEN "2021-01-01" AND "2021-05-31" AND id_asignatura = ?) 
   AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) ORDER BY suma DESC LIMIT 30;';
+  $statement = mysqli_prepare($con, $strqry);
+  //[ID DE LA ASIGNATURA ACTUAL]
+  mysqli_stmt_bind_param($statement, "i", $idMateria);
+  mysqli_stmt_execute($statement);
+  mysqli_stmt_store_result($statement);
+  mysqli_stmt_bind_result($statement, $id_alumno, $id_usuario, $matricula, $avatar, $suma);
+
+  $arregloTopUsuarios = array();
+
+  $i = 0;
+  while (mysqli_stmt_fetch($statement)) {
+    $arregloTopUsuarios[$i]["id_alumno"] = $id_alumno;
+    $arregloTopUsuarios[$i]["id_usuario"] = $id_usuario;
+    $arregloTopUsuarios[$i]["matricula"] = $matricula;
+    $arregloTopUsuarios[$i]["avatar"] = $avatar;
+    $arregloTopUsuarios[$i]["suma"] = $suma;
+    $i = $i + 1;
+  }
+  for ($i = 0; $i < 30; $i++) {
+    $posicion = $i + 1;
+    $diamantes = $arregloTopUsuarios[$i]["suma"];
+    $matricula = $arregloTopUsuarios[$i]["matricula"];
+    if ($arregloTopUsuarios[$i]["avatar"] == NULL) {
+      $avatar = "avatar.jpg";
+    } else {
+      $avatar = $arregloTopUsuarios[$i]["avatar"];
+    }
+    imprimirPersonaTop($posicion, $avatar, $matricula, $diamantes);
+  }
+}
+function imprimirVistaTopNacional($idMateria)
+{
+  $posicion = 0;
+  $avatar = 0;
+  $diamantes = 0;
+  //////////////////////////////////////////////CRISTIAN/////////////////////////////////////////////////////////////
+  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
+
+  //Obtener el top 5 de alumnos con mayor puntuación
+
+  $strqry = "SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma 
+    FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion 
+    WHERE id_leccion IN (SELECT id_leccion FROM leccion 
+    WHERE id_subtema IN (SELECT id_subtema FROM subtema 
+    WHERE id_tema IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p 
+    ON a.id_usuario = p.id_usuario 
+    WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ?) AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) 
+    ORDER BY suma DESC LIMIT 30";
   $statement = mysqli_prepare($con, $strqry);
   //[ID DE LA ASIGNATURA ACTUAL]
   mysqli_stmt_bind_param($statement, "i", $idMateria);
