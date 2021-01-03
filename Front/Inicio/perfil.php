@@ -430,7 +430,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-primary" value="Practice, Sprint y Exam" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
+                      <input type="submit" class="btn btn-primary" value="Practice, Sprint & Exam" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
                     </form>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">

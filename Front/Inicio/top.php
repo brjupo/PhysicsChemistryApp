@@ -15,6 +15,7 @@
   <?php
   session_start();
   $idMateria = $_SESSION["idAsignatura"];
+  $idUsuario = $_SESSION["id_usuario"];
   ?>
   <div class="top">
     <div class="container">
@@ -33,20 +34,20 @@
   <div class="container">
     <div class="row" style="margin:3vw;">
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topGrupalButton" style="display:block; margin:auto;">Top grupal</button>
+        <button type="button" class="btn btn-light" id="topGrupalButton" style="display:block; margin:auto;">Top grupal</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light" id="topSemestralButton" style="display:block; margin:auto;">Top semestral</button>
+        <button type="button" class="btn btn-primary" id="topSemestralButton" style="display:block; margin:auto;">Top semestral</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light" id="topNacionalButton" style="display:block; margin:auto;">Top nacional</button>
+        <button type="button" class="btn btn-primary" id="topNacionalButton" style="display:block; margin:auto;">Top nacional</button>
       </div>
     </div>
   </div>
 
   <div id="topGrupal">
     <?php
-    imprimirVistaTopGrupal($idMateria);
+    imprimirVistaTopGrupal($idMateria, $idUsuario);
     ?>
   </div>
   <div id="topSemestral" style="display:none;">
@@ -102,28 +103,23 @@
 </html>
 
 <?php
-function imprimirVistaTopGrupal($idMateria)
+function imprimirVistaTopGrupal($idMateria, $idUsuario)
 {
   $posicion = 0;
   $avatar = 0;
   $diamantes = 0;
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+  //++++++++++++++++++++++OBTENER ID GRUPO+++++++++++++++++++++//
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
   //////////////////////////////////////////////CRISTIAN/////////////////////////////////////////////////////////////
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
-  //Obtener el top 30 de alumnos con mayor puntuación
-  $strqry = 'SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma FROM alumno a 
-  INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion 
-  WHERE tiempo BETWEEN "2021-01-01" AND "2021-05-31" AND id_leccion 
-  IN (SELECT id_leccion FROM leccion WHERE id_subtema 
-  IN (SELECT id_subtema FROM subtema WHERE id_tema 
-  IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p 
-  ON a.id_usuario = p.id_usuario WHERE a.id_usuario 
-  IN (SELECT id_usuario FROM licencia 
-  WHERE estatus = 1 AND vigencia BETWEEN "2021-01-01" AND "2021-05-31" AND id_asignatura = ?) 
-  AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) ORDER BY suma DESC LIMIT 5;';
+  //Obtener el top 5 de alumnos con mayor puntuación
+ $strqry = 'SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma FROM alumno a INNER JOIN( SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN( SELECT id_leccion FROM leccion WHERE id_subtema IN( SELECT id_subtema FROM subtema WHERE id_tema IN( SELECT id_tema FROM tema ) ) ) GROUP BY id_usuario ) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario IN( SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ? ) AND p.id_usuario NOT IN( SELECT id_usuario FROM profesor ) AND a.id_alumno IN( SELECT id_alumno FROM alumno_grupo WHERE id_grupo IN( SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = ? ) ) ) ORDER BY suma DESC LIMIT 5';
   $statement = mysqli_prepare($con, $strqry);
   //[ID DE LA ASIGNATURA ACTUAL]
-  mysqli_stmt_bind_param($statement, "i", $idMateria);
+  mysqli_stmt_bind_param($statement, "i", $idMateria, $idUsuario);
   mysqli_stmt_execute($statement);
   mysqli_stmt_store_result($statement);
   mysqli_stmt_bind_result($statement, $id_alumno, $id_usuario, $matricula, $avatar, $suma);

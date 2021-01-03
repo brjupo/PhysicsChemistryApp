@@ -247,15 +247,15 @@ require "../../servicios/00DDBBVariables.php";
             <div class="textCenter col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <p style="color:rgba(0,0,0,0)">.</p>
               <p>Bienvenido a Kaanbal</p>
-              <p>Para mejor experiencia te recomendamos usar <strong>Chrome o Firefox</strong></p>
+              <!--p>Para mejor experiencia te recomendamos usar <strong>Chrome o Firefox</strong></p-->
               <!--p><a href="https://youtu.be/mPyPKiUa8tc">Tutorial</a></p-->
               <p style="color:rgba(0,0,0,0)">.</p>';
     if ($pagado == 0) {
       echo '
               <!--p>¡Sigue acumulando diamantes! Recuerda <a href="../../../contacto.html">adquirir</a> tu licencia antes del 4 de septiembre.  Seguiremos aquí cuando más nos necesites. </p-->
-              <p>Por seguridad, cerraremos las cuentas que NO hayan cambiado el password</p>
+              <!--p>Por seguridad, cerraremos las cuentas que NO hayan cambiado el password</p>
               <p>Revisa si completaste correctamente el proceso en <a href="../../../contacto.html">pagos</a></p>
-              <p style="color:rgba(0,0,0,0)">.</p>';
+              <p style="color:rgba(0,0,0,0)">.</p-->';
     }
     echo '
             </div>
