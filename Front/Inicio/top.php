@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Top</title>
-  <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
+  <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
   <link rel="stylesheet" href="Top.css" />
-  <script src="Top01.js"></script>
+  <script src="Top02.js"></script>
 </head>
 
 <body>
@@ -19,10 +19,10 @@
   <div class="top">
     <div class="container">
       <div class="row">
-        <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+        <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
           <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
         </div>
-        <div class="textCenter col-xs-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
+        <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
           <p class="Ciencia fuenteTitulo" id="asignaturad"><?= $_SESSION["asignaturaNavegacion"] ?></p>
           <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none"><?= $_SESSION["idAsignatura"] ?></p>
         </div>
@@ -32,13 +32,13 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <button type="button" class="btn btn-primary" id="topGrupalButton">Top grupal</button>
       </div>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <button type="button" class="btn btn-light" id="topSemestralButton">Top semestral</button>
       </div>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <button type="button" class="btn btn-light" id="topNacionalButton">Top nacional</button>
       </div>
     </div>
@@ -66,16 +66,16 @@
   <div class="foot">
     <div class="container">
       <div class="row text-center">
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
           <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
         </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
           <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
         </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
           <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
         </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
           <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
         </div>
       </div>
@@ -83,18 +83,18 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
-      <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11"></div>
-      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"></div>
-      <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"></div>
-      <div class="col-xs-8 col-sm-9 col-md-8 col-lg-8 col-xl-8"></div>
-      <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7"></div>
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"></div>
-      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
-      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
-      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
-      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+      <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11"></div>
+      <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"></div>
+      <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"></div>
+      <div class="col-8 col-sm-9 col-md-8 col-lg-8 col-xl-8"></div>
+      <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7"></div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"></div>
+      <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+      <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+      <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
 </body>
@@ -257,22 +257,22 @@ function imprimirPersonaTop($posicion, $avatar, $ultimosDigitosMatricula, $diama
   echo '
                 <div class="container">
                     <div class="row">
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                             <p class="topNumber">' . $posicion . '</p>
                         </div>
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                             <img src="../CSSsJSs/images/' . $avatar . '" class="avatarTop">
                         </div>
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                             <p class="ID3st">' . $ultimosDigitosMatricula . '</p>
                         </div>
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                             <p class="IDiamonds">' . $diamantes . '</p>
                         </div>
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+                        <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
                             <img src="../CSSsJSs/icons/diamante.svg" class="diamantesTop">
                         </div>
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+                        <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
                         </div>
                     </div>
                 </div>

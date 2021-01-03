@@ -75,17 +75,17 @@ function showTopGrupal() {
   hideAllTops();
   document.getElementById("topGrupal").style.display = "block";
   blueAllButtons();
-  document.getElementById("topGrupalButton").classList.remove('btn-light');
+  document.getElementById("topGrupalButton").classList.add('btn-light');
 }
 function showTopSemestral() {
   hideAllTops();
   document.getElementById("topSemestral").style.display = "block";
   blueAllButtons();
-  document.getElementById("topSemestralButton").classList.remove('btn-light');
+  document.getElementById("topSemestralButton").classList.add('btn-light');
 }
 function showTopNacional() {
   hideAllTops();
   document.getElementById("topNacional").style.display = "block";
   blueAllButtons();
-  document.getElementById("topNacionalButton").classList.remove('btn-light');
+  document.getElementById("topNacionalButton").classList.add('btn-light');
 }
