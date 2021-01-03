@@ -7,7 +7,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Top</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
-  <link rel="stylesheet" href="Top.css" />
+  <link rel="stylesheet" href="Top01.css" />
   <script src="Top03.js"></script>
 </head>
 
@@ -63,7 +63,19 @@
 
 
 
-
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p>.</p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p>.</p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p>.</p>
+      </div>
+    </div>
+  </div>
   <div class="foot">
     <div class="container">
       <div class="row text-center">
@@ -114,16 +126,8 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
   //Obtener el top 5 de alumnos con mayor puntuación
-  $strqry = "SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma FROM alumno a INNER JOIN( SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN( SELECT id_leccion FROM leccion WHERE id_subtema IN( SELECT id_subtema FROM subtema WHERE id_tema IN( SELECT id_tema FROM tema ) ) ) GROUP BY id_usuario ) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario IN( SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ". $idMateria . " ) AND p.id_usuario NOT IN( SELECT id_usuario FROM profesor ) AND a.id_alumno IN( SELECT id_alumno FROM alumno_grupo WHERE id_grupo IN( SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = ". $idUsuario . " ) ) ) ORDER BY suma DESC LIMIT 5";
-  echo '<p>.</p>';
-  echo '<p>' . $idMateria . '</p>';
-  echo '<p>.</p>';
-  echo '<p>' . $idUsuario . '</p>';
-  echo '<p>.</p>';
-  echo '<p>QUERY: ' . $strqry . ' </p>';
+  $strqry = "SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma FROM alumno a INNER JOIN( SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN( SELECT id_leccion FROM leccion WHERE id_subtema IN( SELECT id_subtema FROM subtema WHERE id_tema IN( SELECT id_tema FROM tema ) ) ) GROUP BY id_usuario ) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario IN( SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = " . $idMateria . " ) AND p.id_usuario NOT IN( SELECT id_usuario FROM profesor ) AND a.id_alumno IN( SELECT id_alumno FROM alumno_grupo WHERE id_grupo IN( SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = " . $idUsuario . " ) ) ) ORDER BY suma DESC LIMIT 5";
   $statement = mysqli_prepare($con, $strqry);
-  //[ID DE LA ASIGNATURA ACTUAL]
-  //mysqli_stmt_bind_param($statement, "i", $idMateria, $idUsuario);
   mysqli_stmt_execute($statement);
   mysqli_stmt_store_result($statement);
   mysqli_stmt_bind_result($statement, $id_alumno, $id_usuario, $matricula, $avatar, $suma);

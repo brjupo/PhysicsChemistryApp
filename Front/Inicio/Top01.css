@@ -419,8 +419,8 @@ p {
 .ID3st{  
   font-family: "Monse";
   text-align: center;
-  margin: 2.5vh 0px;
-  font-size: 2vh;
+  margin: 3vh 0px;
+  font-size: 4vw;
 }
 .IDiamonds{
   font-family: "Monse";
@@ -452,8 +452,8 @@ p {
   .ID3st{  
     font-family: "Monse";
     text-align: center;
-    margin: 3vh 0px;
-    font-size: 8vh;
+    margin: 2vh 0px;
+    font-size: 3vw;
   }
   .IDiamonds{
     font-family: "Monse";
