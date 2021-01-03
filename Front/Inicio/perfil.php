@@ -181,7 +181,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '
           <div class="top">
             <div class="container">
-              <div class="row titulo">
+              <div class="row">
                 <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
                   <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
                 </div>
@@ -1119,10 +1119,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '
       <div class="container">
         <div class="row">
-          <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+          <div class="d-none d-md-block col-md-2 col-lg-2 col-xl-2">
           </div>
-          <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-            <div class="input-group">
+          <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+            <div class="input-group" style="display:none;">
               <div class="input-group-prepend">
                 <span class="input-group-text">User ID</span>
               </div>
@@ -1136,12 +1136,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = 'SELECT id_grupo, codigo FROM grupo WHERE id_asignatura = '.$idMateria.' AND id_grupo IN (SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN (SELECT id_alumno FROM alumno WHERE id_usuario = ' . $iduser . ') ) LIMIT 1';
+      $stringQuery = 'SELECT id_grupo, codigo FROM grupo WHERE id_asignatura = ' . $idMateria . ' AND id_grupo IN (SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN (SELECT id_alumno FROM alumno WHERE id_usuario = ' . $iduser . ') ) LIMIT 1';
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         echo '
             <p style="color:rgba(0,0,0,0)">.</p>
-            <div class="input-group">
+            <div class="input-group" style="display:none;">
               <div class="input-group-prepend">
                 <span class="input-group-text">Group code</span>
                 <span class="input-group-text" id="idGroupCode">' . $row[0] . '</span>
@@ -1223,7 +1223,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
     echo '    </select>
             </div>
-            <p style="font-size:x-small; display:block; margin:auto; ">If your name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+            <p style="font-size:x-small; text-align:denter ">If your name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
           ';
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group input-group-sm">
@@ -1234,7 +1234,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           ';
     echo '
           </div>
-          <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+          <div class="d-none d-md-block col-md-2 col-lg-2 col-xl-2">
           </div>
         </div>
       </div>
