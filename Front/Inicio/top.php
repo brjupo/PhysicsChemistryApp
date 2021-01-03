@@ -117,44 +117,25 @@
 <?php
 function imprimirVistaTopGrupal($idMateria, $idUsuario)
 {
-  $posicion = 0;
-  $avatar = 0;
-  $diamantes = 0;
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   //++++++++++++++++++OBTENER TOP 5 DEL GRUPO +++++++++++++++++//
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-
-  //Obtener el top 5 de alumnos con mayor puntuación
- $strqry = 'SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma FROM alumno a INNER JOIN( SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN( SELECT id_leccion FROM leccion WHERE id_subtema IN( SELECT id_subtema FROM subtema WHERE id_tema IN( SELECT id_tema FROM tema ) ) ) GROUP BY id_usuario ) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario IN( SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = '.$idMateria.' ) AND p.id_usuario NOT IN( SELECT id_usuario FROM profesor ) AND a.id_alumno IN( SELECT id_alumno FROM alumno_grupo WHERE id_grupo IN( SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = '.$idUsuario.' ) AND id_grupo IN( SELECT id_grupo FROM grupo WHERE id_asignatura = '.$idMateria.' ) ) ) ORDER BY suma DESC LIMIT 30';
+  $strqry = 'SELECT a.matricula, a.avatar, suma FROM alumno a INNER JOIN( SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN( SELECT id_leccion FROM leccion WHERE id_subtema IN( SELECT id_subtema FROM subtema WHERE id_tema IN( SELECT id_tema FROM tema ) ) ) GROUP BY id_usuario ) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario IN( SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ' . $idMateria . ' ) AND p.id_usuario NOT IN( SELECT id_usuario FROM profesor ) AND a.id_alumno IN( SELECT id_alumno FROM alumno_grupo WHERE id_grupo IN( SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = ' . $idUsuario . ' ) AND id_grupo IN( SELECT id_grupo FROM grupo WHERE id_asignatura = ' . $idMateria . ' ) ) ) ORDER BY suma DESC LIMIT 30';
   $statement = mysqli_prepare($con, $strqry);
   mysqli_stmt_execute($statement);
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_alumno, $id_usuario, $matricula, $avatar, $suma);
+  mysqli_stmt_bind_result($statement, $matricula, $avatar, $sumaDiamantes);
 
-  $arregloTopUsuarios = array();
-
-  $i = 0;
+  $posicion = 1;
   while (mysqli_stmt_fetch($statement)) {
-    $arregloTopUsuarios[$i]["id_alumno"] = $id_alumno;
-    $arregloTopUsuarios[$i]["id_usuario"] = $id_usuario;
-    $arregloTopUsuarios[$i]["matricula"] = $matricula;
-    $arregloTopUsuarios[$i]["avatar"] = $avatar;
-    $arregloTopUsuarios[$i]["suma"] = $suma;
-    $i = $i + 1;
-  }
-  for ($i = 0; $i < 5; $i++) {
-    $posicion = $i + 1;
-    $diamantes = $arregloTopUsuarios[$i]["suma"];
-    $matricula = $arregloTopUsuarios[$i]["matricula"];
-    if ($arregloTopUsuarios[$i]["avatar"] == NULL) {
+    if ($avatar == NULL) {
       $avatar = "avatar.jpg";
-    } else {
-      $avatar = $arregloTopUsuarios[$i]["avatar"];
     }
-    imprimirPersonaTop($posicion, $avatar, $matricula, $diamantes);
+    imprimirPersonaTop($posicion, $avatar, $matricula, $sumaDiamantes);
   }
 }
+
 function imprimirVistaTopSemestral($idMateria)
 {
   $posicion = 0;
