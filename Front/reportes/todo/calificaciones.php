@@ -1,7 +1,7 @@
 <?php
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
-$teacherID=isTeacher();
+$teacherID = isTeacher();
 if (!isset($_POST["grupo"]) && !isset($_POST["modalidad"])) {
     echo '<p>';
     echo $_POST["grupo"];
@@ -20,8 +20,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../../CSSsJSs/<?=$bootstrap441?>" />
-    <link rel="stylesheet" href="../../CSSsJSs/<?=$kaanbalEssentials?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?= $bootstrap441 ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?= $kaanbalEssentials ?>" />
     <script src="../TableCSVExporter5.js"></script>
 </head>
 
@@ -76,8 +76,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
         $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo 
         FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u 
         JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor 
-        AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo . 
-        " AND pu.tipo = '" . $tipo . "';";
+        AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo .
+            " AND pu.tipo = '" . $tipo . "';";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Materia, mail, grupo, modalidad
@@ -111,12 +111,20 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         <tr class="table-light">
                             <td>Modalidad</td>
                             <td>
-                                <?php 
-                                if($modalidad=="PP"){$modalidad="Práctica";}
-                                if($modalidad=="SP"){$modalidad="Sprint";}
-                                if($modalidad=="SG"){$modalidad="Super Sprint";}
-                                if($modalidad=="E"){$modalidad="Examen";}
-                                echo $modalidad; 
+                                <?php
+                                if ($modalidad == "PP") {
+                                    $modalidad = "Práctica";
+                                }
+                                if ($modalidad == "SP") {
+                                    $modalidad = "Sprint";
+                                }
+                                if ($modalidad == "SG") {
+                                    $modalidad = "Super Sprint";
+                                }
+                                if ($modalidad == "E") {
+                                    $modalidad = "Examen";
+                                }
+                                echo $modalidad;
                                 ?>
                             </td>
                         </tr>
@@ -291,7 +299,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     <!--IMRPIMIR LA LISTA DE LECCIONES, SUBTEMA Y TEMAS-->
     <div class="container">
         <div class="row">
-            <table  id="dataTable" class="table table-striped">
+            <table id="dataTable" class="table table-striped">
                 <tbody>
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Grupo | Tipo</td>
@@ -312,7 +320,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         ?>
                     </tr>
                     <tr>
-                        <td style="font-weight:600">Matrícula</td>
+                        <td style="font-weight:600">Número de lista</td>
+                        <td style="font-weight:600">Primer nombre</td>
                         <td style="font-weight:600">Diamantes</td>
                         <?php
                         //Este for lo aprovecharemos para obtener el total de preguntas de cada leccion
@@ -340,18 +349,24 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     <?php
                     //--------------AQUI OBTIENES TODOS LOS ALUMNOS DEL GRUPO
                     $alumnos = array();
-                    $alumnos["matricula"] = array();
+                    //$alumnos["matricula"] = array();
+                    $alumnos["numeroLista"] = array();
+                    $alumnos["primerNombre"] = array();
                     $alumnos["id"] = array();
                     $alumnos["diamantes"] = array();
                     //Crear la lectura en base de datos
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = " . $id_grupo;
+                        $stringQuery = "SELECT 
+                        DISTINCT alumno.numero_lista, alumno.id_nombre, alumno_grupo.id_alumno 
+                        FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno 
+                        WHERE alumno_grupo.id_grupo = " . $id_grupo. ' ORDER BY alumno.numero_lista; ';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            array_push($alumnos["matricula"], $row[0]);
-                            array_push($alumnos["id"], $row[1]);
+                            array_push($alumnos["numeroLista"], $row[0]);
+                            array_push($alumnos["primerNombre"], $row[1]);
+                            array_push($alumnos["id"], $row[2]);
                             array_push($alumnos["diamantes"], 0);
                         }
                     } catch (PDOException $e) {
@@ -364,11 +379,12 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY matricula ASC;";
+                        $stringQuery = "SELECT a.id_alumno, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY matricula ASC;";
                         $stmt = $conn->query($stringQuery);
+                        $cantidadAlumnos=count($alumnos["id"]);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            for ($n = 0; $n < count($alumnos["matricula"]); $n++) {
-                                if ($alumnos["matricula"][$n] == $row[0]) {
+                            for ($n = 0; $n < $cantidadAlumnos; $n++) {
+                                if ($alumnos["id"][$n] == $row[0]) {
                                     $alumnos["diamantes"][$n] = $row[1];
                                 }
                             }
@@ -381,9 +397,10 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     ?>
                     <?php
                     //-------------AQUI OBTIENES LA CALIFICACION DE LOS ALUMNOS, SI NO SE ENCUENTRA IMPRIME NP
-                    for ($m = 0; $m < count($alumnos["id"]); $m++) {
+                    for ($m = 0; $m < $cantidadAlumnos; $m++) {
                         echo '<tr>';
-                        echo '<td>' . $alumnos["matricula"][$m] . '</td>';
+                        echo '<td>' . $alumnos["numeroLista"][$m] . '</td>';
+                        echo '<td>' . $alumnos["primerNombre"][$m] . '</td>';
                         echo '<td>' . $alumnos["diamantes"][$m] . '</td>';
                         for ($l = 0; $l < count($lecciones["id"]); $l++) {
                             $entre = 0;

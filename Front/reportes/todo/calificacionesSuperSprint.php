@@ -316,7 +316,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         } ?>
                     </tr>
                     <tr>
-                        <td style="font-weight:600">Matrícula</td>
+                        <td style="font-weight:600">Número de lista</td>
+                        <td style="font-weight:600">Primer nombre</td>
                         <td style="font-weight:600">Diamantes</td>
                         <?php
                         for ($k = 0; $k < count($subtemas["id"]); $k++) {
@@ -328,18 +329,24 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     <?php
                     //--------------AQUI OBTIENES TODOS LOS ALUMNOS DEL GRUPO
                     $alumnos = array();
-                    $alumnos["matricula"] = array();
+                    //$alumnos["matricula"] = array();
+                    $alumnos["numeroLista"] = array();
+                    $alumnos["primerNombre"] = array();
                     $alumnos["id"] = array();
                     $alumnos["diamantes"] = array();
                     //Crear la lectura en base de datos
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = " . $id_grupo;
+                        $stringQuery = "SELECT 
+                        DISTINCT alumno.numero_lista, alumno.id_nombre, alumno_grupo.id_alumno 
+                        FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno 
+                        WHERE alumno_grupo.id_grupo = " . $id_grupo;
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            array_push($alumnos["matricula"], $row[0]);
-                            array_push($alumnos["id"], $row[1]);
+                            array_push($alumnos["numeroLista"], $row[0]);
+                            array_push($alumnos["primerNombre"], $row[1]);
+                            array_push($alumnos["id"], $row[2]);
                             array_push($alumnos["diamantes"], 0);
                         }
                     } catch (PDOException $e) {
@@ -352,11 +359,11 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = $id_grupo ) GROUP BY a.matricula ORDER BY matricula ASC";
+                        $stringQuery = "SELECT a.id_alumno, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = $id_grupo ) GROUP BY a.matricula ORDER BY matricula ASC";
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            for ($n = 0; $n < count($alumnos["matricula"]); $n++) {
-                                if ($alumnos["matricula"][$n] == $row[0]) {
+                            for ($n = 0; $n < count($alumnos["id"]); $n++) {
+                                if ($alumnos["id"][$n] == $row[0]) {
                                     $alumnos["diamantes"][$n] = $row[1];
                                 }
                             }
@@ -371,7 +378,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     //-------------AQUI OBTIENES LA CALIFICACION DE LOS ALUMNOS, SI NO SE ENCUENTRA IMPRIME NP
                     for ($m = 0; $m < count($alumnos["id"]); $m++) {
                         echo '<tr>';
-                        echo '<td>' . $alumnos["matricula"][$m] . '</td>';
+                        echo '<td>' . $alumnos["numeroLista"][$m] . '</td>';
+                        echo '<td>' . $alumnos["primerNombre"][$m] . '</td>';
                         echo '<td>' . $alumnos["diamantes"][$m] . '</td>';
                         for ($l = 0; $l < count($subtemas["id"]); $l++) {
                             $entre = 0;
