@@ -138,14 +138,9 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
 
 function imprimirVistaTopSemestral($idMateria)
 {
-  $posicion = 0;
-  $avatar = 0;
-  $diamantes = 0;
-  //////////////////////////////////////////////CRISTIAN/////////////////////////////////////////////////////////////
+  //Obtener el top 30 de alumnos con mayor puntuación del semestre
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-
-  //Obtener el top 30 de alumnos con mayor puntuación
-  $strqry = 'SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma FROM alumno a 
+  $strqry = 'SELECT a.matricula, a.avatar, suma FROM alumno a 
   INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion 
   WHERE tiempo BETWEEN "2021-01-01" AND "2021-05-31" AND id_leccion 
   IN (SELECT id_leccion FROM leccion WHERE id_subtema 
@@ -156,46 +151,25 @@ function imprimirVistaTopSemestral($idMateria)
   WHERE estatus = 1 AND vigencia BETWEEN "2021-01-01" AND "2021-05-31" AND id_asignatura = ?) 
   AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) ORDER BY suma DESC LIMIT 30;';
   $statement = mysqli_prepare($con, $strqry);
-  //[ID DE LA ASIGNATURA ACTUAL]
   mysqli_stmt_bind_param($statement, "i", $idMateria);
   mysqli_stmt_execute($statement);
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_alumno, $id_usuario, $matricula, $avatar, $suma);
+  mysqli_stmt_bind_result($statement, $matricula, $avatar, $sumaDiamantes);
 
-  $arregloTopUsuarios = array();
-
-  $i = 0;
+  $posicion = 1;
   while (mysqli_stmt_fetch($statement)) {
-    $arregloTopUsuarios[$i]["id_alumno"] = $id_alumno;
-    $arregloTopUsuarios[$i]["id_usuario"] = $id_usuario;
-    $arregloTopUsuarios[$i]["matricula"] = $matricula;
-    $arregloTopUsuarios[$i]["avatar"] = $avatar;
-    $arregloTopUsuarios[$i]["suma"] = $suma;
-    $i = $i + 1;
-  }
-  for ($i = 0; $i < 30; $i++) {
-    $posicion = $i + 1;
-    $diamantes = $arregloTopUsuarios[$i]["suma"];
-    $matricula = $arregloTopUsuarios[$i]["matricula"];
-    if ($arregloTopUsuarios[$i]["avatar"] == NULL) {
+    if ($avatar == NULL) {
       $avatar = "avatar.jpg";
-    } else {
-      $avatar = $arregloTopUsuarios[$i]["avatar"];
     }
-    imprimirPersonaTop($posicion, $avatar, $matricula, $diamantes);
+    imprimirPersonaTop($posicion, $avatar, $matricula, $sumaDiamantes);
   }
 }
+
 function imprimirVistaTopNacional($idMateria)
 {
-  $posicion = 0;
-  $avatar = 0;
-  $diamantes = 0;
-  //////////////////////////////////////////////CRISTIAN/////////////////////////////////////////////////////////////
+  //Obtener el top 30 de alumnos con mayor puntuación
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-
-  //Obtener el top 5 de alumnos con mayor puntuación
-
-  $strqry = "SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma 
+  $strqry = "SELECT a.matricula, a.avatar, suma 
     FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion 
     WHERE id_leccion IN (SELECT id_leccion FROM leccion 
     WHERE id_subtema IN (SELECT id_subtema FROM subtema 
@@ -204,33 +178,17 @@ function imprimirVistaTopNacional($idMateria)
     WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ?) AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) 
     ORDER BY suma DESC LIMIT 30";
   $statement = mysqli_prepare($con, $strqry);
-  //[ID DE LA ASIGNATURA ACTUAL]
   mysqli_stmt_bind_param($statement, "i", $idMateria);
   mysqli_stmt_execute($statement);
   mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $id_alumno, $id_usuario, $matricula, $avatar, $suma);
+  mysqli_stmt_bind_result($statement, $matricula, $avatar, $sumaDiamantes);
 
-  $arregloTopUsuarios = array();
-
-  $i = 0;
+  $posicion = 1;
   while (mysqli_stmt_fetch($statement)) {
-    $arregloTopUsuarios[$i]["id_alumno"] = $id_alumno;
-    $arregloTopUsuarios[$i]["id_usuario"] = $id_usuario;
-    $arregloTopUsuarios[$i]["matricula"] = $matricula;
-    $arregloTopUsuarios[$i]["avatar"] = $avatar;
-    $arregloTopUsuarios[$i]["suma"] = $suma;
-    $i = $i + 1;
-  }
-  for ($i = 0; $i < 30; $i++) {
-    $posicion = $i + 1;
-    $diamantes = $arregloTopUsuarios[$i]["suma"];
-    $matricula = $arregloTopUsuarios[$i]["matricula"];
-    if ($arregloTopUsuarios[$i]["avatar"] == NULL) {
+    if ($avatar == NULL) {
       $avatar = "avatar.jpg";
-    } else {
-      $avatar = $arregloTopUsuarios[$i]["avatar"];
     }
-    imprimirPersonaTop($posicion, $avatar, $matricula, $diamantes);
+    imprimirPersonaTop($posicion, $avatar, $matricula, $sumaDiamantes);
   }
 }
 ?>
