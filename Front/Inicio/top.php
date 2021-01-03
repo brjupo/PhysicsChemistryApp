@@ -88,6 +88,7 @@ function imprimirVistaTopNacional($idMateria)
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
   //Obtener el top 5 de alumnos con mayor puntuación
+  /*
   $strqry = "SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma 
     FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion 
     WHERE id_leccion IN (SELECT id_leccion FROM leccion 
@@ -96,6 +97,17 @@ function imprimirVistaTopNacional($idMateria)
     ON a.id_usuario = p.id_usuario 
     WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ?) AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) 
     ORDER BY suma DESC LIMIT 30";
+    */
+  $strqry='SELECT a.id_alumno, a.id_usuario, a.matricula, a.avatar, suma FROM alumno a 
+  INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion 
+  WHERE tiempo BETWEEN "2021-01-01" AND "2021-05-31" AND id_leccion 
+  IN (SELECT id_leccion FROM leccion WHERE id_subtema 
+  IN (SELECT id_subtema FROM subtema WHERE id_tema 
+  IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p 
+  ON a.id_usuario = p.id_usuario WHERE a.id_usuario 
+  IN (SELECT id_usuario FROM licencia 
+  WHERE estatus = 1 AND vigencia BETWEEN "2021-01-01" AND "2021-05-31" AND id_asignatura = ?) 
+  AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) ORDER BY suma DESC LIMIT 30;';
   $statement = mysqli_prepare($con, $strqry);
   //[ID DE LA ASIGNATURA ACTUAL]
   mysqli_stmt_bind_param($statement, "i", $idMateria);
