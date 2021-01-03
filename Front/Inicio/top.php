@@ -8,7 +8,7 @@
   <title>Top</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
   <link rel="stylesheet" href="Top.css" />
-  <script src="Top02.js"></script>
+  <script src="Top03.js"></script>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
   </div>
 
   <div class="container">
-    <div class="row" style="margin:10vw;">
+    <div class="row" style="margin:3vw;">
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <button type="button" class="btn btn-primary" id="topGrupalButton" style="display:block; margin:auto;">Top grupal</button>
       </div>
