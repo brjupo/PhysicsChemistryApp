@@ -109,10 +109,8 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
   $avatar = 0;
   $diamantes = 0;
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  //++++++++++++++++++++++OBTENER ID GRUPO+++++++++++++++++++++//
+  //++++++++++++++++++OBTENER TOP 5 DEL GRUPO +++++++++++++++++//
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-
-  //////////////////////////////////////////////CRISTIAN/////////////////////////////////////////////////////////////
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
   //Obtener el top 5 de alumnos con mayor puntuación
