@@ -274,7 +274,7 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
                                     $calificacion = intval($calificacion / 3);
                                     //echo '<td>';
                                     echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$subtemas["nombre"][$l]];
-                                    echo $calificacion . ' idSub:' . $subtemas["id"][$l] . ' </td>';
+                                    echo ' Calificación: '. $calificacion . ' idSub:' . $subtemas["id"][$l] . ' </td>';
                                 }
                                 if ($entre == 0) {
                                     echo '<td style="color:red;">NP</td>';
