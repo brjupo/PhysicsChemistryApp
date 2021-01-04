@@ -71,7 +71,7 @@ if (false) {
                   $getAsignaturaID = new queryToDDBB("SELECT id_asignatura FROM grupo WHERE id_grupo= '" . $gettedGroup . "';");
                   $gettedAsignaturaID = $getAsignaturaID->read();
 
-                  $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia) VALUES (" . intval($gettedStudentID) . "," . intval($gettedAsignaturaID) . " , '2021-12-31 23:59:59');");
+                  $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia, pagado, estatus) VALUES (" . intval($gettedStudentID) . "," . intval($gettedAsignaturaID) . " , '2021-12-31 23:59:59',1,1);");
                   $addedStudentInLicenses = $addStudentInLicenses->write();
                   if ($addedAlumnoGrupot != "success") {
                     $response["response"] = "Error al asociar grupo";
