@@ -26,6 +26,7 @@ document.addEventListener("click", function (evt) {
       do_logout();
       return;
     }
+    /*
     if (targetElement == grupal) {
       showTopGrupal();
       return;
@@ -38,6 +39,7 @@ document.addEventListener("click", function (evt) {
       showTopNacional();
       return;
     }
+    */
     // Go up the DOM
     targetElement = targetElement.parentNode;
   } while (targetElement);

@@ -34,10 +34,10 @@
   <div class="container">
     <div class="row" style="margin:3vw;">
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light" id="topGrupalButton" style="display:block; margin:auto;"  >Top grupal</button>
+        <button type="button" class="btn btn-primary" id="topGrupalButton" style="display:block; margin:auto;" onclick='location.href="top.php"'>Top grupal</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topSemestralButton" style="display:block; margin:auto;" onclick='location.href="topS.php"'>Top semestral</button>
+        <button type="button" class="btn btn-light" id="topSemestralButton" style="display:block; margin:auto;" >Top semestral</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <button type="button" class="btn btn-primary" id="topNacionalButton" style="display:block; margin:auto;" onclick='location.href="topN.php"'>Top nacional</button>
@@ -45,9 +45,9 @@
     </div>
   </div>
 
-  <div id="topGrupal">
+  <div id="topSemestral" style="display:none;">
     <?php
-    imprimirVistaTopGrupal($idMateria, $idUsuario);
+    imprimirVistaTopSemestral($idMateria);
     ?>
   </div>
 
@@ -105,17 +105,23 @@
 </html>
 
 <?php
-function imprimirVistaTopGrupal($idMateria, $idUsuario)
+
+function imprimirVistaTopSemestral($idMateria)
 {
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  //++++++++++++++++++OBTENER TOP 5 DEL GRUPO +++++++++++++++++//
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+  //Obtener el top 30 de alumnos con mayor puntuación del semestre
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  /*
-  $strqry = 'SELECT a.matricula, a.avatar, suma FROM alumno a INNER JOIN( SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN( SELECT id_leccion FROM leccion WHERE id_subtema IN( SELECT id_subtema FROM subtema WHERE id_tema IN( SELECT id_tema FROM tema ) ) ) GROUP BY id_usuario ) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario IN( SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ' . $idMateria . ' ) AND p.id_usuario NOT IN( SELECT id_usuario FROM profesor ) AND a.id_alumno IN( SELECT id_alumno FROM alumno_grupo WHERE id_grupo IN( SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = ' . $idUsuario . ' ) AND id_grupo IN( SELECT id_grupo FROM grupo WHERE id_asignatura = ' . $idMateria . ' ) ) ) ORDER BY suma DESC LIMIT 30';
-  */
-  $strqry = 'SELECT a.matricula, a.avatar, suma FROM alumno a INNER JOIN( SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN( SELECT id_leccion FROM leccion WHERE id_subtema IN( SELECT id_subtema FROM subtema WHERE id_tema IN( SELECT id_tema FROM tema ) ) ) GROUP BY id_usuario ) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario IN( SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ' . $idMateria . ' ) AND p.id_usuario NOT IN( SELECT id_usuario FROM profesor ) AND a.id_alumno IN( SELECT id_alumno FROM alumno_grupo WHERE id_grupo IN( SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = ' . $idUsuario . ' ) ) ) ORDER BY suma DESC LIMIT 30';
+  $strqry = 'SELECT a.matricula, a.avatar, suma FROM alumno a 
+  INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion 
+  WHERE tiempo BETWEEN "2021-01-01" AND "2021-05-31" AND id_leccion 
+  IN (SELECT id_leccion FROM leccion WHERE id_subtema 
+  IN (SELECT id_subtema FROM subtema WHERE id_tema 
+  IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p 
+  ON a.id_usuario = p.id_usuario WHERE a.id_usuario 
+  IN (SELECT id_usuario FROM licencia 
+  WHERE estatus = 1 AND id_asignatura = ?) 
+  AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) ORDER BY suma DESC LIMIT 30;';
   $statement = mysqli_prepare($con, $strqry);
+  mysqli_stmt_bind_param($statement, "i", $idMateria);
   mysqli_stmt_execute($statement);
   mysqli_stmt_store_result($statement);
   mysqli_stmt_bind_result($statement, $matricula, $avatar, $sumaDiamantes);
@@ -129,6 +135,7 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
     $posicion = $posicion + 1;
   }
 }
+
 
 ?>
 
