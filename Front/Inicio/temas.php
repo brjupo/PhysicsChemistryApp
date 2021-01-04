@@ -11,7 +11,7 @@ require "../../servicios/00DDBBVariables.php";
   <title>Temas</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
   <link rel="stylesheet" href="Temas.css" />
-  <script src="temas.js"></script>
+  <script src="temas001.js"></script>
 </head>
 
 <body>
