@@ -6,9 +6,8 @@ if ($staffID == "null") {
     header('Location: https://kaanbal.net/');
     exit;
 }
+require "../CSSsJSs/mainCSSsJSs.php";
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -18,8 +17,8 @@ if ($staffID == "null") {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials10.css" />
+    <link rel="stylesheet" href="../CSSsJSs/<?=$bootstrap441?>" />
+    <link rel="stylesheet" href="../CSSsJSs/<?=$kaanbalEssentials?>" />
 </head>
 
 <body>

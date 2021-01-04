@@ -35,7 +35,7 @@ function profilev() {
 }
 function topv() {
   var asignatura = document.getElementById("asignatura").innerHTML;
-  var url = "top.php?asignatura=";
+  var url = "topS.php?asignatura=";
   location.replace(url.concat(asignatura));
 }
 function do_logout() {
