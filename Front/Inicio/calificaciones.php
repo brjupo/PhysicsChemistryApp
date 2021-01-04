@@ -16,9 +16,7 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
 $mailUsuario = $_SESSION["mail"];
 $idAsignatura = $_SESSION["idAsignatura"];
 
-//ESTO ESTÁ DLV, SOLO APLICA PARA ALUMNOS CON UNA SOLA LICENCIA
-//REPETIRLO SI LLEGA A APLICAR QUE SE TIENE MAS DE UNA LICENCIA
-
+require "../CSSsJSs/mainCSSsJSs.php";
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +27,8 @@ $idAsignatura = $_SESSION["idAsignatura"];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials10.css" />
+    <link rel="stylesheet" href="../CSSsJSs/<?=$bootstrap441?>" />
+    <link rel="stylesheet" href="../CSSsJSs/<?=$kaanbalEssentials?>" />
 </head>
 
 <body>
