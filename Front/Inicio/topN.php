@@ -6,12 +6,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
-    <title>Kaanbal</title>
-    <link rel="stylesheet" href="../CSSsJSs/<?=$bootstrap441?>" />
-    <link rel="stylesheet" href="../CSSsJSs/<?=$kaanbalEssentials?>" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
+  <title>Kaanbal</title>
+  <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap441 ?>" />
+  <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
   <link rel="stylesheet" href="Top01.css" />
   <script src="Top03.js"></script>
 </head>
@@ -45,7 +45,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
         <button type="button" class="btn btn-primary" id="topSemestralButton" style="display:block; margin:auto;" onclick='location.href="topS.php"'>Top semestral</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light" id="topNacionalButton" style="display:block; margin:auto;" >Top nacional</button>
+        <button type="button" class="btn btn-light" id="topNacionalButton" style="display:block; margin:auto;">Top nacional</button>
       </div>
     </div>
   </div>
@@ -115,14 +115,7 @@ function imprimirVistaTopNacional($idMateria)
 {
   //Obtener el top 30 de alumnos con mayor puntuación
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $strqry = "SELECT a.matricula, a.avatar, suma 
-    FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion 
-    WHERE id_leccion IN (SELECT id_leccion FROM leccion 
-    WHERE id_subtema IN (SELECT id_subtema FROM subtema 
-    WHERE id_tema IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p 
-    ON a.id_usuario = p.id_usuario 
-    WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ?) AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) 
-    ORDER BY suma DESC LIMIT 30";
+  $strqry = "SELECT n.nombre, a.avatar, suma FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p JOIN nombre n ON a.id_usuario = p.id_usuario AND a.id_nombre = n.id_nombre WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ?) AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) ORDER BY suma DESC LIMIT 30";
   $statement = mysqli_prepare($con, $strqry);
   mysqli_stmt_bind_param($statement, "i", $idMateria);
   mysqli_stmt_execute($statement);
