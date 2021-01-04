@@ -39,13 +39,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <div class="container">
     <div class="row" style="margin:3vw;">
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light" id="topGrupalButton" style="display:block; margin:auto;"  >Top grupal</button>
+        <button type="button" class="btn btn-light" id="topGrupalButton" style="display:block; margin:auto;"  >Class Top</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topSemestralButton" style="display:block; margin:auto;" onclick='location.href="topS.php"'>Top semestral</button>
+        <button type="button" class="btn btn-primary" id="topSemestralButton" style="display:block; margin:auto;" onclick='location.href="topS.php"'>Semester Top</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topNacionalButton" style="display:block; margin:auto;" onclick='location.href="topN.php"'>Top nacional</button>
+        <button type="button" class="btn btn-primary" id="topNacionalButton" style="display:block; margin:auto;" onclick='location.href="topN.php"'>National Top</button>
       </div>
     </div>
   </div>
