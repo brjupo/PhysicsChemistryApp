@@ -45,7 +45,7 @@
     </div>
   </div>
 
-  <div id="topNacional" style="display:none;">
+  <div id="topNacional">
     <?php
     imprimirVistaTopNacional($idMateria);
     ?>

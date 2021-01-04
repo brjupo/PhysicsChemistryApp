@@ -45,7 +45,7 @@
     </div>
   </div>
 
-  <div id="topSemestral" style="display:none;">
+  <div id="topSemestral">
     <?php
     imprimirVistaTopSemestral($idMateria);
     ?>
