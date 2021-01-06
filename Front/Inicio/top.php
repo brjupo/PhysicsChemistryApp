@@ -121,20 +121,20 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = "SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = ' . $idUsuario . ' ) AND id_grupo IN( SELECT id_grupo FROM grupo WHERE id_asignatura = ' . $idMateria . ' ) )";
+    $stringQuery = 'SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = ' . $idUsuario . ' ) AND id_grupo IN( SELECT id_grupo FROM grupo WHERE id_asignatura = ' . $idMateria . ' )';
     $stmt = $conn->query($stringQuery);
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
       $idGrupo = $row[0];
     }
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    echo $stringQuery . " Error: " . $e->getMessage();
   }
   $conn = null;
   //Crear la lectura en base de datos
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = "SELECT n.nombre, a.avatar, suma FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p JOIN nombre n ON a.id_usuario = p.id_usuario AND a.id_nombre = n.id_nombre WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ' . $idMateria . ') AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) AND a.id_alumno IN( SELECT id_alumno FROM alumno_grupo WHERE id_grupo = '.$idGrupo.' ) ORDER BY suma DESC LIMIT 5";
+    $stringQuery = 'SELECT n.nombre, a.avatar, suma FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p JOIN nombre n ON a.id_usuario = p.id_usuario AND a.id_nombre = n.id_nombre WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ' . $idMateria . ') AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) AND a.id_alumno IN( SELECT id_alumno FROM alumno_grupo WHERE id_grupo = '.$idGrupo.' ) ORDER BY suma DESC LIMIT 5';
     $stmt = $conn->query($stringQuery);
     $posicion=1;
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -146,7 +146,7 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
       $posicion = $posicion + 1;
     }
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    echo $stringQuery . " Error: " . $e->getMessage();
   }
   $conn = null;
 
