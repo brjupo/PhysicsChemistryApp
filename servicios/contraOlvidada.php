@@ -1,5 +1,6 @@
 <?php
 require "00DDBBVariables.php";
+require "02sendMail.php";
 
 $con = mysqli_connect($servername, $username, $password, $dbname);
 
