@@ -181,18 +181,18 @@ require "../CSSsJSs/mainCSSsJSs.php";
   {
     echo '
           <div class="top">
-            <div class="container">
-              <div class="row">
-                <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
-                  <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
-                </div>
-                <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-9 col-xl-9">
-                  <p class="Ciencia fuenteTitulo" id="asignaturad">' . $_SESSION["asignaturaNavegacion"] . '</p>
-                  <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none">' . $_SESSION["idAsignatura"] . '</p>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+          <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
+        </div>
+        <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
+          <p class="Ciencia fuenteTitulo" id="asignaturad">' . $_SESSION["asignaturaNavegacion"] . '</p>
+          <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none">' . $_SESSION["idAsignatura"] . '</p>
+        </div>
+      </div>
+    </div>
+  </div>
           <!------------------------------------------------FIN TITULO----------------------------------------------->
           ';
   }
