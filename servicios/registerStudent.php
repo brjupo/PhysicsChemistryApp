@@ -16,7 +16,7 @@ $lowerStudentMail = strtolower($studentMail);
 
 //if (strpos($lowerStudentMail, '@itesm.mx') === false) {
 if (false) {
-  $response["response"] = "¿Quieres obtener tu acceso a Kaanbal? <a href='https://kaanbal.net/contacto.html'>Contáctanos!</a>. Podemos ofrecer a su institución un periodo de prueba GRATUITO.";
+  $respuesta["response"] = "¿Quieres obtener tu acceso a Kaanbal? <a href='https://kaanbal.net/contacto.html'>Contáctanos!</a>. Podemos ofrecer a su institución un periodo de prueba GRATUITO.";
 } else {
   $getStudentMail = new queryToDDBB("SELECT mail FROM usuario_prueba WHERE mail = '" . $lowerStudentMail . "' ;");
   $gettedMail = $getStudentMail->read();
@@ -26,42 +26,42 @@ if (false) {
   if ($gettedGroup != "null") {
     //Validar que no exusta Mail
     if ($lowerStudentMail == $gettedMail) {
-      $response["response"] = "El usuario ya existe.";
+      $respuesta["response"] = "El usuario ya existe.";
     } else if (strpos($gettedMail, "failed") !== false) {
-      $response["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde.";
+      $respuesta["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde.";
     } else {
       //agregarStudent a usuario_prueba con password correoCorreo
       $addStudent = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerStudentMail . "', '" . $lowerStudentMail . $lowerStudentMail . "');");
       if ($addStudent->write() != "success") {
-        $response["response"] = "Error al escribir el nuevo usuario";
+        $respuesta["response"] = "Error al escribir el nuevo usuario";
       } else {
         //crear token
         $token = crearTokenDDBB($lowerStudentMail);
         if ($token == "error") {
-          $response["response"] = "Ha ocurrido un error al crear token ";
+          $respuesta["response"] = "Ha ocurrido un error al crear token ";
         } else {
           //enviar correo
-          $respuestaAlEnviarElMail =  enviarMail($lowerStudentMail, "Registro alumno. Kaanbal", cuerpoCorreoNuevoStudent($lowerStudentMail, $token, $studentCode));
+          $respuestaAlEnviarElMail =  enviarMail($lowerStudentMail, "Registro alumno. Kaanbal", cuerpoCorreoNuevoStudent($lowerStudentMail, $token));
           if (strpos($respuestaAlEnviarElMail, "failed") !== false) {
-            $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
+            $respuesta["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
           } else {
             //obtener el ID del usuario
             $getStudentID = new queryToDDBB("SELECT id_usuario FROM usuario_prueba WHERE mail= '" . $lowerStudentMail . "';");
             $gettedStudentID = $getStudentID->read();
             if (!is_numeric($gettedStudentID)) {
-              $response["response"] = "Error en el ID del nuevo usuario.";
+              $respuesta["response"] = "Error en el ID del nuevo usuario.";
             } else {
               //agregar ID usuario a alumno
               $addStudentInStudent = new queryToDDBB("INSERT INTO alumno (id_usuario, matricula) VALUES (" . intval($gettedStudentID) . ",'" . $lowerStudentMail . "');");
               $addedStudentInStudent = $addStudentInStudent->write();
               if ($addedStudentInStudent != "success") {
-                $response["response"] = "Error al escribir el alumno";
+                $respuesta["response"] = "Error al escribir el alumno";
               } else {
                 //obtener el ID del alumno y id de grupo
                 $getAlumnoID = new queryToDDBB("SELECT id_alumno FROM alumno WHERE id_usuario= '" . $gettedStudentID . "';");
                 $gettedAlumnoID = $getAlumnoID->read();
                 if (!is_numeric($gettedAlumnoID)) {
-                  $response["response"] = "Error en el ID del grupo.";
+                  $respuesta["response"] = "Error en el ID del grupo.";
                 } else {
                   //agregar ID de grupo y de alumno a alumno_grupo
                   $addAlumnogrupo = new queryToDDBB("INSERT INTO alumno_grupo (id_alumno, id_grupo) VALUES (" . intval($gettedAlumnoID) . "," . intval($gettedGroup) . ");");
@@ -74,14 +74,14 @@ if (false) {
                   $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia, pagado, estatus) VALUES (" . intval($gettedStudentID) . "," . intval($gettedAsignaturaID) . " , '2021-12-31 23:59:59',1,1);");
                   $addedStudentInLicenses = $addStudentInLicenses->write();
                   if ($addedAlumnoGrupot != "success") {
-                    $response["response"] = "Error al asociar grupo";
+                    $respuesta["response"] = "Error al asociar grupo";
                   } else {
                     //agregar ID alumno a licencias
 
                     if ($addedStudentInLicenses != "success") {
-                      $response["response"] = "Error al escribir el alumno en licencias";
+                      $respuesta["response"] = "Error al escribir el alumno en licencias";
                     } else {
-                      $response["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.";
+                      $respuesta["response"] = "Te hemos enviado un correo desde <strong>licencias@kaanbal.net</strong> el cual indica el proceso a seguir. Por favor revisa tu carpeta de junk mail, spam o correo no deseado.";
                     }
                   }
                 }
@@ -92,12 +92,12 @@ if (false) {
       }
     }
   } else {
-    $response["response"] = "Código de grupo inválido";
+    $respuesta["response"] = "Código de grupo inválido";
   }
 }
 ////////////////
 header('Content-Type: application/json');
-echo json_encode($response);
+echo json_encode($respuesta);
 
 function crearTokenDDBB($mail)
 {
