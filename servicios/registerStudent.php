@@ -41,7 +41,7 @@ if (false) {
           $response["response"] = "Ha ocurrido un error al crear token ";
         } else {
           //enviar correo
-          $respuestaAlEnviarElMail =  enviarMail($lowerStudentMail, "Registro alumno. Kaanbal", cuerpoCorreoNuevoStudent($lowerStudentMail, $token, $studentCode));
+          $respuestaAlEnviarElMail =  enviarMail($lowerStudentMail, "Registro alumno. Kaanbal", cuerpoCorreoNuevoStudent($lowerStudentMail, $token));
           if (strpos($respuestaAlEnviarElMail, "failed") !== false) {
             $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
           } else {
