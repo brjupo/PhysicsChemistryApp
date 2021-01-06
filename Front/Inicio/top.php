@@ -121,7 +121,7 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = 'SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = ' . $idUsuario . ' ) AND id_grupo IN( SELECT id_grupo FROM grupo WHERE id_asignatura = ' . $idMateria . ' ) )';
+    $stringQuery = 'SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = ' . $idUsuario . ' ) AND id_grupo IN( SELECT id_grupo FROM grupo WHERE id_asignatura = ' . $idMateria . ' )';
     $stmt = $conn->query($stringQuery);
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
       $idGrupo = $row[0];
