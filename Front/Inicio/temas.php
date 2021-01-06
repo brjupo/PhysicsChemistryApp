@@ -181,7 +181,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   /* Recordatorio
   Recuerda que tienes 4 colores para cambiarlos
-  <div class="temaPrincipal1 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+  <div class="temaPrincipal1 textCenter col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
   temaPrincipal1, temaPrincipal2, temaPrincipal3, temaPrincipal4
   */
 
@@ -245,7 +245,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
       <!----------------------------------------------CITA--------------------------------------------->
       <div class="container">
           <div class="row titulo">
-            <div class="textCenter col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <p style="color:rgba(0,0,0,0)">.</p>
               <p>Bienvenido a Kaanbal</p>
               <!--p>Para mejor experiencia te recomendamos usar <strong>Chrome o Firefox</strong></p-->
@@ -271,9 +271,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '
         <div class="container">
         <div class="row">
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+          <div class="textCenter col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
           <a href="subtemas.php">
-            <div class="temaPrincipal1 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+            <div class="temaPrincipal1 textCenter col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
               <table class="table">
                 <tbody>
                   <tr>
@@ -289,7 +289,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               </table>
             </div>
           </a>
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+          <div class="textCenter col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
         </div>
       </div>
 
@@ -309,9 +309,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '
       <div class="container">
         <div class="row">
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+          <div class="textCenter col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
           <a href="subtemas.php?tema=' . $idTema . '">
-            <div class="temaPrincipal' . $numeroCSSTema . ' textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+            <div class="temaPrincipal' . $numeroCSSTema . ' textCenter col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
               <table class="table">
                 <tbody>
                   <tr>
@@ -325,7 +325,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               </table>
             </div>
           </a>
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+          <div class="textCenter col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
         </div>
       </div>
 
@@ -342,18 +342,18 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '
       <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
-          <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11"></div>
-          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"></div>
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"></div>
-          <div class="col-xs-8 col-sm-9 col-md-8 col-lg-8 col-xl-8"></div>
-          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7"></div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"></div>
-          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
-          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
-          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
-          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11"></div>
+          <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"></div>
+          <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"></div>
+          <div class="col-8 col-sm-9 col-md-8 col-lg-8 col-xl-8"></div>
+          <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7"></div>
+          <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"></div>
+          <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
+          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+          <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+          <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
         </div>
       </div>
       <div class="container ">
@@ -379,16 +379,16 @@ require "../CSSsJSs/mainCSSsJSs.php";
         <div class="foot">
           <div class="container">
             <div class="row text-center">
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+              <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
               </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+              <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
                 <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
               </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+              <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
               </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+              <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
               </div>
             </div>
