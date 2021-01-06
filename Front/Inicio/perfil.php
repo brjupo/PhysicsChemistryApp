@@ -155,7 +155,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     imprimirRelleno();
     imprimirDiamantes($diamantes);
     imprimirRelleno();
-    if($_SESSION["mostrarMenuprofesor"] != ''){
+    if($_SESSION["mostrarMenuprofesor"] == ''){
     imprimirInfoEstudiante();}
     imprimirRelleno();
     imprimirRelleno();
