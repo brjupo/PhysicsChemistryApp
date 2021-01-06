@@ -127,7 +127,7 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
       $idGrupo = $row[0];
     }
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    echo $stringQuery . " Error: " . $e->getMessage();
   }
   $conn = null;
   //Crear la lectura en base de datos
@@ -146,7 +146,7 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
       $posicion = $posicion + 1;
     }
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    echo $stringQuery . " Error: " . $e->getMessage();
   }
   $conn = null;
 
