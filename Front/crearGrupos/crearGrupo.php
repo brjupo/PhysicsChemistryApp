@@ -54,7 +54,7 @@ $teacherUserID = $_SESSION["id_usuario"];
                     lista inferior.
                 </p>
                 <p>
-                    - Comparta el código del grupo a sus alumnos para que puedan unirse.
+                    - Comparta el identificador de grupo a sus alumnos para que puedan unirse.
                 </p>
                 <p style="font-size: small">
                     Cualquier duda estamos para ayudarte
@@ -110,7 +110,7 @@ $teacherUserID = $_SESSION["id_usuario"];
 
     <div class="container">
         <div class="row">
-            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="display:none">
                 <div class="input-group-prepend">
                     <div class="input-group-text">ID usuario prof</div>
                 </div>
@@ -148,7 +148,7 @@ $teacherUserID = $_SESSION["id_usuario"];
                 //  Si existe regresa a crearlo
             }
             ?>
-            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="display:none">
                 <div class="input-group-prepend">
                     <div class="input-group-text">Código grupo</div>
                 </div>
