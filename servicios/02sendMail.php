@@ -20,8 +20,8 @@ function enviarMail($destinatario, $asunto, $cuerpo)
     $mail->Subject = $asunto;
     //$mail->msgHTML(file_get_contents($cuerpo));
     $mail->addCustomHeader('MIME-Version', '1.0');
-    $mail->addCustomHeader('Content-Type: text/html; charset=ISO-8859-1');
-
+    $mail->addCustomHeader('Content-Type: text/html');
+    $mail->CharSet = 'UTF-8';
     $mail->Body = $cuerpo;
     //$mail->addAttachment('test.txt');
     if (!$mail->send()) {

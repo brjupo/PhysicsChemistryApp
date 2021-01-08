@@ -132,18 +132,9 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
     <p>Listo! en cuanto tus alumnos se registren podrás observar su avance en la sección de "Reportes"</p>
     <p style="color: white">.</p>
     <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
-    <img
-      src="https://www.kaanbal.net/IMAGENES/email.png"
-      height="40px"
-      style="display: block"
-    />
+   
     <p><a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
 
-    <img
-      src="https://www.kaanbal.net/IMAGENES/whatsapp.png"
-      height="40px"
-      style="display: block"
-    />
     <p><strong>55 4871 4593</strong>.</p>
     <p style="color: white">.</p>
     <p>Agradecemos tu confianza,</p>
