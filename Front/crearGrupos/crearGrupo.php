@@ -204,15 +204,9 @@ $teacherUserID = $_SESSION["id_usuario"];
             </div>
         </div>
     </div>
-    <div class="container" style="border-top: 4px dotted #007bff">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p style="color: rgba(0, 0, 0, 0)">.</p>
-            </div>
-        </div>
-    </div>
-    <?php
     
+    <?php
+
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
