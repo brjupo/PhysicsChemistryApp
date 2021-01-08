@@ -116,6 +116,9 @@ function cuerpoCorreoNuevoStudent($mail, $token)
 {
   return '
 <html>
+<head>
+  <meta charset="UTF-8">
+</head>
   <body>
     <div style="background-color: rgb(35, 85, 145)" height="30px">
       <h4
