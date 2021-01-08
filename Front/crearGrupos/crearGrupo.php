@@ -192,7 +192,7 @@ $teacherUserID = $_SESSION["id_usuario"];
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p><strong>Listado de Grupos creados</strong>:</p>
+                <p><strong>Listado de grupos creados</strong>:</p>
             </div>
         </div>
     </div>
@@ -204,7 +204,7 @@ $teacherUserID = $_SESSION["id_usuario"];
             </div>
         </div>
     </div>
-    
+
     <?php
 
         try {
