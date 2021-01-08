@@ -13,7 +13,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="Temas.css" />
-  <script src="Perfil03.js"></script>
+  <script src="perfil.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 </head>
 
@@ -38,7 +38,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   $iduser = $_SESSION["id_usuario"];
   $materia = $_SESSION["asignaturaNavegacion"];
-
+  //$idMateria = $_GET["asignatura"];
 
 
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
@@ -155,7 +155,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
     imprimirRelleno();
     imprimirDiamantes($diamantes);
     imprimirRelleno();
-    imprimirInfoEstudiante();
+    if($_SESSION["mostrarMenuprofesor"] == ''){
+    imprimirInfoEstudiante();}
     imprimirRelleno();
     imprimirRelleno();
     imprimirCalificacion($matricula);
@@ -179,19 +180,19 @@ require "../CSSsJSs/mainCSSsJSs.php";
   function imprimirTop()
   {
     echo '
-          <div class="top">
-            <div class="container">
-              <div class="row titulo">
-                <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-3 col-xl-3">
-                  <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
-                </div>
-                <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-9 col-xl-9">
-                  <p class="Ciencia fuenteTitulo" id="asignaturad">' . $_SESSION["asignaturaNavegacion"] . '</p>
-                  <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none">' . $_SESSION["idAsignatura"] . '</p>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div class="top">
+    <div class="container">
+      <div class="row">
+        <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+          <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
+        </div>
+        <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
+          <p class="Ciencia fuenteTitulo" id="asignaturad">' . $_SESSION["asignaturaNavegacion"] . '</p>
+          <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none">' . $_SESSION["idAsignatura"] . '</p>
+        </div>
+      </div>
+    </div>
+  </div>
           <!------------------------------------------------FIN TITULO----------------------------------------------->
           ';
   }
@@ -430,7 +431,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-primary" value="Practice, Sprint y Exam" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
+                      <input type="submit" class="btn btn-primary" value="Practice, Sprint & Exam" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
                     </form>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -452,7 +453,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           <div class="container">
             <div class="row">
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <a href="creditos.html"><h1 class="textCenter titulo">Créditos</h1></a>
+                <a href="creditos.html"><h1 class="textCenter titulo">Credits</h1></a>
               </div>
             </div>
           </div>
@@ -1113,15 +1114,16 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   function imprimirInfoEstudiante()
   {
-    global $iduser;
+    global $iduser, $idMateria;
+    global $servername, $dbname, $username, $password;
     //$iduser = $_SESSION["id_usuario"];
     echo '
       <div class="container">
         <div class="row">
-          <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+          <div class="d-none d-md-block col-md-2 col-lg-2 col-xl-2">
           </div>
-          <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-            <div class="input-group">
+          <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+            <div class="input-group" style="display:none;">
               <div class="input-group-prepend">
                 <span class="input-group-text">User ID</span>
               </div>
@@ -1132,20 +1134,20 @@ require "../CSSsJSs/mainCSSsJSs.php";
     //+++++++++++++++++++++++++++ Codigo de grupo ++++++++++++++++++++++++++//
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     //Crear la lectura en base de datos
-    global $servername, $dbname, $username, $password;
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = 'SELECT id_nombre FROM alumno WHERE id_usuario = ' . $iduser . ' LIMIT 1;';
+      $stringQuery = 'SELECT id_grupo, codigo FROM grupo WHERE id_asignatura = ' . $idMateria . ' AND id_grupo IN (SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN (SELECT id_alumno FROM alumno WHERE id_usuario = ' . $iduser . ') ) LIMIT 1';
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         echo '
             <p style="color:rgba(0,0,0,0)">.</p>
-            <div class="input-group">
+            <div class="input-group" style="display:none;">
               <div class="input-group-prepend">
                 <span class="input-group-text">Group code</span>
+                <span class="input-group-text" id="idGroupCode">' . $row[0] . '</span>
               </div>
-              <input type="text" class="form-control" id="idGroupCode" value="' . $row[0] . '" >
+              <input type="text" class="form-control" id="groupCode" value="' . $row[1] . '" >
             </div>
             ';
       }
@@ -1158,13 +1160,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
     //+++++++++++++++++++++++++++ Numero de lista ++++++++++++++++++++++++++//
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-    //Crear la lectura en base de datos
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">List number</span>
               </div>
               <select class="custom-select" id="listNumber">';
+    //Crear la lectura en base de datos
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -1198,10 +1200,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = 'SELECT id_nombre FROM alumno WHERE id_usuario = ' . $iduser . ' LIMIT 1;';
+      $stringQuery = 'SELECT id_nombre, nombre FROM nombre WHERE id_nombre IN (SELECT id_nombre FROM alumno WHERE id_usuario = ' . $iduser . ') LIMIT 1;';
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-        echo '<option value="' . $row[0] . '" selected>' . $row[0] . '</option>';
+        echo '<option value="' . $row[0] . '" selected>' . $row[1] . '</option>';
       }
     } catch (PDOException $e) {
       echo "failed: " . $stringQuery . $e->getMessage();
@@ -1210,7 +1212,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = 'SELECT id_nombre, nombre FROM nombre ORDER BY nombre ASC;';
+      $stringQuery = 'SELECT id_nombre, nombre FROM nombre WHERE nombre NOT LIKE "% %" ORDER BY nombre ASC;';
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
@@ -1222,7 +1224,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
     echo '    </select>
             </div>
-            <p style="font-size:x-small; display:block; margin:auto; ">If your name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+            <p style="font-size:x-small; text-align:center ">If your first name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
           ';
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group input-group-sm">
@@ -1233,7 +1235,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           ';
     echo '
           </div>
-          <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+          <div class="d-none d-md-block col-md-2 col-lg-2 col-xl-2">
           </div>
         </div>
       </div>

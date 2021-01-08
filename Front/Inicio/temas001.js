@@ -4,7 +4,6 @@ var nombreImagen;
 window.onload = function () {};
 
 document.addEventListener("click", function (evt) {
-  var lections = document.getElementById("botonLecciones");
   var profile = document.getElementById("botonPerfil");
   var top5 = document.getElementById("botonTop");
   var logout = document.getElementById("botonLogout");
@@ -12,16 +11,12 @@ document.addEventListener("click", function (evt) {
   elID = targetElement.id;
 
   do {
-    if (targetElement == lections) {
-      lectionsv();
-      return;
-    }
     if (targetElement == profile) {
       profilev();
       return;
     }
     if (targetElement == top5) {
-      //topv();
+      topv();
       return;
     }
     if (targetElement == logout) {
@@ -33,11 +28,6 @@ document.addEventListener("click", function (evt) {
   } while (targetElement);
 });
 
-function lectionsv() {
-  var asignatura = document.getElementById("asignatura").innerHTML;
-  var url = "temas.php?asignatura=";
-  location.replace(url.concat(asignatura));
-}
 function profilev() {
   var asignatura = document.getElementById("asignatura").innerHTML;
   var url = "perfil.php?asignatura=";
@@ -45,7 +35,7 @@ function profilev() {
 }
 function topv() {
   var asignatura = document.getElementById("asignatura").innerHTML;
-  var url = "top.php?asignatura=";
+  var url = "topS.php?asignatura=";
   location.replace(url.concat(asignatura));
 }
 function do_logout() {

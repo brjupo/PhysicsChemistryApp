@@ -289,8 +289,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas);
     imprimirRelleno();
-    if($tieneGrupos == ""){
-    sinGrupos();}
+    if ($mostrarMenuprofesor != '') {
+      if($tieneGrupos == ""){
+        sinGrupos();}
+    }
     if ($mostrarMenuprofesor != '' or $staffID != 'null') {
       imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID);
     }

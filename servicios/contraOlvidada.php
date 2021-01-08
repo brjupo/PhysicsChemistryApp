@@ -1,5 +1,6 @@
 <?php
 require "00DDBBVariables.php";
+require "02sendMail.php";
 
 $con = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -13,17 +14,15 @@ $rowp = mysqli_fetch_array($resultp);
 $findme   = '@';
 $pos = strpos($correo_e, $findme);
 
-$response = array();
-$response['response'] = 'Error desconocido';
+$respuesta = array();
+$respuesta['response'] = 'Error desconocido';
 
 if ($correo_e == "" or $correo_e == NULL) {
-    $response['response'] = 'Ingresa un correo!';
-} 
-else if ($pos === false) {
+    $respuesta['response'] = 'Ingresa un correo!';
+} else if ($pos === false) {
     //NO TIENE ARROBA - es alumno
-    $response['response'] = 'Usa la liga que te enviamos cuando realizaste el pago, sino funciona escribenos un correo adjuntando tu pago a kaanbal@veks.mx';
-}
-else {
+    $respuesta['response'] = 'Usa la liga que te enviamos cuando realizaste el pago, sino funciona escribenos un correo adjuntando tu pago a <strong>aclaraciones@kaanbal.net</strong>';
+} else {
     if ($rowp) {
         //Es hora de cambiar el token   |  Creamos un token random
         $rand = bin2hex(random_bytes(5));
@@ -32,22 +31,75 @@ else {
         $sql = "UPDATE usuario_prueba SET  tokenA = '$rand' WHERE mail = '$correo_e'";
         mysqli_query($con, $sql);
         //Enviar correo a usuario para que genere su contrasenia
-        //mail(correo,asunto,cuerpo);
-        $from = "no-reply@kaanbal.net";
-        $to = $correo_e;
-        $subject = "Kaanbal - Password";
-        $cuerpo = "Hola! En la siguiente liga podrás cambiar tu contraseña. 
-        https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=" . $rand . "&correo=" . $correo_e . " \n 
-        Recuerda esta liga es de un solo uso e instransferible. 
-        Si vuelves a olvidarla. Ingresa a https://kaanbal.net y elige la opción olvidé mi contraseña.";
-        $headers = "From:" . $from;
-        mail($to,$subject,$cuerpo,$headers);
+        enviarMail($correo_e, "Registro alumno. Kaanbal", cuerpoCorreoNuevoStudent($correo_e, $rand));
         //Si no existe, regresar true
-        $response['response'] = 'true';
+        $respuesta['response'] = 'true';
     } else {
         //Si ya existe, regresar que ya existe.
-        $response['response'] = 'Usuario NO existe';
+        $respuesta['response'] = 'Usuario NO existe';
     }
 }
 
-echo json_encode($response);
+echo json_encode($respuesta);
+
+
+function cuerpoCorreoNuevoStudent($mail, $token)
+{
+    return '
+<html>
+<head>
+  <meta charset="ISO-8859-1">
+</head>
+  <body>
+    <div style="background-color: rgb(35, 85, 145)" height="30px">
+      <h4
+        style="
+          color: rgb(250, 250, 250);
+          font-size: xx-large;
+          margin: 20px auto 20px 10px;
+          padding: 20px 10px 20px 10px;
+        "
+      >
+        Kaanbal
+      </h4>
+    </div>
+
+    <p>En la siguiente URL podrás cambiar tu <strong>contraseña</strong></p>
+    <a href="https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
+      <p>https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</p>
+    </a>
+    <p>
+      Recuerda esta liga es instransferible y de un solo uso. No la compartas.
+    </p>
+    <p style="color: white">.</p>
+    <p>
+    Si vuelves a olvidarla. Ingresa a https://kaanbal.net y elige la opción olvidé mi contraseña.
+    </p>
+    <p style="color: white">.</p>
+    <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
+    <img
+      src="https://kaanbal.net/IMAGENES/email.png"
+      height="40px"
+      style="display: block"
+    />
+    <p><a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+
+    <img
+      src="https://kaanbal.net/IMAGENES/whatsapp.png"
+      height="40px"
+      style="display: block"
+    />
+    <p><strong>55 4871 4593</strong>.</p>
+    <p style="color: white">.</p>
+    <p>Agradecemos tu confianza,</p>
+    <p>
+      <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
+      VEKS Solutions México S.A. de C.V.
+    </p>
+    <h4 style="background-color: rgb(35, 85, 145); color: rgb(35, 85, 145)">
+      .
+    </h4>
+  </body>
+</html>
+    ';
+}

@@ -2,11 +2,9 @@
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
 $teacherID = isTeacher();
-if ($teacherID == "null") {
-    header('Location: https://kaanbal.net/');
-    exit;
-}
+require "../../CSSsJSs/mainCSSsJSs.php";
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -15,8 +13,8 @@ if ($teacherID == "null") {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?= $bootstrap441 ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?= $kaanbalEssentials ?>" />
     <script src="../TableCSVExporter5.js"></script>
 </head>
 
@@ -210,17 +208,36 @@ if ($teacherID == "null") {
                     <?php
                     //--------------AQUI OBTIENES TODOS LOS ALUMNOS DEL GRUPO
                     $alumnos = array();
-                    $alumnos["matricula"] = array();
+                    //$alumnos["matricula"] = array();
+                    $alumnos["numeroLista"] = array();
+                    $alumnos["primerNombre"] = array();
                     $alumnos["id"] = array();
                     //Crear la lectura en base de datos
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = " . $id_grupo;
+                        $stringQuery = 'SELECT DISTINCT
+                                        alumno.numero_lista,
+                                        nombre.nombre,
+                                        alumno_grupo.id_alumno
+                                        FROM
+                                            (
+                                                (
+                                                    alumno_grupo
+                                                INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno
+                                                )
+                                            INNER JOIN nombre ON alumno.id_nombre = nombre.id_nombre
+                                            )
+                                        WHERE
+                                            alumno_grupo.id_grupo = ' . $id_grupo . '
+                                        ORDER BY
+                                            alumno.numero_lista;
+                                        ';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            array_push($alumnos["matricula"], $row[0]);
-                            array_push($alumnos["id"], $row[1]);
+                            array_push($alumnos["numeroLista"], $row[0]);
+                            array_push($alumnos["primerNombre"], $row[1]);
+                            array_push($alumnos["id"], $row[2]);
                         }
                     } catch (PDOException $e) {
                         echo "Error: " . $e->getMessage();
@@ -248,10 +265,12 @@ if ($teacherID == "null") {
                     <?php
                     //---------IMPRIME MATRICULA Y ASOCIA EL ID ALUMNO CON LAS PUNTUACIONES EN PUNTUACION
                     //---------ASI APARECE LA PUNUTACION DEL ALUMNO DE LA LECCION
-                    for ($m = 0; $m < count($alumnos["id"]); $m++) {
+                    $cantidadAlumnos = count($alumnos["id"]);
+                    for ($m = 0; $m < $cantidadAlumnos; $m++) {
                         echo '<tr>';
-                        echo '<td>' . $alumnos["matricula"][$m] . '</td>';
-                        echo '<td>' . $alumnos["id"][$m] . '</td>';
+                        echo '<td>' . $alumnos["numeroLista"][$m] . '</td>';
+                        echo '<td>' . $alumnos["primerNombre"][$m] . '</td>';
+                        //echo '<td>' . $alumnos["id"][$m] . '</td>';
                         //Crear la lectura en base de datos
                         $entre = 0;
                         try {

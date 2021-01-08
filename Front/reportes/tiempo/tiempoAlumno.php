@@ -1,15 +1,12 @@
 <?php
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
-$teacherID = isTeacher();
-if ($teacherID == "null") {
-    header('Location: https://kaanbal.net/');
-    exit;
-}
+$teacherID=isTeacher();
 if (!isset($_POST["grupo"])) {
     header('Location: ../controlCalificaciones.php');
     exit;
 }
+require "../../CSSsJSs/mainCSSsJSs.php";
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +17,8 @@ if (!isset($_POST["grupo"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?=$bootstrap441?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?=$kaanbalEssentials?>" />
 </head>
 
 <body>
@@ -133,7 +130,8 @@ if (!isset($_POST["grupo"])) {
             <table class="table table-striped">
                 <tbody>
                     <tr>
-                        <td>Matricula</td>
+                        <td>Número de lista</td>
+                        <td>Primer nombre</td>
                         <td>Total</td>
                         <td>Práctica</td>
                         <td>Sprint</td>
@@ -145,7 +143,7 @@ if (!isset($_POST["grupo"])) {
                         try {
                             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = "SELECT alumno.matricula, alumno.acmlrPP, alumno.acmlrSP, 
+                            $stringQuery = "SELECT alumno.numero_lista, alumno.id_nombre, alumno.acmlrPP, alumno.acmlrSP, 
                             alumno.acmlrE, alumno.acmlrSS FROM alumno INNER JOIN alumno_grupo 
                             ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = '".$id_grupo."' 
                             ORDER BY alumno.matricula ";
@@ -153,12 +151,13 @@ if (!isset($_POST["grupo"])) {
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 echo '<tr>';
                                 echo '<td>'.$row[0].'</td>';
-                                $sum = intval($row[1]+$row[2]+$row[3]+$row[4]);
+                                echo '<td>'.$row[1].'</td>';
+                                $sum = intval($row[2]+$row[3]+$row[4]+$row[5]);
                                 echo '<td>'.$sum.'</td>';
-                                echo '<td>'.intval($row[1]).'</td>';
                                 echo '<td>'.intval($row[2]).'</td>';
                                 echo '<td>'.intval($row[3]).'</td>';
                                 echo '<td>'.intval($row[4]).'</td>';
+                                echo '<td>'.intval($row[5]).'</td>';
                                 echo '</tr>';
                             }
                         } catch (PDOException $e) {

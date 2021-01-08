@@ -1,6 +1,5 @@
 <?php
 require "../CSSsJSs/mainCSSsJSs.php";
-require "../../servicios/00DDBBVariables.php";
 ?>
 
 <!DOCTYPE html>
@@ -40,20 +39,20 @@ require "../../servicios/00DDBBVariables.php";
   <div class="container">
     <div class="row" style="margin:3vw;">
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light" id="topGrupalButton" style="display:block; margin:auto;">Class Top</button>
+        <button type="button" class="btn btn-primary" id="topGrupalButton" style="display:block; margin:auto;" onclick='location.href="top.php"'>Class Top</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <button type="button" class="btn btn-primary" id="topSemestralButton" style="display:block; margin:auto;" onclick='location.href="topS.php"'>Semester Top</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topNacionalButton" style="display:block; margin:auto;" onclick='location.href="topN.php"'>National Top</button>
+        <button type="button" class="btn btn-light" id="topNacionalButton" style="display:block; margin:auto;">National Top</button>
       </div>
     </div>
   </div>
 
-  <div id="topGrupal">
+  <div id="topNacional">
     <?php
-    imprimirVistaTopGrupal($idMateria, $idUsuario);
+    imprimirVistaTopNacional($idMateria);
     ?>
   </div>
 
@@ -111,64 +110,9 @@ require "../../servicios/00DDBBVariables.php";
 </html>
 
 <?php
-function imprimirVistaTopGrupal($idMateria, $idUsuario)
+
+function imprimirVistaTopNacional($idMateria)
 {
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  //++++++++++++++++++OBTENER TOP 5 DEL GRUPO +++++++++++++++++//
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  global $servername, $dbname, $username, $password;
-  //Crear la lectura en base de datos
-  try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = 'SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = ' . $idUsuario . ' ) AND id_grupo IN( SELECT id_grupo FROM grupo WHERE id_asignatura = ' . $idMateria . ' )';
-    $stmt = $conn->query($stringQuery);
-    while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-      $idGrupo = $row[0];
-    }
-  } catch (PDOException $e) {
-    echo $stringQuery . " Error: " . $e->getMessage();
-  }
-  $conn = null;
-  //Crear la lectura en base de datos
-  try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = 'SELECT n.nombre, a.avatar, suma FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p JOIN nombre n ON a.id_usuario = p.id_usuario AND a.id_nombre = n.id_nombre WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ' . $idMateria . ') AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) AND a.id_alumno IN( SELECT id_alumno FROM alumno_grupo WHERE id_grupo = '.$idGrupo.' ) ORDER BY suma DESC LIMIT 5';
-    $stmt = $conn->query($stringQuery);
-    $posicion=1;
-    while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-      $avatar=$row[1];
-      if ($avatar == NULL) {
-        $avatar = "avatar.jpg";
-      }
-      imprimirPersonaTop($posicion, $avatar, $row[0], $row[2]);
-      $posicion = $posicion + 1;
-    }
-  } catch (PDOException $e) {
-    echo $stringQuery . " Error: " . $e->getMessage();
-  }
-  $conn = null;
-
-
-/*
-  $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-  $strqry = 'SELECT a.matricula, a.avatar, suma FROM alumno a INNER JOIN( SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN( SELECT id_leccion FROM leccion WHERE id_subtema IN( SELECT id_subtema FROM subtema WHERE id_tema IN( SELECT id_tema FROM tema ) ) ) GROUP BY id_usuario ) p ON a.id_usuario = p.id_usuario WHERE a.id_usuario IN( SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ' . $idMateria . ' ) AND p.id_usuario NOT IN( SELECT id_usuario FROM profesor ) AND a.id_alumno IN( SELECT id_alumno FROM alumno_grupo WHERE id_grupo IN( SELECT id_grupo FROM alumno_grupo WHERE id_alumno IN( SELECT id_alumno FROM alumno WHERE id_usuario = ' . $idUsuario . ' ) ) ) ORDER BY suma DESC LIMIT 5';
-  $statement = mysqli_prepare($con, $strqry);
-  mysqli_stmt_execute($statement);
-  mysqli_stmt_store_result($statement);
-  mysqli_stmt_bind_result($statement, $matricula, $avatar, $sumaDiamantes);
-
-  $posicion = 1;
-  while (mysqli_stmt_fetch($statement)) {
-    if ($avatar == NULL) {
-      $avatar = "avatar.jpg";
-    }
-    imprimirPersonaTop($posicion, $avatar, $matricula, $sumaDiamantes);
-    $posicion = $posicion + 1;
-  }
-  */
-/*
   //Obtener el top 30 de alumnos con mayor puntuación
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   $strqry = "SELECT n.nombre, a.avatar, suma FROM alumno a INNER JOIN (SELECT id_usuario, SUM(puntuacion) AS suma FROM puntuacion WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema IN (SELECT id_tema FROM tema))) GROUP BY id_usuario) p JOIN nombre n ON a.id_usuario = p.id_usuario AND a.id_nombre = n.id_nombre WHERE a.id_usuario IN (SELECT id_usuario FROM licencia WHERE estatus = 1 AND id_asignatura = ?) AND p.id_usuario NOT IN (SELECT id_usuario FROM profesor) ORDER BY suma DESC LIMIT 30";
@@ -186,9 +130,7 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
     imprimirPersonaTop($posicion, $avatar, $matricula, $sumaDiamantes);
     $posicion = $posicion + 1;
   }
-  */
 }
-
 ?>
 
 <?php

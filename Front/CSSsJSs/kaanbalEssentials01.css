@@ -72,17 +72,17 @@ thead tr:first-child th {
     box-sizing: border-box;
 }
 
-td, th {
+/*td, th {
     background: #aaa;
     width: 33%;
-}
+}*/
 tbody tr:first-child td{
   padding-top:10px;
 }
 table {
     width: 100%;
     margin: 0;
-    border: 1px #f00 solid;
+    /*border: 1px #f00 solid;*/
 }
 /*--------------------------------------------------PAGOS-----------------------------------------------------------*/
 .logoPagos{

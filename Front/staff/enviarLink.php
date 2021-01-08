@@ -1,3 +1,7 @@
+<?php
+require "../CSSsJSs/mainCSSsJSs.php";
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Kaanbal</title>
-  <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
+  <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap441 ?>" />
+  <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
   <link rel="stylesheet" href="stylePassword2.css" />
   <script src="enviarLink5.js"></script>
   <script src="../CSSsJSs/minAJAX.js"></script>
@@ -30,19 +35,19 @@
     <div class="row">
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-          <input type="text" id="token" value="<?php echo $tokenLink ?>" style="display:none;">
+        <input type="text" id="token" value="<?php echo $tokenLink ?>" style="display:none;">
 
-          <label for="correo_e">Ingresa tu usuario de staff</label>
-          <input type="text" id="correo_e" name="correo_e">
+        <label for="correo_e">Ingresa tu usuario de staff</label>
+        <input type="text" id="correo_e" name="correo_e">
 
-          <label for="psw">Ingresa tu password de staff</label>
-          <input type="text" id="psw" name="psw"/>
+        <label for="psw">Ingresa tu password de staff</label>
+        <input type="text" id="psw" name="psw" />
 
-          <label for="password2">Ingresa alumno Kaanbal</label>
-          <input type="text" id="psw2" name="psw2" />
+        <label for="password2">Ingresa alumno Kaanbal</label>
+        <input type="text" id="psw2" name="psw2" />
 
-          <label for="password2">Correo de alumno a enviar contraseña</label>
-          <input type="text" id="correoAlumno" name="psw2" />
+        <label for="password2">Correo de alumno a enviar contraseña</label>
+        <input type="text" id="correoAlumno" name="psw2" />
         </form>
       </div>
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
@@ -65,7 +70,7 @@
     <div class="row">
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-          <textarea type="text" id="respuesta" style = "width:100%; height:150px; overflow:scroll"></textarea>
+        <textarea type="text" id="respuesta" style="width:100%; height:150px; overflow:scroll"></textarea>
         </form>
       </div>
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>

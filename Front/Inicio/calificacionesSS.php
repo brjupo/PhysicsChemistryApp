@@ -9,6 +9,7 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
     header('Location: perfil.php');
     exit;
 }
+require "../CSSsJSs/mainCSSsJSs.php";
 ?>
 
 <!DOCTYPE html>
@@ -19,8 +20,8 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials10.css" />
+    <link rel="stylesheet" href="../CSSsJSs/<?=$bootstrap441?>" />
+    <link rel="stylesheet" href="../CSSsJSs/<?=$kaanbalEssentials?>" />
 </head>
 
 <body>
@@ -245,12 +246,12 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
                         <td style="font-weight:600">Matrícula</td>
                         <?php
                         for ($k = 0; $k < count($subtemas["id"]); $k++) {
-                            echo '<td>' . $subtemas["nombre"][$k] . ' id: '. $subtemas["id"][$k] . '</td>';
+                            echo '<td>' . $subtemas["nombre"][$k] . ' id: ' . $subtemas["id"][$k] . '</td>';
                         }
                         ?>
                     </tr>
 
-                    
+
                     <?php
                     //-------------AQUI OBTIENES LA CALIFICACION DE LOS ALUMNOS, SI NO SE ENCUENTRA IMPRIME NP
                     for ($m = 0; $m < count($alumnos["id"]); $m++) {
@@ -272,9 +273,9 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
                                     $calificacion = $puntuacion * 100;
                                     $calificacion = $calificacion / $preguntasLeccion;
                                     $calificacion = intval($calificacion / 3);
-                                    //echo '<td>';
-                                    echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$subtemas["nombre"][$l]];
-                                    echo $calificacion . ' idSub:' . $subtemas["id"][$l] . ' </td>';
+                                    //echo '<td> pts=' . $row[0] . ', prgs=' . $subtemas["totalPreguntas"][$subtemas["nombre"][$l]];
+                                    //echo ' Calificación: '. $calificacion . ' idSub:' . $subtemas["id"][$l] . ' </td>';
+                                    echo '<td>' . $calificacion . '</td>';
                                 }
                                 if ($entre == 0) {
                                     echo '<td style="color:red;">NP</td>';

@@ -1,5 +1,6 @@
 <?php
 require "../../servicios/00DDBBVariables.php";
+require "../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,9 +10,9 @@ require "../../servicios/00DDBBVariables.php";
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Temas</title>
-  <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
   <link rel="stylesheet" href="Temas.css" />
-  <script src="Temas.js"></script>
+  <script src="temas001.js"></script>
 </head>
 
 <body>
@@ -186,19 +187,19 @@ require "../../servicios/00DDBBVariables.php";
   function imprimirTitulo()
   {
     echo '
-      <!----------------------------------------------TITULO--------------------------------------------->
-      <div class="top">
-        <div class="container">
-          <div class="row titulo">
-            <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-              <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
-            </div>
-            <div class="textCenter col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-              <p class="Ciencia fuenteTitulo" id="asignatura">' . $_SESSION["asignaturaNavegacion"] . '</p>
-            </div>
-          </div>
+  <div class="top">
+    <div class="container">
+      <div class="row">
+        <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+          <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
+        </div>
+        <div class="textCenter col-xs-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
+          <p class="Ciencia fuenteTitulo" id="asignaturad">' . $_SESSION["asignaturaNavegacion"] . '</p>
+          <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none">' . $_SESSION["idAsignatura"] . '</p>
         </div>
       </div>
+    </div>
+  </div>
       <!------------------------------------------------FIN TITULO----------------------------------------------->
     ';
   }
@@ -246,15 +247,15 @@ require "../../servicios/00DDBBVariables.php";
             <div class="textCenter col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <p style="color:rgba(0,0,0,0)">.</p>
               <p>Bienvenido a Kaanbal</p>
-              <p>Para mejor experiencia te recomendamos usar <strong>Chrome o Firefox</strong></p>
+              <!--p>Para mejor experiencia te recomendamos usar <strong>Chrome o Firefox</strong></p-->
               <!--p><a href="https://youtu.be/mPyPKiUa8tc">Tutorial</a></p-->
               <p style="color:rgba(0,0,0,0)">.</p>';
     if ($pagado == 0) {
       echo '
               <!--p>¡Sigue acumulando diamantes! Recuerda <a href="../../../contacto.html">adquirir</a> tu licencia antes del 4 de septiembre.  Seguiremos aquí cuando más nos necesites. </p-->
-              <p>Por seguridad, cerraremos las cuentas que NO hayan cambiado el password</p>
+              <!--p>Por seguridad, cerraremos las cuentas que NO hayan cambiado el password</p>
               <p>Revisa si completaste correctamente el proceso en <a href="../../../contacto.html">pagos</a></p>
-              <p style="color:rgba(0,0,0,0)">.</p>';
+              <p style="color:rgba(0,0,0,0)">.</p-->';
     }
     echo '
             </div>

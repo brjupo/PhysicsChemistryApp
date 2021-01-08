@@ -16,7 +16,9 @@ if ($_SESSION["mail"] != $_POST["mail"]) {
 $mailUsuario = $_SESSION["mail"];
 $idAsignatura = $_SESSION["idAsignatura"];
 
-require "../CSSsJSs/mainCSSsJSs.php";
+//ESTO ESTÁ DLV, SOLO APLICA PARA ALUMNOS CON UNA SOLA LICENCIA
+//REPETIRLO SI LLEGA A APLICAR QUE SE TIENE MAS DE UNA LICENCIA
+
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +29,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../CSSsJSs/<?=$bootstrap441?>" />
-    <link rel="stylesheet" href="../CSSsJSs/<?=$kaanbalEssentials?>" />
+    <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
+    <link rel="stylesheet" href="../CSSsJSs/kaanbalEssentials10.css" />
 </head>
 
 <body>
@@ -67,9 +69,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
             <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
                 <p class="titulo">Kaanbal</p>
-                <!--p>
+                <p>
                     <? echo $idAsignatura;?>
-                </p-->
+                </p>
             </div>
             <div class="textCenter col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"></div>
         </div>
@@ -117,25 +119,69 @@ require "../CSSsJSs/mainCSSsJSs.php";
                                     <td>" . $row[1] . "</td>
                                     <td>" . $row[2] . "</td>
                                     <td>" . $row[3] . "</td>";
-                            //Crear la lectura en base de datos, para obtener calificación de práctica, sprint y examen
+                            //Crear la lectura en base de datos, para obtener calificación de práctica
                             try {
-                                $tempIdLeccion = $row[3];
                                 $entre = 0;
                                 $conn2 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                                 $conn2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                $stringQuery2 = "SELECT ((SELECT p.puntuacion FROM puntuacion p JOIN usuario_prueba u ON p.id_usuario = u.id_usuario WHERE p.id_leccion = " . $tempIdLeccion . " AND u.mail = '" . $mailUsuario . "' AND p.tipo = 'PP') * 100/(SELECT COUNT(*) FROM pregunta WHERE id_leccion = " . $tempIdLeccion . ")) AS sprint_particular, ((SELECT p.puntuacion FROM puntuacion p JOIN usuario_prueba u ON p.id_usuario = u.id_usuario WHERE p.id_leccion = " . $tempIdLeccion . " AND u.mail = '" . $mailUsuario . "' AND p.tipo = 'SP') * 100/3/(SELECT COUNT(*) FROM pregunta WHERE id_leccion = " . $tempIdLeccion . ")) AS practica_particular, ((SELECT p.puntuacion FROM puntuacion p JOIN usuario_prueba u ON p.id_usuario = u.id_usuario WHERE p.id_leccion = " . $tempIdLeccion . " AND u.mail = '" . $mailUsuario . "' AND p.tipo = 'E') * 100/(SELECT COUNT(*) FROM pregunta WHERE id_leccion = " . $tempIdLeccion . ")) AS examen;";
+                                $stringQuery2 = "SELECT p.puntuacion 
+                                FROM puntuacion p JOIN usuario_prueba u 
+                                ON p.id_usuario = u.id_usuario 
+                                WHERE p.id_leccion = " . $row[3] . " AND u.mail = '" . $mailUsuario . "' AND p.tipo = 'PP' ORDER BY p.puntuacion DESC LIMIT 1;";
                                 $stmt2 = $conn2->query($stringQuery2);
                                 while ($row2 = $stmt2->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
                                     echo "<td>" . $row2[0] . "</td>";
-                                    echo "<td>" . $row2[1] . "</td>";
-                                    echo "<td>" . $row2[2] . "</td>";
                                 }
-                                
+                                if ($entre == 0) {
+                                    echo '<td style="color:red;">NP</td>';
+                                }
                             } catch (PDOException $e2) {
                                 echo "Error: " . $e2->getMessage();
                             }
                             $conn2 = null;
+                            //Crear la lectura en base de datos, para obtener calificación de SPRINT
+                            try {
+                                $entre = 0;
+                                $conn3 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                                $conn3->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                $stringQuery3 = "SELECT p.puntuacion 
+                                FROM puntuacion p JOIN usuario_prueba u 
+                                ON p.id_usuario = u.id_usuario 
+                                WHERE p.id_leccion = " . $row[3] . " AND u.mail = '" . $mailUsuario . "' AND p.tipo = 'SP' ORDER BY p.puntuacion DESC LIMIT 1;";
+                                $stmt3 = $conn3->query($stringQuery3);
+                                while ($row3 = $stmt3->fetch(PDO::FETCH_NUM)) {
+                                    $entre = 1;
+                                    echo "<td>" . $row3[0] . "</td>";
+                                }
+                                if ($entre == 0) {
+                                    echo '<td style="color:red;">NP</td>';
+                                }
+                            } catch (PDOException $e3) {
+                                echo "Error: " . $e3->getMessage();
+                            }
+                            $conn3 = null;
+                            //Crear la lectura en base de datos, para obtener calificación de EXAMEN
+                            try {
+                                $entre = 0;
+                                $conn4 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                                $conn4->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                $stringQuery4 = "SELECT p.puntuacion 
+                                FROM puntuacion p JOIN usuario_prueba u 
+                                ON p.id_usuario = u.id_usuario 
+                                WHERE p.id_leccion = " . $row[3] . " AND u.mail = '" . $mailUsuario . "' AND p.tipo = 'E' ORDER BY p.puntuacion DESC LIMIT 1;";
+                                $stmt4 = $conn4->query($stringQuery2);
+                                while ($row4 = $stmt4->fetch(PDO::FETCH_NUM)) {
+                                    $entre = 1;
+                                    echo "<td>" . $row4[0] . "</td>";
+                                }
+                                if ($entre == 0) {
+                                    echo '<td style="color:red;">NP</td>';
+                                }
+                            } catch (PDOException $e4) {
+                                echo "Error: " . $e4->getMessage();
+                            }
+                            $conn4 = null;
                             echo "</tr>";
                         }
                     } catch (PDOException $e) {

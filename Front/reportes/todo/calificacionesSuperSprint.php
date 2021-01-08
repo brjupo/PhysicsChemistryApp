@@ -2,14 +2,11 @@
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
 $teacherID = isTeacher();
-if ($teacherID == "null") {
-    header('Location: https://kaanbal.net/');
-    exit;
-}
 if (!isset($_POST["grupo"])) {
     header('Location: ../controlCalificaciones.php');
     exit;
 }
+require "../../CSSsJSs/mainCSSsJSs.php";
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +17,8 @@ if (!isset($_POST["grupo"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Kaanbal</title>
-    <link rel="stylesheet" href="../../CSSsJSs/bootstrap441.css" />
-    <link rel="stylesheet" href="../../CSSsJSs/kaanbalEssentials10.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?= $bootstrap441 ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?= $kaanbalEssentials ?>" />
     <script src="../TableCSVExporter5.js"></script>
 </head>
 
@@ -289,7 +286,7 @@ if (!isset($_POST["grupo"])) {
             <div class="input-group input-group-sm col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <?php
                 date_default_timezone_set("America/Mexico_City");
-                $fileName = $tipo . "_" . $materia . "_" . $grupo . "_" . date("Y/m/d");
+                $fileName = $tipo . "_" . $materia . "_" . $grupo . "_" . date("l jS \of F Y");
                 ?>
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">File name:</span>
@@ -311,7 +308,8 @@ if (!isset($_POST["grupo"])) {
                 <tbody>
                     <tr>
                         <td style="color:rgba(50,50,255,1)">Grupo | Tipo | Fecha </td>
-                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | Super sprint | " . date("Y/m/d H:m:s"); ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php echo $grupo . " | Super sprint | " ?></td>
+                        <td style="color:rgba(50,50,255,1)"><?php date("l jS \of F Y H:m:s"); ?></td>
                         <?php
                         //Recorreremos todos los subtemas para imprimirlos con su respectivo tema
                         for ($k = 0; $k < count($subtemas["id"]); $k++) {
@@ -319,7 +317,8 @@ if (!isset($_POST["grupo"])) {
                         } ?>
                     </tr>
                     <tr>
-                        <td style="font-weight:600">Matrícula</td>
+                        <td style="font-weight:600">Número de lista</td>
+                        <td style="font-weight:600">Primer nombre</td>
                         <td style="font-weight:600">Diamantes</td>
                         <?php
                         for ($k = 0; $k < count($subtemas["id"]); $k++) {
@@ -331,18 +330,37 @@ if (!isset($_POST["grupo"])) {
                     <?php
                     //--------------AQUI OBTIENES TODOS LOS ALUMNOS DEL GRUPO
                     $alumnos = array();
-                    $alumnos["matricula"] = array();
+                    //$alumnos["matricula"] = array();
+                    $alumnos["numeroLista"] = array();
+                    $alumnos["primerNombre"] = array();
                     $alumnos["id"] = array();
                     $alumnos["diamantes"] = array();
                     //Crear la lectura en base de datos
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT DISTINCT alumno.matricula, alumno_grupo.id_alumno FROM alumno_grupo INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno WHERE alumno_grupo.id_grupo = " . $id_grupo;
+                        $stringQuery = 'SELECT DISTINCT
+                                        alumno.numero_lista,
+                                        nombre.nombre,
+                                        alumno_grupo.id_alumno
+                                        FROM
+                                            (
+                                                (
+                                                    alumno_grupo
+                                                INNER JOIN alumno ON alumno.id_alumno = alumno_grupo.id_alumno
+                                                )
+                                            INNER JOIN nombre ON alumno.id_nombre = nombre.id_nombre
+                                            )
+                                        WHERE
+                                            alumno_grupo.id_grupo = ' . $id_grupo . '
+                                        ORDER BY
+                                            alumno.numero_lista;
+                                        ';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            array_push($alumnos["matricula"], $row[0]);
-                            array_push($alumnos["id"], $row[1]);
+                            array_push($alumnos["numeroLista"], $row[0]);
+                            array_push($alumnos["primerNombre"], $row[1]);
+                            array_push($alumnos["id"], $row[2]);
                             array_push($alumnos["diamantes"], 0);
                         }
                     } catch (PDOException $e) {
@@ -355,11 +373,11 @@ if (!isset($_POST["grupo"])) {
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT a.matricula, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = $id_grupo ) GROUP BY a.matricula ORDER BY matricula ASC";
+                        $stringQuery = "SELECT a.id_alumno, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = $id_grupo ) GROUP BY a.matricula ORDER BY matricula ASC";
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            for ($n = 0; $n < count($alumnos["matricula"]); $n++) {
-                                if ($alumnos["matricula"][$n] == $row[0]) {
+                            for ($n = 0; $n < count($alumnos["id"]); $n++) {
+                                if ($alumnos["id"][$n] == $row[0]) {
                                     $alumnos["diamantes"][$n] = $row[1];
                                 }
                             }
@@ -374,7 +392,8 @@ if (!isset($_POST["grupo"])) {
                     //-------------AQUI OBTIENES LA CALIFICACION DE LOS ALUMNOS, SI NO SE ENCUENTRA IMPRIME NP
                     for ($m = 0; $m < count($alumnos["id"]); $m++) {
                         echo '<tr>';
-                        echo '<td>' . $alumnos["matricula"][$m] . '</td>';
+                        echo '<td>' . $alumnos["numeroLista"][$m] . '</td>';
+                        echo '<td>' . $alumnos["primerNombre"][$m] . '</td>';
                         echo '<td>' . $alumnos["diamantes"][$m] . '</td>';
                         for ($l = 0; $l < count($subtemas["id"]); $l++) {
                             $entre = 0;
