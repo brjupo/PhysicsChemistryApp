@@ -213,6 +213,7 @@ $teacherUserID = $_SESSION["id_usuario"];
                         </div>
                     ';
             }
+            $_SESSION["tieneGrupos"] = '1';
         } catch (PDOException $e) {
             echo "failed: " . $stringQuery . $e->getMessage();
         }
