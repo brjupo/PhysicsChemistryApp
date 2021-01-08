@@ -189,6 +189,14 @@ $teacherUserID = $_SESSION["id_usuario"];
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p><strong>Listado de Grupos creados</strong>:</p>
+            </div>
+        </div>
+    </div>
+
     <?php
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -201,12 +209,12 @@ $teacherUserID = $_SESSION["id_usuario"];
                             <div class="row">
                                 <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">ID: ' . $row[0] . '</span>
+                                        <span class="input-group-text" style="display:none">ID: ' . $row[0] . '</span>
                                         <span class="input-group-text">Materia: ' . $row[1] . '</span>
                                     </div>
                                     <input type="text" class="form-control" value="' . $row[2] . '" />
                                     <div class="input-group-append">
-                                        <span class="input-group-text">Código: ' . $row[3] . '</span>
+                                        <span class="input-group-text">Identificador de Grupo: ' . $row[3] . '</span>
                                     </div>
                                 </div>
                             </div>
