@@ -128,7 +128,7 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
     </p>
     <p>1.- Usando el link previo, crea tu contraseña e ingresa a <a href="https://www.kaanbal.net"> Kaanbal </a> con tu correo y contraseña</p>
     <p>2.- Da clic en la sección "Crear grupos".</p>
-    <p>3.- Comparte con tus alumnos el código de grupo.</p>
+    <p>3.- Comparte con tus alumnos el identificador de grupo.</p>
     <p>Listo! en cuanto tus alumnos se registren podrás observar su avance en la sección de "Reportes"</p>
     <p style="color: white">.</p>
     <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
