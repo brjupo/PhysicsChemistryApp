@@ -54,7 +54,7 @@ $teacherUserID = $_SESSION["id_usuario"];
                     lista inferior.
                 </p>
                 <p>
-                    - Comparta el código del grupo a sus alumnos para que puedan unirse.
+                    - Comparta el identificador de grupo a sus alumnos para que puedan unirse.
                 </p>
                 <p style="font-size: small">
                     Cualquier duda estamos para ayudarte
@@ -110,7 +110,7 @@ $teacherUserID = $_SESSION["id_usuario"];
 
     <div class="container">
         <div class="row">
-            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="display:none">
                 <div class="input-group-prepend">
                     <div class="input-group-text">ID usuario prof</div>
                 </div>
@@ -148,7 +148,7 @@ $teacherUserID = $_SESSION["id_usuario"];
                 //  Si existe regresa a crearlo
             }
             ?>
-            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="display:none">
                 <div class="input-group-prepend">
                     <div class="input-group-text">Código grupo</div>
                 </div>
@@ -189,7 +189,24 @@ $teacherUserID = $_SESSION["id_usuario"];
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p><strong>Listado de grupos creados</strong>:</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="color: rgba(0, 0, 0, 0)">.</p>
+            </div>
+        </div>
+    </div>
+
     <?php
+
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -201,12 +218,12 @@ $teacherUserID = $_SESSION["id_usuario"];
                             <div class="row">
                                 <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">ID: ' . $row[0] . '</span>
+                                        <span class="input-group-text" style="display:none">ID: ' . $row[0] . '</span>
                                         <span class="input-group-text">Materia: ' . $row[1] . '</span>
                                     </div>
                                     <input type="text" class="form-control" value="' . $row[2] . '" />
                                     <div class="input-group-append">
-                                        <span class="input-group-text">Código: ' . $row[3] . '</span>
+                                        <span class="input-group-text">Identificador de Grupo: ' . $row[3] . '</span>
                                     </div>
                                 </div>
                             </div>

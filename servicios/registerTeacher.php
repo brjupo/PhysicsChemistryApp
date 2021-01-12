@@ -11,7 +11,7 @@ $lowerTeacherMail = strtolower($teacherMail);
 //if (strpos($variable, 'palabra') !== false)
 
 
-if (strpos($lowerTeacherMail, '@tec.mx') === false) {
+if (strpos($lowerTeacherMail, 'tec.mx') === false) {
 //if (false) {
   $respuesta["response"] = "¿Quieres obtener tu acceso a Kaanbal? <a href='https://kaanbal.net/contacto.html'>Contáctanos!</a>. Podemos ofrecer a su institución un periodo de prueba GRATUITO.";
 } else {
@@ -117,7 +117,7 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
     <p>' . $mail . '</p>
     <p>En la siguiente URL podrás crear tu <strong>contraseña</strong></p>
     <a href="https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
-      <p>https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</p>
+      <p><strong>https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</strong></p>
     </a>
     <p>
       Recuerda esta liga es instransferible y de un solo uso. No la compartas.
@@ -128,23 +128,14 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
     </p>
     <p>1.- Usando el link previo, crea tu contraseña e ingresa a <a href="https://www.kaanbal.net"> Kaanbal </a> con tu correo y contraseña</p>
     <p>2.- Da clic en la sección "Crear grupos".</p>
-    <p>3.- Comparte con tus alumnos el código de grupo.</p>
+    <p>3.- Comparte con tus alumnos el identificador de grupo.</p>
     <p>Listo! en cuanto tus alumnos se registren podrás observar su avance en la sección de "Reportes"</p>
     <p style="color: white">.</p>
     <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
-    <img
-      src="https://www.kaanbal.net/IMAGENES/email.png"
-      height="40px"
-      style="display: block"
-    />
-    <p><a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+   
+    <p>Correo: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
 
-    <img
-      src="https://www.kaanbal.net/IMAGENES/whatsapp.png"
-      height="40px"
-      style="display: block"
-    />
-    <p><strong>55 4871 4593</strong>.</p>
+    <p>WhatsApp: <strong>55 4871 4593</strong>.</p>
     <p style="color: white">.</p>
     <p>Agradecemos tu confianza,</p>
     <p>
