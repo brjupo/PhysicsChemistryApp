@@ -11,7 +11,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Subtemas 12Jan</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
-  <link rel="stylesheet" href="Subtemas.css" />
+  <link rel="stylesheet" href="subtemas01.css" />
   <script src="subtemas01.js"></script>
 </head>
 

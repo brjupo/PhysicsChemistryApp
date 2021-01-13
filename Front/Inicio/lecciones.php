@@ -290,7 +290,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
     imprimirTitulo();
     imprimirLecciones($arregloLecciones);
     imprimirRelleno();
-    imprimirFooter();
   }
 
   function imprimirLecciones($arregloLecciones)
