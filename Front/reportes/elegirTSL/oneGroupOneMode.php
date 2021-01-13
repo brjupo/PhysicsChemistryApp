@@ -206,9 +206,9 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         <td><?php echo $leccion; ?></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>.</td>
+                        <td>.</td>
+                        <td>.</td>
                     </tr>
                     <tr>
                         <td>Número de lista</td>

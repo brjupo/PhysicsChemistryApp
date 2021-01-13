@@ -93,24 +93,38 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     </div>
   </div>
 
+
   <div class="container">
     <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p style="color: rgba(0, 0, 0, 0);">.</p>
       </div>
     </div>
   </div>
 
-
   <div class="foot">
     <div class="container">
       <div class="row text-center">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <img class="footIcon" id="botonHomeTeacher" src="../../CSSsJSs/icons/home.svg" />
+          <a href="../controlCalificaciones.php">
+            <img class="footIcon" id="botonHomeTeacher" src="../../CSSsJSs/icons/home.svg" /></a>
         </div>
       </div>
     </div>
   </div>
+
 </body>
 
 </html>
