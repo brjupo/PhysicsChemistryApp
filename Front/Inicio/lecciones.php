@@ -1,3 +1,7 @@
+<?php
+require "../../servicios/00DDBBVariables.php";
+require "../CSSsJSs/mainCSSsJSs.php";
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,9 +10,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Lecciones</title>
-  <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
   <link rel="stylesheet" href="Lecciones.css" />
-  <script src="Lecciones.js"></script>
+  <script src="lecciones01.js"></script>
 </head>
 
 <body>
@@ -166,11 +170,11 @@
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     ///Llamar a las habilitadas
     //Verificamos el idioma//
-    if($_SESSION["idioma"] == 'i'){
-    //Debe de traer todas en la que puntiacion PP sea mayor a 70%, las que sea mayor al 70% deberan tener habilitado el sprint y la siguiente leccion
+    if ($_SESSION["idioma"] == 'i') {
+      //Debe de traer todas en la que puntiacion PP sea mayor a 70%, las que sea mayor al 70% deberan tener habilitado el sprint y la siguiente leccion
       $statement = mysqli_prepare($con, "SELECT l.id_leccion, l.id_subtema, l.names, l.orden, FLOOR(COUNT(p.id_leccion) * 0.7) as setenta, pu.puntuacion FROM leccion l JOIN pregunta p JOIN puntuacion pu ON p.id_leccion = l.id_leccion AND l.id_leccion = pu.id_leccion AND p.id_leccion = pu.id_leccion WHERE l.id_subtema = ? AND pu.id_usuario = ? AND pu.tipo = 'PP' GROUP BY p.id_leccion ORDER BY orden");
-    }else{
-    //Debe de traer todas en la que puntiacion PP sea mayor a 70%, las que sea mayor al 70% deberan tener habilitado el sprint y la siguiente leccion
+    } else {
+      //Debe de traer todas en la que puntiacion PP sea mayor a 70%, las que sea mayor al 70% deberan tener habilitado el sprint y la siguiente leccion
       $statement = mysqli_prepare($con, "SELECT l.id_leccion, l.id_subtema, l.nombre, l.orden, FLOOR(COUNT(p.id_leccion) * 0.7) as setenta, pu.puntuacion FROM leccion l JOIN pregunta p JOIN puntuacion pu ON p.id_leccion = l.id_leccion AND l.id_leccion = pu.id_leccion AND p.id_leccion = pu.id_leccion WHERE l.id_subtema = ? AND pu.id_usuario = ? AND pu.tipo = 'PP' GROUP BY p.id_leccion ORDER BY orden");
     }
     mysqli_stmt_bind_param($statement, "ii", $id_subtema, $_SESSION["id_usuario"]);
@@ -188,7 +192,7 @@
       $arregloLeccionesh[$i]["nombre"] = $nombreh;
       $arregloLeccionesh[$i]["setenta"] = $setenta;
       $arregloLeccionesh[$i]["puntuacion"] = $puntuacion;
-      $arregloLeccionesh[$i]["orden"] = $orden;////////280622020 se agrego lo del orden de las lecciones
+      $arregloLeccionesh[$i]["orden"] = $orden; ////////280622020 se agrego lo del orden de las lecciones
       $i = $i + 1;
     }
 
@@ -203,9 +207,9 @@
 
     //Llamar no habilitadas
     //Verificamos el idioma//
-    if($_SESSION["idioma"] == 'i'){
+    if ($_SESSION["idioma"] == 'i') {
       $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, names, orden FROM leccion WHERE id_subtema = ? ORDER BY orden");
-    }else{
+    } else {
       $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, nombre, orden FROM leccion WHERE id_subtema = ? ORDER BY orden");
     }
     mysqli_stmt_bind_param($statement, "i", $id_subtema);
@@ -221,7 +225,7 @@
       $arregloLecciones[$i]["id_leccion"] = $id_leccion;
       $arregloLecciones[$i]["id_subtema"] = $id_subtema;
       $arregloLecciones[$i]["nombre"] = $nombre;
-      $arregloLecciones[$i]["orden"] = $orden;////////280622020 se agrego lo del orden de las lecciones
+      $arregloLecciones[$i]["orden"] = $orden; ////////280622020 se agrego lo del orden de las lecciones
       $i = $i + 1;
     }
 
@@ -306,9 +310,9 @@
       $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";dbname=" . $GLOBALS['dbname'] . "", $GLOBALS['username'], $GLOBALS['password']);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $idSubtema = $_GET['subtema'];
-      if($_SESSION["idioma"] == 'i'){
+      if ($_SESSION["idioma"] == 'i') {
         $stringQuery = "SELECT names FROM subtema WHERE id_subtema='" . $idSubtema . "' ;";
-      }else{
+      } else {
         $stringQuery = "SELECT nombre FROM subtema WHERE id_subtema='" . $idSubtema . "' ;";
       }
       $stmt = $conn->query($stringQuery);
@@ -346,7 +350,7 @@
   ';
   }
 
-  function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $habilitar, $habilitarS, $habilitarE )
+  function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $habilitar, $habilitarS, $habilitarE)
   {
     $habilitar = '1';
     $habilitarS = '1';
@@ -487,6 +491,25 @@
   }
 
   ?>
+  <div class="foot">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+          <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>

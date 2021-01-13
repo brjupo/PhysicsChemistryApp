@@ -29,14 +29,16 @@ document.addEventListener("click", function (evt) {
 });
 
 function profilev() {
-  var asignatura = document.getElementById("asignatura").innerHTML;
-  var url = "perfil.php?asignatura=";
-  location.replace(url.concat(asignatura));
+  //var asignatura = document.getElementById("asignatura").innerHTML;
+  //var url = "perfil.php?asignatura=";
+  //location.replace(url.concat(asignatura));
+  location.replace("perfil.php");
 }
 function topv() {
-  var asignatura = document.getElementById("asignatura").innerHTML;
-  var url = "topS.php?asignatura=";
-  location.replace(url.concat(asignatura));
+  //var asignatura = document.getElementById("asignatura").innerHTML;
+  //var url = "topS.php?asignatura=";
+  //location.replace(url.concat(asignatura));
+  location.replace("topS.php");
 }
 function do_logout() {
   location.replace("../../../index.php");

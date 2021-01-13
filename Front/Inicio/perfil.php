@@ -38,7 +38,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   $iduser = $_SESSION["id_usuario"];
   $materia = $_SESSION["asignaturaNavegacion"];
-  //$idMateria = $_GET["asignatura"];
 
 
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");

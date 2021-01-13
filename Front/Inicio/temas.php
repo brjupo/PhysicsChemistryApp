@@ -12,7 +12,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Temas</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
   <link rel="stylesheet" href="Temas.css" />
-  <script src="temas001.js"></script>
+  <script src="temas01.js"></script>
 </head>
 
 <body>
