@@ -1,7 +1,7 @@
 <?php
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
-$teacherID=isTeacher();
+$teacherID = isTeacher();
 require "../../CSSsJSs/mainCSSsJSs.php";
 ?>
 
@@ -9,12 +9,12 @@ require "../../CSSsJSs/mainCSSsJSs.php";
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
-    <title>Kaanbal</title>
-    <link rel="stylesheet" href="../../CSSsJSs/<?=$bootstrap441?>" />
-    <link rel="stylesheet" href="../../CSSsJSs/<?=$kaanbalEssentials?>" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
+  <title>Kaanbal</title>
+  <link rel="stylesheet" href="../../CSSsJSs/<?= $bootstrap441 ?>" />
+  <link rel="stylesheet" href="../../CSSsJSs/<?= $kaanbalEssentials ?>" />
 </head>
 
 <body>
@@ -122,7 +122,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
 
       <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <label for="id_leccion">ID Lección</label>
-        <input type="text" id="id_leccion" name="id_leccion" class="form-control" form="groupForm" value="<?php echo $_GET["ID_Leccion"];?>" />
+        <input type="text" id="id_leccion" name="id_leccion" class="form-control" form="groupForm" value="<?php echo $_GET["ID_Leccion"]; ?>" />
       </div>
       <div class="textCenter col-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
         <label for="desde">Desde [Exclusivo]</label>
@@ -170,3 +170,18 @@ require "../../CSSsJSs/mainCSSsJSs.php";
       </div>
     </div>
   </div>
+
+
+  <div class="foot">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <img class="footIcon" id="botonHomeTeacher" src="../../CSSsJSs/icons/home.svg" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

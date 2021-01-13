@@ -205,6 +205,16 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         <td style="color:rgba(50,50,255,1)"><?php echo $desde_fecha . "_" . $desde_tiempo . " a " . $hasta_fecha . "_" . $hasta_tiempo; ?></td>
                         <td><?php echo $leccion; ?></td>
                     </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Número de lista</td>
+                        <td>Primer nombre</td>
+                        <td>Calificación</td>
+                    </tr>
                     <?php
                     //--------------AQUI OBTIENES TODOS LOS ALUMNOS DEL GRUPO
                     $alumnos = array();
@@ -295,7 +305,11 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                             if ($entre == 0) {
                                 echo '<td style="color:red;">NP</td>';
                             } else {
-                                echo '<td>' . $calificacion . '</td>';
+                                if ($tipo == "SP") {
+                                    echo '<td>' . $calificacion/3 . '</td>';
+                                } else {
+                                    echo '<td>' . $calificacion . '</td>';
+                                }
                             }
                         } catch (PDOException $e) {
                             echo "Error: " . $e->getMessage();
