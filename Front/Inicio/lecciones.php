@@ -11,8 +11,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Lecciones</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
-  <link rel="stylesheet" href="Lecciones.css" />
-  <script src="lecciones01.js"></script>
+  <link rel="stylesheet" href="lecciones01.css" />
+  <script src="lecciones02.js"></script>
 </head>
 
 <body>
@@ -494,16 +494,24 @@ require "../CSSsJSs/mainCSSsJSs.php";
     <div class="container">
       <div class="row text-center">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-          <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
+          <a href="temas.php">
+            <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
+          </a>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
-          <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
+          <a href="perfil.php">
+            <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
+          </a>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-          <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
+          <a href="topS.php">
+            <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
+          </a>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-          <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
+          <a href="../../../index.php">
+            <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
+          </a>
         </div>
       </div>
     </div>

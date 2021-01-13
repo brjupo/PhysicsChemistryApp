@@ -9,10 +9,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
-  <title>Subtemas 12Jan</title>
+  <title>Subtemas</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
   <link rel="stylesheet" href="subtemas01.css" />
-  <script src="subtemas01.js"></script>
+  <script src="subtemas02.js"></script>
 </head>
 
 <body>
@@ -265,21 +265,29 @@ require "../CSSsJSs/mainCSSsJSs.php";
     <div class="container">
       <div class="row text-center">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-          <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
+          <a href="temas.php">
+            <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
+          </a>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
-          <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
+          <a href="perfil.php">
+            <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
+          </a>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-          <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
+          <a href="topS.php">
+            <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
+          </a>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-          <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
+          <a href="../../../index.php">
+            <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
+          </a>
         </div>
       </div>
     </div>
   </div>
-  
+
 </body>
 
 </html>
