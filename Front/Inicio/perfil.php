@@ -154,11 +154,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
     imprimirRelleno();
     imprimirDiamantes($diamantes);
     imprimirRelleno();
-    if($_SESSION["mostrarMenuprofesor"] == ''){
-    imprimirInfoEstudiante();}
-    imprimirRelleno();
-    imprimirRelleno();
-    imprimirCalificacion($matricula);
+    if ($_SESSION["mostrarMenuprofesor"] == '') {
+      imprimirInfoEstudiante();
+      imprimirRelleno();
+      imprimirRelleno();
+      imprimirCalificacion($matricula);
+    }
     imprimirRelleno();
     imprimirRelleno();
     /*imprimirPagos();
