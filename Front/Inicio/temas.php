@@ -34,9 +34,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $tokenValidar["tokenSesionp"] = $tokenSesionp;
   }
 
-  /* echo'<script type="text/javascript">
+  echo'<script type="text/javascript">
             alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
-            </script>'; */
+            </script>'; 
 
 
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
