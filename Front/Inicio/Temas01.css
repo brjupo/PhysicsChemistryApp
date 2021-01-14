@@ -285,45 +285,6 @@ p {
 
 /*--------------------------------------------------------- FIN TEMAS PRINCIPALES---------------------------------------*/
 
-/*--------------------------------------------------------- INICIA FOOTER ---------------------------------------*/
-
-.foot {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 1);
-  text-align: center;
-  margin: 2rem 0px 0px 0px;
-  border: 1px solid #d6d6d6;
-}
-
-.footIcon {
-  padding: 10px 0px 10px 0px;
-  width: 4vw;
-}
-
-@media screen and (max-width: 768px) {
-  .footIcon {
-    width: 40px;
-  }
-}
-
-.footIcon:hover,
-.footIcon:active {
-  padding: 0px 0px 0px 0px;
-  width: 5vw;
-}
-
-@media screen and (max-width: 768px) {
-  .footIcon:hover,
-  .footIcon:active {
-    width: 50px;
-  }
-}
-
-/*--------------------------------------------------------- FIN FOOTER ---------------------------------------*/
-
 .relleno {
   color: white;
 }
