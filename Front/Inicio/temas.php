@@ -91,7 +91,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $idAsignatura = $_GET['asignatura']; //091120 ESTO LO RECIBE DIRECTO DE LA URL, AQUI RECIBIRA ID DE ASIGNATURA
-    //$_SESSION["idAsignatura"] = $idAsignatura;
+    $_SESSION["idAsignatura"] = $idAsignatura;
     /*echo '<script type="text/javascript">
             alert("'.$asignatura.'");
             </script>';
@@ -117,7 +117,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
 
     //id de asignatura usado en top.php
-    //$_SESSION["idAsignatura"] = $idAsignatura;
+    $_SESSION["idAsignatura"] = $idAsignatura;
     $_SESSION["asignaturaNavegacion"] = $materia;
 
 
