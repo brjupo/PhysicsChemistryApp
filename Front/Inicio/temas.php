@@ -122,6 +122,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $_SESSION["idAsignatura"] = $idAsignatura;}
     $_SESSION["asignaturaNavegacion"] = $materia;
 
+    echo'<script type="text/javascript">
+            alert("'.$idAsignatura."____".$_SESSION["idAsignatura"].'");
+            </script>';  
 
     /*----Paso 2 Llamar a los temas de la asignatura-------*/
     //Verificamos el idioma//
