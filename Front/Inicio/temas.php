@@ -101,14 +101,14 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
     if ($_SESSION["idioma"] == 'i') {
-      $query = "SELECT names FROM asignatura WHERE id_asignatura = $idAsignatura";
+      $query = "SELECT names FROM asignatura WHERE id_asignatura = $_SESSION["idAsignatura"]";
       $result = mysqli_query($con, $query);
       while ($row = mysqli_fetch_assoc($result)) {
         $arrayMateria[] = $row;
       }
       $materia =  $arrayMateria[0]["names"]; //De aqui se obtendra el nombre de asignatura
     } else {
-      $query = "SELECT nombre FROM asignatura WHERE id_asignatura = $idAsignatura";
+      $query = "SELECT nombre FROM asignatura WHERE id_asignatura = $_SESSION["idAsignatura"]";
       $result = mysqli_query($con, $query);
       while ($row = mysqli_fetch_assoc($result)) {
         $arrayMateria[] = $row;
@@ -122,9 +122,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $_SESSION["idAsignatura"] = $idAsignatura;}
     $_SESSION["asignaturaNavegacion"] = $materia;
 
-    echo'<script type="text/javascript">
+    /* echo'<script type="text/javascript">
             alert("'.$idAsignatura."____".$_SESSION["idAsignatura"].'");
-            </script>';  
+            </script>';   */
 
     /*----Paso 2 Llamar a los temas de la asignatura-------*/
     //Verificamos el idioma//
@@ -133,7 +133,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     } else {
       $statement = mysqli_prepare($con, "SELECT id_tema, id_asignatura, nombre FROM tema WHERE id_asignatura = ? ORDER BY orden ASC"); //WHERE mail = ? AND pswd = ?
     }
-    mysqli_stmt_bind_param($statement, "s", $idAsignatura);
+    mysqli_stmt_bind_param($statement, "s", $_SESSION["idAsignatura"];
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $id_tema, $id_asignatura, $nombre);
