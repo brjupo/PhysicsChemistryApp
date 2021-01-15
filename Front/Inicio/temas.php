@@ -117,7 +117,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
 
     //id de asignatura usado en top.php
-    $_SESSION["idAsignatura"] = $idAsignatura;
+    //$_SESSION["idAsignatura"] = $idAsignatura;
     $_SESSION["asignaturaNavegacion"] = $materia;
 
 
