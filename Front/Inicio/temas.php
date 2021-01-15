@@ -90,7 +90,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   function traerTemas()
   {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    $idAsignatura = $_GET['asignatura']; //091120 ESTO LO RECIBE DIRECTO DE LA URL, AQUI RECIBIRA ID DE ASIGNATURA
+    //$idAsignatura = $_GET['asignatura']; //091120 ESTO LO RECIBE DIRECTO DE LA URL, AQUI RECIBIRA ID DE ASIGNATURA
     $_SESSION["idAsignatura"] = $idAsignatura;
     /*echo '<script type="text/javascript">
             alert("'.$asignatura.'");
