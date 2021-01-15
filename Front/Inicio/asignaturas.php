@@ -371,7 +371,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $link = "temas.php?asignatura=";
     $claseBloque = "asignaturaPrincipal";
     $link = $link . $idAsignatura;
-    $_SESSION["idAsignatura"] = $idAsignatura;
     $imagen = "imagenAsignatura";
    
 
@@ -401,7 +400,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $link = "temas.php?asignatura=";
     $claseBloque = "asignaturaPrincipal";
     $link = $link . $idAsignatura;
-    $_SESSION["idAsignatura"] = $idAsignatura;
     $imagen = "imagenAsignatura";
 
     echo '
