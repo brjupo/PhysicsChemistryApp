@@ -133,7 +133,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     } else {
       $statement = mysqli_prepare($con, "SELECT id_tema, id_asignatura, nombre FROM tema WHERE id_asignatura = ? ORDER BY orden ASC"); //WHERE mail = ? AND pswd = ?
     }
-    mysqli_stmt_bind_param($statement, "s", $_SESSION["idAsignatura"];
+    mysqli_stmt_bind_param($statement, "s", $_SESSION["idAsignatura"]);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $id_tema, $id_asignatura, $nombre);
