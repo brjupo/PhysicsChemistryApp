@@ -25,7 +25,7 @@ function enviarMail($destinatario, $asunto, $cuerpo)
     $mail->Body = $cuerpo;
     //$mail->addAttachment('test.txt');
     if (!$mail->send()) {
-        return 'failed: ' . $mail->ErrorInfo;
+        return 'failed';
     } else {
         return 'The email message was sent.';
     }
