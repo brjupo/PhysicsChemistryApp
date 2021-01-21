@@ -244,7 +244,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '
       <!----------------------------------------------CITA--------------------------------------------->
       <div class="container">
-          <div class="row titulo">
+          <div class="row">
             <div class="textCenter col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <p style="color:rgba(0,0,0,0)">.</p>
               <p>Bienvenido a Kaanbal</p>
