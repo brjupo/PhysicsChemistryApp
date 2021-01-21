@@ -8,12 +8,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
-    <title>Kaanbal</title>
-    <link rel="stylesheet" href="../CSSsJSs/<?=$bootstrap441?>" />
-    <link rel="stylesheet" href="../CSSsJSs/<?=$kaanbalEssentials?>" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
+  <title>Kaanbal</title>
+  <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap441 ?>" />
+  <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
 </head>
 
 <body>
@@ -169,45 +169,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
     </div>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <a href="tiempoProf/tiempoProfesores.php">
-          <button type="button" class="btn btn-dark">
-            Tiempo profesores
-          </button>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <a href="tiempoProf/tiempoPorGrupo.php">
-          <button type="button" class="btn btn-dark">
-            Tiempo por grupo
-          </button>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0);">.</p>
-      </div>
-    </div>
-  </div>
 
 </body>
 

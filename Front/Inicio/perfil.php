@@ -12,7 +12,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-  <link rel="stylesheet" href="Temas.css" />
+  <link rel="stylesheet" href="Temas01.css" />
   <script src="perfil.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 </head>
@@ -38,7 +38,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   $iduser = $_SESSION["id_usuario"];
   $materia = $_SESSION["asignaturaNavegacion"];
-  //$idMateria = $_GET["asignatura"];
 
 
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
@@ -155,11 +154,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
     imprimirRelleno();
     imprimirDiamantes($diamantes);
     imprimirRelleno();
-    if($_SESSION["mostrarMenuprofesor"] == ''){
-    imprimirInfoEstudiante();}
-    imprimirRelleno();
-    imprimirRelleno();
-    imprimirCalificacion($matricula);
+    if ($_SESSION["mostrarMenuprofesor"] == '') {
+      imprimirInfoEstudiante();
+      imprimirRelleno();
+      imprimirRelleno();
+      imprimirCalificacion($matricula);
+    }
     imprimirRelleno();
     imprimirRelleno();
     /*imprimirPagos();

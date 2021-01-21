@@ -1,3 +1,7 @@
+<?php
+require "../../servicios/00DDBBVariables.php";
+require "../CSSsJSs/mainCSSsJSs.php";
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,9 +10,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Subtemas</title>
-  <link rel="stylesheet" href="../CSSsJSs/bootstrap341.css" />
-  <link rel="stylesheet" href="Subtemas.css" />
-  <script src="Subtemas.js"></script>
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
+  <link rel="stylesheet" href="subtemas01.css" />
+  <script src="subtemas02.js"></script>
 </head>
 
 <body>
@@ -23,11 +27,7 @@
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
-
   $tokenValidar = array();
-  /* echo'<script type="text/javascript">
-            alert("$_SESSION["mail"]");
-            </script>'; */
 
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
@@ -41,32 +41,15 @@
     $tokenValidar["tokenSesionp"] = $tokenSesionp;
   }
 
-  /*  echo'<script type="text/javascript">
-            alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
-            </script>'; */
-
-
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
     $arregloSubtemas = array();
     $arregloSubtemas = traerSubtemas();
     $_SESSION["temaNavegacion"] = $_GET['tema'];
     imprimirPaginaSubtemas($arregloSubtemas);
   } else {
-
-    /* echo'<script type="text/javascript">
-              alert("segundo caminio");
-              </script>'; */
-    ////////////////////////////////////
-
-    /* echo'<script type="text/javascript">
-      alert("'.$_SESSION["mail"].$_SESSION["pswd"].$_SESSION["tokenSesion"].'");
-      </script>'; */
-
-    //$con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     $stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
     $result = mysqli_query($con, $stringQuery);
     $rowp = mysqli_fetch_array($result);
-
     if ($rowp) {
       $arregloSubtemas = array();
       $arregloSubtemas = traerSubtemas();
@@ -86,33 +69,13 @@
     //-------CAMBIADO POR EL BRANDON A LAS 16:00 EL 13 DE JUNIO
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $id_tema = $_GET['tema'];
-    /*echo '<script type="text/javascript">
-           alert("'.$tema.'");
-           </script>';
-    */
-    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    /*
-   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-   //----Paso 1 Obtener el ID de la asignatura----
-   $statement = mysqli_prepare($con, "SELECT id_tema FROM tema WHERE nombre = ?");
-   mysqli_stmt_bind_param($statement, "s", $tema);
-   mysqli_stmt_execute($statement);
-   mysqli_stmt_store_result($statement);
-   mysqli_stmt_bind_result($statement, $id_tema);
-
-   $arregloIdtema = array();
-   //Leemos datos del usuario
-   while (mysqli_stmt_fetch($statement)) { //si si existe el usuario
-     $arregloIdtema["id_tema"] = $id_tema;
-   }
-   */
     $arregloIdtema["id_tema"] = $id_tema;
     /*----Paso 2 Llamar a los subtemas de los temas-------*/
     //Verificamos el idioma//
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    if($_SESSION["idioma"] == 'i'){
+    if ($_SESSION["idioma"] == 'i') {
       $statement = mysqli_prepare($con, "SELECT id_subtema, id_tema, names, englishLink, orden FROM subtema WHERE id_tema = ? ORDER BY orden"); //WHERE mail = ? AND pswd = ?
-    }else{
+    } else {
       $statement = mysqli_prepare($con, "SELECT id_subtema, id_tema, nombre, link, orden FROM subtema WHERE id_tema = ? ORDER BY orden"); //WHERE mail = ? AND pswd = ?
     }
     mysqli_stmt_bind_param($statement, "s", $arregloIdtema["id_tema"]);
@@ -129,7 +92,7 @@
       $arregloSubtemas[$i]["id_tema"] = $id_tema;
       $arregloSubtemas[$i]["nombre"] = $nombre;
       $arregloSubtemas[$i]["link"] = $link;
-      $arregloSubtemas[$i]["orden"] = $orden;////////280622020 se agrego lo del orden
+      $arregloSubtemas[$i]["orden"] = $orden; ////////280622020 se agrego lo del orden
       $i = $i + 1;
     }
 
@@ -139,11 +102,8 @@
   function imprimirPaginaSubtemas($arregloSubtemas)
   {
     imprimirTitulo();
-    //imprimirSiempreAparece();
     imprimirSubtemas($arregloSubtemas);
-
     imprimirRelleno();
-    imprimirFooter();
   }
 
   function imprimirSubtemas($arregloSubtemas)
@@ -157,14 +117,13 @@
 
   function imprimirTitulo()
   {
-    $asignaturaNavegacion = $_SESSION["asignaturaNavegacion"];
     try {
       $conn = new PDO("mysql:host=" . $GLOBALS['servername'] . ";dbname=" . $GLOBALS['dbname'] . "", $GLOBALS['username'], $GLOBALS['password']);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $idTema = $_GET['tema'];
-      if($_SESSION["idioma"] == 'i'){
+      if ($_SESSION["idioma"] == 'i') {
         $stringQuery = "SELECT names FROM tema WHERE id_tema='" . $idTema . "' ;";
-      }else{
+      } else {
         $stringQuery = "SELECT nombre FROM tema WHERE id_tema='" . $idTema . "' ;";
       }
       $stmt = $conn->query($stringQuery);
@@ -204,8 +163,8 @@
 
   function imprimirSubtema($numeroSubtema, $id_subtema, $nombreSubtema, $link)
   {
-    if($link == Null){
-    echo '
+    if ($link == Null) {
+      echo '
       <div class="container">
         <div id="seccion' . $numeroSubtema . '" class="row fade">
           <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
@@ -242,7 +201,7 @@
         </div>
       </div>
   ';
-    }else{
+    } else {
       echo '
       <div class="container">
         <div id="seccion' . $numeroSubtema . '" class="row fade">
@@ -301,6 +260,34 @@
   }
 
   ?>
+
+  <div class="foot">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <a href="temas.php">
+            <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
+          </a>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+          <a href="perfil.php">
+            <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
+          </a>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <a href="topS.php">
+            <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
+          </a>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <a href="../../../index.php">
+            <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>

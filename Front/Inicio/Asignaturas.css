@@ -1,17 +1,3 @@
-/*Auto Indent Ctrl+Shift+I*/
-
-/*--------------------------------------------------FUENTES-----------------------------------------------------------*/
-
-/*
-@font-face {
-    font-family: "CustomFont";
-    src: url("CustomFont.eot");
-    src: url("CustomFont.woff") format("woff"),
-    url("CustomFont.otf") format("opentype"),
-    url('webfont.ttf')  format('truetype'), 
-    url("CustomFont.svg#filename") format("svg");
-    }
-*/
 @font-face {
   font-family: "ubuntu";
   src: url("../CSSsJSs/Fonts/ubuntu/ubuntu.ttf") format("truetype");
@@ -73,7 +59,7 @@ body {
     margin-top: 10px;
     height: 50px;
   }
-  .top{
+  .top {
     height: 80px;
   }
   .titulo {
@@ -285,5 +271,3 @@ p {
 }
 
 /*--------------------------------------------------------- FIN FOOTER ---------------------------------------*/
-
-

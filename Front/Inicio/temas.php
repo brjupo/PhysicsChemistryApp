@@ -11,8 +11,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Temas</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
-  <link rel="stylesheet" href="Temas.css" />
-  <script src="temas001.js"></script>
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
+  <link rel="stylesheet" href="Temas01.css" />
 </head>
 
 <body>
@@ -36,7 +36,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   /* echo'<script type="text/javascript">
             alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
-            </script>'; */
+            </script>';  */
 
 
   if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
@@ -90,36 +90,43 @@ require "../CSSsJSs/mainCSSsJSs.php";
   function traerTemas()
   {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    $idAsignatura = $_GET['asignatura'];//091120 ESTO LO RECIBE DIRECTO DE LA URL, AQUI RECIBIRA ID DE ASIGNATURA
-    $_SESSION["idAsignatura"] = $idAsignatura;
+    $idAsignatura = $_GET['asignatura']; //091120 ESTO LO RECIBE DIRECTO DE LA URL, AQUI RECIBIRA ID DE ASIGNATURA
+    if($idAsignatura != ''){
+    $_SESSION["idAsignatura"] = $idAsignatura;}
+    else{
+      $idAsignatura = $_SESSION["idAsignatura"];
+    }
     /*echo '<script type="text/javascript">
             alert("'.$asignatura.'");
             </script>';
     
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-    
+
     if ($_SESSION["idioma"] == 'i') {
-        $query = "SELECT names FROM asignatura WHERE id_asignatura = $idAsignatura";
-        $result = mysqli_query($con, $query);
-        while ($row = mysqli_fetch_assoc($result)) {
-          $arrayMateria[] = $row;
-        }
-        $materia =  $arrayMateria[0]["names"]; //De aqui se obtendra el nombre de asignatura
-    } else{
-        $query = "SELECT nombre FROM asignatura WHERE id_asignatura = $idAsignatura";
-        $result = mysqli_query($con, $query);
-        while ($row = mysqli_fetch_assoc($result)) {
-          $arrayMateria[] = $row;
-        }
-        $materia =  $arrayMateria[0]["nombre"]; //De aqui se obtendra el nombre de asignatura
+      $query = "SELECT names FROM asignatura WHERE id_asignatura = $idAsignatura";
+      $result = mysqli_query($con, $query);
+      while ($row = mysqli_fetch_assoc($result)) {
+        $arrayMateria[] = $row;
+      }
+      $materia =  $arrayMateria[0]["names"]; //De aqui se obtendra el nombre de asignatura
+    } else {
+      $query = "SELECT nombre FROM asignatura WHERE id_asignatura = $idAsignatura";
+      $result = mysqli_query($con, $query);
+      while ($row = mysqli_fetch_assoc($result)) {
+        $arrayMateria[] = $row;
+      }
+      $materia =  $arrayMateria[0]["nombre"]; //De aqui se obtendra el nombre de asignatura
     }
-   
+
 
     //id de asignatura usado en top.php
-    $_SESSION["idAsignatura"] = $idAsignatura;
+    if($idAsignatura != ''){
+    $_SESSION["idAsignatura"] = $idAsignatura;}
+    else{
+      $idAsignatura = $_SESSION["idAsignatura"];
+    }
     $_SESSION["asignaturaNavegacion"] = $materia;
-
 
     /*----Paso 2 Llamar a los temas de la asignatura-------*/
     //Verificamos el idioma//
@@ -156,16 +163,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //////////////////////
   function imprimirPagina($arregloTemas)
   {
-
-            
     imprimirTitulo();
     imprimirCita();
-
-    //imprimirSiempreAparece();
-    /* RECORDATORIO */
     imprimirTemas($arregloTemas);
     imprimirRelleno();
-    imprimirFooter();
   }
 
   function imprimirTemas($arregloTemas)
@@ -372,31 +373,34 @@ require "../CSSsJSs/mainCSSsJSs.php";
     ';
   }
 
-  function imprimirFooter()
-  {
-    echo '
-        <div class="foot">
-          <div class="container">
-            <div class="row text-center">
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
-                <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
-              </div>
-            </div>
-          </div>
-        </div>
-    ';
-  }
 
   ?>
+  <div class="foot">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <a href="temas.php">
+            <img class="footIcon" id="botonLecciones" src="../CSSsJSs/icons/business.svg" />
+          </a>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+          <a href="perfil.php">
+            <img class="footIcon" id="botonPerfil" src="../CSSsJSs/icons/identification.svg" />
+          </a>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <a href="topS.php">
+            <img class="footIcon" id="botonTop" src="../CSSsJSs/icons/top.svg" />
+          </a>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+          <a href="../../../index.php">
+            <img class="footIcon" id="botonLogout" src="../CSSsJSs/icons/logout.svg" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 

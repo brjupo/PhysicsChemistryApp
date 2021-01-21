@@ -96,7 +96,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                         <td>Tema</td>
                         <td>Subtema</td>
                         <td>Lección</td>
-                        <td>ID Lección</td>
+                        <!--td>ID Lección</td-->
                         <td>Práctica</td>
                         <td>Sprint</td>
                         <td>Examen</td>
@@ -116,7 +116,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                                     <td>" . $row[0] . "</td>
                                     <td>" . $row[1] . "</td>
                                     <td>" . $row[2] . "</td>
-                                    <td>" . $row[3] . "</td>";
+                                    <!--td>" . $row[3] . "</td-->";
                             //Crear la lectura en base de datos, para obtener calificación de práctica, sprint y examen
                             try {
                                 $tempIdLeccion = $row[3];
@@ -127,9 +127,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
                                 $stmt2 = $conn2->query($stringQuery2);
                                 while ($row2 = $stmt2->fetch(PDO::FETCH_NUM)) {
                                     $entre = 1;
-                                    echo "<td>" . $row2[0] . "</td>";
-                                    echo "<td>" . $row2[1] . "</td>";
-                                    echo "<td>" . $row2[2] . "</td>";
+                                    echo "<td>" . intval($row2[0]) . "</td>";
+                                    echo "<td>" . intval($row2[1]) . "</td>";
+                                    echo "<td>" . intval($row2[2]) . "</td>";
                                 }
                                 
                             } catch (PDOException $e2) {

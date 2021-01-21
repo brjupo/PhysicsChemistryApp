@@ -140,6 +140,45 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <a href="../reportes/tiempoProf/tiempoProfesores.php">
+          <button type="button" class="btn btn-dark">
+            Ver tiempo invertido por los profesores
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <a href="../reportes/tiempoProf/tiempoPorGrupo.php">
+          <button type="button" class="btn btn-dark">
+            Ver tiempo invertido por cada grupo
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p style="color: rgba(0, 0, 0, 0);">.</p>
       </div>
     </div>

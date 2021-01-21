@@ -1,7 +1,7 @@
 <?php
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
-$teacherID=isTeacher();
+$teacherID = isTeacher();
 require "../../CSSsJSs/mainCSSsJSs.php";
 ?>
 
@@ -9,12 +9,12 @@ require "../../CSSsJSs/mainCSSsJSs.php";
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
-    <title>Kaanbal</title>
-    <link rel="stylesheet" href="../../CSSsJSs/<?=$bootstrap441?>" />
-    <link rel="stylesheet" href="../../CSSsJSs/<?=$kaanbalEssentials?>" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
+  <title>Kaanbal</title>
+  <link rel="stylesheet" href="../../CSSsJSs/<?= $bootstrap441 ?>" />
+  <link rel="stylesheet" href="../../CSSsJSs/<?= $kaanbalEssentials ?>" />
 </head>
 
 <body>
@@ -96,6 +96,29 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <a href="../controlCalificaciones.php">
+            <img class="footIcon" id="botonHomeTeacher" src="../../CSSsJSs/icons/home.svg" /></a>
+        </div>
       </div>
     </div>
   </div>
