@@ -10,7 +10,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
-  <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="ml.css" />
 </head>
 
@@ -20,112 +19,79 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //+++++++++++++++++++++++++ Variables de sesion ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   session_start();
-  $usuarioCorreo = $_SESSION["mail"];
+  $iduser = $_SESSION["id_usuario"];
   $materia = $_SESSION["asignaturaNavegacion"];
   ?>
   <?php
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   //+++++++++++++++++++++++++ Variables del POST ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  
-  ?>
-  <?php
-  $url = 'https://kaanbal.net/DEV/servicios/getFirstPart.php';
-  $data = array('tokenHora' => 'nda0913fTY673o84KJ');
-  // use key 'http' even if you send the request to https://...
-  $options = array(
-    'http' => array(
-      'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-      'method'  => 'POST',
-      'content' => http_build_query($data)
-    )
-  );
-  $context  = stream_context_create($options);
-  $json = file_get_contents($url, false, $context);
-  $result = json_decode($json, TRUE);
-  if (is_null($result["value"])) {
-    echo "<h1>Error #1001. El servicio de Mercado Pago, NO está disponible por el momento. Intente más tarde</h1>";
+  $rfc = $_POST["rfc"];
+  $razonSocial = $_POST["razonSocial"];
+  $usuarioCorreo = $_POST["usuarioCorreo"];
+  if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia)) {
+    echo '<script>
+    alert("Error. Por favor, inserta nuevamente tus datos
+    rfc=' . $rfc . '  razonSocial=' . $razonSocial . '  
+    usuario=' . $usuarioCorreo . '  materia=' . $materia . ' ");
+    window.location = "../Inicio/perfil";
+    </script>';
   } else {
-    $firstPart = hex2bin($result["value"]);
+    try {
+      // SDK de Mercado Pago
+      require '../../../../../../vendor/autoload.php';
+      // Agrega credenciales
+      MercadoPago\SDK::setAccessToken("TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800");
+
+      // Crea un objeto de preferencia
+      $preference = new MercadoPago\Preference();
+
+      // Crea un ítem en la preferencia
+      $item = new MercadoPago\Item();
+      $item->id = "1";
+      $item->title = "Licencia semestral Kaanbal [1 materia]";
+      $item->description = "Incluye el acceso a la plataforma y la posibilidad de inscribirte a un grupo para que los profesores puedan acceder a tus calificaciones";
+      $item->quantity = 1;
+      $item->currency_id = "MXN";
+      $item->unit_price = 250;
+
+      // Crear el comprador
+      $payer = new MercadoPago\Payer();
+      $payer->name = $rfc;                        //RFC
+      $payer->surname = $razonSocial;             //Razón Social
+      $payer->email = $usuarioCorreo;             //Usuario Correo
+      $timeZone = new DateTimeZone('America/Mexico_City');
+      $nowTime = new DateTime();
+      $nowTime->setTimezone($timeZone);
+      $payer->date_created = $nowTime->format('Y-m-d') . "T" . $nowTime->format('H:i:s.mP');
+      //$payer->date_created = "2018-06-02T12:58:41.425-04:00";
+      /*$payer->phone = array(                                //NO ES OBLIGATORIO, SE DESCARTA
+        "number" => "55 1234 5678"
+      );
+      $payer->address = array(
+        "street_name" => " Delegacion/municipio | idEstado",  //Delegacion/municipio | Estado | Pais==MEX
+        "street_number" => 1234,                              //Numero
+        "zip_code" => "05200 | Calle | Colonia"               //Codigo Postal | Calle | Colonia
+      );*/
+
+
+      //Redireccionamientos 
+      $preference->back_urls = array(
+        "success" => "https://www.kaanbal.net/dev/Front/pagoSeguro/success.php",
+        "failure" => "https://www.kaanbal.net/dev/Front/pagoSeguro/failure.php",
+        "pending" => "https://www.kaanbal.net/dev/Front/pagoSeguro/pending.php"
+      );
+      $preference->auto_return = "approved";
+
+
+      // Guardar la preferencia con el item y el comprador
+      $preference->items = array($item);
+      $preference->payer = $payer;
+      $preference->save();
+    } catch (Exception $e) {
+      echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
   }
-  ?>
-
-  <?php
-  $url = 'https://kaanbal.net/DEV/servicios/getSecondPart.php';
-  $data = array('tokenHora' => 'Kn19aAe63rfSuvTy31f');
-  // use key 'http' even if you send the request to https://...
-  $options = array(
-    'http' => array(
-      'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-      'method'  => 'POST',
-      'content' => http_build_query($data)
-    )
-  );
-  $context  = stream_context_create($options);
-  $json = file_get_contents($url, false, $context);
-  $result = json_decode($json, TRUE);
-  if (is_null($result["value"])) {
-    echo "<h1>Error #1002. El servicio de Mercado Pago, NO está disponible por el momento. Intente más tarde</h1>";
-  } else {
-    $secondPart = hex2bin($result["value"]);
-  }
-  ?>
-
-  <?php
-  try {
-    // SDK de Mercado Pago
-    require '../../../../../../vendor/autoload.php';
-    $parts = $firstPart . $secondPart;
-    // Agrega credenciales
-    MercadoPago\SDK::setAccessToken($parts);
-
-    // Crea un objeto de preferencia
-    $preference = new MercadoPago\Preference();
-
-    // Crea un ítem en la preferencia
-    $item = new MercadoPago\Item();
-    $item->id = "1";
-    $item->title = 'Licencia semestral Kaanbal - Materia y el entorno';
-    $item->description = "Incluye el acceso a la plataforma y la posibilidad de inscribirte a un grupo para que los profesores puedan acceder a tus calificaciones";
-    $item->quantity = 1;
-    $item->currency_id = "MXN";
-    $item->unit_price = 10;
-
-    // Crear el comprador
-    /*
-        $payer = new MercadoPago\Payer();
-        $payer->name = "Charles";                     //RFC | Razon social
-        $payer->surname = "Luevano";                  //Matricula | Nombre real
-        $payer->email = "charles@hotmail.com";
-        $payer->date_created = "2018-06-02T12:58:41.425-04:00";
-        $payer->phone = array(
-            "number" => "949 128 866"
-        );
-        $payer->address = array(
-            "street_name" => "Cuesta Miguel Armendáriz",    //Calle | Colonia | Delegacion/municipio | Estado | Pais==MEX
-            "street_number" => 1004,                        //Numero
-            "zip_code" => "11020"                           //Codigo Postal
-        );
-        */
-
-    //Redireccionamientos 
-    /*
-        $preference->back_urls = array(
-            "success" => "https://www.kaanbal.net/success",
-            "failure" => "https://www.kaanbal.net/failure",
-            "pending" => "https://www.kaanbal.net/pending"
-        );
-        $preference->auto_return = "approved";
-        */
-
-    // Guardar la preferencia con el item y el comprador
-    $preference->items = array($item);
-    //$preference->payer = $payer;
-    $preference->save();
-  } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
-  }
-
   ?>
 
   <div class="container">
@@ -152,15 +118,15 @@ require "../CSSsJSs/mainCSSsJSs.php";
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         <label for="Usuario">Usuario</label>
-        <input type="text" id="Usuario" name="Usuario" value="A01234567@itesm.mx" disabled />
+        <input type="text" id="Usuario" name="Usuario" value="<?= $usuarioCorreo ?>" disabled />
 
         <label for="Concepto">Concepto</label>
-        <input type="text" id="Concepto" name="Concepto" value="Licencia semestral Kaanbal [1 materia]" disabled />
+        <input type="text" id="Concepto" name="Concepto" value=" Licencia semestral Kaanbal - <?= $materia ?>" disabled />
 
         <label for="Cantidad">Cantidad</label>
         <input type="text" id="Cantidad" name="Cantidad" value="1" disabled />
 
-        <label for="Precio">Precio Unitario</label>
+        <label for="Precio">Precio Unitario [Incluye IVA]</label>
         <input type="text" id="PrecioU" name="PrecioU" value="250.00 MXN" disabled />
       </div>
       <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>

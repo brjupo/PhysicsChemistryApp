@@ -96,11 +96,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
       <div class="row">
         <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
         <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-          <label for="Alumno">Alumno</label>
+        <label for="Usuario">Usuario</label>
           <input
             type="text"
-            id="Alumno"
-            name="Alumno"
+            id="Usuario"
+            name="Usuario"
             value="A01234567@itesm.mx"
             disabled
           />
