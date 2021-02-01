@@ -13,6 +13,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     />
     <title>Kaanbal</title>
     <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441;?>" />
+    <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials;?>" />
     <link rel="stylesheet" href="ml.css" />
   </head>
 
@@ -131,7 +132,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
       <div class="row">
         <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
         <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-          <p class="titulo" id="titulo">Kaanbal</p>
+          <p class="titulo">Kaanbal</p>
         </div>
         <div class="textRight col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
         <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>

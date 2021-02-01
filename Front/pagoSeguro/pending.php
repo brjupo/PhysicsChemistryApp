@@ -32,7 +32,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   processing_mode=aggregator&
   merchant_account_id=null
   */
-    echo '<h1>PEDNING</h1>';
+    echo '<h1>PENDING</h1>';
     echo '<p></p>';
     echo '<p>.</p>';
     echo '<p>POST payment id</p>';

@@ -162,13 +162,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
     }
     imprimirRelleno();
     imprimirRelleno();
-    /*imprimirPagos();
+    imprimirPagos();
     imprimirConFactura();
     imprimirRelleno();
     imprimirSinFactura();
     imprimirRelleno();
     imprimirRelleno();
-    imprimirRelleno();*/
+    imprimirRelleno();
     imprimirCreditos();
     imprimirRelleno();
     imprimirRelleno();
