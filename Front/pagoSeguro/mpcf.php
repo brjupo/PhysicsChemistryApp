@@ -21,6 +21,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   session_start();
   $iduser = $_SESSION["id_usuario"];
   $materia = $_SESSION["asignaturaNavegacion"];
+  $idAsignatura = $_SESSION["idAsignatura"];
   ?>
   <?php
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
@@ -29,9 +30,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
   $rfc = $_POST["rfc"];
   $razonSocial = $_POST["razonSocial"];
   $usuarioCorreo = $_POST["usuarioCorreo"];
+  ?>
+  <?php
   if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia)) {
     echo '<script>
-    alert("Error. Por favor, inserta nuevamente tus datos
+    alert("Error. Por favor, verifica e inserta nuevamente tus datos
     rfc=' . $rfc . '  razonSocial=' . $razonSocial . '  
     usuario=' . $usuarioCorreo . '  materia=' . $materia . ' ");
     window.location = "../Inicio/perfil";

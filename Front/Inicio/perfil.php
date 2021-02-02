@@ -30,7 +30,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   $usuarioCorreo = $_SESSION["mail"];
   $materia = $_SESSION["asignaturaNavegacion"];
   ?>
-  
+
   <?php
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   $query = "SELECT id_asignatura FROM asignatura WHERE nombre = '$materia'";
@@ -48,7 +48,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     }
     $idMateria =  $arrayidMateria[0]["id_asignatura"]; //De aqui se obtendra el id de asignatura
   }
-
+  $_SESSION["idAsignatura"] = $idMateria;
   /* echo '<script type="text/javascript">
                       alert("'.$idMateria.'");
                       </script>';  */
