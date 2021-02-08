@@ -24,7 +24,7 @@ require "../../servicios/02sendMail.php";
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   //+++++++++++++++++++++++++ Variables de sesion ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  
+
   // NO SE PUEDEN USAR. ALGO SUCEDE A LA HORA DE PAGAR EN MERCADO PAGO Y SE ELIMINAN POR COMPLETO
 
   ?>
@@ -92,20 +92,28 @@ require "../../servicios/02sendMail.php";
   //2.- Escribir en la base de datos que el mail ya pagó
 
   //2.1.- Obtener el id_usuario(mail)
+  $entre = 0;
   if ($errorDetected == 0) {
     try {
+      // // echo '<p>Entre al try del select id usuario</p>';
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = " . $verdaderoCliente . " LIMIT 1";
+      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $verdaderoCliente . "' LIMIT 1";
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $idVerdaderoCliente = $row[0];
+        $entre = 1;
       }
     } catch (PDOException $e) {
-      echo "<p> Error linea 102: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
+      // // echo "<p> Error linea 108: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
       $errorDetected = 1;
     }
     $conn = null;
+    if ($entre == 0) {
+      //id_usuario del usuario de brandon
+      $idVerdaderoCliente = 4;
+      // // echo '<p>Id verdadero cliente será = 4</p>';
+    }
   }
   //2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
   if (is_null($idAsignatura)) {
@@ -117,7 +125,7 @@ require "../../servicios/02sendMail.php";
   $nowTimePlusSixMonths = new DateTime();
   $nowTimePlusSixMonths->modify('+6 month');
   $nowTimePlusSixMonths->setTimezone($timeZone);
-  $nowTimePlusSixMonths->format('Y-m-d H:i:s');
+  $vigencia = $nowTimePlusSixMonths->format('Y-m-d H:i:s');
 
   //2.4.- Obtener el payment id $_GET["payment_id"]
   //---------Listo en linea 35-----------
@@ -132,7 +140,7 @@ require "../../servicios/02sendMail.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
       //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
-      $stringQuery = 'INSERT INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 0, ' . $nowTimePlusSixMonths . ', ' . $paymentId . ', 3 );';
+      $stringQuery = 'INSERT INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 0, ' . $vigencia . ', ' . $paymentId . ', 3 );';
       // use exec() because no results are returned
       $conn->exec($stringQuery);
     } catch (PDOException $e) {
@@ -158,8 +166,6 @@ require "../../servicios/02sendMail.php";
   // Aún faltan MUCHOS detalles en el webhook de desarrollo
   ?>
   <?php if ($errorDetected == 0) { ?>
-
-
     <div class="container">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -276,7 +282,7 @@ require "../../servicios/02sendMail.php";
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p class="text-center">.</p>
+        <p class="text-center" style="color: rgba(0, 0, 0, 0)">.</p>
       </div>
     </div>
     <div class="row">
@@ -286,18 +292,20 @@ require "../../servicios/02sendMail.php";
     </div>
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p class="text-center">.</p>
+        <p class="text-center" style="color: rgba(0, 0, 0, 0)">.</p>
       </div>
     </div>
     <div class="row">
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-      <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <a href="https://kaanbal.net">
           <p class="titulo">Kaanbal</p>
         </a>
       </div>
-      <div class="textRight col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p class="text-center" style="color: rgba(0, 0, 0, 0)">.</p>
+      </div>
     </div>
   </div>
 
