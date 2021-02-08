@@ -37,6 +37,7 @@ require "sendMailCustomers.php";
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   $paymentId = $_GET["payment_id"];
   ?>
+  <p>ID usuario = <?= $iduser ?>, materia = <?= $materia ?>, ID asignatura= <?= $idAsignatura ?> </p>
   <?php
   if (is_null($paymentId)) {
     $errorDetected = 1;
@@ -99,21 +100,27 @@ require "sendMailCustomers.php";
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = " . $verdaderoCliente . " LIMIT 1";
+      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $verdaderoCliente . "' LIMIT 1";
       $stmt = $conn->query($stringQuery);
+      $entre=0;
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $idVerdaderoCliente = $row[0];
+        $entre=1;
       }
     } catch (PDOException $e) {
-      echo "<p> Error linea 102: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
+      echo "<p> Error linea 108: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
       $errorDetected = 1;
     }
     $conn = null;
+    if($entre == 0){
+      //id_usuario del usuario de brandon
+      $idVerdaderoCliente = 4;
+    }
   }
   //2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
   if (is_null($idAsignatura)) {
     $errorDetected = 1;
-    echo '<p>Error line 108</p>';
+    echo '<p>Error line 116</p>';
   }
   //2.3.- Agregar vigencia date(Now)+6meses
   $timeZone = new DateTimeZone('America/Mexico_City');
@@ -135,7 +142,7 @@ require "sendMailCustomers.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
       //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
-      $stringQuery = 'INSERT INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 1, ' . $nowTimePlusSixMonths . ', ' . $paymentId . ', 1 );';
+      $stringQuery = 'INSERT INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 1, "' . $nowTimePlusSixMonths . '", "' . $paymentId . '", 1 );';
       // use exec() because no results are returned
       $conn->exec($stringQuery);
     } catch (PDOException $e) {

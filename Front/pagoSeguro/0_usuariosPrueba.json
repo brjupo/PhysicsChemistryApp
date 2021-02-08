@@ -1,24 +1,99 @@
 {
-    "vendedor1":
+  "paging": { "total": 1, "limit": 30, "offset": 0 },
+  "results": [
     {
-        "id": 662924265,
-        "nickname": "TESTWNX5YZEI",
-        "password": "qatest5550",
-        "site_status": "active",
-        "email": "test_user_83653848@testuser.com"
-    },
-    "comprador1":{
-        "id": 662925241,
-        "nickname": "TETE9175321",
-        "password": "qatest619",
-        "site_status": "active",
-        "email": "test_user_98910939@testuser.com"
-    },
-    "comprador2":{
-        "id": 662955654,
-        "nickname": "TESTZPZBXSMN",
-        "password": "qatest6022",
-        "site_status": "active",
-        "email": "test_user_29424575@testuser.com"
+      "acquirer_reconciliation": [],
+      "additional_info": {
+        "available_balance": null,
+        "ip_address": "187.208.219.10",
+        "nsu_processadora": null
+      },
+      "authorization_code": null,
+      "binary_mode": false,
+      "brand_id": null,
+      "call_for_authorize_id": null,
+      "captured": true,
+      "card": {
+        "cardholder": {
+          "identification": { "number": null, "type": null },
+          "name": "APRO"
+        },
+        "date_created": "2021-02-08T01:07:02.000-04:00",
+        "date_last_updated": "2021-02-08T01:07:02.000-04:00",
+        "expiration_month": 11,
+        "expiration_year": 2025,
+        "first_six_digits": "407559",
+        "id": null,
+        "last_four_digits": "3764"
+      },
+      "charges_details": [],
+      "collector_id": 653962800,
+      "corporation_id": null,
+      "counter_currency": null,
+      "coupon_amount": 0,
+      "currency_id": "MXN",
+      "date_approved": "2021-02-08T01:07:02.675-04:00",
+      "date_created": "2021-02-08T01:07:02.548-04:00",
+      "date_last_updated": "2021-02-08T01:07:02.675-04:00",
+      "date_of_expiration": null,
+      "deduction_schema": null,
+      "description": "Licencia semestral Kaanbal [1 materia]",
+      "differential_pricing_id": null,
+      "external_reference": null,
+      "fee_details": [
+        { "amount": 13.19, "fee_payer": "collector", "type": "mercadopago_fee" }
+      ],
+      "id": 1233560039,
+      "installments": 1,
+      "integrator_id": null,
+      "issuer_id": "159",
+      "live_mode": false,
+      "marketplace_owner": null,
+      "merchant_account_id": null,
+      "merchant_number": null,
+      "metadata": {},
+      "money_release_date": "2021-03-10T01:07:02.675-04:00",
+      "money_release_schema": null,
+      "notification_url": null,
+      "operation_type": "regular_payment",
+      "order": { "id": "2303975479", "type": "mercadopago" },
+      "payer": {
+        "first_name": "Test",
+        "last_name": "Test",
+        "email": "test_user_80507629@testuser.com",
+        "identification": { "number": "32659430", "type": "DNI" },
+        "phone": { "area_code": "01", "number": "1111-1111", "extension": "" },
+        "type": "registered",
+        "entity_type": null,
+        "id": "190722873"
+      },
+      "payment_method_id": "visa",
+      "payment_type_id": "credit_card",
+      "platform_id": null,
+      "pos_id": null,
+      "processing_mode": "aggregator",
+      "refunds": [],
+      "shipping_amount": 0,
+      "sponsor_id": null,
+      "statement_descriptor": "BISOFTWARE",
+      "status": "approved",
+      "status_detail": "accredited",
+      "store_id": null,
+      "taxes_amount": 0,
+      "transaction_amount": 250,
+      "transaction_amount_refunded": 0,
+      "transaction_details": {
+        "acquirer_reference": null,
+        "external_resource_url": null,
+        "financial_institution": null,
+        "installment_amount": 250,
+        "net_received_amount": 236.81,
+        "overpaid_amount": 0,
+        "payable_deferral_period": null,
+        "payment_method_reference_id": null,
+        "total_paid_amount": 250
+      },
+      "shipping_cost": 0
     }
+  ]
 }
