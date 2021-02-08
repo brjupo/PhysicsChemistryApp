@@ -1,6 +1,7 @@
 <?php
 require "../CSSsJSs/mainCSSsJSs.php";
-require "../../servicios/02sendMail.php";
+require "../../servicios/00DDBBVariables.php";
+require "sendMailCustomers.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,8 +34,8 @@ require "../../servicios/02sendMail.php";
   //+++++++++++++++++++++++++ Variables del GET ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   $paymentId = $_GET["payment_id"];
-  $paymentId = str_replace(" ","",$paymentId);
-  if(!is_numeric($paymentId)){
+  $paymentId = str_replace(" ", "", $paymentId);
+  if (!is_numeric($paymentId)) {
     $errorDetected = 1;
     echo '<p>Error line 40</p>';
   }
@@ -295,12 +296,12 @@ require "../../servicios/02sendMail.php";
     </div>
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p class="text-center">Por favor inicia sesión de nuevo. Da clic en el siguiente link:</p>
+        <p class="text-center" style="color: rgba(0, 0, 0, 0)">.</p>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p class="text-center" style="color: rgba(0, 0, 0, 0)">.</p>
+        <p class="text-center">Por favor inicia sesión de nuevo. Da clic en el siguiente link:</p>
       </div>
     </div>
     <div class="row">
