@@ -132,7 +132,7 @@ require "sendMailCustomers.php";
   $nowTimePlusSixMonths = new DateTime();
   $nowTimePlusSixMonths->modify('+6 month');
   $nowTimePlusSixMonths->setTimezone($timeZone);
-  $nowTimePlusSixMonths->format('Y-m-d H:i:s');
+  $vigencia = $nowTimePlusSixMonths->format('Y-m-d H:i:s');
 
   //2.4.- Obtener el payment id $_GET["payment_id"]
   //---------Listo en linea 35-----------
@@ -142,13 +142,13 @@ require "sendMailCustomers.php";
   //2.6.- INSERT id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
   if ($errorDetected == 0) {
     try {
-      echo '<p>Entre al try del insert into. La vigencia es: '.$nowTimePlusSixMonths.' </p>';
-      // $stringQuery = 'INSERT 
-      // INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) 
-      // VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 1, "' . $nowTimePlusSixMonths . '", "' . $paymentId . '", 1 );';
+      echo '<p>Entre al try del insert into. La vigencia es: '.$vigencia.' </p>';
       $stringQuery = 'INSERT 
       INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) 
-      VALUES ( 0,0,0, "2020-01-01 23:59:59", 1234567890, 1 );';
+      VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 1, "' . $vigencia . '", "' . $paymentId . '", 1 );';
+      // $stringQuery = 'INSERT 
+      // INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) 
+      // VALUES ( 0,0,0, "2020-01-01 23:59:59", 1234567890, 1 );';
       echo '<p> El query enviado fue: ' . $stringQuery . '</p>';
 
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
