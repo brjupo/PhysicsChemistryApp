@@ -148,7 +148,10 @@ require "sendMailCustomers.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
       //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
-      $stringQuery = 'INSERT INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 1, "' . $nowTimePlusSixMonths . '", "' . $paymentId . '", 1 );';
+      $stringQuery = 'INSERT 
+      INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) 
+      VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 1, "' . $nowTimePlusSixMonths . '", "' . $paymentId . '", 1 );';
+      echo 'El query a enviar fue: ' . $stringQuery;
       // use exec() because no results are returned
       $conn->exec($stringQuery);
     } catch (PDOException $e) {
