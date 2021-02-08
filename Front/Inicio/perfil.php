@@ -589,13 +589,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
               <span class="input-group-text">Correo (Usuario Kaanbal)</span>
             </div>
             <label
-              for="usuarioCorreo"
+              for="userMailWithInvoice"
               style="font-size: 0px; line-height: 0px; margin: 0px"
               >Correo (Usuario Kaanbal)</label
             >
             <input
-              id="usuarioCorreo"
-              name="usuarioCorreo"
+              id="userMailWithInvoice"
+              name="userMailWithInvoice"
               type="text"
               class="form-control"
               value="' . $_SESSION["mail"] . '"
@@ -770,13 +770,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
               <span class="input-group-text">Correo (Usuario Kaanbal)</span>
             </div>
             <label
-              for="usuarioCorreo"
+              for="userMailNoInvoice"
               style="font-size: 0px; line-height: 0px; margin: 0px"
               >Correo (Usuario Kaanbal)</label
             >
             <input
-              id="usuarioCorreo"
-              name="usuarioCorreo"
+              id="userMailNoInvoice"
+              name="userMailNoInvoice"
               type="text"
               class="form-control"
               value="' . $_SESSION["mail"] . '"

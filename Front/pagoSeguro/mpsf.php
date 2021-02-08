@@ -27,7 +27,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   //+++++++++++++++++++++++++ Variables del POST ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  $usuarioCorreo = $_POST["usuarioCorreo"];
+  $usuarioCorreo = $_POST["userMailNoInvoice"];
   echo '<p> Datos  usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php

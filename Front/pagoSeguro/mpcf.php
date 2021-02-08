@@ -29,7 +29,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   $rfc = $_POST["rfc"];
   $razonSocial = $_POST["razonSocial"];
-  $usuarioCorreo = $_POST["usuarioCorreo"];
+  $usuarioCorreo = $_POST["userMailWithInvoice"];
   echo '<p> Datos rfc=' . $rfc . '  razonSocial=' . $razonSocial . ' usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php
