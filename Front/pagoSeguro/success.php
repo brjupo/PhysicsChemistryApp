@@ -98,13 +98,14 @@ require "sendMailCustomers.php";
   //2.- Escribir en la base de datos que el mail ya pagó
 
   //2.1.- Obtener el id_usuario(mail)
+  $entre = 0;
   if ($errorDetected == 0) {
     try {
+      echo '<p>Entre al try del select id usuario</p>';
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $verdaderoCliente . "' LIMIT 1";
       $stmt = $conn->query($stringQuery);
-      $entre = 0;
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $idVerdaderoCliente = $row[0];
         $entre = 1;
@@ -117,6 +118,7 @@ require "sendMailCustomers.php";
     if ($entre == 0) {
       //id_usuario del usuario de brandon
       $idVerdaderoCliente = 4;
+      echo '<p>Id verdadero cliente será = 4</p>';
     }
   }
   //2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
@@ -125,6 +127,7 @@ require "sendMailCustomers.php";
     echo '<p>Error line 116</p>';
   }
   //2.3.- Agregar vigencia date(Now)+6meses
+  echo '<p>Inicio a calcular la vigencia</p>';
   $timeZone = new DateTimeZone('America/Mexico_City');
   $nowTimePlusSixMonths = new DateTime();
   $nowTimePlusSixMonths->modify('+6 month');
@@ -139,6 +142,7 @@ require "sendMailCustomers.php";
   //2.6.- INSERT id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
   if ($errorDetected == 0) {
     try {
+      echo '<p>Entre al try del insert into</p>';
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       // set the PDO error mode to exception
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -160,6 +164,7 @@ require "sendMailCustomers.php";
   // 3.1.- Usar el servicio 02sendMail.php
   // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagado
   if ($errorDetected == 0) {
+    echo '<p>Entre al envío del email</p>';
     enviarMail($verdaderoCliente, "Comprobante de pago Kaanbal", enviarMailPagado($verdaderoCliente, $paymentId));
   }
   // 3.3.- Para el caso de pending, preparar el webhook para enviar correo en caso de que el pago haya sido validado
