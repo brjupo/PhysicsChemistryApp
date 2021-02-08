@@ -1,6 +1,6 @@
 <?php
 require "../CSSsJSs/mainCSSsJSs.php";
-require "../../servicios/02sendMail.php";
+//require "../../servicios/02sendMail.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,7 @@ require "../../servicios/02sendMail.php";
 </head>
 
 <body>
+  <p>Hola</p>
   <?php
   //Si errorDetected=1, entonces los flujos o el flujo se detendrá informando el error
   $errorDetected = 0;
@@ -149,7 +150,7 @@ require "../../servicios/02sendMail.php";
   // 3.1.- Usar el servicio 02sendMail.php
   // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagado
   if ($errorDetected == 0) {
-    enviarMail($verdaderoCliente, "Comprobante de pago Kaanbal", enviarMailPagado($verdaderoCliente, $paymentId));
+    //enviarMail($verdaderoCliente, "Comprobante de pago Kaanbal", enviarMailPagado($verdaderoCliente, $paymentId));
   }
   // 3.3.- Para el caso de pending, preparar el webhook para enviar correo en caso de que el pago haya sido validado
   // 3.4.- Para el caso de failure, no enviar correo
