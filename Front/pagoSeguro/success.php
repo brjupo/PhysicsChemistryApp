@@ -43,6 +43,9 @@ require "../../servicios/02sendMail.php";
   ?>
   <?php
   //1.- Obtener el mail de la persona que realizó el pago
+  //1.1.- Obtener el bearer token de mercado pago
+  //1.2.- Lanzar una consulta al endpoint de mercado pago, usando curl y con el payment id
+  //1.3.- Obtener el mail del comprador, del JSON, ["results"][0]["payer"]["email"]
   ?>
   <?php
   //2.- Escribir en la base de datos que el mail ya pagó
@@ -52,7 +55,6 @@ require "../../servicios/02sendMail.php";
   // 2.4.- Obtener el payment id $_GET["payment_id"]
   // 2.5.- Dado que esta es la pantalla de success, y basados en la tabla payment_status, market_pay_status = 1 [SUCCESS]
   // 2.6.- INSERT id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
-
   ?>
   <?php
   //3.- Enviar correo a $verdaderoCliente con su payment_id y su vigencia
@@ -91,18 +93,21 @@ require "../../servicios/02sendMail.php";
   //2.- Escribir en la base de datos que el mail ya pagó
 
   //2.1.- Obtener el id_usuario(mail)
-  try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = " . $verdaderoCliente . " LIMIT 1";
-    $stmt = $conn->query($stringQuery);
-    while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-      $idVerdaderoCliente = $row[0];
+  if ($errorDetected == 0) {
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = " . $verdaderoCliente . " LIMIT 1";
+      $stmt = $conn->query($stringQuery);
+      while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+        $idVerdaderoCliente = $row[0];
+      }
+    } catch (PDOException $e) {
+      echo "<p> Error linea 102: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
+      $errorDetected = 1;
     }
-  } catch (PDOException $e) {
-    echo "<p> Error linea 102: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
+    $conn = null;
   }
-  $conn = null;
   //2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
   if (is_null($idAsignatura)) {
     $errorDetected = 1;
@@ -121,26 +126,31 @@ require "../../servicios/02sendMail.php";
   //2.5.- Dado que esta es la pantalla de success. Y basadonos que en la tabla payment_status SUCCESS = 1. market_pay_status = 1 [SUCCESS]
 
   //2.6.- INSERT id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
-  try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
-    //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
-    $stringQuery = 'INSERT INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status)VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 1, ' . $nowTimePlusSixMonths . ', ' . $paymentId . ', 1 );';
-    // use exec() because no results are returned
-    $conn->exec($stringQuery);
-  } catch (PDOException $e) {
-    echo "<p> Error linea 135: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
+  if ($errorDetected == 0) {
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      // set the PDO error mode to exception
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
+      //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
+      $stringQuery = 'INSERT INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 1, ' . $nowTimePlusSixMonths . ', ' . $paymentId . ', 1 );';
+      // use exec() because no results are returned
+      $conn->exec($stringQuery);
+    } catch (PDOException $e) {
+      echo "<p> Error linea 135: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
+      $errorDetected = 1;
+    }
+    $conn = null;
   }
-  $conn = null;
   ?>
 
   <?php
   //3.- Enviar correo a $verdaderoCliente con su payment_id y su vigencia
   // 3.1.- Usar el servicio 02sendMail.php
   // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagado
-  enviarMail($verdaderoCliente, "Comprobante de pago Kaanbal", enviarMailPagado($verdaderoCliente, $paymentId));
+  if ($errorDetected == 0) {
+    enviarMail($verdaderoCliente, "Comprobante de pago Kaanbal", enviarMailPagado($verdaderoCliente, $paymentId));
+  }
   // 3.3.- Para el caso de pending, preparar el webhook para enviar correo en caso de que el pago haya sido validado
   // 3.4.- Para el caso de failure, no enviar correo
   ?>
@@ -148,73 +158,92 @@ require "../../servicios/02sendMail.php";
   <?php
   // Aun faltan MUCHOS detalles en el webhook de desarrollo
   ?>
-  <div class="container">
-    <div class="row">
-      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p></p>
+  <?php if ($errorDetected == 0) { ?>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0)">.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+          <p class="titulo">Kaanbal</p>
+        </div>
+        <div class="textRight col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
+        <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       </div>
     </div>
-  </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0)">.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0)">.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1 col-sm-1 d-md-none"></div>
+        <div class="col-10 col-sm-10 col-md-12 col-lg-12 col-xl-12" style="
+              background-color: rgba(35, 85, 145, 0.9);
+              color: white;
+              border-radius: 1vw;
+            ">
+          <h1 class="text-center">Pago exitoso</h1>
+          <p style="color: rgba(0, 0, 0, 0)">.</p>
+          <p class="text-center" style="font-size: medium">
+            ¡Felicidades!, a partir de ahora podrás disfrutar de todos los
+            beneficios que te da Kaanbal
+          </p>
+          <p style="color: rgba(0, 0, 0, 0)">.</p>
+          <p class="text-center" style="font-size: medium">
+            Tu usuario es: <strong><?= $verdaderoCliente ?></strong>
+          </p>
+          <p style="color: rgba(0, 0, 0, 0)">.</p>
+          <p class="text-center" style="font-size: medium">
+            Tu "payment_id" es:
+            <strong><?= $paymentId ?></strong>
+          </p>
+          <p style="color: rgba(0, 0, 0, 0)">.</p>
+          <p class="text-center" style="font-size: medium">
+            Es muy importante que conserves este "payment_id" para cualquier
+            futura aclaración
+          </p>
+          <p style="color: rgba(0, 0, 0, 0)">.</p>
+          <p class="text-center" style="font-size: medium">
+            Te hemos enviado un correo con esta información
+          </p>
+        </div>
+        <div class="col-1 col-sm-1 d-md-none"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0)">.</p>
+        </div>
+        <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color: rgba(0, 0, 0, 0)">.</p>
+        </div>
+      </div>
+    </div>
+  <?php
+  } else { ?>
+    <p>Ha ocurrido un error. Inténtelo de nuevo más tarde</p>
+  <?php
+  } ?>
 
   <div class="container">
-    <div class="row">
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-      <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-        <p class="titulo">Kaanbal</p>
-      </div>
-      <div class="textRight col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1 col-sm-1 d-md-none"></div>
-      <div class="col-10 col-sm-10 col-md-12 col-lg-12 col-xl-12" style="
-            background-color: rgba(35, 85, 145, 0.9);
-            color: white;
-            border-radius: 1vw;
-          ">
-        <h1 class="text-center">Pago exitoso</h1>
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
-        <p class="text-center" style="font-size: medium">
-          ¡Felicidades!, a partir de ahora podrás disfrutar de todos los
-          beneficios que te da Kaanbal
-        </p>
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
-        <p class="text-center" style="font-size: medium">
-          Tu usuario es: <strong><?= $verdaderoCliente ?></strong>
-        </p>
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
-        <p class="text-center" style="font-size: medium">
-          Tu "payment_id" es:
-          <strong><?= $paymentId ?></strong>
-        </p>
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
-        <p class="text-center" style="font-size: medium">
-          Es muy importante que conserves este "payment_id" para cualquier
-          futura aclaración
-        </p>
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
-        <p class="text-center" style="font-size: medium">
-          Te hemos enviado un correo con esta información
-        </p>
-      </div>
-      <div class="col-1 col-sm-1 d-md-none"></div>
-    </div>
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p style="color: rgba(0, 0, 0, 0)">.</p>
@@ -242,21 +271,7 @@ require "../../servicios/02sendMail.php";
     </div>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
-      </div>
-      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
-      </div>
-    </div>
-  </div>
-
-
-
   <?php
-
   //https://www.kaanbal.net/DEV/Front/pagoSeguro/success.php?
   //collection_id=1230886475&
   //collection_status=approved&
@@ -333,7 +348,7 @@ function enviarMailPagado($mail, $paymentIdMail)
     </p>
     <p style="color: white">.</p>
     <p style="font-size: x-large;">
-     '.$paymentIdMail.'
+     ' . $paymentIdMail . '
     </p>
     <p style="color: white">.</p>
     <p>
