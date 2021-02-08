@@ -25,8 +25,13 @@ if (is_null($id_mp)) {
     $errorDetected = 1;
     $response["response"] .= "Error, id of market pay was not detected \n";
 }
+$id_mp = str_replace(" ", "", $id_mp);
+if(!is_numeric($id_mp)){
+    $response["response"] .= "Error, id of market pay is not valid \n";
+}
 /* FALTA OBTENER EL CORREO DEL COMPRADOR DE MP ["results"][0]["payer"]["email"] . CON EL CORREO OBTENER EL ID_USUARIO */
 $verdaderoCliente = $result["results"][0]["payer"]["email"];
+$verdaderoCliente = str_replace(" ", "", $verdaderoCliente);
 if ($errorDetected == 0) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -51,6 +56,7 @@ if ($errorDetected == 0) {
 
 /* FALTA OBTENER EL ["results"][0]["status"]. CON EL STATUS OBTENER EL ID DE STATUS */
 $statusPago = $result["results"][0]["status"];
+$statusPago = str_replace(" ", "", $statusPago);
 if ($errorDetected == 0) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
