@@ -33,6 +33,11 @@ require "../../servicios/02sendMail.php";
   //+++++++++++++++++++++++++ Variables del GET ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   $paymentId = $_GET["payment_id"];
+  $paymentId = str_replace(" ","",$paymentId);
+  if(!is_numeric($paymentId)){
+    $errorDetected = 1;
+    echo '<p>Error line 40</p>';
+  }
   ?>
   <?php
   if (is_null($paymentId)) {
@@ -82,6 +87,9 @@ require "../../servicios/02sendMail.php";
     // echo '<p> // echo result["results"][0]["payer"]["email"] =  ';
     // echo $verdaderoCliente;
     // echo '</p>';
+    $idAsignaturaNombre = $result["results"][0]["description"];
+    $idAsignaturaNombreArray = explode("@@", $idAsignaturaNombre);
+    $idAsignatura = intval($idAsignaturaNombreArray[0]);
   }
   if (is_null($verdaderoCliente)) {
     $errorDetected = 1;
@@ -297,8 +305,13 @@ require "../../servicios/02sendMail.php";
     </div>
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p class="text-center" style="color: rgba(0, 0, 0, 0)">.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <a href="https://kaanbal.net">
-          <p class="titulo">Kaanbal</p>
+          <p class="titulo text-center">Kaanbal</p>
         </a>
       </div>
     </div>

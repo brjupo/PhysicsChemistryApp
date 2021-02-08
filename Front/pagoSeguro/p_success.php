@@ -1,6 +1,7 @@
 <?php
 require "../CSSsJSs/mainCSSsJSs.php";
-require "../../servicios/02sendMail.php";
+require "../../servicios/00DDBBVariables.php";
+require "sendMailCustomers.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,7 @@ require "../../servicios/02sendMail.php";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
-  <title>Kaanbal - Payment Pending</title>
+  <title>Kaanbal - Payment Success</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="ml.css" />
@@ -33,6 +34,11 @@ require "../../servicios/02sendMail.php";
   //+++++++++++++++++++++++++ Variables del GET ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   $paymentId = $_GET["payment_id"];
+  $paymentId = str_replace(" ","",$paymentId);
+  if(!is_numeric($paymentId)){
+    $errorDetected = 1;
+    echo '<p>Error line 40</p>';
+  }
   ?>
   <?php
   if (is_null($paymentId)) {
@@ -52,13 +58,13 @@ require "../../servicios/02sendMail.php";
   // 2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
   // 2.3.- Agregar vigencia date(Now)+6meses
   // 2.4.- Obtener el payment id $_GET["payment_id"]
-  // 2.5.- Dado que esta es la pantalla de PENDING, y basados en la tabla payment_status, market_pay_status = 2 [PENDING]
-  // 2.6.- INSERT id_usuario, id_asignatura, pagado = 0, vigencia, id_market_pay, market_pay_status
+  // 2.5.- Dado que esta es la pantalla de success, y basados en la tabla payment_status, market_pay_status = 1 [SUCCESS]
+  // 2.6.- INSERT id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
   ?>
   <?php
   //3.- Enviar correo a $verdaderoCliente con su payment_id y su vigencia
   // 3.1.- Usar el servicio 02sendMail.php
-  // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagoPendiente
+  // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagado
   // 3.3.- Para el caso de pending, preparar el webhook para enviar correo en caso de que el pago haya sido validado
   // 3.4.- Para el caso de failure, no enviar correo
   ?>
@@ -82,6 +88,12 @@ require "../../servicios/02sendMail.php";
     // echo '<p> // echo result["results"][0]["payer"]["email"] =  ';
     // echo $verdaderoCliente;
     // echo '</p>';
+    $idAsignaturaNombre = $result["results"][0]["description"];
+    $idAsignaturaNombreArray = explode("@@", $idAsignaturaNombre);
+    $idAsignatura = intval($idAsignaturaNombreArray[0]);
+    // echo '<p> // echo result["results"][0]["description"] =  ';
+    // echo $idAsignatura;
+    // echo '</p>';
   }
   if (is_null($verdaderoCliente)) {
     $errorDetected = 1;
@@ -95,7 +107,7 @@ require "../../servicios/02sendMail.php";
   $entre = 0;
   if ($errorDetected == 0) {
     try {
-      // // echo '<p>Entre al try del select id usuario</p>';
+      // echo '<p>Entre al try del select id usuario</p>';
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $verdaderoCliente . "' LIMIT 1";
@@ -105,22 +117,23 @@ require "../../servicios/02sendMail.php";
         $entre = 1;
       }
     } catch (PDOException $e) {
-      // // echo "<p> Error linea 108: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
+      // echo "<p> Error linea 108: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
       $errorDetected = 1;
     }
     $conn = null;
     if ($entre == 0) {
       //id_usuario del usuario de brandon
       $idVerdaderoCliente = 4;
-      // // echo '<p>Id verdadero cliente será = 4</p>';
+      // echo '<p>Id verdadero cliente será = 4</p>';
     }
   }
   //2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
   if (is_null($idAsignatura)) {
     $errorDetected = 1;
-    // echo '<p>Error line 108</p>';
+    // echo '<p>Error line 116</p>';
   }
   //2.3.- Agregar vigencia date(Now)+6meses
+  // echo '<p>Inicio a calcular la vigencia</p>';
   $timeZone = new DateTimeZone('America/Mexico_City');
   $nowTimePlusSixMonths = new DateTime();
   $nowTimePlusSixMonths->modify('+6 month');
@@ -130,23 +143,23 @@ require "../../servicios/02sendMail.php";
   //2.4.- Obtener el payment id $_GET["payment_id"]
   //---------Listo en linea 35-----------
 
-  //2.5.- Dado que esta es la pantalla de success. Y basadonos que en la tabla payment_status pending = 4. market_pay_status = 4 [pending]
+  //2.5.- Dado que esta es la pantalla de success. Y basadonos que en la tabla payment_status approved = 5. market_pay_status = 5 [approved]
 
   //2.6.- INSERT id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
   if ($errorDetected == 0) {
     try {
-      // // echo '<p>Entre al try del insert into. La vigencia es: ' . $vigencia . ' </p>';
+      // echo '<p>Entre al try del insert into. La vigencia es: ' . $vigencia . ' </p>';
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       // set the PDO error mode to exception
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $stringQuery = 'INSERT 
       INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) 
-      VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 0, "' . $vigencia . '", "' . $paymentId . '", 4 );';
-      // // echo '<p> El query enviado fue: ' . $stringQuery . '</p>';
+      VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 1, "' . $vigencia . '", "' . $paymentId . '", 5 );';
+      // echo '<p> El query enviado fue: ' . $stringQuery . '</p>';
       // use exec() because no results are returned
       $conn->exec($stringQuery);
     } catch (PDOException $e) {
-      // // echo "<p> Error linea 135: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
+      // echo "<p> Error linea 135: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
       $errorDetected = 1;
     }
     $conn = null;
@@ -156,16 +169,17 @@ require "../../servicios/02sendMail.php";
   <?php
   //3.- Enviar correo a $verdaderoCliente con su payment_id y su vigencia
   // 3.1.- Usar el servicio 02sendMail.php
-  // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagoPendiente
+  // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagado
   if ($errorDetected == 0) {
-    enviarMail($verdaderoCliente, "Pago pendiente - Kaanbal", enviarMailPagoPendiente($verdaderoCliente, $paymentId));
+    // echo '<p>Entre al envío del email</p>';
+    enviarMail($verdaderoCliente, "Comprobante de pago Kaanbal", enviarMailPagado($verdaderoCliente, $paymentId));
   }
   // 3.3.- Para el caso de pending, preparar el webhook para enviar correo en caso de que el pago haya sido validado
   // 3.4.- Para el caso de failure, no enviar correo
   ?>
 
   <?php
-  // Aún faltan MUCHOS detalles en el webhook de desarrollo
+  // Aun faltan MUCHOS detalles en el webhook de desarrollo
   ?>
   <?php if ($errorDetected == 0) { ?>
     <div class="container">
@@ -201,22 +215,15 @@ require "../../servicios/02sendMail.php";
       <div class="row">
         <div class="col-1 col-sm-1 d-md-none"></div>
         <div class="col-10 col-sm-10 col-md-12 col-lg-12 col-xl-12" style="
-              background-color: rgba(225, 115, 0, 0.9);
+              background-color: rgba(35, 85, 145, 0.9);
               color: white;
               border-radius: 1vw;
             ">
-          <h1 class="text-center">Pago pendiente</h1>
+          <h1 class="text-center">Pago exitoso</h1>
           <p style="color: rgba(0, 0, 0, 0)">.</p>
           <p class="text-center" style="font-size: medium">
-            Tu pago ha sido registrado como pendiente. Quizá tu banco aún no autoriza el pago.
-          </p>
-          <p style="color: rgba(0, 0, 0, 0)">.</p>
-          <p class="text-center" style="font-size: medium">
-            A partir del momento que se haya h// echo el cobro, el sistema necesitará un máximo de 4 días hábiles para validar el pago.
-          </p>
-          <p style="color: rgba(0, 0, 0, 0)">.</p>
-          <p class="text-center" style="font-size: medium">
-            Si se han excedido los 4 días hábiles y aún no tienes acceso, por favor ponte en contacto con nosotros.
+            ¡Felicidades!, a partir de ahora podrás disfrutar de todos los
+            beneficios que te da Kaanbal
           </p>
           <p style="color: rgba(0, 0, 0, 0)">.</p>
           <p class="text-center" style="font-size: medium">
@@ -284,7 +291,6 @@ require "../../servicios/02sendMail.php";
       </div>
     </div>
   </div>
-
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -303,8 +309,13 @@ require "../../servicios/02sendMail.php";
     </div>
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p class="text-center" style="color: rgba(0, 0, 0, 0)">.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <a href="https://kaanbal.net">
-          <p class="titulo">Kaanbal</p>
+          <p class="titulo text-center">Kaanbal</p>
         </a>
       </div>
     </div>
@@ -354,7 +365,7 @@ require "../../servicios/02sendMail.php";
 
 <?php
 
-function enviarMailPagoPendiente($mail, $paymentIdMail)
+function enviarMailPagado($mail, $paymentIdMail)
 {
   return '
 <html>
@@ -377,14 +388,12 @@ function enviarMailPagoPendiente($mail, $paymentIdMail)
 
     <h3>¡Bienvenida(o) a Kaanbal!</h3>
     <h4>
-      Por ahora el pago esta en estado:
-      <strong>PENDIENTE</strong>
+      Has hecho una excelente decisión al comprar la
+      <strong>Plataforma educativa Kaanbal</strong>
     </h4>
     <p>
-      A partir del momento que se haya realizado el cobro, el sistema necesitará un máximo de 4 días hábiles para validar el pago.
-    </p>
-    <p>
-      Si se han excedido los 4 días hábiles y aún no tienes acceso, por favor ponte en contacto con nosotros.
+      Ahora podrás practicar, reforzar y consolidar los conceptos vistos en
+      clase de forma interactiva y lúdica
     </p>
     <p>Tu <strong>usuario</strong> es el correo:</p>
     <p>' . $mail . '</p>

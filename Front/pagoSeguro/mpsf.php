@@ -1,4 +1,7 @@
 <?php
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+//++++++++++++++++++ Mercado pago sin factura PRUEBAS ++++++++++++++++++//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 require "../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>
@@ -28,6 +31,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //+++++++++++++++++++++++++ Variables del POST ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   $usuarioCorreo = $_POST["userMailNoInvoice"];
+  $usuarioCorreo = str_replace(" ","",$usuarioCorreo);
+  
   echo '<p> Datos  usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php
@@ -49,8 +54,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
       // Crea un ítem en la preferencia
       $item = new MercadoPago\Item();
-      $item->id = "1";
-      $item->title = "Licencia semestral Kaanbal [1 materia]";
+      $item->title = $idAsignatura . "@@" . $materia;
       $item->description = "Incluye el acceso a la plataforma y la posibilidad de inscribirte a un grupo para que los profesores puedan acceder a tus calificaciones";
       $item->quantity = 1;
       $item->currency_id = "MXN";
@@ -78,9 +82,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
       //Redireccionamientos 
       $preference->back_urls = array(
-        "success" => "https://www.kaanbal.net/dev/Front/pagoSeguro/success.php",
-        "failure" => "https://www.kaanbal.net/dev/Front/pagoSeguro/failure.php",
-        "pending" => "https://www.kaanbal.net/dev/Front/pagoSeguro/pending.php"
+        "success" => "https://www.kaanbal.net/dev/Front/pagoSeguro/p_success.php",
+        "failure" => "https://www.kaanbal.net/dev/Front/pagoSeguro/p_failure.php",
+        "pending" => "https://www.kaanbal.net/dev/Front/pagoSeguro/p_pending.php"
       );
       $preference->auto_return = "approved";
 

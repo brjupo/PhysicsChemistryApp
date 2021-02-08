@@ -1,4 +1,7 @@
 <?php
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+//++++++++++++++++++ Mercado pago CON factura PRUEBAS ++++++++++++++++++//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 require "../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>
@@ -30,6 +33,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
   $rfc = $_POST["rfc"];
   $razonSocial = $_POST["razonSocial"];
   $usuarioCorreo = $_POST["userMailWithInvoice"];
+
+  $rfc = str_replace(" ","",$rfc);
+  $razonSocial = str_replace(" ","",$razonSocial);
+  $usuarioCorreo = str_replace(" ","",$usuarioCorreo);
+
   echo '<p> Datos rfc=' . $rfc . '  razonSocial=' . $razonSocial . ' usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php
@@ -52,7 +60,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
       // Crea un ítem en la preferencia
       $item = new MercadoPago\Item();
-      $item->title = $idAsignatura;
+      $item->title = $idAsignatura . "@@" . $materia;
       $item->description = "Incluye el acceso a la plataforma y la posibilidad de inscribirte a un grupo para que los profesores puedan acceder a tus calificaciones";
       $item->quantity = 1;
       $item->currency_id = "MXN";
@@ -80,9 +88,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
       //Redireccionamientos 
       $preference->back_urls = array(
-        "success" => "https://www.kaanbal.net/dev/Front/pagoSeguro/success.php",
-        "failure" => "https://www.kaanbal.net/dev/Front/pagoSeguro/failure.php",
-        "pending" => "https://www.kaanbal.net/dev/Front/pagoSeguro/pending.php"
+        "success" => "https://www.kaanbal.net/dev/Front/pagoSeguro/p_success.php",
+        "failure" => "https://www.kaanbal.net/dev/Front/pagoSeguro/p_failure.php",
+        "pending" => "https://www.kaanbal.net/dev/Front/pagoSeguro/p_pending.php"
       );
       $preference->auto_return = "approved";
 
