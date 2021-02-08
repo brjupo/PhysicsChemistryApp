@@ -52,8 +52,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
       // Crea un ítem en la preferencia
       $item = new MercadoPago\Item();
-      $item->id = "1";
-      $item->title = "Licencia semestral Kaanbal [1 materia]";
+      $item->title = $idAsignatura;
       $item->description = "Incluye el acceso a la plataforma y la posibilidad de inscribirte a un grupo para que los profesores puedan acceder a tus calificaciones";
       $item->quantity = 1;
       $item->currency_id = "MXN";

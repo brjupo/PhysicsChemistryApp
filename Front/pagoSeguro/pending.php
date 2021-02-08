@@ -24,10 +24,9 @@ require "../../servicios/02sendMail.php";
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   //+++++++++++++++++++++++++ Variables de sesion ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  session_start();
-  $iduser = $_SESSION["id_usuario"];
-  $materia = $_SESSION["asignaturaNavegacion"];
-  $idAsignatura = $_SESSION["idAsignatura"];
+  
+  // NO SE PUEDEN USAR. ALGO SUCEDE A LA HORA DE PAGAR EN MERCADO PAGO Y SE ELIMINAN POR COMPLETO
+
   ?>
   <?php
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
@@ -275,6 +274,34 @@ require "../../servicios/02sendMail.php";
       <div class="col-9 col-sm-9 col-md-4 col-lg-4 col-xl-4">
         <p class="text-left"><strong>5548714593</strong></p>
       </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p class="text-center">.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p class="text-center">Por favor inicia sesión de nuevo. Da clic en el siguiente link:</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p class="text-center">.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+        <a href="https://kaanbal.net">
+          <p class="titulo">Kaanbal</p>
+        </a>
+      </div>
+      <div class="textRight col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
+      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
 
