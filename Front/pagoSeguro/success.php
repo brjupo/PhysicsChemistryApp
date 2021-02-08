@@ -11,8 +11,8 @@ require "sendMailCustomers.php";
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Kaanbal - Payment Success</title>
-  <link rel="stylesheet" href="../CSSsJSs/<?php // echo $bootstrap441; ?>" />
-  <link rel="stylesheet" href="../CSSsJSs/<?php // echo $kaanbalEssentials; ?>" />
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="ml.css" />
 </head>
 
@@ -377,7 +377,7 @@ function enviarMailPagado($mail, $paymentIdMail)
 
     <h3>¡Bienvenida(o) a Kaanbal!</h3>
     <h4>
-      Has h// echo una excelente decisión al comprar la
+      Has hecho una excelente decisión al comprar la
       <strong>Plataforma educativa Kaanbal</strong>
     </h4>
     <p>

@@ -10,8 +10,8 @@ require "../../servicios/02sendMail.php";
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Kaanbal - Payment Pending</title>
-  <link rel="stylesheet" href="../CSSsJSs/<?php // echo $bootstrap441; ?>" />
-  <link rel="stylesheet" href="../CSSsJSs/<?php // echo $kaanbalEssentials; ?>" />
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="ml.css" />
 </head>
 
@@ -381,7 +381,7 @@ function enviarMailPagoPendiente($mail, $paymentIdMail)
       <strong>PENDIENTE</strong>
     </h4>
     <p>
-      A partir del momento que se haya h// echo el cobro, el sistema necesitará un máximo de 4 días hábiles para validar el pago.
+      A partir del momento que se haya realizado el cobro, el sistema necesitará un máximo de 4 días hábiles para validar el pago.
     </p>
     <p>
       Si se han excedido los 4 días hábiles y aún no tienes acceso, por favor ponte en contacto con nosotros.
