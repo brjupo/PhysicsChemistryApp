@@ -600,7 +600,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
               class="form-control"
               value="' . $_SESSION["mail"] . '"
               form="datosConFactura"
-              disabled
             />
           </div>
           <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
@@ -781,7 +780,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
               class="form-control"
               value="' . $_SESSION["mail"] . '"
               form="datosSinFactura"
-              disabled
             />
           </div>
           <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>

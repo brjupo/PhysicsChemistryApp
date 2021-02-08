@@ -34,7 +34,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   ?>
   <?php
   if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia)) {
-    echo '<script>
+    echo '<script  type="text/javascript"> 
     alert("Error. Por favor, verifica e inserta nuevamente tus datos
     rfc=' . $rfc . '  razonSocial=' . $razonSocial . '  
     usuario=' . $usuarioCorreo . '  materia=' . $materia . ' ");
