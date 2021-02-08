@@ -1,6 +1,7 @@
 <?php
 require "../CSSsJSs/mainCSSsJSs.php";
-//require "../../servicios/02sendMail.php";
+require "../../servicios/00DDBBVariables.php";
+require "../../servicios/02sendMail.php";
 ?>
 <!DOCTYPE html>
 <html>
