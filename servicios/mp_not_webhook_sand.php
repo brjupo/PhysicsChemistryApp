@@ -26,10 +26,36 @@ if (is_null($id_mp)) {
     $response["response"] .= "Error, id of market pay was not detected \n";
 }
 $id_mp = str_replace(" ", "", $id_mp);
-if(!is_numeric($id_mp)){
+if (!is_numeric($id_mp)) {
+    $errorDetected = 1;
     $response["response"] .= "Error, id of market pay is not valid \n";
 }
-/* FALTA OBTENER EL CORREO DEL COMPRADOR DE MP ["results"][0]["payer"]["email"] . CON EL CORREO OBTENER EL ID_USUARIO */
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++  1.- Obtener el mail de la persona y status de pago  ++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+if ($errorDetected == 0) {
+    $bearerToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
+    $url = 'https://api.mercadopago.com/v1/payments/search?id=' . $id_mp;
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, [
+        'Authorization: Bearer ' . $bearerToken,
+        'Content-Type: application/x-www-form-urlencoded'
+    ]);
+    $response = curl_exec($curl);
+    curl_close($curl);
+    // echo $response . PHP_EOL;
+    $result = json_decode($response, TRUE);
+}
+if (is_null($verdaderoCliente)) {
+    $errorDetected = 1;
+    // echo '<p>Error line 86</p>';
+}
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++  2.- OBTENER EL ID DEL USUARIO  +++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 $verdaderoCliente = $result["results"][0]["payer"]["email"];
 $verdaderoCliente = str_replace(" ", "", $verdaderoCliente);
 if ($errorDetected == 0) {
@@ -54,7 +80,9 @@ if ($errorDetected == 0) {
     }
 }
 
-/* FALTA OBTENER EL ["results"][0]["status"]. CON EL STATUS OBTENER EL ID DE STATUS */
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++  3.- OBTENER EL STATUS DE PAGO  +++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 $statusPago = $result["results"][0]["status"];
 $statusPago = str_replace(" ", "", $statusPago);
 if ($errorDetected == 0) {
@@ -81,9 +109,12 @@ if ($errorDetected == 0) {
 
 $tiempo = getDatetimeNow();
 /* EL JSON COMPLETO ES $entityBody */
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*++++++++++++++++++++++++  ESCRITURA A BBDD  +++++++++++++++++++++++*/
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*+++++++++++++++++++++  4.- REGISTRAR LA INFORMACION DE MERCADO PAGO  +++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*+++++++++++++++  5.- RESPONDER A MERCADO PAGO QUE HEMOS GUARDADO LA INFO  ++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 if ($errorDetected == 0) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -110,3 +141,7 @@ if ($errorDetected == 0) {
 ////////////////  
 header('Content-Type: application/json');
 echo json_encode($response);
+//Si se deja después de enviar los headers. FALTA
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*++++++++++++++  6.- GUARDAR LA INFORMACIÓN EN LA TABLA DE LICENCIAS CON STATUS +++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
