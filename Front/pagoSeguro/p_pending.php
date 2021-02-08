@@ -42,7 +42,7 @@ require "../../servicios/02sendMail.php";
   <?php
   if (is_null($paymentId)) {
     $errorDetected = 1;
-    // echo '<p>Error line 40</p>';
+    echo '<p>Error line 40</p>';
   }
   ?>
   <?php
@@ -80,20 +80,20 @@ require "../../servicios/02sendMail.php";
     ]);
     $response = curl_exec($curl);
     curl_close($curl);
-    // echo $response . PHP_EOL;
+    echo $response . PHP_EOL;
     $result = json_decode($response, TRUE);
 
     $verdaderoCliente = $result["results"][0]["payer"]["email"];
-    // echo '<p> // echo result["results"][0]["payer"]["email"] =  ';
-    // echo $verdaderoCliente;
-    // echo '</p>';
+    echo '<p> echo result["results"][0]["payer"]["email"] =  ';
+    echo $verdaderoCliente;
+    echo '</p>';
     $idAsignaturaNombre = $result["results"][0]["description"];
     $idAsignaturaNombreArray = explode("@@", $idAsignaturaNombre);
     $idAsignatura = intval($idAsignaturaNombreArray[0]);
   }
   if (is_null($verdaderoCliente)) {
     $errorDetected = 1;
-    // echo '<p>Error line 86</p>';
+    echo '<p>Error line 86</p>';
   }
   ?>
   <?php
@@ -103,7 +103,7 @@ require "../../servicios/02sendMail.php";
   $entre = 0;
   if ($errorDetected == 0) {
     try {
-      // // echo '<p>Entre al try del select id usuario</p>';
+      echo '<p>Entre al try del select id usuario</p>';
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $verdaderoCliente . "' LIMIT 1";
@@ -113,20 +113,20 @@ require "../../servicios/02sendMail.php";
         $entre = 1;
       }
     } catch (PDOException $e) {
-      // // echo "<p> Error linea 108: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
+      echo "<p> Error linea 108: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
       $errorDetected = 1;
     }
     $conn = null;
     if ($entre == 0) {
       //id_usuario del usuario de brandon
       $idVerdaderoCliente = 4;
-      // // echo '<p>Id verdadero cliente será = 4</p>';
+      echo '<p>Id verdadero cliente será = 4</p>';
     }
   }
   //2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
   if (is_null($idAsignatura)) {
     $errorDetected = 1;
-    // echo '<p>Error line 108</p>';
+    echo '<p>Error line 108</p>';
   }
   //2.3.- Agregar vigencia date(Now)+6meses
   $timeZone = new DateTimeZone('America/Mexico_City');
@@ -143,18 +143,18 @@ require "../../servicios/02sendMail.php";
   //2.6.- INSERT id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
   if ($errorDetected == 0) {
     try {
-      // // echo '<p>Entre al try del insert into. La vigencia es: ' . $vigencia . ' </p>';
+      echo '<p>Entre al try del insert into. La vigencia es: ' . $vigencia . ' </p>';
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       // set the PDO error mode to exception
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $stringQuery = 'INSERT 
       INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) 
       VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 0, "' . $vigencia . '", "' . $paymentId . '", 4 );';
-      // // echo '<p> El query enviado fue: ' . $stringQuery . '</p>';
+      echo '<p> El query enviado fue: ' . $stringQuery . '</p>';
       // use exec() because no results are returned
       $conn->exec($stringQuery);
     } catch (PDOException $e) {
-      // // echo "<p> Error linea 135: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
+      echo "<p> Error linea 135: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
       $errorDetected = 1;
     }
     $conn = null;
@@ -220,7 +220,7 @@ require "../../servicios/02sendMail.php";
           </p>
           <p style="color: rgba(0, 0, 0, 0)">.</p>
           <p class="text-center" style="font-size: medium">
-            A partir del momento que se haya h// echo el cobro, el sistema necesitará un máximo de 4 días hábiles para validar el pago.
+            A partir del momento que se haya hecho el cobro, el sistema necesitará un máximo de 4 días hábiles para validar el pago.
           </p>
           <p style="color: rgba(0, 0, 0, 0)">.</p>
           <p class="text-center" style="font-size: medium">
@@ -341,22 +341,22 @@ require "../../servicios/02sendMail.php";
   //site_id=MLM&
   //processing_mode=aggregator&
   //merchant_account_id=null
-  // // echo '<h1>SUCCESS</h1>';
-  // // echo '<p></p>';
-  // // echo '<p>.</p>';
-  // // echo '<p>POST payment id</p>';
-  // // echo '<p>' . $paymentId . '</p>';
-  // // echo '<p>.</p>';
-  // // echo '<p>POST status</p>';
-  // // echo '<p>' . $_GET["status"] . '</p>';
-  // // echo '<p>.</p>';
-  // // echo '<p>POST external reference</p>';
-  // // echo '<p>' . $_GET["external_reference"] . '</p>';
-  // // echo '<p>.</p>';
-  // // echo '<p>POST merchant order id</p>';
-  // // echo '<p>' . $_GET["merchant_order_id"] . '</p>';
-  // // echo '<p>.</p>';
-  // // echo '<p>.</p>';
+  echo '<h1>SUCCESS</h1>';
+  echo '<p></p>';
+  echo '<p>.</p>';
+  echo '<p>POST payment id</p>';
+  echo '<p>' . $paymentId . '</p>';
+  echo '<p>.</p>';
+  echo '<p>POST status</p>';
+  echo '<p>' . $_GET["status"] . '</p>';
+  echo '<p>.</p>';
+  echo '<p>POST external reference</p>';
+  echo '<p>' . $_GET["external_reference"] . '</p>';
+  echo '<p>.</p>';
+  echo '<p>POST merchant order id</p>';
+  echo '<p>' . $_GET["merchant_order_id"] . '</p>';
+  echo '<p>.</p>';
+  echo '<p>.</p>';
   //
 
   ?>
