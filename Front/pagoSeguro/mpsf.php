@@ -28,6 +28,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //+++++++++++++++++++++++++ Variables del POST ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   $usuarioCorreo = $_POST["usuarioCorreo"];
+  echo '<p> Datos  usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php
   if (is_null($usuarioCorreo) || is_null($materia)) {

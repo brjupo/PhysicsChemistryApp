@@ -30,6 +30,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   $rfc = $_POST["rfc"];
   $razonSocial = $_POST["razonSocial"];
   $usuarioCorreo = $_POST["usuarioCorreo"];
+  echo '<p> Datos rfc=' . $rfc . '  razonSocial=' . $razonSocial . ' usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php
   if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia)) {
