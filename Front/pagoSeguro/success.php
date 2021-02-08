@@ -143,15 +143,14 @@ require "sendMailCustomers.php";
   if ($errorDetected == 0) {
     try {
       echo '<p>Entre al try del insert into</p>';
-      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-      // set the PDO error mode to exception
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
-      //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
       $stringQuery = 'INSERT 
       INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) 
       VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 1, "' . $nowTimePlusSixMonths . '", "' . $paymentId . '", 1 );';
-      echo 'El query a enviar fue: ' . $stringQuery;
+      echo '<p> El query enviado fue: ' . $stringQuery . '</p>';
+
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      // set the PDO error mode to exception
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       // use exec() because no results are returned
       $conn->exec($stringQuery);
     } catch (PDOException $e) {
