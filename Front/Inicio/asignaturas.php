@@ -62,6 +62,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $password = $_POST["validarPassword"];
     $idiomas = $_POST["idioma"];
     //Para evitar SQL injections
+    $correo = str_replace(" ", "", $correo);
+    $password = str_replace(" ", "", $password);
+    $idiomas = str_replace(" ", "", $idiomas);
 
     //Validamos que los campos correo y password no lleguen vacios
     if ($correo == "" or $password == "") {
