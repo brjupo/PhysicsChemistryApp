@@ -5,6 +5,10 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
 $token = $_POST["tokenA"];
 $correo = $_POST["correo"];
 $password = $_POST["password"];
+$token = str_replace(" ", "", $token);
+$correo = str_replace(" ", "", $correo);
+$password = MD5($password);
+$password = str_replace(" ", "", $password);
 
 //Corroborar que no existe el correo en base de datos
 $sql = "SELECT mail FROM usuario_prueba WHERE tokenA = '$token' AND mail = '$correo'";

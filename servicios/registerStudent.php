@@ -31,7 +31,8 @@ if (false) {
       $respuesta["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde.";
     } else {
       //agregarStudent a usuario_prueba con password correoCorreo
-      $addStudent = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerStudentMail . "', '" . $lowerStudentMail . $lowerStudentMail . "');");
+      $tempPas = MD5($lowerStudentMail . $lowerStudentMail);
+      $addStudent = new queryToDDBB("INSERT INTO usuario_prueba (mail, pass_cifrado) VALUES ('" . $lowerStudentMail . "', '" . $tempPas . "');");
       if ($addStudent->write() != "success") {
         $respuesta["response"] = "Error al escribir el nuevo usuario";
       } else {
