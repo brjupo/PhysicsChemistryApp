@@ -143,5 +143,5 @@ header('Content-Type: application/json');
 echo json_encode($response);
 //Si se deja después de enviar los headers. FALTA
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*++++++++++++++  6.- GUARDAR LA INFORMACIÓN EN LA TABLA DE LICENCIAS CON STATUS +++++++++++++++*/
+/*+++++++++  6.- ACTUALIZAR O CREAR LA INFORMACIÓN EN LA TABLA DE LICENCIAS CON STATUS +++++++++*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/

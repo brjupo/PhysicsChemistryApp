@@ -13,18 +13,18 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Asignaturas</title>
-  <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap341 ?>" />   
-  <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />  
+  <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap341 ?>" />
+  <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
   <link rel="stylesheet" href="Asignaturas.css" />
   <script src="Asignaturas2.js"></script>
 </head>
 
 <body>
-  <?php 
+  <?php
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
-  
+
   $tokenValidar = array();
 
   //-------------------------------------------------//
@@ -52,7 +52,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
     $arregloAsignaturas = array();
     $arregloAsignaturas = traerAsignaturas();
-    imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID,$tieneGrupos);//0911 
+    imprimirPagina($arregloAsignaturas, $mostrarMenuprofesor, $staffID, $tieneGrupos); //0911 
   } else {
     /* echo'<script type="text/javascript">
             alert("segundo caminio");
@@ -61,6 +61,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $correo = $_POST["validarUsuario"];
     $password = $_POST["validarPassword"];
     $idiomas = $_POST["idioma"];
+
+    $correo = str_replace(" ", "", $correo);
+    $password = str_replace(" ", "", $password);
+    $idiomas = str_replace(" ", "", $idiomas);
 
     //Validamos que los campos correo y password no lleguen vacios
     if ($correo == "" or $password == "") {
@@ -83,9 +87,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
         $idiomas = $idiomareg[0]["idioma"];
       }
 
+
       //Consultar si existe usuario en tabla alumnos
-      $statement = mysqli_prepare($con, "SELECT id_usuario, mail, pswd, tokenA, tokenSesion, idioma, inicios FROM usuario_prueba WHERE mail = ? AND pswd = ?");
-      mysqli_stmt_bind_param($statement, "ss", $correo, $password);
+      $statement = mysqli_prepare($con, "SELECT id_usuario, mail, pswd, tokenA, tokenSesion, idioma, inicios FROM usuario_prueba WHERE mail = ? AND pass_cifrado = ?");
+      mysqli_stmt_bind_param($statement, "ss", $correo, MD5($password));
       mysqli_stmt_execute($statement);
 
       mysqli_stmt_store_result($statement);
@@ -117,9 +122,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
           $existeProfe["profe"] = $idProfe;
         }
         $mostrarMenuprofesor = $existeProfe["profe"];
-            
+
         //Consultar si tiene grupos creados
-        if($mostrarMenuprofesor != ''){
+        if ($mostrarMenuprofesor != '') {
           $statement = mysqli_prepare($con, "SELECT id_grupo FROM grupo WHERE id_profesor = ? LIMIT 1");
           mysqli_stmt_bind_param($statement, "s", $mostrarMenuprofesor);
           mysqli_stmt_execute($statement);
@@ -167,15 +172,16 @@ require "../CSSsJSs/mainCSSsJSs.php";
         mysqli_stmt_bind_result($statement, $idstaff);
 
         while (mysqli_stmt_fetch($statement)) {
-            $existestaff["staff"] = $idstaff;
+          $existestaff["staff"] = $idstaff;
         }
 
-        if($existestaff["staff"] == ""){
+        if ($existestaff["staff"] == "") {
           $staffID = "null";
-        }else{
-          $staffID = $existestaff["staff"];}
+        } else {
+          $staffID = $existestaff["staff"];
+        }
         $_SESSION["siStaff"] = $staffID;
-        
+
 
         $arregloAsignaturas = array();
         $arregloAsignaturas = traerAsignaturas();
@@ -200,10 +206,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
         /* echo '<script type="text/javascript">
                       alert("'.$total[0].'");
                       </script>'; */
-        
+
         if ($total[0] > 1 or $mostrarMenuprofesor != '' or $staffID != 'null') {
-          imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID,$tieneGrupos);//09111
-        } else {//PARA SALTAR A LA PAGINA DE TEMAS CUANDO NO TIENE MAS DE DOS MATERIAS
+          imprimirPagina($arregloAsignaturas, $mostrarMenuprofesor, $staffID, $tieneGrupos); //09111
+        } else { //PARA SALTAR A LA PAGINA DE TEMAS CUANDO NO TIENE MAS DE DOS MATERIAS
           //Traeer asignatura
           $query = "SELECT id_asignatura FROM licencia WHERE id_usuario = '$iduser'";
           $result = mysqli_query($con, $query);
@@ -283,18 +289,19 @@ require "../CSSsJSs/mainCSSsJSs.php";
     return $datetime->format('Y\-m\-d\ H:i:s');
   }
   //////////////////////
-  function imprimirPagina($arregloAsignaturas,$mostrarMenuprofesor,$staffID,$tieneGrupos)
+  function imprimirPagina($arregloAsignaturas, $mostrarMenuprofesor, $staffID, $tieneGrupos)
   {
 
     imprimirTitulo();
     imprimirAsignaturas($arregloAsignaturas);
     imprimirRelleno();
     if ($mostrarMenuprofesor != '') {
-      if($tieneGrupos == ""){
-        sinGrupos();}
+      if ($tieneGrupos == "") {
+        sinGrupos();
+      }
     }
     if ($mostrarMenuprofesor != '' or $staffID != 'null') {
-      imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID);
+      imprimirEspaciosProfesor($mostrarMenuprofesor, $staffID);
     }
     imprimirRelleno();
     imprimirFooter();
@@ -340,39 +347,37 @@ require "../CSSsJSs/mainCSSsJSs.php";
     ';
   }
 
-  function imprimirAsignaturas($arregloAsignaturas)//AQUI DEBO TRAER LOS ID EN LUGAR DE LOS NOBRES DE LAS MATERIAS
+  function imprimirAsignaturas($arregloAsignaturas) //AQUI DEBO TRAER LOS ID EN LUGAR DE LOS NOBRES DE LAS MATERIAS
   {
     $tamanho = count($arregloAsignaturas["id_asignatura"]);
 
     $i = 0;
 
-    while($i < $tamanho){
+    while ($i < $tamanho) {
       $residuo = $i % 2;
-      if($residuo == 0){
-        imprimirAsignaturaPar($arregloAsignaturas["id_asignatura"][$i],$arregloAsignaturas["nombre"][$i]);//0911SE DEBERA PASAR ID DE ASIGNATURA EN LUGAR DE NOMBRE
+      if ($residuo == 0) {
+        imprimirAsignaturaPar($arregloAsignaturas["id_asignatura"][$i], $arregloAsignaturas["nombre"][$i]); //0911SE DEBERA PASAR ID DE ASIGNATURA EN LUGAR DE NOMBRE
         /* echo'<script type="text/javascript">
         alert("es par");
         </script>';  */
-      }else{
-        imprimirAsignaturaImpar($arregloAsignaturas["id_asignatura"][$i],$arregloAsignaturas["nombre"][$i]);
+      } else {
+        imprimirAsignaturaImpar($arregloAsignaturas["id_asignatura"][$i], $arregloAsignaturas["nombre"][$i]);
         /* echo'<script type="text/javascript">
         alert("no es par");
         </script>';  */
       }
 
-      $i = $i +1;
-
+      $i = $i + 1;
     }
-    
   }
 
-  function imprimirAsignaturaPar($idAsignatura,$nombreAsignatura)//091120 SE RECIBE AQUI ID DE ASIGNATURA
+  function imprimirAsignaturaPar($idAsignatura, $nombreAsignatura) //091120 SE RECIBE AQUI ID DE ASIGNATURA
   {
     $link = "temas.php?asignatura=";
     $claseBloque = "asignaturaPrincipal";
     $link = $link . $idAsignatura;
     $imagen = "imagenAsignatura";
-   
+
 
     echo '
         <div class="container">
@@ -395,7 +400,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     ';
   }
 
-  function imprimirAsignaturaImpar($idAsignatura,$nombreAsignatura)
+  function imprimirAsignaturaImpar($idAsignatura, $nombreAsignatura)
   {
     $link = "temas.php?asignatura=";
     $claseBloque = "asignaturaPrincipal";
@@ -412,8 +417,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
                       <img class="' . $imagen . '" src="../CSSsJSs/icons/physics.svg" />
                     </div>
                     <div class="tituloAsignaturas">'
-        . $nombreAsignatura .
-        '</div>
+      . $nombreAsignatura .
+      '</div>
                   </div>              
                 </a>
               <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
@@ -437,9 +442,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
   function sinGrupos()
   {
 
-    echo'<script type="text/javascript">
+    echo '<script type="text/javascript">
             alert("Hemos detectado que no tienes grupos aún. Crea uno dando click en Crear Grupo");
-            </script>'; 
+            </script>';
     /* echo '
       <div class="container">
         <div class="row">
@@ -452,7 +457,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     '; */
   }
 
-  function imprimirEspaciosProfesor($mostrarMenuprofesor,$staffID)
+  function imprimirEspaciosProfesor($mostrarMenuprofesor, $staffID)
   {
     echo '
       <div class="container">
@@ -465,8 +470,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
     ';
 
 
-    if($mostrarMenuprofesor != ''){
-    echo '
+    if ($mostrarMenuprofesor != '') {
+      echo '
         <div class="container">
           <div class="row">
             <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
@@ -512,9 +517,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
           <!------------------------------------------------FIN RELLENO----------------------------------------------->
     ';
     }
-    
-    if($staffID != 'null'){
-    echo '
+
+    if ($staffID != 'null') {
+      echo '
         <div class="container">
           <div class="row">
             <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>   
