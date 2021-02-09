@@ -89,7 +89,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
 
       //Consultar si existe usuario en tabla alumnos
-      $statement = mysqli_prepare($con, "SELECT id_usuario, mail, pswd, tokenA, tokenSesion, idioma, inicios FROM usuario_prueba WHERE mail = ? AND pass_cifrado = ?");
+      $statement = mysqli_prepare($con, "SELECT id_usuario, mail, pass_cifrado, tokenA, tokenSesion, idioma, inicios FROM usuario_prueba WHERE mail = ? AND pass_cifrado = ?");
       mysqli_stmt_bind_param($statement, "ss", $correo, MD5($password));
       mysqli_stmt_execute($statement);
 
