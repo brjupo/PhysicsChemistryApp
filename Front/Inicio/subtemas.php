@@ -47,7 +47,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $_SESSION["temaNavegacion"] = $_GET['tema'];
     imprimirPaginaSubtemas($arregloSubtemas);
   } else {
-    $stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pswd = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
+    $stringQuery = "SELECT mail FROM usuario_prueba WHERE mail = '" . $_SESSION["mail"] . "' AND pass_cifrado = '" . $_SESSION["pswd"] . "' AND tokenSesion = '" . $_SESSION["tokenSesion"] . "'";
     $result = mysqli_query($con, $stringQuery);
     $rowp = mysqli_fetch_array($result);
     if ($rowp) {

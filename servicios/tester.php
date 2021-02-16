@@ -79,7 +79,7 @@ if (false) {
       $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
     } else {
       //agregarProfesor a usuario_prueba con password correoCorreo
-      $addTeacher = new queryToDDBB2("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerTeacherMail . "', '" . $lowerTeacherMail . $lowerTeacherMail . "');");
+      $addTeacher = new queryToDDBB2("INSERT INTO usuario_prueba (mail, pass_cifrado) VALUES ('" . $lowerTeacherMail . "', '" . $lowerTeacherMail . $lowerTeacherMail . "');");
       if ($addTeacher->write() != "success") {
         $response["response"] = "Error al escribir el nuevo usuario";
       } else {

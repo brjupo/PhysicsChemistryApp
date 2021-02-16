@@ -12,7 +12,7 @@ $sql = "SELECT mail FROM usuario_prueba WHERE mail = '$correo_e'";
 $resultp = mysqli_query($con, $sql);
 $rowp = mysqli_fetch_array($resultp);
 
-$sql = "SELECT pswd FROM usuario_prueba WHERE mail = 'superUsuario'";
+$sql = "SELECT pass_cifrado FROM usuario_prueba WHERE mail = 'superUsuario'";
 $resultadoSuper = mysqli_query($con, $sql);
 $arraySuper = mysqli_fetch_array($resultadoSuper);
 if ($arraySuper[0] != $password) {
@@ -29,7 +29,7 @@ if ($arraySuper[0] != $password) {
         //Es hora de cambiar el token   |  Creamos un token random
         $rand = bin2hex(random_bytes(5));
         //Agregar a la base de datos
-        $sql = "INSERT INTO usuario_prueba(mail, pswd, tokenA) VALUES ('$correo_e', '1234', '$rand')";
+        $sql = "INSERT INTO usuario_prueba(mail, pass_cifrado, tokenA) VALUES ('$correo_e', '1234', '$rand')";
         mysqli_query($con, $sql);
         //Enviar correo a usuario para que genere su contrasenia
         //mail(correo,asunto,cuerpo);

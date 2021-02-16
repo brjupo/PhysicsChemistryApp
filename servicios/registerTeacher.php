@@ -24,7 +24,7 @@ if (strpos($lowerTeacherMail, 'tec.mx') === false) {
   } else {
     //agregarProfesor a usuario_prueba con password correoCorreo
     $tempPas = MD5($lowerTeacherMail . $lowerTeacherMail);
-    $addTeacher = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerTeacherMail . "', '" . $tempPas . "');");
+    $addTeacher = new queryToDDBB("INSERT INTO usuario_prueba (mail, pass_cifrado) VALUES ('" . $lowerTeacherMail . "', '" . $tempPas . "');");
     if ($addTeacher->write() != "success") {
       $respuesta["response"] = "Error al escribir el nuevo usuario";
     } else {

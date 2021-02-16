@@ -16,7 +16,7 @@ $response["response"] = 'Error desconocido';
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $usuario . "' AND pswd = '" . $color . "'  LIMIT 1;";
+    $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $usuario . "' AND pass_cifrado = '" . $color . "'  LIMIT 1;";
     $stmt = $conn->query($stringQuery);
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $id_usuario = intval($row[0]);
