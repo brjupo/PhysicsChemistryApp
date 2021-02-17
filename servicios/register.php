@@ -15,7 +15,7 @@
         
 
         //Si existe registrar contraseña en base de datos y responder true
-        $sql = "UPDATE usuario_prueba SET pswd='$password' WHERE mail = '$correo'";
+        $sql = "UPDATE usuario_prueba SET pass_cifrado='$password' WHERE mail = '$correo'";
         mysqli_query($con,$sql);
 
         //Enviar mail
