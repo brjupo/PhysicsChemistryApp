@@ -13,7 +13,7 @@ require "../../servicios/00DDBBVariables.php";
   <title>Kaanbal Top</title>
   <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap441 ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
-  <link rel="stylesheet" href="Top13.css" />
+  <link rel="stylesheet" href="Top15.css" />
   <script src="Top03.js"></script>
 </head>
 

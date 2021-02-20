@@ -12,7 +12,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap441 ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
-  <link rel="stylesheet" href="Top14.css" />
+  <link rel="stylesheet" href="Top15.css" />
   <script src="Top03.js"></script>
 </head>
 
@@ -36,19 +36,45 @@ require "../CSSsJSs/mainCSSsJSs.php";
     </div>
   </div>
 
-  <div class="container">
-    <div class="row" style="margin:3vw;">
-      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary topTypeButton" id="topGrupalButton" onclick='location.href="top.php"'>Class Top</button>
-      </div>
-      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary topTypeButton" id="topSemestralButton" onclick='location.href="topS.php"'>Semester Top</button>
-      </div>
-      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light topTypeButton" id="topNacionalButton">National Top</button>
+
+  <?php
+  /* +++++++ INICIO. Si es profesor, no imprimir top de clase +++++++++ */
+  if (isTeacher() != NULL) {
+  ?>
+    <div class="container">
+      <div class="row" style="margin:3vw;">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+          <button type="button" class="btn btn-primary topTypeButton" id="topSemestralButton" onclick='location.href="topS.php"'>Semester Top</button>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+          <button type="button" class="btn btn-light topTypeButton" id="topNacionalButton">National Top</button>
+        </div>
       </div>
     </div>
-  </div>
+  <?php
+  } else {
+  ?>
+    <div class="container">
+      <div class="row" style="margin:3vw;">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <button type="button" class="btn btn-primary topTypeButton" id="topGrupalButton" onclick='location.href="top.php"'>Class Top</button>
+        </div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <button type="button" class="btn btn-primary topTypeButton" id="topSemestralButton" onclick='location.href="topS.php"'>Semester Top</button>
+        </div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <button type="button" class="btn btn-light topTypeButton" id="topNacionalButton">National Top</button>
+        </div>
+      </div>
+    </div>
+
+  <?php
+  }
+  /* +++++++ FIN. Si es profesor, no imprimir top de clase +++++++++ */
+  ?>
+
+
+
 
   <div id="topNacional">
     <?php
