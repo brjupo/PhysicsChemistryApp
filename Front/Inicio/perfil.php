@@ -12,7 +12,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-  <link rel="stylesheet" href="perfil.css" />
+  <link rel="stylesheet" href="perfil01.css" />
   <script src="perfil.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 </head>
@@ -494,10 +494,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
         border-radius: 1vw;
       ">
         <div class="row">
-          <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+          <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
             <p class="text-center estatusPago" style="margin:auto;">Pagado</p>
           </div>
-          <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+          <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
             <p class="text-center estatusPago">Vigencia: ' . $vigencia . '</p>
           </div>
         </div>

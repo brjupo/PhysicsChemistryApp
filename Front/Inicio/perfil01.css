@@ -255,8 +255,6 @@ p {
     width: auto;
   }
   .estatusPago{
-    display:block; 
-    margin:auto;
     font-size: 1.5vw;
   }
 }
