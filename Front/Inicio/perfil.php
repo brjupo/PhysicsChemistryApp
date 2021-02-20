@@ -12,7 +12,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-  <link rel="stylesheet" href="perfil02.css" />
+  <link rel="stylesheet" href="perfil03.css" />
   <script src="perfil.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 </head>
@@ -557,7 +557,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           id="conFactura1"
           style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
         >
-          <p class="comprar">Con factura</p>
+          <p class="comprarf">Con factura</p>
         </div>
         <div
           class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
@@ -570,7 +570,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             style="
               transform: rotate(270deg);
               display: block;
-              margin: 0px 0px 0px auto;
+              margin: 1vw 0px;
             "
           />
         </div>
@@ -785,7 +785,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           id="sinFactura1"
           style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
         >
-          <p class="comprar">Sin factura</p>
+          <p class="comprarf">Sin factura</p>
         </div>
         <div
           class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
@@ -798,7 +798,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             style="
               transform: rotate(270deg);
               display: block;
-              margin: 0px 0px 0px auto;
+              margin: 1vw 0px;
             "
           />
         </div>
