@@ -1,5 +1,6 @@
 <?php
 require "../CSSsJSs/mainCSSsJSs.php";
+require "../../servicios/isTeacher.php";
 ?>
 
 <!DOCTYPE html>
