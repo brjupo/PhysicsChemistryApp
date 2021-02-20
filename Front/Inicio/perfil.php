@@ -137,33 +137,17 @@ require "../CSSsJSs/mainCSSsJSs.php";
   function imprimirVistaPerfil($matricula, $materia, $porcentajeAvance, $avatarActual, $diamantes)
   {
     imprimirTop();
-    imprimirRelleno();
     imprimirMatricula($matricula);
     imprimirAvanceMateria($materia, $porcentajeAvance);
-    imprimirRelleno();
     imprimirAvatarActual($avatarActual);
     imprimirComboAvatars();
-    imprimirRelleno();
     imprimirDiamantes($diamantes);
-    imprimirRelleno();
     if ($_SESSION["mostrarMenuprofesor"] == '') {
       imprimirInfoEstudiante();
-      imprimirRelleno();
-      imprimirRelleno();
       imprimirCalificacion($matricula);
     }
-    imprimirRelleno();
-    imprimirRelleno();
     imprimirPagos();
-    imprimirConFactura();
-    imprimirRelleno();
-    imprimirSinFactura();
-    imprimirRelleno();
-    imprimirRelleno();
-    imprimirRelleno();
     imprimirCreditos();
-    imprimirRelleno();
-    imprimirRelleno();
     imprimirFooter();
   }
   ?>
@@ -185,8 +169,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
       </div>
     </div>
   </div>
-          <!------------------------------------------------FIN TITULO----------------------------------------------->
-          ';
+  <!------------------------------------------------FIN TITULO----------------------------------------------->
+        ';
+
+    imprimirRelleno();
   }
 
   function imprimirMatricula($matricula)
@@ -219,6 +205,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             </div>
           </div>
     ';
+    imprimirRelleno();
   }
 
 
@@ -385,6 +372,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               </div>
             </div>    
     ';
+    imprimirRelleno();
   }
 
   function imprimirDiamantes($diamantes)
@@ -403,6 +391,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             </div>
           </div>
     ';
+    imprimirRelleno();
   }
 
   function imprimirCalificacion($matricula)
@@ -436,6 +425,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
                 </div>
             </div>
           </div>';
+    imprimirRelleno();
+    imprimirRelleno();
   }
 
 
@@ -450,6 +441,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
             </div>
           </div>
     ';
+    imprimirRelleno();
+    imprimirRelleno();
   }
 
   function imprimirRelleno()
@@ -468,15 +461,89 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   function imprimirPagos()
   {
-    echo '
-          <div class="container">
-            <div class="row">
-              <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h2 style="text-align:center;">Comprar</h2>
-              </div>
-            </div>
+    //1.- Conocer el status de market_pay_status del usuario
+    //2.-Si el alumno tiene un pago exitoso NO mostrar los metodos de pago
+    //3.- Si el alumno tiene un pago pendiente mostrar Pago pendiente
+    //3.1.- Mostrar mensaje de pago pendiente y las opciones de pago
+    //4.- ELSE Mostrar opciones de pago
+
+    //1.- Conocer el status de market_pay_status del usuario
+    global $servername, $dbname, $username, $password;
+    $paymentStatus = NULL;
+    $vigencia = NULL;
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stringQuery = 'SELECT vigencia, payment_status FROM licencia JOIN payment_status ON payment_status.id_payment_status = licencia.market_pay_status WHERE id_usuario = ' . $_SESSION["id_usuario"] . ' AND id_asignatura = ' . $_SESSION["idAsignatura"] . ' ORDER BY vigencia DESC LIMIT 1';
+      $stmt = $conn->query($stringQuery);
+      while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+        $vigencia = $row[0];
+        $paymentStatus = $row[0];
+      }
+    } catch (PDOException $e) {
+      echo "Error: " .  $e->getMessage() . " en Query " . $stringQuery;
+    }
+    $conn = null;
+
+    //2.-Si el alumno tiene un pago exitoso, NO mostrar los metodos de pago
+    if ($paymentStatus == "approved") {
+      echo '
+      <div class="container" style="
+        background-color: rgba(35, 85, 145, 0.9);
+        color: white;
+        border-radius: 1vw;
+      ">
+        <div class="row">
+          <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <h4 class="text-center">Pago exitoso</h4>
           </div>
+          <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <p class="text-center">Vigencia: ' . $vigencia . '</p>
+          </div>
+        </div>
+      </div>
+      ';
+    }
+    //3.- Si el alumno tiene un pago pendiente mostrar Pago pendiente
+    else if ($paymentStatus == "pending") {
+      echo '
+      <div class="container" style="
+        background-color: rgba(225, 115, 0, 0.9);
+        color: white;
+        border-radius: 1vw;
+      ">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h4 class="text-center">Pago pediente</h4>
+          </div>
+        </div>
+      </div>
+      ';
+    }
+    //3.1.- Mostrar mensaje de pago pendiente y las opciones de pago
+    //4.- ELSE Mostrar opciones de pago
+    else {
+      imprimirOpcionesDePago();
+    }
+  }
+
+  function imprimirOpcionesDePago()
+  {
+    echo '
+    <div class="container">
+      <div class="row">
+        <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h2 style="text-align:center;">Comprar</h2>
+        </div>
+      </div>
+    </div>
     ';
+    imprimirConFactura();
+    imprimirRelleno();
+    imprimirSinFactura();
+    imprimirRelleno();
+    imprimirRelleno();
+    imprimirRelleno();
   }
 
   function imprimirConFactura()
@@ -1014,6 +1081,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
         </div>
       </div>
     ';
+    imprimirRelleno();
+    imprimirRelleno();
   }
 
   function imprimirFooter()
