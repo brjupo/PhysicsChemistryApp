@@ -145,7 +145,7 @@ p {
 .topTypeButton{
   display:block; 
   margin:auto;
-  font-size: 10vw;
+  font-size: 3vw;
 }
 
 
@@ -183,6 +183,6 @@ p {
   .topTypeButton{
     display:block; 
     margin:auto;
-    font-size: 12vw;
+    font-size: 1.2vw;
   }
 }
