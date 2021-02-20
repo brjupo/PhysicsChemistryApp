@@ -1,6 +1,6 @@
 <?php
 require "../CSSsJSs/mainCSSsJSs.php";
-require "../../servicios/isTeacher.php";
+require "../../servicios/esProfe.php";
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +40,7 @@ require "../../servicios/isTeacher.php";
 
   <?php
   /* +++++++ INICIO. Si es profesor, no imprimir top de clase +++++++++ */
-  if (isTeacher() != NULL) {
+  if (esProfe() != NULL) {
   ?>
     <div class="container">
       <div class="row" style="margin:3vw;">
