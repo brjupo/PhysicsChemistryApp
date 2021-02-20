@@ -13,7 +13,7 @@ require "../../servicios/isTeacher.php"
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap441 ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
-  <link rel="stylesheet" href="Top12.css" />
+  <link rel="stylesheet" href="Top13.css" />
   <script src="Top03.js"></script>
 </head>
 
@@ -45,10 +45,10 @@ require "../../servicios/isTeacher.php"
     <div class="container">
       <div class="row" style="margin:3vw;">
         <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-          <button type="button" class="btn btn-light" id="topSemestralButton" style="display:block; margin:auto;" >Semester Top</button>
+          <button type="button" class="btn btn-light topTypeButton" id="topSemestralButton" >Semester Top</button>
         </div>
         <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-          <button type="button" class="btn btn-primary" id="topNacionalButton" style="display:block; margin:auto;" onclick='location.href="topN.php"'>National Top</button>
+          <button type="button" class="btn btn-primary topTypeButton" id="topNacionalButton" style="display:block; margin:auto;" onclick='location.href="topN.php"'>National Top</button>
         </div>
       </div>
     </div>

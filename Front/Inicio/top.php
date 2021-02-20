@@ -13,7 +13,7 @@ require "../../servicios/00DDBBVariables.php";
   <title>Kaanbal Top</title>
   <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap441 ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
-  <link rel="stylesheet" href="Top12.css" />
+  <link rel="stylesheet" href="Top13.css" />
   <script src="Top03.js"></script>
 </head>
 
@@ -40,13 +40,13 @@ require "../../servicios/00DDBBVariables.php";
   <div class="container">
     <div class="row" style="margin:3vw;">
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light" id="topGrupalButton" style="display:block; margin:auto;">Class Top</button>
+        <button type="button" class="btn btn-light topTypeButton" id="topGrupalButton">Class Top</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topSemestralButton" style="display:block; margin:auto;" onclick='location.href="topS.php"'>Semester Top</button>
+        <button type="button" class="btn btn-primary topTypeButton" id="topSemestralButton" onclick='location.href="topS.php"'>Semester Top</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topNacionalButton" style="display:block; margin:auto;" onclick='location.href="topN.php"'>National Top</button>
+        <button type="button" class="btn btn-primary topTypeButton" id="topNacionalButton" onclick='location.href="topN.php"'>National Top</button>
       </div>
     </div>
   </div>
