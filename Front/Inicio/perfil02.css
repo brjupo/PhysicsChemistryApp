@@ -221,6 +221,12 @@ p {
   color: white;
   font-size: 3vw;
 }
+.comprar{
+  display:block; 
+  margin:auto;
+  font-weight: bold;
+  font-size: 4vw;
+}
 
 
 @media screen and (min-width: 768px) {
@@ -256,5 +262,8 @@ p {
   }
   .estatusPago{
     font-size: 1.5vw;
+  }
+  .comprar{
+    font-size: 2.5vw;
   }
 }

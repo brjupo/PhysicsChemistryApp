@@ -12,7 +12,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-  <link rel="stylesheet" href="perfil01.css" />
+  <link rel="stylesheet" href="perfil02.css" />
   <script src="perfil.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 </head>
@@ -534,7 +534,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     <div class="container">
       <div class="row">
         <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <h2 class="estatusPago" style="text-align:center;">Comprar</h2>
+          <p class="comprar" style="text-align:center;">Comprar</p>
         </div>
       </div>
     </div>
@@ -559,7 +559,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           id="conFactura1"
           style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
         >
-          <h4 class="estatusPago">Con factura</h4>
+          <p class="comprar">Con factura</p>
         </div>
         <div
           class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
@@ -592,8 +592,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
       <!--RFC y Razon Social-->
       <div class="container">
         <div class="row">
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <div class="input-group-prepend">
               <span class="input-group-text">RFC</span>
             </div>
@@ -610,14 +610,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
               required
             />
           </div>
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
   
           <div class="col-12 col-sm-12 col-md-12 d-lg-none">
             <p class="transparente">.</p>
           </div>
   
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <div class="input-group-prepend">
               <span class="input-group-text">Razón Social</span>
             </div>
@@ -636,7 +634,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               required
             />
           </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
         </div>
       </div>
   
@@ -651,15 +649,15 @@ require "../CSSsJSs/mainCSSsJSs.php";
       <!--Correo-->
       <div class="container">
         <div class="row">
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <div class="input-group-prepend">
-              <span class="input-group-text">Correo (Usuario Kaanbal)</span>
+              <span class="input-group-text">Correo</span>
             </div>
             <label
               for="userMailWithInvoice"
               style="font-size: 0px; line-height: 0px; margin: 0px"
-              >Correo (Usuario Kaanbal)</label
+              >Correo</label
             >
             <input
               id="userMailWithInvoice"
@@ -670,14 +668,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
               form="datosConFactura"
             />
           </div>
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
   
           <div class="col-12 col-sm-12 col-md-12 d-lg-none">
             <p class="transparente">.</p>
           </div>
   
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <p
               style="
                 font-size: x-small;
@@ -691,7 +687,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               deseas pagar
             </p>
           </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
         </div>
       </div>
   
@@ -791,7 +787,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           id="sinFactura1"
           style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
         >
-          <h4 class="estatusPago">Sin factura</h4>
+          <p class="comprar">Sin factura</p>
         </div>
         <div
           class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
@@ -831,15 +827,15 @@ require "../CSSsJSs/mainCSSsJSs.php";
       <!--Correo-->
       <div class="container">
         <div class="row">
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <div class="input-group-prepend">
-              <span class="input-group-text">Correo (Usuario Kaanbal)</span>
+              <span class="input-group-text">Correo</span>
             </div>
             <label
               for="userMailNoInvoice"
               style="font-size: 0px; line-height: 0px; margin: 0px"
-              >Correo (Usuario Kaanbal)</label
+              >Correo</label
             >
             <input
               id="userMailNoInvoice"
@@ -850,13 +846,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
               form="datosSinFactura"
             />
           </div>
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
   
           <div class="col-12 col-sm-12 col-md-12 d-lg-none">
             <p class="transparente">.</p>
           </div>
-  
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
+
           <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
             <p
               style="
@@ -871,7 +865,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               deseas pagar
             </p>
           </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
         </div>
       </div>
   
