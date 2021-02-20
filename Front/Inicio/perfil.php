@@ -12,7 +12,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-  <link rel="stylesheet" href="Temas01.css" />
+  <link rel="stylesheet" href="perfil.css" />
   <script src="perfil.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 </head>
@@ -495,16 +495,17 @@ require "../CSSsJSs/mainCSSsJSs.php";
       ">
         <div class="row">
           <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <h4 class="text-center">Pago exitoso</h4>
+            <p class="text-center estatusPago" style="margin:auto;">Pagado</p>
           </div>
           <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <p class="text-center">Vigencia: ' . $vigencia . '</p>
+            <p class="text-center estatusPago">Vigencia: ' . $vigencia . '</p>
           </div>
         </div>
       </div>
       ';
     }
     //3.- Si el alumno tiene un pago pendiente mostrar Pago pendiente
+    //3.1.- Mostrar mensaje de pago pendiente y las opciones de pago
     else if ($paymentStatus == "pending") {
       echo '
       <div class="container" style="
@@ -514,16 +515,15 @@ require "../CSSsJSs/mainCSSsJSs.php";
       ">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <h4 class="text-center">Pago pediente</h4>
+            <p class="text-center estatusPago">Pago pendiente</p>
           </div>
         </div>
       </div>
       ';
+      imprimirOpcionesDePago();
     }
-    //3.1.- Mostrar mensaje de pago pendiente y las opciones de pago
     //4.- ELSE Mostrar opciones de pago
     else {
-      echo '<p> ' . $paymentStatus . '___' . $vigencia . '</p>';
       imprimirOpcionesDePago();
     }
   }
