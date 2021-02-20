@@ -530,6 +530,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   function imprimirOpcionesDePago()
   {
+    imprimirRelleno();
     echo '
     <div class="container">
       <div class="row">
@@ -540,10 +541,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     </div>
     ';
     imprimirConFactura();
-    imprimirRelleno();
     imprimirSinFactura();
-    imprimirRelleno();
-    imprimirRelleno();
     imprimirRelleno();
   }
 
@@ -851,7 +849,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <p class="transparente">.</p>
           </div>
 
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <p
               style="
                 font-size: x-small;
