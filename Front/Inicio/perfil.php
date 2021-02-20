@@ -478,7 +478,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $vigencia = $row[0];
-        $paymentStatus = $row[0];
+        $paymentStatus = $row[1];
       }
     } catch (PDOException $e) {
       echo "Error: " .  $e->getMessage() . " en Query " . $stringQuery;
@@ -523,6 +523,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     //3.1.- Mostrar mensaje de pago pendiente y las opciones de pago
     //4.- ELSE Mostrar opciones de pago
     else {
+      echo '<p> ' . $paymentStatus . '___' . $vigencia . '</p>';
       imprimirOpcionesDePago();
     }
   }
