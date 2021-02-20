@@ -534,7 +534,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     <div class="container">
       <div class="row">
         <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <h2 style="text-align:center;">Comprar</h2>
+          <h2 class="estatusPago" style="text-align:center;">Comprar</h2>
         </div>
       </div>
     </div>
@@ -559,7 +559,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           id="conFactura1"
           style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
         >
-          <h4>Con factura</h4>
+          <h4 class="estatusPago">Con factura</h4>
         </div>
         <div
           class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
@@ -791,7 +791,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           id="sinFactura1"
           style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
         >
-          <h4>Sin factura</h4>
+          <h4 class="estatusPago">Sin factura</h4>
         </div>
         <div
           class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
