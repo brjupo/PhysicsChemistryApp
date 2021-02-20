@@ -175,10 +175,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <div class="top">
     <div class="container">
       <div class="row">
-        <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+        <div class="text-center col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
           <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
         </div>
-        <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
+        <div class="text-center col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
           <p class="Ciencia fuenteTitulo" id="asignaturad">' . $_SESSION["asignaturaNavegacion"] . '</p>
           <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none">' . $_SESSION["idAsignatura"] . '</p>
         </div>
@@ -196,7 +196,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="row">
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
               <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-                <p class="tituloTemasPrincipales textCenter" id="matricula">' . $matricula . '</p>
+                <p class="tituloTemasPrincipales text-center" id="matricula">' . $matricula . '</p>
               </div>
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
@@ -211,7 +211,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="row">
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
               <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-                <p class="tituloTemasPrincipales textCenter">
+                <p class="tituloTemasPrincipales text-center">
                   ' . $materia . '   ' . $porcentajeAvance . '
                 </p>
               </div>
@@ -445,7 +445,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           <div class="container">
             <div class="row">
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <a href="creditos.html"><h1 class="textCenter titulo">Credits</h1></a>
+                <a href="creditos.html"><h1 class="text-center titulo">Credits</h1></a>
               </div>
             </div>
           </div>

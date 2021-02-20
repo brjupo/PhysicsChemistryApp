@@ -139,10 +139,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
     <div class="top">
       <div class="container">
         <div class="row titulo">
-          <div class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+          <div class="text-center col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
             <a href="temas.php?asignatura=' . $_SESSION["idAsignatura"] . '"><img class="iconoBack" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
           </div>
-          <div class="textCenter col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+          <div class="text-center col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
             <p class="Materia fuenteTitulo">' . $nombreTema . '</p>
           </div>
         </div>
@@ -167,8 +167,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
       echo '
       <div class="container">
         <div id="seccion' . $numeroSubtema . '" class="row fade">
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-          <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="temaPrincipal1 text-center col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
             <table class="table fixed">
               <tbody>
                 <tr>
@@ -191,7 +191,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               </tbody>
             </table>
           </div>
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
         </div>
       </div>
 
@@ -205,8 +205,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
       echo '
       <div class="container">
         <div id="seccion' . $numeroSubtema . '" class="row fade">
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-          <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="temaPrincipal1 text-center col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
             <table class="table fixed">
               <tbody>
                 <tr>
@@ -229,7 +229,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               </tbody>
             </table>
           </div>
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
         </div>
       </div>
 

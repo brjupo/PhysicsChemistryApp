@@ -52,18 +52,18 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
             <body>
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
                     <p class="titulo" id="titulo">Kaanbal</p>
                 </div>
                 <div class="textRight col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
-                <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
                 </div>
             </div>
 
             <div class="container">
             <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p><a href="instrucciones.html">Instrucciones</a></p>
                 </div>
             </div>
@@ -71,7 +71,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
             <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
             </div>
@@ -79,7 +79,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
             <div class="row">
-                <div class="textCenter col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <div class="text-center col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <p>El ID de las preguntas es:</p>
                 <p>Química > Del 1 al 1731</p>
                 <p>Física > Del 4601 al 5824</p>
@@ -100,7 +100,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
             <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
             </div>
@@ -139,7 +139,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
                 </div>
@@ -161,7 +161,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
                 </div>
@@ -194,7 +194,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
                 </div>
@@ -227,7 +227,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
                 </div>
@@ -265,7 +265,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
                 </div>
@@ -287,7 +287,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
                 </div>
@@ -320,7 +320,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
                 </div>
@@ -353,7 +353,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
                 </div>
@@ -379,7 +379,7 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
                 </div>
@@ -387,12 +387,12 @@ if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $existeProfe["
 
             <div class="container">
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
                 </div>
                 <div class="row">
-                <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
                 </div>

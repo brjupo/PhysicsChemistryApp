@@ -20,12 +20,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
 <body>
   <div class="container">
     <div class="row">
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
         <p class="titulo" id="titulo">Kaanbal</p>
       </div>
       <div class="textRight col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
 
@@ -33,8 +33,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   <div class="container">
     <div class="row">
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-      <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+      <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="text-center col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         <input type="text" id="token" value="<?php echo $tokenLink ?>" style="display:none;">
 
         <label for="correo_e">Ingresa tu usuario de staff</label>
@@ -50,42 +50,42 @@ require "../CSSsJSs/mainCSSsJSs.php";
         <input type="text" id="correoAlumno" name="psw2" />
         </form>
       </div>
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
 
   <div class="container">
     <div class="row">
-      <div class="textCenter col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
-      <div class="textCenter col-8 col-sm-8 col-md-6 col-lg-6 col-xl-6">
+      <div class="text-center col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
+      <div class="text-center col-8 col-sm-8 col-md-6 col-lg-6 col-xl-6">
         <button class="boton2" id="submit">
           Submit
         </button>
       </div>
-      <div class="textCenter col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
+      <div class="text-center col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
     </div>
   </div>
 
   <div class="container">
     <div class="row">
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-      <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+      <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="text-center col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         <textarea type="text" id="respuesta" style="width:100%; height:150px; overflow:scroll"></textarea>
         </form>
       </div>
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
 
 
   <div class="container">
     <div class="row">
-      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p style="color:rgba(0,0,0,0)">.</p>
       </div>
     </div>
     <div class="row">
-      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p style="color:rgba(0,0,0,0)">.</p>
       </div>
     </div>

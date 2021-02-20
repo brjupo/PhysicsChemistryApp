@@ -62,19 +62,6 @@ body {
   }
 }
 
-.Materia {
-  font-size: 3vw;
-  text-align: right;
-  margin: 10px 0px 10px 0px;
-}
-
-@media screen and (min-width: 611px) {
-  .Materia {
-    font-size: 15px;
-    margin: 20px 0px 10px 0px;
-  }
-}
-
 .iconoDiamantes {
   padding: 10px 0px 10px 0px;
   width: 3.5vw;
@@ -100,33 +87,9 @@ body {
   }
 }
 
-.cita {
-  font-size: 2.5vw;
-  font-style: italic;
-  text-align: center;
-}
-
-@media screen and (min-width: 611px) {
-  .cita {
-    font-size: 15px;
-  }
-}
-
 p {
   color: rgb(15, 15, 15);
   font-family: "Monse";
-}
-
-.textCenter {
-  text-align: center;
-}
-
-.textRight {
-  text-align: right;
-}
-
-.textLeft {
-  text-align: left;
 }
 
 .imgRight {

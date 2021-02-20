@@ -317,7 +317,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           <div class="top">
             <div class="container">
               <div class="row">
-                <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+                <div class="text-center col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
                   <img
                     class="iconoPrincipal"
                     src="../CSSsJSs/icons/quet.svg"

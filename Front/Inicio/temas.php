@@ -181,7 +181,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   /* Recordatorio
   Recuerda que tienes 4 colores para cambiarlos
-  <div class="temaPrincipal1 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+  <div class="temaPrincipal1 text-center col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
   temaPrincipal1, temaPrincipal2, temaPrincipal3, temaPrincipal4
   */
 
@@ -191,10 +191,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <div class="top">
     <div class="container">
       <div class="row">
-        <div class="textCenter col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+        <div class="text-center col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
           <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
         </div>
-        <div class="textCenter col-xs-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
+        <div class="text-center col-xs-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
           <p class="Ciencia fuenteTitulo" id="asignaturad">' . $_SESSION["asignaturaNavegacion"] . '</p>
           <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none">' . $_SESSION["idAsignatura"] . '</p>
         </div>
@@ -245,7 +245,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
       <!----------------------------------------------CITA--------------------------------------------->
       <div class="container">
           <div class="row">
-            <div class="textCenter col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <p style="color:rgba(0,0,0,0)">.</p>
               <p><strong>Bienvenido a Kaanbal</strong></p>
               <!--p>Hemos mejorado la experiencia para todos los dispositivos.</p-->
@@ -271,9 +271,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '
         <div class="container">
         <div class="row">
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+          <div class="text-center col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
           <a href="subtemas.php">
-            <div class="temaPrincipal1 textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+            <div class="temaPrincipal1 text-center col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
               <table class="table">
                 <tbody>
                   <tr>
@@ -289,7 +289,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               </table>
             </div>
           </a>
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+          <div class="text-center col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
         </div>
       </div>
 
@@ -309,9 +309,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '
       <div class="container">
         <div class="row">
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+          <div class="text-center col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
           <a href="subtemas.php?tema=' . $idTema . '">
-            <div class="temaPrincipal' . $numeroCSSTema . ' textCenter col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+            <div class="temaPrincipal' . $numeroCSSTema . ' text-center col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
               <table class="table">
                 <tbody>
                   <tr>
@@ -325,7 +325,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               </table>
             </div>
           </a>
-          <div class="textCenter col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
+          <div class="text-center col-xs-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
         </div>
       </div>
 
