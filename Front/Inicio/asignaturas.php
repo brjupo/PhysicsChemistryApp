@@ -17,6 +17,17 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />  
   <link rel="stylesheet" href="Asignaturas.css" />
   <script src="Asignaturas2.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F7VGWM5LKB');
+  </script>
+  
 </head>
 
 <body>
