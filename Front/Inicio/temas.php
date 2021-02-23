@@ -13,6 +13,17 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="Temas01.css" />
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F7VGWM5LKB');
+  </script>
+  
 </head>
 
 <body>

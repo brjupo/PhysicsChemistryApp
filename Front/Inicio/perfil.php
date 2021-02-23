@@ -15,6 +15,17 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="stylesheet" href="Temas01.css" />
   <script src="perfil.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F7VGWM5LKB');
+  </script>
+  
 </head>
 
 <body>
