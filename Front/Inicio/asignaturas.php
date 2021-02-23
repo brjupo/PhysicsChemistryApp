@@ -17,6 +17,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
   <link rel="stylesheet" href="Asignaturas.css" />
   <script src="Asignaturas2.js"></script>
+  
 </head>
 
 <body>
