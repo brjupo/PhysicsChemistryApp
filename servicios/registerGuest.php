@@ -99,8 +99,8 @@ function cuerpoCorreoNuevoInvitado($mail, $token)
     <p>Tu <strong>usuario</strong> es el correo:</p>
     <p>' . $mail . '</p>
     <p>En la siguiente URL podrás crear tu <strong>contraseña</strong></p>
-    <a href="https://kaanbal.net/prod/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
-      <p><strong>https://kaanbal.net/prod/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</strong></p>
+    <a href="https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
+      <p><strong>https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</strong></p>
     </a>
     <p>
       Recuerda esta liga es instransferible y de un solo uso. No la compartas.
