@@ -71,14 +71,12 @@ if (false) {
                   //Traer materia de acuerdo al grupo
                   $getAsignaturaID = new queryToDDBB("SELECT id_asignatura FROM grupo WHERE id_grupo= '" . $gettedGroup . "';");
                   $gettedAsignaturaID = $getAsignaturaID->read();
-
-                  $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia, pagado, estatus) VALUES (" . intval($gettedStudentID) . "," . intval($gettedAsignaturaID) . " , '2021-12-31 23:59:59',1,1);");
-                  $addedStudentInLicenses = $addStudentInLicenses->write();
                   if ($addedAlumnoGrupot != "success") {
                     $respuesta["response"] = "Error al asociar grupo";
                   } else {
                     //agregar ID alumno a licencias
-
+                    $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia, pagado, estatus) VALUES (" . intval($gettedStudentID) . "," . intval($gettedAsignaturaID) . " , '2021-12-31 23:59:59',1,1);");
+                    $addedStudentInLicenses = $addStudentInLicenses->write();
                     if ($addedStudentInLicenses != "success") {
                       $respuesta["response"] = "Error al escribir el alumno en licencias";
                     } else {
@@ -146,8 +144,8 @@ function cuerpoCorreoNuevoStudent($mail, $token)
     <p>Tu <strong>usuario</strong> es el correo:</p>
     <p>' . $mail . '</p>
     <p>En la siguiente URL podrás crear tu <strong>contraseña</strong></p>
-    <a href="https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
-      <p><strong>https://kaanbal.net/dev/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</strong></p>
+    <a href="https://kaanbal.net/prod/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '">
+      <p><strong>https://kaanbal.net/prod/Front/errorInfoPages/password.php?token=' . $token . '&correo=' . $mail . '</strong></p>
     </a>
     <p>
       Recuerda esta liga es instransferible y de un solo uso. No la compartas.
