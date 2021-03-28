@@ -462,7 +462,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   function imprimirPagos()
   {
     //1.- Conocer el status de market_pay_status del usuario
-    //2.-Si el alumno tiene un pago exitoso NO mostrar los metodos de pago
+    //2.- Si el alumno tiene un pago exitoso NO mostrar los metodos de pago
     //3.- Si el alumno tiene un pago pendiente mostrar Pago pendiente
     //3.1.- Mostrar mensaje de pago pendiente y las opciones de pago
     //4.- ELSE Mostrar opciones de pago
@@ -603,6 +603,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               name="rfc"
               type="text"
               class="form-control"
+              style="text-transform: uppercase;"
               placeholder="XXXX900101ABC"
               form="datosConFactura"
               required
@@ -627,6 +628,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               name="razonSocial"
               type="text"
               class="form-control"
+              style="text-transform: uppercase;"
               placeholder="JUAN GARCIA RODRIGUEZ"
               form="datosConFactura"
               required
@@ -662,6 +664,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               name="userMailWithInvoice"
               type="text"
               class="form-control"
+              style="text-transform: lowercase;"
               value="' . $_SESSION["mail"] . '"
               form="datosConFactura"
             />
@@ -840,6 +843,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               name="userMailNoInvoice"
               type="text"
               class="form-control"
+              style="text-transform: lowercase;"
               value="' . $_SESSION["mail"] . '"
               form="datosSinFactura"
             />

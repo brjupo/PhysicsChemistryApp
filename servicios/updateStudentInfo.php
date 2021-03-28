@@ -81,6 +81,7 @@ if ($idAsignaturaNueva != $idAsignaturaAnterior) {
 
 //Actualizar la tabla de alumno_grupo
 
+//Obtener el ID de grupo
 //Crear la lectura en base de datos
 $idGrupo = NULL;
 try {
@@ -99,6 +100,7 @@ try {
     header("HTTP/1.0 400 Bad Request");
 }
 $conn = null;
+
 //Crear la escritura en base de datos
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

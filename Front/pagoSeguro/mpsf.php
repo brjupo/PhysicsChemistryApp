@@ -30,7 +30,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   //+++++++++++++++++++++++++ Variables del POST ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  $usuarioCorreo = $_POST["userMailNoInvoice"];
+  $usuarioCorreo = strtolower($_POST["userMailNoInvoice"]);
   $usuarioCorreo = str_replace(" ","",$usuarioCorreo);
   
   echo '<p> Datos  usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
@@ -62,8 +62,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
       // Crear el comprador
       $payer = new MercadoPago\Payer();
-      $payer->name = "Nombre";                    //RFC
-      $payer->surname = "Apellido";               //Razón Social
+      $payer->name = "Nombre";                    //Para con factura es Razón Social
       $payer->email = $usuarioCorreo;             //Usuario Correo
       $timeZone = new DateTimeZone('America/Mexico_City');
       $nowTime = new DateTime();

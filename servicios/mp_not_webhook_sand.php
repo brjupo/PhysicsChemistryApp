@@ -17,7 +17,7 @@ $errorDetected = 0;
 /*++++++++++++++++++++  VARIABLES PARA EL QUERY  ++++++++++++++++++++*/
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 $id_mp = $result["data"]["id"];
-//Si llega del boton "probar" de mercado pago, no exite data id, solo id
+//Si llega del boton "probar" de mercado pago, no exite data_id, solo id
 if (is_null($id_mp)) {
     $id_mp = $result["id"];
 }
@@ -48,9 +48,9 @@ if ($errorDetected == 0) {
     // echo $response . PHP_EOL;
     $result = json_decode($response, TRUE);
 }
-if (is_null($verdaderoCliente)) {
+if (is_null($result)) {
     $errorDetected = 1;
-    // echo '<p>Error line 86</p>';
+    echo '<p>Error. No information about this id</p>';
 }
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -70,7 +70,7 @@ if ($errorDetected == 0) {
             $entre = 1;
         }
     } catch (PDOException $e) {
-        $response["response"] .=  "Error linea 37: " . $e->getMessage() . "  " . $stringQuery . "\n";
+        $response["response"] .=  "Error getting user info: " . $e->getMessage() . "  " . $stringQuery . "\n";
         $errorDetected = 1;
     }
     $conn = null;
@@ -97,7 +97,7 @@ if ($errorDetected == 0) {
             $entre = 1;
         }
     } catch (PDOException $e) {
-        $response["response"] .=  "Error linea 66: " . $e->getMessage() . "  " . $stringQuery . "\n";
+        $response["response"] .=  "Error payment: " . $e->getMessage() . "  " . $stringQuery . "\n";
         $errorDetected = 1;
     }
     $conn = null;
@@ -141,7 +141,7 @@ if ($errorDetected == 0) {
 ////////////////  
 header('Content-Type: application/json');
 echo json_encode($response);
-//Si se deja después de enviar los headers. FALTA
+//Si se deja después de enviar los headers. FALLA
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*+++++++++  6.- ACTUALIZAR O CREAR LA INFORMACIÓN EN LA TABLA DE LICENCIAS CON STATUS +++++++++*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/

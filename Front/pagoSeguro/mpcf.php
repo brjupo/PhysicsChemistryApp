@@ -3,6 +3,7 @@
 //++++++++++++++++++ Mercado pago CON factura PRUEBAS ++++++++++++++++++//
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 require "../CSSsJSs/mainCSSsJSs.php";
+require "../../servicios/00DDBBVariables.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,11 +19,36 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
 <body>
   <?php
+  /*
+  ---Idea general---
+  Guardaremos la informacion del usuario con un estatus NO PAGADO.
+  Al hacer el pago, deberemos validar si existe un registro (de rfc y razon social) del usuario. 
+  En caso de que se encuentren los datos. Obtener el registro mas reciente ORDER BY id DESC LIMIT 1
+  Se debe cambiar el status de la tabla invoicing a PAGADO - PENDIENTE POR FACTURAR
+  */
+  ?>
+  <?php
+  //1.- Tener la info del usuario y guardarla
+  //1.1.- Obtener las variables de sesion y del POST. idUsuario, idAsignatura, Materia. rfc, razon social y correo
+  //1.2.- Guardar en BBDD, Tabla invoicing > idUsuario, idAsignatura, rfc, razon social, id_status = 1 (NO PAGADO).
+  ?>
+  <?php
+  // 2.- Crear las prefencias de MarketPay
+  // 2.1.- Credenciales
+  // 2.2.- Producto
+  // 2.3.- Comprador
+  // 2.4.- BackURLs
+  ?>
+  <?php
+  //3.- Crear la vista con los datos de usuario, concepto, cantidad, precio unitario y BOTON DE MARKET PAY
+  ?>
+  <?php
+  //1.1.- Obtener las variables de sesion y del POST. idUsuario, idAsignatura, Materia. rfc, razon social y correo
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   //+++++++++++++++++++++++++ Variables de sesion ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   session_start();
-  $iduser = $_SESSION["id_usuario"];
+  $idUser = $_SESSION["id_usuario"];
   $materia = $_SESSION["asignaturaNavegacion"];
   $idAsignatura = $_SESSION["idAsignatura"];
   ?>
@@ -30,15 +56,16 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   //+++++++++++++++++++++++++ Variables del POST ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  $rfc = $_POST["rfc"];
-  $razonSocial = $_POST["razonSocial"];
-  $usuarioCorreo = $_POST["userMailWithInvoice"];
+  $rfc = strtoupper($_POST["rfc"]);
+  $razonSocial = strtoupper($_POST["razonSocial"]);
+  $usuarioCorreo = strtolower($_POST["userMailWithInvoice"]);
 
-  $rfc = str_replace(" ","",$rfc);
-  $razonSocial = str_replace(" ","",$razonSocial);
-  $usuarioCorreo = str_replace(" ","",$usuarioCorreo);
+  $rfc = str_replace(" ", "", $rfc);
+  $usuarioCorreo = str_replace(" ", "", $usuarioCorreo);
+  //1.2.- Guardar en BBDD, Tabla invoicing > idUsuario, idAsignatura, rfc, razon social, id_status = 1 (NO PAGADO).
+  saveCryptedInvoiceInfo($idUser, $idAsignatura, $rfc, $razonSocial, 1);
 
-  echo '<p> Datos rfc=' . $rfc . '  razonSocial=' . $razonSocial . ' usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
+  echo '<p> Datos rfc=' . $rfc . '  razonSocial=' . $razonSocial . ' usuario=' . $usuarioCorreo . ' idUser=' . $idUser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php
   if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia)) {
@@ -68,8 +95,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
       // Crear el comprador
       $payer = new MercadoPago\Payer();
-      $payer->name = $rfc;                        //RFC
-      $payer->surname = $razonSocial;             //Razón Social
+      $payer->name = $razonSocial;                //Razón Social
       $payer->email = $usuarioCorreo;             //Usuario Correo
       $timeZone = new DateTimeZone('America/Mexico_City');
       $nowTime = new DateTime();
@@ -103,6 +129,85 @@ require "../CSSsJSs/mainCSSsJSs.php";
       echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
   }
+  ?>
+  <?php
+  function saveCryptedInvoiceInfo($idUsuario, $idAsignatura, $rfc, $razonSocial, $idStatus)
+  {
+    //1.2.- Guardar en BBDD, Tabla invoicing > idUsuario, idAsignatura, rfc, razon social, id_status = 1 (NO PAGADO).
+    global $servername, $dbname, $username, $password;
+/*
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+function familyName($fname, $year) {
+echo "<p>";
+  $trfc = bin2hex("Brandon Juárez Ponce");
+  //$trfc = bin2hex("Hi!, That's all that you need tóday");
+    $trfc0 = substr($trfc,0,3);
+    $trfc1 = substr($trfc,3,7);
+    $trfc2 = substr($trfc,10);
+    $rfcCyph = $trfc2 . $trfc0 . $trfc1;
+  echo $trfc;
+  echo "_________trfc<br>";
+  echo $trfc0;
+  echo "_________trfc0<br>";
+  echo $trfc1;
+  echo "_________trfc1<br>";
+  echo $trfc2;
+  echo "_________trfc2<br>";
+  $rfcCyph0 = substr($rfcCyph,-10,-7);
+    $rfcCyph1 = substr($rfcCyph,-7);
+    $rfcCyph2 = substr($rfcCyph,0,-10);
+    $aver = $rfcCyph0 . $rfcCyph1 . $rfcCyph2;
+  
+  echo $rfcCyph;
+  echo "_________rfcCyph<br>";
+  echo $rfcCyph0;
+  echo "_________rfcCyph0<br>";
+  echo $rfcCyph1;
+  echo "_________rfcCyph1<br>";
+  echo $rfcCyph2;
+  echo "_________rfcCyph2<br>";
+  echo $aver;
+  echo "_________TOTAL<br>";
+  echo hex2bin($aver);
+  echo "_________REAL<br>";
+  echo hex2bin($rfcCyph);
+  
+echo "</p>";
+}
+
+familyName("Hege","1975");
+?>
+
+</body>
+</html>
+
+
+
+*/
+$rfcCyph="";
+    $razonSocialCyph = $razonSocial;
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      // set the PDO error mode to exception
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
+      //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
+      $sql = "INSERT 
+      INTO invoicing (id_usuario, id_asignatura, rfc, razon_social, id_status) 
+      VALUES ('". $idUsuario ."', '". $idAsignatura ."', '". $rfcCyph ."', '". $razonSocialCyph ."', ". $idStatus.")";
+      // use exec() because no results are returned
+      $conn->exec($sql);
+    } catch (PDOException $e) {
+      echo "<p>" . $sql . "<br>" . $e->getMessage() . "</p>";
+    }
+    $conn = null;
+    echo "hola";
+  }
+
   ?>
 
   <div class="container">
@@ -158,18 +263,33 @@ require "../CSSsJSs/mainCSSsJSs.php";
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
         <img src="../CSSsJSs/images/mercadoPagoLogo.png" width="120px" style="display: block; margin: auto 0px auto auto" />
       </div>
       <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-        <form action="/procesar-pago" method="POST">
-          <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>"></script>
-        </form>
+        <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>">
+        </script>
+      </div>
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+        <img src="../CSSsJSs/images/paypalLogo.png" width="120px" style="display: block; margin: auto 0px auto auto" />
       </div>
     </div>
     <div class="row">
       <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p style="color: rgba(0, 0, 0, 0)">.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0)">.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p>Al finalizar tu pago, da clic en "Volver al sitio"</p>
       </div>
     </div>
   </div>
