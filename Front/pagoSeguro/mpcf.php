@@ -14,7 +14,7 @@ require "../../servicios/00DDBBVariables.php";
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
-  <link rel="stylesheet" href="ml.css" />
+  <link rel="stylesheet" href="ml1.css" />
 </head>
 
 <body>
@@ -263,15 +263,15 @@ $rfcCyph="";
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <img src="../CSSsJSs/images/mercadoPagoLogo.png" width="120px" style="display: block; margin: auto 0px auto auto" />
       </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 buttonParent" >
         <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>">
         </script>
       </div>
-      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-        <img src="../CSSsJSs/images/paypalLogo.png" width="120px" style="display: block; margin: auto 0px auto auto" />
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <img src="../CSSsJSs/images/paypalLogo.png" width="120px" style="display: block; margin: auto auto auto 0px" />
       </div>
     </div>
     <div class="row">
