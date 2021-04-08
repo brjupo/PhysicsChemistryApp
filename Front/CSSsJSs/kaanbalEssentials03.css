@@ -52,7 +52,7 @@ input {
 }
 
 /*--------------------------------------------------TABLAS-----------------------------------------------------------*/
-thead tr:first-child {
+/*thead tr:first-child {
   background-color: #00f;
   color: #fff;
   position: absolute;
@@ -69,7 +69,7 @@ thead tr:first-child th {
   background: #55f;
   box-sizing: border-box;
 }
-
+*/
 tbody tr:first-child td {
   padding-top: 10px;
 }
