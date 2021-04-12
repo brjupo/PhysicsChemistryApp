@@ -139,6 +139,7 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
     }
   } catch (PDOException $e) {
     //echo $stringQuery . " Error: " . $e->getMessage();
+    echo "Ha ocurrido un error, quizá no pertenezcas a un grupo.";
   }
   $conn = null;
   //Crear la lectura en base de datos
@@ -158,6 +159,7 @@ function imprimirVistaTopGrupal($idMateria, $idUsuario)
     }
   } catch (PDOException $e) {
     //echo $stringQuery . " Error: " . $e->getMessage();
+    echo "Ha ocurrido un error, quizá no pertenezcas a un grupo.";
   }
   $conn = null;
 
