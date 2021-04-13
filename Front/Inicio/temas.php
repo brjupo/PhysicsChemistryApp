@@ -9,7 +9,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
-  <title>Temas</title>
+  <title>Temas Prueba Clase Git BRANDON</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="Temas01.css" />
