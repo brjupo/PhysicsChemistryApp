@@ -164,7 +164,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                 num = parseFloat(i / 10);
                 setTimeout(function() {
                     console.log("i: " + i + "opacidad: " + num + "division= " + i/10);
-                    document.getElementById(elementId).style.opacity = num.toString();
+                    document.getElementById(elementId).style.opacity = i/10;
                 }, 500);
             }
             for (i = 0; i < 11; i++) {
