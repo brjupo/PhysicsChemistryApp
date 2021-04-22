@@ -26,10 +26,6 @@ require "../../CSSsJSs/mainCSSsJSs.php"
         gtag('js', new Date());
         gtag('config', 'G-F7VGWM5LKB');
     </script>
-
-    <!-- Google AdSense -->
-    <script data-ad-client="ca-pub-9977500171937835" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
 </head>
 
 
@@ -120,6 +116,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <!-- Google AdSense -->
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9977500171937835" crossorigin="anonymous"></script>
                 <!-- Pre_practica_1 -->
                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9977500171937835" data-ad-slot="7302320421" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -152,6 +149,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
 
     <script>
         function subirOpacidadPorId(elementId) {
+            document.getElementById(elementId).style.display = "block";
             for (i = 0; i < 11; i++) {
                 num = 1 / 10;
                 setTimeout(function() {
@@ -165,7 +163,6 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             console.log("cargado");
             setTimeout(function() {
                 console.log("Fin 5 s");
-                document.getElementById(elementId).style.display = "block";
                 subirOpacidadPorId("botonIrPractica");
             }, 5000);
         };
