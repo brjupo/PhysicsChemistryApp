@@ -141,10 +141,12 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     /*---------------------------------------------------------------------------------------- */
     $practica = "practice.php?leccion=" . $leccion;
     ?>
-    <div class="container">
+    <div class="container" id="omitirAnuncio">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p style="font-size:larger; font-weight:bolder;">Omitir anuncio en <p id="segundosRestantes">5</p></p>
+                <p style="font-size:larger; font-weight:bolder;">
+                    Saltar anuncio en <span id="segundosRestantes"></span>
+                </p>
             </div>
         </div>
     </div>
@@ -163,34 +165,12 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     </div>
 
     <script>
-        /*function subirOpacidadPorId(elementId) {
-            console.log("block");
-            document.getElementById(elementId).style.display = "block";
-
-            function timeOutOpacity(i, elementId) {
-                num = parseFloat(i / 10);
-                setTimeout(function() {
-                    console.log("i: " + i + "opacidad: " + num + "division= " + i/10);
-                    document.getElementById(elementId).style.opacity = i/10;
-                }, 500);
-            }
-            for (i = 0; i < 11; i++) {
-                timeOutOpacity(i, elementId);
-            }
-        }
-
-        window.onload = function() {
-            console.log("cargado");
-            setTimeout(function() {
-                console.log("Fin 5 s");
-                subirOpacidadPorId("botonIrPractica");
-            }, 5000);
-        };*/
         window.onload = function() {
             console.log("cargado");
             omitirAnuncioEnSegundos(5);
             setTimeout(function() {
                 console.log("Fin 5 s");
+                document.getElementById("omitirAnuncio").style.display = "none";
                 subirOpacidadPorId("botonIrPractica");
             }, 5000);
         };
@@ -207,9 +187,9 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                 setTimeout(function() {
                     console.log(i / 10);
                     opacity(i / 10, elementId);
-                }, i * 300);
+                }, i * 30);
             }
-            for (var i = 1; i <= 10; ++i) {
+            for (var i = 1; i <= 100; ++i) {
                 doSetTimeout(i);
             }
         }
@@ -218,7 +198,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             function updateSecondsLeft(i) {
                 setTimeout(function() {
                     console.log("Omitir anuncio en: " + i);
-                    document.getElementById("segundosRestantes").innerHTML = i;
+                    document.getElementById("segundosRestantes").innerHTML = segundos - i;
                 }, i * 1000);
             }
             for (var i = 1; i <= segundos; ++i) {
@@ -226,9 +206,6 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             }
         }
     </script>
-
-
-
 
 </body>
 
