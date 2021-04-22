@@ -180,20 +180,24 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             }, 5000);
         };*/
         window.onload = function() {
-            entrada();
+            console.log("cargado");
+            setTimeout(function() {
+                console.log("Fin 5 s");
+                subirOpacidadPorId("botonIrPractica");
+            }, 5000);
         };
 
-        function opacity(opacidad, shID) {
-            document.getElementById(shID).style.opacity = opacidad;
+        function opacity(opacidad, elementId) {
+            document.getElementById(elementId).style.opacity = opacidad;
         }
 
-        function entrada() {
+        function subirOpacidadPorId(elementId) {
             console.log("block");
             document.getElementById(elementId).style.display = "block";
             function doSetTimeout(i) {
                 setTimeout(function() {
                     console.log(i/10);
-                    opacity(i/10, "botonIrPractica");
+                    opacity(i/10, elementId);
                 }, i*1000);
             }
             for (var i = 1; i <= 10; ++i) {
