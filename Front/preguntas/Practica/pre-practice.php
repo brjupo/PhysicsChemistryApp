@@ -188,11 +188,13 @@ require "../../CSSsJSs/mainCSSsJSs.php"
         }
 
         function entrada() {
+            console.log("block");
+            document.getElementById(elementId).style.display = "block";
             function doSetTimeout(i) {
                 setTimeout(function() {
                     console.log(i/10);
                     opacity(i/10, "botonIrPractica");
-                }, 2000);
+                }, i*1000);
             }
             for (var i = 1; i <= 10; ++i) {
                 doSetTimeout(i);
