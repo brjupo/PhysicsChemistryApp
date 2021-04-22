@@ -156,7 +156,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     </div>
 
     <script>
-        function subirOpacidadPorId(elementId) {
+        /*function subirOpacidadPorId(elementId) {
             console.log("block");
             document.getElementById(elementId).style.display = "block";
 
@@ -178,7 +178,26 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                 console.log("Fin 5 s");
                 subirOpacidadPorId("botonIrPractica");
             }, 5000);
+        };*/
+        window.onload = function() {
+            entrada();
         };
+
+        function opacity(opacidad, shID) {
+            document.getElementById(shID).style.opacity = opacidad;
+        }
+
+        function entrada() {
+            function doSetTimeout(i) {
+                setTimeout(function() {
+                    console.log(i/10);
+                    opacity(i/10, "botonIrPractica");
+                }, 2000);
+            }
+            for (var i = 1; i <= 10; ++i) {
+                doSetTimeout(i);
+            }
+        }
     </script>
 
 
