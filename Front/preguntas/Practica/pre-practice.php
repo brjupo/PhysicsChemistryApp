@@ -187,7 +187,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                 setTimeout(function() {
                     console.log(i / 10);
                     opacity(i / 10, elementId);
-                }, i * 30);
+                }, i * 50);
             }
             for (var i = 1; i <= 100; ++i) {
                 doSetTimeout(i);
@@ -201,7 +201,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                     document.getElementById("segundosRestantes").innerHTML = segundos - i;
                 }, i * 1000);
             }
-            for (var i = 1; i <= segundos; ++i) {
+            for (var i = 0; i <= segundos; ++i) {
                 updateSecondsLeft(i);
             }
         }
