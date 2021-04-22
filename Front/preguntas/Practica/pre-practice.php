@@ -11,8 +11,8 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Práctica</title>
-    <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
-    <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $bootstrap341; ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
     <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -109,7 +109,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h1>Anuncio</h1>
-                <p>Google Adsense</p>
+                <p>Google Adsense - Inicio</p>
             </div>
         </div>
     </div>
@@ -123,6 +123,14 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p>Google Adsense - Final</p>
             </div>
         </div>
     </div>
