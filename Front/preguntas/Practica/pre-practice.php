@@ -141,6 +141,13 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     /*---------------------------------------------------------------------------------------- */
     $practica = "practice.php?leccion=" . $leccion;
     ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p style="font-size:larger; font-weight:bolder;">Omitir anuncio en <p id="segundosRestantes">5</p></p>
+            </div>
+        </div>
+    </div>
     <div id="botonIrPractica" style="display: none; opacity:0.0;">
         <div class="container">
             <div class="row text-center">
@@ -181,6 +188,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
         };*/
         window.onload = function() {
             console.log("cargado");
+            omitirAnuncioEnSegundos(5);
             setTimeout(function() {
                 console.log("Fin 5 s");
                 subirOpacidadPorId("botonIrPractica");
@@ -194,14 +202,27 @@ require "../../CSSsJSs/mainCSSsJSs.php"
         function subirOpacidadPorId(elementId) {
             console.log("block");
             document.getElementById(elementId).style.display = "block";
+
             function doSetTimeout(i) {
                 setTimeout(function() {
-                    console.log(i/10);
-                    opacity(i/10, elementId);
-                }, i*1000);
+                    console.log(i / 10);
+                    opacity(i / 10, elementId);
+                }, i * 300);
             }
             for (var i = 1; i <= 10; ++i) {
                 doSetTimeout(i);
+            }
+        }
+
+        function omitirAnuncioEnSegundos(segundos) {
+            function updateSecondsLeft(i) {
+                setTimeout(function() {
+                    console.log("Omitir anuncio en: " + i);
+                    document.getElementById("segundosRestantes").innerHTML = i;
+                }, i * 1000);
+            }
+            for (var i = 1; i <= segundos; ++i) {
+                updateSecondsLeft(i);
             }
         }
     </script>
