@@ -151,7 +151,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
         function subirOpacidadPorId(elementId) {
             document.getElementById(elementId).style.display = "block";
             for (i = 0; i < 11; i++) {
-                num = 1 / 10;
+                num = i / 10;
                 setTimeout(function() {
                     console.log("opacidad: " + num);
                     document.getElementById(elementId).style.opacity = num.toString();
