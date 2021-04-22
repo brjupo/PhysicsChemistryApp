@@ -1,6 +1,7 @@
 <?php
 require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
+require "../../CSSsJSs/mainCSSsJSs.php"
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,8 @@ require "../../../servicios/00DDBBVariables.php";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Práctica</title>
-    <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
+    <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
+    <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
     <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -106,6 +108,15 @@ require "../../../servicios/00DDBBVariables.php";
     /*--------------------------- GOOGLE ADS - ANUNCIO DE DISPLAY ---------------------------- */
     /*---------------------------------------------------------------------------------------- */
     ?>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <h1>Anuncio</h1>
+                <p>Google Adsense</p>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -144,13 +155,17 @@ require "../../../servicios/00DDBBVariables.php";
             for (i = 0; i < 11; i++) {
                 num = 1 / 10;
                 setTimeout(function() {
+                    console.log("opacidad: " + num);
                     document.getElementById(elementId).style.opacity = num.toString();
                 }, 500);
             }
         }
 
         window.onload = function() {
+            console.log("cargado");
             setTimeout(function() {
+                console.log("Fin 5 s");
+                document.getElementById(elementId).style.display = "block";
                 subirOpacidadPorId("botonIrPractica");
             }, 5000);
         };
