@@ -156,8 +156,8 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     </div>
 
     <script>
-        function timeOutOpacity(i) {
-            num = i / 10;
+        function timeOutOpacity(i, elementId) {
+            num = parseFloat(i / 10);
             setTimeout(function() {
                 console.log("i: " + i + "opacidad: " + num);
                 document.getElementById(elementId).style.opacity = num.toString();
@@ -168,7 +168,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             console.log("block");
             document.getElementById(elementId).style.display = "block";
             for (i = 0; i < 11; i++) {
-                timeOutOpacity(i);
+                timeOutOpacity(i, elementId);
             }
         }
 
