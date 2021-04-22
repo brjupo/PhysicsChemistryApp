@@ -134,7 +134,7 @@ function cuerpoCorreoNuevoStudent($mail, $token)
 
     <h3>¡Bienvenida(o) a Kaanbal!</h3>
     <h4>
-      Has hecho una excelente decisión al utilzar la
+      Has hecho una excelente decisión al utilizar la
       <strong>Plataforma educativa Kaanbal</strong>
     </h4>
     <p>
