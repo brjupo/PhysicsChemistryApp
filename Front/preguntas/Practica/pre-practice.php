@@ -161,7 +161,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             for (i = 0; i < 11; i++) {
                 num = i / 10;
                 setTimeout(function() {
-                    console.log("opacidad: " + num);
+                    console.log("i: " + i + "opacidad: " + num);
                     document.getElementById(elementId).style.opacity = num.toString();
                 }, 500);
             }
