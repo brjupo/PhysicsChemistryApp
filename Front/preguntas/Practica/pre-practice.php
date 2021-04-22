@@ -108,8 +108,8 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h1>Anuncio</h1>
-                <p>Google Adsense - Inicio</p>
+                <h1 class="text-center">Anuncio</h1>
+                <p class="text-center">Google Adsense - Inicio</p>
             </div>
         </div>
     </div>
@@ -130,7 +130,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p>Google Adsense - Final</p>
+                <p class="text-center">Google Adsense - Final</p>
             </div>
         </div>
     </div>
@@ -144,7 +144,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     <div class="container" id="omitirAnuncio">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p style="font-size:larger; font-weight:bolder;">
+                <p class="text-center" style="font-size:larger; font-weight:bolder;">
                     Saltar anuncio en <span id="segundosRestantes"></span>
                 </p>
             </div>
