@@ -156,17 +156,17 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     </div>
 
     <script>
-        function timeOutOpacity(i, elementId) {
-            num = parseFloat(i / 10);
-            setTimeout(function() {
-                console.log("i: " + i + "opacidad: " + num);
-                document.getElementById(elementId).style.opacity = num.toString();
-            }, 500);
-        }
-
         function subirOpacidadPorId(elementId) {
             console.log("block");
             document.getElementById(elementId).style.display = "block";
+
+            function timeOutOpacity(i, elementId) {
+                num = parseFloat(i / 10);
+                setTimeout(function() {
+                    console.log("i: " + i + "opacidad: " + num);
+                    document.getElementById(elementId).style.opacity = num.toString();
+                }, 500);
+            }
             for (i = 0; i < 11; i++) {
                 timeOutOpacity(i, elementId);
             }
