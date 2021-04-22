@@ -163,7 +163,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             function timeOutOpacity(i, elementId) {
                 num = parseFloat(i / 10);
                 setTimeout(function() {
-                    console.log("i: " + i + "opacidad: " + num);
+                    console.log("i: " + i + "opacidad: " + num + "division= " + i/10);
                     document.getElementById(elementId).style.opacity = num.toString();
                 }, 500);
             }
