@@ -1,5 +1,6 @@
 <?php
 require "../../servicios/00DDBBVariables.php";
+require "../../servicios/04paymentValidation.php";
 require "../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>
@@ -358,7 +359,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     /*---------------------------------------------------------------------------------------- */
     $pagado = licenciaPagada();
     if($pagado==1){$prefijo="";}else{$prefijo="pre-";}
-    
+
     if ($habilitar == '1' && $habilitarS == '1' && $habilitarE == '1') {
       //<a href="../preguntas/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" /></a>      
       echo '
