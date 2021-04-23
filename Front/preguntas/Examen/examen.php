@@ -1,6 +1,7 @@
 <?php
 require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
+require "../../../servicios/03warrantyPublicity.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,7 @@ require "../../../servicios/00DDBBVariables.php";
 </head>
 
 <body>
-    <script>
+    <!--script>
         document.addEventListener("contextmenu", (event) => event.preventDefault());
         $(document).keydown(function(event) {
             if (event.keyCode == 123) {
@@ -54,7 +55,7 @@ require "../../../servicios/00DDBBVariables.php";
                 return false;
             }
         });
-    </script>
+    </script-->
 
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
