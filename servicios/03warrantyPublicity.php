@@ -33,7 +33,5 @@ function regresarVerAnuncio($leccion, $modo)
   </script>';
 }
 
-
-session_start();
 //Variable para garantizar que vean la publicidad
 $_SESSION["leccionModoAnuncio"] = "";
