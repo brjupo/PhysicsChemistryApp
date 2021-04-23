@@ -11,7 +11,7 @@ function validateOrigin($leccion, $modo)
       $arreglo = explode("-", $leccionModoAnuncio);
       $leccionVarSesionActual =  $arreglo[0];
       $modoVarSesionActual = $arreglo[1];
-      if ($leccionVarSesionActual != $leccion || $modoVarSesionActual != "practica") {
+      if ($leccionVarSesionActual != $leccion || $modoVarSesionActual != $modo) {
         regresarVerAnuncio($leccion, $modo);
       }
     } catch (Exception $e) {
