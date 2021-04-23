@@ -1,6 +1,7 @@
 <?php
 require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
+require "../../../servicios/03warrantyPublicity.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,36 +66,8 @@ require "../../../servicios/00DDBBVariables.php";
     /*---------------------------------------------------------------------------------------- */
     /*---------------------- VALIDAR  LECCION Y MODO ANUNCIO VARIABLE ------------------------ */
     /*---------------------------------------------------------------------------------------- */
-    // $_SESSION["leccionModoAnuncio"] = $leccion . "-" . "practica";
-    if (isset($_SESSION["leccionModoAnuncio"])) {
-        $leccionModoAnuncio = $_SESSION["leccionModoAnuncio"];
-        if (is_null($leccionModoAnuncio) || $leccionModoAnuncio == "") {
-            regresarVerAnuncio($leccion, "practica");
-        }
-        try {
-            $arreglo = explode("-", $leccionModoAnuncio);
-            $leccionVarSesionActual =  $arreglo[0];
-            $modoVarSesionActual = $arreglo[1];
-            if ($leccionVarSesionActual != $leccion || $modoVarSesionActual != "practica") {
-                regresarVerAnuncio($leccion, "practica");
-            }
-        } catch (Exception $e) {
-            echo '<p>Caught exception: ' .  $e->getMessage() . "</p>";
-            //regresarVerAnuncio($leccion, "practica");
-        }
-    } else {
-        regresarVerAnuncio($leccion, "practica");
-    }
+    validateOrigin($leccion, "practica");
 
-    function regresarVerAnuncio($leccion, $modo)
-    {
-        echo '<script type="text/javascript">
-            window.location.href="pre-' . $modo . '.php?leccion=' . $leccion . '";
-        </script>';
-    }
-
-    $_SESSION["leccionModoAnuncio"] = "";
-    
     /*---------------------------------------------------------------------------------------- */
     /*----------------------------- VALIDAR LICENCIA Y USUARIO ------------------------------- */
     /*---------------------------------------------------------------------------------------- */

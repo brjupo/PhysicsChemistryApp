@@ -193,7 +193,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                 setTimeout(function() {
                     console.log(i / 100);
                     opacity(i / 100, elementId);
-                }, i * 50);
+                }, i * 20);
             }
             for (var i = 1; i <= 100; ++i) {
                 doSetTimeout(i);
