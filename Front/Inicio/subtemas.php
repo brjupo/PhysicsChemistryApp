@@ -1,6 +1,5 @@
 <?php
 require "../../servicios/00DDBBVariables.php";
-require "../../servicios/03warrantyPublicity.php";
 require "../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>

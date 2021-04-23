@@ -2,6 +2,7 @@
 require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/03warrantyPublicity.php";
+require "../../../servicios/04paymentValidation.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,13 +28,8 @@ require "../../../servicios/03warrantyPublicity.php";
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-
         gtag('config', 'G-F7VGWM5LKB');
     </script>
-
-    <!-- Google AdSense -->
-    <script data-ad-client="ca-pub-9977500171937835" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
 </head>
 
 
@@ -64,9 +60,16 @@ require "../../../servicios/03warrantyPublicity.php";
     $leccion = intval($leccion);
 
     /*---------------------------------------------------------------------------------------- */
-    /*---------------------- VALIDAR  LECCION Y MODO ANUNCIO VARIABLE ------------------------ */
+    /*------------------------------------- VALIDAR PAGO ------------------------------------- */
     /*---------------------------------------------------------------------------------------- */
-    validateOrigin($leccion, "practica");
+    $pagado = licenciaPagada();
+
+    /*---------------------------------------------------------------------------------------- */
+    /*----------------------- VALIDAR LECCION Y MODO ANUNCIO VARIABLE ------------------------ */
+    /*---------------------------------------------------------------------------------------- */
+    if ($pagado == 0) {
+        validateOrigin($leccion, "practica");
+    }
 
     /*---------------------------------------------------------------------------------------- */
     /*----------------------------- VALIDAR LICENCIA Y USUARIO ------------------------------- */

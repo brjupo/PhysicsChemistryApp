@@ -32,6 +32,3 @@ function regresarVerAnuncio($leccion, $modo)
       window.location.href="pre-' . $modo . '.php?leccion=' . $leccion . '";
   </script>';
 }
-
-//Variable para garantizar que vean la publicidad
-//$_SESSION["leccionModoAnuncio"] = "";
