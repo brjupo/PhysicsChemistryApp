@@ -347,11 +347,18 @@ require "../CSSsJSs/mainCSSsJSs.php";
   ';
   }
 
-  function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $habilitar, $habilitarS, $habilitarE)
+  function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion,$habilitar, $habilitarS, $habilitarE)
   {
     $habilitar = '1';
     $habilitarS = '1';
     $habilitarE = '1';
+
+    /*---------------------------------------------------------------------------------------- */
+    /*------------------------------------- VALIDAR PAGO ------------------------------------- */
+    /*---------------------------------------------------------------------------------------- */
+    $pagado = licenciaPagada();
+    if($pagado==1){$prefijo="";}else{$prefijo="pre-";}
+    
     if ($habilitar == '1' && $habilitarS == '1' && $habilitarE == '1') {
       //<a href="../preguntas/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" /></a>      
       echo '
@@ -369,13 +376,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/Practica/pre-practica.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/Practica/'.$prefijo.'practica.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
-                  <a href="../preguntas/Sprint/pre-sprint.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
+                  <a href="../preguntas/Sprint/'.$prefijo.'sprint.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
                   </td>
                   <td>
-                  <a href="../preguntas/Examen/pre-examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" />
+                  <a href="../preguntas/Examen/'.$prefijo.'examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" />
                   </td>
                 </tr>
               </tbody>
@@ -407,7 +414,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/Practica/pre-practica.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/Practica/'.$prefijo.'practica.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>

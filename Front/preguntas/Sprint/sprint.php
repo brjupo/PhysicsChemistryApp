@@ -2,6 +2,7 @@
 require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/03warrantyPublicity.php";
+require "../../../servicios/04paymentValidation.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,9 +66,16 @@ require "../../../servicios/03warrantyPublicity.php";
     $leccion = intval($leccion);
 
     /*---------------------------------------------------------------------------------------- */
-    /*---------------------- VALIDAR  LECCION Y MODO ANUNCIO VARIABLE ------------------------ */
+    /*------------------------------------- VALIDAR PAGO ------------------------------------- */
     /*---------------------------------------------------------------------------------------- */
-    validateOrigin($leccion, "sprint");
+    $pagado = licenciaPagada();
+
+    /*---------------------------------------------------------------------------------------- */
+    /*----------------------- VALIDAR LECCION Y MODO ANUNCIO VARIABLE ------------------------ */
+    /*---------------------------------------------------------------------------------------- */
+    if ($pagado == 0) {
+        validateOrigin($leccion, "sprint");
+    }
 
     /*---------------------------------------------------------------------------------------- */
     /*----------------------------- VALIDAR LICENCIA Y USUARIO ------------------------------- */
