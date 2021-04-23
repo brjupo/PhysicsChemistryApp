@@ -1,5 +1,6 @@
 <?php
 require "../../servicios/00DDBBVariables.php";
+require "../../servicios/03warrantyPublicity.php";
 require "../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>
@@ -26,8 +27,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
-
-  //Globales
 
   $tokenValidar = array();
   /* echo'<script type="text/javascript">
@@ -371,7 +370,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/Practica/pre-practice.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/Practica/pre-practica.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
                   <a href="../preguntas/Sprint/pre-sprint.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
@@ -409,7 +408,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/Practica/practice.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/Practica/pre-practica.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>

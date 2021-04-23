@@ -1,5 +1,6 @@
 <?php
 require '../../servicios/00DDBBVariables.php';
+require "../../servicios/03warrantyPublicity.php";
 require "../../servicios/isStaff.php";
 //Necesario para los estilos nuevos desde Octubre 2020 
 require "../CSSsJSs/mainCSSsJSs.php";

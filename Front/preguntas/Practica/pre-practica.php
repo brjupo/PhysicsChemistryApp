@@ -101,10 +101,16 @@ require "../../CSSsJSs/mainCSSsJSs.php"
 
     <?php
     /*---------------------------------------------------------------------------------------- */
+    /*-------------------------- LECCION Y MODO ANUNCIO VARIABLE ----------------------------- */
+    /*---------------------------------------------------------------------------------------- */
+    $_SESSION["leccionModoAnuncio"] = $leccion . "-" . "practica";
+    ?>
+
+    <?php
+    /*---------------------------------------------------------------------------------------- */
     /*--------------------------- GOOGLE ADS - ANUNCIO DE DISPLAY ---------------------------- */
     /*---------------------------------------------------------------------------------------- */
     ?>
-
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -139,7 +145,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     /*---------------------------------------------------------------------------------------- */
     /*---------------------------------- BOTON DE CONTINUAR ---------------------------------- */
     /*---------------------------------------------------------------------------------------- */
-    $practica = "practice.php?leccion=" . $leccion;
+    $practica = "practica.php?leccion=" . $leccion;
     ?>
     <div class="container" id="omitirAnuncio">
         <div class="row">
@@ -185,8 +191,8 @@ require "../../CSSsJSs/mainCSSsJSs.php"
 
             function doSetTimeout(i) {
                 setTimeout(function() {
-                    console.log(i / 10);
-                    opacity(i / 10, elementId);
+                    console.log(i / 100);
+                    opacity(i / 100, elementId);
                 }, i * 50);
             }
             for (var i = 1; i <= 100; ++i) {

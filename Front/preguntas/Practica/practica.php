@@ -19,20 +19,19 @@ require "../../../servicios/00DDBBVariables.php";
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'G-F7VGWM5LKB');
-  </script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-  <!-- Google AdSense -->
-  <script
-      data-ad-client="ca-pub-9977500171937835"
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    ></script>
+        gtag('config', 'G-F7VGWM5LKB');
+    </script>
+
+    <!-- Google AdSense -->
+    <script data-ad-client="ca-pub-9977500171937835" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 </head>
 
@@ -60,7 +59,45 @@ require "../../../servicios/00DDBBVariables.php";
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
     session_start();
+    $leccion = $_GET['leccion'];
+    $leccion = intval($leccion);
 
+    /*---------------------------------------------------------------------------------------- */
+    /*---------------------- VALIDAR  LECCION Y MODO ANUNCIO VARIABLE ------------------------ */
+    /*---------------------------------------------------------------------------------------- */
+    // $_SESSION["leccionModoAnuncio"] = $leccion . "-" . "practica";
+    if (isset($_SESSION["leccionModoAnuncio"])) {
+        $leccionModoAnuncio = $_SESSION["leccionModoAnuncio"];
+        if (is_null($leccionModoAnuncio) || $leccionModoAnuncio == "") {
+            regresarVerAnuncio($leccion, "practica");
+        }
+        try {
+            $arreglo = explode("-", $leccionModoAnuncio);
+            $leccionVarSesionActual =  $arreglo[0];
+            $modoVarSesionActual = $arreglo[1];
+            if ($leccionVarSesionActual != $leccion || $modoVarSesionActual != "practica") {
+                regresarVerAnuncio($leccion, "practica");
+            }
+        } catch (Exception $e) {
+            echo '<p>Caught exception: ' .  $e->getMessage() . "</p>";
+            //regresarVerAnuncio($leccion, "practica");
+        }
+    } else {
+        regresarVerAnuncio($leccion, "practica");
+    }
+
+    function regresarVerAnuncio($leccion, $modo)
+    {
+        echo '<script type="text/javascript">
+            window.location.href="pre-' . $modo . '.php?leccion=' . $leccion . '";
+        </script>';
+    }
+
+    $_SESSION["leccionModoAnuncio"] = "";
+    
+    /*---------------------------------------------------------------------------------------- */
+    /*----------------------------- VALIDAR LICENCIA Y USUARIO ------------------------------- */
+    /*---------------------------------------------------------------------------------------- */
     $tokenValidar = array();
     /* echo'<script type="text/javascript">
           alert("$_SESSION["mail"]");
@@ -70,28 +107,18 @@ require "../../../servicios/00DDBBVariables.php";
     $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
     mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
     mysqli_stmt_execute($statement);
-
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $tokenSesionp);
 
     while (mysqli_stmt_fetch($statement)) {
         $tokenValidar["tokenSesionp"] = $tokenSesionp;
     }
-
     /* echo'<script type="text/javascript">
           alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
           </script>'; */
 
-
     if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
-        //Si existe un token de sesion activo se mostraran las preguntas 
-
-        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-        $leccion = $_GET['leccion'];
-        /*echo '<script type="text/javascript">
-                alert("'.$leccion.'");
-                </script>';*/
-        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+        //Si existe un token de sesion activo se mostraran las preguntas
 
         $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
         /*----Paso 1 Obtener el ID del subtema----*/
@@ -235,7 +262,7 @@ require "../../../servicios/00DDBBVariables.php";
 
 
                 //////////////
-                imprimirPreguntaTipo1($idPregunta,$x + 1, $arrayr[$x]["pregunta"]);
+                imprimirPreguntaTipo1($idPregunta, $x + 1, $arrayr[$x]["pregunta"]);
                 imprimirImagenRespuestasTipo1(
                     $x + 1,
                     $arrayr[$x]["respuesta_correcta"],
@@ -276,9 +303,9 @@ require "../../../servicios/00DDBBVariables.php";
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                     <p id="idioma" style="display:none">' . $_SESSION["idioma"] . '</p>
-                    <p id="subtemaPrevio" style="display:none">'.$subtemaNavegacion.'</p>
+                    <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
-                    <p id="leccionID" style="display:none">'.$idL.'</p>
+                    <p id="leccionID" style="display:none">' . $idL . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
@@ -476,7 +503,7 @@ require "../../../servicios/00DDBBVariables.php";
     Texto Escrito = 10 * Número de pregunta - 5
 
     */
-    function imprimirPreguntaTipo2(int $idPregunta,int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
+    function imprimirPreguntaTipo2(int $idPregunta, int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
     {
         $IDTextoEscrito = 10 * $preguntaNumero - 5;
         $preguntaNumero = 1000 + $preguntaNumero;
