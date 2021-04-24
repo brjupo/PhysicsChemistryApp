@@ -182,26 +182,34 @@ require "../../servicios/00DDBBVariables.php";
   <div class="container">
     <div class="row">
       <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-      <div class="text-center col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="usuarioLabel">Usuario</span>
+      <div class="text-center col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="usuarioLabel">Usuario</span>
+          </div>
+          <input type="text" class="form-control" id="usuario" aria-describedby="usuarioLabel" name="usuario" value="<?= $usuarioCorreo ?>" disabled />
         </div>
-        <input type="text" class="form-control" id="usuario" aria-describedby="usuarioLabel" name="usuario" value="<?= $usuarioCorreo ?>" disabled />
 
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="conceptoLabel">Concepto</span>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="conceptoLabel">Concepto</span>
+          </div>
+          <input type="text" class="form-control" id="concepto" aria-describedby="conceptoLabel" name="concepto" value="Licencia semestral Kaanbal - <?= $materia ?>" disabled />
         </div>
-        <input type="text" class="form-control" id="concepto" aria-describedby="conceptoLabel" name="concepto" value="Licencia semestral Kaanbal - <?= $materia ?>" disabled />
 
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="cantidadLabel">Cantidad</span>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="cantidadLabel">Cantidad</span>
+          </div>
+          <input type="text" class="form-control" id="cantidad" aria-describedby="cantidadLabel" name="cantidad" value="1" disabled />
         </div>
-        <input type="text" class="form-control" id="cantidad" aria-describedby="cantidadLabel" name="cantidad" value="1" disabled />
 
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="precioLabel">Precio Unitario [Incluye IVA]</span>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="precioLabel">Precio Unitario [Incluye IVA]</span>
+          </div>
+          <input type="text" class="form-control" id="precio" aria-describedby="precioLabel" name="precio" value="250.00 MXN" disabled />
         </div>
-        <input type="text" class="form-control" id="precio" aria-describedby="precioLabel" name="precio" value="250.00 MXN" disabled />
       </div>
       <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
