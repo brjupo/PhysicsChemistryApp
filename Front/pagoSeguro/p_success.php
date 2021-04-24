@@ -58,7 +58,7 @@ require "sendMailCustomers.php";
   // 2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
   // 2.3.- Agregar vigencia date(Now)+6meses
   // 2.4.- Obtener el payment id $_GET["payment_id"]
-  // 2.5.- Dado que esta es la pantalla de success, y basados en la tabla payment_status, market_pay_status = 1 [SUCCESS]
+  // 2.5.- Dado que esta es la pantalla de success, y basados en la tabla payment_status, market_pay_status = 5 [approved]
   // 2.6.- INSERT id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
   ?>
   <?php
