@@ -13,7 +13,6 @@ require "sendMailCustomers.php";
   <title>Kaanbal - Payment Pending</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-  <link rel="stylesheet" href="ml.css" />
 </head>
 
 <body>
@@ -51,22 +50,23 @@ require "sendMailCustomers.php";
   //1.1.- Obtener el bearer token de mercado pago
   //1.2.- Lanzar una consulta al endpoint de mercado pago, usando curl y con el payment id
   //1.3.- Obtener el mail del comprador, del JSON, ["results"][0]["payer"]["email"]
+  //1.4.- Obtener el idAsignatura de ["results"][0]["description"] idAsignatua@@nombreAsignatura
   ?>
   <?php
   //2.- Escribir en la base de datos que el mail ya pagó
   // 2.1.- Obtener el id_usuario(mail)
-  // 2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
+  // 2.2.- Obtener el id_asignatura() [Se obtuvo en el paso 1]
   // 2.3.- Agregar vigencia date(Now)+6meses
   // 2.4.- Obtener el payment id $_GET["payment_id"]
-  // 2.5.- Dado que esta es la pantalla de PENDING, y basados en la tabla payment_status, market_pay_status = 2 [PENDING]
-  // 2.6.- INSERT id_usuario, id_asignatura, pagado = 0, vigencia, id_market_pay, market_pay_status
+  // 2.5.- Dado que esta es la pantalla de PENDING, y basados en la tabla payment_status, market_pay_status = 4 [pending]
+  // 2.6.- INSERT INTO LICENCIA id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
   ?>
   <?php
   //3.- Enviar correo a $verdaderoCliente con su payment_id y su vigencia
   // 3.1.- Usar el servicio 02sendMail.php
   // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagoPendiente
   // 3.3.- Para el caso de pending, preparar el webhook para enviar correo en caso de que el pago haya sido validado
-  // 3.4.- Para el caso de failure, no enviar correo
+  // 3.4.- Para el caso de failure, enviar correo solo como confirmación del error
   ?>
   <?php
   //1.- Obtener el mail de la persona que realizó el pago
@@ -341,23 +341,23 @@ require "sendMailCustomers.php";
   //preference_id=653962800-5a37b421-4f37-4cd1-8784-93c79606ae9b&
   //site_id=MLM&
   //processing_mode=aggregator&
-  //merchant_account_id=null
-  echo '<h1>SUCCESS</h1>';
-  echo '<p></p>';
-  echo '<p>.</p>';
-  echo '<p>POST payment id</p>';
-  echo '<p>' . $paymentId . '</p>';
-  echo '<p>.</p>';
-  echo '<p>POST status</p>';
-  echo '<p>' . $_GET["status"] . '</p>';
-  echo '<p>.</p>';
-  echo '<p>POST external reference</p>';
-  echo '<p>' . $_GET["external_reference"] . '</p>';
-  echo '<p>.</p>';
-  echo '<p>POST merchant order id</p>';
-  echo '<p>' . $_GET["merchant_order_id"] . '</p>';
-  echo '<p>.</p>';
-  echo '<p>.</p>';
+  // merchant_account_id=null
+  // echo '<h1>SUCCESS</h1>';
+  // echo '<p></p>';
+  // echo '<p>.</p>';
+  // echo '<p>POST payment id</p>';
+  // echo '<p>' . $paymentId . '</p>';
+  // echo '<p>.</p>';
+  // echo '<p>POST status</p>';
+  // echo '<p>' . $_GET["status"] . '</p>';
+  // echo '<p>.</p>';
+  // echo '<p>POST external reference</p>';
+  // echo '<p>' . $_GET["external_reference"] . '</p>';
+  // echo '<p>.</p>';
+  // echo '<p>POST merchant order id</p>';
+  // echo '<p>' . $_GET["merchant_order_id"] . '</p>';
+  // echo '<p>.</p>';
+  // echo '<p>.</p>';
   //
 
   ?>

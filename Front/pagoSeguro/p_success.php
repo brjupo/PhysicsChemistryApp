@@ -13,7 +13,6 @@ require "sendMailCustomers.php";
   <title>Kaanbal - Payment Success</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-  <link rel="stylesheet" href="ml.css" />
 </head>
 
 <body>
@@ -47,26 +46,27 @@ require "sendMailCustomers.php";
   }
   ?>
   <?php
-  //1.- Obtener el mail de la persona que realizó el pago
+  //1.- Obtener el mail de la persona que realizó el pago y la asignatura
   //1.1.- Obtener el bearer token de mercado pago
   //1.2.- Lanzar una consulta al endpoint de mercado pago, usando curl y con el payment id
   //1.3.- Obtener el mail del comprador, del JSON, ["results"][0]["payer"]["email"]
+  //1.4.- Obtener el idAsignatura de ["results"][0]["description"] idAsignatua@@nombreAsignatura
   ?>
   <?php
   //2.- Escribir en la base de datos que el mail ya pagó
   // 2.1.- Obtener el id_usuario(mail)
-  // 2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
+  // 2.2.- Obtener el id_asignatura() [Se obtuvo en el paso 1]
   // 2.3.- Agregar vigencia date(Now)+6meses
   // 2.4.- Obtener el payment id $_GET["payment_id"]
   // 2.5.- Dado que esta es la pantalla de success, y basados en la tabla payment_status, market_pay_status = 5 [approved]
-  // 2.6.- INSERT id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
+  // 2.6.- INSERT INTO LICENCIA id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
   ?>
   <?php
   //3.- Enviar correo a $verdaderoCliente con su payment_id y su vigencia
   // 3.1.- Usar el servicio 02sendMail.php
   // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagado
   // 3.3.- Para el caso de pending, preparar el webhook para enviar correo en caso de que el pago haya sido validado
-  // 3.4.- Para el caso de failure, no enviar correo
+  // 3.4.- Para el caso de failure, enviar correo solo como confirmación del error
   ?>
   <?php
   //1.- Obtener el mail de la persona que realizó el pago
@@ -127,7 +127,7 @@ require "sendMailCustomers.php";
       // echo '<p>Id verdadero cliente será = 4</p>';
     }
   }
-  //2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
+  //2.2.- Obtener el id_asignatura() [Se obtuvo en el paso 1]
   if (is_null($idAsignatura)) {
     $errorDetected = 1;
     // echo '<p>Error line 116</p>';
@@ -141,7 +141,7 @@ require "sendMailCustomers.php";
   $vigencia = $nowTimePlusSixMonths->format('Y-m-d H:i:s');
 
   //2.4.- Obtener el payment id $_GET["payment_id"]
-  //---------Listo en linea 35-----------
+  //---------Listo en linea 36-----------
 
   //2.5.- Dado que esta es la pantalla de success. Y basadonos que en la tabla payment_status approved = 5. market_pay_status = 5 [approved]
 
