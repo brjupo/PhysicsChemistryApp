@@ -14,6 +14,7 @@ require "../../servicios/00DDBBVariables.php";
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="ml1.css" />
 </head>
 
@@ -63,12 +64,12 @@ require "../../servicios/00DDBBVariables.php";
   $rfc = str_replace(" ", "", $rfc);
   $usuarioCorreo = str_replace(" ", "", $usuarioCorreo);
   //1.2.- Guardar en BBDD, Tabla invoicing > idUsuario, idAsignatura, rfc, razon social, id_status = 1 (NO PAGADO).
-  saveCryptedInvoiceInfo($idUser, $idAsignatura, $rfc, $razonSocial, 1);
+  $errorDetected = saveCryptedInvoiceInfo($idUser, $idAsignatura, $rfc, $razonSocial, 1);
 
   echo '<p> Datos rfc=' . $rfc . '  razonSocial=' . $razonSocial . ' usuario=' . $usuarioCorreo . ' idUser=' . $idUser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php
-  if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia)) {
+  if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia) || $errorDetected == 1) {
     echo '<script  type="text/javascript"> 
     alert("Error. Por favor, verifica e inserta nuevamente tus datos
     rfc=' . $rfc . '  razonSocial=' . $razonSocial . '  
@@ -88,7 +89,7 @@ require "../../servicios/00DDBBVariables.php";
       // Crea un ítem en la preferencia
       $item = new MercadoPago\Item();
       $item->title = $idAsignatura . "@@" . $materia;
-      $item->description = "Incluye el acceso a la plataforma y la posibilidad de inscribirte a un grupo para que los profesores puedan acceder a tus calificaciones";
+      $item->description = "Incluye el acceso a la plataforma kaanbal.net por 6 meses SIN publicidad";
       $item->quantity = 1;
       $item->currency_id = "MXN";
       $item->unit_price = 250;
@@ -135,61 +136,8 @@ require "../../servicios/00DDBBVariables.php";
   {
     //1.2.- Guardar en BBDD, Tabla invoicing > idUsuario, idAsignatura, rfc, razon social, id_status = 1 (NO PAGADO).
     global $servername, $dbname, $username, $password;
-/*
-<!DOCTYPE html>
-<html>
-<body>
-
-<?php
-function familyName($fname, $year) {
-echo "<p>";
-  $trfc = bin2hex("Brandon Juárez Ponce");
-  //$trfc = bin2hex("Hi!, That's all that you need tóday");
-    $trfc0 = substr($trfc,0,3);
-    $trfc1 = substr($trfc,3,7);
-    $trfc2 = substr($trfc,10);
-    $rfcCyph = $trfc2 . $trfc0 . $trfc1;
-  echo $trfc;
-  echo "_________trfc<br>";
-  echo $trfc0;
-  echo "_________trfc0<br>";
-  echo $trfc1;
-  echo "_________trfc1<br>";
-  echo $trfc2;
-  echo "_________trfc2<br>";
-  $rfcCyph0 = substr($rfcCyph,-10,-7);
-    $rfcCyph1 = substr($rfcCyph,-7);
-    $rfcCyph2 = substr($rfcCyph,0,-10);
-    $aver = $rfcCyph0 . $rfcCyph1 . $rfcCyph2;
-  
-  echo $rfcCyph;
-  echo "_________rfcCyph<br>";
-  echo $rfcCyph0;
-  echo "_________rfcCyph0<br>";
-  echo $rfcCyph1;
-  echo "_________rfcCyph1<br>";
-  echo $rfcCyph2;
-  echo "_________rfcCyph2<br>";
-  echo $aver;
-  echo "_________TOTAL<br>";
-  echo hex2bin($aver);
-  echo "_________REAL<br>";
-  echo hex2bin($rfcCyph);
-  
-echo "</p>";
-}
-
-familyName("Hege","1975");
-?>
-
-</body>
-</html>
-
-
-
-*/
-$rfcCyph="";
-    $razonSocialCyph = $razonSocial;
+    $rfcCyph = bin2hex($rfc);
+    $razonSocialCyph = bin2hex($razonSocial);
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       // set the PDO error mode to exception
@@ -198,14 +146,16 @@ $rfcCyph="";
       //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
       $sql = "INSERT 
       INTO invoicing (id_usuario, id_asignatura, rfc, razon_social, id_status) 
-      VALUES ('". $idUsuario ."', '". $idAsignatura ."', '". $rfcCyph ."', '". $razonSocialCyph ."', ". $idStatus.")";
+      VALUES ('" . $idUsuario . "', '" . $idAsignatura . "', '" . $rfcCyph . "', '" . $razonSocialCyph . "', " . $idStatus . ")";
       // use exec() because no results are returned
       $conn->exec($sql);
+      $errorDetected = 0;
     } catch (PDOException $e) {
       echo "<p>" . $sql . "<br>" . $e->getMessage() . "</p>";
+      $errorDetected = 1;
     }
     $conn = null;
-    echo "hola";
+    return $errorDetected;
   }
 
   ?>
@@ -232,7 +182,15 @@ $rfcCyph="";
   <div class="container">
     <div class="row">
       <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-      <div class="text-center col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+      <div class="text-center col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="usuarioLabel">Usuario</span>
+        </div>
+        <input type="text" class="form-control" id="usuario" aria-describedby="usuarioLabel"  name="usuario" value="<?= $usuarioCorreo ?>" disabled />
+
+
+        
+
         <label for="Usuario">Usuario</label>
         <input type="text" id="Usuario" name="Usuario" value="<?= $usuarioCorreo ?>" disabled />
 
@@ -266,7 +224,7 @@ $rfcCyph="";
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <img src="../CSSsJSs/images/mercadoPagoLogo.png" width="120px" style="display: block; margin: auto 0px auto auto" />
       </div>
-      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 buttonParent" >
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 buttonParent">
         <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>">
         </script>
       </div>

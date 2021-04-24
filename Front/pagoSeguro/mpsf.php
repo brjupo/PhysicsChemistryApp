@@ -31,8 +31,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //+++++++++++++++++++++++++ Variables del POST ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   $usuarioCorreo = strtolower($_POST["userMailNoInvoice"]);
-  $usuarioCorreo = str_replace(" ","",$usuarioCorreo);
-  
+  $usuarioCorreo = str_replace(" ", "", $usuarioCorreo);
+
   echo '<p> Datos  usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php
@@ -151,13 +151,15 @@ require "../CSSsJSs/mainCSSsJSs.php";
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <img src="../CSSsJSs/images/mercadoPagoLogo.png" width="120px" style="display: block; margin: auto 0px auto auto" />
       </div>
-      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-        <form action="/procesar-pago" method="POST">
-          <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>"></script>
-        </form>
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 buttonParent">
+        <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>">
+        </script>
+      </div>
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <img src="../CSSsJSs/images/paypalLogo.png" width="120px" style="display: block; margin: auto auto auto 0px" />
       </div>
     </div>
     <div class="row">
