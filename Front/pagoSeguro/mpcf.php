@@ -186,22 +186,22 @@ require "../../servicios/00DDBBVariables.php";
         <div class="input-group-prepend">
           <span class="input-group-text" id="usuarioLabel">Usuario</span>
         </div>
-        <input type="text" class="form-control" id="usuario" aria-describedby="usuarioLabel"  name="usuario" value="<?= $usuarioCorreo ?>" disabled />
+        <input type="text" class="form-control" id="usuario" aria-describedby="usuarioLabel" name="usuario" value="<?= $usuarioCorreo ?>" disabled />
 
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="conceptoLabel">Concepto</span>
+        </div>
+        <input type="text" class="form-control" id="concepto" aria-describedby="conceptoLabel" name="concepto" value="Licencia semestral Kaanbal - <?= $materia ?>" disabled />
 
-        
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="cantidadLabel">Cantidad</span>
+        </div>
+        <input type="text" class="form-control" id="cantidad" aria-describedby="cantidadLabel" name="cantidad" value="1" disabled />
 
-        <label for="Usuario">Usuario</label>
-        <input type="text" id="Usuario" name="Usuario" value="<?= $usuarioCorreo ?>" disabled />
-
-        <label for="Concepto">Concepto</label>
-        <input type="text" id="Concepto" name="Concepto" value=" Licencia semestral Kaanbal - <?= $materia ?>" disabled />
-
-        <label for="Cantidad">Cantidad</label>
-        <input type="text" id="Cantidad" name="Cantidad" value="1" disabled />
-
-        <label for="Precio">Precio Unitario [Incluye IVA]</label>
-        <input type="text" id="PrecioU" name="PrecioU" value="250.00 MXN" disabled />
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="precioLabel">Precio Unitario [Incluye IVA]</span>
+        </div>
+        <input type="text" class="form-control" id="precio" aria-describedby="precioLabel" name="precio" value="250.00 MXN" disabled />
       </div>
       <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
