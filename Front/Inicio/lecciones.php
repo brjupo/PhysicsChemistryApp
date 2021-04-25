@@ -358,7 +358,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     /*------------------------------------- VALIDAR PAGO ------------------------------------- */
     /*---------------------------------------------------------------------------------------- */
     $pagado = licenciaPagada();
-    if($pagado==1){$prefijo="";}else{$prefijo="pre-";}
+    if($pagado=="approved"){$prefijo="";}else{$prefijo="pre-";}
 
     if ($habilitar == '1' && $habilitarS == '1' && $habilitarE == '1') {
       //<a href="../preguntas/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" /></a>      

@@ -1,6 +1,7 @@
 <?php
-require "../CSSsJSs/mainCSSsJSs.php";
 require "../../servicios/00DDBBVariables.php";
+require "../../servicios/04paymentValidation.php";
+require "../CSSsJSs/mainCSSsJSs.php";
 require "sendMailCustomers.php";
 ?>
 <!DOCTYPE html>
@@ -143,23 +144,20 @@ require "sendMailCustomers.php";
 
   //2.5.- Dado que esta es la pantalla de error. Y basadonos que en la tabla payment_status FAILURE = 3. market_pay_status = 3 [FAILURE]
 
-  //2.6.- INSERT id_usuario, id_asignatura, pagado = 0, vigencia, id_market_pay, market_pay_status
+  //2.6.- INSERT/UPDATE id_usuario, id_asignatura, vigencia, id_market_pay, market_pay_status
   if ($errorDetected == 0) {
-    try {
-      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-      // set the PDO error mode to exception
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
-      //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
-      $stringQuery = 'INSERT INTO licencia (id_usuario, id_asignatura, pagado, vigencia, id_market_pay, market_pay_status) VALUES ( ' . $idVerdaderoCliente . ', ' . $idAsignatura . ', 0, ' . $vigencia . ', ' . $paymentId . ', 3 );';
-      // use exec() because no results are returned
-      $conn->exec($stringQuery);
-    } catch (PDOException $e) {
-      echo "<p>Error linea 158</p>";
-      //echo "<p> Error linea 157: " . $e->getMessage() . "\n <br>" . $stringQuery . "</p>";
-      $errorDetected = 1;
+    //Primero - Busca si ya existe un registro con el mismo usuario y la misma materia
+    $idLicencia = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
+    //Segundo - Si ya existe el registro. Actualizar el estado del apgo y la vigencia
+    if ($idLicencia > 0) {
+      $errorDetected = updatePaymentStatus($idLicencia, $vigencia, "failure");
     }
-    $conn = null;
+    //Tercero - Si NO existe el registro. Crearlo.
+    else if ($idLicencia == 0) {
+      $errorDetected = createPaymentStatus($idVerdaderoCliente, $idAsignatura, $vigencia, $paymentId, "failure");
+    } else {
+      $errorDetected = 1; //En este caso, verifyuserSubjectExist regresa un numero NEGATIVO, o bien, un ERROR
+    }
   }
   ?>
 
@@ -237,6 +235,10 @@ require "sendMailCustomers.php";
           <p class="text-center" style="font-size: medium">
             Es muy importante que conserves este "payment_id" para cualquier
             futura aclaración
+          </p>
+          <p style="color: rgba(0, 0, 0, 0)">.</p>
+          <p class="text-center" style="font-size: medium">
+            Si solicitaste factura. La factura ÚNICAMENTE será emitida en caso de un pago éxitoso
           </p>
           <p style="color: rgba(0, 0, 0, 0)">.</p>
           <p class="text-center" style="font-size: medium">
@@ -411,6 +413,9 @@ function enviarMailPagoFallado($mail, $paymentIdMail)
     <p>
       Conservalo para cualquier aclaración
     </p>
+    <p style="color: white">.</p>
+    <p>Si solicitaste factura. La factura ÚNICAMENTE será emitida en caso de un pago éxitoso</p>
+    <p style="color: white">.</p>
     <p style="color: white">.</p>
     <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
    

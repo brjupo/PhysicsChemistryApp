@@ -30,7 +30,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   
   ?>
   <?php
-  $url = 'https://kaanbal.net/DEV/servicios/getFirstPart.php';
+  $url = 'https://kaanbal.net/dev/servicios/getFirstPart.php';
   $data = array('tokenHora' => 'nda0913fTY673o84KJ');
   // use key 'http' even if you send the request to https://...
   $options = array(
@@ -51,7 +51,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   ?>
 
   <?php
-  $url = 'https://kaanbal.net/DEV/servicios/getSecondPart.php';
+  $url = 'https://kaanbal.net/dev/servicios/getSecondPart.php';
   $data = array('tokenHora' => 'Kn19aAe63rfSuvTy31f');
   // use key 'http' even if you send the request to https://...
   $options = array(

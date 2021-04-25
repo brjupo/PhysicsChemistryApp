@@ -4,6 +4,7 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 require "../CSSsJSs/mainCSSsJSs.php";
 require "../../servicios/00DDBBVariables.php";
+require "../../servicios/04paymentValidation.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -78,10 +79,20 @@ require "../../servicios/00DDBBVariables.php";
     </script>';
   } else {
     try {
+      $json = getFirstPartMarketPayAccessToken();
+      $result = json_decode($json, TRUE);
+      $firstPart = hex2bin($result["value"]);
+
+      $json = getSecondPartMarketPayAccessToken();
+      $result = json_decode($json, TRUE);
+      $secondPart = hex2bin($result["value"]);
+
+      $accessToken = $firstPart . $secondPart;
+      $accessToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
       // SDK de Mercado Pago
       require '../../../../../../vendor/autoload.php';
       // Agrega credenciales
-      MercadoPago\SDK::setAccessToken("TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800");
+      MercadoPago\SDK::setAccessToken($accessToken);
 
       // Crea un objeto de preferencia
       $preference = new MercadoPago\Preference();
@@ -127,7 +138,7 @@ require "../../servicios/00DDBBVariables.php";
       $preference->payer = $payer;
       $preference->save();
     } catch (Exception $e) {
-      echo 'Caught exception: ',  $e->getMessage(), "\n";
+      echo '<p>Caught exception: ',  $e->getMessage(), "</p>";
     }
   }
   ?>
