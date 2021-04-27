@@ -9,8 +9,12 @@ session_start();
 Tabla a la que impacta este archivo: LICENCIA
 
 Funciones en este archivo
-licenciaPagada() - INPUT > $_SESSION["mail"] + $_SESSION["idAsignatura"] - OUTPUT > Pagado[1] NoPagado[0]
-
+licenciaPagada() - INPUT > $_SESSION["mail"] + $_SESSION["idAsignatura"] - OUTPUT > status del pago
+getFirstPartMarketPayAccessToken(): string
+getSecondPartMarketPayAccessToken(): string
+verifyUserSubjectExist(int $idUser, int $idSubject): int > OUTPUT ID de la licencia, 0 o -1 Error
+updatePaymentStatus(int $idLicenseCustomer, string $validity, string $newStatus): int
+createPaymentStatus(int $idUser, int $idSubject, string $validity, int $paymentId, string $status): int
 */
 
 /* ------------------------------------------------------------------- */
@@ -163,48 +167,6 @@ function verifyUserSubjectExist(int $idUser, int $idSubject): int
 	return intval($idLicenseCustomer);
 }
 
-/**
- * Actualiza el estatus del pago 
- *
- * @param integer	$idLicenseCustomer  	ID de la licencia que relaciona el usuario y la asignatura
- * @param string	$validity  				Vigencia de la licencia
- * @param string	$newStatus  			String del nuevo status de pago (approved, pending, failure)
- * 
- * @author brjupo	facebook.com/brjupo
- * @return integer CERO 0 si la actualizacion fue correcta. MENOS UNO -1 si existio un error obteniendo el id_payment_status. MENOS DOS -2 si existio un error al actualizar
- */
-function updatePaymentStatus(int $idLicenseCustomer, string $validity, string $newStatus): int
-{
-	global $servername, $dbname, $username, $password;
-	//Leer el valor INTEGER del id_payment_status
-	$id_payment_status = 0;
-	try {
-		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stringQuery = "SELECT id_payment_status FROM payment_status WHERE payment_status = '" . $newStatus . "' ";
-		//echo $stringQuery ;
-		$stmt = $conn->query($stringQuery);
-		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$id_payment_status = $row[0];
-		}
-	} catch (PDOException $e) {
-		return -1;
-	}
-	$conn = null;
-
-	try {
-		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-		// set the PDO error mode to exception
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stringQuery = "UPDATE licencia SET market_pay_status = '" . $id_payment_status . "' , vigencia = '" . $validity . "' WHERE id_licencia = '" . $idLicenseCustomer . "' ";
-		// use exec() because no results are returned
-		$conn->exec($stringQuery);
-	} catch (PDOException $e) {
-		return -2;
-	}
-	$conn = null;
-	return 0;
-}
 
 /**
  * Crea un nuevo registro en la tabla licencia
@@ -245,6 +207,49 @@ function createPaymentStatus(int $idUser, int $idSubject, string $validity, int 
       INTO licencia (id_usuario, id_asignatura, vigencia, id_market_pay, market_pay_status) 
       VALUES ( ' . $idUser . ', ' . $idSubject . ', "' . $validity . '", "' . $paymentId . '", "' . $id_payment_status . '" );';
 		// echo '<p> El query enviado fue: ' . $stringQuery . '</p>';
+		// use exec() because no results are returned
+		$conn->exec($stringQuery);
+	} catch (PDOException $e) {
+		return -2;
+	}
+	$conn = null;
+	return 0;
+}
+
+/**
+ * Actualiza el estatus del pago 
+ *
+ * @param integer	$idLicenseCustomer  	ID de la licencia que relaciona el usuario y la asignatura
+ * @param string	$validity  				Vigencia de la licencia
+ * @param string	$newStatus  			String del nuevo status de pago (approved, pending, failure)
+ * 
+ * @author brjupo	facebook.com/brjupo
+ * @return integer CERO 0 si la actualizacion fue correcta. MENOS UNO -1 si existio un error obteniendo el id_payment_status. MENOS DOS -2 si existio un error al actualizar
+ */
+function updatePaymentStatus(int $idLicenseCustomer, string $validity, string $newStatus): int
+{
+	global $servername, $dbname, $username, $password;
+	//Leer el valor INTEGER del id_payment_status
+	$id_payment_status = 0;
+	try {
+		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stringQuery = "SELECT id_payment_status FROM payment_status WHERE payment_status = '" . $newStatus . "' ";
+		//echo $stringQuery ;
+		$stmt = $conn->query($stringQuery);
+		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$id_payment_status = $row[0];
+		}
+	} catch (PDOException $e) {
+		return -1;
+	}
+	$conn = null;
+
+	try {
+		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+		// set the PDO error mode to exception
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stringQuery = "UPDATE licencia SET market_pay_status = '" . $id_payment_status . "' , vigencia = '" . $validity . "' WHERE id_licencia = '" . $idLicenseCustomer . "' ";
 		// use exec() because no results are returned
 		$conn->exec($stringQuery);
 	} catch (PDOException $e) {
