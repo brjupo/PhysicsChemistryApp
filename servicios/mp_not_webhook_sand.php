@@ -1,5 +1,8 @@
 <?php
 require "00DDBBVariables.php";
+require "04paymentValidation.php";
+require "05userInformation.php";
+require "06invoicingInformation.php";
 //Leer el body tipo JSON que trae la consulta de mp
 $entityBody = file_get_contents('php://input');
 $result = json_decode($entityBody, TRUE);
@@ -35,6 +38,15 @@ if (!is_numeric($id_mp)) {
 /*++++++++++++++++++++  1.- Obtener el mail de la persona y status de pago  ++++++++++++++++++++*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 if ($errorDetected == 0) {
+    $json = getFirstPartMarketPayAccessToken();
+    $result = json_decode($json, TRUE);
+    $firstPart = hex2bin($result["value"]);
+
+    $json = getSecondPartMarketPayAccessToken();
+    $result = json_decode($json, TRUE);
+    $secondPart = hex2bin($result["value"]);
+
+    $accessToken = $firstPart . $secondPart;
     $bearerToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
     $url = 'https://api.mercadopago.com/v1/payments/search?id=' . $id_mp;
     $curl = curl_init($url);
@@ -47,17 +59,26 @@ if ($errorDetected == 0) {
     curl_close($curl);
     // echo $response . PHP_EOL;
     $result = json_decode($response, TRUE);
+    //------------ MAIL CLIENTE ----------------
+    $verdaderoCliente = $result["results"][0]["payer"]["email"];
+    $verdaderoCliente = str_replace(" ", "", $verdaderoCliente);
+    //------------ STATUS DE PAGO -------------
+    $statusPago = $result["results"][0]["status"];
+    $statusPago = str_replace(" ", "", $statusPago);
+    //------------ ID ASIGNATURA --------------
+    $idAsignaturaNombre = $result["results"][0]["description"];
+    $idAsignaturaNombreArray = explode("@@", $idAsignaturaNombre);
+    $idAsignatura = intval($idAsignaturaNombreArray[0]);
 }
 if (is_null($result)) {
     $errorDetected = 1;
-    echo '<p>Error. No information about this id</p>';
+    $response["response"] .= 'Error. No information about this id \n';
 }
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*++++++++++++++++++++++++++++++  2.- OBTENER EL ID DEL USUARIO  +++++++++++++++++++++++++++++++*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-$verdaderoCliente = $result["results"][0]["payer"]["email"];
-$verdaderoCliente = str_replace(" ", "", $verdaderoCliente);
+//$verdaderoCliente
 if ($errorDetected == 0) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -83,8 +104,7 @@ if ($errorDetected == 0) {
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*++++++++++++++++++++++++++++++  3.- OBTENER EL STATUS DE PAGO  +++++++++++++++++++++++++++++++*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-$statusPago = $result["results"][0]["status"];
-$statusPago = str_replace(" ", "", $statusPago);
+//$statusPago
 if ($errorDetected == 0) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -132,9 +152,12 @@ if ($errorDetected == 0) {
     } catch (PDOException $e) {
         $response["response"] .= $sql . "<br>" . $e->getMessage() . "\n";
         $response["response"] .= "User, session token and/or CST are not correct or up to date\n";
-        header("HTTP/1.2 401 Unathorized");
     }
     $conn = null;
+}
+
+if ($errorDetected == 1) {
+    header("HTTP/1.2 401 Unathorized");
 }
 
 
@@ -145,3 +168,17 @@ echo json_encode($response);
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*+++++++++  6.- ACTUALIZAR O CREAR LA INFORMACIÓN EN LA TABLA DE LICENCIAS CON STATUS +++++++++*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+//$id_mp
+//$idVerdaderoCliente
+//$idAsignatura
+//$idStatusPago
+if ($errorDetected == 0) {
+    $idLicenseCustomer = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
+    $validity = getNowMexicoTimePlusSixMonths();
+    if ($idLicenseCustomer > 0) {
+        updatePaymentStatus($idLicenseCustomer, $validity, $idStatusPago);
+    }
+    if ($idLicenseCustomer == 0) {
+        createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $idStatusPago);
+    }
+}

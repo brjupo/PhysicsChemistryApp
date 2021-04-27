@@ -1,6 +1,7 @@
 <?php
 require "../../servicios/00DDBBVariables.php";
 require "../../servicios/04paymentValidation.php";
+require "../../servicios/06invoicingInformation.php";
 require "../CSSsJSs/mainCSSsJSs.php";
 require "sendMailCustomers.php";
 ?>
@@ -61,6 +62,7 @@ require "sendMailCustomers.php";
   // 2.4.- Obtener el payment id $_GET["payment_id"]
   // 2.5.- Dado que esta es la pantalla de success, y basados en la tabla payment_status, market_pay_status = 5 [approved]
   // 2.6.- INSERT/UPDATE INTO LICENCIA id_usuario, id_asignatura, vigencia, id_market_pay, market_pay_status
+  //2.7.- En caso de que el cliente haya solicitado factura. Actualizar el status a "pagado_pendiente_por_facturar"
   ?>
   <?php
   //3.- Enviar correo a $verdaderoCliente con su payment_id y su vigencia
@@ -72,6 +74,15 @@ require "sendMailCustomers.php";
   <?php
   //1.- Obtener el mail de la persona que realizó el pago
   if ($errorDetected == 0) {
+    $json = getFirstPartMarketPayAccessToken();
+    $result = json_decode($json, TRUE);
+    $firstPart = hex2bin($result["value"]);
+
+    $json = getSecondPartMarketPayAccessToken();
+    $result = json_decode($json, TRUE);
+    $secondPart = hex2bin($result["value"]);
+
+    $accessToken = $firstPart . $secondPart;
     $bearerToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
     $url = 'https://api.mercadopago.com/v1/payments/search?id=' . $paymentId;
     $curl = curl_init($url);
@@ -155,12 +166,20 @@ require "sendMailCustomers.php";
       $errorDetected = updatePaymentStatus($idLicencia, $vigencia, "approved");
     }
     //Tercero - Si NO existe el registro. Crearlo.
-    else if($idLicencia == 0){
+    else if ($idLicencia == 0) {
       $errorDetected = createPaymentStatus($idVerdaderoCliente, $idAsignatura, $vigencia, $paymentId, "approved");
-    }
-    else{
+    } else {
       $errorDetected = 1; //En este caso, verifyuserSubjectExist regresa un numero NEGATIVO, o bien, un ERROR
     }
+  }
+  //2.7.- En caso de que el cliente haya solicitado factura. Actualizar el status a "pagado_pendiente_por_facturar"
+  $idInvoicing = verifyInvoicingUserSubjectExist($idVerdaderoCliente, $idAsignatura);
+  if ($idInvoicing > 0) {
+    $errorDetected = updateInvoicingStatus($idInvoicing, "pagado_pendiente_por_facturar");
+  } else if ($idInvoicing == 0) {
+    $errorDetected = 0;
+  } else {
+    $errorDetected = 1; //En este caso NO existe el usuario en factura o hubo un error.
   }
   ?>
 

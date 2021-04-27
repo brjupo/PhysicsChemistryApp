@@ -5,6 +5,7 @@
 require "../CSSsJSs/mainCSSsJSs.php";
 require "../../servicios/00DDBBVariables.php";
 require "../../servicios/04paymentValidation.php";
+require "../../servicios/06invoicingInformation.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,8 +26,8 @@ require "../../servicios/04paymentValidation.php";
   ---Idea general---
   Guardaremos la informacion del usuario con un estatus NO PAGADO.
   Al hacer el pago, deberemos validar si existe un registro (de rfc y razon social) del usuario. 
-  En caso de que se encuentren los datos. Obtener el registro mas reciente ORDER BY id DESC LIMIT 1
-  Se debe cambiar el status de la tabla invoicing a PAGADO - PENDIENTE POR FACTURAR
+  En caso de que se encuentren los datos. Actualizar el rfc y razon social
+  Se debe cambiar el status de la tabla invoicing a PAGADO - PENDIENTE POR FACTURAR, solo en caso de success
   */
   ?>
   <?php
@@ -64,10 +65,18 @@ require "../../servicios/04paymentValidation.php";
 
   $rfc = str_replace(" ", "", $rfc);
   $usuarioCorreo = str_replace(" ", "", $usuarioCorreo);
-  //1.2.- Guardar en BBDD, Tabla invoicing > idUsuario, idAsignatura, rfc, razon social, id_status = 1 (NO PAGADO).
-  $errorDetected = saveCryptedInvoiceInfo($idUser, $idAsignatura, $rfc, $razonSocial, 1);
+  $errorDetected = 0;
+  //1.2.- Validar si existe registro. Si NO existe, guardar en BBDD, Tabla invoicing > idUsuario, idAsignatura, rfc, razon social, status = "no_pagado". Si EXISTE actualizar RFC y razon social
+  $idInvoicing = verifyInvoicingUserSubjectExist($idUser, $idAsignatura);
+  if ($idInvoicing == 0) {
+    $errorDetected = createInvoicingRegister($idUser, $idAsignatura, $rfc, $razonSocial, "no_pagado");
+  } else if ($idInvoicing > 0) {
+    $errorDetected = updateInvoicingRfcRazonSocial($idInvoicing, $rfc, $razonSocial);
+  } else {
+    $errorDetected = 1;
+  }
 
-  echo '<p> Datos rfc=' . $rfc . '  razonSocial=' . $razonSocial . ' usuario=' . $usuarioCorreo . ' idUser=' . $idUser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
+  //echo '<p> Datos rfc=' . $rfc . '  razonSocial=' . $razonSocial . ' usuario=' . $usuarioCorreo . ' idUser=' . $idUser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php
   if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia) || $errorDetected == 1) {
@@ -141,34 +150,6 @@ require "../../servicios/04paymentValidation.php";
       echo '<p>Caught exception: ',  $e->getMessage(), "</p>";
     }
   }
-  ?>
-  <?php
-  function saveCryptedInvoiceInfo($idUsuario, $idAsignatura, $rfc, $razonSocial, $idStatus)
-  {
-    //1.2.- Guardar en BBDD, Tabla invoicing > idUsuario, idAsignatura, rfc, razon social, id_status = 1 (NO PAGADO).
-    global $servername, $dbname, $username, $password;
-    $rfcCyph = bin2hex($rfc);
-    $razonSocialCyph = bin2hex($razonSocial);
-    try {
-      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-      // set the PDO error mode to exception
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
-      //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
-      $sql = "INSERT 
-      INTO invoicing (id_usuario, id_asignatura, rfc, razon_social, id_status) 
-      VALUES ('" . $idUsuario . "', '" . $idAsignatura . "', '" . $rfcCyph . "', '" . $razonSocialCyph . "', " . $idStatus . ")";
-      // use exec() because no results are returned
-      $conn->exec($sql);
-      $errorDetected = 0;
-    } catch (PDOException $e) {
-      echo "<p>" . $sql . "<br>" . $e->getMessage() . "</p>";
-      $errorDetected = 1;
-    }
-    $conn = null;
-    return $errorDetected;
-  }
-
   ?>
 
   <div class="container">

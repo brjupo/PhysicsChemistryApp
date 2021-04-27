@@ -73,6 +73,15 @@ require "sendMailCustomers.php";
   <?php
   //1.- Obtener el mail de la persona que realizó el pago
   if ($errorDetected == 0) {
+    $json = getFirstPartMarketPayAccessToken();
+    $result = json_decode($json, TRUE);
+    $firstPart = hex2bin($result["value"]);
+
+    $json = getSecondPartMarketPayAccessToken();
+    $result = json_decode($json, TRUE);
+    $secondPart = hex2bin($result["value"]);
+
+    $accessToken = $firstPart . $secondPart;
     $bearerToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
     $url = 'https://api.mercadopago.com/v1/payments/search?id=' . $paymentId;
     $curl = curl_init($url);

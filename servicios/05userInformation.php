@@ -31,3 +31,22 @@ function getUserIdFromMail($mail): int
 	$conn = null;
 	return intval($id_usuario);
 }
+
+
+
+/**
+ * Regresa el tiempo de la zona DateTimeZone('America/Mexico_City') actual MAS SEIS MESES
+ *
+ * 
+ * @author brjupo	facebook.com/brjupo
+ * @return string		Tiempo actual de Mexico mas seis meses	
+ */
+function getNowMexicoTimePlusSixMonths(): string
+{
+	$timeZone = new DateTimeZone('America/Mexico_City');
+	$nowTimePlusSixMonths = new DateTime();
+	$nowTimePlusSixMonths->modify('+6 month');
+	$nowTimePlusSixMonths->setTimezone($timeZone);
+	$vigencia = $nowTimePlusSixMonths->format('Y-m-d H:i:s');
+	return $vigencia;
+}
