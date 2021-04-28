@@ -38,7 +38,16 @@ if (!is_numeric($id_mp)) {
 /*++++++++++++++++++++  1.- Obtener el mail de la persona y status de pago  ++++++++++++++++++++*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 if ($errorDetected == 0) {
-    $bearerToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
+    $json = getFirstPartMarketPayAccessToken();
+    $result = json_decode($json, TRUE);
+    $firstPart = hex2bin($result["value"]);
+
+    $json = getSecondPartMarketPayAccessToken();
+    $result = json_decode($json, TRUE);
+    $secondPart = hex2bin($result["value"]);
+
+    $bearerToken = $firstPart . $secondPart;
+    //$bearerToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
     $url = 'https://api.mercadopago.com/v1/payments/search?id=' . $id_mp;
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
