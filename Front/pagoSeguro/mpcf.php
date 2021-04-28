@@ -97,7 +97,8 @@ require "../../servicios/06invoicingInformation.php";
       $secondPart = hex2bin($result["value"]);
 
       $accessToken = $firstPart . $secondPart;
-      $accessToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
+      echo "<p>".$accessToken."</p>";
+      //$accessToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
       // SDK de Mercado Pago
       require '../../../../../../vendor/autoload.php';
       // Agrega credenciales
