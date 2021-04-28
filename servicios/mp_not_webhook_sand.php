@@ -161,8 +161,9 @@ if ($errorDetected == 0) {
         INTO marketPay (id_market_pay, id_usuario, id_payment_status, tiempo, info) 
         VALUES (" . $id_mp . ", " . $idVerdaderoCliente . ", " . $idStatusPago . ", '" . $tiempo . "', '" . $entityBody . "')";
         // use exec() because no results are returned
-        echo "ya se armo el query";
+        echo "<p>ya se armo el query</p>";
         $conn->exec($sql);
+        echo "<p>Se ejecuto el sql</p>";
         $response["response"] .= "Exito\n";
         echo "segun yo anda chido, si se escribe";
     } catch (PDOException $e) {
