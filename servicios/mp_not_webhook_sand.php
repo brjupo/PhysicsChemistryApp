@@ -111,6 +111,7 @@ if ($errorDetected == 0) {
     }
 }
 
+echo "<p>Pasamos la lectura de las variables. idCliente " . $idVerdaderoCliente . "</p>";
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*++++++++++++++++++++++++++++++  3.- OBTENER EL STATUS DE PAGO  +++++++++++++++++++++++++++++++*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -137,7 +138,9 @@ if ($errorDetected == 0) {
     }
 }
 
+echo "<p>Pasamos idStatusPago" . $idStatusPago . "</p>";
 $tiempo = getDatetimeNow();
+echo "<p>Pasamos getDatetimeNow</p>";
 /* EL JSON COMPLETO ES $entityBody */
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -164,6 +167,7 @@ if ($errorDetected == 0) {
     }
     $conn = null;
 }
+echo "<p>Pasamos guardar info, entityBody: " . $entityBody . "</p>";
 
 if ($errorDetected == 1) {
     header("HTTP/1.2 401 Unathorized");
@@ -172,6 +176,7 @@ if ($errorDetected == 1) {
 }
 
 
+echo "<p>Pasamos headers</p>";
 ////////////////  
 header('Content-Type: application/json');
 echo json_encode($response);
