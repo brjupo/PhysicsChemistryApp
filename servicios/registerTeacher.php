@@ -140,8 +140,7 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
     <p style="color: white">.</p>
     <p>Agradecemos tu confianza,</p>
     <p>
-      <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
-      VEKS Solutions México S.A. de C.V.
+      <strong>Equipo de Plataforma Educativa Kaanbal</strong>
     </p>
     <h4 style="background-color: rgb(35, 85, 145); color: rgb(35, 85, 145)">
       .
