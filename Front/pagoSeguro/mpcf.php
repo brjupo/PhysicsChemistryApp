@@ -99,6 +99,11 @@ require "../../servicios/06invoicingInformation.php";
       $accessToken = $firstPart . $secondPart;
       //echo "<p>".$accessToken."</p>";
       //$accessToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
+
+
+      //Precio de hoy
+      $todayPrice = getTodayPrice();
+
       // SDK de Mercado Pago
       require '../../../../../../vendor/autoload.php';
       // Agrega credenciales
@@ -113,7 +118,7 @@ require "../../servicios/06invoicingInformation.php";
       $item->description = "Incluye el acceso a la plataforma kaanbal.net por 6 meses SIN publicidad";
       $item->quantity = 1;
       $item->currency_id = "MXN";
-      $item->unit_price = getTodayPrice();
+      $item->unit_price = $todayPrice;
 
       // Crear el comprador
       $payer = new MercadoPago\Payer();
@@ -201,7 +206,7 @@ require "../../servicios/06invoicingInformation.php";
           <div class="input-group-prepend">
             <span class="input-group-text" id="precioLabel">Precio Unitario [Incluye IVA]</span>
           </div>
-          <input type="text" class="form-control" id="precio" aria-describedby="precioLabel" name="precio" value="250.00 MXN" disabled />
+          <input type="text" class="form-control" id="precio" aria-describedby="precioLabel" name="precio" value="<?=$todayPrice?>.00 MXN" disabled />
         </div>
       </div>
       <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
