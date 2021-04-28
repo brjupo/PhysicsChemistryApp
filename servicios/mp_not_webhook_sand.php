@@ -6,6 +6,8 @@ require "06invoicingInformation.php";
 //Leer el body tipo JSON que trae la consulta de mp
 $entityBody = file_get_contents('php://input');
 $result = json_decode($entityBody, TRUE);
+$response["response"] .= "Lo que llego |" ;
+$response["response"] .= "|";
 
 //Establecer uso horario para el envio de fecha y hora
 function getDatetimeNow()
