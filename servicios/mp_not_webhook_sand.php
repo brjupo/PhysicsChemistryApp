@@ -164,7 +164,6 @@ if ($errorDetected == 0) {
         echo "<p>ya se armo el query</p>";
         $conn->exec($sql);
         echo "<p>Se ejecuto el sql</p>";
-        $response["response"] .= "Exito\n";
         echo "segun yo anda chido, si se escribe";
     } catch (PDOException $e) {
         $response["response"] .= $sql . "<br>" . $e->getMessage() . "\n";
