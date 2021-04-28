@@ -9,13 +9,6 @@ $entityBody = file_get_contents('php://input');
 echo "<p>Pasamos el entity: " . $entityBody . "</p>";
 $result = json_decode($entityBody, TRUE);
 echo "<p>Pasamos el result: " . $result . "</p>";
-$response["response"] .= "Lo que llego |";
-$response["response"] .= $entityBody;
-$response["response"] .= "|";
-
-$response["response"] .= "El JSON |";
-$response["response"] .= $result;
-$response["response"] .= "|";
 
 //Establecer uso horario para el envio de fecha y hora
 function getDatetimeNow()
@@ -35,13 +28,13 @@ try {
     echo "<p>Entramos al try result[id]= " . $id_mp . "</p>";
 } catch (Exception $e) {
     $errorDetected = 1;
-    $response["response"] .= "Error, id of market pay was not detected \n";
+    echo "<p>Error, id of market pay was not detected</p>";
 }
 
 $id_mp = str_replace(" ", "", $id_mp);
 if (!is_numeric($id_mp)) {
     $errorDetected = 1;
-    $response["response"] .= "Error, id of market pay is not valid \n";
+    echo "<p>Error, id of market pay is not valid </p>";
 }
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -72,7 +65,7 @@ if ($errorDetected == 0) {
         $idAsignaturaNombreArray = explode("@@", $idAsignaturaNombre);
         $idAsignatura = intval($idAsignaturaNombreArray[0]);
     } catch (Exception $e) {
-        $response["response"] .= "Es prueba, se guarda como brjupo@gmail.com";
+        echo "<p>Es prueba, se guarda como brjupo@gmail.com</p>";
         $verdaderoCliente = "brjupo@gmail.com";
         $statusPago = "DESCONOCIDO";
         $idAsignatura = 1;
@@ -80,7 +73,7 @@ if ($errorDetected == 0) {
 }
 if (is_null($result)) {
     $errorDetected = 1;
-    $response["response"] .= 'Error. No information about this id \n';
+    echo '<p>Error. No information about this id </p>';
 }
 
 echo "<p>Pasamos la lectura de las variables. Cliente " . $verdaderoCliente . "</p>";
@@ -101,7 +94,7 @@ if ($errorDetected == 0) {
             $entre = 1;
         }
     } catch (PDOException $e) {
-        $response["response"] .=  "Error getting user info: " . $e->getMessage() . "  " . $stringQuery . "\n";
+        echo "<p>Error getting user info: " . $e->getMessage() . "  " . $stringQuery . "</p>";
         $errorDetected = 1;
     }
     $conn = null;
@@ -128,7 +121,7 @@ if ($errorDetected == 0) {
             $entre = 1;
         }
     } catch (PDOException $e) {
-        $response["response"] .=  "Error payment: " . $e->getMessage() . "  " . $stringQuery . "\n";
+        echo "<p>Error payment: " . $e->getMessage() . "  " . $stringQuery . "</p>";
         $errorDetected = 1;
     }
     $conn = null;
@@ -166,9 +159,8 @@ if ($errorDetected == 0) {
         echo "<p>Se ejecuto el sql</p>";
         echo "segun yo anda chido, si se escribe";
     } catch (PDOException $e) {
-        $response["response"] .= $sql . "<br>" . $e->getMessage() . "\n";
-        $response["response"] .= "User, session token and/or CST are not correct or up to date\n";
-        echo $sql . "<br>" . $e->getMessage() . "\n";
+        echo "<p>". $sql . "<br>" . $e->getMessage() . "</p>";
+        echo "<p>User, session token and/or CST are not correct or up to date</p>";
         $errorDetected = 1;
     }
     $conn = null;
@@ -196,7 +188,7 @@ echo json_encode($response);
 //$idVerdaderoCliente
 //$idAsignatura
 //$idStatusPago
-/*
+
 if ($errorDetected == 0) {
     $idLicenseCustomer = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
     $validity = getNowMexicoTimePlusSixMonths();
@@ -207,4 +199,3 @@ if ($errorDetected == 0) {
         createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $idStatusPago);
     }
 }
-*/
