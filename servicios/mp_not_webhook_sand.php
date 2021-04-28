@@ -7,6 +7,7 @@ require "06invoicingInformation.php";
 $entityBody = file_get_contents('php://input');
 $result = json_decode($entityBody, TRUE);
 $response["response"] .= "Lo que llego |" ;
+$response["response"] .= $entityBody;
 $response["response"] .= "|";
 
 //Establecer uso horario para el envio de fecha y hora
