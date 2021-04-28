@@ -19,12 +19,9 @@ $errorDetected = 0;
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*++++++++++++++++++++  VARIABLES PARA EL QUERY  ++++++++++++++++++++*/
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-$id_mp = $result["data"]["id"];
-//Si llega del boton "probar" de mercado pago, no exite data_id, solo id
-if (is_null($id_mp)) {
+try {
     $id_mp = $result["id"];
-}
-if (is_null($id_mp)) {
+} catch (Exception $e) {
     $errorDetected = 1;
     $response["response"] .= "Error, id of market pay was not detected \n";
 }
