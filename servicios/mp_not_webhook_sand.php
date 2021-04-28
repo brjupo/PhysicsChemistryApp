@@ -144,7 +144,6 @@ if ($errorDetected == 0) {
         // use exec() because no results are returned
         $conn->exec($sql);
         $response["response"] .= "Exito\n";
-        header("HTTP/1.2 201 CREATED");
     } catch (PDOException $e) {
         $response["response"] .= $sql . "<br>" . $e->getMessage() . "\n";
         $response["response"] .= "User, session token and/or CST are not correct or up to date\n";
@@ -154,6 +153,9 @@ if ($errorDetected == 0) {
 
 if ($errorDetected == 1) {
     header("HTTP/1.2 401 Unathorized");
+}
+else{
+    header("HTTP/1.2 201 CREATED");
 }
 
 
