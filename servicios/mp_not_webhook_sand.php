@@ -164,6 +164,7 @@ if ($errorDetected == 0) {
     } catch (PDOException $e) {
         $response["response"] .= $sql . "<br>" . $e->getMessage() . "\n";
         $response["response"] .= "User, session token and/or CST are not correct or up to date\n";
+        echo $sql . "<br>" . $e->getMessage() . "\n";;
     }
     $conn = null;
 }
