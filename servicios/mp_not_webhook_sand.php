@@ -168,6 +168,7 @@ echo json_encode($response);
 //$idVerdaderoCliente
 //$idAsignatura
 //$idStatusPago
+/*
 if ($errorDetected == 0) {
     $idLicenseCustomer = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
     $validity = getNowMexicoTimePlusSixMonths();
@@ -178,3 +179,4 @@ if ($errorDetected == 0) {
         createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $idStatusPago);
     }
 }
+*/
