@@ -47,7 +47,7 @@ try {
     $verdaderoCliente = $result["results"][0]["payer"]["email"];
     $verdaderoCliente = str_replace(" ", "", $verdaderoCliente);
     if ($verdaderoCliente == "" || $verdaderoCliente == NULL) {
-        $verdaderoCliente = "brjupo@gmail.com";
+        $verdaderoCliente = "no-reply@kaanbal.net";
     }
     //------------ STATUS DE PAGO -------------
     $statusPago = $result["results"][0]["status"];
