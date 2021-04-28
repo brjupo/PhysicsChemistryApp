@@ -4,8 +4,11 @@ require "04paymentValidation.php";
 require "05userInformation.php";
 require "06invoicingInformation.php";
 //Leer el body tipo JSON que trae la consulta de mp
+echo "<p>Aqui andamos</p>";
 $entityBody = file_get_contents('php://input');
+echo "<p>Pasamos el entity</p>";
 $result = json_decode($entityBody, TRUE);
+echo "<p>Pasamos el result</p>";
 $response["response"] .= "Lo que llego |" ;
 $response["response"] .= $entityBody;
 $response["response"] .= "|";
