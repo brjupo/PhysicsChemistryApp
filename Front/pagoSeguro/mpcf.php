@@ -113,7 +113,7 @@ require "../../servicios/06invoicingInformation.php";
       $item->description = "Incluye el acceso a la plataforma kaanbal.net por 6 meses SIN publicidad";
       $item->quantity = 1;
       $item->currency_id = "MXN";
-      $item->unit_price = 250;
+      $item->unit_price = getTodayPrice();
 
       // Crear el comprador
       $payer = new MercadoPago\Payer();

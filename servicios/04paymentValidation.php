@@ -12,6 +12,7 @@ Funciones en este archivo
 licenciaPagada() - INPUT > $_SESSION["mail"] + $_SESSION["idAsignatura"] - OUTPUT > status del pago
 getFirstPartMarketPayAccessToken(): string
 getSecondPartMarketPayAccessToken(): string
+getTodayPrice(): int
 verifyUserSubjectExist(int $idUser, int $idSubject): int > OUTPUT ID de la licencia, 0 o -1 Error
 updatePaymentStatus(int $idLicenseCustomer, string $validity, string $newStatus): int
 createPaymentStatus(int $idUser, int $idSubject, string $validity, int $paymentId, string $status): int
@@ -84,6 +85,32 @@ function licenciaPagada(): string
 	$conn = null;
 
 	return strval($marketPayStatus);
+}
+
+/**
+ * Regresa el precio de Kaanbal
+ *
+ * 
+ * @author brjupo	facebook.com/brjupo
+ * @return int	Regresa el precio de Kaanbal
+ */
+function getTodayPrice(): int
+{
+	global $servername, $dbname, $username, $password;
+	$price = 250;
+	try {
+		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$stringQuery = "SELECT precio FROM price WHERE id= 1";
+		$stmt = $conn->query($stringQuery);
+		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$price = $row[0];
+		}
+	} catch (PDOException $e) {
+		return intval(500);
+	}
+	$conn = null;
+	return intval($price);
 }
 
 /**

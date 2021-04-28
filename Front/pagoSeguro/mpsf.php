@@ -53,7 +53,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
       $secondPart = hex2bin($result["value"]);
 
       $accessToken = $firstPart . $secondPart;
-      $accessToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
+      //$accessToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
       // SDK de Mercado Pago
       require '../../../../../../vendor/autoload.php';
       // Agrega credenciales
@@ -68,7 +68,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
       $item->description = "Incluye el acceso a la plataforma y la posibilidad de inscribirte a un grupo para que los profesores puedan acceder a tus calificaciones";
       $item->quantity = 1;
       $item->currency_id = "MXN";
-      $item->unit_price = 250;
+      $item->unit_price = getTodayPrice();
 
       // Crear el comprador
       $payer = new MercadoPago\Payer();
