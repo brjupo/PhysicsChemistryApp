@@ -6,14 +6,14 @@ require "06invoicingInformation.php";
 //Leer el body tipo JSON que trae la consulta de mp
 echo "<p>Aqui andamos</p>";
 $entityBody = file_get_contents('php://input');
-echo "<p>Pasamos el entity</p>";
+echo "<p>Pasamos el entity: " . $entityBody . "</p>";
 $result = json_decode($entityBody, TRUE);
-echo "<p>Pasamos el result</p>";
-$response["response"] .= "Lo que llego |" ;
+echo "<p>Pasamos el result: " . $result . "</p>";
+$response["response"] .= "Lo que llego |";
 $response["response"] .= $entityBody;
 $response["response"] .= "|";
 
-$response["response"] .= "El JSON |" ;
+$response["response"] .= "El JSON |";
 $response["response"] .= $result;
 $response["response"] .= "|";
 
@@ -26,11 +26,13 @@ function getDatetimeNow()
     return $datetime->format('Y\-m\-d\ H:i:s');
 }
 $errorDetected = 0;
+echo "<p>Pasamos funcionfecha</p>";
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*++++++++++++++++++++  VARIABLES PARA EL QUERY  ++++++++++++++++++++*/
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 try {
     $id_mp = $result["id"];
+    echo "<p>Entramos al try result[id]= " . $id_mp . "</p>";
 } catch (Exception $e) {
     $errorDetected = 1;
     $response["response"] .= "Error, id of market pay was not detected \n";
@@ -58,21 +60,30 @@ if ($errorDetected == 0) {
     curl_close($curl);
     // echo $response . PHP_EOL;
     $result = json_decode($response, TRUE);
-    //------------ MAIL CLIENTE ----------------
-    $verdaderoCliente = $result["results"][0]["payer"]["email"];
-    $verdaderoCliente = str_replace(" ", "", $verdaderoCliente);
-    //------------ STATUS DE PAGO -------------
-    $statusPago = $result["results"][0]["status"];
-    $statusPago = str_replace(" ", "", $statusPago);
-    //------------ ID ASIGNATURA --------------
-    $idAsignaturaNombre = $result["results"][0]["description"];
-    $idAsignaturaNombreArray = explode("@@", $idAsignaturaNombre);
-    $idAsignatura = intval($idAsignaturaNombreArray[0]);
+    try {
+        //------------ MAIL CLIENTE ----------------
+        $verdaderoCliente = $result["results"][0]["payer"]["email"];
+        $verdaderoCliente = str_replace(" ", "", $verdaderoCliente);
+        //------------ STATUS DE PAGO -------------
+        $statusPago = $result["results"][0]["status"];
+        $statusPago = str_replace(" ", "", $statusPago);
+        //------------ ID ASIGNATURA --------------
+        $idAsignaturaNombre = $result["results"][0]["description"];
+        $idAsignaturaNombreArray = explode("@@", $idAsignaturaNombre);
+        $idAsignatura = intval($idAsignaturaNombreArray[0]);
+    } catch (Exception $e) {
+        $response["response"] .= "Es prueba, se guarda como brjupo@gmail.com";
+        $verdaderoCliente = "brjupo@gmail.com";
+        $statusPago = "DESCONOCIDO";
+        $idAsignatura = 1;
+    }
 }
 if (is_null($result)) {
     $errorDetected = 1;
     $response["response"] .= 'Error. No information about this id \n';
 }
+
+echo "<p>Pasamos la lectura de las variables. Cliente " . $verdaderoCliente . "</p>";
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*++++++++++++++++++++++++++++++  2.- OBTENER EL ID DEL USUARIO  +++++++++++++++++++++++++++++++*/
@@ -156,8 +167,7 @@ if ($errorDetected == 0) {
 
 if ($errorDetected == 1) {
     header("HTTP/1.2 401 Unathorized");
-}
-else{
+} else {
     header("HTTP/1.2 201 CREATED");
 }
 
