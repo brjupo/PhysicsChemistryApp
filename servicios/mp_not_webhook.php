@@ -4,37 +4,24 @@ require "04paymentValidation.php";
 require "05userInformation.php";
 require "06invoicingInformation.php";
 //Leer el body tipo JSON que trae la consulta de mp
+//echo "<p>Aqui andamos</p>";
 $entityBody = file_get_contents('php://input');
+//echo "<p>Pasamos el entity: " . $entityBody . "</p>";
 $result = json_decode($entityBody, TRUE);
+//echo "<p>Pasamos el result: " . $result . "</p>";
 
-//Establecer uso horario para el envio de fecha y hora
-function getDatetimeNow()
-{
-    $tz_object = new DateTimeZone('America/Mexico_City');
-    $datetime = new DateTime();
-    $datetime->setTimezone($tz_object);
-    return $datetime->format('Y\-m\-d\ H:i:s');
-}
 $errorDetected = 0;
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*++++++++++++++++++++  VARIABLES PARA EL QUERY  ++++++++++++++++++++*/
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+//echo "<p>Pasamos funcionfecha</p>";
 try {
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /*++++++++++++++++++++  VARIABLES PARA EL QUERY  ++++++++++++++++++++*/
+    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $id_mp = $result["id"];
-} catch (Exception $e) {
-    $errorDetected = 1;
-    $response["response"] .= "Error, id of market pay was not detected \n";
-}
-$id_mp = str_replace(" ", "", $id_mp);
-if (!is_numeric($id_mp)) {
-    $errorDetected = 1;
-    $response["response"] .= "Error, id of market pay is not valid \n";
-}
+    $id_mp = str_replace(" ", "", $id_mp);
 
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*++++++++++++++++++++  1.- Obtener el mail de la persona y status de pago  ++++++++++++++++++++*/
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-if ($errorDetected == 0) {
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /*++++++++++++++++++++  1.- Obtener el mail de la persona y status de pago  ++++++++++++++++++++*/
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $json = getFirstPartMarketPayAccessToken();
     $result = json_decode($json, TRUE);
     $firstPart = hex2bin($result["value"]);
@@ -54,29 +41,32 @@ if ($errorDetected == 0) {
     ]);
     $response = curl_exec($curl);
     curl_close($curl);
-    // echo $response . PHP_EOL;
+    // //echo $response . PHP_EOL;
     $result = json_decode($response, TRUE);
     //------------ MAIL CLIENTE ----------------
     $verdaderoCliente = $result["results"][0]["payer"]["email"];
     $verdaderoCliente = str_replace(" ", "", $verdaderoCliente);
+    if ($verdaderoCliente == "" || $verdaderoCliente == NULL) {
+        $verdaderoCliente = "brjupo@gmail.com";
+    }
     //------------ STATUS DE PAGO -------------
     $statusPago = $result["results"][0]["status"];
     $statusPago = str_replace(" ", "", $statusPago);
+    if ($statusPago == "" || $statusPago == NULL) {
+        $statusPago = "DESCONOCIDO";
+    }
     //------------ ID ASIGNATURA --------------
     $idAsignaturaNombre = $result["results"][0]["description"];
     $idAsignaturaNombreArray = explode("@@", $idAsignaturaNombre);
     $idAsignatura = intval($idAsignaturaNombreArray[0]);
-}
-if (is_null($result)) {
-    $errorDetected = 1;
-    $response["response"] .= 'Error. No information about this id \n';
-}
+    if ($idAsignatura == "" || $idAsignatura == NULL) {
+        $idAsignatura = 0;
+    }
 
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*++++++++++++++++++++++++++++++  2.- OBTENER EL ID DEL USUARIO  +++++++++++++++++++++++++++++++*/
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-//$verdaderoCliente
-if ($errorDetected == 0) {
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /*++++++++++++++++++++++++++++++  2.- OBTENER EL ID DEL USUARIO  +++++++++++++++++++++++++++++++*/
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    //$verdaderoCliente
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -88,7 +78,7 @@ if ($errorDetected == 0) {
             $entre = 1;
         }
     } catch (PDOException $e) {
-        $response["response"] .=  "Error getting user info: " . $e->getMessage() . "  " . $stringQuery . "\n";
+        echo "<p>Error getting user info: " . $e->getMessage() . "  " . $stringQuery . "</p>";
         $errorDetected = 1;
     }
     $conn = null;
@@ -96,13 +86,11 @@ if ($errorDetected == 0) {
         //id_usuario del usuario de brandon
         $idVerdaderoCliente = 4;
     }
-}
 
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*++++++++++++++++++++++++++++++  3.- OBTENER EL STATUS DE PAGO  +++++++++++++++++++++++++++++++*/
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-//$statusPago
-if ($errorDetected == 0) {
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /*++++++++++++++++++++++++++++++  3.- OBTENER EL STATUS DE PAGO  +++++++++++++++++++++++++++++++*/
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    //$statusPago
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -114,7 +102,7 @@ if ($errorDetected == 0) {
             $entre = 1;
         }
     } catch (PDOException $e) {
-        $response["response"] .=  "Error payment: " . $e->getMessage() . "  " . $stringQuery . "\n";
+        //echo "<p>Error payment: " . $e->getMessage() . "  " . $stringQuery . "</p>";
         $errorDetected = 1;
     }
     $conn = null;
@@ -122,18 +110,15 @@ if ($errorDetected == 0) {
         //idStatusPago DESCONOCIDO
         $idStatusPago = 0;
     }
-}
 
-$tiempo = getDatetimeNow();
-/* EL JSON COMPLETO ES $entityBody */
-
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*+++++++++++++++++++++  4.- REGISTRAR LA INFORMACION DE MERCADO PAGO  +++++++++++++++++++++++++*/
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*+++++++++++++++  5.- RESPONDER A MERCADO PAGO QUE HEMOS GUARDADO LA INFO  ++++++++++++++++++++*/
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-if ($errorDetected == 0) {
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /*+++++++++++++++++++++  4.- REGISTRAR LA INFORMACION DE MERCADO PAGO  +++++++++++++++++++++++++*/
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /*+++++++++++++++  5.- RESPONDER A MERCADO PAGO QUE HEMOS GUARDADO LA INFO  ++++++++++++++++++++*/
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    $tiempo = getNowMexicoTime();
     try {
+        //echo "entramos al try";
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -143,25 +128,24 @@ if ($errorDetected == 0) {
         INTO marketPay (id_market_pay, id_usuario, id_payment_status, tiempo, info) 
         VALUES (" . $id_mp . ", " . $idVerdaderoCliente . ", " . $idStatusPago . ", '" . $tiempo . "', '" . $entityBody . "')";
         // use exec() because no results are returned
+        //echo "<p>ya se armo el query</p>";
         $conn->exec($sql);
-        $response["response"] .= "Exito\n";
-        header("HTTP/1.2 201 CREATED");
+        //echo "<p>Se ejecuto el sql</p>";
+        //echo "segun yo anda chido, si se escribe";
     } catch (PDOException $e) {
-        $response["response"] .= $sql . "<br>" . $e->getMessage() . "\n";
-        $response["response"] .= "User, session token and/or CST are not correct or up to date\n";
+        //echo "<p>". $sql . "<br>" . $e->getMessage() . "</p>";
+        //echo "<p>User, session token and/or CST are not correct or up to date</p>";
+        $errorDetected = 1;
     }
     $conn = null;
-}
 
-if ($errorDetected == 1) {
+    header("HTTP/1.2 201 CREATED");
+} catch (Exception $exception) {
+    echo "<p>Error: " . $exception->getMessage() . "</p>";
     header("HTTP/1.2 401 Unathorized");
 }
 
 
-////////////////  
-header('Content-Type: application/json');
-echo json_encode($response);
-//Si se deja después de enviar los headers. FALLA
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*+++++++++  6.- ACTUALIZAR O CREAR LA INFORMACIÓN EN LA TABLA DE LICENCIAS CON STATUS +++++++++*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -169,6 +153,7 @@ echo json_encode($response);
 //$idVerdaderoCliente
 //$idAsignatura
 //$idStatusPago
+
 if ($errorDetected == 0) {
     $idLicenseCustomer = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
     $validity = getNowMexicoTimePlusSixMonths();

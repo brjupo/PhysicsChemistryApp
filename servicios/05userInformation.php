@@ -50,3 +50,19 @@ function getNowMexicoTimePlusSixMonths(): string
 	$vigencia = $nowTimePlusSixMonths->format('Y-m-d H:i:s');
 	return $vigencia;
 }
+
+/**
+ * Regresa el tiempo de la zona DateTimeZone('America/Mexico_City') actual 
+ *
+ * 
+ * @author brjupo	facebook.com/brjupo
+ * @return string	Tiempo actual de Mexico 	
+ */
+function getNowMexicoTime(): string
+{
+	$timeZone = new DateTimeZone('America/Mexico_City');
+	$nowTime = new DateTime();
+	$nowTime->setTimezone($timeZone);
+	$now = $nowTime->format('Y-m-d H:i:s');
+	return $now;
+}
