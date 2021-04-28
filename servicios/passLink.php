@@ -68,7 +68,6 @@ if ($id_usuario === 0) {
             $from = "licencias@kaanbal.net";
             $to = $emailCliente;
             $to = $emailCliente . ', ';
-            $to .= 'kaanbal@veks.mx' . ', ';
             $to .= 'licencias@kaanbal.net';
 
             $subject = "Kaanbal - Password";
@@ -106,7 +105,6 @@ if ($id_usuario === 0) {
             //mail(correo,asunto,cuerpo);
             $from = "licencias@kaanbal.net";
             $to = $emailCliente . ', ';
-            $to .= 'kaanbal@veks.mx' . ', ';
             $to .= 'licencias@kaanbal.net';
 
             $subject = "Kaanbal - Password";
@@ -199,7 +197,7 @@ function getCuerpo($token, $kaanbalUser)
                 <p style='color:white;'>.</p>
                 <p>
                   En caso de cualquier duda o comentario por favor envía un correo a la
-                  dirección: <strong>kaanbal@veks.mx</strong> en donde un miembro del equipo
+                  dirección: <strong>aclaraciones@kaanbal.net</strong> en donde un miembro del equipo
                   te estará apoyando con lo que requieras. Ponemos también a tu disposición
                   las siguientes opciones de contacto, donde con gusto los atenderemos vía
                   Whatsapp bussines: <strong>55 7923 5241</strong>.
