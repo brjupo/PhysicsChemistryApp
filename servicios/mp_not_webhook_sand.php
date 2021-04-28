@@ -10,6 +10,10 @@ $response["response"] .= "Lo que llego |" ;
 $response["response"] .= $entityBody;
 $response["response"] .= "|";
 
+$response["response"] .= "El JSON |" ;
+$response["response"] .= $result;
+$response["response"] .= "|";
+
 //Establecer uso horario para el envio de fecha y hora
 function getDatetimeNow()
 {
