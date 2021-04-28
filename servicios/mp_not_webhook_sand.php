@@ -149,7 +149,9 @@ echo "<p>Pasamos getDatetimeNow</p>";
 /*+++++++++++++++  5.- RESPONDER A MERCADO PAGO QUE HEMOS GUARDADO LA INFO  ++++++++++++++++++++*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 if ($errorDetected == 0) {
+    echo "entramos la if";
     try {
+        echo "entramos al try";
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -159,20 +161,25 @@ if ($errorDetected == 0) {
         INTO marketPay (id_market_pay, id_usuario, id_payment_status, tiempo, info) 
         VALUES (" . $id_mp . ", " . $idVerdaderoCliente . ", " . $idStatusPago . ", '" . $tiempo . "', '" . $entityBody . "')";
         // use exec() because no results are returned
+        echo "ya se armo el query";
         $conn->exec($sql);
         $response["response"] .= "Exito\n";
+        echo "segun yo anda chido, si se escribe";
     } catch (PDOException $e) {
         $response["response"] .= $sql . "<br>" . $e->getMessage() . "\n";
         $response["response"] .= "User, session token and/or CST are not correct or up to date\n";
-        echo $sql . "<br>" . $e->getMessage() . "\n";;
+        echo $sql . "<br>" . $e->getMessage() . "\n";
+        $errorDetected = 1;
     }
     $conn = null;
 }
 echo "<p>Pasamos guardar info, entityBody: " . $entityBody . "</p>";
 
 if ($errorDetected == 1) {
+    echo "nel";
     header("HTTP/1.2 401 Unathorized");
 } else {
+    echo "creado";
     header("HTTP/1.2 201 CREATED");
 }
 
