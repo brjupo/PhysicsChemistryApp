@@ -1,7 +1,7 @@
 <?php
 require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
-require "../../servicios/04paymentValidation.php";
+require "../../../servicios/04paymentValidation.php";
 require "../../CSSsJSs/mainCSSsJSs.php"
 ?>
 <!DOCTYPE html>
