@@ -16,7 +16,7 @@ require "../../servicios/06invoicingInformation.php";
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
-  <link rel="stylesheet" href="ml.css" />
+  <link rel="stylesheet" href="ml1.css" />
 </head>
 
 <body>
@@ -36,7 +36,7 @@ require "../../servicios/06invoicingInformation.php";
   $usuarioCorreo = strtolower($_POST["userMailNoInvoice"]);
   $usuarioCorreo = str_replace(" ", "", $usuarioCorreo);
 
-  echo '<p> Datos  usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia= ' . $materia . ' idAsignatura= ' . $idAsignatura . '</p>';
+  //echo '<p> Datos  usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia= ' . $materia . ' idAsignatura= ' . $idAsignatura . '</p>';
   ?>
   <?php
   if (is_null($usuarioCorreo) || is_null($materia)) {

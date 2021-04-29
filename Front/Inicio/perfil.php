@@ -12,7 +12,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Perfil BRANDON</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-  <link rel="stylesheet" href="perfil04.css" />
+  <link rel="stylesheet" href="perfil05.css" />
   <script src="perfil.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 
@@ -200,7 +200,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="row">
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
               <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-                <p class="tituloTemasPrincipales text-center" id="matricula">' . $matricula . '</p>
+                <p class="text-center" id="matricula">' . $matricula . '</p>
               </div>
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
@@ -215,9 +215,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="row">
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
               <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-                <p class="tituloTemasPrincipales text-center">
+                <h2 class="text-center">
                   ' . $materia . '   ' . $porcentajeAvance . '
-                </p>
+                </h2>
               </div>
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
@@ -403,7 +403,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                 <img class="icons imgRight" src="../CSSsJSs/icons/diamante.svg" />
               </div>
               <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                <p class="tituloTemasPrincipales textLeft">' . $diamantes . '</p>
+                <h2 class="textLeft" style="display:block;margin:auto;">' . $diamantes . '</h2>
               </div>
               <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
             </div>
@@ -541,7 +541,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     <div class="container">
       <div class="row">
         <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p class="comprar" style="text-align:center;">Vuélvete premium</p>
+          <h2 class="comprar" style="text-align:center;">Vuélvete premium</h2>
         </div>
       </div>
       <div class="row">
