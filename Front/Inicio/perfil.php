@@ -418,7 +418,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           <div class="container">
             <div class="row">
               <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h2 style="text-align:center;">Grades</h2>
+                <h2 style="text-align:center;">Calificaciones</h2>
               </div>
             </div>
           </div>
@@ -430,7 +430,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-primary" value="Practice, Sprint & Exam" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
+                      <input type="submit" class="btn btn-primary" value="Practica, Sprint y Examen" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
                     </form>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -443,7 +443,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
                 </div>
             </div>
           </div>';
-    imprimirRelleno();
     imprimirRelleno();
   }
 
@@ -530,6 +529,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     else {
       imprimirOpcionesDePago();
     }
+
+    imprimirRelleno();
+    imprimirRelleno();
   }
 
   function imprimirOpcionesDePago()
@@ -1010,7 +1012,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">List number</span>
+                <span class="input-group-text">Número de lista</span>
               </div>
               <select class="custom-select" id="listNumber">';
     //Crear la lectura en base de datos
@@ -1041,7 +1043,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">First name</span>
+                <span class="input-group-text">Primer nombre</span>
               </div>
               <select class="custom-select" id="idFirstName">';
     try {
@@ -1071,12 +1073,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
     echo '    </select>
             </div>
-            <p style="font-size:x-small; text-align:center ">If your first name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+            <!--p style="font-size:x-small; text-align:center ">If your first name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p-->
+            <p style="font-size:x-small; text-align:center ">¿Tu primer nombre NO esta en la lista?, envíanos un correo a: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
           ';
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group input-group-sm">
               <button id="updateStudentInfoButton" type="button" class="btn btn-primary btn-sm" style="display:block;margin:auto;">
-                  Update information
+                  Actualizar información
               </button>
             </div>
           ';
