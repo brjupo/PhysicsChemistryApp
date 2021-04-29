@@ -166,7 +166,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
       imprimirCalificacion($matricula);
     }
     imprimirPagos();
-    imprimirCreditos();
     imprimirFooter();
   }
   ?>
@@ -449,20 +448,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
   }
 
 
-  function imprimirCreditos()
-  {
-    echo '
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <a href="creditos.html"><h1 class="text-center titulo">Credits</h1></a>
-              </div>
-            </div>
-          </div>
-    ';
-    imprimirRelleno();
-    imprimirRelleno();
-  }
 
   function imprimirRelleno()
   {
