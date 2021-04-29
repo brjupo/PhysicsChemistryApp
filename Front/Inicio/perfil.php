@@ -12,7 +12,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Perfil BRANDON</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-  <link rel="stylesheet" href="perfil03.css" />
+  <link rel="stylesheet" href="perfil04.css" />
   <script src="perfil.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 
@@ -555,6 +555,11 @@ require "../CSSsJSs/mainCSSsJSs.php";
       <div class="row">
         <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <p class="comprar" style="text-align:center;">Vuélvete premium</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color:rgba(0,0,0,0);">./p>
         </div>
       </div>
     </div>
