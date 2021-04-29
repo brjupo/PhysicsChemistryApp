@@ -3,6 +3,9 @@
 //++++++++++++++++++ Mercado pago sin factura PRUEBAS ++++++++++++++++++//
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 require "../CSSsJSs/mainCSSsJSs.php";
+require "../../servicios/00DDBBVariables.php";
+require "../../servicios/04paymentValidation.php";
+require "../../servicios/06invoicingInformation.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +36,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   $usuarioCorreo = strtolower($_POST["userMailNoInvoice"]);
   $usuarioCorreo = str_replace(" ", "", $usuarioCorreo);
 
-  echo '<p> Datos  usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
+  echo '<p> Datos  usuario=' . $usuarioCorreo . ' idUser=' . $iduser . '  materia= ' . $materia . ' idAsignatura= ' . $idAsignatura . '</p>';
   ?>
   <?php
   if (is_null($usuarioCorreo) || is_null($materia)) {
@@ -70,7 +73,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
       // Crea un ítem en la preferencia
       $item = new MercadoPago\Item();
       $item->title = $idAsignatura . "@@" . $materia;
-      $item->description = "Incluye el acceso a la plataforma y la posibilidad de inscribirte a un grupo para que los profesores puedan acceder a tus calificaciones";
+      $item->description = "Incluye el acceso a la plataforma kaanbal.net por 6 meses SIN publicidad";
       $item->quantity = 1;
       $item->currency_id = "MXN";
       $item->unit_price = $todayPrice;
