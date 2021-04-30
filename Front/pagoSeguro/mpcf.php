@@ -70,8 +70,10 @@ require "../../servicios/06invoicingInformation.php";
   $idInvoicing = verifyInvoicingUserSubjectExist($idUser, $idAsignatura);
   if ($idInvoicing == 0) {
     $errorDetected = createInvoicingRegister($idUser, $idAsignatura, $rfc, $razonSocial, "no_pagado");
+    echo "<p>Creado: ".$idInvoicing."</p>";
   } else if ($idInvoicing > 0) {
     $errorDetected = updateInvoicingRfcRazonSocial($idInvoicing, $rfc, $razonSocial);
+    echo "<p>Actualizado: ".$idInvoicing."</p>";
   } else {
     $errorDetected = 1;
   }
@@ -79,7 +81,7 @@ require "../../servicios/06invoicingInformation.php";
   //echo '<p> Datos rfc=' . $rfc . '  razonSocial=' . $razonSocial . ' usuario=' . $usuarioCorreo . ' idUser=' . $idUser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php
-  if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia) || $errorDetected == 1) {
+  if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia) || $errorDetected != 0) {
     echo '<script  type="text/javascript"> 
     alert("Error. Por favor, verifica e inserta nuevamente tus datos
     rfc=' . $rfc . '  razonSocial=' . $razonSocial . '  
