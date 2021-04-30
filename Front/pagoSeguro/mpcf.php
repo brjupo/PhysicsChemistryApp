@@ -70,10 +70,8 @@ require "../../servicios/06invoicingInformation.php";
   $idInvoicing = verifyInvoicingUserSubjectExist($idUser, $idAsignatura);
   if ($idInvoicing == 0) {
     $errorDetected = createInvoicingRegister($idUser, $idAsignatura, $rfc, $razonSocial, "no_pagado");
-    echo "<p>Creado: ".$idInvoicing."</p>";
   } else if ($idInvoicing > 0) {
     $errorDetected = updateInvoicingRfcRazonSocial($idInvoicing, $rfc, $razonSocial);
-    echo "<p>Actualizado: ".$idInvoicing."</p>";
   } else {
     $errorDetected = 1;
   }
