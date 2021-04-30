@@ -9,7 +9,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
-  <title>Perfil BRANDON</title>
+  <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="perfil05.css" />
