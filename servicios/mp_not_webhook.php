@@ -19,6 +19,9 @@ try {
     } catch (Exception $e2) {
         $id_mp = $result["id"]; //DEV
     }
+    if ($id_mp == "" || $id_mp == NULL) {
+        $id_mp = $result["id"]; //DEV
+    }
     $id_mp = str_replace(" ", "", $id_mp);
     //echo "0";
 
