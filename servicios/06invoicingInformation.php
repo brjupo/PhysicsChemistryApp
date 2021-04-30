@@ -66,7 +66,7 @@ function createInvoicingRegister(int $idUser, int $idSubject, string $rfc, strin
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$stringQuery = 'INSERT 
-      INTO inoicing (id_usuario, id_asignatura, rfc, razon_social, id_status) 
+      INTO invoicing (id_usuario, id_asignatura, rfc, razon_social, id_status) 
       VALUES ( ' . $idUser . ', ' . $idSubject . ', "' . $cyphRfc . '", "' . $cyphRazonSocial . '", "' . $idInvoicingStatus . '" );';
 		// echo '<p> El query enviado fue: ' . $stringQuery . '</p>';
 		// use exec() because no results are returned
