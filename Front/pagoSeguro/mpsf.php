@@ -62,7 +62,7 @@ require "../../servicios/06invoicingInformation.php";
 
       //Precio de hoy
       $todayPrice = getTodayPrice();
-      
+
       // SDK de Mercado Pago
       require '../../../../../../vendor/autoload.php';
       // Agrega credenciales
@@ -165,7 +165,7 @@ require "../../servicios/06invoicingInformation.php";
           <div class="input-group-prepend">
             <span class="input-group-text" id="precioLabel">Precio Unitario [Incluye IVA]</span>
           </div>
-          <input type="text" class="form-control" id="precio" aria-describedby="precioLabel" name="precio" value="<?=$todayPrice?>.00 MXN" disabled />
+          <input type="text" class="form-control" id="precio" aria-describedby="precioLabel" name="precio" value="<?= $todayPrice ?>.00 MXN" disabled />
         </div>
       </div>
       <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
@@ -175,7 +175,7 @@ require "../../servicios/06invoicingInformation.php";
   <div class="container">
     <div class="row">
       <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
+        <p style="color: rgba(0, 0, 0, 1); background-color:rgba(255,255,0,0.8);">Revisa que el pago se haga con el correo que usas para inciar sesión en Kaanbal.<br> Si haces el pago con otro correo/cuenta NO se verá reflejado en tu licencia </p>
       </div>
     </div>
     <div class="row">
