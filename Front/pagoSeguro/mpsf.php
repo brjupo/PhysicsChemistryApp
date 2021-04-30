@@ -212,10 +212,11 @@ require "../../servicios/06invoicingInformation.php";
     </div>
     <div class="row">
       <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
+        <p>Al finalizar tu pago, da clic en "Volver al sitio"</p>
       </div>
     </div>
   </div>
+
   <div class="container">
     <div class="row">
       <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
