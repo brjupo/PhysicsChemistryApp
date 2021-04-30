@@ -14,7 +14,7 @@ getFirstPartMarketPayAccessToken(): string
 getSecondPartMarketPayAccessToken(): string
 getTodayPrice(): int
 verifyUserSubjectExist(int $idUser, int $idSubject): int > OUTPUT ID de la licencia, 0 o -1 Error
-updatePaymentStatus(int $idLicenseCustomer, string $validity, string $newStatus): int
+updatePaymentStatus(int $idLicenseCustomer, string $validity, int $paymentId, string $newStatus): int
 createPaymentStatus(int $idUser, int $idSubject, string $validity, int $paymentId, string $status): int
 */
 
@@ -248,12 +248,13 @@ function createPaymentStatus(int $idUser, int $idSubject, string $validity, int 
  *
  * @param integer	$idLicenseCustomer  	ID de la licencia que relaciona el usuario y la asignatura
  * @param string	$validity  				Vigencia de la licencia
+ * @param integer	$paymentId  			ID de pago de marcado pago
  * @param string	$newStatus  			String del nuevo status de pago (approved, pending, failure)
  * 
  * @author brjupo	facebook.com/brjupo
  * @return integer CERO 0 si la actualizacion fue correcta. MENOS UNO -1 si existio un error obteniendo el id_payment_status. MENOS DOS -2 si existio un error al actualizar
  */
-function updatePaymentStatus(int $idLicenseCustomer, string $validity, string $newStatus): int
+function updatePaymentStatus(int $idLicenseCustomer, string $validity, int $paymentId, string $newStatus): int
 {
 	global $servername, $dbname, $username, $password;
 	//Leer el valor INTEGER del id_payment_status
@@ -276,7 +277,7 @@ function updatePaymentStatus(int $idLicenseCustomer, string $validity, string $n
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stringQuery = "UPDATE licencia SET market_pay_status = '" . $id_payment_status . "' , vigencia = '" . $validity . "' WHERE id_licencia = '" . $idLicenseCustomer . "' ";
+		$stringQuery = "UPDATE licencia SET market_pay_status = '" . $id_payment_status . "' , id_market_pay = '" . $paymentId . "' , vigencia = '" . $validity . "' WHERE id_licencia = '" . $idLicenseCustomer . "' ";
 		// use exec() because no results are returned
 		$conn->exec($stringQuery);
 	} catch (PDOException $e) {

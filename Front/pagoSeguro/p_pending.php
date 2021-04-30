@@ -157,7 +157,7 @@ require "sendMailCustomers.php";
     $idLicencia = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
     //Segundo - Si ya existe el registro. Actualizar el estado del apgo y la vigencia
     if ($idLicencia > 0) {
-      $errorDetected = updatePaymentStatus($idLicencia, $vigencia, "pending");
+      $errorDetected = updatePaymentStatus($idLicencia, $vigencia, $paymentId, "pending");
     }
     //Tercero - Si NO existe el registro. Crearlo.
     else if ($idLicencia == 0) {

@@ -152,15 +152,15 @@ try {
 //$id_mp
 //$idVerdaderoCliente
 //$idAsignatura
-//$idStatusPago
+//$statusPago
 
 if ($errorDetected == 0) {
     $idLicenseCustomer = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
     $validity = getNowMexicoTimePlusSixMonths();
     if ($idLicenseCustomer > 0) {
-        updatePaymentStatus($idLicenseCustomer, $validity, $idStatusPago);
+        updatePaymentStatus($idLicenseCustomer, $validity, $paymentId, $statusPago);
     }
     if ($idLicenseCustomer == 0) {
-        createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $idStatusPago);
+        createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $statusPago);
     }
 }
