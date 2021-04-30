@@ -10,15 +10,17 @@ $entityBody = file_get_contents('php://input');
 $result = json_decode($entityBody, TRUE);
 //echo "<p>Pasamos el result: " . $result . "</p>";
 
-$errorDetected = 0;
-//echo "<p>Pasamos funcionfecha</p>";
 try {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     /*++++++++++++++++++++  VARIABLES PARA EL QUERY  ++++++++++++++++++++*/
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    $id_mp = $result["id"]; //DEV
-    //$id_mp = $result["data"]["id"]; //PROD
+    try {
+        $id_mp = $result["data"]["id"]; //PROD
+    } catch (Exception $e2) {
+        $id_mp = $result["id"]; //DEV
+    }
     $id_mp = str_replace(" ", "", $id_mp);
+    echo "0";
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     /*++++++++++++++++++++  1.- Obtener el mail de la persona y status de pago  ++++++++++++++++++++*/
@@ -32,7 +34,7 @@ try {
     $secondPart = hex2bin($result["value"]);
 
     $bearerToken = $firstPart . $secondPart;
-    $bearerToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
+    //$bearerToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
     $url = 'https://api.mercadopago.com/v1/payments/search?id=' . $id_mp;
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -63,6 +65,7 @@ try {
     if ($idAsignatura == "" || $idAsignatura == NULL) {
         $idAsignatura = 0;
     }
+    echo "1";
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     /*++++++++++++++++++++++++++++++  2.- OBTENER EL ID DEL USUARIO  +++++++++++++++++++++++++++++++*/
@@ -80,16 +83,16 @@ try {
         }
     } catch (PDOException $e) {
         echo "<p>Error getting user info: " . $e->getMessage() . "  " . $stringQuery . "</p>";
-        $errorDetected = 1;
     }
     $conn = null;
     if ($entre == 0) {
         //id_usuario del usuario de brandon
         $idVerdaderoCliente = 4;
     }
+    echo "2";
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    /*++++++++++++++++++++++++++++  3.- OBTENER EL ID DE STATUS DE PAGO  +++++++++++++++++++++++++++*/
+    /*++++++++++++++++++++++++++++++  3.- OBTENER EL STATUS DE PAGO  +++++++++++++++++++++++++++++++*/
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     //$statusPago
     try {
@@ -103,14 +106,14 @@ try {
             $entre = 1;
         }
     } catch (PDOException $e) {
-        //echo "<p>Error payment: " . $e->getMessage() . "  " . $stringQuery . "</p>";
-        $errorDetected = 1;
+        echo "<p>Error payment: " . $e->getMessage() . "  " . $stringQuery . "</p>";
     }
     $conn = null;
     if ($entre == 0) {
         //idStatusPago DESCONOCIDO
         $idStatusPago = 0;
     }
+    echo "3";
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     /*+++++++++++++++++++++  4.- REGISTRAR LA INFORMACION DE MERCADO PAGO  +++++++++++++++++++++++++*/
@@ -134,11 +137,10 @@ try {
         //echo "<p>Se ejecuto el sql</p>";
         //echo "segun yo anda chido, si se escribe";
     } catch (PDOException $e) {
-        //echo "<p>". $sql . "<br>" . $e->getMessage() . "</p>";
-        //echo "<p>User, session token and/or CST are not correct or up to date</p>";
-        $errorDetected = 1;
+        echo "<p>" . $sql . "<br>" . $e->getMessage() . "</p>";
     }
     $conn = null;
+    echo "45";
 
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -149,17 +151,15 @@ try {
     //$idAsignatura
     //$statusPago
 
-    if ($errorDetected == 0) {
-        $idLicenseCustomer = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
-        $validity = getNowMexicoTimePlusSixMonths();
-        if ($idLicenseCustomer > 0) {
-            updatePaymentStatus($idLicenseCustomer, $validity, $paymentId, $statusPago);
-        }
-        if ($idLicenseCustomer == 0) {
-            createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $statusPago);
-        }
+    $idLicenseCustomer = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
+    $validity = getNowMexicoTimePlusSixMonths();
+    if ($idLicenseCustomer > 0) {
+        updatePaymentStatus($idLicenseCustomer, $validity, $id_mp, $statusPago);
     }
-
+    if ($idLicenseCustomer == 0) {
+        createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $statusPago);
+    }
+    echo "6";
 
     header("HTTP/1.2 201 CREATED");
 } catch (Exception $exception) {

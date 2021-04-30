@@ -14,8 +14,11 @@ try {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     /*++++++++++++++++++++  VARIABLES PARA EL QUERY  ++++++++++++++++++++*/
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    //$id_mp = $result["id"]; //DEV
-    $id_mp = $result["data"]["id"]; //PROD
+    try {
+        $id_mp = $result["data"]["id"]; //PROD
+    } catch (Exception $e2) {
+        $id_mp = $result["id"]; //DEV
+    }
     $id_mp = str_replace(" ", "", $id_mp);
     echo "0";
 
