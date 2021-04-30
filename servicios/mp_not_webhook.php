@@ -151,7 +151,7 @@ try {
     $idLicenseCustomer = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
     $validity = getNowMexicoTimePlusSixMonths();
     if ($idLicenseCustomer > 0) {
-        updatePaymentStatus($idLicenseCustomer, $validity, $paymentId, $statusPago);
+        updatePaymentStatus($idLicenseCustomer, $validity, $id_mp, $statusPago);
     }
     if ($idLicenseCustomer == 0) {
         createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $statusPago);
