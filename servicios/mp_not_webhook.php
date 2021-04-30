@@ -164,4 +164,5 @@ if ($errorDetected == 0) {
     if ($idLicenseCustomer == 0) {
         createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $statusPago);
     }
+    echo "<p>Si llegamos hasta aquí</p>";
 }
