@@ -20,7 +20,7 @@ try {
         $id_mp = $result["id"]; //DEV
     }
     $id_mp = str_replace(" ", "", $id_mp);
-    echo "0";
+    //echo "0";
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     /*++++++++++++++++++++  1.- Obtener el mail de la persona y status de pago  ++++++++++++++++++++*/
@@ -65,7 +65,7 @@ try {
     if ($idAsignatura == "" || $idAsignatura == NULL) {
         $idAsignatura = 0;
     }
-    echo "1";
+    //echo "1";
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     /*++++++++++++++++++++++++++++++  2.- OBTENER EL ID DEL USUARIO  +++++++++++++++++++++++++++++++*/
@@ -89,7 +89,7 @@ try {
         //id_usuario del usuario de no-reply@kaanbal.net
         $idVerdaderoCliente = 8272;
     }
-    echo "2";
+    //echo "2";
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     /*++++++++++++++++++++++++++++++  3.- OBTENER EL STATUS DE PAGO  +++++++++++++++++++++++++++++++*/
@@ -113,7 +113,7 @@ try {
         //idStatusPago DESCONOCIDO
         $idStatusPago = 0;
     }
-    echo "3";
+    //echo "3";
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     /*+++++++++++++++++++++  4.- REGISTRAR LA INFORMACION DE MERCADO PAGO  +++++++++++++++++++++++++*/
@@ -140,7 +140,7 @@ try {
         echo "<p>" . $sql . "<br>" . $e->getMessage() . "</p>";
     }
     $conn = null;
-    echo "45";
+    //echo "45";
 
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -159,7 +159,7 @@ try {
     if ($idLicenseCustomer == 0) {
         createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $statusPago);
     }
-    echo "6";
+    //echo "6";
 
     header("HTTP/1.2 201 CREATED");
 } catch (Exception $exception) {
