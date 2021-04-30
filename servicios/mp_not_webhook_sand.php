@@ -140,28 +140,29 @@ try {
     }
     $conn = null;
 
+
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /*+++++++++  6.- ACTUALIZAR O CREAR LA INFORMACIÓN EN LA TABLA DE LICENCIAS CON STATUS +++++++++*/
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    //$id_mp
+    //$idVerdaderoCliente
+    //$idAsignatura
+    //$statusPago
+
+    if ($errorDetected == 0) {
+        $idLicenseCustomer = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
+        $validity = getNowMexicoTimePlusSixMonths();
+        if ($idLicenseCustomer > 0) {
+            updatePaymentStatus($idLicenseCustomer, $validity, $paymentId, $statusPago);
+        }
+        if ($idLicenseCustomer == 0) {
+            createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $statusPago);
+        }
+    }
+
+
     header("HTTP/1.2 201 CREATED");
 } catch (Exception $exception) {
     echo "<p>Error: " . $exception->getMessage() . "</p>";
     header("HTTP/1.2 401 Unathorized");
-}
-
-
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*+++++++++  6.- ACTUALIZAR O CREAR LA INFORMACIÓN EN LA TABLA DE LICENCIAS CON STATUS +++++++++*/
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-//$id_mp
-//$idVerdaderoCliente
-//$idAsignatura
-//$statusPago
-
-if ($errorDetected == 0) {
-    $idLicenseCustomer = verifyUserSubjectExist($idVerdaderoCliente, $idAsignatura);
-    $validity = getNowMexicoTimePlusSixMonths();
-    if ($idLicenseCustomer > 0) {
-        updatePaymentStatus($idLicenseCustomer, $validity, $paymentId, $statusPago);
-    }
-    if ($idLicenseCustomer == 0) {
-        createPaymentStatus($idVerdaderoCliente, $idAsignatura, $validity, $id_mp, $statusPago);
-    }
 }
