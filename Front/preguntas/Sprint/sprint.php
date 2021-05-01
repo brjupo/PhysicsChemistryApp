@@ -1,6 +1,8 @@
 <?php
 require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
+require "../../../servicios/03warrantyPublicity.php";
+require "../../../servicios/04paymentValidation.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,7 +40,7 @@ require "../../../servicios/00DDBBVariables.php";
 
 
 <body>
-    <script>
+    <!--script>
         document.addEventListener("contextmenu", (event) => event.preventDefault());
         $(document).keydown(function(event) {
             if (event.keyCode == 123) {
@@ -55,12 +57,29 @@ require "../../../servicios/00DDBBVariables.php";
                 return false;
             }
         });
-    </script>
+    </script-->
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
     session_start();
+    $leccion = $_GET['leccion'];
+    $leccion = intval($leccion);
 
+    /*---------------------------------------------------------------------------------------- */
+    /*------------------------------------- VALIDAR PAGO ------------------------------------- */
+    /*---------------------------------------------------------------------------------------- */
+    $pagado = licenciaPagada();
+
+    /*---------------------------------------------------------------------------------------- */
+    /*----------------------- VALIDAR LECCION Y MODO ANUNCIO VARIABLE ------------------------ */
+    /*---------------------------------------------------------------------------------------- */
+    if ($pagado != "approved") {
+        validateOrigin($leccion, "sprint");
+    }
+
+    /*---------------------------------------------------------------------------------------- */
+    /*----------------------------- VALIDAR LICENCIA Y USUARIO ------------------------------- */
+    /*---------------------------------------------------------------------------------------- */
     $tokenValidar = array();
     /* echo'<script type="text/javascript">
           alert("$_SESSION["mail"]");
@@ -84,15 +103,7 @@ require "../../../servicios/00DDBBVariables.php";
 
 
     if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
-        //Si existe un token de sesion activo se mostraran las preguntas 
-
-        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-        $leccion = $_GET['leccion'];
-        /*echo '<script type="text/javascript">
-                alert("'.$leccion.'");
-                </script>';
-        */
-        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+        //Si existe un token de sesion activo se mostraran las preguntas
 
         $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
         /*----Paso 1 Obtener el ID del subtema----*/

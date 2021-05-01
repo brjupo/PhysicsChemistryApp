@@ -1,5 +1,6 @@
 <?php
 require "../../servicios/00DDBBVariables.php";
+require "../../servicios/04paymentValidation.php";
 require "../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>
@@ -26,8 +27,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   //////////////////////////////////////////////////////
   session_start();
-
-  //Globales
 
   $tokenValidar = array();
   /* echo'<script type="text/javascript">
@@ -76,7 +75,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     } else {
 
       //Consultar si existe usuario en tabla alumnos
-      $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pswd = ?");
+      $statement = mysqli_prepare($con, "SELECT * FROM usuario_prueba WHERE mail = ? AND pass_cifrado = ?");
       mysqli_stmt_bind_param($statement, "ss", $correo, $password);
       mysqli_stmt_execute($statement);
 
@@ -327,10 +326,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
     <div class="top">
       <div class="container">
         <div class="row titulo">
-          <div class="textCenter col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+          <div class="text-center col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
             <a href="subtemas.php?tema=' . $temaNavegacion . '"><img class="iconoBack" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
           </div>
-          <div class="textCenter col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+          <div class="text-center col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
             <p class="Materia fuenteTitulo">' . $nombreSubtema . '</p>
           </div>
         </div>
@@ -349,18 +348,25 @@ require "../CSSsJSs/mainCSSsJSs.php";
   ';
   }
 
-  function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $habilitar, $habilitarS, $habilitarE)
+  function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion,$habilitar, $habilitarS, $habilitarE)
   {
     $habilitar = '1';
     $habilitarS = '1';
     $habilitarE = '1';
+
+    /*---------------------------------------------------------------------------------------- */
+    /*------------------------------------- VALIDAR PAGO ------------------------------------- */
+    /*---------------------------------------------------------------------------------------- */
+    $pagado = licenciaPagada();
+    if($pagado=="approved"){$prefijo="";}else{$prefijo="pre-";}
+
     if ($habilitar == '1' && $habilitarS == '1' && $habilitarE == '1') {
       //<a href="../preguntas/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" /></a>      
       echo '
       <div class="container">
         <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-          <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="temaPrincipal1 text-center col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
             <table class="table fixed">
               <tbody>
                 <tr>
@@ -371,19 +377,19 @@ require "../CSSsJSs/mainCSSsJSs.php";
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/Practica/practice.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/Practica/'.$prefijo.'practica.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
-                  <a href="../preguntas/Sprint/sprint.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
+                  <a href="../preguntas/Sprint/'.$prefijo.'sprint.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
                   </td>
                   <td>
-                  <a href="../preguntas/Examen/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" />
+                  <a href="../preguntas/Examen/'.$prefijo.'examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" />
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
         </div>
       </div>
 
@@ -397,8 +403,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
       echo '
       <div class="container">
         <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-          <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="temaPrincipal1 text-center col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
             <table class="table fixed">
               <tbody>
                 <tr>
@@ -409,7 +415,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                  <a href="../preguntas/Practica/practice.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
+                  <a href="../preguntas/Practica/'.$prefijo.'practica.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
                   </td>
                   <td>
                     <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
@@ -421,7 +427,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               </tbody>
             </table>
           </div>
-          <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
         </div>
       </div>
 
@@ -435,8 +441,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
       echo '
               <div class="container">
                 <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
-                  <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-                  <div class="temaPrincipal1 textCenter col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+                  <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+                  <div class="temaPrincipal1 text-center col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
                     <table class="table fixed">
                       <tbody>
                         <tr>
@@ -459,7 +465,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                       </tbody>
                     </table>
                   </div>
-                  <div class="textCenter col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+                  <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
                 </div>
               </div>
 

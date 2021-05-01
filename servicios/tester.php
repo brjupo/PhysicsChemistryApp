@@ -79,7 +79,7 @@ if (false) {
       $response["response"] = "Ha ocurrido un error al enviar el correo. Detalle: " . $respuestaAlEnviarElMail;
     } else {
       //agregarProfesor a usuario_prueba con password correoCorreo
-      $addTeacher = new queryToDDBB2("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerTeacherMail . "', '" . $lowerTeacherMail . $lowerTeacherMail . "');");
+      $addTeacher = new queryToDDBB2("INSERT INTO usuario_prueba (mail, pass_cifrado) VALUES ('" . $lowerTeacherMail . "', '" . $lowerTeacherMail . $lowerTeacherMail . "');");
       if ($addTeacher->write() != "success") {
         $response["response"] = "Error al escribir el nuevo usuario";
       } else {
@@ -195,8 +195,7 @@ function cuerpoCorreoNuevoProfesor()
     <p style="color: white">.</p>
     <p>Agradecemos tu confianza,</p>
     <p>
-      <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
-      VEKS Solutions México S.A. de C.V.
+      <strong>Equipo de Plataforma Educativa Kaanbal</strong>
     </p>
     <h4 style="background-color: rgb(35, 85, 145); color: rgb(35, 85, 145)">
       .

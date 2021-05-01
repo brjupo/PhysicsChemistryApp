@@ -13,7 +13,7 @@ require "../../servicios/00DDBBVariables.php";
   <title>Kaanbal Top</title>
   <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap441 ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
-  <link rel="stylesheet" href="Top12.css" />
+  <link rel="stylesheet" href="Top15.css" />
   <script src="Top03.js"></script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -37,10 +37,10 @@ require "../../servicios/00DDBBVariables.php";
   <div class="top">
     <div class="container">
       <div class="row">
-        <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+        <div class="text-center col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
           <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
         </div>
-        <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
+        <div class="text-center col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
           <p class="Ciencia fuenteTitulo" id="asignaturad"><?= $_SESSION["asignaturaNavegacion"] ?></p>
           <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none"><?= $_SESSION["idAsignatura"] ?></p>
         </div>
@@ -51,13 +51,13 @@ require "../../servicios/00DDBBVariables.php";
   <div class="container">
     <div class="row" style="margin:3vw;">
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light" id="topGrupalButton" style="display:block; margin:auto;">Class Top</button>
+        <button type="button" class="btn btn-light topTypeButton" id="topGrupalButton">Class Top</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topSemestralButton" style="display:block; margin:auto;" onclick='location.href="topS.php"'>Semester Top</button>
+        <button type="button" class="btn btn-primary topTypeButton" id="topSemestralButton" onclick='location.href="topS.php"'>Semester Top</button>
       </div>
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topNacionalButton" style="display:block; margin:auto;" onclick='location.href="topN.php"'>National Top</button>
+        <button type="button" class="btn btn-primary topTypeButton" id="topNacionalButton" onclick='location.href="topN.php"'>National Top</button>
       </div>
     </div>
   </div>

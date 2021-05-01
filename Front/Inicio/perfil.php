@@ -12,7 +12,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-  <link rel="stylesheet" href="Temas01.css" />
+  <link rel="stylesheet" href="perfil05.css" />
   <script src="perfil.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
 
@@ -39,25 +39,18 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <!----------------------------------------------TITULO--------------------------------------------->
 
   <?php
-  $servername = "localhost";
-  $username = "u526597556_dev";
-  $dbname = "u526597556_kaanbal";
-  $password = "1BLeeAgwq1*isgm&jBJe";
-
-  $matricula = "A01169493";
-  $porcentajeAvance = "53.2%";
-  $avatarActual = "avatar.jpg";
-  $diamantes = "25,25";
-
+  //BRANDON
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   //+++++++++++++++++++++++++ Variables de sesion ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   session_start();
 
   $iduser = $_SESSION["id_usuario"];
+  $usuarioCorreo = $_SESSION["mail"];
   $materia = $_SESSION["asignaturaNavegacion"];
+  ?>
 
-
+  <?php
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   $query = "SELECT id_asignatura FROM asignatura WHERE nombre = '$materia'";
   $result = mysqli_query($con, $query);
@@ -74,7 +67,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     }
     $idMateria =  $arrayidMateria[0]["id_asignatura"]; //De aqui se obtendra el id de asignatura
   }
-
+  $_SESSION["idAsignatura"] = $idMateria;
   /* echo '<script type="text/javascript">
                       alert("'.$idMateria.'");
                       </script>';  */
@@ -163,33 +156,16 @@ require "../CSSsJSs/mainCSSsJSs.php";
   function imprimirVistaPerfil($matricula, $materia, $porcentajeAvance, $avatarActual, $diamantes)
   {
     imprimirTop();
-    imprimirRelleno();
     imprimirMatricula($matricula);
     imprimirAvanceMateria($materia, $porcentajeAvance);
-    imprimirRelleno();
     imprimirAvatarActual($avatarActual);
     imprimirComboAvatars();
-    imprimirRelleno();
     imprimirDiamantes($diamantes);
-    imprimirRelleno();
     if ($_SESSION["mostrarMenuprofesor"] == '') {
       imprimirInfoEstudiante();
-      imprimirRelleno();
-      imprimirRelleno();
       imprimirCalificacion($matricula);
     }
-    imprimirRelleno();
-    imprimirRelleno();
-    /*imprimirPagos();
-    imprimirConFactura();
-    imprimirRelleno();
-    imprimirSinFactura();
-    imprimirRelleno();
-    imprimirRelleno();
-    imprimirRelleno();*/
-    imprimirCreditos();
-    imprimirRelleno();
-    imprimirRelleno();
+    imprimirPagos();
     imprimirFooter();
   }
   ?>
@@ -201,18 +177,20 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <div class="top">
     <div class="container">
       <div class="row">
-        <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+        <div class="text-center col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
           <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
         </div>
-        <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
+        <div class="text-center col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
           <p class="Ciencia fuenteTitulo" id="asignaturad">' . $_SESSION["asignaturaNavegacion"] . '</p>
           <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none">' . $_SESSION["idAsignatura"] . '</p>
         </div>
       </div>
     </div>
   </div>
-          <!------------------------------------------------FIN TITULO----------------------------------------------->
-          ';
+  <!------------------------------------------------FIN TITULO----------------------------------------------->
+        ';
+
+    imprimirRelleno();
   }
 
   function imprimirMatricula($matricula)
@@ -222,7 +200,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="row">
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
               <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-                <p class="tituloTemasPrincipales textCenter" id="matricula">' . $matricula . '</p>
+                <p class="text-center" id="matricula">' . $matricula . '</p>
               </div>
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
@@ -237,14 +215,15 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="row">
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
               <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-                <p class="tituloTemasPrincipales textCenter">
+                <h2 class="text-center">
                   ' . $materia . '   ' . $porcentajeAvance . '
-                </p>
+                </h2>
               </div>
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
           </div>
     ';
+    imprimirRelleno();
   }
 
 
@@ -411,6 +390,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               </div>
             </div>    
     ';
+    imprimirRelleno();
   }
 
   function imprimirDiamantes($diamantes)
@@ -423,12 +403,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
                 <img class="icons imgRight" src="../CSSsJSs/icons/diamante.svg" />
               </div>
               <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                <p class="tituloTemasPrincipales textLeft">' . $diamantes . '</p>
+                <h2 class="textLeft" style="display:block;margin:auto;">' . $diamantes . '</h2>
               </div>
               <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
             </div>
           </div>
     ';
+    imprimirRelleno();
   }
 
   function imprimirCalificacion($matricula)
@@ -437,7 +418,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           <div class="container">
             <div class="row">
               <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h2 style="text-align:center;">Grades</h2>
+                <h2 style="text-align:center;">Calificaciones</h2>
               </div>
             </div>
           </div>
@@ -449,7 +430,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-primary" value="Practice, Sprint & Exam" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
+                      <input type="submit" class="btn btn-primary" value="Práctica, Sprint y Examen" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
                     </form>
                 </div>
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
@@ -462,21 +443,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
                 </div>
             </div>
           </div>';
+    imprimirRelleno();
   }
 
 
-  function imprimirCreditos()
-  {
-    echo '
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <a href="creditos.html"><h1 class="textCenter titulo">Credits</h1></a>
-              </div>
-            </div>
-          </div>
-    ';
-  }
 
   function imprimirRelleno()
   {
@@ -494,20 +464,102 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
   function imprimirPagos()
   {
-    echo '
-          <div class="container">
-            <div class="row">
-              <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h2 style="text-align:center;">Comprar</h2>
-              </div>
-            </div>
+    //1.- Conocer el status de market_pay_status del usuario
+    //2.- Si el alumno tiene un pago exitoso NO mostrar los metodos de pago
+    //3.- Si el alumno tiene un pago pendiente mostrar Pago pendiente
+    //3.1.- Mostrar mensaje de pago pendiente y las opciones de pago
+    //4.- ELSE Mostrar opciones de pago
+
+    //1.- Conocer el status de market_pay_status del usuario
+    global $servername, $dbname, $username, $password;
+    $paymentStatus = NULL;
+    $vigencia = NULL;
+    try {
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stringQuery = 'SELECT vigencia, payment_status FROM licencia JOIN payment_status ON payment_status.id_payment_status = licencia.market_pay_status WHERE id_usuario = ' . $_SESSION["id_usuario"] . ' AND id_asignatura = ' . $_SESSION["idAsignatura"] . ' ORDER BY vigencia DESC LIMIT 1';
+      $stmt = $conn->query($stringQuery);
+      while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+        $vigencia = $row[0];
+        $paymentStatus = $row[1];
+      }
+    } catch (PDOException $e) {
+      echo "Error: " .  $e->getMessage() . " en Query " . $stringQuery;
+    }
+    $conn = null;
+
+    //2.-Si el alumno tiene un pago exitoso, NO mostrar los metodos de pago
+    if ($paymentStatus == "approved") {
+      echo '
+      <div class="container" style="
+        background-color: rgba(35, 85, 145, 0.9);
+        color: white;
+        border-radius: 1vw;
+      ">
+        <div class="row">
+          <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+            <p class="text-center estatusPago" style="margin:auto;">Pagado</p>
           </div>
+          <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+            <p class="text-center estatusPago">Vigencia: ' . $vigencia . '</p>
+          </div>
+        </div>
+      </div>
+      ';
+    }
+    //3.- Si el alumno tiene un pago pendiente mostrar Pago pendiente
+    //3.1.- Mostrar mensaje de pago pendiente y las opciones de pago
+    else if ($paymentStatus == "pending") {
+      echo '
+      <div class="container" style="
+        background-color: rgba(225, 115, 0, 0.9);
+        color: white;
+        border-radius: 1vw;
+      ">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="text-center estatusPago">Pago pendiente</p>
+          </div>
+        </div>
+      </div>
+      ';
+      imprimirOpcionesDePago();
+    }
+    //4.- ELSE Mostrar opciones de pago
+    else {
+      imprimirOpcionesDePago();
+    }
+
+    imprimirRelleno();
+    imprimirRelleno();
+  }
+
+  function imprimirOpcionesDePago()
+  {
+    imprimirRelleno();
+    echo '
+    <div class="container">
+      <div class="row">
+        <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h2 class="comprar" style="text-align:center;">Vuélvete premium</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color:rgba(0,0,0,0);">./p>
+        </div>
+      </div>
+    </div>
     ';
+    imprimirConFactura();
+    imprimirSinFactura();
+    imprimirRelleno();
   }
 
   function imprimirConFactura()
   {
     echo '
+    <!--++++++++++++++++++++++++++++++++++++++CON FACTURA++++++++++++++++++++++++++++++++++++++-->
     <div class="container">
       <div class="row">
         <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
@@ -516,7 +568,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           id="conFactura1"
           style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
         >
-          <h4>Con factura</h4>
+          <p class="comprarf">Pago - con factura</p>
         </div>
         <div
           class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
@@ -529,14 +581,14 @@ require "../CSSsJSs/mainCSSsJSs.php";
             style="
               transform: rotate(270deg);
               display: block;
-              margin: 0px 0px 0px auto;
+              margin: 1vw 0px;
             "
           />
         </div>
         <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
       </div>
     </div>
-
+  
     <div id="conFactura" class="ocultarOpciones">
       <!--Relleno-->
       <div class="container">
@@ -549,89 +601,54 @@ require "../CSSsJSs/mainCSSsJSs.php";
       <!--RFC y Razon Social-->
       <div class="container">
         <div class="row">
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <div class="input-group-prepend">
               <span class="input-group-text">RFC</span>
             </div>
+            <label for="rfc" style="font-size: 0px; line-height: 0px; margin: 0px"
+              >RFC</label
+            >
             <input
+              id="rfc"
+              name="rfc"
               type="text"
               class="form-control"
+              style="text-transform: uppercase;"
               placeholder="XXXX900101ABC"
-              name="rfc"
               form="datosConFactura"
+              required
             />
           </div>
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-
+  
           <div class="col-12 col-sm-12 col-md-12 d-lg-none">
             <p class="transparente">.</p>
           </div>
-
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+  
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <div class="input-group-prepend">
               <span class="input-group-text">Razón Social</span>
             </div>
+            <label
+              for="razonSocial"
+              style="font-size: 0px; line-height: 0px; margin: 0px"
+              >Razón Social</label
+            >
             <input
-              type="text"
-              class="form-control"
-              placeholder="JUAN GARCIA RODRIGUEZ"
+              id="razonSocial"
               name="razonSocial"
-              form="datosConFactura"
-            />
-          </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-        </div>
-      </div>
-
-      <!--Relleno-->
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <p class="transparente">.</p>
-          </div>
-        </div>
-      </div>
-      <!--Matricula y Nombre-->
-      <div class="container">
-        <div class="row">
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-            <div class="input-group-prepend">
-              <span class="input-group-text">ID/Matrícula</span>
-            </div>
-            <input
               type="text"
               class="form-control"
-              placeholder="A1234567890"
-              name="matricula"
+              style="text-transform: uppercase;"
+              placeholder="JUAN GARCIA RODRIGUEZ"
               form="datosConFactura"
+              required
             />
           </div>
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-
-          <div class="col-12 col-sm-12 col-md-12 d-lg-none">
-            <p class="transparente">.</p>
-          </div>
-
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Nombre</span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="JESSICA GARCIA PEREZ"
-              name="nombre"
-              form="datosConFactura"
-            />
-          </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
         </div>
       </div>
-
+  
       <!--Relleno-->
       <div class="container">
         <div class="row">
@@ -643,27 +660,32 @@ require "../CSSsJSs/mainCSSsJSs.php";
       <!--Correo-->
       <div class="container">
         <div class="row">
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <div class="input-group-prepend">
               <span class="input-group-text">Correo</span>
             </div>
+            <label
+              for="userMailWithInvoice"
+              style="font-size: 0px; line-height: 0px; margin: 0px"
+              >Correo</label
+            >
             <input
+              id="userMailWithInvoice"
+              name="userMailWithInvoice"
               type="text"
               class="form-control"
-              placeholder="mail@school.dom"
-              name="matricula"
+              style="text-transform: lowercase;"
+              value="' . $_SESSION["mail"] . '"
               form="datosConFactura"
             />
           </div>
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-
+  
           <div class="col-12 col-sm-12 col-md-12 d-lg-none">
             <p class="transparente">.</p>
           </div>
-
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+  
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <p
               style="
                 font-size: x-small;
@@ -672,13 +694,15 @@ require "../CSSsJSs/mainCSSsJSs.php";
                 margin: auto auto 0px auto;
               "
             >
-              En este correo te enviaremos el link para cambiar la contraseña
+              Este es el correo que usas como usuario en Kaanbal. Si el correo no
+              es el correcto, ingresa a Kaanbal nuevamente, con el correo que
+              deseas pagar
             </p>
           </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
         </div>
       </div>
-
+  
       <!--Relleno-->
       <div class="container">
         <div class="row">
@@ -687,230 +711,27 @@ require "../CSSsJSs/mainCSSsJSs.php";
           </div>
         </div>
       </div>
-      <!--Relleno-->
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <p class="transparente">.</p>
-          </div>
-        </div>
-      </div>
-      <!--DIRECCION-->
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <p
-              style="
-                text-align: center;
-                display: block;
-                margin: auto auto 0px auto;
-              "
-            >
-              Dirección [Opcional]
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!--Relleno-->
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <p class="transparente">.</p>
-          </div>
-        </div>
-      </div>
-      <!--Numero exterior e interior-->
-      <div class="container">
-        <div class="row">
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Número Exterior</span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="14"
-              name="numeroExterior"
-              form="datosConFactura"
-            />
-          </div>
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-
-          <div class="col-12 col-sm-12 col-md-12 d-lg-none">
-            <p class="transparente">.</p>
-          </div>
-
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Número Interior</span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="B"
-              name="numeroInterior"
-              form="datosConFactura"
-            />
-          </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-        </div>
-      </div>
-
-      <!--Relleno-->
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <p class="transparente">.</p>
-          </div>
-        </div>
-      </div>
-      <!--Calle y Colonia-->
-      <div class="container">
-        <div class="row">
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Calle</span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="BOSQUES"
-              name="calle"
-              form="datosConFactura"
-            />
-          </div>
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-
-          <div class="col-12 col-sm-12 col-md-12 d-lg-none">
-            <p class="transparente">.</p>
-          </div>
-
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Colonia</span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="HACIENDA SAN JUAN"
-              name="colonia"
-              form="datosConFactura"
-            />
-          </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-        </div>
-      </div>
-
-      <!--Relleno-->
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <p class="transparente">.</p>
-          </div>
-        </div>
-      </div>
-      <!--Delegación o Municipio-->
-      <div class="container">
-        <div class="row">
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-          <div
-            class="input-group col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"
-          >
-            <div class="input-group-prepend">
-              <span class="input-group-text">Delegación/Municipio</span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="ALVARO OBREGON"
-              name="delegacionMunicipio"
-              form="datosConFactura"
-            />
-          </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-        </div>
-      </div>
-
-      <!--Relleno-->
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <p class="transparente">.</p>
-          </div>
-        </div>
-      </div>
-      <!--Estado y Código Postal-->
-      <div class="container">
-        <div class="row">
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Estado</span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="CDMX"
-              name="estado"
-              form="datosConFactura"
-            />
-          </div>
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-
-          <div class="col-12 col-sm-12 col-md-12 d-lg-none">
-            <p class="transparente">.</p>
-          </div>
-
-          <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-          <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Código postal</span>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="52812"
-              name="codigoPostal"
-              form="datosConFactura"
-            />
-          </div>
-          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-        </div>
-      </div>
-
-      <!--Relleno-->
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <p class="transparente">.</p>
-          </div>
-        </div>
-      </div>
+  
       <!--Mensaje sobre la factura-->
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <p
               style="
-                font-size: x-small;
+                font-size: small;
                 text-align: center;
                 display: block;
                 margin: auto auto 0px auto;
               "
             >
-              La factura la encontrarás en el portal del SAT, en 5 días hábiles.
-              Cualquier duda o aclaracion estamos a tus órdenes kaanbal@veks.mx
-              o 55 4871 4593
+              La factura la encontrarás en el portal del SAT, en 10 días hábiles.
+              Cualquier duda o aclaración estamos a tus órdenes
+              aclaraciones@kaanbal.net o 55 4871 4593
             </p>
           </div>
         </div>
       </div>
-
+  
       <!--Relleno-->
       <div class="container">
         <div class="row">
@@ -929,13 +750,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <img
               src="../CSSsJSs/images/mercadoPagoLogo.png"
               class="logoPagos"
-              style="margin: auto 0px auto auto;"
+              style="margin: auto 0px auto auto"
             />
           </div>
           <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
             <form
               id="datosConFactura"
-              action="/action_page.php"
+              action="../pagoSeguro/mpcf.php"
               method="POST"
               enctype="application/x-www-form-urlencoded"
             >
@@ -948,185 +769,195 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <img
               src="../CSSsJSs/images/paypalLogo.png"
               class="logoPagos"
-              style="margin: auto auto auto 0px;"
+              style="margin: auto auto auto 0px"
             />
           </div>
+        </div>
+      </div>
+    </div>
+    <!--Relleno-->
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p class="transparente">.</p>
         </div>
       </div>
     </div>
     ';
   }
 
+
   function imprimirSinFactura()
   {
     echo '
-          <div class="container">
-            <div class="row">
-              <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
-              <div
-                class="col-6 col-sm-6 col-md-5 col-lg-5 col-xl-5"
-                id="sinFactura1"
-                style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
-              >
-                <h4>Sin factura</h4>
-              </div>
-              <div
-                class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
-                id="sinFactura2"
-                style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
-              >
-                <img
-                  src="../CSSsJSs/icons/FlechaIzq.svg"
-                  width="20px"
-                  style="
-                    transform: rotate(270deg);
-                    display: block;
-                    margin: 0px 0px 0px auto;
-                  "
-                />
-              </div>
-              <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
+    <!--++++++++++++++++++++++++++++++++++++++SIN FACTURA++++++++++++++++++++++++++++++++++++++-->
+    <div class="container">
+      <div class="row">
+        <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
+        <div
+          class="col-6 col-sm-6 col-md-5 col-lg-5 col-xl-5"
+          id="sinFactura1"
+          style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
+        >
+          <p class="comprarf">Pago - sin factura</p>
+        </div>
+        <div
+          class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
+          id="sinFactura2"
+          style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
+        >
+          <img
+            src="../CSSsJSs/icons/FlechaIzq.svg"
+            width="20px"
+            style="
+              transform: rotate(270deg);
+              display: block;
+              margin: 1vw 0px;
+            "
+          />
+        </div>
+        <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3"></div>
+      </div>
+    </div>
+  
+    <div id="sinFactura" class="ocultarOpciones">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <!--Correo-->
+      <div class="container">
+        <div class="row">
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Correo</span>
             </div>
+            <label
+              for="userMailNoInvoice"
+              style="font-size: 0px; line-height: 0px; margin: 0px"
+              >Correo</label
+            >
+            <input
+              id="userMailNoInvoice"
+              name="userMailNoInvoice"
+              type="text"
+              class="form-control"
+              style="text-transform: lowercase;"
+              value="' . $_SESSION["mail"] . '"
+              form="datosSinFactura"
+            />
+          </div>
+  
+          <div class="col-12 col-sm-12 col-md-12 d-lg-none">
+            <p class="transparente">.</p>
           </div>
 
-          <div id="sinFactura" class="ocultarOpciones">
-            <div class="container">
-              <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  <p class="transparente">.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="container">
-              <div class="row">
-                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">ID/Matrícula</span>
-                  </div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="A1234567890"
-                    name="matricula"
-                    form="datosSinFactura"
-                  />
-                </div>
-                <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-
-                <div class="col-12 col-sm-12 col-md-12 d-lg-none">
-                  <p class="transparente">.</p>
-                </div>
-
-                <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-                <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Nombre</span>
-                  </div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="JESSICA GARCIA PEREZ"
-                    name="nombre"
-                    form="datosSinFactura"
-                  />
-                </div>
-                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-              </div>
-            </div>
-
-            <div class="container">
-              <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  <p class="transparente">.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="container">
-              <div class="row">
-                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Correo</span>
-                  </div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="mail@school.dom"
-                    name="matricula"
-                    form="datosSinFactura"
-                  />
-                </div>
-                <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-
-                <div class="col-12 col-sm-12 col-md-12 d-lg-none">
-                  <p class="transparente">.</p>
-                </div>
-
-                <div class="col-1 col-sm-1 col-md-1 d-lg-none"></div>
-                <div class="input-group col-10 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-                  <p
-                    style="
-                      font-size: x-small;
-                      text-align: center;
-                      display: block;
-                      margin: auto auto 0px auto;
-                    "
-                  >
-                    En este correo te enviaremos el link para cambiar la contraseña
-                  </p>
-                </div>
-                <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-              </div>
-            </div>
-
-            <div class="container">
-              <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  <p class="transparente">.</p>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  <p class="transparente">.</p>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  <p class="transparente">.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="container">
-              <div class="row">
-                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                  <img
-                    src="../CSSsJSs/images/mercadoPagoLogo.png"
-                    class="logoPagos"
-                    style="margin: auto 0px auto auto;"
-                  />
-                </div>
-                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                  <form
-                    id="datosSinFactura"
-                    action="/action_page.php"
-                    method="POST"
-                    enctype="application/x-www-form-urlencoded"
-                  >
-                    <button type="submit" class="btn btn-primary centrarObjeto">
-                      Pagar
-                    </button>
-                  </form>
-                </div>
-                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                  <img
-                    src="../CSSsJSs/images/paypalLogo.png"
-                    class="logoPagos"
-                    style="margin: auto auto auto 0px;"
-                  />
-                </div>
-              </div>
-            </div>
+          <div class="input-group col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+            <p
+              style="
+                font-size: x-small;
+                text-align: center;
+                display: block;
+                margin: auto auto 0px auto;
+              "
+            >
+              Este es el correo que usas como usuario en Kaanbal. Si el correo no
+              es el correcto, ingresa a Kaanbal nuevamente, con el correo que
+              deseas pagar
+            </p>
           </div>
+          <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
+        </div>
+      </div>
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <img
+              src="../CSSsJSs/images/mercadoPagoLogo.png"
+              class="logoPagos"
+              style="margin: auto 0px auto auto"
+            />
+          </div>
+          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <form
+              id="datosSinFactura"
+              action="../pagoSeguro/mpsf.php"
+              method="POST"
+              enctype="application/x-www-form-urlencoded"
+            >
+              <button type="submit" class="btn btn-primary centrarObjeto">
+                Pagar
+              </button>
+            </form>
+          </div>
+          <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <img
+              src="../CSSsJSs/images/paypalLogo.png"
+              class="logoPagos"
+              style="margin: auto auto auto 0px"
+            />
+          </div>
+        </div>
+      </div>
+      <!--Relleno-->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <p class="transparente">.</p>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center"
+            style="font-size: small"
+          >
+            NOTA: En caso de hacer un pago SIN factura, y posteriormente querer la
+            factura, tendrá que enviar sus datos junto con el “payment_id” a
+            aclaraciones@kaanbal.net . El “payment_id” se proporciona en la última
+            pantalla del pago. Esta aclaración tiene un tiempo de respuesta de
+            hasta 2 meses.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Relleno-->
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p class="transparente">.</p>
+        </div>
+      </div>
+    </div>
+    
     ';
   }
 
@@ -1181,7 +1012,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">List number</span>
+                <span class="input-group-text">Número de lista</span>
               </div>
               <select class="custom-select" id="listNumber">';
     //Crear la lectura en base de datos
@@ -1212,7 +1043,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">First name</span>
+                <span class="input-group-text">Primer nombre</span>
               </div>
               <select class="custom-select" id="idFirstName">';
     try {
@@ -1242,12 +1073,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
     echo '    </select>
             </div>
-            <p style="font-size:x-small; text-align:center ">If your first name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+            <!--p style="font-size:x-small; text-align:center ">If your first name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p-->
+            <p style="font-size:x-small; text-align:center ">¿Tu primer nombre NO esta en la lista?, envíanos un correo a: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
           ';
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group input-group-sm">
               <button id="updateStudentInfoButton" type="button" class="btn btn-primary btn-sm" style="display:block;margin:auto;">
-                  Update information
+                  Actualizar información
               </button>
             </div>
           ';
@@ -1258,6 +1090,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
         </div>
       </div>
     ';
+    imprimirRelleno();
+    imprimirRelleno();
   }
 
   function imprimirFooter()

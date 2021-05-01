@@ -31,7 +31,8 @@ if (false) {
       $respuesta["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde.";
     } else {
       //agregarStudent a usuario_prueba con password correoCorreo
-      $addStudent = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerStudentMail . "', '" . $lowerStudentMail . $lowerStudentMail . "');");
+      $tempPas = MD5($lowerStudentMail . $lowerStudentMail);
+      $addStudent = new queryToDDBB("INSERT INTO usuario_prueba (mail, pass_cifrado) VALUES ('" . $lowerStudentMail . "', '" . $tempPas . "');");
       if ($addStudent->write() != "success") {
         $respuesta["response"] = "Error al escribir el nuevo usuario";
       } else {
@@ -70,14 +71,12 @@ if (false) {
                   //Traer materia de acuerdo al grupo
                   $getAsignaturaID = new queryToDDBB("SELECT id_asignatura FROM grupo WHERE id_grupo= '" . $gettedGroup . "';");
                   $gettedAsignaturaID = $getAsignaturaID->read();
-
-                  $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia, pagado, estatus) VALUES (" . intval($gettedStudentID) . "," . intval($gettedAsignaturaID) . " , '2021-12-31 23:59:59',1,1);");
-                  $addedStudentInLicenses = $addStudentInLicenses->write();
                   if ($addedAlumnoGrupot != "success") {
                     $respuesta["response"] = "Error al asociar grupo";
                   } else {
                     //agregar ID alumno a licencias
-
+                    $addStudentInLicenses = new queryToDDBB("INSERT INTO licencia (id_usuario, id_asignatura, vigencia, pagado, estatus) VALUES (" . intval($gettedStudentID) . "," . intval($gettedAsignaturaID) . " , '2021-12-31 23:59:59',1,1);");
+                    $addedStudentInLicenses = $addStudentInLicenses->write();
                     if ($addedStudentInLicenses != "success") {
                       $respuesta["response"] = "Error al escribir el alumno en licencias";
                     } else {
@@ -187,8 +186,7 @@ function cuerpoCorreoNuevoStudent($mail, $token)
     <p style="color: white">.</p>
     <p>Agradecemos tu confianza,</p>
     <p>
-      <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
-      VEKS Solutions México S.A. de C.V.
+      <strong>Equipo de Plataforma Educativa Kaanbal</strong>
     </p>
     <h4 style="background-color: rgb(35, 85, 145); color: rgb(35, 85, 145)">
       .

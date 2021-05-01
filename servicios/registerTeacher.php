@@ -12,7 +12,7 @@ $lowerTeacherMail = strtolower($teacherMail);
 
 
 if (strpos($lowerTeacherMail, 'tec.mx') === false) {
-//if (false) {
+  //if (false) {
   $respuesta["response"] = "¿Quieres obtener tu acceso a Kaanbal? <a href='https://kaanbal.net/contacto.html'>Contáctanos!</a>. Podemos ofrecer a su institución un periodo de prueba GRATUITO.";
 } else {
   $getTeacherMail = new queryToDDBB("SELECT mail FROM usuario_prueba WHERE mail = '" . $lowerTeacherMail . "' ;");
@@ -23,7 +23,8 @@ if (strpos($lowerTeacherMail, 'tec.mx') === false) {
     $respuesta["response"] = "Ha ocurrido un error inesperado. Por favor intenta más tarde.";
   } else {
     //agregarProfesor a usuario_prueba con password correoCorreo
-    $addTeacher = new queryToDDBB("INSERT INTO usuario_prueba (mail, pswd) VALUES ('" . $lowerTeacherMail . "', '" . $lowerTeacherMail . $lowerTeacherMail . "');");
+    $tempPas = MD5($lowerTeacherMail . $lowerTeacherMail);
+    $addTeacher = new queryToDDBB("INSERT INTO usuario_prueba (mail, pass_cifrado) VALUES ('" . $lowerTeacherMail . "', '" . $tempPas . "');");
     if ($addTeacher->write() != "success") {
       $respuesta["response"] = "Error al escribir el nuevo usuario";
     } else {
@@ -139,8 +140,7 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
     <p style="color: white">.</p>
     <p>Agradecemos tu confianza,</p>
     <p>
-      <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
-      VEKS Solutions México S.A. de C.V.
+      <strong>Equipo de Plataforma Educativa Kaanbal</strong>
     </p>
     <h4 style="background-color: rgb(35, 85, 145); color: rgb(35, 85, 145)">
       .

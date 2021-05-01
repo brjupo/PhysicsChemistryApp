@@ -99,18 +99,6 @@ p {
   font-family: "Monse";
 }
 
-.textCenter {
-  text-align: center;
-}
-
-.textRight {
-  text-align: right;
-}
-
-.textLeft {
-  text-align: left;
-}
-
 .imgRight {
   float: right;
 }

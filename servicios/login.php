@@ -15,7 +15,7 @@
     $response['response'] = 'Usuario o contraseña inválida';//Si no existe el usuario 
     
     //consultar si existe usuario en tabla alumnos
-    $statement = mysqli_prepare($con, "SELECT id_usuario, mail, pswd, tokenA FROM usuario_prueba WHERE mail = ? AND pswd = ?");
+    $statement = mysqli_prepare($con, "SELECT id_usuario, mail, pass_cifrado, tokenA FROM usuario_prueba WHERE mail = ? AND pass_cifrado = ?");
     mysqli_stmt_bind_param($statement, "ss", $correo, $password);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);

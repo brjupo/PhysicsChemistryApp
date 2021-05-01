@@ -4,7 +4,11 @@ $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u5
 
 $token = $_POST["tokenA"];
 $correo = $_POST["correo"];
-$password = $_POST["password"];
+$passwordOriginal = $_POST["password"];
+$token = str_replace(" ", "", $token);
+$correo = str_replace(" ", "", $correo);
+$password = MD5($passwordOriginal);
+$password = str_replace(" ", "", $password);
 
 //Corroborar que no existe el correo en base de datos
 $sql = "SELECT mail FROM usuario_prueba WHERE tokenA = '$token' AND mail = '$correo'";
@@ -13,7 +17,7 @@ $rowp = mysqli_fetch_array($resultp);
 
 if ($rowp) {
     //Si existe [mail y token] registrar contraseña en base de datos y responder true
-    $sql = "UPDATE usuario_prueba SET pswd='$password' WHERE tokenA = '$token' AND mail = '$correo'";
+    $sql = "UPDATE usuario_prueba SET pass_cifrado='$password', pswd='$passwordOriginal' WHERE tokenA = '$token' AND mail = '$correo'";
     mysqli_query($con, $sql);
 
     //Es hora de cambiar el token   |  Creamos un token random

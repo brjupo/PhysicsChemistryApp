@@ -1,5 +1,6 @@
 <?php
 require "../CSSsJSs/mainCSSsJSs.php";
+require "../../servicios/esProfe.php";
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/<?= $bootstrap441 ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
-  <link rel="stylesheet" href="Top12.css" />
+  <link rel="stylesheet" href="Top15.css" />
   <script src="Top03.js"></script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -36,10 +37,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <div class="top">
     <div class="container">
       <div class="row">
-        <div class="textCenter col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+        <div class="text-center col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
           <img class="iconoPrincipal" src="../CSSsJSs/icons/physics.svg" />
         </div>
-        <div class="textCenter col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
+        <div class="text-center col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11">
           <p class="Ciencia fuenteTitulo" id="asignaturad"><?= $_SESSION["asignaturaNavegacion"] ?></p>
           <p class="Ciencia fuenteTitulo" id="asignatura" style="display:none"><?= $_SESSION["idAsignatura"] ?></p>
         </div>
@@ -47,19 +48,45 @@ require "../CSSsJSs/mainCSSsJSs.php";
     </div>
   </div>
 
-  <div class="container">
-    <div class="row" style="margin:3vw;">
-      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topGrupalButton" style="display:block; margin:auto;" onclick='location.href="top.php"'>Class Top</button>
-      </div>
-      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-primary" id="topSemestralButton" style="display:block; margin:auto;" onclick='location.href="topS.php"'>Semester Top</button>
-      </div>
-      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <button type="button" class="btn btn-light" id="topNacionalButton" style="display:block; margin:auto;">National Top</button>
+
+  <?php
+  /* +++++++ INICIO. Si es profesor, no imprimir top de clase +++++++++ */
+  if (esProfe() != NULL) {
+  ?>
+    <div class="container">
+      <div class="row" style="margin:3vw;">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+          <button type="button" class="btn btn-primary topTypeButton" id="topSemestralButton" onclick='location.href="topS.php"'>Semester Top</button>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+          <button type="button" class="btn btn-light topTypeButton" id="topNacionalButton">National Top</button>
+        </div>
       </div>
     </div>
-  </div>
+  <?php
+  } else {
+  ?>
+    <div class="container">
+      <div class="row" style="margin:3vw;">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <button type="button" class="btn btn-primary topTypeButton" id="topGrupalButton" onclick='location.href="top.php"'>Class Top</button>
+        </div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <button type="button" class="btn btn-primary topTypeButton" id="topSemestralButton" onclick='location.href="topS.php"'>Semester Top</button>
+        </div>
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <button type="button" class="btn btn-light topTypeButton" id="topNacionalButton">National Top</button>
+        </div>
+      </div>
+    </div>
+
+  <?php
+  }
+  /* +++++++ FIN. Si es profesor, no imprimir top de clase +++++++++ */
+  ?>
+
+
+
 
   <div id="topNacional">
     <?php

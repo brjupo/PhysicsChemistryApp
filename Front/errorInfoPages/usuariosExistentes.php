@@ -16,22 +16,22 @@
 
 <div class="container">
     <div class="row">
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="textLeft col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
         <p class="titulo" id="titulo">Kaanbal</p>
       </div>
       <div class="textRight col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
-      <div class="textCenter col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+      <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
   <div class="container">
     <div class="row">
-      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p style="color: rgba(0, 0, 0, 0);">.</p>
       </div>
     </div>
     <div class="row">
-      <div class="textCenter col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p style="color: rgba(0, 0, 0, 0);">.</p>
       </div>
     </div>

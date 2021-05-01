@@ -100,33 +100,9 @@ body {
   }
 }
 
-.cita {
-  font-size: 2.5vw;
-  font-style: italic;
-  text-align: center;
-}
-
-@media screen and (min-width: 611px) {
-  .cita {
-    font-size: 15px;
-  }
-}
-
 p {
   color: rgb(15, 15, 15);
   font-family: "Monse";
-}
-
-.textCenter {
-  text-align: center;
-}
-
-.textRight {
-  text-align: right;
-}
-
-.textLeft {
-  text-align: left;
 }
 
 .imgRight {
@@ -143,147 +119,6 @@ p {
   }
 }
 
-/*---------------------------------------------------------TEMAS PRINCIPALES---------------------------------------*/
-
-.temaPrincipal1 {
-  color: #333333;
-  background-color: #fbfbfb;
-  border: 1px solid #d6d6d6;
-  border-radius: 10px;
-  border-left: 6px solid rgb(100, 100, 100);
-  padding: 0px 0px 0px 6px;
-  margin: 0px 0px 3px 0px;
-  box-shadow: 0px 3px 0px #d6d6d6;
-  /*El tamaño de la sombra debe conincidir con el padding*/
-}
-
-.temaPrincipal1:hover,
-.temaPrincipal1:active {
-  color: #000000;
-  background-color: #f5f5f5;
-  border: 1px solid #a1a1a1;
-  /**/
-  border-radius: 10px;
-  border-left: 6px solid rgb(50, 50, 50);
-  padding: 1px 0px 2px 6px;
-  /*El tamaño de la sombra debe conincidir con el padding*/
-  margin: 0px 0px 0px 0px;
-  box-shadow: none;
-}
-
-.temaPrincipal2 {
-  color: #333333;
-  background-color: #fbfbfb;
-  border: 1px solid #d6d6d6;
-  border-radius: 10px;
-  border-left: 6px solid rgb(100, 100, 255);
-  padding: 0px 0px 0px 6px;
-  margin: 0px 0px 3px 0px;
-  box-shadow: 0px 3px 0px #d6d6d6;
-}
-
-.temaPrincipal2:hover,
-.temaPrincipal2:active {
-  color: #000000;
-  background-color: #f5f5f5;
-  border: 1px solid #a1a1a1;
-  border-radius: 10px;
-  border-left: 6px solid rgb(50, 50, 205);
-  padding: 1px 0px 2px 6px;
-  margin: 0px 0px 0px 0px;
-  box-shadow: none;
-}
-
-.temaPrincipal3 {
-  color: #333333;
-  background-color: #fbfbfb;
-  border: 1px solid #d6d6d6;
-  border-radius: 10px;
-  border-left: 6px solid rgb(255, 100, 100);
-  padding: 0px 0px 0px 6px;
-  margin: 0px 0px 3px 0px;
-  box-shadow: 0px 3px 0px #d6d6d6;
-}
-
-.temaPrincipal3:hover,
-.temaPrincipal3:active {
-  color: #000000;
-  background-color: #f5f5f5;
-  border: 1px solid #a1a1a1;
-  border-radius: 5px;
-  border-left: 6px solid rgb(205, 20, 20);
-  padding: 1px 0px 2px 6px;
-  margin: 0px 0px 0px 0px;
-  box-shadow: none;
-}
-
-.temaPrincipal4 {
-  color: #333333;
-  background-color: #fbfbfb;
-  border: 1px solid #d6d6d6;
-  border-radius: 10px;
-  border-left: 6px solid rgb(255, 255, 100);
-  padding: 0px 0px 0px 6px;
-  margin: 0px 0px 3px 0px;
-  box-shadow: 0px 3px 0px #d6d6d6;
-}
-
-.temaPrincipal4:hover,
-.temaPrincipal4:active {
-  color: #000000;
-  background-color: #f5f5f5;
-  border: 1px solid #a1a1a1;
-  border-radius: 5px;
-  border-left: 6px solid rgb(195, 195, 0);
-  padding: 1px 0px 2px 6px;
-  margin: 0px 0px 0px 0px;
-  box-shadow: none;
-}
-
-.temaPrincipal5 {
-  color: #333333;
-  background-color: #fbfbfb;
-  border: 1px solid #d6d6d6;
-  border-radius: 10px;
-  border-left: 6px solid rgb(100, 255, 100);
-  padding: 0px 0px 0px 6px;
-  margin: 0px 0px 3px 0px;
-  box-shadow: 0px 3px 0px #d6d6d6;
-}
-
-.temaPrincipal5:hover,
-.temaPrincipal5:active {
-  color: #000000;
-  background-color: #f5f5f5;
-  border: 1px solid #a1a1a1;
-  border-radius: 5px;
-  border-left: 6px solid rgb(0, 195, 0);
-  padding: 1px 0px 2px 6px;
-  margin: 0px 0px 0px 0px;
-  box-shadow: none;
-}
-
-.separadorTemasPrincipales {
-  font-size: 3em;
-  font-weight: 100;
-  padding: 0px !important;
-  color: rgba(150, 150, 150, 0.5);
-}
-
-.tituloTemasPrincipales {
-  margin: 2vw auto;
-  font-size: 4.5vw;
-  font-weight: 600;
-  text-align: left;
-}
-
-@media screen and (min-width: 768px) {
-  .tituloTemasPrincipales {
-    font-size: 25px;
-  }
-}
-
-/*--------------------------------------------------------- FIN TEMAS PRINCIPALES---------------------------------------*/
 
 .relleno {
   color: white;
@@ -365,8 +200,8 @@ p {
 .ID3st{  
   font-family: "Monse";
   text-align: center;
-  margin: 3vh 0px;
-  font-size: 4vw;
+  margin: 2.5vh 0px;
+  font-size: 3vh;
 }
 .IDiamonds{
   font-family: "Monse";
@@ -378,6 +213,23 @@ p {
   margin: 3vh 0px;
   height: 2vh;
   width: auto;
+}
+.estatusPago{
+  display:block; 
+  margin:auto;
+  font-weight: bold;
+  color: white;
+  font-size: 3vw;
+}
+.comprar{
+  display:block; 
+  margin:auto;
+  font-weight: bold;
+}
+.comprarf{
+  display:block; 
+  margin:auto;
+  font-size: 4vw;
 }
 
 
@@ -398,8 +250,8 @@ p {
   .ID3st{  
     font-family: "Monse";
     text-align: center;
-    margin: 2vh 0px;
-    font-size: 3vw;
+    margin: 3vh 0px;
+    font-size: 8vh;
   }
   .IDiamonds{
     font-family: "Monse";
@@ -411,5 +263,11 @@ p {
     margin: 4.5vh 0px;
     height: 5vh;
     width: auto;
+  }
+  .estatusPago{
+    font-size: 1.5vw;
+  }
+  .comprarf{
+    font-size: 2vw;
   }
 }
