@@ -176,12 +176,12 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     <script>
         window.onload = function() {
             console.log("cargado");
-            omitirAnuncioEnSegundos(5);
+            omitirAnuncioEnSegundos(10);
             setTimeout(function() {
-                console.log("Fin 5 s");
+                console.log("Fin 10 s");
                 document.getElementById("omitirAnuncio").style.display = "none";
                 subirOpacidadPorId("botonIrPractica");
-            }, 5000);
+            }, 10000);
         };
 
         function opacity(opacidad, elementId) {
