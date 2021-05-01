@@ -159,8 +159,8 @@ function getCuerpo($token, $kaanbalUser)
                 <h4 style='background-color:rgb(35, 85, 145); color:rgb(35, 85, 145);'>.</h4>
                 <h3>¡Bienvenida(o) a Kaanbal!</h3>
                 <h4>
-                  Has hecho una excelente decisión al adquirir la licencia semestral de la
-                  <strong>Plataforma educativa Kaanbal</strong>
+                  Has hecho una excelente decisión al adquirir la licencia mensual de la
+                  <strong>plataforma educativa Kaanbal</strong>
                 </h4>
                 <p>
                   Ahora podrás practicar, reforzar y consolidar los conceptos vistos en

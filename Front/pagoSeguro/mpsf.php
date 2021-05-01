@@ -151,7 +151,7 @@ require "../../servicios/06invoicingInformation.php";
           <div class="input-group-prepend">
             <span class="input-group-text" id="conceptoLabel">Concepto</span>
           </div>
-          <input type="text" class="form-control" id="concepto" aria-describedby="conceptoLabel" name="concepto" value="Licencia semestral Kaanbal - <?= $materia ?>" disabled />
+          <input type="text" class="form-control" id="concepto" aria-describedby="conceptoLabel" name="concepto" value="Licencia mensual Kaanbal - <?= $materia ?>" disabled />
         </div>
 
         <div class="input-group mb-3">

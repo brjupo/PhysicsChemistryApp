@@ -118,7 +118,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h1 class="text-center">Anuncio</h1>
                 <p class="text-center">¿Quieres evitar la publicidad?</p>
-                <p class="text-center">Vuélvete <strong><a href="../../Inicio/perfil.php" style="text-decoration: none;">premium</a></strong> por solo $<?= getTodayPrice() ?>.00 MXN al semestre</p>
+                <p class="text-center">Vuélvete <strong><a href="../../Inicio/perfil.php" style="text-decoration: none;">premium</a></strong> por solo $<?= getTodayPrice() ?>.00 MXN al mes</p>
                 <p class="text-center">Ingresa en <a href="../../Inicio/perfil.php">tu perfil</a> y sigue el proceso de pago</p>
             </div>
         </div>
