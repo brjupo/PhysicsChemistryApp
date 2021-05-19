@@ -200,7 +200,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                     <img class="icons" src="../CSSsJSs/icons/fullBook.svg"/>
                   </td>
                   <td>
-                  <a href=""><img class="icons" src="../CSSsJSs/icons/runner.svg" /></a>
+                    <img class="icons" src="../CSSsJSs/icons/runner.svg" />
                   </td>
                   <td>
                     <a href="lecciones.php?subtema=' . $id_subtema . '"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
@@ -238,8 +238,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
                     <a href="' . $link . '"><img class="iconsActive" src="../CSSsJSs/icons/fullBook.svg"/></a>
                   </td>
                   <td>
-                    <a href="../preguntas/SuperSprint/superSprint.php?subtema=' . $id_subtema . '"><img class="iconsActive" src="../CSSsJSs/icons/runner.svg" /></a>
-                  </td>
+                     <img class="icons" src="../CSSsJSs/icons/runner.svg" />
+                    </td>
                   <td>
                     <a href="lecciones.php?subtema=' . $id_subtema . '"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
                   </td>
