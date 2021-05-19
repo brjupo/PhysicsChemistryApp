@@ -1,6 +1,8 @@
 <?php
 require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
+require "../../../servicios/03warrantyPublicity.php";
+require "../../../servicios/04paymentValidation.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,17 +11,35 @@ require "../../../servicios/00DDBBVariables.php";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
-    <title>Pregunta</title>
+    <title>Examen</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="styleExamen.css" />
     <script src="examen.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F7VGWM5LKB');
+  </script>
+
+  <!-- Google AdSense -->
+  <script
+      data-ad-client="ca-pub-9977500171937835"
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    ></script>
+
 </head>
 
 <body>
-    <script>
+    <!--script>
         document.addEventListener("contextmenu", (event) => event.preventDefault());
         $(document).keydown(function(event) {
             if (event.keyCode == 123) {
@@ -36,12 +56,30 @@ require "../../../servicios/00DDBBVariables.php";
                 return false;
             }
         });
-    </script>
+    </script-->
 
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
     session_start();
+    $leccion = $_GET['leccion'];
+    $leccion = intval($leccion);
+
+    /*---------------------------------------------------------------------------------------- */
+    /*------------------------------------- VALIDAR PAGO ------------------------------------- */
+    /*---------------------------------------------------------------------------------------- */
+    $pagado = licenciaPagada();
+
+    /*---------------------------------------------------------------------------------------- */
+    /*----------------------- VALIDAR LECCION Y MODO ANUNCIO VARIABLE ------------------------ */
+    /*---------------------------------------------------------------------------------------- */
+    if ($pagado != "approved") {
+        validateOrigin($leccion, "examen");
+    }
+
+    /*---------------------------------------------------------------------------------------- */
+    /*----------------------------- VALIDAR LICENCIA Y USUARIO ------------------------------- */
+    /*---------------------------------------------------------------------------------------- */
 
     $tokenValidar = array();
     /* echo'<script type="text/javascript">
@@ -66,15 +104,7 @@ require "../../../servicios/00DDBBVariables.php";
 
 
     if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
-        //Si existe un token de sesion activo se mostraran las preguntas 
-
-        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-        $leccion = $_GET['leccion'];
-        /*echo '<script type="text/javascript">
-                alert("'.$leccion.'");
-                </script>';
-        */
-        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+        //Si existe un token de sesion activo se mostraran las preguntas
 
         $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
@@ -557,7 +587,7 @@ require "../../../servicios/00DDBBVariables.php";
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Acepto</button>
+                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
