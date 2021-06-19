@@ -16,14 +16,16 @@ function printEditTopic()
   printInstructions();
   printTopics();
   printButtons();
-  echo '</body>';  
+  printScriptTemporal();
+  echo '</body>';
 }
 
-function printTopics(){
+function printTopics()
+{
   $idAsignatura = $_GET['ID_Asignatura'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   $statement = mysqli_prepare($con, "SELECT id_tema, nombre, orden FROM tema WHERE id_asignatura = ? ORDER BY orden");
-  mysqli_stmt_bind_param($statement,"i", $idAsignatura);
+  mysqli_stmt_bind_param($statement, "i", $idAsignatura);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
@@ -41,25 +43,95 @@ function printTopics(){
 
   $tamanho = count($arregloTemas);
 
+  echo '
+      <div class="container">
+        <div class="row">
+          <ul id="sortable">
+      ';
+
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printTopic($arregloTemas[$i]["id_tema"],$arregloTemas[$i]["nombre"],$arregloTemas[$i]["orden"]);
+    printTopic($arregloTemas[$i]["id_tema"], $arregloTemas[$i]["nombre"], $arregloTemas[$i]["orden"]);
   }
+
+  echo '
+          </ul>
+        </div>
+      </div>
+  ';
 }
 
-function printTopic($ID_Topic, $topicName, $topicOrder){
+function printTopic($ID_Topic, $topicName, $topicOrder)
+{
+  echo '
+        <li id="' . $ID_Topic . '" class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">' . $topicName . '</span>
+          </div>
+          <div class="input-group-append">
+            <span class="input-group-text">' . $ID_Topic . '</span>
+            <a href="editarSubtema.php?ID_Tema=' . $ID_Topic . '">
+              <button class="btn btn-outline-secondary" type="button">
+                Buscar sus subtemas
+              </button>
+            </a>
+          </div>
+        </li>
+  ';
+}
+
+function printScriptTemporal()
+{
+  echo '
+  <button id="crearNuevoOrden">Enviar el nuevo orden</button>
+  <p>En la app real, en lugar de imprimir, se enviaría por un servicio el nuevo orden nominal [1,2,3,4...] y el respectivo ID del tema</p>
+  <p id="nuevoOrden"></p>
+  <script>
+    //--------------------------------------------------------------
+    //---------------------------ON CLIC----------------------------
+    //--------------------------------------------------------------
+    document.addEventListener("click", function (evt) {
+      var obtenerOrdenIds = document.getElementById("crearNuevoOrden");
+      targetElement = evt.target; // clicked element
+
+      do {
+        if (targetElement == obtenerOrdenIds) {
+          enviarElNuevoOrden();
+          return;
+        }
+        // Go up the DOM
+        targetElement = targetElement.parentNode;
+      } while (targetElement);
+    });
+    function enviarElNuevoOrden(){
+      var children = document.getElementById("sortable").children;
+      var idArr = [];
+      for (var i = 0; i < children.length; i++) {
+        idArr.push(children[i].id);
+        j=i+1;
+        //En la app real, en lugar de imprimir, se enviaría por un servicio el nuevo orden nominal [1,2,3,4...] y el respectivo ID del tema
+        document.getElementById("nuevoOrden").innerHTML = document.getElementById("nuevoOrden").innerHTML + j + ": " + children[i].id + " <br>";
+      }
+      console.log(idArr);
+    }
+
+  </script>
+  ';
+}
+
+
+function printTopic2($ID_Topic, $topicName, $topicOrder)
+{
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <!--div class="input-group-prepend">
-          </div-->
-          <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicOrder.'" />
+          <input type="text" class="form-control" id="' . $ID_Topic . '" value="' . $topicOrder . '" />
           <div class="input-group-append">
-            <span class="input-group-text">'.$topicName.'</span>
-            <span class="input-group-text">'.$ID_Topic.'</span>
-            <a href="editarSubtema.php?ID_Tema='.$ID_Topic.'">
+            <span class="input-group-text">' . $topicName . '</span>
+            <span class="input-group-text">' . $ID_Topic . '</span>
+            <a href="editarSubtema.php?ID_Tema=' . $ID_Topic . '">
               <button class="btn btn-outline-secondary" type="button">
                 Buscar sus subtemas
               </button>
@@ -80,8 +152,9 @@ function printTopic($ID_Topic, $topicName, $topicOrder){
   ';
 }
 
-function printHead(){
-  echo'
+function printHead()
+{
+  echo '
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -94,17 +167,26 @@ function printHead(){
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
+    <script src="../CSSsJSs/jquery-1.12.4.js"></script>
+    <script src="../CSSsJSs/jquery-ui.js"></script>
     <script src="../CSSsJSs/ordenTema.js"></script>
+    <script>
+      $(function () {
+        $("#sortable").sortable();
+        $("#sortable").disableSelection();
+      });
+    </script>
   </head>
   ';
 }
-function printTitle(){
+function printTitle()
+{
   echo '
   <div class="container">
     <div class="row">
       <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-        <h1 class="titulo">Kaanbal</h1>
+        <h1 class="titulo">Kaanbal ordenar temas</h1>
       </div>
       <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
       <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
@@ -121,7 +203,8 @@ function printTitle(){
   ';
 }
 
-function printInstructions(){
+function printInstructions()
+{
   echo '
   <div class="container">
       <div class="row">
@@ -154,7 +237,8 @@ function printInstructions(){
   ';
 }
 
-function printButtons(){
+function printButtons()
+{
   echo '
   <div class="container">
     <div class="row">
