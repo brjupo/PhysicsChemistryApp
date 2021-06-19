@@ -66,9 +66,11 @@ function printTopic($ID_Topic, $topicName, $topicOrder)
 {
   echo '
         <li id="' . $ID_Topic . '" class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <input type="text" class="form-control" value="' . $topicName. '" />
-          <div class="input-group-append">
+          <div class="input-group-prepend">
             <span class="input-group-text">' . $ID_Topic . '</span>
+          </div>
+          <input type="text" class="form-control" value="' . $topicName. '" disabled />
+          <div class="input-group-append">
             <a href="editarSubtema.php?ID_Tema=' . $ID_Topic . '">
               <button class="btn btn-outline-secondary" type="button">
                 Buscar sus subtemas
@@ -184,7 +186,7 @@ function printTitle()
     <div class="row">
       <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-        <h1 class="titulo">Kaanbal ordenar temas</h1>
+        <h1 class="titulo">Kaanbal</h1>
       </div>
       <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5"></div>
       <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
