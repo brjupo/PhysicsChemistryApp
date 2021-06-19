@@ -16,7 +16,7 @@ function printEditTopic()
   printInstructions();
   printTopics();
   printButtons();
-  printScriptTemporal();
+  //printScriptTemporal();
   echo '</body>';
 }
 
