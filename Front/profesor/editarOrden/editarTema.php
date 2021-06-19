@@ -169,7 +169,7 @@ function printHead()
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="../CSSsJSs/jquery-1.12.4.js"></script>
     <script src="../CSSsJSs/jquery-ui.js"></script>
-    <script src="../CSSsJSs/ordenTema.js"></script>
+    <script src="../CSSsJSs/ordenTema2.js"></script>
     <script>
       $(function () {
         $("#sortable").sortable();
