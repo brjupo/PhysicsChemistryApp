@@ -36,6 +36,7 @@ document.addEventListener("click", function (evt) {
 });
 
 function prepareToSaveInDB() {
+  document.getElementById("loading").style.display = "block";
   var children = document.getElementById("sortable").children;
   for (var i = 0; i < children.length; i++) {
     allIds.push(children[i].id);
@@ -49,6 +50,7 @@ function prepareToSaveInDB() {
 function saveInDB() {
   if (allIdsTemp.length == 0) {
     alert("Información actualizada en base de datos");
+    document.getElementById("loading").style.display = "none";
     return;
   }
   $.ajax({
@@ -77,6 +79,7 @@ function saveInDB() {
     },
     error: function () {
       alert("ERROR Desconocido, Actualice la página y reintente");
+      document.getElementById("loading").style.display = "none";
     },
   });
 }

@@ -16,7 +16,6 @@ function printEditTopic()
   printInstructions();
   printTopics();
   printButtons();
-  //printScriptTemporal();
   echo '</body>';
 }
 
@@ -67,7 +66,7 @@ function printTopic($ID_Topic, $topicName, $topicOrder)
   echo '
         <li id="' . $ID_Topic . '" class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="input-group-prepend">
-            <span class="input-group-text" style="min-width:50px;"> &Delta;' . $ID_Topic . '</span>
+            <span class="input-group-text" style="min-width:50px;"> &Delta;</span>
           </div>
           <input type="text" class="form-control" value="' . $topicName. '" disabled />
           <div class="input-group-append">
@@ -80,46 +79,6 @@ function printTopic($ID_Topic, $topicName, $topicOrder)
         </li>
   ';
 }
-
-function printScriptTemporal()
-{
-  echo '
-  <button id="crearNuevoOrden">Enviar el nuevo orden</button>
-  <p>En la app real, en lugar de imprimir, se enviaría por un servicio el nuevo orden nominal [1,2,3,4...] y el respectivo ID del tema</p>
-  <p id="nuevoOrden"></p>
-  <script>
-    //--------------------------------------------------------------
-    //---------------------------ON CLIC----------------------------
-    //--------------------------------------------------------------
-    document.addEventListener("click", function (evt) {
-      var obtenerOrdenIds = document.getElementById("crearNuevoOrden");
-      targetElement = evt.target; // clicked element
-
-      do {
-        if (targetElement == obtenerOrdenIds) {
-          enviarElNuevoOrden();
-          return;
-        }
-        // Go up the DOM
-        targetElement = targetElement.parentNode;
-      } while (targetElement);
-    });
-    function enviarElNuevoOrden(){
-      var children = document.getElementById("sortable").children;
-      var idArr = [];
-      for (var i = 0; i < children.length; i++) {
-        idArr.push(children[i].id);
-        j=i+1;
-        //En la app real, en lugar de imprimir, se enviaría por un servicio el nuevo orden nominal [1,2,3,4...] y el respectivo ID del tema
-        document.getElementById("nuevoOrden").innerHTML = document.getElementById("nuevoOrden").innerHTML + j + ": " + children[i].id + " <br>";
-      }
-      console.log(idArr);
-    }
-
-  </script>
-  ';
-}
-
 
 function printTopic2($ID_Topic, $topicName, $topicOrder)
 {
@@ -169,7 +128,7 @@ function printHead()
     <script src="../CSSsJSs/minAJAX.js"></script>
     <script src="../CSSsJSs/jquery-1.12.4.js"></script>
     <script src="../CSSsJSs/jquery-ui.js"></script>
-    <script src="../CSSsJSs/ordenTema2.js"></script>
+    <script src="../CSSsJSs/ordenTema3.js"></script>
     <script>
       $(function () {
         $("#sortable").sortable();
@@ -250,6 +209,7 @@ function printButtons()
         >
           Guardar en base de datos
         </button>
+        <img id="loading" src="../CSSsJSs/images/loading.gif" style="display:none;">
       </div>
     </div>
   </div>
