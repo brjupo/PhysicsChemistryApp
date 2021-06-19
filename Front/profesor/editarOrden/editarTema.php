@@ -66,9 +66,7 @@ function printTopic($ID_Topic, $topicName, $topicOrder)
 {
   echo '
         <li id="' . $ID_Topic . '" class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <div class="input-group-prepend">
-            <span class="input-group-text">' . $topicName . '</span>
-          </div>
+          <input type="text" class="form-control" value="' . $topicName. '" />
           <div class="input-group-append">
             <span class="input-group-text">' . $ID_Topic . '</span>
             <a href="editarSubtema.php?ID_Tema=' . $ID_Topic . '">
@@ -210,12 +208,10 @@ function printInstructions()
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <p>
-            - Para cambiar de orden los <strong>temas</strong>, edite el número
-            y de clic en "Guardar orden en base de datos"
+            - Para cambiar de orden los <strong>temas</strong>, solo selecciona y arrastra el tema al orden deseado
           </p>
           <p style="font-size: smaller;">
-            Revisar ANTES de guardar, de lo contrario, el orden puede verse
-            alterado
+            SIEMPRE revisar ANTES de guardar.
           </p>
           <p>.</p>
           <p>
