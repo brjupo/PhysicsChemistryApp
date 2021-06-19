@@ -46,7 +46,7 @@ function printTopics()
   echo '
       <div class="container">
         <div class="row">
-          <ul id="sortable">
+          <ul id="sortable" style="width:90vw;">
       ';
 
   for ($i = 0; $i < $tamanho; $i++) {
@@ -67,7 +67,7 @@ function printTopic($ID_Topic, $topicName, $topicOrder)
   echo '
         <li id="' . $ID_Topic . '" class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="input-group-prepend">
-            <span class="input-group-text">' . $ID_Topic . '</span>
+            <span class="input-group-text" style="min-width:50px;"> &Delta;' . $ID_Topic . '</span>
           </div>
           <input type="text" class="form-control" value="' . $topicName. '" disabled />
           <div class="input-group-append">
@@ -210,7 +210,7 @@ function printInstructions()
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <p>
-            - Para cambiar de orden los <strong>temas</strong>, solo selecciona y arrastra el tema al orden deseado
+            - Para cambiar de orden los <strong>temas</strong>, solo selecciona y arrastra el tema al orden deseado. Para seleccionar usa el sìmbolo delta.
           </p>
           <p style="font-size: smaller;">
             SIEMPRE revisar ANTES de guardar.
