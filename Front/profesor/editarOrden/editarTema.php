@@ -209,7 +209,7 @@ function printButtons()
         >
           Guardar en base de datos
         </button>
-        <img id="loading" src="../CSSsJSs/images/loading.gif" style="display:none;">
+        <img id="loading" src="../CSSsJSs/images/loading.gif" style="display:none; height:20px;">
       </div>
     </div>
   </div>
