@@ -169,7 +169,7 @@ function printInstructions()
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <p>
-            - Para cambiar de orden los <strong>temas</strong>, solo selecciona y arrastra el tema al orden deseado. Para seleccionar usa el sìmbolo delta.
+            - Para cambiar de orden los <strong>temas</strong>, solo selecciona y arrastra el tema al orden deseado. Para seleccionar usa el símbolo delta.
           </p>
           <p style="font-size: smaller;">
             SIEMPRE revisar ANTES de guardar.
