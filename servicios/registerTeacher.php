@@ -135,8 +135,6 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
     <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
    
     <p>Correo: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
-
-    <p>WhatsApp: <strong>55 4871 4593</strong>.</p>
     <p style="color: white">.</p>
     <p>Agradecemos tu confianza,</p>
     <p>

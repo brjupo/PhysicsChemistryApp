@@ -199,8 +199,7 @@ function getCuerpo($token, $kaanbalUser)
                   En caso de cualquier duda o comentario por favor envía un correo a la
                   dirección: <strong>aclaraciones@kaanbal.net</strong> en donde un miembro del equipo
                   te estará apoyando con lo que requieras. Ponemos también a tu disposición
-                  las siguientes opciones de contacto, donde con gusto los atenderemos vía
-                  Whatsapp bussines: <strong>55 7923 5241</strong>.
+                  las siguientes opciones de contacto, donde con gusto los atenderemos contacto@kaanbal.net
                 </p>
                 <p style='color:white;'>.</p>
                 <p>Agradecemos tu confianza,</p>
