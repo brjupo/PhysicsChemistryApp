@@ -185,13 +185,6 @@ function cuerpoCorreoNuevoProfesor()
       style="display: block"
     />
     <p><a href="aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
-
-    <img
-      src="https://www.kaanbal.net/IMAGENES/whatsapp.svg"
-      height="40px"
-      style="display: block"
-    />
-    <p><strong>55 4871 4593</strong>.</p>
     <p style="color: white">.</p>
     <p>Agradecemos tu confianza,</p>
     <p>
