@@ -148,7 +148,7 @@ require "sendMailCustomers.php";
   // echo '<p>Inicio a calcular la vigencia</p>';
   $timeZone = new DateTimeZone('America/Mexico_City');
   $nowTimePlusSixMonths = new DateTime();
-  $nowTimePlusSixMonths->modify('+1 month');
+  $nowTimePlusSixMonths->modify('+6 month');
   $nowTimePlusSixMonths->setTimezone($timeZone);
   $vigencia = $nowTimePlusSixMonths->format('Y-m-d H:i:s');
 
