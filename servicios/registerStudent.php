@@ -71,7 +71,7 @@ if (false) {
                   //Traer materia de acuerdo al grupo
                   $getAsignaturaID = new queryToDDBB("SELECT id_asignatura FROM grupo WHERE id_grupo= '" . $gettedGroup . "';");
                   $gettedAsignaturaID = $getAsignaturaID->read();
-                  if ($addedAlumnoGrupot != "success") {
+                  if ($addedAlumnoGrupo != "success") {
                     $respuesta["response"] = "Error al asociar grupo";
                   } else {
                     //agregar ID alumno a licencias
