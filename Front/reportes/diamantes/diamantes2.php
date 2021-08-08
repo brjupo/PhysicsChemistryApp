@@ -149,7 +149,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         WHERE
                             alumno_grupo.id_grupo = ' . $id_grupo . '
                         ORDER BY
-                            alumno.numero_lista;
+                            alumno.numero_lista ASC;
                         ';
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -238,7 +238,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         BETWEEN '" . $desde_fecha . " " . $desde_tiempo . ":00' 
                         AND '" . $hasta_fecha . " " . $hasta_tiempo . ":00' AND a.id_alumno 
                         IN (SELECT id_alumno FROM alumno_grupo 
-                        WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY matricula ASC";
+                        WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY a.numero_lista ASC";
                         $stmt = $conn->query($stringQuery);
                         $cantidadAlumnos=count($alumnos["id"]);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {

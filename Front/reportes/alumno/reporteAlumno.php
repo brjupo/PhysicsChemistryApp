@@ -354,7 +354,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                                         WHERE
                                             alumno_grupo.id_grupo = ' . $id_grupo . '
                                         ORDER BY
-                                            alumno.numero_lista;
+                                            alumno.numero_lista ASC;
                                         ';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
@@ -373,7 +373,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = "SELECT a.id_alumno, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY matricula ASC;";
+                        $stringQuery = "SELECT a.id_alumno, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY a.numero_lista ASC;";
                         $stmt = $conn->query($stringQuery);
                         $size5 = count($alumnos["id"]);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
