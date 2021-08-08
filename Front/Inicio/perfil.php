@@ -897,7 +897,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               enctype="application/x-www-form-urlencoded"
             >
               <button type="submit" class="btn btn-primary centrarObjeto">
-                Pagar
+                Donar
               </button>
             </form>
           </div>
