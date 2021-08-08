@@ -26,20 +26,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
     gtag('config', 'G-F7VGWM5LKB');
   </script>
   
-  <!-- Google AdSense -->
-  <script
-      data-ad-client="ca-pub-9977500171937835"
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    ></script>
-    
 </head>
 
 <body>
   <!----------------------------------------------TITULO--------------------------------------------->
 
   <?php
-  //BRANDON
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   //+++++++++++++++++++++++++ Variables de sesion ++++++++++++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
@@ -425,20 +417,12 @@ require "../CSSsJSs/mainCSSsJSs.php";
     ';
     echo '<div class="container">
             <div class="row">
-                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <form action="calificaciones.php" id="groupForm" method="POST">
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
                       <input type="submit" class="btn btn-primary" value="Práctica, Sprint y Examen" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
-                    </form>
-                </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    <form action="calificacionesSS.php" id="groupSS" method="POST">
-                      <label for="mail" style="display:none;">Mail</label>
-                      <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
-
-                      <input type="submit" class="btn btn-success" value="Super Sprint" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
                     </form>
                 </div>
             </div>
@@ -551,7 +535,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
       </div>
     </div>
     ';
-    imprimirConFactura();
+    //imprimirConFactura();
     imprimirSinFactura();
     imprimirRelleno();
   }
@@ -799,7 +783,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           id="sinFactura1"
           style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
         >
-          <p class="comprarf">Pago - sin factura</p>
+          <p class="comprarf">Dona aquí</p>
         </div>
         <div
           class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
