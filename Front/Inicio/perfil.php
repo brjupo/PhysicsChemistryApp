@@ -678,9 +678,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
                 margin: auto auto 0px auto;
               "
             >
-              Este es el correo que usas como usuario en Kaanbal. Si el correo no
+              Este es el correo que usas como usuario en Kaanbal. Si el correo NO
               es el correcto, ingresa a Kaanbal nuevamente, con el correo que
-              deseas pagar
+              deseas volver premium
             </p>
           </div>
           <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
@@ -727,7 +727,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           </div>
         </div>
       </div>
-      <!--Boton Pagar-->
+      <!--Boton Donar-->
       <div class="container">
         <div class="row">
           <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
@@ -745,7 +745,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               enctype="application/x-www-form-urlencoded"
             >
               <button type="submit" class="btn btn-primary centrarObjeto">
-                Pagar
+                Donar
               </button>
             </form>
           </div>
@@ -859,7 +859,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             >
               Este es el correo que usas como usuario en Kaanbal. Si el correo no
               es el correcto, ingresa a Kaanbal nuevamente, con el correo que
-              deseas pagar
+              deseas volver premium
             </p>
           </div>
           <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
@@ -915,20 +915,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <p class="transparente">.</p>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div
-            class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center"
-            style="font-size: small"
-          >
-            NOTA: En caso de hacer un pago SIN factura, y posteriormente querer la
-            factura, tendrá que enviar sus datos junto con el “payment_id” a
-            aclaraciones@kaanbal.net . El “payment_id” se proporciona en la última
-            pantalla del pago. Esta aclaración tiene un tiempo de respuesta de
-            hasta 2 meses.
           </div>
         </div>
       </div>

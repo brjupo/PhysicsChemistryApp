@@ -43,7 +43,7 @@ require "sendMailCustomers.php";
   <?php
   if (is_null($paymentId)) {
     $errorDetected = 1;
-    echo '<p>Error line 40</p>';
+    echo '<p>Error line 46</p>';
   }
   ?>
   <?php
@@ -63,7 +63,7 @@ require "sendMailCustomers.php";
   // 2.6.- INSERT INTO LICENCIA id_usuario, id_asignatura, pagado = 1, vigencia, id_market_pay, market_pay_status
   ?>
   <?php
-  //3.- Enviar correo a $verdaderoCliente con su payment_id y su vigencia
+  //3.- Enviar correo a $correoKaanbal con su payment_id y su vigencia
   // 3.1.- Usar el servicio 02sendMail.php
   // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagoPendiente
   // 3.3.- Para el caso de pending, preparar el webhook para enviar correo en caso de que el pago haya sido validado
@@ -95,16 +95,19 @@ require "sendMailCustomers.php";
     $result = json_decode($response, TRUE);
 
     $verdaderoCliente = $result["results"][0]["payer"]["email"];
-    echo '<p> echo result["results"][0]["payer"]["email"] =  ';
-    echo $verdaderoCliente;
-    echo '</p>';
-    $idAsignaturaNombre = $result["results"][0]["description"];
-    $idAsignaturaNombreArray = explode("@@", $idAsignaturaNombre);
-    $idAsignatura = intval($idAsignaturaNombreArray[0]);
+    // AHORA se usa $correoKaanbal para evitar ese problema de "la cuenta de mercado libre cargada en automático"
+
+    // echo '<p> echo result["results"][0]["payer"]["email"] =  ';
+    // echo $verdaderoCliente;
+    // echo '</p>';
+    $descripcionIdAsignaturaCorreo = $result["results"][0]["description"];
+    $descripcionIdAsignaturaCorreoArray = explode("@@", $descripcionIdAsignaturaCorreo);
+    $idAsignatura = intval($descripcionIdAsignaturaCorreoArray[0]);
+    $correoKaanbal = $descripcionIdAsignaturaCorreoArray[2];
   }
   if (is_null($verdaderoCliente)) {
     $errorDetected = 1;
-    echo '<p>Error line 86</p>';
+    echo '<p>Error line 107</p>';
   }
   ?>
   <?php
@@ -117,7 +120,7 @@ require "sendMailCustomers.php";
       echo '<p>Entre al try del select id usuario</p>';
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $verdaderoCliente . "' LIMIT 1";
+      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $correoKaanbal . "' LIMIT 1";
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $idVerdaderoCliente = $row[0];
@@ -131,7 +134,7 @@ require "sendMailCustomers.php";
     if ($entre == 0) {
       //id_usuario del usuario de brandon
       $idVerdaderoCliente = 4;
-      echo '<p>Id verdadero cliente será = 4</p>';
+      //echo '<p>Id verdadero cliente será = 4</p>';
     }
   }
   //2.2.- Obtener el id_asignatura($_SESSION["idAsignatura"])
@@ -169,11 +172,11 @@ require "sendMailCustomers.php";
   ?>
 
   <?php
-  //3.- Enviar correo a $verdaderoCliente con su payment_id y su vigencia
+  //3.- Enviar correo a $correoKaanbal con su payment_id y su vigencia
   // 3.1.- Usar el servicio 02sendMail.php
   // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagoPendiente
   if ($errorDetected == 0) {
-    enviarMail($verdaderoCliente, "Pago pendiente - Kaanbal", enviarMailPagoPendiente($verdaderoCliente, $paymentId));
+    enviarMail($correoKaanbal, "Pago pendiente - Kaanbal", enviarMailPagoPendiente($correoKaanbal, $paymentId));
   }
   // 3.3.- Para el caso de pending, preparar el webhook para enviar correo en caso de que el pago haya sido validado
   // 3.4.- Para el caso de failure, no enviar correo
@@ -231,11 +234,11 @@ require "sendMailCustomers.php";
           </p>
           <p style="color: rgba(0, 0, 0, 0)">.</p>
           <p class="text-center" style="font-size: medium">
-            Si se han excedido los 4 días hábiles y aún no tienes acceso, por favor ponte en contacto con nosotros.
+            Si se han excedido los 4 días hábiles y aún no se quita la publicidad, por favor ponte en contacto con nosotros.
           </p>
           <p style="color: rgba(0, 0, 0, 0)">.</p>
           <p class="text-center" style="font-size: medium">
-            Tu usuario es: <strong><?= $verdaderoCliente ?></strong>
+            Tu usuario es: <strong><?= $correoKaanbal ?></strong>
           </p>
           <p style="color: rgba(0, 0, 0, 0)">.</p>
           <p class="text-center" style="font-size: medium">
@@ -246,10 +249,6 @@ require "sendMailCustomers.php";
           <p class="text-center" style="font-size: medium">
             Es muy importante que conserves este "payment_id" para cualquier
             futura aclaración
-          </p>
-          <p style="color: rgba(0, 0, 0, 0)">.</p>
-          <p class="text-center" style="font-size: medium">
-            Si solicitaste factura. La factura ÚNICAMENTE será emitida en caso de un pago éxitoso
           </p>
           <p style="color: rgba(0, 0, 0, 0)">.</p>
           <p class="text-center" style="font-size: medium">

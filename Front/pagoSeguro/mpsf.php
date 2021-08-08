@@ -73,7 +73,7 @@ require "../../servicios/06invoicingInformation.php";
 
       // Crea un ítem en la preferencia
       $item = new MercadoPago\Item();
-      $item->title = $idAsignatura . "@@" . $materia;
+      $item->title = $idAsignatura . "@@" . $materia . "@@" . $usuarioCorreo;
       $item->description = "Incluye el acceso a la plataforma kaanbal.net por 6 meses SIN publicidad";
       $item->quantity = 1;
       $item->currency_id = "MXN";
@@ -151,7 +151,7 @@ require "../../servicios/06invoicingInformation.php";
           <div class="input-group-prepend">
             <span class="input-group-text" id="conceptoLabel">Concepto</span>
           </div>
-          <input type="text" class="form-control" id="concepto" aria-describedby="conceptoLabel" name="concepto" value="Licencia mensual Kaanbal - <?= $materia ?>" disabled />
+          <input type="text" class="form-control" id="concepto" aria-describedby="conceptoLabel" name="concepto" value="Licencia semestral Kaanbal - <?= $materia ?>" disabled />
         </div>
 
         <div class="input-group mb-3">
@@ -163,7 +163,7 @@ require "../../servicios/06invoicingInformation.php";
 
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="precioLabel">Precio Unitario [Incluye IVA]</span>
+            <span class="input-group-text" id="precioLabel">Donación [Premium 6 meses]</span>
           </div>
           <input type="text" class="form-control" id="precio" aria-describedby="precioLabel" name="precio" value="<?= $todayPrice ?>.00 MXN" disabled />
         </div>
@@ -175,7 +175,7 @@ require "../../servicios/06invoicingInformation.php";
   <div class="container">
     <div class="row">
       <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 1); background-color:rgba(255,255,0,0.8);">Revisa que el pago se haga con el correo que usas para inciar sesión en Kaanbal.<br> Si haces el pago con otro correo/cuenta NO se verá reflejado en tu licencia </p>
+        <p style="color: rgba(0, 0, 0, 1); background-color:rgba(255,255,0,0.8);">Revisa que la donación se haga con el correo que usas para inciar sesión en Kaanbal.<br> Si haces la donación con otro correo/cuenta NO se verá reflejado en tu licencia </p>
       </div>
     </div>
     <div class="row">
