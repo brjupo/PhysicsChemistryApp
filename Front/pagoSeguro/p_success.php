@@ -105,7 +105,7 @@ require "sendMailCustomers.php";
     $descripcionIdAsignaturaCorreo = $result["results"][0]["description"];
     $descripcionIdAsignaturaCorreoArray = explode("@@", $descripcionIdAsignaturaCorreo);
     $idAsignatura = intval($descripcionIdAsignaturaCorreoArray[0]);
-    $correoKaanbal = $descripcionIdAsignaturaCorreoArray[2];
+    $correoKaanbal = $descripcionIdAsignaturaCorreoArray[1];
     // echo '<p> // echo result["results"][0]["description"] =  ';
     // echo $idAsignatura;
     // echo '</p>';

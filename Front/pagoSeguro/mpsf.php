@@ -73,7 +73,7 @@ require "../../servicios/06invoicingInformation.php";
 
       // Crea un ítem en la preferencia
       $item = new MercadoPago\Item();
-      $item->title = $idAsignatura . "@@" . $materia . "@@" . $usuarioCorreo;
+      $item->title = $idAsignatura . "@@" . $usuarioCorreo . "@@" . $materia;
       $item->description = "Incluye el acceso a la plataforma kaanbal.net por 6 meses SIN publicidad";
       $item->quantity = 1;
       $item->currency_id = "MXN";
