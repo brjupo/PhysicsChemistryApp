@@ -81,10 +81,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
           Te recomendamos intentarlo de nuevo más tarde. O validar si tu banco/tarjeta tiene alguna restricción.
         </p>
         <p style="color: rgba(0, 0, 0, 0)">.</p>
-        <p class="text-center" style="font-size: medium">
-          Si solicitaste factura. La factura ÚNICAMENTE será emitida en caso de un pago éxitoso
-        </p>
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
       </div>
       <div class="col-1 col-sm-1 d-md-none"></div>
     </div>

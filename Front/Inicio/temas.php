@@ -266,17 +266,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <p style="color:rgba(0,0,0,0)">.</p>
               <p><strong>Bienvenido a Kaanbal</strong></p>
-              <!--p>Hemos mejorado la experiencia para todos los dispositivos.</p-->
-              <!--p>Ahora kaanbal se puede abrir desde cualquier dispositivo usando tu navegador</p-->
-              <p style="color:rgba(0,0,0,0)">.</p>';
-    if ($pagado == 0) {
-      echo '
-              <!--p>¡Sigue acumulando diamantes! Recuerda <a href="../../../contacto.html">adquirir</a> tu licencia antes del 4 de septiembre.  Seguiremos aquí cuando más nos necesites. </p-->
-              <!--p>Por seguridad, cerraremos las cuentas que NO hayan cambiado el password</p>
-              <p>Revisa si completaste correctamente el proceso en <a href="../../../contacto.html">pagos</a></p>
-              <p style="color:rgba(0,0,0,0)">.</p-->';
-    }
-    echo '
+              <p style="color:rgba(0,0,0,0)">.</p>
             </div>
           </div>
         </div>
