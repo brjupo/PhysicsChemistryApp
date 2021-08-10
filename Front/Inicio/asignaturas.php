@@ -74,6 +74,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     $idiomas = $_POST["idioma"];
     //Para evitar SQL injections
     $correo = str_replace(" ", "", $correo);
+    $correo = strtolower($correo);
     $password = str_replace(" ", "", $password);
     $idiomas = str_replace(" ", "", $idiomas);
 
