@@ -44,7 +44,7 @@ require "sendMailCustomers.php";
   <?php
   if (is_null($paymentId)) {
     $errorDetected = 1;
-    // echo '<p>Error line 40</p>';
+    echo '<p>Error line 47</p>';
   }
   ?>
   <?php
@@ -65,7 +65,7 @@ require "sendMailCustomers.php";
   //2.7.- En caso de que el cliente haya solicitado factura. Actualizar el status a "pagado_pendiente_por_facturar"
   ?>
   <?php
-  //3.- Enviar correo a $verdaderoCliente con su payment_id y su vigencia
+  //3.- Enviar correo a $correoKaanbal con su payment_id y su vigencia
   // 3.1.- Usar el servicio 02sendMail.php
   // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagado
   // 3.3.- Para el caso de pending, preparar el webhook para enviar correo en caso de que el pago haya sido validado
@@ -97,19 +97,22 @@ require "sendMailCustomers.php";
     $result = json_decode($response, TRUE);
 
     $verdaderoCliente = $result["results"][0]["payer"]["email"];
+    // AHORA se usa $correoKaanbal para evitar ese problema de "la cuenta de mercado libre cargada en automático"
+
     // echo '<p> // echo result["results"][0]["payer"]["email"] =  ';
     // echo $verdaderoCliente;
     // echo '</p>';
-    $idAsignaturaNombre = $result["results"][0]["description"];
-    $idAsignaturaNombreArray = explode("@@", $idAsignaturaNombre);
-    $idAsignatura = intval($idAsignaturaNombreArray[0]);
+    $descripcionIdAsignaturaCorreo = $result["results"][0]["description"];
+    $descripcionIdAsignaturaCorreoArray = explode("@@", $descripcionIdAsignaturaCorreo);
+    $idAsignatura = intval($descripcionIdAsignaturaCorreoArray[0]);
+    $correoKaanbal = $descripcionIdAsignaturaCorreoArray[1];
     // echo '<p> // echo result["results"][0]["description"] =  ';
     // echo $idAsignatura;
     // echo '</p>';
   }
   if (is_null($verdaderoCliente)) {
     $errorDetected = 1;
-    // echo '<p>Error line 86</p>';
+    echo '<p>Error line 113</p>';
   }
   ?>
   <?php
@@ -122,7 +125,7 @@ require "sendMailCustomers.php";
       // echo '<p>Entre al try del select id usuario</p>';
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $verdaderoCliente . "' LIMIT 1";
+      $stringQuery = "SELECT id_usuario FROM usuario_prueba WHERE mail = '" . $correoKaanbal . "' LIMIT 1";
       $stmt = $conn->query($stringQuery);
       while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
         $idVerdaderoCliente = $row[0];
@@ -142,13 +145,13 @@ require "sendMailCustomers.php";
   //2.2.- Obtener el id_asignatura() [Se obtuvo en el paso 1]
   if (is_null($idAsignatura)) {
     $errorDetected = 1;
-    // echo '<p>Error line 116</p>';
+    // echo '<p>Error line 146</p>';
   }
   //2.3.- Agregar vigencia date(Now)+6meses
   // echo '<p>Inicio a calcular la vigencia</p>';
   $timeZone = new DateTimeZone('America/Mexico_City');
   $nowTimePlusSixMonths = new DateTime();
-  $nowTimePlusSixMonths->modify('+1 month');
+  $nowTimePlusSixMonths->modify('+6 month');
   $nowTimePlusSixMonths->setTimezone($timeZone);
   $vigencia = $nowTimePlusSixMonths->format('Y-m-d H:i:s');
 
@@ -184,12 +187,12 @@ require "sendMailCustomers.php";
   ?>
 
   <?php
-  //3.- Enviar correo a $verdaderoCliente con su payment_id y su vigencia
+  //3.- Enviar correo a $correoKaanbal con su payment_id y su vigencia
   // 3.1.- Usar el servicio 02sendMail.php
   // 3.2.- Crear el html del correo en una función hasta abajo de este archivo. enviarMailPagado
   if ($errorDetected == 0) {
     // echo '<p>Entre al envío del email</p>';
-    enviarMail($verdaderoCliente, "Comprobante de pago Kaanbal", enviarMailPagado($verdaderoCliente, $paymentId));
+    enviarMail($correoKaanbal, "Comprobante de pago Kaanbal", enviarMailPagado($correoKaanbal, $paymentId));
   }
   // 3.3.- Para el caso de pending, preparar el webhook para enviar correo en caso de que el pago haya sido validado
   // 3.4.- Para el caso de failure, no enviar correo
@@ -244,7 +247,7 @@ require "sendMailCustomers.php";
           </p>
           <p style="color: rgba(0, 0, 0, 0)">.</p>
           <p class="text-center" style="font-size: medium">
-            Tu usuario es: <strong><?= $verdaderoCliente ?></strong>
+            Tu usuario es: <strong><?= $correoKaanbal ?></strong>
           </p>
           <p style="color: rgba(0, 0, 0, 0)">.</p>
           <p class="text-center" style="font-size: medium">

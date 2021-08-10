@@ -241,7 +241,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                                         WHERE
                                             alumno_grupo.id_grupo = ' . $id_grupo . '
                                         ORDER BY
-                                            alumno.numero_lista;
+                                            alumno.numero_lista ASC;
                                         ';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
