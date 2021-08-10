@@ -16,7 +16,7 @@ if ($tokenLink == "" || $correo_e == "") {
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
   <link rel="stylesheet" href="stylePassword1.css" />
-  <script src="scriptPasswordv2.js"></script>
+  <script src="password.js"></script>
   <script src="../CSSsJSs/minAJAX.js"></script>
 </head>
 
@@ -48,10 +48,10 @@ if ($tokenLink == "" || $correo_e == "") {
           <input type="email" id="correo_e" name="correo_e" value="<?php echo $correo_e ?>" disabled />
 
           <label for="psw">Password</label>
-          <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
+          <input type="password" id="psw" name="psw" required />
 
           <label for="password2">Confirm Your Password</label>
-          <input type="password" id="psw2" name="psw2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
+          <input type="password" id="psw2" name="psw2" required />
         </form>
       </div>
       <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
@@ -77,19 +77,8 @@ if ($tokenLink == "" || $correo_e == "") {
     <div class="row">
       <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="text-center col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-        <div id="message">
-          <h3>Recuerda, tu contraseña debe contener:</h3>
-          <p id="letter" class="invalid">Al menos 1 letra <b>minúscula</b></p>
-          <p id="capital" class="invalid">
-            Al menos 1 letra <b>mayúscula</b>
-          </p>
-          <p id="number" class="invalid">Al menos 1 <b>número</b></p>
-          <p id="symbol" class="invalid">
-            Al menos 1 <b>símbolo</b> @#$%^&+=
-          </p>
-          <p id="length" class="invalid">
-            En total, mínimo <b>8 caracteres</b>
-          </p>
+        <div>
+          <h3>Si has tenido problemas con tu contraseña, solo usa números y letras</h3>
         </div>
       </div>
       <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
@@ -109,19 +98,6 @@ if ($tokenLink == "" || $correo_e == "") {
     </div>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 ">
-        <p class="footSubject">Nosotros</p>
-      </div>
-      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 ">
-        <p class="footSubject">Ayuda</p>
-      </div>
-      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 ">
-        <p class="footSubject">Términos</p>
-      </div>
-    </div>
-  </div>
 </body>
 
 </html>
