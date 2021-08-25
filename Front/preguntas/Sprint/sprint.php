@@ -21,26 +21,22 @@ require "../../../servicios/04paymentValidation.php";
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'G-F7VGWM5LKB');
-  </script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-  <!-- Google AdSense -->
-  <script
-      data-ad-client="ca-pub-9977500171937835"
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    ></script>
+        gtag('config', 'G-F7VGWM5LKB');
+    </script>
 
 </head>
 
 
 <body>
-    <!--script>
+    <script>
         document.addEventListener("contextmenu", (event) => event.preventDefault());
         $(document).keydown(function(event) {
             if (event.keyCode == 123) {
@@ -57,7 +53,7 @@ require "../../../servicios/04paymentValidation.php";
                 return false;
             }
         });
-    </script-->
+    </script>
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
