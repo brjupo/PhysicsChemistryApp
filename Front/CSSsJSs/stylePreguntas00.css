@@ -25,6 +25,7 @@
   display: block;
   margin: 3vh auto;
   width: 90%;
+  height: auto;
 }
 
 /*----DESKTOP----*/
@@ -32,6 +33,7 @@
   .imagenAmazon {
     display: block;
     margin: 3vh auto;
+    width: auto;
     height: 70vh;
   }
 }
