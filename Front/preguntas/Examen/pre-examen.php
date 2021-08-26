@@ -117,10 +117,9 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h1 class="text-center">Anuncio</h1>
+                <p class="text-center"></p>
                 <p class="text-center">¿Quieres evitar la publicidad?</p>
-                <p class="text-center">Vuélvete <strong><a href="../../Inicio/perfil.php" style="text-decoration: none;">premium</a></strong> por solo $<?= getTodayPrice() ?>.00 MXN al semestre</p>
-                <p class="text-center">Ingresa en <a href="../../Inicio/perfil.php">tu perfil</a> y sigue el proceso</p>
+                <p class="text-center">Vuélvete <strong><a href="../../Inicio/perfil.php" style="text-decoration: none;">premium</a></strong> por solo $<?= getTodayPrice() ?>.00 MXN al semestre. Ingresa en <a href="../../Inicio/perfil.php">tu perfil</a> y sigue el proceso</p>
             </div>
         </div>
     </div>
@@ -135,15 +134,12 @@ require "../../CSSsJSs/mainCSSsJSs.php";
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <a target="_blank" href="<?= $adLink ?>">
-                    <img src="<?= $adImageUrl ?>" style="display:block;margin:auto;height:80vh;">
+                    <img src="<?= $adImageUrl ?>" style="display:block;margin:3vh auto;height:70vh;">
                 </a>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p class="text-center" style="font-size:larger; font-weight:bolder;">
                     <?= $adTitle ?>
-                </p>
-                <p class="text-center" style="font-size:smaller; font-weight:bolder;">
-                    <?= $adId ?>
                 </p>
             </div>
         </div>
@@ -152,7 +148,9 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p class="text-center">-- - --</p>
+                <p class="text-center" style="font-size:smaller; font-weight:bolder;">
+                    --- <?= $adId ?> ---
+                </p>
             </div>
         </div>
     </div>
