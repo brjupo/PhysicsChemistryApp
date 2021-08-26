@@ -15,7 +15,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     <title>Examen</title>
     <link rel="stylesheet" href="../../CSSsJSs/<?php echo $bootstrap341; ?>" />
     <link rel="stylesheet" href="../../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-    <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $stylePreguntas; ?>" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
@@ -134,7 +134,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <a target="_blank" href="<?= $adLink ?>">
-                    <img src="<?= $adImageUrl ?>" style="display:block;margin:3vh auto;height:70vh;">
+                    <img src="<?= $adImageUrl ?>" class="imagenAmazon">
                 </a>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">

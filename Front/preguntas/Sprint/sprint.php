@@ -3,6 +3,7 @@ require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/03warrantyPublicity.php";
 require "../../../servicios/04paymentValidation.php";
+require "../../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,8 +13,9 @@ require "../../../servicios/04paymentValidation.php";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Sprint</title>
-    <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $bootstrap341; ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $stylePreguntas; ?>" />
     <script src="sprint.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>

@@ -14,7 +14,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     <title>Sprint</title>
     <link rel="stylesheet" href="../../CSSsJSs/<?php echo $bootstrap341; ?>" />
     <link rel="stylesheet" href="../../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-    <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $stylePreguntas; ?>" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>

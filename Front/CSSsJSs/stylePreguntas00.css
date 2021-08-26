@@ -15,11 +15,27 @@
   font-family: "SSF";
   src: url("Fonts/ssp/SourceSansPro-Light.otf") format("opentype");
 }
-/*--------------------------------------------------FIN FUENTES-----------------------------------------------------------*/
+/*----------------------------------- FIN FUENTES ------------------------------------------*/
 #number {
-  font-size:100px;
-  color:#434343;
+  font-size: 100px;
+  color: #434343;
 }
+/*--------------------------------    ADS     -----------------------------------*/
+.imagenAmazon {
+  display: block;
+  margin: 3vh auto;
+  width: 90%;
+}
+
+/*----DESKTOP----*/
+@media screen and (min-width: 768px) {
+  .imagenAmazon {
+    display: block;
+    margin: 3vh auto;
+    height: 70vh;
+  }
+}
+
 /*--------------------------------DIALOGOS Inspiracionales-----------------------------------*/
 .noPaddingMargin {
   padding-left: 0px !important;

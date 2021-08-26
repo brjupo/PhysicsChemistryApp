@@ -1,4 +1,5 @@
 <?php
+require "../../CSSsJSs/mainCSSsJSs.php";
 if (empty($_GET)) {
   header("Location: https://kaanbal.net");
 }
@@ -14,8 +15,9 @@ $totalPreguntas = $_GET['totalPreguntas'];
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
   <title>Examen Completado</title>
-  <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
-  <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
+  <link rel="stylesheet" href="../../CSSsJSs/<?php echo $bootstrap341; ?>" />
+  <link rel="stylesheet" href="../../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
+  <link rel="stylesheet" href="../../CSSsJSs/<?php echo $stylePreguntas; ?>" />
   <link rel="stylesheet" href="../../CSSsJSs/styleNivelCompletado.css" />
   <script src="../../CSSsJSs/scriptNivelCompletado.js"></script>
 
