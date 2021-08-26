@@ -138,7 +138,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                 </a>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p class="text-center" style="font-size:larger; font-weight:bolder;">
+                <p class="text-center" style="font-size:x-large; font-weight:bolder;">
                     <?= $adTitle ?>
                 </p>
             </div>
