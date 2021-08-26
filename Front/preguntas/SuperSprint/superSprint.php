@@ -1,4 +1,5 @@
 <?php
+require "../../CSSsJSs/mainCSSsJSs.php";
 require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
 ?>
@@ -10,8 +11,9 @@ require "../../../servicios/00DDBBVariables.php";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
     <title>Super Sprint</title>
-    <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="../../CSSsJSs/stylePreguntas.css" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $bootstrap341; ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $stylePreguntas; ?>" />
     <script src="superSprint.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -19,21 +21,17 @@ require "../../../servicios/00DDBBVariables.php";
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'G-F7VGWM5LKB');
-  </script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-<!-- Google AdSense -->
-<script
-      data-ad-client="ca-pub-9977500171937835"
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    ></script>
-    
+        gtag('config', 'G-F7VGWM5LKB');
+    </script>
+
 </head>
 
 
@@ -120,25 +118,25 @@ require "../../../servicios/00DDBBVariables.php";
         mysqli_stmt_execute($statement);
         mysqli_stmt_store_result($statement);
         mysqli_stmt_bind_result($statement, $id_asignatura);
-    
+
         $arregloAsignaturas = array();
-    
+
         $i = 0;
         while (mysqli_stmt_fetch($statement)) {
-        $arregloAsignaturas[$i]["id_asignatura"] = $id_asignatura;
-        $i = $i + 1;
+            $arregloAsignaturas[$i]["id_asignatura"] = $id_asignatura;
+            $i = $i + 1;
         }
-    
+
         $tamanhoArray = count($arregloAsignaturas);
-    
+
         /////////id_subtema trae id_tema
         $query = "SELECT id_tema FROM subtema WHERE id_subtema = $idSubtema";
         $result = mysqli_query($con, $query);
         while ($row = mysqli_fetch_assoc($result)) {
             $tema[] = $row;
         }
-        $idTema = $tema[0]["id_tema"]; 
-    
+        $idTema = $tema[0]["id_tema"];
+
         /////////id_tema tra id_asignatura
         $query = "SELECT id_asignatura FROM tema WHERE id_tema = $idTema";
         $result = mysqli_query($con, $query);
@@ -146,26 +144,27 @@ require "../../../servicios/00DDBBVariables.php";
             $asignatura[] = $row;
         }
         $idAsignatura = $asignatura[0]["id_asignatura"];
-    
-        $flag = 0;
-    
-        //for ($j = 0; $j < $tamanhoArray; $j++){ 
-            if(in_array($idAsignatura,array_column($arregloAsignaturas, 'id_asignatura')))
-            {$flag = 1;} 
 
-            if($flag == 0){
-                echo '<script type="text/javascript">
+        $flag = 0;
+
+        //for ($j = 0; $j < $tamanhoArray; $j++){ 
+        if (in_array($idAsignatura, array_column($arregloAsignaturas, 'id_asignatura'))) {
+            $flag = 1;
+        }
+
+        if ($flag == 0) {
+            echo '<script type="text/javascript">
                 alert("No cuenta con licencia para acceder a esta página");
                 window.location.href="https://kaanbal.net";
                 </script>';
-            }
+        }
         ///////////////////////////////////TERMINA VALIDAR LICENCIA
         //Traer todas las preguntas
         $query = "SELECT * FROM pregunta WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema = $idSubtema) ORDER BY RAND();";
         //$query = "SELECT * FROM pregunta WHERE id_subtema = $idSubtema ORDER BY RAND()"; //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
         $result = mysqli_query($con, $query);
         //contar Numero de elementos
-        
+
         $query2 = "SELECT count(*) FROM pregunta WHERE id_leccion IN (SELECT id_leccion FROM leccion WHERE id_subtema = $idSubtema); "; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
         $result2 = mysqli_query($con, $query2);
         $total = mysqli_fetch_row($result2);
@@ -177,19 +176,19 @@ require "../../../servicios/00DDBBVariables.php";
         }
 
         ///VALIDAMOS EL IDIOMA PARA HACER CAMBIO EN EL NOMBRE DE LOS CAMPOS Y MOSTRAR LAS PREGUNTAS EN INGLES
-        if($_SESSION["idioma"] == 'i'){
+        if ($_SESSION["idioma"] == 'i') {
             for ($j = 0; $j < $total[0]; $j++) {
-            $array[$j]["pregunta"] = $array[$j]["question"];
-            $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];
-            $array[$j]["respuesta2"] = $array[$j]["answer2"];
-            $array[$j]["respuesta3"] = $array[$j]["answer3"];
-            $array[$j]["respuesta4"] = $array[$j]["answer4"];
+                $array[$j]["pregunta"] = $array[$j]["question"];
+                $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];
+                $array[$j]["respuesta2"] = $array[$j]["answer2"];
+                $array[$j]["respuesta3"] = $array[$j]["answer3"];
+                $array[$j]["respuesta4"] = $array[$j]["answer4"];
 
-            $arrayr[$j]["pregunta"] = $arrayr[$j]["question"];
-            $arrayr[$j]["respuesta_correcta"] = $arrayr[$j]["correct_answer"];
-            $arrayr[$j]["respuesta2"] = $arrayr[$j]["answer2"];
-            $arrayr[$j]["respuesta3"] = $arrayr[$j]["answer3"];
-            $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
+                $arrayr[$j]["pregunta"] = $arrayr[$j]["question"];
+                $arrayr[$j]["respuesta_correcta"] = $arrayr[$j]["correct_answer"];
+                $arrayr[$j]["respuesta2"] = $arrayr[$j]["answer2"];
+                $arrayr[$j]["respuesta3"] = $arrayr[$j]["answer3"];
+                $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
             }
         }
 
@@ -326,7 +325,7 @@ require "../../../servicios/00DDBBVariables.php";
                     <img src="../../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p id="idioma" style="display:none"/>'.$_SESSION["idioma"].'</p>
+                    <p id="idioma" style="display:none"/>' . $_SESSION["idioma"] . '</p>
                     <p id="temaPrevio" style="display:none">' . $temaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
@@ -578,7 +577,7 @@ require "../../../servicios/00DDBBVariables.php";
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../../../../IMAGENES/' . $nombreImagen .'" class="imagenPregunta" />
+                            <img src="../../../../IMAGENES/' . $nombreImagen . '" class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
