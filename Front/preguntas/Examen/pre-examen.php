@@ -2,7 +2,8 @@
 require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/04paymentValidation.php";
-require "../../CSSsJSs/mainCSSsJSs.php"
+require "../../../servicios/07adsServices.php";
+require "../../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -123,16 +124,27 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             </div>
         </div>
     </div>
+    <?php
+    $infoAd = getRandomAd();
+    $adId = $infoAd["id"];
+    $adLink = $infoAd["link"];
+    $adImageUrl = $infoAd["image_url"];
+    $adTitle = $infoAd["title"];
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <!-- Google AdSense -->
-                <!--script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9977500171937835" crossorigin="anonymous"></script-->
-                <!-- Pre_practica_1 -->
-                <!--ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9977500171937835" data-ad-slot="7302320421" data-ad-format="auto" data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script-->
+                <a target="_blank" href="<?= $adLink ?>">
+                    <img src="<?= $adImageUrl ?>" style="display:block;margin:auto;height:80vh;">
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p class="text-center" style="font-size:larger; font-weight:bolder;">
+                    <?= $adTitle ?>
+                </p>
+                <p class="text-center" style="font-size:smaller; font-weight:bolder;">
+                    <?= $adId ?>
+                </p>
             </div>
         </div>
     </div>
