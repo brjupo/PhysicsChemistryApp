@@ -58,7 +58,7 @@ function getRandomAd(): array
 		return $arreglo;
 	}
 	$conn = null;
-	
+
 	//2.- Numeo aleatorio = rand(1,total)
 	$numero_aleatorio = rand(1, $cantidad);
 
@@ -88,14 +88,18 @@ function getRandomAd(): array
  *
  * 
  * @author brjupo	facebook.com/brjupo
- * @return array 	Regresa la fecha convertida a America/Mexico_City
+ * @return string 	Regresa la fecha convertida a America/Mexico_City
  */
-function utcToMexicoDate($fechaBBDD):string
+function utcToMexicoDate($fechaBBDD): string
 {
 	try {
-		$fechaBBDDMexico = new DateTime($fechaBBDD, new DateTimeZone('UTC'));
-		$fechaBBDDMexico->setTimezone(new DateTimeZone('America/Mexico_City'));
-		return $fechaBBDDMexico->format('Y-m-d H:i:sP');
+		if ($fechaBBDD == "0000-00-00 00:00:00") {
+			return "En curso";
+		} else {
+			$fechaBBDDMexico = new DateTime($fechaBBDD, new DateTimeZone('UTC'));
+			$fechaBBDDMexico->setTimezone(new DateTimeZone('America/Mexico_City'));
+			return $fechaBBDDMexico->format('d M, Y, h:i:s A');
+		}
 	} catch (Exception $e) {
 		return "";
 	}

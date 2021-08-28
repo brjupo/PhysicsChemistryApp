@@ -129,18 +129,25 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     $adLink = $infoAd["link"];
     $adImageUrl = $infoAd["image_url"];
     $adTitle = $infoAd["title"];
+    $adVigencia = $infoAd["expired_date"];
     ?>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <a target="_blank" href="<?= $adLink ?>">
-                    <img src="<?= $adImageUrl ?>" class="imagenAmazon">
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p class="text-center" style="font-size:x-large; font-weight:bolder;">
-                    <?= $adTitle ?>
-                </p>
+                <div style="display:block; border:1px solid black; border-radius:0.5vw; ">
+                    <a target="_blank" href="<?= $adLink ?>">
+                        <img src="<?= $adImageUrl ?>" class="imagenAmazon">
+                    </a>
+                    <p class="text-center tituloAmazon">
+                        <?= $adTitle ?>
+                    </p>
+                    <p class="text-center vigenciaAmazon">
+                        <b>Finaliza</b>: <?= $adVigencia ?>
+                    </p>
+                    <p class="text-center tiendaAmazon">
+                        Amazon MX
+                    </p>
+                </div>
             </div>
         </div>
     </div>
