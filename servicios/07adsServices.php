@@ -69,12 +69,12 @@ function getRandomAd(): array
 		$stringQuery = "SELECT id, link, image_url, title, expired_date FROM amazon_products WHERE expired_date > '" . $nowDate->format('Y-m-d H:i:s') . "' LIMIT " . $numero_aleatorio . ",1 ; ";
 		$stmt = $conn->query($stringQuery);
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$arreglo["id"] = $row["id"];
-			$arreglo["link"] = $row["link"];
-			$arreglo["image_url"] = $row["image_url"];
-			$arreglo["title"] = $row["title"];
+			$arreglo["id"] = $row[0];
+			$arreglo["link"] = $row[1];
+			$arreglo["image_url"] = $row[2];
+			$arreglo["title"] = $row[3];
 			//4.- Recuerda transformar la fecha de vencimiento de UTC a America/Mexico_City
-			$arreglo["expired_date"] = utcToMexicoDate($row["expired_date"]);
+			$arreglo["expired_date"] = utcToMexicoDate($row[4]);
 		}
 	} catch (PDOException $e) {
 		return $arreglo;
