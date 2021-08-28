@@ -21,6 +21,13 @@
   color: #434343;
 }
 /*--------------------------------    ADS     -----------------------------------*/
+.contenedorAmazon {
+  display: block;
+  margin: auto;
+  width: 90%;
+  border: 1px solid black;
+  border-radius: 0.5vw;
+}
 .imagenAmazon {
   display: block;
   margin: 3vh auto;
@@ -41,11 +48,18 @@
 
 /*----DESKTOP----*/
 @media screen and (min-width: 768px) {
+  .contenedorAmazon {
+    display: block;
+    margin: auto;
+    width: 30%;
+    border: 1px solid black;
+    border-radius: 0.5vw;
+  }
   .imagenAmazon {
     display: block;
     margin: 3vh auto;
     width: auto;
-    height: 60vh;
+    height: 40vh;
   }
   .tituloAmazon {
     margin: 2vw 1vw;

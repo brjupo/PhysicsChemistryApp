@@ -66,15 +66,15 @@ function getRandomAd(): array
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stringQuery = "SELECT id, link, image_url, title FROM amazon_products WHERE expired_date > '" . $nowDate->format('Y-m-d H:i:s') . "' LIMIT " . $numero_aleatorio . ",1 ; ";
+		$stringQuery = "SELECT id, link, image_url, title, expired_date FROM amazon_products WHERE expired_date > '" . $nowDate->format('Y-m-d H:i:s') . "' LIMIT " . $numero_aleatorio . ",1 ; ";
 		$stmt = $conn->query($stringQuery);
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$arreglo["id"] = $row[0];
-			$arreglo["link"] = $row[1];
-			$arreglo["image_url"] = $row[2];
-			$arreglo["title"] = $row[3];
+			$arreglo["id"] = $row["id"];
+			$arreglo["link"] = $row["link"];
+			$arreglo["image_url"] = $row["image_url"];
+			$arreglo["title"] = $row["title"];
 			//4.- Recuerda transformar la fecha de vencimiento de UTC a America/Mexico_City
-			$arreglo["expired_date"] = utcToMexicoDate($row[3]);
+			$arreglo["expired_date"] = utcToMexicoDate($row["expired_date"]);
 		}
 	} catch (PDOException $e) {
 		return $arreglo;

@@ -134,20 +134,20 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <div style="display:block; border:1px solid black; border-radius:0.5vw; ">
-                    <a target="_blank" href="<?= $adLink ?>">
+                <a target="_blank" href="<?= $adLink ?>">
+                    <div class="contenedorAmazon">
                         <img src="<?= $adImageUrl ?>" class="imagenAmazon">
-                    </a>
-                    <p class="text-center tituloAmazon">
-                        <?= $adTitle ?>
-                    </p>
-                    <p class="text-center vigenciaAmazon">
-                        <b>Finaliza</b>: <?= $adVigencia ?>
-                    </p>
-                    <p class="text-center tiendaAmazon">
-                        Amazon MX
-                    </p>
-                </div>
+                        <p class="text-center tituloAmazon">
+                            <?= $adTitle ?>
+                        </p>
+                        <p class="text-center vigenciaAmazon">
+                            <b>Finaliza</b>: <?= $adVigencia ?>
+                        </p>
+                        <p class="text-center tiendaAmazon">
+                            Amazon MX
+                        </p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
