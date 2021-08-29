@@ -58,7 +58,7 @@ function getRandomAd(): array
 		return $arreglo;
 	}
 	$conn = null;
-	
+
 	//2.- Numeo aleatorio = rand(1,total)
 	$numero_aleatorio = rand(1, $cantidad);
 
@@ -66,7 +66,7 @@ function getRandomAd(): array
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stringQuery = "SELECT id, link, image_url, title FROM amazon_products WHERE expired_date > '" . $nowDate->format('Y-m-d H:i:s') . "' LIMIT " . $numero_aleatorio . ",1 ; ";
+		$stringQuery = "SELECT id, link, image_url, title, expired_date FROM amazon_products WHERE expired_date > '" . $nowDate->format('Y-m-d H:i:s') . "' LIMIT " . $numero_aleatorio . ",1 ; ";
 		$stmt = $conn->query($stringQuery);
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
 			$arreglo["id"] = $row[0];
@@ -74,7 +74,7 @@ function getRandomAd(): array
 			$arreglo["image_url"] = $row[2];
 			$arreglo["title"] = $row[3];
 			//4.- Recuerda transformar la fecha de vencimiento de UTC a America/Mexico_City
-			$arreglo["expired_date"] = utcToMexicoDate($row[3]);
+			$arreglo["expired_date"] = utcToMexicoDate($row[4]);
 		}
 	} catch (PDOException $e) {
 		return $arreglo;
@@ -88,14 +88,20 @@ function getRandomAd(): array
  *
  * 
  * @author brjupo	facebook.com/brjupo
- * @return array 	Regresa la fecha convertida a America/Mexico_City
+ * @return string 	Regresa la fecha convertida a America/Mexico_City
  */
-function utcToMexicoDate($fechaBBDD):string
+function utcToMexicoDate($fechaBBDD): string
 {
 	try {
-		$fechaBBDDMexico = new DateTime($fechaBBDD, new DateTimeZone('UTC'));
-		$fechaBBDDMexico->setTimezone(new DateTimeZone('America/Mexico_City'));
-		return $fechaBBDDMexico->format('Y-m-d H:i:sP');
+		if ($fechaBBDD == "0000-00-00 00:00:00") {
+			return "En curso";
+		} elseif ($fechaBBDD == "") {
+			return "";
+		} else {
+			$fechaBBDDMexico = new DateTime($fechaBBDD, new DateTimeZone('UTC'));
+			$fechaBBDDMexico->setTimezone(new DateTimeZone('America/Mexico_City'));
+			return $fechaBBDDMexico->format('d M, Y, h:i:s A');
+		}
 	} catch (Exception $e) {
 		return "";
 	}
