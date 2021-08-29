@@ -133,7 +133,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             $adTitle = $infoAd["title"];
             $adVigencia = $infoAd["expired_date"];
             ?>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                 <a target="_blank" href="<?= $adLink ?>">
                     <div class="contenedorAmazon">
                         <img src="<?= $adImageUrl ?>" class="imagenAmazon">
@@ -158,7 +158,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                 $adTitle = $infoAd["title"];
                 $adVigencia = $infoAd["expired_date"];
             ?>
-                <div class="d-none d-md-block col-md-3 col-lg-3 col-xl-3">
+                <div class="d-none d-md-block col-md-4 col-lg-4 col-xl-4">
                     <a target="_blank" href="<?= $adLink ?>">
                         <div class="contenedorAmazon">
                             <img src="<?= $adImageUrl ?>" class="imagenAmazon">
