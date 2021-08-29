@@ -37,6 +37,8 @@
 }
 .tituloAmazon {
   margin: 5vw 3vw;
+  min-height: 25vh;
+  max-height: 25vh;
   font-size: large;
   font-weight: bolder;
   text-decoration: none;
@@ -78,6 +80,8 @@
   }
   .tituloAmazon {
     margin: 2vw 1vw;
+    min-height: 20vh;
+    max-height: 20vh;
     font-size: large;
     font-weight: bolder;
     text-decoration: none;
