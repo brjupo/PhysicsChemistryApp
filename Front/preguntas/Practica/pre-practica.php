@@ -146,7 +146,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                         <p class="tiendaAmazon">
                             Amazon MX
                         </p>
-                        <p style="font-size:xx-small; font-weight:bolder;">
+                        <p class="idAmazon">
                             --- <?= $adId ?> ---
                         </p>
                     </div>
@@ -174,7 +174,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                             <p class="tiendaAmazon">
                                 Amazon MX
                             </p>
-                            <p style="font-size:xx-small; font-weight:bolder;">
+                            <p class="idAmazon">
                                 --- <?= $adId ?> ---
                             </p>
                         </div>

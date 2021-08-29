@@ -3,7 +3,7 @@
 $bootstrap341="bootstrap341.css";
 $bootstrap441="bootstrap441.css";
 $kaanbalEssentials="kaanbalEssentials04.css";
-$stylePreguntas="stylePreguntas06.css";
+$stylePreguntas="stylePreguntas07.css";
 $minAJAX="minAJAX.js";
 
 
