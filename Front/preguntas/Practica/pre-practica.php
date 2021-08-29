@@ -123,32 +123,60 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             </div>
         </div>
     </div>
-    <?php
-    $infoAd = getRandomAd();
-    $adId = $infoAd["id"];
-    $adLink = $infoAd["link"];
-    $adImageUrl = $infoAd["image_url"];
-    $adTitle = $infoAd["title"];
-    $adVigencia = $infoAd["expired_date"];
-    ?>
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <?php
+            $infoAd = getRandomAd();
+            $adId = $infoAd["id"];
+            $adLink = $infoAd["link"];
+            $adImageUrl = $infoAd["image_url"];
+            $adTitle = $infoAd["title"];
+            $adVigencia = $infoAd["expired_date"];
+            ?>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
                 <a target="_blank" href="<?= $adLink ?>">
                     <div class="contenedorAmazon">
                         <img src="<?= $adImageUrl ?>" class="imagenAmazon">
-                        <p class="text-center tituloAmazon">
+                        <p class="tituloAmazon">
                             <?= $adTitle ?>
                         </p>
-                        <p class="text-center vigenciaAmazon">
+                        <p class="vigenciaAmazon">
                             <b>Finaliza</b>: <?= $adVigencia ?>
                         </p>
-                        <p class="text-center tiendaAmazon">
+                        <p class="tiendaAmazon">
                             Amazon MX
                         </p>
                     </div>
                 </a>
             </div>
+            <?php
+            for ($i = 0; $i < 2; $i++) {
+                $infoAd = getRandomAd();
+                $adId = $infoAd["id"];
+                $adLink = $infoAd["link"];
+                $adImageUrl = $infoAd["image_url"];
+                $adTitle = $infoAd["title"];
+                $adVigencia = $infoAd["expired_date"];
+            ?>
+                <div class="d-none d-md-block col-md-3 col-lg-3 col-xl-3">
+                    <a target="_blank" href="<?= $adLink ?>">
+                        <div class="contenedorAmazon">
+                            <img src="<?= $adImageUrl ?>" class="imagenAmazon">
+                            <p class="tituloAmazon">
+                                <?= $adTitle ?>
+                            </p>
+                            <p class="vigenciaAmazon">
+                                <b>Finaliza</b>: <?= $adVigencia ?>
+                            </p>
+                            <p class="tiendaAmazon">
+                                Amazon MX
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 

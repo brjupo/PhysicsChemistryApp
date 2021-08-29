@@ -95,6 +95,8 @@ function utcToMexicoDate($fechaBBDD): string
 	try {
 		if ($fechaBBDD == "0000-00-00 00:00:00") {
 			return "En curso";
+		} elseif ($fechaBBDD == "") {
+			return "";
 		} else {
 			$fechaBBDDMexico = new DateTime($fechaBBDD, new DateTimeZone('UTC'));
 			$fechaBBDDMexico->setTimezone(new DateTimeZone('America/Mexico_City'));
