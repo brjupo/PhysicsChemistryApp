@@ -123,35 +123,66 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             </div>
         </div>
     </div>
-    <?php
-    $infoAd = getRandomAd();
-    $adId = $infoAd["id"];
-    $adLink = $infoAd["link"];
-    $adImageUrl = $infoAd["image_url"];
-    $adTitle = $infoAd["title"];
-    ?>
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <?php
+            $infoAd = getRandomAd();
+            $adId = $infoAd["id"];
+            $adLink = $infoAd["link"];
+            $adImageUrl = $infoAd["image_url"];
+            $adTitle = $infoAd["title"];
+            $adVigencia = $infoAd["expired_date"];
+            ?>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                 <a target="_blank" href="<?= $adLink ?>">
-                    <img src="<?= $adImageUrl ?>" class="imagenAmazon">
+                    <div class="contenedorAmazon">
+                        <img src="<?= $adImageUrl ?>" class="imagenAmazon">
+                        <p class="tituloAmazon">
+                            <?= $adTitle ?>
+                        </p>
+                        <p class="vigenciaAmazon">
+                            <b>Finaliza</b>: <?= $adVigencia ?>
+                        </p>
+                        <p class="tiendaAmazon">
+                            Amazon MX
+                        </p>
+                        <p class="idAmazon">
+                            --- <?= $adId ?> ---
+                        </p>
+                    </div>
                 </a>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p class="text-center" style="font-size:x-large; font-weight:bolder;">
-                    <?= $adTitle ?>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p class="text-center" style="font-size:smaller; font-weight:bolder;">
-                    --- <?= $adId ?> ---
-                </p>
-            </div>
+            <?php
+            for ($i = 0; $i < 2; $i++) {
+                $infoAd = getRandomAd();
+                $adId = $infoAd["id"];
+                $adLink = $infoAd["link"];
+                $adImageUrl = $infoAd["image_url"];
+                $adTitle = $infoAd["title"];
+                $adVigencia = $infoAd["expired_date"];
+            ?>
+                <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4">
+                    <a target="_blank" href="<?= $adLink ?>">
+                        <div class="contenedorAmazon">
+                            <img src="<?= $adImageUrl ?>" class="imagenAmazon">
+                            <p class="tituloAmazon">
+                                <?= $adTitle ?>
+                            </p>
+                            <p class="vigenciaAmazon">
+                                <b>Finaliza</b>: <?= $adVigencia ?>
+                            </p>
+                            <p class="tiendaAmazon">
+                                Amazon MX
+                            </p>
+                            <p class="idAmazon">
+                                --- <?= $adId ?> ---
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 
