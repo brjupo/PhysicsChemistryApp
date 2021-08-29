@@ -146,6 +146,9 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                         <p class="tiendaAmazon">
                             Amazon MX
                         </p>
+                        <p style="font-size:xx-small; font-weight:bolder;">
+                            --- <?= $adId ?> ---
+                        </p>
                     </div>
                 </a>
             </div>
@@ -158,7 +161,7 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                 $adTitle = $infoAd["title"];
                 $adVigencia = $infoAd["expired_date"];
             ?>
-                <div class="d-none d-md-block col-md-4 col-lg-4 col-xl-4">
+                <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4">
                     <a target="_blank" href="<?= $adLink ?>">
                         <div class="contenedorAmazon">
                             <img src="<?= $adImageUrl ?>" class="imagenAmazon">
@@ -171,6 +174,9 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                             <p class="tiendaAmazon">
                                 Amazon MX
                             </p>
+                            <p style="font-size:xx-small; font-weight:bolder;">
+                                --- <?= $adId ?> ---
+                            </p>
                         </div>
                     </a>
                 </div>
@@ -180,15 +186,6 @@ require "../../CSSsJSs/mainCSSsJSs.php"
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p class="text-center" style="font-size:smaller; font-weight:bolder;">
-                    --- <?= $adId ?> ---
-                </p>
-            </div>
-        </div>
-    </div>
 
     <?php
     /*---------------------------------------------------------------------------------------- */
