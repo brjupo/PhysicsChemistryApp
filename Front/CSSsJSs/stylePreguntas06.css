@@ -68,8 +68,8 @@
   .imagenAmazon {
     display: block;
     margin: 3vh auto;
-    width: auto;
-    height: 40vh;
+    width: 90%;
+    height: auto;
   }
   .tituloAmazon {
     margin: 2vw 1vw;
