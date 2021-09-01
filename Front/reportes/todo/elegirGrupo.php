@@ -43,7 +43,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h3>Examen, Sprint o Práctica</h3>
                 <p>
-                    - Elija un grupo, la modalidad y el tema.
+                    - Elija un grupo, la modalidad y el tema. 
                 </p>
             </div>
         </div>
