@@ -43,7 +43,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h3>Examen, Sprint o Práctica</h3>
                 <p>
-                    - Elija un grupo y el modo.
+                    - Elija un grupo, la modalidad y el tema.
                 </p>
             </div>
         </div>
@@ -108,8 +108,24 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     <option selected disabled value="0">Elegir</option>
                     <!-- ZONA EN CONSTRUCCION -->
                     <!-- mostrar todos los temas de la asignatura -->
+                    <?php
+                    global $servername, $username, $password, $dbname;
+                    //Crear la lectura en base de datos
+                    try {
+                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stringQuery = 'SELECT id_tema, nombre FROM tema ORDER BY id_asignatura ASC, nombre ASC;';
+                        $stmt = $conn->query($stringQuery);
+                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                            echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "Error: " . $e->getMessage();
+                    }
+                    $conn = null;
+                    ?>
                     <!-- TERMINA ZONA EN CONSTRUCCION -->
-                </select>
+                </select><br>
             </div>
 
             <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
