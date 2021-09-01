@@ -30,7 +30,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   
   ?>
   <?php
-  $url = 'https://kaanbal.net/DEV/servicios/getFirstPart.php';
+  $url = 'https://kaanbal.net/dev/servicios/getFirstPart.php';
   $data = array('tokenHora' => 'nda0913fTY673o84KJ');
   // use key 'http' even if you send the request to https://...
   $options = array(
@@ -51,7 +51,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   ?>
 
   <?php
-  $url = 'https://kaanbal.net/DEV/servicios/getSecondPart.php';
+  $url = 'https://kaanbal.net/dev/servicios/getSecondPart.php';
   $data = array('tokenHora' => 'Kn19aAe63rfSuvTy31f');
   // use key 'http' even if you send the request to https://...
   $options = array(
@@ -85,7 +85,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     // Crea un ítem en la preferencia
     $item = new MercadoPago\Item();
     $item->id = "1";
-    $item->title = 'Licencia semestral Kaanbal - Materia y el entorno';
+    $item->title = 'Licencia mensual Kaanbal - Materia y el entorno';
     $item->description = "Incluye el acceso a la plataforma y la posibilidad de inscribirte a un grupo para que los profesores puedan acceder a tus calificaciones";
     $item->quantity = 1;
     $item->currency_id = "MXN";
@@ -155,7 +155,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
         <input type="text" id="Usuario" name="Usuario" value="A01234567@itesm.mx" disabled />
 
         <label for="Concepto">Concepto</label>
-        <input type="text" id="Concepto" name="Concepto" value="Licencia semestral Kaanbal [1 materia]" disabled />
+        <input type="text" id="Concepto" name="Concepto" value="Licencia mensual Kaanbal [1 materia]" disabled />
 
         <label for="Cantidad">Cantidad</label>
         <input type="text" id="Cantidad" name="Cantidad" value="1" disabled />

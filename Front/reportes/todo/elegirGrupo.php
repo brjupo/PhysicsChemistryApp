@@ -161,63 +161,6 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h3>Super Sprint</h3>
-                <p>
-                    - Elija un grupo.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <p style="color: rgba(0, 0, 0, 0);">.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-
-            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <div class="input-group-prepend">
-                    <label class="input-group-text" for="grupo">Grupo</label>
-                </div>
-                <label for="grupo" style="display:none;">grupo</label>
-                <select class="custom-select" id="grupo" name="grupo" form="superSprintForm">
-                    <option selected disabled value="0">Elegir</option>
-                    <?php
-                    global $servername, $username, $password, $dbname;
-                    //Crear la lectura en base de datos
-                    try {
-                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = 'SELECT id_grupo, nombre FROM grupo WHERE id_profesor = ' . $teacherID . ';';
-                        $stmt = $conn->query($stringQuery);
-                        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                            echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
-                        }
-                    } catch (PDOException $e) {
-                        echo "Error: " . $e->getMessage();
-                    }
-                    $conn = null;
-                    ?>
-                </select><br>
-            </div>
-
-
-            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <form action="calificacionesSuperSprint.php" id="superSprintForm" method="POST">
-                    <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte"><br>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <p style="color: rgba(0, 0, 0, 0);">.</p>
             </div>
         </div>

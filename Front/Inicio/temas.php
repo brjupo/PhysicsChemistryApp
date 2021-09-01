@@ -9,10 +9,24 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
-  <title>Temas</title>
+  <title>Temas Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="Temas01.css" />
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-F7VGWM5LKB');
+  </script>
+
 </head>
 
 <body>
@@ -21,7 +35,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   //////////////////////////////////////////////////////
   session_start();
   $tokenValidar = array();
-
+  //ESTOE S UN OCMENTARIO
   //Consultar si existe token de usuario
   $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
   mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
@@ -91,9 +105,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
   {
     /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     $idAsignatura = $_GET['asignatura']; //091120 ESTO LO RECIBE DIRECTO DE LA URL, AQUI RECIBIRA ID DE ASIGNATURA
-    if($idAsignatura != ''){
-    $_SESSION["idAsignatura"] = $idAsignatura;}
-    else{
+    if ($idAsignatura != '') {
+      $_SESSION["idAsignatura"] = $idAsignatura;
+    } else {
       $idAsignatura = $_SESSION["idAsignatura"];
     }
     /*echo '<script type="text/javascript">
@@ -121,9 +135,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
 
     //id de asignatura usado en top.php
-    if($idAsignatura != ''){
-    $_SESSION["idAsignatura"] = $idAsignatura;}
-    else{
+    if ($idAsignatura != '') {
+      $_SESSION["idAsignatura"] = $idAsignatura;
+    } else {
       $idAsignatura = $_SESSION["idAsignatura"];
     }
     $_SESSION["asignaturaNavegacion"] = $materia;
@@ -248,17 +262,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <p style="color:rgba(0,0,0,0)">.</p>
               <p><strong>Bienvenido a Kaanbal</strong></p>
-              <!--p>Hemos mejorado la experiencia para todos los dispositivos.</p-->
-              <!--p>Ahora kaanbal se puede abrir desde cualquier dispositivo usando tu navegador</p-->
-              <p style="color:rgba(0,0,0,0)">.</p>';
-    if ($pagado == 0) {
-      echo '
-              <!--p>¡Sigue acumulando diamantes! Recuerda <a href="../../../contacto.html">adquirir</a> tu licencia antes del 4 de septiembre.  Seguiremos aquí cuando más nos necesites. </p-->
-              <!--p>Por seguridad, cerraremos las cuentas que NO hayan cambiado el password</p>
-              <p>Revisa si completaste correctamente el proceso en <a href="../../../contacto.html">pagos</a></p>
-              <p style="color:rgba(0,0,0,0)">.</p-->';
-    }
-    echo '
+              <p style="color:rgba(0,0,0,0)">.</p>
             </div>
           </div>
         </div>

@@ -11,8 +11,8 @@ $lowerTeacherMail = strtolower($teacherMail);
 //if (strpos($variable, 'palabra') !== false)
 
 
-if (strpos($lowerTeacherMail, 'tec.mx') === false) {
-  //if (false) {
+//if (strpos($lowerTeacherMail, 'tec.mx') === false) {
+if (false) {
   $respuesta["response"] = "¿Quieres obtener tu acceso a Kaanbal? <a href='https://kaanbal.net/contacto.html'>Contáctanos!</a>. Podemos ofrecer a su institución un periodo de prueba GRATUITO.";
 } else {
   $getTeacherMail = new queryToDDBB("SELECT mail FROM usuario_prueba WHERE mail = '" . $lowerTeacherMail . "' ;");
@@ -107,7 +107,7 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
 
     <h3>¡Bienvenida(o) a Kaanbal!</h3>
     <h4>
-      Has hecho una excelente decisión al utilzar la
+      Has hecho una excelente decisión al utilizar la
       <strong>Plataforma educativa Kaanbal</strong>
     </h4>
     <p>
@@ -135,13 +135,10 @@ function cuerpoCorreoNuevoProfesor($mail, $token)
     <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
    
     <p>Correo: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
-
-    <p>WhatsApp: <strong>55 4871 4593</strong>.</p>
     <p style="color: white">.</p>
     <p>Agradecemos tu confianza,</p>
     <p>
-      <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
-      VEKS Solutions México S.A. de C.V.
+      <strong>Equipo de Plataforma Educativa Kaanbal</strong>
     </p>
     <h4 style="background-color: rgb(35, 85, 145); color: rgb(35, 85, 145)">
       .

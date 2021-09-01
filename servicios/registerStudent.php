@@ -71,7 +71,7 @@ if (false) {
                   //Traer materia de acuerdo al grupo
                   $getAsignaturaID = new queryToDDBB("SELECT id_asignatura FROM grupo WHERE id_grupo= '" . $gettedGroup . "';");
                   $gettedAsignaturaID = $getAsignaturaID->read();
-                  if ($addedAlumnoGrupot != "success") {
+                  if ($addedAlumnoGrupo != "success") {
                     $respuesta["response"] = "Error al asociar grupo";
                   } else {
                     //agregar ID alumno a licencias
@@ -134,7 +134,7 @@ function cuerpoCorreoNuevoStudent($mail, $token)
 
     <h3>¡Bienvenida(o) a Kaanbal!</h3>
     <h4>
-      Has hecho una excelente decisión al utilzar la
+      Has hecho una excelente decisión al utilizar la
       <strong>Plataforma educativa Kaanbal</strong>
     </h4>
     <p>
@@ -181,13 +181,10 @@ function cuerpoCorreoNuevoStudent($mail, $token)
     <p>En caso de cualquier duda o comentario por favor envía un mensaje a</p>
 
     <p>Correo: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
-
-    <p>WhatsApp: <strong>55 4871 4593</strong>.</p>
     <p style="color: white">.</p>
     <p>Agradecemos tu confianza,</p>
     <p>
-      <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
-      VEKS Solutions México S.A. de C.V.
+      <strong>Equipo de Plataforma Educativa Kaanbal</strong>
     </p>
     <h4 style="background-color: rgb(35, 85, 145); color: rgb(35, 85, 145)">
       .

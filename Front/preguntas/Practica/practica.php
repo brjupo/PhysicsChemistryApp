@@ -1,5 +1,9 @@
 <?php
 require "../../../servicios/validarLicencia.php";
+require "../../../servicios/00DDBBVariables.php";
+require "../../../servicios/03warrantyPublicity.php";
+require "../../../servicios/04paymentValidation.php";
+require "../../CSSsJSs/mainCSSsJSs.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,14 +12,28 @@ require "../../../servicios/validarLicencia.php";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
-    <title>Pregunta</title>
-    <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
-    <link rel="stylesheet" href="styleExamen.css" />
-    <script src="scriptExamen99.js"></script>
+    <title>Práctica</title>
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $bootstrap341; ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
+    <link rel="stylesheet" href="../../CSSsJSs/<?php echo $stylePreguntas; ?>" />
+    <script src="practice.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-F7VGWM5LKB');
+    </script>
 </head>
+
 
 <body>
     <script>
@@ -36,12 +54,28 @@ require "../../../servicios/validarLicencia.php";
             }
         });
     </script>
-
     <?php
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
     session_start();
+    $leccion = $_GET['leccion'];
+    $leccion = intval($leccion);
 
+    /*---------------------------------------------------------------------------------------- */
+    /*------------------------------------- VALIDAR PAGO ------------------------------------- */
+    /*---------------------------------------------------------------------------------------- */
+    $pagado = licenciaPagada();
+
+    /*---------------------------------------------------------------------------------------- */
+    /*----------------------- VALIDAR LECCION Y MODO ANUNCIO VARIABLE ------------------------ */
+    /*---------------------------------------------------------------------------------------- */
+    if ($pagado != "approved") {
+        validateOrigin($leccion, "practica");
+    }
+
+    /*---------------------------------------------------------------------------------------- */
+    /*----------------------------- VALIDAR LICENCIA Y USUARIO ------------------------------- */
+    /*---------------------------------------------------------------------------------------- */
     $tokenValidar = array();
     /* echo'<script type="text/javascript">
           alert("$_SESSION["mail"]");
@@ -51,60 +85,28 @@ require "../../../servicios/validarLicencia.php";
     $statement = mysqli_prepare($con, "SELECT tokenSesion FROM usuario_prueba WHERE mail = ?");
     mysqli_stmt_bind_param($statement, "s", $_SESSION["mail"]);
     mysqli_stmt_execute($statement);
-
     mysqli_stmt_store_result($statement);
     mysqli_stmt_bind_result($statement, $tokenSesionp);
 
     while (mysqli_stmt_fetch($statement)) {
         $tokenValidar["tokenSesionp"] = $tokenSesionp;
     }
-
     /* echo'<script type="text/javascript">
           alert("'.$_SESSION["tokenSesion"]."____".$tokenValidar["tokenSesionp"] .'");
           </script>'; */
 
-
     if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
-        //Si existe un token de sesion activo se mostraran las preguntas 
-
-        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-        $leccion = $_GET['leccion'];
-        /*echo '<script type="text/javascript">
-                alert("'.$leccion.'");
-                </script>';
-        */
-        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+        //Si existe un token de sesion activo se mostraran las preguntas
 
         $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
-
-        //Traer tiempo para el examen
-        $query2 = "SELECT tiempo_examen FROM leccion WHERE id_leccion = $leccion"; 
-        $result2 = mysqli_query($con, $query2);
-        $tiempoa = mysqli_fetch_row($result2);
-        $tiempo = $tiempoa[0];
-           
-        
-        
         /*----Paso 1 Obtener el ID del subtema----*/
-        /*
-        $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
-        mysqli_stmt_bind_param($statement, "s", $leccion);
-        mysqli_stmt_execute($statement);
-        mysqli_stmt_store_result($statement);
-        mysqli_stmt_bind_result($statement, $id_leccion);
 
-        $arregloIdleccion = array();
-        //Leemos datos ID de leccion
-        while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-        $arregloIdleccion["id_leccion"] = $id_leccion;
-        }
-        $idL = $arregloIdleccion["id_leccion"];-------CAMBIADO POR EL BRANDON A LAS 18:00 EL 2 DE JUNIO
-        */
         $idL = $leccion;
+
         //Validacion de licencia
         $flag = validarLicencia($idL);
 
-        if($flag == 0){
+        if ($flag == 0) {
             echo '<script type="text/javascript">
             alert("No cuenta con licencia para acceder a esta página");
             window.location.href="https://kaanbal.net";
@@ -112,7 +114,7 @@ require "../../../servicios/validarLicencia.php";
         }
         //////////////////////
         //Traer todas las preguntas
-        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL ORDER BY RAND()"; //Revolviendo preguntas, solo para sprint y examen se usa la siguiente linea antes de llamar a imprimir preguntas
+        $query = "SELECT * FROM pregunta WHERE id_leccion = $idL"; //AND id_pregunta <= 5221WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";     
         $result = mysqli_query($con, $query);
         //contar Numero de elementos
         $query2 = "SELECT count(*) FROM pregunta WHERE id_leccion = $idL"; // WHERE TEMA = 'TEMA' AND SUBTEMA = 'SUBTEMA' AND LECCION = 'LECCION'";
@@ -125,22 +127,21 @@ require "../../../servicios/validarLicencia.php";
             $arrayr[] = $row;
         }
         ///VALIDAMOS EL IDIOMA PARA HACER CAMBIO EN EL NOMBRE DE LOS CAMPOS Y MOSTRAR LAS PREGUNTAS EN INGLES
-        if($_SESSION["idioma"] == 'i'){
+        if ($_SESSION["idioma"] == 'i') {
             for ($j = 0; $j < $total[0]; $j++) {
-            $array[$j]["pregunta"] = $array[$j]["question"];
-            $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];
-            $array[$j]["respuesta2"] = $array[$j]["answer2"];
-            $array[$j]["respuesta3"] = $array[$j]["answer3"];
-            $array[$j]["respuesta4"] = $array[$j]["answer4"];
+                $array[$j]["pregunta"] = $array[$j]["question"];
+                $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];
+                $array[$j]["respuesta2"] = $array[$j]["answer2"];
+                $array[$j]["respuesta3"] = $array[$j]["answer3"];
+                $array[$j]["respuesta4"] = $array[$j]["answer4"];
 
-            $arrayr[$j]["pregunta"] = $arrayr[$j]["question"];
-            $arrayr[$j]["respuesta_correcta"] = $arrayr[$j]["correct_answer"];
-            $arrayr[$j]["respuesta2"] = $arrayr[$j]["answer2"];
-            $arrayr[$j]["respuesta3"] = $arrayr[$j]["answer3"];
-            $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
+                $arrayr[$j]["pregunta"] = $arrayr[$j]["question"];
+                $arrayr[$j]["respuesta_correcta"] = $arrayr[$j]["correct_answer"];
+                $arrayr[$j]["respuesta2"] = $arrayr[$j]["answer2"];
+                $arrayr[$j]["respuesta3"] = $arrayr[$j]["answer3"];
+                $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
             }
         }
-
         ///////////////////////////////SEPARANDO PREGUNTAS/////////////////////////////////////////
         ///////////////////////////////NO TOCAR PRROS/////////////////////////////////////////
         for ($j = 0; $j < $total[0]; $j++) {
@@ -192,14 +193,13 @@ require "../../../servicios/validarLicencia.php";
     }
 
 
-    imprimirPreguntas($arrayr, $array, $total, $idL, $tiempo);
+    imprimirPreguntas($arrayr, $array, $total, $idL);
     ?>
 
     <?php
-    function imprimirPreguntas($arrayr, $array, $total, $idL, $tiempo)
+    function imprimirPreguntas($arrayr, $array, $total, $idL)
     {
         imprimirBarraProgresoCruz($total[0], $idL);
-        imprimirTiempoexamen($tiempo);
         imprimirContador();
         imprimirMotivador();
         imprimirPreguntasRespuestas($arrayr, $array, $total);
@@ -218,11 +218,14 @@ require "../../../servicios/validarLicencia.php";
         $r4 = "10,000";
         $rc = "10,000,000";
         $imagen = 1;
+        $idPregunta = 0;
 
 
 
         //Se imprime las siguientes preguntas INVISIBLES
         for ($x = 0; $x < $total[0]; $x++) {
+            $idPregunta = $array[$x]["id_pregunta"];
+
             if ($arrayr[$x]["tipo"] == "1") {
                 //encontrar id´s de las respuestas correctas
                 $rcorrecta = $array[$x]["respuesta_correcta"];
@@ -237,7 +240,7 @@ require "../../../servicios/validarLicencia.php";
 
 
                 //////////////
-                imprimirPreguntaTipo1($x + 1, $arrayr[$x]["pregunta"]);
+                imprimirPreguntaTipo1($idPregunta, $x + 1, $arrayr[$x]["pregunta"]);
                 imprimirImagenRespuestasTipo1(
                     $x + 1,
                     $arrayr[$x]["respuesta_correcta"],
@@ -245,10 +248,11 @@ require "../../../servicios/validarLicencia.php";
                     $arrayr[$x]["respuesta3"],
                     $arrayr[$x]["respuesta4"],
                     $posicion, //aqui mandar posicion de respuesta correcta
-                    $array[$x]["id_pregunta"]
+                    $idPregunta
                 );
             } else {
                 imprimirPreguntaTipo2(
+                    $idPregunta,
                     $x + 1,
                     $arrayr[$x]["preguntaParte1"],
                     $arrayr[$x]["preguntaParte2"]
@@ -256,7 +260,7 @@ require "../../../servicios/validarLicencia.php";
                 imprimirImagenRespuestasTipo2(
                     $x + 1,
                     $array[$x]["respuesta_correcta"],
-                    $array[$x]["id_pregunta"]
+                    $idPregunta
                 );
             }
         }
@@ -276,11 +280,11 @@ require "../../../servicios/validarLicencia.php";
                     <img src="../../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p id="idioma" style="display:none"/>'.$_SESSION["idioma"].'</p>
+                    <p id="idioma" style="display:none">' . $_SESSION["idioma"] . '</p>
                     <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
-                    <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
                     <p id="leccionID" style="display:none">' . $idL . '</p>
+                    <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
                     <div class="progress progressMargin">
                     <div    id="barraAvance"
                             class="progress-bar progress-bar-striped" 
@@ -295,34 +299,6 @@ require "../../../servicios/validarLicencia.php";
             </div>
             ';
     }
-
-    function imprimirTiempoexamen($tiempo)
-    {//border="4px" color="black"  
-        echo '
-                <div class="container">
-                <div class="row">
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                <table class="table fixed">
-                <tbody>
-                  <tr>
-                    <td style="text-align: left" width="50%">
-                      <p id="number">10:00</p>
-                      <p id="tiempo" style="display:none"/>'.$tiempo.'</p>
-                    </td>
-                    <td style="text-align: right" width="50%">
-                      <img class="icons" width="50" height="30" src="../../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-                </div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-                </div>
-            </div>
-            ';
-    }
-
     function imprimirContador()
     {
         echo '
@@ -362,7 +338,21 @@ require "../../../servicios/validarLicencia.php";
         ';
     }
 
-    function imprimirPreguntaTipo1(int $preguntaNumero, $preguntaTexto)
+    /*
+    Mis nacadas
+    ID Pregunta = 1000 + Número de pregunta         Ejemplo: Pregunta1 id="1001"
+    ID Respuesta = 2000 + Número de pregunta        Ejemplo: Respuesta1 id="2001"
+    ID Respuesta correcta = 3000 + Número de pregunta   Ejemplo: ResCorrecta1 id="3001"
+
+    Opción 4 = 10 * Número de pregunta              Ejemplo: class="Opcion4"id="10"
+    Opción 3 = 10 * Número de pregunta - 1          Ejemplo: class="Opcion3"id="9"
+    Opción 2 = 10 * Número de pregunta - 2          Ejemplo: class="Opcion2"id="8"
+    Opción 1 = 10 * Número de pregunta - 3          Ejemplo: class="Opcion1"id="7"
+    ID Boton aceptar = 10 * Número de pregunta - 4  Ejemplo: id="6"
+    Texto Escrito = 10 * Número de pregunta - 5     Ejempo: id="5"
+
+    */
+    function imprimirPreguntaTipo1(int $idPregunta, int $preguntaNumero, $preguntaTexto)
     {
         $preguntaNumero = 1000 + $preguntaNumero;
         echo '
@@ -371,7 +361,7 @@ require "../../../servicios/validarLicencia.php";
             <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <p id="preguntaNumero" style="display:none">' . $preguntaNumero . '</p>
+                <p id="preguntaNumero">' . $idPregunta . '</p>
                 <p class="formatoPreguntas">'
             . $preguntaTexto .
             '  
@@ -382,7 +372,7 @@ require "../../../servicios/validarLicencia.php";
             </div>
         ';
     }
-    function imprimirImagenRespuestasTipo1(int $respuestas, $r1, $r2, $r3, $r4, $respCorrecta, $imagen)
+    function imprimirImagenRespuestasTipo1(int $respuestas, $r1, $r2, $r3, $r4, $respCorrecta, $idPregunta)
     {
         $uno = 10 * $respuestas - 3;
         $dos = 10 * $respuestas - 2;
@@ -390,48 +380,35 @@ require "../../../servicios/validarLicencia.php";
         $cuatro = 10 * $respuestas;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
-        $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../../../../IMAGENES/" . $imgjpg;
 
-        $imgJPG = $imagen . ".JPG";
-        $pathJPG = "../../../../IMAGENES/" . $imgJPG;
-        if (file_exists($pathjpg)) {
+        global $servername, $username, $password, $dbname;
+        //Crear la lectura en base de datos
+        //Leer el nombre de las imagenes
+        $nombreImagen = NULL;
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stringQuery = "SELECT idImagen FROM pregunta WHERE id_pregunta = " . $idPregunta;
+            $stmt = $conn->query($stringQuery);
+            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                $pathToImage = "../../../../IMAGENES/" . $row[0];
+                if (file_exists($pathToImage)) {
+                    $nombreImagen = $row[0];
+                }
+            }
+        } catch (PDOException $e) {
+            echo "Error al " . $stringQuery . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+
+
+        if ($nombreImagen != NULL) {
             echo '
             <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
             <div class="container" style="display:none" id ="' . $respuestaNumero . '">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
-                <p id="' . $IDvalorCorrecto . '" style="display:none">
-                    ' . $respCorrecta . '
-                </p>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                <button class="Opcion1" id="' . $uno . '">
-                    ' . $r1 . '
-                </button><br>
-                <button class="Opcion3" id="' . $tres . '">
-                    ' . $r3 . '
-                </button>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                <button class="Opcion2" id="' . $dos . '">
-                    ' . $r2 . '
-                </button><br>
-                <button class="Opcion4" id="' . $cuatro . '">
-                    ' . $r4 . '
-                </button>
-                </div>
-            </div>
-            </div>
-        ';
-        } else if (file_exists($pathJPG)) {
-            echo '
-            <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
-            <div class="container" style="display:none" id ="' . $respuestaNumero . '">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <img src="../../../../IMAGENES/' . $imagen . '.JPG" class="imagenPregunta" />
+                <img src="../../../../IMAGENES/' . $nombreImagen . '" class="imagenPregunta" />
                 <p id="' . $IDvalorCorrecto . '" style="display:none">
                     ' . $respCorrecta . '
                 </p>
@@ -490,8 +467,21 @@ require "../../../servicios/validarLicencia.php";
         ';
         }
     }
-    
-    function imprimirPreguntaTipo2(int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
+    /*
+    Mis nacadas
+    ID Pregunta = 1000 + Número de pregunta
+    ID Respuesta = 2000 + Número de pregunta
+    ID Respuesta correcta = 3000 + Número de pregunta
+
+    Opción 4 = 10 * Número de pregunta
+    Opción 3 = 10 * Número de pregunta - 1
+    Opción 2 = 10 * Número de pregunta - 2
+    Opción 1 = 10 * Número de pregunta - 3
+    ID Boton aceptar = 10 * Número de pregunta - 4
+    Texto Escrito = 10 * Número de pregunta - 5
+
+    */
+    function imprimirPreguntaTipo2(int $idPregunta, int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
     {
         $IDTextoEscrito = 10 * $preguntaNumero - 5;
         $preguntaNumero = 1000 + $preguntaNumero;
@@ -501,7 +491,7 @@ require "../../../servicios/validarLicencia.php";
                 <div class="row">
                 <div class="hidden-xs hidden-sm col-md-1 col-lg-1 col-xl-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                    <p id="preguntaNumero" style="display:none">' . $preguntaNumero . '</p>
+                    <p id="preguntaNumero">' . $idPregunta . '</p>
                     <p class="formatoPreguntas">'
             . $preguntaTexto .
             ' 
@@ -516,16 +506,35 @@ require "../../../servicios/validarLicencia.php";
             </div>
             ';
     }
-    function imprimirImagenRespuestasTipo2(int $respuestas, $respCorrecta, $imagen)
+    function imprimirImagenRespuestasTipo2(int $respuestas, $respCorrecta, $idPregunta)
     {
 
         $IDBotonAceptar = 10 * $respuestas - 4;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
-        $imgjpg = $imagen . ".jpg";
-        $pathjpg = "../../../../IMAGENES/" . $imgjpg;
-        //echo '<p>'.$path.'</p>';
-        if (file_exists($pathjpg)) {
+
+        global $servername, $username, $password, $dbname;
+        //Crear la lectura en base de datos
+        //Leer el nombre de las imagenes
+        $nombreImagen = NULL;
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stringQuery = "SELECT idImagen FROM pregunta WHERE id_pregunta = " . $idPregunta;
+            $stmt = $conn->query($stringQuery);
+            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                $pathToImage = "../../../../IMAGENES/" . $row[0];
+                if (file_exists($pathToImage)) {
+                    $nombreImagen = $row[0];
+                }
+            }
+        } catch (PDOException $e) {
+            echo "Error al " . $stringQuery . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+
+
+        if ($nombreImagen != NULL) {
             echo '
                 <!--+++++++++++++++++++++++++++++++++++++++IMAGEN++++++++++++++++++++++++++++++++++++++++++++-->
                 <div class="container" style="display:none" id ="' . $respuestaNumero . '">
@@ -535,7 +544,7 @@ require "../../../servicios/validarLicencia.php";
                             <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                            <img src="../../../../IMAGENES/' . $imagen . '.jpg" class="imagenPregunta" />
+                            <img src="../../../../IMAGENES/' . $nombreImagen . '" class="imagenPregunta" />
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
@@ -550,7 +559,7 @@ require "../../../servicios/validarLicencia.php";
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Acepto</button>
+                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>
