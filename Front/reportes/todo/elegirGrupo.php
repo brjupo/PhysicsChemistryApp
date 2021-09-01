@@ -98,7 +98,18 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     <!--option value="SG">Super Sprint</option-->
                     <!--El superint no se rige por cada leccion, se debe hacer otra logica por cada subtema-->
                 </select>
+            </div>
 
+            <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="tema">Tema</label>
+                </div>
+                <select class="custom-select" id="tema" name="tema" form="groupForm">
+                    <option selected disabled value="0">Elegir</option>
+                    <!-- ZONA EN CONSTRUCCION -->
+                    <!-- mostrar todos los temas de la asignatura -->
+                    <!-- TERMINA ZONA EN CONSTRUCCION -->
+                </select>
             </div>
 
             <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
