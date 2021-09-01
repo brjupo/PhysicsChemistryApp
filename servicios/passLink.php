@@ -68,7 +68,6 @@ if ($id_usuario === 0) {
             $from = "licencias@kaanbal.net";
             $to = $emailCliente;
             $to = $emailCliente . ', ';
-            $to .= 'kaanbal@veks.mx' . ', ';
             $to .= 'licencias@kaanbal.net';
 
             $subject = "Kaanbal - Password";
@@ -106,7 +105,6 @@ if ($id_usuario === 0) {
             //mail(correo,asunto,cuerpo);
             $from = "licencias@kaanbal.net";
             $to = $emailCliente . ', ';
-            $to .= 'kaanbal@veks.mx' . ', ';
             $to .= 'licencias@kaanbal.net';
 
             $subject = "Kaanbal - Password";
@@ -161,8 +159,8 @@ function getCuerpo($token, $kaanbalUser)
                 <h4 style='background-color:rgb(35, 85, 145); color:rgb(35, 85, 145);'>.</h4>
                 <h3>¡Bienvenida(o) a Kaanbal!</h3>
                 <h4>
-                  Has hecho una excelente decisión al adquirir la licencia semestral de la
-                  <strong>Plataforma educativa Kaanbal</strong>
+                  Has hecho una excelente decisión al adquirir la licencia mensual de la
+                  <strong>plataforma educativa Kaanbal</strong>
                 </h4>
                 <p>
                   Ahora podrás practicar, reforzar y consolidar los conceptos vistos en
@@ -199,16 +197,14 @@ function getCuerpo($token, $kaanbalUser)
                 <p style='color:white;'>.</p>
                 <p>
                   En caso de cualquier duda o comentario por favor envía un correo a la
-                  dirección: <strong>kaanbal@veks.mx</strong> en donde un miembro del equipo
+                  dirección: <strong>aclaraciones@kaanbal.net</strong> en donde un miembro del equipo
                   te estará apoyando con lo que requieras. Ponemos también a tu disposición
-                  las siguientes opciones de contacto, donde con gusto los atenderemos vía
-                  Whatsapp bussines: <strong>55 7923 5241</strong>.
+                  las siguientes opciones de contacto, donde con gusto los atenderemos contacto@kaanbal.net
                 </p>
                 <p style='color:white;'>.</p>
                 <p>Agradecemos tu confianza,</p>
                 <p>
-                  <strong>Equipo de Plataforma Educativa Kaanbal</strong> un producto de
-                  VEKS Solutions México S.A. de C.V.
+                  <strong>Equipo de Plataforma Educativa Kaanbal</strong>
                 </p>
                 <h4 style='background-color:rgb(35, 85, 145); color:rgb(35, 85, 145);'>.</h4>
               </body>

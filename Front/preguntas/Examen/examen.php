@@ -1,6 +1,8 @@
 <?php
 require "../../../servicios/validarLicencia.php";
 require "../../../servicios/00DDBBVariables.php";
+require "../../../servicios/03warrantyPublicity.php";
+require "../../../servicios/04paymentValidation.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,13 +11,27 @@ require "../../../servicios/00DDBBVariables.php";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../CSSsJSs/icons/pyramid.svg" />
-    <title>Pregunta</title>
+    <title>Examen</title>
     <link rel="stylesheet" href="../../CSSsJSs/bootstrap341.css" />
     <link rel="stylesheet" href="styleExamen.css" />
     <script src="examen.js"></script>
     <script src="../../CSSsJSs/minAJAX.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-F7VGWM5LKB');
+    </script>
+
 </head>
 
 <body>
@@ -42,6 +58,24 @@ require "../../../servicios/00DDBBVariables.php";
     $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
     //////////////////////////////////////////////////////
     session_start();
+    $leccion = $_GET['leccion'];
+    $leccion = intval($leccion);
+
+    /*---------------------------------------------------------------------------------------- */
+    /*------------------------------------- VALIDAR PAGO ------------------------------------- */
+    /*---------------------------------------------------------------------------------------- */
+    $pagado = licenciaPagada();
+
+    /*---------------------------------------------------------------------------------------- */
+    /*----------------------- VALIDAR LECCION Y MODO ANUNCIO VARIABLE ------------------------ */
+    /*---------------------------------------------------------------------------------------- */
+    if ($pagado != "approved") {
+        validateOrigin($leccion, "examen");
+    }
+
+    /*---------------------------------------------------------------------------------------- */
+    /*----------------------------- VALIDAR LICENCIA Y USUARIO ------------------------------- */
+    /*---------------------------------------------------------------------------------------- */
 
     $tokenValidar = array();
     /* echo'<script type="text/javascript">
@@ -66,26 +100,18 @@ require "../../../servicios/00DDBBVariables.php";
 
 
     if ($_SESSION["tokenSesion"] == $tokenValidar["tokenSesionp"] and $tokenValidar["tokenSesionp"] != "") {
-        //Si existe un token de sesion activo se mostraran las preguntas 
-
-        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-        $leccion = $_GET['leccion'];
-        /*echo '<script type="text/javascript">
-                alert("'.$leccion.'");
-                </script>';
-        */
-        /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+        //Si existe un token de sesion activo se mostraran las preguntas
 
         $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
 
         //Traer tiempo para el examen
-        $query2 = "SELECT tiempo_examen FROM leccion WHERE id_leccion = $leccion"; 
+        $query2 = "SELECT tiempo_examen FROM leccion WHERE id_leccion = $leccion";
         $result2 = mysqli_query($con, $query2);
         $tiempoa = mysqli_fetch_row($result2);
         $tiempo = $tiempoa[0];
-           
-        
-        
+
+
+
         /*----Paso 1 Obtener el ID del subtema----*/
         /*
         $statement = mysqli_prepare($con, "SELECT id_leccion FROM leccion WHERE nombre = ?");
@@ -105,7 +131,7 @@ require "../../../servicios/00DDBBVariables.php";
         //Validacion de licencia
         $flag = validarLicencia($idL);
 
-        if($flag == 0){
+        if ($flag == 0) {
             echo '<script type="text/javascript">
             alert("No cuenta con licencia para acceder a esta página");
             window.location.href="https://kaanbal.net";
@@ -126,19 +152,19 @@ require "../../../servicios/00DDBBVariables.php";
             $arrayr[] = $row;
         }
         ///VALIDAMOS EL IDIOMA PARA HACER CAMBIO EN EL NOMBRE DE LOS CAMPOS Y MOSTRAR LAS PREGUNTAS EN INGLES
-        if($_SESSION["idioma"] == 'i'){
+        if ($_SESSION["idioma"] == 'i') {
             for ($j = 0; $j < $total[0]; $j++) {
-            $array[$j]["pregunta"] = $array[$j]["question"];
-            $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];
-            $array[$j]["respuesta2"] = $array[$j]["answer2"];
-            $array[$j]["respuesta3"] = $array[$j]["answer3"];
-            $array[$j]["respuesta4"] = $array[$j]["answer4"];
+                $array[$j]["pregunta"] = $array[$j]["question"];
+                $array[$j]["respuesta_correcta"] = $array[$j]["correct_answer"];
+                $array[$j]["respuesta2"] = $array[$j]["answer2"];
+                $array[$j]["respuesta3"] = $array[$j]["answer3"];
+                $array[$j]["respuesta4"] = $array[$j]["answer4"];
 
-            $arrayr[$j]["pregunta"] = $arrayr[$j]["question"];
-            $arrayr[$j]["respuesta_correcta"] = $arrayr[$j]["correct_answer"];
-            $arrayr[$j]["respuesta2"] = $arrayr[$j]["answer2"];
-            $arrayr[$j]["respuesta3"] = $arrayr[$j]["answer3"];
-            $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
+                $arrayr[$j]["pregunta"] = $arrayr[$j]["question"];
+                $arrayr[$j]["respuesta_correcta"] = $arrayr[$j]["correct_answer"];
+                $arrayr[$j]["respuesta2"] = $arrayr[$j]["answer2"];
+                $arrayr[$j]["respuesta3"] = $arrayr[$j]["answer3"];
+                $arrayr[$j]["respuesta4"] = $arrayr[$j]["answer4"];
             }
         }
 
@@ -277,7 +303,7 @@ require "../../../servicios/00DDBBVariables.php";
                     <img src="../../CSSsJSs/icons/clear.svg" id="cruzCerrar" class="cruz" />
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                    <p id="idioma" style="display:none"/>'.$_SESSION["idioma"].'</p>
+                    <p id="idioma" style="display:none"/>' . $_SESSION["idioma"] . '</p>
                     <p id="subtemaPrevio" style="display:none">' . $subtemaNavegacion . '</p>
                     <p id="totalPreguntas" style="display:none">' . $totalPreguntas . '</p>
                     <p id="userID" style="display:none">' . $_SESSION["id_usuario"] . '</p>
@@ -298,7 +324,7 @@ require "../../../servicios/00DDBBVariables.php";
     }
 
     function imprimirTiempoexamen($tiempo)
-    {//border="4px" color="black"  
+    { //border="4px" color="black"  
         echo '
                 <div class="container">
                 <div class="row">
@@ -309,7 +335,7 @@ require "../../../servicios/00DDBBVariables.php";
                   <tr>
                     <td style="text-align: left" width="50%">
                       <p id="number">10:00</p>
-                      <p id="tiempo" style="display:none"/>'.$tiempo.'</p>
+                      <p id="tiempo" style="display:none"/>' . $tiempo . '</p>
                     </td>
                     <td style="text-align: right" width="50%">
                       <img class="icons" width="50" height="30" src="../../CSSsJSs/icons/relojExa.svg" onClick="ocultarTiempo()" />
@@ -391,7 +417,7 @@ require "../../../servicios/00DDBBVariables.php";
         $cuatro = 10 * $respuestas;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
-        
+
         global $servername, $username, $password, $dbname;
         //Crear la lectura en base de datos
         //Leer el nombre de las imagenes
@@ -478,7 +504,7 @@ require "../../../servicios/00DDBBVariables.php";
         ';
         }
     }
-    
+
     function imprimirPreguntaTipo2(int $preguntaNumero, $preguntaTexto, $preguntaTexto2)
     {
         $IDTextoEscrito = 10 * $preguntaNumero - 5;
@@ -510,7 +536,7 @@ require "../../../servicios/00DDBBVariables.php";
         $IDBotonAceptar = 10 * $respuestas - 4;
         $respuestaNumero = 2000 + $respuestas;
         $IDvalorCorrecto = 3000 + $respuestas;
-        
+
         global $servername, $username, $password, $dbname;
         //Crear la lectura en base de datos
         //Leer el nombre de las imagenes
@@ -557,7 +583,7 @@ require "../../../servicios/00DDBBVariables.php";
                     <div class="row">
                         <!--div class="hidden-xs hidden-sm col-md-3 col-lg-3 col-xl-3"></div-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Acepto</button>
+                            <button id="' . $IDBotonAceptar . '" class="miniBoton">Ok</button>
                             <p id="' . $IDvalorCorrecto . '" style="display:none">
                             ' . $respCorrecta . '
                             </p>

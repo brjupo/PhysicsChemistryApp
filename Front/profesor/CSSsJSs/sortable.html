@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>jQuery Sortable</title>
+    <style>
+      #sortable {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 60%;
+      }
+      #sortable li {
+        margin: 0 3px 3px 3px;
+        padding: 0.4em;
+        padding-left: 1.5em;
+        font-size: 1.4em;
+        height: 18px;
+        background-color: bisque;
+        border-width: 1px;
+      }
+      #sortable li span {
+        position: absolute;
+        margin-left: -1.3em;
+      }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+    <script src="jquery-ui.js"></script>
+    <script>
+      $(function () {
+        $("#sortable").sortable();
+        $("#sortable").disableSelection();
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <p>https://jqueryui.com/sortable/</p>
+    </div>
+    <ul id="sortable">
+      <li id="31" class="ui-state-default">
+        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Tema 1, id=31
+      </li>
+      <li id="32" class="ui-state-default">
+        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Tema 2, id=32
+      </li>
+      <li id="33" class="ui-state-default">
+        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Tema 3, id=33
+      </li>
+      <li id="34" class="ui-state-default">
+        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Tema 4, id=34
+      </li>
+      <li id="35" class="ui-state-default">
+        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Tema 5, id=35
+      </li>
+      <li id="36" class="ui-state-default">
+        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Tema 6, id=36
+      </li>
+      <li id="37" class="ui-state-default">
+        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Tema 7, id=37
+      </li>
+    </ul>
+    <button id="crearNuevoOrden">Enviar el nuevo orden</button>
+    <p>En la app real, en lugar de imprimir, se enviaría por un servicio el nuevo orden nominal [1,2,3,4...] y el respectivo ID del tema</p>
+    <p id="nuevoOrden"></p>
+    <script>
+      //--------------------------------------------------------------
+      //---------------------------ON CLIC----------------------------
+      //--------------------------------------------------------------
+      document.addEventListener("click", function (evt) {
+        var obtenerOrdenIds = document.getElementById("crearNuevoOrden");
+        targetElement = evt.target; // clicked element
+
+        do {
+          if (targetElement == obtenerOrdenIds) {
+            enviarElNuevoOrden();
+            return;
+          }
+          // Go up the DOM
+          targetElement = targetElement.parentNode;
+        } while (targetElement);
+      });
+      function enviarElNuevoOrden(){
+        var children = document.getElementById("sortable").children;
+        var idArr = [];
+        for (var i = 0; i < children.length; i++) {
+          idArr.push(children[i].id);
+          j=i+1;
+          //En la app real, en lugar de imprimir, se enviaría por un servicio el nuevo orden nominal [1,2,3,4...] y el respectivo ID del tema
+          document.getElementById("nuevoOrden").innerHTML = document.getElementById("nuevoOrden").innerHTML + j + ": " + children[i].id + " <br>";
+        }
+        console.log(idArr);
+      }
+
+    </script>
+  </body>
+</html>

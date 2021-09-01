@@ -78,7 +78,6 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         <td>Práctica</td>
                         <td>Sprint</td>
                         <td>Examen</td>
-                        <td>Super Sprint</td>
                     </tr>
                         <?php
                         //Crear la lectura en base de datos
@@ -86,8 +85,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                             $stringQuery = "SELECT alumno.matricula, alumno.acmlrPP, alumno.acmlrSP, 
-                            alumno.acmlrE, alumno.acmlrSS FROM alumno INNER JOIN profesor 
-                            ON alumno.id_usuario = profesor.id_usuario ORDER BY alumno.matricula";
+                            alumno.acmlrE FROM alumno INNER JOIN profesor 
+                            ON alumno.id_usuario = profesor.id_usuario ORDER BY alumno.numero_lista ASC";
                             $stmt = $conn->query($stringQuery);
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 echo '<tr>';
@@ -97,7 +96,6 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                                 echo '<td>'.$row[1].'</td>';
                                 echo '<td>'.$row[2].'</td>';
                                 echo '<td>'.$row[3].'</td>';
-                                echo '<td>'.$row[4].'</td>';
                                 echo '</tr>';
                             }
                         } catch (PDOException $e) {

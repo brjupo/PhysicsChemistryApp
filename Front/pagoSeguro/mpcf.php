@@ -4,6 +4,8 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 require "../CSSsJSs/mainCSSsJSs.php";
 require "../../servicios/00DDBBVariables.php";
+require "../../servicios/04paymentValidation.php";
+require "../../servicios/06invoicingInformation.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,6 +16,7 @@ require "../../servicios/00DDBBVariables.php";
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Kaanbal</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
+  <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
   <link rel="stylesheet" href="ml1.css" />
 </head>
 
@@ -23,8 +26,8 @@ require "../../servicios/00DDBBVariables.php";
   ---Idea general---
   Guardaremos la informacion del usuario con un estatus NO PAGADO.
   Al hacer el pago, deberemos validar si existe un registro (de rfc y razon social) del usuario. 
-  En caso de que se encuentren los datos. Obtener el registro mas reciente ORDER BY id DESC LIMIT 1
-  Se debe cambiar el status de la tabla invoicing a PAGADO - PENDIENTE POR FACTURAR
+  En caso de que se encuentren los datos. Actualizar el rfc y razon social
+  Se debe cambiar el status de la tabla invoicing a PAGADO - PENDIENTE POR FACTURAR, solo en caso de success
   */
   ?>
   <?php
@@ -62,13 +65,21 @@ require "../../servicios/00DDBBVariables.php";
 
   $rfc = str_replace(" ", "", $rfc);
   $usuarioCorreo = str_replace(" ", "", $usuarioCorreo);
-  //1.2.- Guardar en BBDD, Tabla invoicing > idUsuario, idAsignatura, rfc, razon social, id_status = 1 (NO PAGADO).
-  saveCryptedInvoiceInfo($idUser, $idAsignatura, $rfc, $razonSocial, 1);
+  $errorDetected = 0;
+  //1.2.- Validar si existe registro. Si NO existe, guardar en BBDD, Tabla invoicing > idUsuario, idAsignatura, rfc, razon social, status = "no_pagado". Si EXISTE actualizar RFC y razon social
+  $idInvoicing = verifyInvoicingUserSubjectExist($idUser, $idAsignatura);
+  if ($idInvoicing == 0) {
+    $errorDetected = createInvoicingRegister($idUser, $idAsignatura, $rfc, $razonSocial, "no_pagado");
+  } else if ($idInvoicing > 0) {
+    $errorDetected = updateInvoicingRfcRazonSocial($idInvoicing, $rfc, $razonSocial);
+  } else {
+    $errorDetected = 1;
+  }
 
-  echo '<p> Datos rfc=' . $rfc . '  razonSocial=' . $razonSocial . ' usuario=' . $usuarioCorreo . ' idUser=' . $idUser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
+  //echo '<p> Datos rfc=' . $rfc . '  razonSocial=' . $razonSocial . ' usuario=' . $usuarioCorreo . ' idUser=' . $idUser . '  materia=' . $materia . ' idAsignatura' . $idAsignatura . '</p>';
   ?>
   <?php
-  if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia)) {
+  if (is_null($rfc) || is_null($razonSocial) || is_null($usuarioCorreo) || is_null($materia) || $errorDetected != 0) {
     echo '<script  type="text/javascript"> 
     alert("Error. Por favor, verifica e inserta nuevamente tus datos
     rfc=' . $rfc . '  razonSocial=' . $razonSocial . '  
@@ -77,10 +88,26 @@ require "../../servicios/00DDBBVariables.php";
     </script>';
   } else {
     try {
+      $json = getFirstPartMarketPayAccessToken();
+      $result = json_decode($json, TRUE);
+      $firstPart = hex2bin($result["value"]);
+
+      $json = getSecondPartMarketPayAccessToken();
+      $result = json_decode($json, TRUE);
+      $secondPart = hex2bin($result["value"]);
+
+      $accessToken = $firstPart . $secondPart;
+      //echo "<p>".$accessToken."</p>";
+      //$accessToken = "TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800";
+
+
+      //Precio de hoy
+      $todayPrice = getTodayPrice();
+
       // SDK de Mercado Pago
       require '../../../../../../vendor/autoload.php';
       // Agrega credenciales
-      MercadoPago\SDK::setAccessToken("TEST-6020404437225723-102416-8ff6df5eba994e44818f40c514eb2c1a-653962800");
+      MercadoPago\SDK::setAccessToken($accessToken);
 
       // Crea un objeto de preferencia
       $preference = new MercadoPago\Preference();
@@ -88,10 +115,10 @@ require "../../servicios/00DDBBVariables.php";
       // Crea un ítem en la preferencia
       $item = new MercadoPago\Item();
       $item->title = $idAsignatura . "@@" . $materia;
-      $item->description = "Incluye el acceso a la plataforma y la posibilidad de inscribirte a un grupo para que los profesores puedan acceder a tus calificaciones";
+      $item->description = "Incluye el acceso a la plataforma kaanbal.net por 6 meses SIN publicidad";
       $item->quantity = 1;
       $item->currency_id = "MXN";
-      $item->unit_price = 250;
+      $item->unit_price = $todayPrice;
 
       // Crear el comprador
       $payer = new MercadoPago\Payer();
@@ -126,88 +153,9 @@ require "../../servicios/00DDBBVariables.php";
       $preference->payer = $payer;
       $preference->save();
     } catch (Exception $e) {
-      echo 'Caught exception: ',  $e->getMessage(), "\n";
+      echo '<p>Caught exception: ',  $e->getMessage(), "</p>";
     }
   }
-  ?>
-  <?php
-  function saveCryptedInvoiceInfo($idUsuario, $idAsignatura, $rfc, $razonSocial, $idStatus)
-  {
-    //1.2.- Guardar en BBDD, Tabla invoicing > idUsuario, idAsignatura, rfc, razon social, id_status = 1 (NO PAGADO).
-    global $servername, $dbname, $username, $password;
-/*
-<!DOCTYPE html>
-<html>
-<body>
-
-<?php
-function familyName($fname, $year) {
-echo "<p>";
-  $trfc = bin2hex("Brandon Juárez Ponce");
-  //$trfc = bin2hex("Hi!, That's all that you need tóday");
-    $trfc0 = substr($trfc,0,3);
-    $trfc1 = substr($trfc,3,7);
-    $trfc2 = substr($trfc,10);
-    $rfcCyph = $trfc2 . $trfc0 . $trfc1;
-  echo $trfc;
-  echo "_________trfc<br>";
-  echo $trfc0;
-  echo "_________trfc0<br>";
-  echo $trfc1;
-  echo "_________trfc1<br>";
-  echo $trfc2;
-  echo "_________trfc2<br>";
-  $rfcCyph0 = substr($rfcCyph,-10,-7);
-    $rfcCyph1 = substr($rfcCyph,-7);
-    $rfcCyph2 = substr($rfcCyph,0,-10);
-    $aver = $rfcCyph0 . $rfcCyph1 . $rfcCyph2;
-  
-  echo $rfcCyph;
-  echo "_________rfcCyph<br>";
-  echo $rfcCyph0;
-  echo "_________rfcCyph0<br>";
-  echo $rfcCyph1;
-  echo "_________rfcCyph1<br>";
-  echo $rfcCyph2;
-  echo "_________rfcCyph2<br>";
-  echo $aver;
-  echo "_________TOTAL<br>";
-  echo hex2bin($aver);
-  echo "_________REAL<br>";
-  echo hex2bin($rfcCyph);
-  
-echo "</p>";
-}
-
-familyName("Hege","1975");
-?>
-
-</body>
-</html>
-
-
-
-*/
-$rfcCyph="";
-    $razonSocialCyph = $razonSocial;
-    try {
-      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-      // set the PDO error mode to exception
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
-      //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
-      $sql = "INSERT 
-      INTO invoicing (id_usuario, id_asignatura, rfc, razon_social, id_status) 
-      VALUES ('". $idUsuario ."', '". $idAsignatura ."', '". $rfcCyph ."', '". $razonSocialCyph ."', ". $idStatus.")";
-      // use exec() because no results are returned
-      $conn->exec($sql);
-    } catch (PDOException $e) {
-      echo "<p>" . $sql . "<br>" . $e->getMessage() . "</p>";
-    }
-    $conn = null;
-    echo "hola";
-  }
-
   ?>
 
   <div class="container">
@@ -233,17 +181,33 @@ $rfcCyph="";
     <div class="row">
       <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
       <div class="text-center col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-        <label for="Usuario">Usuario</label>
-        <input type="text" id="Usuario" name="Usuario" value="<?= $usuarioCorreo ?>" disabled />
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="usuarioLabel">Usuario</span>
+          </div>
+          <input type="text" class="form-control" id="usuario" aria-describedby="usuarioLabel" name="usuario" value="<?= $usuarioCorreo ?>" disabled />
+        </div>
 
-        <label for="Concepto">Concepto</label>
-        <input type="text" id="Concepto" name="Concepto" value=" Licencia semestral Kaanbal - <?= $materia ?>" disabled />
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="conceptoLabel">Concepto</span>
+          </div>
+          <input type="text" class="form-control" id="concepto" aria-describedby="conceptoLabel" name="concepto" value="Licencia mensual Kaanbal - <?= $materia ?>" disabled />
+        </div>
 
-        <label for="Cantidad">Cantidad</label>
-        <input type="text" id="Cantidad" name="Cantidad" value="1" disabled />
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="cantidadLabel">Cantidad</span>
+          </div>
+          <input type="text" class="form-control" id="cantidad" aria-describedby="cantidadLabel" name="cantidad" value="1" disabled />
+        </div>
 
-        <label for="Precio">Precio Unitario [Incluye IVA]</label>
-        <input type="text" id="PrecioU" name="PrecioU" value="250.00 MXN" disabled />
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="precioLabel">Precio Unitario [Incluye IVA]</span>
+          </div>
+          <input type="text" class="form-control" id="precio" aria-describedby="precioLabel" name="precio" value="<?= $todayPrice ?>.00 MXN" disabled />
+        </div>
       </div>
       <div class="text-center col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
@@ -252,7 +216,7 @@ $rfcCyph="";
   <div class="container">
     <div class="row">
       <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <p style="color: rgba(0, 0, 0, 0)">.</p>
+        <p style="color: rgba(0, 0, 0, 1); background-color:rgba(255,255,0,0.8);">Revisa que el pago se haga con el correo que usas para inciar sesión en Kaanbal.<br> Si haces el pago con otro correo/cuenta NO se verá reflejado en tu licencia </p>
       </div>
     </div>
     <div class="row">
@@ -266,7 +230,7 @@ $rfcCyph="";
       <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <img src="../CSSsJSs/images/mercadoPagoLogo.png" width="120px" style="display: block; margin: auto 0px auto auto" />
       </div>
-      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 buttonParent" >
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 buttonParent">
         <script src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>">
         </script>
       </div>

@@ -12,9 +12,20 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <title>Perfil</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap441; ?>" />
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $kaanbalEssentials; ?>" />
-  <link rel="stylesheet" href="perfil03.css" />
+  <link rel="stylesheet" href="perfil05.css" />
   <script src="perfil.js"></script>
   <script src="../CSSsJSs/<?php echo $minAJAX; ?>"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F7VGWM5LKB');
+  </script>
+  
 </head>
 
 <body>
@@ -147,7 +158,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
       imprimirCalificacion($matricula);
     }
     imprimirPagos();
-    imprimirCreditos();
     imprimirFooter();
   }
   ?>
@@ -182,7 +192,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="row">
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
               <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-                <p class="tituloTemasPrincipales text-center" id="matricula">' . $matricula . '</p>
+                <p class="text-center" id="matricula">' . $matricula . '</p>
               </div>
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
@@ -197,9 +207,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
             <div class="row">
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
               <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-                <p class="tituloTemasPrincipales text-center">
+                <h2 class="text-center">
                   ' . $materia . '   ' . $porcentajeAvance . '
-                </p>
+                </h2>
               </div>
               <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
@@ -385,7 +395,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                 <img class="icons imgRight" src="../CSSsJSs/icons/diamante.svg" />
               </div>
               <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                <p class="tituloTemasPrincipales textLeft">' . $diamantes . '</p>
+                <h2 class="textLeft" style="display:block;margin:auto;">' . $diamantes . '</h2>
               </div>
               <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
             </div>
@@ -400,50 +410,27 @@ require "../CSSsJSs/mainCSSsJSs.php";
           <div class="container">
             <div class="row">
               <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h2 style="text-align:center;">Grades</h2>
+                <h2 style="text-align:center;">Calificaciones</h2>
               </div>
             </div>
           </div>
     ';
     echo '<div class="container">
             <div class="row">
-                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <form action="calificaciones.php" id="groupForm" method="POST">
                       <label for="mail" style="display:none;">Mail</label>
                       <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
 
-                      <input type="submit" class="btn btn-primary" value="Practice, Sprint & Exam" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
-                    </form>
-                </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    <form action="calificacionesSS.php" id="groupSS" method="POST">
-                      <label for="mail" style="display:none;">Mail</label>
-                      <input type="text" id="mail" name="mail" value="' . $matricula . '" style="display:none;"><br><br>
-
-                      <input type="submit" class="btn btn-success" value="Super Sprint" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
+                      <input type="submit" class="btn btn-primary" value="Práctica, Sprint y Examen" style="display:block; margin:0px auto; word-wrap: break-word;"><br>
                     </form>
                 </div>
             </div>
           </div>';
     imprimirRelleno();
-    imprimirRelleno();
   }
 
 
-  function imprimirCreditos()
-  {
-    echo '
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <a href="creditos.html"><h1 class="text-center titulo">Credits</h1></a>
-              </div>
-            </div>
-          </div>
-    ';
-    imprimirRelleno();
-    imprimirRelleno();
-  }
 
   function imprimirRelleno()
   {
@@ -526,6 +513,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
     else {
       imprimirOpcionesDePago();
     }
+
+    imprimirRelleno();
+    imprimirRelleno();
   }
 
   function imprimirOpcionesDePago()
@@ -535,12 +525,17 @@ require "../CSSsJSs/mainCSSsJSs.php";
     <div class="container">
       <div class="row">
         <div class="centrarObjeto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <p class="comprar" style="text-align:center;">Comprar</p>
+          <h2 class="comprar" style="text-align:center;">Vuélvete premium</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <p style="color:rgba(0,0,0,0);">./p>
         </div>
       </div>
     </div>
     ';
-    imprimirConFactura();
+    //imprimirConFactura();
     imprimirSinFactura();
     imprimirRelleno();
   }
@@ -557,7 +552,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           id="conFactura1"
           style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
         >
-          <p class="comprarf">Con factura</p>
+          <p class="comprarf">Pago - con factura</p>
         </div>
         <div
           class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
@@ -683,9 +678,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
                 margin: auto auto 0px auto;
               "
             >
-              Este es el correo que usas como usuario en Kaanbal. Si el correo no
+              Este es el correo que usas como usuario en Kaanbal. Si el correo NO
               es el correcto, ingresa a Kaanbal nuevamente, con el correo que
-              deseas pagar
+              deseas volver premium
             </p>
           </div>
           <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
@@ -715,7 +710,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             >
               La factura la encontrarás en el portal del SAT, en 10 días hábiles.
               Cualquier duda o aclaración estamos a tus órdenes
-              aclaraciones@kaanbal.net o 55 4871 4593
+              aclaraciones@kaanbal.net
             </p>
           </div>
         </div>
@@ -732,7 +727,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           </div>
         </div>
       </div>
-      <!--Boton Pagar-->
+      <!--Boton Donar-->
       <div class="container">
         <div class="row">
           <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
@@ -750,7 +745,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               enctype="application/x-www-form-urlencoded"
             >
               <button type="submit" class="btn btn-primary centrarObjeto">
-                Pagar
+                Donar
               </button>
             </form>
           </div>
@@ -788,7 +783,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
           id="sinFactura1"
           style="border-bottom: 2px solid rgba(200, 200, 200, 0.8)"
         >
-          <p class="comprarf">Sin factura</p>
+          <p class="comprarf">Dona aquí</p>
         </div>
         <div
           class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1"
@@ -864,7 +859,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
             >
               Este es el correo que usas como usuario en Kaanbal. Si el correo no
               es el correcto, ingresa a Kaanbal nuevamente, con el correo que
-              deseas pagar
+              deseas volver premium
             </p>
           </div>
           <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
@@ -902,7 +897,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
               enctype="application/x-www-form-urlencoded"
             >
               <button type="submit" class="btn btn-primary centrarObjeto">
-                Pagar
+                Donar
               </button>
             </form>
           </div>
@@ -920,20 +915,6 @@ require "../CSSsJSs/mainCSSsJSs.php";
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <p class="transparente">.</p>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div
-            class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center"
-            style="font-size: small"
-          >
-            NOTA: En caso de hacer un pago SIN factura, y posteriormente querer la
-            factura, tendrá que enviar sus datos junto con el “payment_id” a
-            aclaraciones@kaanbal.net . El “payment_id” se proporciona en la última
-            pantalla del pago. Esta aclaración tiene un tiempo de respuesta de
-            hasta 2 meses.
           </div>
         </div>
       </div>
@@ -1001,7 +982,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">List number</span>
+                <span class="input-group-text">Número de lista</span>
               </div>
               <select class="custom-select" id="listNumber">';
     //Crear la lectura en base de datos
@@ -1032,7 +1013,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">First name</span>
+                <span class="input-group-text">Primer nombre</span>
               </div>
               <select class="custom-select" id="idFirstName">';
     try {
@@ -1062,12 +1043,13 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
     echo '    </select>
             </div>
-            <p style="font-size:x-small; text-align:center ">If your first name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+            <!--p style="font-size:x-small; text-align:center ">If your first name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p-->
+            <p style="font-size:x-small; text-align:center ">¿Tu primer nombre NO esta en la lista?, envíanos un correo a: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
           ';
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group input-group-sm">
               <button id="updateStudentInfoButton" type="button" class="btn btn-primary btn-sm" style="display:block;margin:auto;">
-                  Update information
+                  Actualizar información
               </button>
             </div>
           ';

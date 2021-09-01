@@ -15,6 +15,17 @@ require "../../servicios/esProfe.php";
   <link rel="stylesheet" href="../CSSsJSs/<?= $kaanbalEssentials ?>" />
   <link rel="stylesheet" href="Top15.css" />
   <script src="Top03.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F7VGWM5LKB');
+  </script>
+  
 </head>
 
 <body>

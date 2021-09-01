@@ -16,15 +16,14 @@ function printEditTopic()
   printInstructions();
   printTopics();
   printButtons();
-  echo '</body>';
+  echo '</body>';  
 }
 
-function printTopics()
-{
+function printTopics(){
   $idAsignatura = $_GET['ID_Asignatura'];
   $con = mysqli_connect("localhost", "u526597556_dev", "1BLeeAgwq1*isgm&jBJe", "u526597556_kaanbal");
   $statement = mysqli_prepare($con, "SELECT id_tema, nombre, orden FROM tema WHERE id_asignatura = ? ORDER BY orden");
-  mysqli_stmt_bind_param($statement, "i", $idAsignatura);
+  mysqli_stmt_bind_param($statement,"i", $idAsignatura);
   mysqli_stmt_execute($statement);
 
   mysqli_stmt_store_result($statement);
@@ -42,55 +41,25 @@ function printTopics()
 
   $tamanho = count($arregloTemas);
 
-  echo '
-      <div class="container">
-        <div class="row">
-          <ul id="sortable" style="width:90vw;">
-      ';
-
   for ($i = 0; $i < $tamanho; $i++) {
     //print_r($arregloTemas[$i]["id_tema"]);
     //print_r($arregloTemas[$i]["nombre"]);
-    printTopic($arregloTemas[$i]["id_tema"], $arregloTemas[$i]["nombre"], $arregloTemas[$i]["orden"]);
+    printTopic($arregloTemas[$i]["id_tema"],$arregloTemas[$i]["nombre"],$arregloTemas[$i]["orden"]);
   }
-
-  echo '
-          </ul>
-        </div>
-      </div>
-  ';
 }
 
-function printTopic($ID_Topic, $topicName, $topicOrder)
-{
-  echo '
-        <li id="' . $ID_Topic . '" class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <div class="input-group-prepend">
-            <span class="input-group-text" style="min-width:50px;"> &Delta;</span>
-          </div>
-          <input type="text" class="form-control" value="' . $topicName. '" disabled />
-          <div class="input-group-append">
-            <a href="editarSubtema.php?ID_Tema=' . $ID_Topic . '">
-              <button class="btn btn-outline-secondary" type="button">
-                Buscar sus subtemas
-              </button>
-            </a>
-          </div>
-        </li>
-  ';
-}
-
-function printTopic2($ID_Topic, $topicName, $topicOrder)
-{
+function printTopic($ID_Topic, $topicName, $topicOrder){
   echo '
     <div class="container">
       <div class="row">
         <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <input type="text" class="form-control" id="' . $ID_Topic . '" value="' . $topicOrder . '" />
+          <!--div class="input-group-prepend">
+          </div-->
+          <input type="text" class="form-control" id="'.$ID_Topic.'" value="'.$topicOrder.'" />
           <div class="input-group-append">
-            <span class="input-group-text">' . $topicName . '</span>
-            <span class="input-group-text">' . $ID_Topic . '</span>
-            <a href="editarSubtema.php?ID_Tema=' . $ID_Topic . '">
+            <span class="input-group-text">'.$topicName.'</span>
+            <span class="input-group-text">'.$ID_Topic.'</span>
+            <a href="editarSubtema.php?ID_Tema='.$ID_Topic.'">
               <button class="btn btn-outline-secondary" type="button">
                 Buscar sus subtemas
               </button>
@@ -111,9 +80,8 @@ function printTopic2($ID_Topic, $topicName, $topicOrder)
   ';
 }
 
-function printHead()
-{
-  echo '
+function printHead(){
+  echo'
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -126,20 +94,11 @@ function printHead()
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="../CSSsJSs/jquery-1.12.4.js"></script>
-    <script src="../CSSsJSs/jquery-ui.js"></script>
-    <script src="../CSSsJSs/ordenTema3.js"></script>
-    <script>
-      $(function () {
-        $("#sortable").sortable();
-        $("#sortable").disableSelection();
-      });
-    </script>
+    <script src="../CSSsJSs/ordenTema.js"></script>
   </head>
   ';
 }
-function printTitle()
-{
+function printTitle(){
   echo '
   <div class="container">
     <div class="row">
@@ -162,17 +121,18 @@ function printTitle()
   ';
 }
 
-function printInstructions()
-{
+function printInstructions(){
   echo '
   <div class="container">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <p>
-            - Para cambiar de orden los <strong>temas</strong>, solo selecciona y arrastra el tema al orden deseado. Para seleccionar usa el símbolo delta.
+            - Para cambiar de orden los <strong>temas</strong>, edite el número
+            y de clic en "Guardar orden en base de datos"
           </p>
           <p style="font-size: smaller;">
-            SIEMPRE revisar ANTES de guardar.
+            Revisar ANTES de guardar, de lo contrario, el orden puede verse
+            alterado
           </p>
           <p>.</p>
           <p>
@@ -194,8 +154,7 @@ function printInstructions()
   ';
 }
 
-function printButtons()
-{
+function printButtons(){
   echo '
   <div class="container">
     <div class="row">
@@ -209,7 +168,6 @@ function printButtons()
         >
           Guardar en base de datos
         </button>
-        <img id="loading" src="../CSSsJSs/images/loading.gif" style="display: none; height: 30px; margin-top: auto; margin-left: 10px;">
       </div>
     </div>
   </div>

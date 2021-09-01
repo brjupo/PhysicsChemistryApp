@@ -13,6 +13,16 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
   <link rel="stylesheet" href="subtemas01.css" />
   <script src="subtemas02.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7VGWM5LKB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F7VGWM5LKB');
+  </script>
 </head>
 
 <body>
@@ -182,7 +192,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                     <img class="icons" src="../CSSsJSs/icons/fullBook.svg"/>
                   </td>
                   <td>
-                  <a href="../preguntas/SuperSprint/superSprint.php?subtema=' . $id_subtema . '"><img class="iconsActive" src="../CSSsJSs/icons/runner.svg" /></a>
+                    <img class="icons" src="../CSSsJSs/icons/runner.svg" />
                   </td>
                   <td>
                     <a href="lecciones.php?subtema=' . $id_subtema . '"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>                    
@@ -220,8 +230,8 @@ require "../CSSsJSs/mainCSSsJSs.php";
                     <a href="' . $link . '"><img class="iconsActive" src="../CSSsJSs/icons/fullBook.svg"/></a>
                   </td>
                   <td>
-                    <a href="../preguntas/SuperSprint/superSprint.php?subtema=' . $id_subtema . '"><img class="iconsActive" src="../CSSsJSs/icons/runner.svg" /></a>
-                  </td>
+                     <img class="icons" src="../CSSsJSs/icons/runner.svg" />
+                    </td>
                   <td>
                     <a href="lecciones.php?subtema=' . $id_subtema . '"><img class="iconContinueActive" src="../CSSsJSs/icons/FlechaIzq.svg" /></a>
                   </td>
