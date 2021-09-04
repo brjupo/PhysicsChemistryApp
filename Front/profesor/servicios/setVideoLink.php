@@ -17,7 +17,7 @@ try {
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   //INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')
   //UPDATE Customers SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1
-  $sql = "UPDATE leccion SET link = '" . $videoLink . "' WHERE id_leccion = '" . $idLeccion . "'";
+  $sql = "UPDATE leccion SET video = '" . $videoLink . "' WHERE id_leccion = '" . $idLeccion . "'";
   // use exec() because no results are returned
   $conn->exec($sql);
   $response["response"] = 'exito';
