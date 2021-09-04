@@ -40,7 +40,7 @@ require "../../../servicios/isAdmin.php";
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Elige el tema
+          - Elige el tema y da clic en "Buscar sus subtemas"
         </p>
       </div>
     </div>

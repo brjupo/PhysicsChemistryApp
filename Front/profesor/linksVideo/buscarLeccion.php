@@ -15,6 +15,7 @@ function printEditTopic()
   printTitle();
   printInstructions();
   printTopics();
+  printButtons();
   echo '</body>';
 }
 
@@ -125,7 +126,7 @@ function printInstructions()
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p>
-          - Elige lección
+          - En el espacio en blanco agrega el link del video correspondiente a la lección
         </p>
       </div>
     </div>
@@ -142,6 +143,33 @@ function printInstructions()
 }
 
 
+function printButtons()
+{
+  echo '
+  <div class="container">
+    <div class="row">
+      <div
+        class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+      >
+        <button
+          id="guardarEnBBDD"
+          type="button"
+          class="btn btn-primary btn-sm"
+        >
+          Guardar en base de datos
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+  ';
+}
 ?>
 
 </html>
