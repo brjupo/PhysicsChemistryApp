@@ -216,8 +216,28 @@ require "../../servicios/isAdmin.php";
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <a href="linksVideo/buscarAsignatura.php">
+          <button type="button" class="btn btn-warning">
+            Agregar links de Video
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="color: rgba(0, 0, 0, 0);">.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <a href="traducirTSL/elegirAsignatura.php">
-          <button type="button" class="btn btn-danger">
+          <button type="button" class="btn btn-info">
             Traducir temas, subtemas y lecciones
           </button>
         </a>

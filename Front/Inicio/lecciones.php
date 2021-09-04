@@ -312,8 +312,10 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
     if ($videoLeccion == Null) {
       $estiloLogoVideo = "icons";
+      $aHref = "";
     } else {
       $estiloLogoVideo = "iconsActive";
+      $aHref = "href='" . $videoLeccion . "'";
     }
 
     echo '
@@ -328,7 +330,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
                   ' . $nombreLeccion . '
                   </td>
                   <td>
-                    <a href="' . $videoLeccion . '" target="_blank">
+                    <a ' . $aHref . ' target="_blank">
                       <img class="' . $estiloLogoVideo . '" src="../CSSsJSs/icons/video.svg" />
                     </a>
                   </td>
