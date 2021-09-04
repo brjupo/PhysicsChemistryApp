@@ -91,7 +91,7 @@ function printHead()
     <link rel="stylesheet" href="../CSSsJSs/bootstrap441.css" />
     <link rel="stylesheet" href="../CSSsJSs/kaanbalEsentials.css" />
     <script src="../CSSsJSs/minAJAX.js"></script>
-    <script src="linkVideo00.js"></script>
+    <script src="linkVideo01.js"></script>
   </head>
   ';
 }
@@ -158,6 +158,7 @@ function printButtons()
         >
           Guardar en base de datos
         </button>
+        <img src="../../../../IMAGENES/loading.gif" id="imgLoadingGif" style="display: none;" height="30px">
       </div>
     </div>
   </div>

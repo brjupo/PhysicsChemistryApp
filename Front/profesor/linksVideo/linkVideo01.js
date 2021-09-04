@@ -18,12 +18,11 @@ window.onload = function () {
 
 document.addEventListener("click", function (evt) {
   var guardarEnBBDD = document.getElementById("guardarEnBBDD");
-  targetElement = evt.target; // clicked element
+  targetElement = evt.target;
 
   do {
     if (targetElement == guardarEnBBDD) {
-      //for(k=0; k<allIds.length;k++){        allIdsTemp[k] = allIds[k];      }
-      //COPIAR CORRECTAMENTE EL ARREGLO DE UNA SOLA DIMENSION!
+      document.getElementById("imgLoadingGif").style.display = "block";
       allIdsTemp = [...allIds];
       saveInDB();
       return;
@@ -33,21 +32,12 @@ document.addEventListener("click", function (evt) {
   } while (targetElement);
 });
 
-//NO SE PUEDE HACER ESTO, DEPENDES DEL TIEMPO QUE SE TARDE EL SERVICIO EN RESPONDER
-/*
-function saveAllInDB(){
-    for(j = 0; j<allIds.length; j++){
-        console.log(allIds[j]);
-        console.log(document.getElementById(allIds[j]).value.trim());
-        saveInDB(allIds[j], document.getElementById(allIds[j]).value.trim());
-    }
-}
-*/
 
 
 function saveInDB() {
     if(allIdsTemp.length==0){
         alert("Información actualizada en base de datos");
+        document.getElementById("imgLoadingGif").style.display = "none";
         return;
     }
     $.ajax({
@@ -73,6 +63,7 @@ function saveInDB() {
         },
         error: function () {
           alert("ERROR Desconocido, Actualice la página y reintente");
+          document.getElementById("imgLoadingGif").style.display = "none";
         },
       });
 }
