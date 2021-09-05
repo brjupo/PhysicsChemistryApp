@@ -133,7 +133,7 @@ $GLOBALS['id_tema'] = '';
                     $attr = $element->setAttributeNode(new DOMAttr('id', 'valor'));
                     $element->setIDAttribute('id', true);
                     $id_tema = $dom->getElementById('tema')->id_tema;
-                    window.alert($id_tema);
+                    echo "ID TEMA".$id_tema;
                     ?>
                     <!-- TERMINA ZONA EN CONSTRUCCION -->
                 </select><br>
