@@ -3,6 +3,9 @@ require "../../../servicios/00DDBBVariables.php";
 require "../../../servicios/isTeacher.php";
 $teacherID=isTeacher();
 require "../../CSSsJSs/mainCSSsJSs.php";
+ // ZONA EN CONSTRUCCION
+$GLOBALS['id_tema'] = '';
+// TERMINA ZONA EN CONSTRUCCION
 ?>
 
 <!DOCTYPE html>
@@ -129,8 +132,8 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     $element = $dom->appendChild(new DOMElement('select'));
                     $attr = $element->setAttributeNode(new DOMAttr('id', 'valor'));
                     $element->setIDAttribute('id', true);
-                    $tagname = $dom->getElementById('tema')->tagName;
-                    echo $tagname;
+                    $id_tema = $dom->getElementById('tema')->id_tema;
+                    alert($id_tema);
                     ?>
                     <!-- TERMINA ZONA EN CONSTRUCCION -->
                 </select><br>
