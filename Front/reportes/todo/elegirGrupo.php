@@ -117,7 +117,7 @@ $GLOBALS['id_tema'] = '';
                     try {
                         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stringQuery = 'SELECT id_tema, nombre FROM tema ORDER BY id_asignatura ASC, nombre ASC;';
+                        $stringQuery = 'SELECT id_tema, nombre FROM tema ORDER BY id_asignatura ASC, orden ASC;';
                         $stmt = $conn->query($stringQuery);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
