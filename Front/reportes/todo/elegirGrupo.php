@@ -123,6 +123,14 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         echo "Error: " . $e->getMessage();
                     }
                     $conn = null;
+                    // jalar id con javascript
+                    $dom = new DOMDocument('1.0', 'iso-8859-1');
+                    $dom->validateOnParse = true;
+                    $element = $dom->appendChild(new DOMElement('select'));
+                    $attr = $element->setAttributeNode(new DOMAttr('id', 'valor'));
+                    $element->setIDAttribute('id', true);
+                    $tagname = $dom->getElementById('tema')->tagName;
+                    echo $tagname;
                     ?>
                     <!-- TERMINA ZONA EN CONSTRUCCION -->
                 </select><br>
