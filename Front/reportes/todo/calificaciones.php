@@ -225,7 +225,6 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             ?>
         </div>
     </div>
-
     <!--OBTENER LA LISTA DE LECCIONES EN ORDEN, DE TODOS LOS SUBTEMAS-->
     <div class="container">
         <div class="row">
@@ -242,7 +241,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $stringQuery = "SELECT nombre, id_leccion FROM leccion WHERE id_subtema = " . $subtemas["id"][$j] . " ORDER BY orden";
+                    $stringQuery = "SELECT nombre, id_leccion FROM leccion WHERE id_subtema IN (SELECT id_subtema FROM subtema WHERE id_tema = " . $temas["id"] . ") ORDER BY orden";
                     $stmt = $conn->query($stringQuery);
                     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                         array_push($lecciones["tema"], $subtemas["tema"][$j]);
