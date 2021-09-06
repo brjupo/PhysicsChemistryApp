@@ -182,7 +182,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             try {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stringQuery = "SELECT nombre, id_tema FROM tema WHERE id_asignatura = " . $id_asignatura . " ORDER BY orden";
+                $stringQuery = "SELECT nombre, id_tema FROM tema WHERE id_asignatura = " . $id_asignatura . " ORDER BY orden LIMIT 3";
                 $stmt = $conn->query($stringQuery);
                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                     array_push($temas["nombre"], $row[0]);
