@@ -63,7 +63,9 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     </div>
 
     <?php
+    $i = 0; //contador por temas del POST, form y HTML. Para enviar de manera correcta la info.
     foreach ($arregloIdsAsignaturas as $idAsignatura) :
+        $i++;
     ?>
 
         <div class="container">
@@ -92,10 +94,10 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             <div class="row">
                 <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="grupo">Grupo</label>
+                        <label class="input-group-text" for="grupo<?= $i ?>">Grupo</label>
                     </div>
-                    <label for="grupo" style="display:none;">grupo</label>
-                    <select class="custom-select" id="grupo" name="grupo" form="groupForm">
+                    <label for="grupo<?= $i ?>" style="display:none;">grupo</label>
+                    <select class="custom-select" id="grupo<?= $i ?>" name="grupo<?= $i ?>" form="groupForm<?= $i ?>">
                         <option selected disabled value="0">Elegir</option>
                         <?php
                         global $servername, $username, $password, $dbname;
@@ -119,9 +121,9 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             <div class="row">
                 <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="modalidad">Modalidad</label>
+                        <label class="input-group-text" for="modalidad<?= $i ?>">Modalidad</label>
                     </div>
-                    <select class="custom-select" id="modalidad" name="modalidad" form="groupForm">
+                    <select class="custom-select" id="modalidad<?= $i ?>" name="modalidad<?= $i ?>" form="groupForm<?= $i ?>">
                         <option selected disabled value="0">Elegir</option>
                         <option value="PP">Práctica</option>
                         <option value="SP">Sprint</option>
@@ -132,10 +134,10 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             <div class="row">
                 <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="tema">Tema</label>
+                        <label class="input-group-text" for="tema<?= $i ?>">Tema</label>
                     </div>
-                    <label for="tema" style="display:none;">Tema</label>
-                    <select class="custom-select" id="tema" name="tema" form="groupForm">
+                    <label for="tema<?= $i ?>" style="display:none;">Tema</label>
+                    <select class="custom-select" id="tema<?= $i ?>" name="tema<?= $i ?>" form="groupForm<?= $i ?>">
                         <option selected disabled value="0">Elegir</option>
                         <?php
                         global $servername, $username, $password, $dbname;
@@ -165,7 +167,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
 
             <div class="row">
                 <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <form action="calificaciones.php" id="groupForm" method="POST">
+                    <form action="calificaciones.php" id="groupForm<?= $i ?>" method="POST">
                         <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte">
                     </form>
                 </div>
