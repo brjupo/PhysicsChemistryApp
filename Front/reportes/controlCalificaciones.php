@@ -278,7 +278,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   document.getElementById("botonInstrucciones").addEventListener("click", myFunction);
 
   function myFunction() {
-    if (document.getElementById("instrucciones").style.display = "block") {
+    if (document.getElementById("instrucciones").style.display == "block") {
       document.getElementById("instrucciones").style.display = "none";
 
     } else {
