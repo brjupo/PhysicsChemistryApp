@@ -39,10 +39,15 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <h4>Reportes</h4>
+        <p style="font-size:xx-large">Reportes</p>
       </div>
     </div>
     <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <p style="font-size:large" id="botonInstrucciones">Da clic aquí para mostrar las instrucciones</p>
+      </div>
+    </div>
+    <div class="row" id="instrucciones" style="display:none;">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <p><strong>RECUERDA:</strong></p>
         <p>Kaanbal trabaja con el siguiente árbol:</p>
@@ -51,9 +56,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
         <p>- Cada SUBTEMA tiene varias LECCIONES</p>
         <p>.</p>
         <p>Kaanbal tiene 3 modos de juego:</p>
-        <p>Práctica: Se muestran las preguntas en un orden que permiten al alumno aprender de manera escalonada, paso a paso.</p>
-        <p>Sprint: Son las mismas preguntas que la modalidad práctica, pero ordenadas de manera aleatoria y con un límite de tiempo para cada pregunta. Si se equivoca en 1, o el tiempo vence, ese juego termina y muestra su calificación obtenida.</p>
-        <p>Examen: Son las mismas preguntas que la modalidad práctica, pero ordenadas de manera aleatoria y con un límite de tiempo para TODO el juego. Si el tiempo vence, ese juego termina y muestra su calificación obtenida.</p>
+        <p><strong>Práctica:</strong> Se muestran las preguntas en un orden que permiten al alumno aprender de manera escalonada, paso a paso.</p>
+        <p><strong>Sprint:</strong> Son las mismas preguntas que la modalidad práctica, pero ordenadas de manera aleatoria y con un límite de tiempo para cada pregunta. Si se equivoca en 1, o el tiempo vence, ese juego termina y muestra su calificación obtenida.</p>
+        <p><strong>Examen:</strong> Son las mismas preguntas que la modalidad práctica, pero ordenadas de manera aleatoria y con un límite de tiempo para TODO el juego. Si el tiempo vence, ese juego termina y muestra su calificación obtenida.</p>
         <p>.</p>
         <p>Kaanbal trabaja con un sistema de diamantes. </p>
         <p>Para el caso de la modalidad práctica y examen se otorga 1 diamante por cada respuesta contestada de manera correcta. Si el alumno repite el juego NO obtendrá diamantes adicionales, a menos que, supere su calificación anterior.</p>
@@ -269,5 +274,17 @@ require "../CSSsJSs/mainCSSsJSs.php";
 
 
 </body>
+<script>
+  document.getElementById("botonInstrucciones").addEventListener("click", myFunction);
+
+  function myFunction() {
+    if (document.getElementById("instrucciones").style.display = "block") {
+      document.getElementById("instrucciones").style.display = "none";
+
+    } else {
+      document.getElementById("instrucciones").style.display = "block";
+    }
+  }
+</script>
 
 </html>
