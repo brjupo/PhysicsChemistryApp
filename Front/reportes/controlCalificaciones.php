@@ -157,7 +157,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       <a href="todo/elegirGrupo.php">
         <button type="button" class="btn btn-secondary">
-          1 Tema 1 Modalidad
+          Todos los Temas 1 Modalidad
         </button>
       </a>
     </div>
