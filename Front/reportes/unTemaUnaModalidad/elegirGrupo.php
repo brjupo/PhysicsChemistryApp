@@ -67,18 +67,6 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     ?>
 
         <div class="container">
-            <!-- -->
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <p style="color: rgba(0, 0, 0, 0);">.</p>
-                </div>
-            </div>
-            <!-- -->
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <p style="color: rgba(0, 0, 0, 0);">.</p>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="font-size:xx-large;">
@@ -155,7 +143,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         try {
                             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = 'SELECT nombre FROM tema WHERE id_asignatura = ' . $idAsignatura . ' ;';
+                            $stringQuery = 'SELECT id_tema, nombre FROM tema WHERE id_asignatura = ' . $idAsignatura . ' ;';
                             $stmt = $conn->query($stringQuery);
                             while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                                 echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
@@ -180,6 +168,24 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     <form action="calificaciones.php" id="groupForm" method="POST">
                         <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte">
                     </form>
+                </div>
+            </div>
+            <!-- -->
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <p style="color: rgba(0, 0, 0, 0);">.</p>
+                </div>
+            </div>
+            <!-- -->
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <p style="color: rgba(0, 0, 0, 0);">.</p>
+                </div>
+            </div>
+            <!-- -->
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
             </div>
         </div>
