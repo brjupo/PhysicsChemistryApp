@@ -29,6 +29,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     <?php
     $id_grupo = $_POST["grupo"];
     $tipo = $_POST["modalidad"];
+    $tema = $_POST["tema"];
     ?>
     <style>
         table {
@@ -67,7 +68,32 @@ require "../../CSSsJSs/mainCSSsJSs.php";
         </div>
     </div>
 
-    <!--+++++++++++++++++++++++++++++++++++ CABECERA [Asignatura, Profesor, Grupo y Modalidad] +++++++++++++++++++++++++++++++++++++-->
+    <!--+++++++++++++++++++++++++++++++++++ CABECERA [Profesor, Grupo, Modalidad y Tema] +++++++++++++++++++++++++++++++++++++-->
+    <!--OBTENER EL NOMBRE DEL TEMA-->
+    <div class="container">
+        <div class="row">
+            <?php
+            $temas = array();
+            $temas["nombre"] = array();
+            $temas["id"] = array();
+            //Crear la lectura en base de datos
+            try {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stringQuery = "SELECT nombre, id_tema FROM tema WHERE id_tema = " . $tema;
+                $stmt = $conn->query($stringQuery);
+                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                    array_push($temas["nombre"], $row[0]);
+                    array_push($temas["id"], $row[1]);
+                }
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            $conn = null;
+            ?>
+        </div>
+    </div>
+    <!--OBTENER EL NOMBRE DE LA MATERIA, EL CORREO DEL PROFESOR, EL NOMBRE DEL GRUPO Y LA MODALIDAD-->
     <?php
     //Crear la lectura en base de datos
     try {
@@ -76,8 +102,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
         $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo 
         FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u 
         JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor 
-        AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo .
-            " AND pu.tipo = '" . $tipo . "';";
+        AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo . " AND pu.tipo = '" . $tipo . "';";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Materia, mail, grupo, modalidad
@@ -101,14 +126,18 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                             <td><?php echo $materia; ?></td>
                         </tr>
                         <tr class="table-light">
+                            <td>Tema</td>
+                            <td><?= $temas["nombre"][0] ?></td>
+                        </tr>
+                        <tr class="table-info">
                             <td>Profesor</td>
                             <td><?php echo $correoProfesor; ?></td>
                         </tr>
-                        <tr class="table-info">
+                        <tr class="table-light">
                             <td>Grupo</td>
                             <td><?php echo $grupo; ?></td>
                         </tr>
-                        <tr class="table-light">
+                        <tr class="table-info">
                             <td>Modalidad</td>
                             <td>
                                 <?php
@@ -143,58 +172,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
         </div>
     </div>
 
-    <!--+++++++++++++++++++++++++++++++++++ Temas, Subtemas y Lecciones +++++++++++++++++++++++++++++++++++++-->
-    <!--OBTENER EL ID DE ASIGNATURA DEL GRUPO -->
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <?php
-            $id_asignatura = "0";
-            //Crear la lectura en base de datos
-            try {
-                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stringQuery = "SELECT id_asignatura FROM grupo WHERE id_grupo = " . $id_grupo . " LIMIT 1";
-                $stmt = $conn->query($stringQuery);
-                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                    $id_asignatura = $row[0];
-                }
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-            $conn = null;
-            ?>
-        </div>
-    </div>
-    <!--OBTENER LA LISTA DE TEMAS EN ORDEN, DE LA ASIGNATURA-->
-    <div class="container">
-        <div class="row">
-            <?php
-            $temas = array();
-            $temas["nombre"] = array();
-            $temas["id"] = array();
-            //Crear la lectura en base de datos
-            try {
-                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stringQuery = "SELECT nombre, id_tema FROM tema WHERE id_asignatura = " . $id_asignatura . " ORDER BY orden";
-                $stmt = $conn->query($stringQuery);
-                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                    array_push($temas["nombre"], $row[0]);
-                    array_push($temas["id"], $row[1]);
-                }
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-            $conn = null;
-            ?>
-        </div>
-    </div>
+    <!--+++++++++++++++++++++++++++++++++++ Subtemas y Lecciones +++++++++++++++++++++++++++++++++++++-->
     <!--OBTENER LA LISTA DE SUBTEMAS EN ORDEN, DE TODOS LOS TEMAS-->
     <div class="container">
         <div class="row">
@@ -396,7 +374,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $stringQuery = "SELECT a.id_alumno, SUM(p.puntuacion) AS 'diamantes' FROM puntuacion p JOIN usuario_prueba u JOIN alumno a ON p.id_usuario = u.id_usuario AND u.id_usuario = a.id_usuario WHERE a.id_alumno IN (SELECT id_alumno FROM alumno_grupo WHERE id_grupo = " . $id_grupo . ") GROUP BY a.matricula ORDER BY a.numero_lista ASC;";
                         $stmt = $conn->query($stringQuery);
-                        $cantidadAlumnos=count($alumnos["id"]);
+                        $cantidadAlumnos = count($alumnos["id"]);
                         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                             for ($n = 0; $n < $cantidadAlumnos; $n++) {
                                 if ($alumnos["id"][$n] == $row[0]) {
