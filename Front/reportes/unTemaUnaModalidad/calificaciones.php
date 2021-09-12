@@ -29,6 +29,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     <?php
     $id_grupo = $_POST["grupo"];
     $tipo = $_POST["modalidad"];
+    $tema = $_POST["tema"];
     ?>
     <style>
         table {
@@ -182,7 +183,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
             try {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stringQuery = "SELECT nombre, id_tema FROM tema WHERE id_asignatura = " . $id_asignatura . " ORDER BY orden";
+                $stringQuery = "SELECT nombre, id_tema FROM tema WHERE id_tema = ". $tema;
                 $stmt = $conn->query($stringQuery);
                 while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
                     array_push($temas["nombre"], $row[0]);
