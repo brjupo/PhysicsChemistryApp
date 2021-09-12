@@ -138,7 +138,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
         <p>Te será muy útil para subir calificaciones cada que acabes de ver un tema.</p>
       </div>
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <a href="todo/elegirGrupo.php">
+        <a href="unTemaUnaModalidad/elegirGrupo.php">
           <button type="button" class="btn btn-secondary">
             1 Tema 1 Modalidad
           </button>
@@ -146,6 +146,23 @@ require "../CSSsJSs/mainCSSsJSs.php";
       </div>
     </div>
   </div>
+
+<!--REPORTE TODOS LOS TEMAS 1 MODALIDAD-->
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <p>SOLO incluye las calificaciones de UN tema [incluyendo todos los subtemas y todas las lecciones] y SOLO UNA modalidad [práctica, sprint o examen]</p>
+      <p>Te será muy útil para subir calificaciones cada que acabes de ver un tema.</p>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <a href="todo/elegirGrupo.php">
+        <button type="button" class="btn btn-secondary">
+          1 Tema 1 Modalidad
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
 
   <!-- -->
   <div class="container">
