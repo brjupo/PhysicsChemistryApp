@@ -148,7 +148,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   </div>
 
 <!--REPORTE TODOS LOS TEMAS 1 MODALIDAD-->
-<div class="container">
+<div class="container" style="display:none;">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       <p>SOLO incluye las calificaciones de UN tema [incluyendo todos los subtemas y todas las lecciones] y SOLO UNA modalidad [práctica, sprint o examen]</p>
