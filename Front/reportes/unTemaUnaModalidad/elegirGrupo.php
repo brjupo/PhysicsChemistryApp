@@ -63,134 +63,132 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     </div>
 
     <?php
-    $i = 0; //contador por temas del POST, form y HTML. Para enviar de manera correcta la info.
     foreach ($arregloIdsAsignaturas as $idAsignatura) :
-        $i++;
     ?>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <p style="font-size:xx-large;">
-                        <?php
-                        global $servername, $username, $password, $dbname;
-                        //Crear la lectura en base de datos
-                        try {
-                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = 'SELECT nombre FROM asignatura WHERE id_asignatura = ' . $idAsignatura . ' ;';
-                            $stmt = $conn->query($stringQuery);
-                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                echo $row[0];
+        <form action="calificaciones.php" id="groupForm" method="POST">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <p style="font-size:xx-large;">
+                            <?php
+                            global $servername, $username, $password, $dbname;
+                            //Crear la lectura en base de datos
+                            try {
+                                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                $stringQuery = 'SELECT nombre FROM asignatura WHERE id_asignatura = ' . $idAsignatura . ' ;';
+                                $stmt = $conn->query($stringQuery);
+                                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                    echo $row[0];
+                                }
+                            } catch (PDOException $e) {
+                                echo "Error: " . $e->getMessage();
                             }
-                        } catch (PDOException $e) {
-                            echo "Error: " . $e->getMessage();
-                        }
-                        $conn = null;
-                        ?>
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="grupo<?= $i ?>">Grupo</label>
+                            $conn = null;
+                            ?>
+                        </p>
                     </div>
-                    <label for="grupo<?= $i ?>" style="display:none;">grupo</label>
-                    <select class="custom-select" id="grupo<?= $i ?>" name="grupo<?= $i ?>" form="groupForm<?= $i ?>">
-                        <option selected disabled value="0">Elegir</option>
-                        <?php
-                        global $servername, $username, $password, $dbname;
-                        //Crear la lectura en base de datos
-                        try {
-                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = 'SELECT id_grupo, nombre FROM grupo WHERE id_profesor = ' . $teacherID . ' AND id_asignatura = ' . $idAsignatura . ' ;';
-                            $stmt = $conn->query($stringQuery);
-                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
+                </div>
+                <div class="row">
+                    <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="grupo">Grupo</label>
+                        </div>
+                        <label for="grupo" style="display:none;">grupo</label>
+                        <select class="custom-select" id="grupo" name="grupo">
+                            <option selected disabled value="0">Elegir</option>
+                            <?php
+                            global $servername, $username, $password, $dbname;
+                            //Crear la lectura en base de datos
+                            try {
+                                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                $stringQuery = 'SELECT id_grupo, nombre FROM grupo WHERE id_profesor = ' . $teacherID . ' AND id_asignatura = ' . $idAsignatura . ' ;';
+                                $stmt = $conn->query($stringQuery);
+                                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                    echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
+                                }
+                            } catch (PDOException $e) {
+                                echo "Error: " . $e->getMessage();
                             }
-                        } catch (PDOException $e) {
-                            echo "Error: " . $e->getMessage();
-                        }
-                        $conn = null;
-                        ?>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="modalidad<?= $i ?>">Modalidad</label>
+                            $conn = null;
+                            ?>
+                        </select>
                     </div>
-                    <select class="custom-select" id="modalidad<?= $i ?>" name="modalidad<?= $i ?>" form="groupForm<?= $i ?>">
-                        <option selected disabled value="0">Elegir</option>
-                        <option value="PP">Práctica</option>
-                        <option value="SP">Sprint</option>
-                        <option value="E">Examen</option>
-                    </select>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="tema<?= $i ?>">Tema</label>
+                <div class="row">
+                    <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="modalidad">Modalidad</label>
+                        </div>
+                        <select class="custom-select" id="modalidad" name="modalidad">
+                            <option selected disabled value="0">Elegir</option>
+                            <option value="PP">Práctica</option>
+                            <option value="SP">Sprint</option>
+                            <option value="E">Examen</option>
+                        </select>
                     </div>
-                    <label for="tema<?= $i ?>" style="display:none;">Tema</label>
-                    <select class="custom-select" id="tema<?= $i ?>" name="tema<?= $i ?>" form="groupForm<?= $i ?>">
-                        <option selected disabled value="0">Elegir</option>
-                        <?php
-                        global $servername, $username, $password, $dbname;
-                        //Crear la lectura en base de datos
-                        try {
-                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stringQuery = 'SELECT id_tema, nombre FROM tema WHERE id_asignatura = ' . $idAsignatura . ' ;';
-                            $stmt = $conn->query($stringQuery);
-                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
+                </div>
+                <div class="row">
+                    <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="tema">Tema</label>
+                        </div>
+                        <label for="tema" style="display:none;">Tema</label>
+                        <select class="custom-select" id="tema" name="tema">
+                            <option selected disabled value="0">Elegir</option>
+                            <?php
+                            global $servername, $username, $password, $dbname;
+                            //Crear la lectura en base de datos
+                            try {
+                                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                $stringQuery = 'SELECT id_tema, nombre FROM tema WHERE id_asignatura = ' . $idAsignatura . ' ;';
+                                $stmt = $conn->query($stringQuery);
+                                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                    echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
+                                }
+                            } catch (PDOException $e) {
+                                echo "Error: " . $e->getMessage();
                             }
-                        } catch (PDOException $e) {
-                            echo "Error: " . $e->getMessage();
-                        }
-                        $conn = null;
-                        ?>
-                    </select>
+                            $conn = null;
+                            ?>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <!-- -->
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <p style="color: rgba(0, 0, 0, 0);">.</p>
+                <!-- -->
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <p style="color: rgba(0, 0, 0, 0);">.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <form action="calificaciones.php" id="groupForm<?= $i ?>" method="POST">
+                <div class="row">
+                    <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte">
-                    </form>
+                    </div>
+                </div>
+                <!-- -->
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <p style="color: rgba(0, 0, 0, 0);">.</p>
+                    </div>
+                </div>
+                <!-- -->
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <p style="color: rgba(0, 0, 0, 0);">.</p>
+                    </div>
+                </div>
+                <!-- -->
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <p style="color: rgba(0, 0, 0, 0);">.</p>
+                    </div>
                 </div>
             </div>
-            <!-- -->
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <p style="color: rgba(0, 0, 0, 0);">.</p>
-                </div>
-            </div>
-            <!-- -->
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <p style="color: rgba(0, 0, 0, 0);">.</p>
-                </div>
-            </div>
-            <!-- -->
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <p style="color: rgba(0, 0, 0, 0);">.</p>
-                </div>
-            </div>
-        </div>
+        </form>
     <?php endforeach; ?>
 
     <!-- -->
