@@ -30,6 +30,9 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     $id_grupo = $_POST["grupo"];
     $tipo = $_POST["modalidad"];
     $tema = $_POST["tema"];
+    echo "id_grupo: |" . $id_grupo;
+    echo "| tipo: |" . $tipo;
+    echo "| tema: |" . $tema;
     ?>
     <style>
         table {
@@ -77,8 +80,7 @@ require "../../CSSsJSs/mainCSSsJSs.php";
         $stringQuery = "SELECT DISTINCT a.nombre, u.mail, g.nombre, pu.tipo 
         FROM asignatura a JOIN grupo g JOIN profesor prof JOIN usuario_prueba u 
         JOIN puntuacion pu ON g.id_asignatura = a.id_asignatura AND g.id_profesor = prof.id_profesor 
-        AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo .
-            " AND pu.tipo = '" . $tipo . "';";
+        AND prof.id_usuario = u.id_usuario WHERE g.id_grupo = " . $id_grupo . " AND pu.tipo = '" . $tipo . "';";
         $stmt = $conn->query($stringQuery);
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             //row [0] -> Materia, mail, grupo, modalidad
@@ -145,33 +147,6 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     </div>
 
     <!--+++++++++++++++++++++++++++++++++++ Temas, Subtemas y Lecciones +++++++++++++++++++++++++++++++++++++-->
-    <!--OBTENER EL ID DE ASIGNATURA DEL GRUPO -->
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <?php
-            $id_asignatura = "0";
-            //Crear la lectura en base de datos
-            try {
-                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stringQuery = "SELECT id_asignatura FROM grupo WHERE id_grupo = " . $id_grupo . " LIMIT 1";
-                $stmt = $conn->query($stringQuery);
-                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                    $id_asignatura = $row[0];
-                }
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-            $conn = null;
-            ?>
-        </div>
-    </div>
     <!--OBTENER LA LISTA DE TEMAS EN ORDEN, DE LA ASIGNATURA-->
     <div class="container">
         <div class="row">
