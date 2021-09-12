@@ -65,47 +65,40 @@ require "../../CSSsJSs/mainCSSsJSs.php";
     <?php
     foreach ($arregloIdsAsignaturas as $idAsignatura) :
     ?>
-        <!-- -->
+
         <div class="container">
+            <!-- -->
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
             </div>
-        </div>
-
-        <div class="container">
             <!-- -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <p style="font-size:xx-large;">
-                            <?php
-                            global $servername, $username, $password, $dbname;
-                            //Crear la lectura en base de datos
-                            try {
-                                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                $stringQuery = 'SELECT nombre FROM asignatura WHERE id_asignatura = ' . $idAsignatura . ' ;';
-                                $stmt = $conn->query($stringQuery);
-                                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-                                    echo $row[0];
-                                }
-                            } catch (PDOException $e) {
-                                echo "Error: " . $e->getMessage();
-                            }
-                            $conn = null;
-                            ?>
-                        </p>
-                    </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <p style="color: rgba(0, 0, 0, 0);">.</p>
                 </div>
             </div>
-            <!-- -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <p style="color: rgba(0, 0, 0, 0);">.</p>
-                    </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <p style="font-size:xx-large;">
+                        <?php
+                        global $servername, $username, $password, $dbname;
+                        //Crear la lectura en base de datos
+                        try {
+                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            $stringQuery = 'SELECT nombre FROM asignatura WHERE id_asignatura = ' . $idAsignatura . ' ;';
+                            $stmt = $conn->query($stringQuery);
+                            while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                                echo $row[0];
+                            }
+                        } catch (PDOException $e) {
+                            echo "Error: " . $e->getMessage();
+                        }
+                        $conn = null;
+                        ?>
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -135,15 +128,6 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     </select>
                 </div>
             </div>
-            <!-- -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <p style="color: rgba(0, 0, 0, 0);">.</p>
-                    </div>
-                </div>
-            </div>
-
             <div class="row">
                 <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="input-group-prepend">
@@ -157,15 +141,6 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                     </select>
                 </div>
             </div>
-            <!-- -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <p style="color: rgba(0, 0, 0, 0);">.</p>
-                    </div>
-                </div>
-            </div>
-
             <div class="row">
                 <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="input-group-prepend">
@@ -192,7 +167,15 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                         ?>
                     </select>
                 </div>
+            </div>
+            <!-- -->
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <p style="color: rgba(0, 0, 0, 0);">.</p>
+                </div>
+            </div>
 
+            <div class="row">
                 <div class="input-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <form action="calificaciones.php" id="groupForm" method="POST">
                         <input type="submit" class="btn btn-primary btn-sm" value="Generar reporte">
@@ -200,16 +183,6 @@ require "../../CSSsJSs/mainCSSsJSs.php";
                 </div>
             </div>
         </div>
-
-        <!-- -->
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <p style="color: rgba(0, 0, 0, 0);">.</p>
-                </div>
-            </div>
-        </div>
-
     <?php endforeach; ?>
 
     <!-- -->
