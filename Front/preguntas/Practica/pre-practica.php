@@ -114,6 +114,9 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     /*---------------------------------------------------------------------------------------- */
     ?>
 
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9977500171937835" crossorigin="anonymous"></script>
+
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -125,13 +128,21 @@ require "../../CSSsJSs/mainCSSsJSs.php"
     </div>
     <div class="container">
         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <!-- Pre_practica_1 -->
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9977500171937835" data-ad-slot="7302320421" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            </div>
+        </div>
+    </div>
+    <!--div class="container">
+        <div class="row">
             <?php
-            $infoAd = getRandomAd();
-            $adId = $infoAd["id"];
-            $adLink = $infoAd["link"];
-            $adImageUrl = $infoAd["image_url"];
-            $adTitle = $infoAd["title"];
-            $adVigencia = $infoAd["expired_date"];
+            // $infoAd = getRandomAd();
+            // $adId = $infoAd["id"];
+            // $adLink = $infoAd["link"];
+            // $adImageUrl = $infoAd["image_url"];
+            // $adTitle = $infoAd["title"];
+            // $adVigencia = $infoAd["expired_date"];
             ?>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                 <a target="_blank" href="<?= $adLink ?>">
@@ -153,13 +164,13 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                 </a>
             </div>
             <?php
-            for ($i = 0; $i < 2; $i++) {
-                $infoAd = getRandomAd();
-                $adId = $infoAd["id"];
-                $adLink = $infoAd["link"];
-                $adImageUrl = $infoAd["image_url"];
-                $adTitle = $infoAd["title"];
-                $adVigencia = $infoAd["expired_date"];
+            // for ($i = 0; $i < 2; $i++) {
+            //     $infoAd = getRandomAd();
+            //     $adId = $infoAd["id"];
+            //     $adLink = $infoAd["link"];
+            //     $adImageUrl = $infoAd["image_url"];
+            //     $adTitle = $infoAd["title"];
+            //     $adVigencia = $infoAd["expired_date"];
             ?>
                 <div class="hidden-xs hidden-sm col-md-4 col-lg-4 col-xl-4">
                     <a target="_blank" href="<?= $adLink ?>">
@@ -181,10 +192,10 @@ require "../../CSSsJSs/mainCSSsJSs.php"
                     </a>
                 </div>
             <?php
-            }
+            //}
             ?>
         </div>
-    </div>
+    </div-->
 
 
     <?php
@@ -215,6 +226,20 @@ require "../../CSSsJSs/mainCSSsJSs.php"
             </div>
         </div>
     </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <!-- Practica Horizontal -->
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9977500171937835" data-ad-slot="4338545816" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
     <script>
         window.onload = function() {
