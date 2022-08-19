@@ -14,7 +14,7 @@ function enviarMail($destinatario, $asunto, $cuerpo)
     $mail->Port = 587;
     $mail->SMTPAuth = true;
     $mail->Username = 'licencias@kaanbal.net';
-    $mail->Password = 'BraEduCri567';
+    $mail->Password = '';
     $mail->setFrom('licencias@kaanbal.net');
     $mail->addAddress($destinatario);
     $mail->Subject = $asunto;
