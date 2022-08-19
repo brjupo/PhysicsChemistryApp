@@ -1044,7 +1044,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
     echo '    </select>
             </div>
             <!--p style="font-size:x-small; text-align:center ">If your first name is not listed here, send us an email to: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p-->
-            <p style="font-size:x-small; text-align:center ">¿Tu primer nombre NO esta en la lista?, envíanos un correo a: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a></p>
+            <p style="font-size:x-small; text-align:center ">¿Tu primer nombre NO esta en la lista?, envíanos un correo a: <a href="mailto:aclaraciones@kaanbal.net">aclaraciones@kaanbal.net</a>. En menos de 72 horas hábiles tu nombre aparecerá en la lista. </p>
           ';
     echo '  <p style="color:rgba(0,0,0,0)">.</p>
             <div class="input-group input-group-sm">

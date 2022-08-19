@@ -12,7 +12,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   <link rel="shortcut icon" type="image/x-icon" href="../CSSsJSs/icons/pyramid.svg" />
   <title>Lecciones</title>
   <link rel="stylesheet" href="../CSSsJSs/<?php echo $bootstrap341; ?>" />
-  <link rel="stylesheet" href="lecciones01.css" />
+  <link rel="stylesheet" href="lecciones02.css" />
   <script src="lecciones02.js"></script>
 </head>
 
@@ -207,15 +207,15 @@ require "../CSSsJSs/mainCSSsJSs.php";
     //Llamar no habilitadas
     //Verificamos el idioma//
     if ($_SESSION["idioma"] == 'i') {
-      $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, names, orden FROM leccion WHERE id_subtema = ? ORDER BY orden");
+      $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, names, orden, video FROM leccion WHERE id_subtema = ? ORDER BY orden");
     } else {
-      $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, nombre, orden FROM leccion WHERE id_subtema = ? ORDER BY orden");
+      $statement = mysqli_prepare($con, "SELECT id_leccion, id_subtema, nombre, orden, video FROM leccion WHERE id_subtema = ? ORDER BY orden");
     }
     mysqli_stmt_bind_param($statement, "i", $id_subtema);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_leccion, $id_subtema, $nombre, $orden);
+    mysqli_stmt_bind_result($statement, $id_leccion, $id_subtema, $nombre, $orden, $video);
 
     $arregloLecciones = array();
     $i = 0;
@@ -225,60 +225,9 @@ require "../CSSsJSs/mainCSSsJSs.php";
       $arregloLecciones[$i]["id_subtema"] = $id_subtema;
       $arregloLecciones[$i]["nombre"] = $nombre;
       $arregloLecciones[$i]["orden"] = $orden; ////////280622020 se agrego lo del orden de las lecciones
+      $arregloLecciones[$i]["video"] = $video;
       $i = $i + 1;
     }
-
-    //Contar lecciones a habilitar
-    $tamanhoh = $j;
-    $_SESSION["tamanhoh"] = $tamanhoh;
-    $tamanho = count($arregloLecciones);
-
-    //para siempre habilitar la primera lección es el if
-    if ($tamanhoh == 0) {
-      $arregloLecciones[0]["h"] = '1';
-      $arregloLecciones[0]["hS"] = '0';
-      $arregloLecciones[0]["hE"] = '0';
-    } else {
-      if ($tamanhoh == $tamanho) {
-        //Para activar ya todas las lecciones
-        for ($i = 0; $i < $tamanhoh; $i++) {
-          $arregloLecciones[$i]["h"] = '1';
-          $arregloLecciones[$i]["hS"] = '1';
-          $arregloLecciones[0]["hE"] = '1';
-        }
-      } else {
-        //Para activar solo la siguiente leccion
-        for ($i = 0; $i <= $tamanhoh; $i++) {
-          if ($i == $tamanhoh) {
-            $arregloLecciones[$i]["h"] = '1';
-            $arregloLecciones[$i]["hS"] = '0';
-            $arregloLecciones[0]["hE"] = '0';
-          } else {
-            $arregloLecciones[$i]["h"] = '1';
-            $arregloLecciones[$i]["hS"] = '1';
-            $arregloLecciones[0]["hE"] = '1';
-          }
-        }
-      }
-    }
-    //$arregloLeccionesTodas = array_merge($arregloLeccionesh, $arregloLecciones);
-    ////////////
-    /* $statement = mysqli_prepare($con, "SELECT * FROM leccion WHERE id_subtema = ?"); //WHERE mail = ? AND pswd = ?
-    mysqli_stmt_bind_param($statement, "s", $arregloIdsubtema["id_subtema"]);
-    mysqli_stmt_execute($statement);
-
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $id_leccion, $id_subtema, $nombre);
-
-    $arregloLecciones = array();
-    $i = 0;
-    //Leemos datos del la leccion
-    while (mysqli_stmt_fetch($statement)) { //si si existe la leccion
-      $arregloLecciones[$i]["id_leccion"] = $id_leccion;
-      $arregloLecciones[$i]["id_subtema"] = $id_subtema;
-      $arregloLecciones[$i]["nombre"] = $nombre;
-      $i = $i + 1;
-    } */
     ///////////////
 
     return ($arregloLecciones);
@@ -295,7 +244,7 @@ require "../CSSsJSs/mainCSSsJSs.php";
   {
     $tamanho = count($arregloLecciones);
     for ($i = 0; $i < $tamanho; $i++) {
-      imprimirLeccion($i + 1, $arregloLecciones[$i]["id_leccion"],  $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["h"], $arregloLecciones[$i]["hS"], $arregloLecciones[0]["hE"]);
+      imprimirLeccion($i + 1, $arregloLecciones[$i]["id_leccion"],  $arregloLecciones[$i]["nombre"], $arregloLecciones[$i]["video"]);
       //function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $habilitar, $habilitarS)
     }
   }
@@ -348,134 +297,72 @@ require "../CSSsJSs/mainCSSsJSs.php";
   ';
   }
 
-  function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion,$habilitar, $habilitarS, $habilitarE)
+  function imprimirLeccion($numeroLeccion, $idLeccion, $nombreLeccion, $videoLeccion)
   {
-    $habilitar = '1';
-    $habilitarS = '1';
-    $habilitarE = '1';
 
     /*---------------------------------------------------------------------------------------- */
     /*------------------------------------- VALIDAR PAGO ------------------------------------- */
     /*---------------------------------------------------------------------------------------- */
     $pagado = licenciaPagada();
-    if($pagado=="approved"){$prefijo="";}else{$prefijo="pre-";}
-
-    if ($habilitar == '1' && $habilitarS == '1' && $habilitarE == '1') {
-      //<a href="../preguntas/examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" /></a>      
-      echo '
-      <div class="container">
-        <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
-          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-          <div class="temaPrincipal1 text-center col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
-            <table class="table fixed">
-              <tbody>
-                <tr>
-                  <td>
-                    <img class="iconsNumber" src="../CSSsJSs/icons/' . $numeroLeccion . '.svg" />
-                  </td>
-                  <td class="tituloTemasPrincipales">
-                  ' . $nombreLeccion . '
-                  </td>
-                  <td>
-                  <a href="../preguntas/Practica/'.$prefijo.'practica.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
-                  </td>
-                  <td>
-                  <a href="../preguntas/Sprint/'.$prefijo.'sprint.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" /></a>
-                  </td>
-                  <td>
-                  <a href="../preguntas/Examen/'.$prefijo.'examen.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/examen.svg" />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <p></p>
-        </div>
-      </div>
-  ';
-    } elseif ($habilitar == '1') {
-      echo '
-      <div class="container">
-        <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
-          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-          <div class="temaPrincipal1 text-center col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
-            <table class="table fixed">
-              <tbody>
-                <tr>
-                  <td>
-                    <img class="iconsNumber" src="../CSSsJSs/icons/' . $numeroLeccion . '.svg" />
-                  </td>
-                  <td class="tituloTemasPrincipales">
-                  ' . $nombreLeccion . '
-                  </td>
-                  <td>
-                  <a href="../preguntas/Practica/'.$prefijo.'practica.php?leccion=' . $idLeccion . '"><img class="iconsActive" src="../CSSsJSs/icons/book.svg" /></a>
-                  </td>
-                  <td>
-                    <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
-                  </td>
-                  <td>
-                    <img class="icons" src="../CSSsJSs/icons/examen.svg" />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <p></p>
-        </div>
-      </div>
-  ';
+    if ($pagado == "approved") {
+      $prefijo = "";
     } else {
-      echo '
-              <div class="container">
-                <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
-                  <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-                  <div class="temaPrincipal1 text-center col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
-                    <table class="table fixed">
-                      <tbody>
-                        <tr>
-                          <td>
-                            <img class="iconsNumber" src="../CSSsJSs/icons/' . $numeroLeccion . '.svg" />
-                          </td>
-                          <td class="tituloTemasPrincipales">
-                          ' . $nombreLeccion . '
-                          </td>
-                          <td>
-                          <img class="icons" src="../CSSsJSs/icons/book.svg" /></a>
-                          </td>
-                          <td>
-                          <img class="icons" src="../CSSsJSs/icons/jogging.svg" /></a>
-                          </td>
-                          <td>
-                            <img class="icons" src="../CSSsJSs/icons/examen.svg" />
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
-                </div>
-              </div>
-
-              <div class="container">
-                <div class="row">
-                  <p></p>
-                </div>
-              </div>
-          ';
+      $prefijo = "pre-";
     }
+
+    if ($videoLeccion == Null) {
+      $estiloLogoVideo = "icons";
+      $aHref = "";
+    } else {
+      $estiloLogoVideo = "iconsActive";
+      $aHref = "href='" . $videoLeccion . "'";
+    }
+
+    echo '
+      <div class="container">
+        <div id="seccion' . $numeroLeccion . '" class="row fade" style="opacity:0.0">
+          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="temaPrincipal1 text-center col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+            <table class="table fixed">
+              <tbody>
+                <tr>
+                  <td class="tituloTemasPrincipales">
+                  ' . $nombreLeccion . '
+                  </td>
+                  <td>
+                    <a ' . $aHref . ' target="_blank">
+                      <img class="' . $estiloLogoVideo . '" src="../CSSsJSs/icons/video.svg" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="../preguntas/Practica/' . $prefijo . 'practica.php?leccion=' . $idLeccion . '">
+                      <img class="iconsActive" src="../CSSsJSs/icons/book.svg" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="../preguntas/Sprint/' . $prefijo . 'sprint.php?leccion=' . $idLeccion . '">
+                      <img class="iconsActive" src="../CSSsJSs/icons/jogging.svg" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="../preguntas/Examen/' . $prefijo . 'examen.php?leccion=' . $idLeccion . '">
+                      <img class="iconsActive" src="../CSSsJSs/icons/examen.svg" />
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="text-center col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <p></p>
+        </div>
+      </div>
+  ';
   }
 
   function imprimirRelleno()
